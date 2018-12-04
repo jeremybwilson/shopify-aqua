@@ -1,0 +1,143 @@
+<div id="shopping-cart" class="desktop-12 tablet-6 mobile-3">
+
+  <h2>{{ 'cart.general.title' | t }}</h2>
+  {% if cart.item_count == 0 %}
+  <p>{{ 'cart.general.empty' | t }}</p>
+
+  {% else %}
+  <script type="text/javascript">
+    function remove_item( line_item ) {
+      console.log( 'calling remove_item' );
+      
+      function successCallback( cart ) {
+
+        // REMOVE : Line item we removed via api
+        $( '#cart-line-item-' + line_item ).remove();
+        
+        // UPDATE : Price now currently in the cart
+        var cartTotal = calcCartTotal( cart.total_price );
+        $( '#cart-page-price' ).html( cartTotal );
+        console.log( 'Just set priceEl inner html as ' + cartTotal );
+      }
+
+     function calcCartTotal( total_price ) {
+        // CONVERT : Change cart value to a whole dollar (or other currency) amount
+        var dollar, cents, cartTotal, total = JSON.stringify( total_price );
+        
+        if ( total.length < 3 ) {
+          dollar = 0;
+          cents = total.length < 2 ? '0' + total : total; // So "9" becomes "0.09" at the end
+
+        } else {
+          dollar = total.substring( 0, total.length - 2 );
+          cents = total.substring( total.length - 2, total.length );
+        }
+
+        return ( '$' + dollar + '.' + cents );
+      }
+
+      // REMOVE : Use API from ajax-cart.js.liquid to set item quantity to 0 for a removal
+      if ( line_item ) {
+        ShopifyAPI.changeItem( line_item, 0, successCallback );
+      }
+    }
+  </script>
+  <form action="/cart" method="post" id="cartform">
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align:left"><label>{{ 'cart.general.product' | t }}</label></th>
+          <th class="cart--remove" style="text-align: center;"><label>{{ 'cart.general.remove' | t }}</label></th>
+          <th><label>{{ 'cart.general.price' | t }}</label></th>
+          <th style="text-align: center;"><label>{{ 'cart.general.qty' | t }}</label></th>
+          <th class="cart--total-price"><label>{{ 'cart.general.price' | t }}</label></th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        {% comment %} LINE_ITEM COUNT (For Removal Function) {% endcomment %}
+        {% assign line_item = 0 %}
+
+        {% comment %} :: CART LINE ITEMS :: {% endcomment %}
+        {% for item in cart.items %}
+          {% assign line_item = line_item | plus: 1 %}
+          <tr id="cart-line-item-{{ line_item }}">
+            <td class="cart-item">
+                <div class="cart-image" style="max-width: 100px;">
+                  <a href="{{ item.url }}" title="{{ item.product.title | escape }}">
+                    <img src="{{ item | img_url: '400x' }}" alt="{{ item.title | escape }}" />
+                  </a>
+                </div>
+                <div class="cart-title">
+                  {% if settings.vendor %}<p>{{ item.vendor }}</p>{% endif %}
+                  {{ item.title }}
+                </div>
+              {% assign property_size = item.properties | size %}
+              {% if property_size > 0 %}
+                {% for p in item.properties %}
+                  {% unless p.first == 'discountItem' or p.last == blank %}
+                    {{ p.first }}:
+
+                    {% comment %}
+                    Check if there was an uploaded file associated
+                    {% endcomment %}
+                    {% if p.last contains '/uploads/' %}
+                      <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                    {% else %}
+                      {{ p.last }}
+                    {% endif %}
+                    <br>
+                  {% endunless %}
+                {% endfor %}
+              {% endif %}
+            </td>
+
+            <td class="cart-remove">
+              <a href="#" onclick="remove_item( {{ line_item }} ); return false;"><i class="fa fa-times"></i><span class="remove-text">{{ 'cart.general.remove' | t }}</span></a>
+            </td>          
+            <td class="cart-price">
+              <span class="money">{{ item.price | money }}</span>{% if item.variant.compare_at_price > item.price %}&nbsp;<del><span class="money">{{ item.variant.compare_at_price | money }}</span></del>{% endif %}
+            </td>
+            <td class="cart-quantity">
+              {% if item.title contains "Free Gift" or item.title contains "Gift Item" %}
+                <div id="updates_{{ item.variant.id }}" class="cart-qty gift-item-cart-qty">{{ item.quantity }}</div>
+              {% else %}
+                <input type="text" class="cart-qty" size="4" name="updates[{{ item.id }}]" id="updates_{{ item.variant.id }}" value="{{ item.quantity }}" onfocus="this.select();"/>
+              {% endif %}
+            </td>
+            <td class="cart--total-price">
+              <span class="money">{{ item.line_price | money }}</span>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+
+    <div id="basket-right" class="desktop-4 tablet-6 mobile-3">
+      <h4>
+        <span class="subtotal-header">{{ 'cart.general.subtotal' | t }}</span>
+        <span id="cart-page-price" class="money">{{ cart.total_price | money }}</span>
+      </h4>
+
+      <input type="submit" name="update" id="update-cart" value="{{ 'cart.general.update' | t }}" class="button" />
+      <input type="submit" name="checkout" id="checkout" value="{{ 'cart.general.checkout' | t }}" class="button" />
+      <div class="clear"></div>
+      {% if additional_checkout_buttons %}
+      {{ content_for_additional_checkout_buttons }}
+      {% endif %}
+      <div class="clear"></div>
+    </div>
+
+    {% if settings.cart_notes_enable %}
+    <div id="cart-notes" class="desktop-12 mobile-3">
+      <label for="note"><strong>{{ 'cart.general.note' | t }}</strong></label>
+      <textarea name="note" id="note" rows="5" cols="60">{{cart.note}}</textarea>
+    </div>
+    {% endif %}
+
+  </form>
+  {% endif %}
+
+
+</div>
