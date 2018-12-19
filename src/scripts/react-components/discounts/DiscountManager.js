@@ -79,7 +79,6 @@ class DiscountManager extends React.Component {
 			if ( savedRejectedDiscounts ) { 
 				savedRejectedDiscounts = JSON.parse( savedRejectedDiscounts );
 			}
-			console.log( 'parsing cookies' );
 		}
 		catch( err ) {
 			console.log( `DiscountManager : Choked while eating the cookies, they may have gone bad...\n${err}` );
