@@ -218,13 +218,13 @@
         "type": "color",
         "id": "button_border_color",
         "label": "Main Button Border Color",
-        "default": "transparent"
+        "default": "rgba(0,0,0,0)"
       },
       {
         "type": "color",
         "id": "button_border_color_hover",
         "label": "Main Button Border Color - Hover",
-        "default": "transparent"
+        "default": "rgba(0,0,0,0)"
       },
       {
         "type": "range",
@@ -264,13 +264,13 @@
         "type": "color",
         "id": "alt_button_border_color",
         "label": "Secondary Button Border Color",
-        "default": "transparent"
+        "default": "rgba(0,0,0,0)"
       },
       {
         "type": "color",
         "id": "alt_button_border_color_hover",
         "label": "Secondary Button Border Color - Hover",
-        "default": "transparent"
+        "default": "rgba(0,0,0,0)"
       },
       {
         "type": "range",
