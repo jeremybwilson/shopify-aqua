@@ -6,7 +6,7 @@
 /*  HEADER : Core Styles
  * ---------------------------------------------- */
 $navBoxShadow: 0px 1px 9px #8d8d8d;
-$navShadowAni: box-shadow 0.25s ease-in-out;
+$navShadowAni: box-shadow 0.25s ease-in-out, background 0.25s ease-in-out;
 $navMobileBarGutter: 15px;
 $navMinorBorder: 1px solid {{ settings.nav_minor_border_color }};
 $zIndexBackingShadow: -1;
@@ -20,6 +20,7 @@ $navHeaderColor: {{ settings.nav_header_color }};
 $navSubHeaderColor: {{ settings.nav_sub_header_color }};
 $navListItemColor: {{ settings.nav_list_item_color }};
 $navHoverColor: {{ settings.nav_hover_color }};
+$transparentLandingFontColor: #ffffff;
 
 #header-section {
     position: relative;
@@ -35,7 +36,6 @@ $navHoverColor: {{ settings.nav_hover_color }};
 
 
 
-
 /*  NAV : Styles for the Nav-Bar portion
  * ---------------------------------------------- */
 #nav-bar-wrapper {
@@ -46,12 +46,63 @@ $navHoverColor: {{ settings.nav_hover_color }};
     z-index: 50; //entire wrapper, this relates to the header to rest of site so no need var
     transition: $navShadowAni;
 
+    &.transparent-landing {
+        margin-bottom: -80px;
+        background: rgba( 0,0,0,0 );
+
+        #nav-bar-bg,
+        #nav-user ul#nav-user-list .nav-sites ul.sites-picker,
+        #nav-user ul#nav-user-list .nav-sites ul.sites-picker li,
+        #nav-user ul#nav-user-list .nav-sites ul.sites-picker li .site-name {
+            background: rgba( 0,0,0,0 );
+            transition: $navShadowAni;
+        }
+
+        // Easier to bundle it as an important'd override, then override again elow this in the isStuck block
+        .nav-category-header,
+        .account-text,
+        .icon-cart-text,
+        .cart-count,
+        .site-name,
+        .nav-item svg path,
+        .icon-header-logo path {
+            color: $transparentLandingFontColor !important; 
+            fill: $transparentLandingFontColor !important;
+            transition: all 0.25s ease-in-out;
+        }
+    }
+
     // SHADOW : When stick nav is active
-    &.isStuck {
+    &.isStuck,
+    &.show-search-bar,
+    &.nav-item-active {
         box-shadow: $navBoxShadow; 
 
         #nav-logo-backing {
             box-shadow: $navBoxShadow;
+        }
+
+        &.transparent-landing {
+            background: {{ settings.header_background }};
+
+            #nav-bar-bg,
+            #nav-user ul#nav-user-list .nav-sites ul.sites-picker,
+            #nav-user ul#nav-user-list .nav-sites ul.sites-picker li,
+            #nav-user ul#nav-user-list .nav-sites ul.sites-picker li .site-name {
+                background: {{ settings.header_background }};
+            }
+
+            // Easier to bundle it as an important'd override, then override again elow this in the isStuck block
+            .nav-category-header,
+            .account-text,
+            .icon-cart-text,
+            .cart-count,
+            .site-name,
+            .nav-item svg path,
+            .icon-header-logo path {
+                color: $navHeaderColor !important; 
+                fill: $navHeaderColor !important;
+            }
         }
     }
 
@@ -78,11 +129,11 @@ $navHoverColor: {{ settings.nav_hover_color }};
         position: relative;
         width: 100%;
         height: 100%;
-        max-width: 960px; //iPad
+        max-width: 1000px; //iPad spacing help
         padding: 0;
 
         // 1220px is bootstrap break apparently, not 1240 like we setup in our MQ include, might change it?
-        @media only screen and ( min-width: 1220px ) {
+        @include mq( 'desk-and-up' ){
             max-width: 1200px;
         }
 
@@ -122,7 +173,7 @@ $navHoverColor: {{ settings.nav_hover_color }};
         }
 
         @include mq( 'desk-and-up' ) {
-            left: 34px;
+            width: 170px;
         }
     }
 
@@ -160,6 +211,8 @@ $navHoverColor: {{ settings.nav_hover_color }};
                 @include inline-flex;
                 @include align-items( center );
                 @include justify-content( center );
+                font-weight: $font-weight--book;
+                cursor: pointer;
 
                 a,
                 .inner-center {
@@ -174,8 +227,13 @@ $navHoverColor: {{ settings.nav_hover_color }};
 
                 // Account, Cart, etc icons all congruent size
                 svg {
-                    width: 19px;
+                    width: 17px;
                     height: 17px;
+
+                    @include mq( 'desk-and-up' ) {
+                        width: 18px;
+                        height: 18px;
+                    }
                 }
 
                 i {
@@ -203,8 +261,12 @@ $navHoverColor: {{ settings.nav_hover_color }};
             .nav-sites {
                 @include align-items( flex-start );
                 position: relative;
-                margin-top: -15px;
+                margin-top: -17px;
                 top: 50%;
+
+                @include mq( 'desk-and-up' ) {
+                    margin-right: 3px;
+                }
 
                 ul.sites-picker {
                     width: 65px;
@@ -235,7 +297,10 @@ $navHoverColor: {{ settings.nav_hover_color }};
                             border: none;
 
                             // Hide top item country code, its obvious and makes nice spot for arrow indicator
-                            .site-name { opacity: 0; }
+                            .site-name { 
+                                opacity: 1;  // Set to 0 when flags are shown to hide the extra text until hovered
+                                margin-right: 9px;
+                            }
                         }
 
                         // HOVER : On a country option
@@ -256,13 +321,19 @@ $navHoverColor: {{ settings.nav_hover_color }};
                         .site-flag {
                             height: 17px;
                             margin-right: 4px;
+                            display: none;
                         }
 
                         .site-name {
                             background: {{ settings.header_background }};
                             transition: all 0.25s ease-in-out;
+                            font-weight: $font-weight--medium;
                             padding: 0 2px;
                             z-index: 10; // appear on top of arrow
+
+                            @include mq( 'desk-and-up' ) {
+                                @include fontSize( 20px );
+                            }
                         }
 
                         .site-arrow {
@@ -274,12 +345,22 @@ $navHoverColor: {{ settings.nav_hover_color }};
                             z-index: 5;
                             transition: opacity 0.25s ease-in-out;
 
+                            @include mq( 'desk-and-up' ) {
+                                width: 10px;
+                                height: 11px;
+                                right: 6px;
+                            }
+
                             svg {    
                                 position: absolute;
                                 height: 100%;
                                 width: 100%;
                                 left: 0;
                                 top: 0;
+
+                                path {
+                                    fill: $color--primary-2;
+                                }
                             }
                         }
                     }
@@ -289,17 +370,60 @@ $navHoverColor: {{ settings.nav_hover_color }};
 
             // ACCOUNT : User account item
             .nav-account {
-                width: 46px;
+                width: 40px;
                 
+                // ICON Version
                 &:hover {
                     .icon-account {
                         fill: {{ settings.nav_links_hover }};
                     }
                 }
 
+                // ICON Version
                 .icon-account {
                     transition: fill 0.35s ease-in-out;
                     fill: {{ settings.nav_links }};
+                }
+
+                // TEXT Version
+                &.nav-account-text-mode {
+                    width: auto;
+                    max-width: 100px; 
+
+                    .account-text {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        font-weight: $font-weight--medium;
+
+                        @include mq( 'desk-and-up' ) {
+                            @include fontSize( 20px );
+                        }
+                    }
+                }
+            }
+
+
+            // SEARCH : Icon that toggles the search input
+            .nav-search {
+                width: 43px;
+
+                svg path {
+                    fill: {{ settings.nav_links }};
+                }
+            }
+
+
+            // WISHLIST : heart or some other svg icon link to wishlist page
+            .nav-wishlist {
+                width: 40px;
+                padding-right: 10px; 
+
+                svg .heart-polygon {
+                    fill: rgba( 0, 0, 0, 0 );
+                    stroke: {{ settings.nav_links }};
+                    stroke-miterlimit: 10;
+                    stroke-width: 4px;
                 }
             }
 
@@ -314,6 +438,10 @@ $navHoverColor: {{ settings.nav_hover_color }};
                     .cart-count { color: {{ settings.nav_links_hover }}; }
                 }
 
+                a {
+                    padding: 0;
+                }
+
                 i.fa, // Support bag font-icon for now..
                 .icon-cart {
                     margin-right: 8px; // Space icon from cart #
@@ -322,10 +450,27 @@ $navHoverColor: {{ settings.nav_hover_color }};
                     transition: fill 0.35s ease-in-out;
                 }
 
+                // Cart Icon : Text Version
+                .icon-cart-text {
+                    @include fontSize( 16px );
+                    font-weight: $font-weight--medium;
+                    margin-right: 5px;
+
+                    @include mq( 'desk-and-up' ) {
+                        @include fontSize( 20px );
+                    }
+                }
+
                 .cart-count {
-                    font-weight: bold;
+                    @include fontSize( 16px );
+                    font-weight: $font-weight--medium;
                     color: {{ settings.nav_links }};
                     transition: color 0.35s ease-in-out;
+                    margin-top: 0;
+
+                    @include mq( 'desk-and-up' ) {
+                        @include fontSize( 20px );
+                    }
 
                     &.hidden-count {
                         display: none;
@@ -336,35 +481,62 @@ $navHoverColor: {{ settings.nav_hover_color }};
     }
 
 
-    // SEARCH : Input on mobile-navigation.liquid + header.liquid (desktop)
-    .nav-search {
-        position: relative;
-        margin-right: 20px;
-        width: 140px;
+    /*  SEARCH BAR : DESKTOP 
+     * ---------------------------------------------- */
+    // REVEAL : Show/Hide bar on clicking the search icon
+    &.show-search-bar #nav-search-bar-wrapper{
+        opacity: 1;
+        z-index: 100;
+        pointer-events: all;
+    }
 
-        @include mq( 'desk-and-up' ) {
-            width: 200px;
+    // SEARCH BAR
+    #nav-search-bar-wrapper {
+        position: relative;
+        top: 0;
+        width: 100%;
+        height: 60px;
+        opacity: 0;
+        z-index: 0;
+        margin: 0 auto;
+        pointer-events: none;
+        transition: all 0.25s ease-in-out;
+        background: {{ settings.header_background }};
+
+        &.show-search-bar {
+            opacity: 1;
+            z-index: 100;
+            pointer-events: all;
         }
 
+        // Form Wrapper before Input
         form {
             position: relative;
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+            max-width: 500px;
+            padding-bottom: 20px;
         }
 
+        // SEARCH : Actual Input Itself
         .nav-search-input {
             position: relative;
             width: 100%;
-            max-width: 100%;
+            height: 100%;
+            margin: 0 auto;
             border: none;
             border-bottom: $navMinorBorder;
-            padding-right: 23px;
+            padding-right: 29px;
             outline: none;
+            box-shadow: none; // Hide chrome autofill generated shading..
+            @include fontSize( 16px );
         }
 
         .nav-search-icon-wrap {
             position: absolute;
-            transform: translateY( -43% );
-            top: 50%;
-            right: 0;
+            top: 9px;
+            right: 5px;
 
             // Hidden search button on top of the search Icon,
             // so clicking it submits as well as enter.
@@ -382,6 +554,16 @@ $navHoverColor: {{ settings.nav_hover_color }};
                 width: 19px;
                 height: 17px;
             }
+        }
+
+        .nav-search-bar-close {
+            position: absolute;
+            right: -30px;
+            top: 7px;
+            @include fontSize( 20px );
+            font-family: $sans;
+            font-weight: 400;
+            cursor: pointer;
         }
     }
 
@@ -441,8 +623,9 @@ $navHoverColor: {{ settings.nav_hover_color }};
         .nav-category-header {
             @include h5;
             height: 100%;
+            font-weight: $font-weight--medium;
             text-decoration: none;
-            text-transform: uppercase;
+            text-transform: capitalize;
             color: $navHeaderColor;
         }
     }
@@ -459,15 +642,28 @@ $navHoverColor: {{ settings.nav_hover_color }};
             height: 100%;
             width: 100%;
             left: 0;
-            padding: 0 360px 0 180px;
+            padding: 0 415px 0 195px;
             z-index: $zIndexButtons;
 
             @include mq( 'desk-and-up' ) {
-                padding: 0 530px 0 230px;
+                padding: 0 540px 0 210px;
             }
 
             @include mq( 'wide-and-up' ) {
-                padding: 0 750px 0 210px;
+                padding: 0 730px 0 230px;
+            }
+
+            // For when they inevitably add a 5th menu item.. Default setup is for 4 or less
+            &[data-link-count*='5'] {
+                padding: 0 305px 0 180px; 
+
+                @include mq( 'desk-and-up' ) {
+                    padding: 0 410px 0 230px;
+                }
+
+                @include mq( 'wide-and-up' ) {
+                    padding: 0 610px 0 230px;
+                }
             }
 
             .nav-primary-link {
@@ -483,18 +679,18 @@ $navHoverColor: {{ settings.nav_hover_color }};
                 .nav-category-header { //Center the nav link item vertically 
                     @include inline-flex;
                     @include align-items( center );
-                    @include fontSize( 14px );
-                    letter-spacing: 0.18em; 
+                    @include fontSize( 16px );
+                    font-weight: $font-weight--medium;
                     padding-top: 3px; // make up size for 3px bottom border on links
-                    border-bottom: 3px solid transparent;
+                    border-bottom: 1px solid transparent;
 
                     @include mq( 'desk-and-up' ) {
-                        @include fontSize( 16px );
+                        @include fontSize( 20px );
                     }
                 }
 
                 &:hover > a {
-                    border-bottom: 3px solid {{ settings.nav_links_hover }};
+                    border-bottom: 1px solid {{ settings.nav_links_hover }};
                 }
 
                 &:hover {
@@ -931,7 +1127,7 @@ $navHoverColor: {{ settings.nav_hover_color }};
 
                         .site-name {
                             @include fontSize( 16px );
-                            font-weight: $font-weight--book;
+                            font-weight: $font-weight--medium;
                         }
 
                         .site-arrow {
