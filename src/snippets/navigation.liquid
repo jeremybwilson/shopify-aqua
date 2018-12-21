@@ -1,8 +1,8 @@
-<nav id="nav" {% if section.settings.full_width_header %} class="gridlock-fluid"{% endif %}>
-  
+{% assign menu = linklists[section.settings.main_nav] %}
+
+<nav id="nav" data-link-count="{{ menu.links.size }}" {% if section.settings.full_width_header %} class="gridlock-fluid"{% endif %}>
   <div id="nav-menu-desktop" class="row">
-    <ul id="nav-menu-desktop-list">
-      {% assign menu = linklists[section.settings.main_nav] %}
+    <ul id="nav-menu-desktop-list" data-link-count="{{ menu.links.size }}">
       {% for link in menu.links %}
 
         {% assign meganav = false %}
@@ -131,7 +131,7 @@
           {% endcomment %}
 
           {% comment %} :: Start math for calculated multi column dropdowns :: {% endcomment %}
-          <li class="dropdown has_sub_menu" aria-haspopup="true" aria-expanded="false">{{ link.title | link_to: link.url }}
+          <li class="nav-primary-link dropdown has_sub_menu" aria-haspopup="true" aria-expanded="false">{{ link.title | link_to: link.url }}
             
             {% comment %} :: PLAIN DROPDOWN : Multi-Columns :: {% endcomment %}
             {% if link.links.size > num %}
