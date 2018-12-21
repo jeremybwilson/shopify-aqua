@@ -4,12 +4,13 @@
     "international_store_version": "US",
     "favicon": "shopify:\/\/shop_images\/favicon.png",    
     "announcement_text_color": "#ffffff",
-    "announcement_bg_one": "#0153a6",
+    "announcement_bg_one": "#000000",
     "announcement_bg_two": "#757575",
-    "header_background": "#fefffe",
+    "nav_transparent_landing": true,
+    "header_background": "#ffffff",
     "logo_color": "#000000",
-    "nav_links": "#0153a6",
-    "nav_links_hover": "#e61533",
+    "nav_links": "#000000",
+    "nav_links_hover": "#000000",
     "nav_links_sale": "#aa5131",
     "nav_header_color": "#000000",
     "nav_sub_header_color": "#0153a6",
@@ -127,7 +128,7 @@
     "main_font": "karla_n4",
     "nav_font": "karla_n4",
     "heading_font": "montserrat_n7",
-    "announcement_text_size": 18,
+    "announcement_text_size": 15,
     "font_size": 13,
     "h1_size": 24,
     "h2_size": 20,
@@ -228,60 +229,63 @@
       "header": {
         "type": "header",
         "blocks": {
-          "1535652898841": {
-            "type": "mega_menu",
-            "settings": {
-              "menu_item": "Men",
-              "nav_image": "shopify:\/\/shop_images\/nav-megamenu-1.jpg",
-              "nav_promo_link": "shopify:\/\/collections\/men"
-            }
-          },
           "1522184323686": {
             "type": "mega_menu",
             "settings": {
-              "menu_item": "Women",
+              "menu_item": "Womens",
               "nav_image": "shopify:\/\/shop_images\/nav-megamenu-2.jpg",
               "nav_promo_link": "shopify:\/\/collections\/women"
+            }
+          },
+          "1535652898841": {
+            "type": "mega_menu",
+            "settings": {
+              "menu_item": "Mens",
+              "nav_image": "shopify:\/\/shop_images\/nav-megamenu-1.jpg",
+              "nav_promo_link": "shopify:\/\/collections\/men"
             }
           },
           "1535652979932": {
             "type": "simple_menu",
             "settings": {
-              "menu_item": "Kids",
-              "nav_image": "",
-              "nav_promo_link": ""
+              "menu_item": "Accessories"
             }
           },
           "1535653033501": {
             "type": "simple_menu",
             "settings": {
-              "menu_item": "Activities"
+              "menu_item": "Weatherproof"
             }
           }
         },
         "block_order": [
-          "1535652898841",
           "1522184323686",
+          "1535652898841",
           "1535652979932",
           "1535653033501"
         ],
         "settings": {
           "full_width_header": false,
+          "nav_transparent_landing": true,
           "show_announcement_text": true,
           "num_of_promo_banners": "1",
-          "announcement_text_one": "<div class=\"bold\">FREE SHIPPING & FREE RETURNS<\/div>",
+          "announcement_text_one": "Sign Up & Recieve $50 Off Purchases Of $150 Or More",
           "announcement_link_one": "\/pages\/shipping-returns",
-          "announcement_text_two": "<div class=\"bold\">40% OFF YOUR PURCHASE.<\/div> NO CODE NEEDED.",
+          "announcement_text_two": "40% OFF YOUR PURCHASE. NO CODE NEEDED.",
           "announcement_link_two": "http:\/\/google.com",
-          "announcement_height": 60,
+          "announcement_height": 40,
           "announcement_swap_rate": 5,
           "logo_size": 24,
           "logo_transform": "uppercase",
           "logo_weight": "bold",
-          "cart_icon": "cart",
-          "show_site_picker": false,
+          "cart_icon": "text",
+          "cart_icon_text_value": "My Cart",
+          "account_icon": "text",
+          "account_icon_text_value": "Sign In",
+          "show_site_picker": true,
           "site_picker_manifest": "US|United States|https:\/\/xtratuf.com,EU|European Union|https:\/\/www.muckbootcompany.eu,UK|United Kingdom|https:\/\/www.muckbootcompany.co.uk",
           "show_search": true,
+          "show_wishlist": true,
           "main_nav": "main-menu",
           "nav_center": true,
           "nav_height": 60,
