@@ -311,7 +311,7 @@ var ajaxCart = (function(module, $) {
   updateCountPrice = function (cart) {
     // HAVE CART + COUNT NODE?
     if ( cart && $cartCountSelector && $cartCountSelector.length > 0 ) {
-      $cartCountSelector.html( cart.item_count ).removeClass('hidden-count');
+      $cartCountSelector.html( '(' + cart.item_count + ')' ).removeClass('hidden-count');
 
       // HIDE : Count hides when no items in cart
       if ( cart.item_count === 0 ) {

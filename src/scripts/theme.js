@@ -956,15 +956,19 @@ theme.Header = (function() {
     const ui = {
       arrows: $( '#promo-arrow-left, #promo-arrow-right' ),
       body: $( 'body' ),
-      containerId: $container.attr('data-section-id'),
+      desktopNavWrap: $( '#nav-bar-wrapper' ),
+      desktopNavItem: $( '.nav-primary-link' ),
       html: $( 'html' ),
       mobileNavButton: $( '#icon-nav-mobile-menu-btn' ),
       mobileNavMenu: $( '#nav-menu-mobile' ),
       mobileHeaders: $('#accordion').find('.accordion-header'),
       mobileSitesPicker: $( '#nav-sites-picker-mobile' ),
       mobileSubHeaders: $('#accordion').find('.accordion-sub-header'),
-      swapRate: $container.attr('data-swap-rate'),
-      promoWrap: $( '#double-promo-wrapper' ) 
+      promoWrap: $( '#double-promo-wrapper' ),
+      searchIcon: $( '.nav-search' ),
+      searchBar: $( '#nav-search-bar-wrapper' ),
+      searchClose: $( '.nav-search-bar-close' ),
+      swapRate: $container.attr('data-swap-rate')
     }
     const self = this;
 
@@ -1014,6 +1018,30 @@ theme.Header = (function() {
       //Hide the other panels
       $(".accordion-content2").not(subHead.next()).slideUp('fast');
     });
+
+
+    // SEARCH BAR : When user clicks search icon, a new search bar will reveal itself
+    // NOTE : This is also used by the transparent setup..
+    if ( ui.searchIcon && ui.searchIcon.length > 0 ) {
+      ui.searchIcon.on( 'click', () => {
+        ui.desktopNavWrap.toggleClass( 'show-search-bar' );
+
+      });
+
+      ui.searchClose.on( 'click', () => {
+        ui.desktopNavWrap.removeClass( 'show-search-bar' );
+      });
+    }
+
+    // TRANSPARENT LANDING : Have to add nav-wrapper awareness for hover states on nav items 
+    //                       so we can undo the transparency when menu is being used.
+    ui.desktopNavItem.hover( () => {
+        ui.desktopNavWrap.addClass( 'nav-item-active' );
+      },
+      () => {
+        ui.desktopNavWrap.removeClass( 'nav-item-active' );
+      }
+    );
 
 
 
