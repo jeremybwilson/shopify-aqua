@@ -1,0 +1,26 @@
+{% comment %} :: SIGNED IN :: {% endcomment %}
+{% if customer %}
+  <a href="/account">
+    {% if section.settings.account_icon == 'person' %}
+      {% include 'svg-icon-account' %}
+    {% else %}
+      <div class="account-text account-username">
+        {% if customer.first_name and section.settings.account_show_user_name %}
+          {{ customer.first_name }}
+        {% else %}
+          Account
+        {% endif %}
+      </div>
+    {% endif %}
+  </a>
+
+{% comment %} :: SIGNED OUT (Or new visitor) :: {% endcomment %}
+{% else %}
+  <a href="/account/login">
+    {% if section.settings.account_icon == 'person' %}
+      {% include 'svg-icon-account' %}
+    {% else %}
+      <div class="account-text">{{ section.settings.account_icon_text_value }}</div>
+    {% endif %}
+  </a>
+{% endif %}

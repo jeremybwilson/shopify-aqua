@@ -46,34 +46,7 @@
           {% comment %} ..:: ACCOUNT ::.. {% endcomment %}
           {% if shop.customer_accounts_enabled %}
             <li class="nav-item nav-account {% if section.settings.account_icon == 'text' %}nav-account-text-mode{% endif %}">
-
-              {% comment %} :: SIGNED IN :: {% endcomment %}
-              {% if customer %}
-                <a href="/account">
-                  {% if section.settings.account_icon == 'person' %}
-                    {% include 'svg-icon-account' %}
-                  {% else %}
-                    <div class="account-text account-username">
-                      {% if customer.first_name and section.settings.account_show_user_name %}
-                        {{ customer.first_name }}
-                      {% else %}
-                        Account
-                      {% endif %}
-                    </div>
-                  {% endif %}
-                </a>
-
-              {% comment %} :: SIGNED OUT (Or new visitor) :: {% endcomment %}
-              {% else %}
-                <a href="/account/login">
-                  {% if section.settings.account_icon == 'person' %}
-                    {% include 'svg-icon-account' %}
-                  {% else %}
-                    <div class="account-text">{{ section.settings.account_icon_text_value }}</div>
-                  {% endif %}
-                </a>
-              {% endif %}
-
+              {% include 'nav-account-item' %}
             </li>
           {% endif %}
 
@@ -168,6 +141,16 @@
     nav {
        line-height: {{ section.settings.nav_height }}px;
     }
+
+    {% if section.settings.megamenu_full_width %}
+      .megamenu {
+        width: 100vw;
+      }
+    {% else %}
+      .megamenu {
+        width: 100%;
+      }
+    {% endif %}
 
 
     /* MOBILE MENU : Height Setup
