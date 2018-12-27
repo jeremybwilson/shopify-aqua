@@ -968,7 +968,7 @@ theme.Header = (function() {
       searchIcon: $( '.nav-search' ),
       searchBar: $( '#nav-search-bar-wrapper' ),
       searchClose: $( '.nav-search-bar-close' ),
-      swapRate: $container.attr('data-swap-rate')
+      swapRate: $container.attr( 'data-swap-rate' )
     }
     const self = this;
 
@@ -976,6 +976,7 @@ theme.Header = (function() {
     if ( ui.mobileNavButton && ui.mobileNavMenu ) {
       ui.mobileNavButton.on( 'click', () => {
         ui.mobileNavMenu.toggleClass( 'mobile-nav-open' ); // TOGGLE : Menu itself 
+        ui.desktopNavWrap.toggleClass( 'mobile-nav-open' ); // TOGGLE : Transparent landing mode needs an extra flag to color right
         ui.body.toggleClass( 'js-drawer-open' ); // TOGGLE : Page scrolling (built in to a lib so tied to this classname)
         ui.html.toggleClass( 'menu-open' ); // TOGGLE : Html has some oddness from the theme, this clears it so iPoos can render right
       })
@@ -1032,17 +1033,6 @@ theme.Header = (function() {
         ui.desktopNavWrap.removeClass( 'show-search-bar' );
       });
     }
-
-    // TRANSPARENT LANDING : Have to add nav-wrapper awareness for hover states on nav items 
-    //                       so we can undo the transparency when menu is being used.
-    ui.desktopNavItem.hover( () => {
-        ui.desktopNavWrap.addClass( 'nav-item-active' );
-      },
-      () => {
-        ui.desktopNavWrap.removeClass( 'nav-item-active' );
-      }
-    );
-
 
 
     // PROMO BANNER : If 2+ Promos enabled, connect swapping and arrow functionality
