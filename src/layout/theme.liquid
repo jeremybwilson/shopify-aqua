@@ -85,7 +85,13 @@
   {% include 'script-google-tag-body' %}
   {% include 'timber-cart' %}
 
-  <div class="shifter-page{% if settings.ajax_cart_method == 'drawer' %} is-moved-by-drawer{% endif %}" id="PageContainer">
+  {% comment %} :: PAGE CONTAINER - Classes :: {% endcomment %}
+  {%- capture containerClasses -%}
+    shifter-page
+    {% if settings.ajax_cart_method == 'drawer' %} is-moved-by-drawer {% endif %}
+  {%- endcapture -%}
+
+  <div id="PageContainer" class="{{ containerClasses }}">
     <div class="page-wrap">
 
       {% section 'header' %}

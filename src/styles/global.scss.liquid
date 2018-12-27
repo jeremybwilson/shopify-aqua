@@ -33,6 +33,11 @@ body > .page-wrap {
   overflow-x: hidden;
 }
 
+// Chat widget sets a ridiculous z-index that overlays on even nav menus, lets knock him down a few notches..
+.zEWidget-launcher {
+  z-index: 200 !important;
+}
+
 
 .gridlock .row {
   @include mq('phone') {
@@ -61,11 +66,9 @@ body > .page-wrap {
 
 #content {
   position: relative;
-  //padding: 0 0 100px 0;
   padding: 100px 0;
 
   // special pages that don't need padding at the top
-
   body.collection &,
   body.product & {
     padding-top: 0;

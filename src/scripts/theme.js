@@ -956,15 +956,19 @@ theme.Header = (function() {
     const ui = {
       arrows: $( '#promo-arrow-left, #promo-arrow-right' ),
       body: $( 'body' ),
-      containerId: $container.attr('data-section-id'),
+      desktopNavWrap: $( '#nav-bar-wrapper' ),
+      desktopNavItem: $( '.nav-primary-link' ),
       html: $( 'html' ),
       mobileNavButton: $( '#icon-nav-mobile-menu-btn' ),
       mobileNavMenu: $( '#nav-menu-mobile' ),
       mobileHeaders: $('#accordion').find('.accordion-header'),
       mobileSitesPicker: $( '#nav-sites-picker-mobile' ),
       mobileSubHeaders: $('#accordion').find('.accordion-sub-header'),
-      swapRate: $container.attr('data-swap-rate'),
-      promoWrap: $( '#double-promo-wrapper' ) 
+      promoWrap: $( '#double-promo-wrapper' ),
+      searchIcon: $( '.nav-search' ),
+      searchBar: $( '#nav-search-bar-wrapper' ),
+      searchClose: $( '.nav-search-bar-close' ),
+      swapRate: $container.attr( 'data-swap-rate' )
     }
     const self = this;
 
@@ -972,6 +976,7 @@ theme.Header = (function() {
     if ( ui.mobileNavButton && ui.mobileNavMenu ) {
       ui.mobileNavButton.on( 'click', () => {
         ui.mobileNavMenu.toggleClass( 'mobile-nav-open' ); // TOGGLE : Menu itself 
+        ui.desktopNavWrap.toggleClass( 'mobile-nav-open' ); // TOGGLE : Transparent landing mode needs an extra flag to color right
         ui.body.toggleClass( 'js-drawer-open' ); // TOGGLE : Page scrolling (built in to a lib so tied to this classname)
         ui.html.toggleClass( 'menu-open' ); // TOGGLE : Html has some oddness from the theme, this clears it so iPoos can render right
       })
@@ -1015,6 +1020,19 @@ theme.Header = (function() {
       $(".accordion-content2").not(subHead.next()).slideUp('fast');
     });
 
+
+    // SEARCH BAR : When user clicks search icon, a new search bar will reveal itself
+    // NOTE : This is also used by the transparent setup..
+    if ( ui.searchIcon && ui.searchIcon.length > 0 ) {
+      ui.searchIcon.on( 'click', () => {
+        ui.desktopNavWrap.toggleClass( 'show-search-bar' );
+
+      });
+
+      ui.searchClose.on( 'click', () => {
+        ui.desktopNavWrap.removeClass( 'show-search-bar' );
+      });
+    }
 
 
     // PROMO BANNER : If 2+ Promos enabled, connect swapping and arrow functionality

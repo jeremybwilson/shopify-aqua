@@ -8,24 +8,19 @@
     {% include 'header-announcement-bar' %}
   {%- endif -%}
 
-  {% comment %}
-    REMOVED THINGS :
-
-      - section.settings.logo_center
-      - section.settings.logo (hard set to svg snippet since logo was given as svg)
-        * alt="{{ section.settings.logo.alt | default: shop.name }}
-  {% endcomment %}
-
-
 
   {% comment %} ..:: NAVIGATION PORTION ::.. {% endcomment %}
-  <header id="nav-bar-wrapper" {% if section.settings.full_width_header %} class="gridlock-fluid"{% endif %}>
+  {%- capture wrapperClasses -%}
+    {% if section.settings.full_width_header %} gridlock-fluid {% endif %}
+    {% if section.settings.nav_transparent_landing %} transparent-landing {% endif %}
+  {%- endcapture -%}
+
+  <header id="nav-bar-wrapper" class="{{ wrapperClasses }}">
     {% if section.settings.full_width_header %}<div class="row">{% endif %}
 
     {% comment %} ..:: NAV-BAR : BG + NAV-ITEMS WRAPPER ::.. {% endcomment %}
     <div id="nav-bar-bg"></div>
     <div id="nav-bar" class="row">
-
 
       {% comment %} ..:: NAV : BRAND LOGO ::.. {% endcomment %}
       <div id="nav-logo">
@@ -40,13 +35,29 @@
       <div id="nav-user">
         <ul id="nav-user-list"> 
 
-          {% comment %} ..:: SEARCH ::.. {% endcomment %}
-          {% if section.settings.show_search %}
-            <li id="nav-search-form" class="nav-item nav-search searchbox">
-              {% include 'nav-search-input' %}           
+          {% comment %} ..:: SITE PICKER : (US, UK, EU, CAN) ::.. {% endcomment %}
+          {% if section.settings.show_site_picker %}
+            <li class="nav-item nav-sites">
+              {% include 'sites-picker' %}
             </li>
           {% endif %}
-          
+
+
+          {% comment %} ..:: ACCOUNT ::.. {% endcomment %}
+          {% if shop.customer_accounts_enabled %}
+            <li class="nav-item nav-account {% if section.settings.account_icon == 'text' %}nav-account-text-mode{% endif %}">
+              {% include 'nav-account-item' %}
+            </li>
+          {% endif %}
+
+
+          {% comment %} ..:: SEARCH ::.. {% endcomment %}
+          {% if section.settings.show_search %}
+            <li class="nav-item nav-search">
+              {% include 'svg-icon-search' %}
+            </li>
+          {% endif %}
+
 
           {% comment %} ..:: CURRENCY PICKER (DISABLED) ::.. {% endcomment %}
           {% if settings.show_multiple_currencies %}
@@ -54,20 +65,10 @@
           {% endif %}
 
 
-          {% comment %} ..:: SITE PICKER : (US, UK, EU, CAN) ::.. {% endcomment %}
-          {% if section.settings.show_site_picker %}
-            <li class="nav-item nav-sites">{% include 'sites-picker' %}</li>
-          {% endif %}
-
-
-          {% comment %} ..:: ACCOUNT ::.. {% endcomment %}
-          {% if shop.customer_accounts_enabled %}
-            <li class="nav-item nav-account">
-              {% if customer %}
-                <a href="/account">{% include 'svg-icon-account' %}</a>
-              {% else %}
-                <a href="/account/login">{% include 'svg-icon-account' %}</a>
-              {% endif %}
+          {% comment %} ..:: WISHLIST ::.. {% endcomment %}
+          {% if section.settings.show_wishlist %}
+            <li class="nav-item nav-wishlist">
+              {% include 'svg-icon-heart' %}
             </li>
           {% endif %}
 
@@ -78,16 +79,20 @@
               
               {% if section.settings.cart_icon == 'cart' %}
                 {% include 'svg-icon-cart' %}
+              
               {% elsif section.settings.cart_icon == 'bag' %}
                 {% include 'svg-icon-shopping-bag' %}
+              
+              {% elsif section.settings.cart_icon == 'text' %}
+                <div class="icon icon-cart-text">{{ section.settings.cart_icon_text_value }}</div>
               {% endif %}
-              <span class="cart-count {% if cart.item_count == 0 %}hidden-count{% endif %}">{{ cart.item_count }}</span>
+
+              <span class="cart-count {% if cart.item_count == 0 %}hidden-count{% endif %}">({{ cart.item_count }})</span>
             </a>
           </li>
 
         </ul>
       </div>
-      
 
       {% comment %} ..:: NAV : SITE-COLLECTIONS (Left Elements) ::.. {% endcomment %}
       <div id="nav-collections">
@@ -97,6 +102,14 @@
       </div>
 
     </div>
+
+
+    {% comment %} :: SEARCH INPUT :: Appears when user clicks search button on nav {% endcomment %}
+    {% if section.settings.show_search %}
+      <div id="nav-search-bar-wrapper">
+        {% include 'nav-search-input' %}
+      </div>
+    {% endif %}
 
     {% if section.settings.full_width_header %}</div>{% endif %}
   </header>
@@ -129,6 +142,16 @@
        line-height: {{ section.settings.nav_height }}px;
     }
 
+    {% if section.settings.megamenu_full_width %}
+      .megamenu {
+        width: 100vw;
+      }
+    {% else %}
+      .megamenu {
+        width: 100%;
+      }
+    {% endif %}
+
 
     /* MOBILE MENU : Height Setup
         Notes :
@@ -159,6 +182,13 @@
         "type": "checkbox",
         "id": "full_width_header",
         "label": "Enable full width"
+      },
+      {
+        "type": "checkbox",
+        "id": "nav_transparent_landing",
+        "label": "Transparent Nav on Landing",
+        "info": "(Nav bg transparent & text inverted on initial landing state)",
+        "default": false
       },
 
 
@@ -212,7 +242,7 @@
       {
         "type":      "range",
         "id":        "announcement_height",
-        "min":       40,
+        "min":       30,
         "max":       60,
         "step":      1,
         "unit":      "px",
@@ -279,6 +309,40 @@
 
       {
         "type": "header",
+        "content": "Account Link"
+      },
+      {
+        "type": "select",
+        "id": "account_icon",
+        "label": "Account Icon",
+        "options": [
+          {
+            "value": "person",
+            "label": "Person"
+          },
+          {
+            "value": "text",
+            "label": "Text"
+          }
+        ],
+        "info":"Use person icon or text for Account Sign In"
+      },
+      {
+        "type": "text",
+        "id": "account_icon_text_value",
+        "label": "Account Text (only shown when Account Icon = Text)",
+        "default": "Sign In"
+      },
+      {
+        "type": "checkbox",
+        "id": "account_show_user_name",
+        "label": "Show user first name when Logged in. (Text Mode Only)",
+        "default": false
+      },
+
+
+      {
+        "type": "header",
         "content": "Cart Link"
       },
 	    {
@@ -293,9 +357,19 @@
           {
             "value": "bag",
             "label": "Bag"
+          },
+          {
+            "value": "text",
+            "label": "Text"
           }
         ],
-	      "info":"You can change the text in your edit language section"
+	      "info":"Which icon (or text) would you like the cart nav item to appear like?"
+      },
+      {
+        "type": "text",
+        "id": "cart_icon_text_value",
+        "label": "Cart Text (only shown when Cart Icon = Text)",
+        "default": "Cart"
       },
 
 
@@ -330,6 +404,18 @@
 
 
       {
+        "type": "header",
+        "content": "Nav Wishlist"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_wishlist",
+        "label": "Show wishlist icon on Nav Bar",
+        "default": false
+      },
+
+
+      {
         "type":"header",
         "content": "navigation"
       },
@@ -355,6 +441,13 @@
         "default": 40
       },
       {
+        "type": "checkbox",
+        "id": "megamenu_full_width",
+        "label": "Megamenu Fills Width",
+        "info": "(Menu content constrains to site bounds, but fills rest of the space on each side)",
+        "default": false
+      },
+      {
         "type": "range",
         "id": "linklist_breakpoint",
         "min": 4,
@@ -368,23 +461,33 @@
     "blocks": [
       {
         "type": "mega_menu",
-        "name": "Mega menu",
+        "name": "Mega-Menu",
         "settings": [
           {
             "type":"text",
             "id":"menu_item",
             "label":"Menu item",
-            "info":"Enter menu item to apply a mega menu"
+            "info":"Which primary nav link does this Mega-Menu belong to?"
           },
           {
-           "type": "image_picker",
-           "id": "nav_image",
-           "label": "Featured image"
+            "type": "image_picker",
+            "id": "nav_image",
+            "label": "Mega-Menu image"
          },
          {
            "type": "url",
-           "id": "nav_promo_link",
-           "label": "Featured image link"
+           "id": "nav_image_link",
+           "label": "Mega Menu image link (applies to image titles also)"
+         },
+         {
+            "type": "text",
+            "id": "nav_image_title",
+            "label": "Title text under image"
+         },
+         {
+            "type": "text",
+            "id": "nav_image_sub_title",
+            "label": "Smaller, underlined text below image title"
          }
         ]
       },

@@ -1,11 +1,11 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Fashionopolism",
-    "theme_author": "Underground",
-    "theme_version": "5.4",
-    "theme_documentation_url": "https:////www.weareunderground.com/products/fashionopolism-responsive-empire",
-    "theme_support_url": "http://support.undergroundmedia.co.uk/"
+    "theme_name": "Aquatalia 2019",
+    "theme_author": "Branded Online",
+    "theme_version": "1.0.0",
+    "theme_documentation_url": "https://www.brandedonline.com",
+    "theme_support_url": "https://www.brandedonline.com"
   },
   {
     "name": "Favicon",
@@ -61,6 +61,13 @@
       {
         "type": "header",
         "content": "Navigation Header"
+      },
+      {
+        "type": "checkbox",
+        "id": "nav_transparent_landing",
+        "label": "Transparent Nav on Landing",
+        "info": "(Nav bg will be transparent & text inverted when on homepage)",
+        "default": false
       },
       {
         "type": "color",

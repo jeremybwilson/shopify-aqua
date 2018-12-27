@@ -17,7 +17,11 @@
 				{% comment %} ..:: FIRST SLOT ITEM ::.. {% endcomment %}
 				{% if item == sites[0] %}
 					<div class="inner-center">
-						<div class="site-flag">{% include flag %}</div>
+						
+						{% if showFlagIcon != false %}
+							<div class="site-flag">{% include flag %}</div>
+						{% endif %}
+
 						<div class="site-name">
 							{% if showFullName == true %}
 								{{ siteData[1] }}
@@ -34,7 +38,10 @@
 				{% comment %} ..:: ALL SUBSEQUENT SLOTS ::.. {% endcomment %}
 				{% else %}
 					<a class="inner-center" href="{{ siteData[2] }}">
-						<div class="site-flag">{% include flag %}</div>
+						{% if showFlagIcon != false %}
+							<div class="site-flag">{% include flag %}</div>
+						{% endif %}
+
 						<div class="site-name">
 							{% if showFullName == true %}
 								{{ siteData[1] }}
