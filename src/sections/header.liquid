@@ -386,7 +386,7 @@
         "type": "text",
         "id": "cart_icon_text_value",
         "label": "Cart Text (only shown when Cart Icon = Text)",
-        "default": "My Cart"
+        "default": "Cart"
       },
 
 
@@ -458,6 +458,13 @@
         "default": 40
       },
       {
+        "type": "checkbox",
+        "id": "megamenu_full_width",
+        "label": "Megamenu Fills Width",
+        "info": "(Menu content constrains to site bounds, but fills rest of the space on each side)",
+        "default": false
+      },
+      {
         "type": "range",
         "id": "linklist_breakpoint",
         "min": 4,
@@ -471,23 +478,33 @@
     "blocks": [
       {
         "type": "mega_menu",
-        "name": "Mega menu",
+        "name": "Mega-Menu",
         "settings": [
           {
             "type":"text",
             "id":"menu_item",
             "label":"Menu item",
-            "info":"Enter menu item to apply a mega menu"
+            "info":"Which primary nav link does this Mega-Menu belong to?"
           },
           {
-           "type": "image_picker",
-           "id": "nav_image",
-           "label": "Featured image"
+            "type": "image_picker",
+            "id": "nav_image",
+            "label": "Mega-Menu image"
          },
          {
            "type": "url",
-           "id": "nav_promo_link",
-           "label": "Featured image link"
+           "id": "nav_image_link",
+           "label": "Mega Menu image link (applies to image titles also)"
+         },
+         {
+            "type": "text",
+            "id": "nav_image_title",
+            "label": "Title text under image"
+         },
+         {
+            "type": "text",
+            "id": "nav_image_sub_title",
+            "label": "Smaller, underlined text below image title"
          }
         ]
       },

@@ -13,7 +13,7 @@
     "nav_links_hover": "#000000",
     "nav_links_sale": "#aa5131",
     "nav_header_color": "#000000",
-    "nav_sub_header_color": "#0153a6",
+    "nav_sub_header_color": "#757575",
     "nav_list_item_color": "#000000",
     "nav_minor_border_color": "#cccccc",
     "social_links": "#000000",
@@ -233,16 +233,20 @@
             "type": "mega_menu",
             "settings": {
               "menu_item": "Womens",
-              "nav_image": "shopify:\/\/shop_images\/nav-megamenu-2.jpg",
-              "nav_promo_link": "shopify:\/\/collections\/women"
+              "nav_image": "shopify:\/\/shop_images\/nav-megamenu-1.png",
+              "nav_image_link": "shopify:\/\/collections\/women",
+              "nav_image_title": "New Arrivals",
+              "nav_image_sub_title": "Shop Now"
             }
           },
           "1535652898841": {
             "type": "mega_menu",
             "settings": {
               "menu_item": "Mens",
-              "nav_image": "shopify:\/\/shop_images\/nav-megamenu-1.jpg",
-              "nav_promo_link": "shopify:\/\/collections\/men"
+              "nav_image": "shopify:\/\/shop_images\/nav-megamenu-2.jpg",
+              "nav_image_link": "shopify:\/\/collections\/men",
+              "nav_image_title": "New Arrivals",
+              "nav_image_sub_title": "Shop Now"
             }
           },
           "1535652979932": {
@@ -266,6 +270,7 @@
         ],
         "settings": {
           "full_width_header": false,
+          "megamenu_full_width": true,
           "nav_transparent_landing": true,
           "show_announcement_text": true,
           "num_of_promo_banners": "1",
@@ -279,7 +284,7 @@
           "logo_transform": "uppercase",
           "logo_weight": "bold",
           "cart_icon": "text",
-          "cart_icon_text_value": "My Cart",
+          "cart_icon_text_value": "Cart",
           "account_icon": "text",
           "account_icon_text_value": "Sign In",
           "show_site_picker": true,
