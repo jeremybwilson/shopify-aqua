@@ -1,9 +1,4 @@
 <nav id="nav-menu-mobile">
-  
-  {% comment %} :: SEARCH :: {% endcomment %}
-  <div id="nav-search-form" class="nav-search searchbox">
-    {% include 'nav-search-input' %}          
-  </div>
 
   {% comment %} :: MOBILE MENU :: {% endcomment %}
   <ul id="accordion">
@@ -54,7 +49,7 @@
                 :: LEVEL 2 : FLAT : Sub-topic has no nested elements :: 
                   * Hides menu elements that are titled as "-" which mark space gaps on desktop
               {% endcomment %}
-              {% elsif sub_link.title != '-' %} 
+              {% elsif sub_link.title != '-' %}
 
                 {% comment %}Prevent our pseudo-sub-headers from showing on mobile (name starts with "SUB-HEADER_") {% endcomment %}
                 {% if sub_link.title contains 'SUB-HEADER_' %}{% else %}
@@ -78,9 +73,27 @@
     {% endfor %}
   </ul>
 
-  {% comment %} ..:: SITE PICKER : (US, UK, EU, CAN) ::.. {% endcomment %}
-  {% if section.settings.show_site_picker %}
-    <div id="nav-sites-picker-mobile">{% include 'sites-picker', showFullName:true %}</div>
-  {% endif %}
 
+  {% comment %} :: FOOTER - Mobile Nav Menu :: {% endcomment %}
+  {% assign footerItemCount = 1 %}
+  {% if section.settings.show_site_picker and shop.customer_accounts_enabled %}
+    {% assign footerItemCount = 2 %}
+  {% endif %}
+  <div id="nav-menu-mobile-footer" data-child-count="{{ footerItemCount }}">
+
+    {% comment %} ..:: SITE PICKER : (US, UK, EU, CAN) ::.. {% endcomment %}
+    {% if section.settings.show_site_picker %}
+      <div id="nav-sites-picker-mobile" class="nav-footer-item-mobile">
+        {% include 'sites-picker', showFullName: false, showFlagIcon: false %}
+      </div>
+    {% endif %}
+
+    {% comment %} ..:: ACCOUNT ::.. -- THIS WILL BE REPLACED WITH BORDERFREE EVENTUALLY {% endcomment %}
+    {% if shop.customer_accounts_enabled %}
+      <div class="nav-footer-item-mobile nav-account {% if section.settings.account_icon == 'text' %}nav-account-text-mode{% endif %}">
+        {% include 'nav-account-item' %}
+      </div>
+    {% endif %}
+
+  </div>
 </nav> 
