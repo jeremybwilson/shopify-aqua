@@ -420,10 +420,12 @@
           "social_heading": "Connect With Us"
         }
       },
-      "1535728526385": {
+
+
+      "index-hero_slideshow": {
         "type": "slideshow",
         "blocks": {
-          "slide-1": {
+          "index-hero_slideshow--slide-1": {
             "type": "image",
             "settings": {
               "image": "shopify:\/\/shop_images\/home-hero-desktop-slide-1.jpg",
@@ -449,7 +451,7 @@
               "caption_opacity": "0.2"
             }
           },
-          "slide-2": {
+          "index-hero_slideshow--slide-2": {
             "type": "image",
             "settings": {
               "image": "shopify:\/\/shop_images\/home-hero-desktop-slide-2.jpg",
@@ -477,8 +479,8 @@
           }
         },
         "block_order": [
-          "slide-1",
-          "slide-2"
+          "index-hero_slideshow--slide-1",
+          "index-hero_slideshow--slide-2"
         ],
         "settings": {
           "full_width": true,
@@ -486,68 +488,9 @@
           "slider_speed": 3
         }
       },
-      "1536068961071": {
-        "type": "columns-carousel",
-        "blocks": {
-          "1536068961071-0": {
-            "type": "image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/home-column-carousel-desktop-slide-1.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/home-column-carousel-mobile-slide-1.jpg",
-              "heading": "Commercial Fishing",
-              "svg_icon": "",
-              "png_icon": "",
-              "link": "shopify:\/\/collections\/commercial-fishing",
-              "cta_text": "Shop Now"
-            }
-          },
-          "1536068961071-1": {
-            "type": "image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/home-column-carousel-desktop-slide-2.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/home-column-carousel-mobile-slide-2.jpg",
-              "heading": "Sport Fishing",
-              "svg_icon": "",
-              "png_icon": "",
-              "link": "shopify:\/\/collections\/sport-fishing",
-              "cta_text": "Shop Now"
-            }
-          },
-          "1536068961071-2": {
-            "type": "image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/home-column-carousel-desktop-slide-3.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/home-column-carousel-mobile-slide-3.jpg",
-              "heading": "Water Sports",
-              "svg_icon": "",
-              "png_icon": "",
-              "link": "shopify:\/\/collections\/water-sports",
-              "cta_text": "Shop Now"
-            }
-          },
-          "1536068961071-3": {
-            "type": "image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/home-column-carousel-desktop-slide-4.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/home-column-carousel-mobile-slide-4.jpg",
-              "heading": "Lifestyle",
-              "svg_icon": "",
-              "png_icon": "",
-              "link": "shopify:\/\/collections\/lifestyle",
-              "cta_text": "Shop Now"
-            }
-          }
-        },
-        "block_order": [
-          "1536068961071-0",
-          "1536068961071-1",
-          "1536068961071-2",
-          "1536068961071-3"
-        ],
-        "settings": {
-        }
-      },
-      "1536251685211": {
+
+
+      "index-twin_promos": {
         "type": "twin-promos",
         "blocks": {
           "1536251685211-1": {
@@ -581,49 +524,50 @@
           "full_width": false
         }
       },
-      "1536252750894": {
+
+
+      "index-collection_slideshow": {
         "type": "slideshow",
         "blocks": {
-          "1536252750894-0": {
+          "index-collection_slideshow--slide-1": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/home-about-promo-desktop-1.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/home-about-promo-mobile-1.jpg",
-              "heading": "Made for Alaska, Fit for Everyone",
-              "subheading": "",
-              "cta_one_link": "shopify:\/\/pages\/about",
-              "cta_one_button_text": "Our Story",
+              "image": "shopify:\/\/shop_images\/home-hero-desktop-slide-1.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/home-hero-mobile-slide-1.jpg",
+              "image_link": "\/collections\/legacy\/audience_men",
+              "heading": "FROM ITALY WITH LOVE",
+              "heading_size": 30,
+              "subheading": "From kitten heels to over the knee boots.",
+              "subheading_size": 16,
+              "cta_one_link": "\/collections\/legacy\/audience_men",
+              "cta_one_button_text": "SHOP NOW",
+              "cta_one_line": "left",
               "cta_two_link": "",
-              "cta_two_button_text": "Add a button",
-              "caption_color_scheme": "white",
+              "cta_two_button_text": "",
+              "cta_two_line": "none",
+              "caption_color_scheme": "light",
+              "caption_text_align": "left",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "center",
-              "caption_vertical": 50,
+              "caption_horizontal": "left",
+              "caption_vertical": 80,
               "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.1"
+              "caption_opacity": "0.2"
             }
           }
         },
         "block_order": [
-          "1536252750894-0"
+          "index-collection_slideshow--slide-1"
         ],
         "settings": {
           "full_width": true,
+          "show_nav_pagination": false,
           "slider_speed": 3
         }
       },
-      "1536266098177": {
-        "type": "instagram",
-        "settings": {
-          "heading": "@xtratufboots",
-          "text": "<p>Tag your photos with <strong>#XTRATUFBOOTS<\/strong> to be featured on our feed<\/p>",
-          "link": "http:\/\/www.instagram.com\/xtratufboots",
-          "cta_text": "View all",
-          "instagram_access_token": "1022365975.1677ed0.a29a97191f864ee0afeb65ef0024312b"
-        }
-      },
-      "1536353642475": {
+
+
+      "index-collection_list": {
         "type": "featured-collection",
         "settings": {
           "heading": "Best Sellers",
@@ -633,6 +577,102 @@
           "products_per_row": 4
         }
       },
+
+
+      "index-about_slideshow": {
+        "type": "slideshow",
+        "blocks": {
+          "index-about_slideshow--slide-1": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/home-hero-desktop-slide-1.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/home-hero-mobile-slide-1.jpg",
+              "image_link": "\/collections\/legacy\/audience_men",
+              "heading": "FROM ITALY WITH LOVE",
+              "heading_size": 30,
+              "subheading": "From kitten heels to over the knee boots.",
+              "subheading_size": 16,
+              "cta_one_link": "\/collections\/legacy\/audience_men",
+              "cta_one_button_text": "SHOP NOW",
+              "cta_one_line": "left",
+              "cta_two_link": "",
+              "cta_two_button_text": "",
+              "cta_two_line": "none",
+              "caption_color_scheme": "light",
+              "caption_text_align": "left",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#164732",
+              "caption_horizontal": "left",
+              "caption_vertical": 80,
+              "caption_background": "rgba(0,0,0,0)",
+              "caption_opacity": "0.2"
+            }
+          }
+        },
+        "block_order": [
+          "index-about_slideshow--slide-1"
+        ],
+        "settings": {
+          "full_width": true,
+          "show_nav_pagination": false,
+          "slider_speed": 3
+        }
+      },
+
+
+      "index-feature_highlight_slideshow": {
+        "type": "slideshow",
+        "blocks": {
+          "index-feature_highlight_slideshow--slide-1": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/home-hero-desktop-slide-1.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/home-hero-mobile-slide-1.jpg",
+              "image_link": "\/collections\/legacy\/audience_men",
+              "heading": "FROM ITALY WITH LOVE",
+              "heading_size": 30,
+              "subheading": "From kitten heels to over the knee boots.",
+              "subheading_size": 16,
+              "cta_one_link": "\/collections\/legacy\/audience_men",
+              "cta_one_button_text": "SHOP NOW",
+              "cta_one_line": "left",
+              "cta_two_link": "",
+              "cta_two_button_text": "",
+              "cta_two_line": "none",
+              "caption_color_scheme": "light",
+              "caption_text_align": "left",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#164732",
+              "caption_horizontal": "left",
+              "caption_vertical": 80,
+              "caption_background": "rgba(0,0,0,0)",
+              "caption_opacity": "0.2"
+            }
+          }
+        },
+        "block_order": [
+          "index-feature_highlight_slideshow--slide-1"
+        ],
+        "settings": {
+          "full_width": true,
+          "show_nav_pagination": false,
+          "slider_speed": 3
+        }
+      },
+
+
+      "index-instagram_feed": {
+        "type": "instagram",
+        "settings": {
+          "heading": "@xtratufboots",
+          "text": "<p>Tag your photos with <strong>#XTRATUFBOOTS<\/strong> to be featured on our feed<\/p>",
+          "link": "http:\/\/www.instagram.com\/xtratufboots",
+          "cta_text": "View all",
+          "instagram_access_token": "1022365975.1677ed0.a29a97191f864ee0afeb65ef0024312b"
+        }
+      },
+
+
       "page-about-template": {
         "type": "page-about-template",
         "blocks": {
@@ -922,12 +962,13 @@
       }
     },
     "content_for_index": [
-      "1535728526385",
-      "1536353642475",
-      "1536068961071",
-      "1536251685211",
-      "1536252750894",
-      "1536266098177"
+      "index-hero_slideshow",
+      "index-twin_promos",
+      "index-collection_slideshow",
+      "index-collection_list",
+      "index-about_slideshow",
+      "index-feature_highlight_slideshow",
+      "index-instagram_feed"
     ]
   }
 }
