@@ -423,33 +423,38 @@
       "1535728526385": {
         "type": "slideshow",
         "blocks": {
-          "1535728526385-0": {
+          "slide-1": {
             "type": "image",
             "settings": {
               "image": "shopify:\/\/shop_images\/home-hero-desktop-slide-1.jpg",
               "mobile_image": "shopify:\/\/shop_images\/home-hero-mobile-slide-1.jpg",
-              "heading": "Proud To Be The Alaskan Sneaker",
-              "subheading": "",
+              "heading": "FROM ITALY WITH LOVE",
+              "heading_size": 30,
+              "subheading": "From kitten heels to over the knee boots.",
+              "subheading_size": 16,
               "cta_one_link": "\/collections\/legacy\/audience_men",
-              "cta_one_button_text": "Shop Legacy Boots",
-              "cta_two_link": "",
-              "cta_two_button_text": "Garden",
+              "cta_one_button_text": "SHOP NOW",
+              "cta_one_line": "left",
+              "cta_two_link": "Button #2",
+              "cta_two_button_text": "https:\/\/google.com",
+              "cta_two_line": "none",
               "caption_color_scheme": "white",
+              "caption_text_align": "left",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "center",
-              "caption_vertical": 50,
+              "caption_horizontal": "left",
+              "caption_vertical": 80,
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.2"
             }
           }
         },
         "block_order": [
-          "1535728526385-0"
+          "slide-1"
         ],
         "settings": {
           "full_width": true,
-          "slider_speed": 3
+          "slider_speed": 30
         }
       },
       "1536068961071": {
