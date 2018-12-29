@@ -428,6 +428,7 @@
             "settings": {
               "image": "shopify:\/\/shop_images\/home-hero-desktop-slide-1.jpg",
               "mobile_image": "shopify:\/\/shop_images\/home-hero-mobile-slide-1.jpg",
+              "image_link": "\/collections\/legacy\/audience_men",
               "heading": "FROM ITALY WITH LOVE",
               "heading_size": 30,
               "subheading": "From kitten heels to over the knee boots.",
@@ -453,6 +454,7 @@
             "settings": {
               "image": "shopify:\/\/shop_images\/home-hero-desktop-slide-2.jpg",
               "mobile_image": "shopify:\/\/shop_images\/home-hero-mobile-slide-2.jpg",
+              "image_link": "\/collections\/legacy\/audience_men",
               "heading": "FROM ITALIA WITH LOVE",
               "heading_size": 30,
               "subheading": "From over the knee boots to kitten heels.",
