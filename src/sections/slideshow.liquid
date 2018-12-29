@@ -27,6 +27,12 @@
       
                 {% comment %} :: IMAGES - MOBILE AND DESKTOP :: {% endcomment %}
                 {% if block.settings.image != blank %}
+
+                  {% comment %} :: IMAGE LINK :: Wrap in an anchor tag if link is supplied {% endcomment %}
+                  {% if block.settings.image_link != blank %}
+                    <a href="{{ block.settings.image_link }}">
+                  {% endif %}
+
                   <div class="box-ratio">
                     <picture>
                       
@@ -47,8 +53,12 @@
                     <noscript>
                       <img src="{{ block.settings.image | img_url: '1024x' }}" alt="{{ block.settings.image.alt | escape }}" class="slideshow__image slideshow__image--{{ block.id }}">
                     </noscript>
+                  </div>
+                  <!-- End of .box-ratio -->
 
-                  </div><!-- .box-ratio -->
+                  {% if block.settings.image_link != blank %}
+                    </a>
+                  {% endif %}
 
                   {% comment %} Styling to accommodate the box ratio for lazy-loaded images {% endcomment %}
                   <style>
@@ -277,7 +287,14 @@
           "id": "mobile_image",
           "label": "Image (Mobile)",
           "info": "Size: ~728x1024 (slide height congruency is more important than adherence to suggested size)"
-        },        
+        },
+        {
+          "type": "url",
+          "id": "image_link",
+          "label": "Image Link"
+        },
+
+
         {
           "type": "header",
           "content": "-- TEXT BOX : CONTENT --"
