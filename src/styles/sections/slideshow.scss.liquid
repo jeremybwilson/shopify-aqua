@@ -3,6 +3,8 @@
 .slideshow-section {
   margin-bottom: 0;
 
+
+
   /* IMAGE HOLDER : For lazy loading images
    * ------------------------------------------ */
   .box-ratio {
@@ -19,18 +21,6 @@
     }
   }
 
-                  .caption-theme-light.caption-text-align-right,
-                .caption-theme-dark.caption-text-align-right {
-                  .buttons-row {
-                    right: -5px;
-                  }
-                }
-
-                .caption-theme-custom.caption-text-align-right {
-                  .buttons-row {
-                    right: 5px;
-                  }
-                }
 
   /* TEXT BOX : Wrapper around text portion
    * ------------------------------------------ */
@@ -64,6 +54,7 @@
 
       // Right Align, Light / Dark Theme
       &.caption-theme-light,
+      &.caption-theme-white, // Legacy name support
       &.caption-theme-dark {
         .buttons-row {
           right: -5px;
@@ -192,11 +183,11 @@
   .flexslider.one-image-only .slider--nav {
     display: none;
   }
+
   .slider--nav {
     @include flexbox;
     @include justify-content(space-between);
     @include align-items(center);
-
     position: absolute;
     z-index: 2;
     bottom: 40px;
@@ -205,6 +196,10 @@
     max-width: 220px;    
     transform: translateX(-50%);
     color: $color--white;
+
+    &.hide-nav {
+      display: none;
+    }
 
     @include mq('lap-and-up') {
       bottom: 55px;
