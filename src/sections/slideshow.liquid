@@ -225,7 +225,7 @@
 
         {% comment %} New navigation {% endcomment %}
         {% if section.blocks.size > 1 %}
-          <div class="slider--nav">
+          <div class="slider--nav {% if section.settings.show_nav_pagination == false %} hide-nav {% endif %}">
             <a href="#" class="flex-prev">
               {% include 'svg-icon-arrow-left' %}
             </a>
@@ -540,6 +540,12 @@
       "type": "checkbox",
       "id": "full_width",
       "label": "Enable Full Width"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_nav_pagination",
+      "label": "Show Nav Pagination",
+      "default": true
     },
     {
       "type": "range",
