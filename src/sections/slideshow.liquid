@@ -1,224 +1,259 @@
 <div class="homepage-section slideshow-section no-fouc index-section" data-section-id="{{ section.id }}" data-section-type="slideshow-section">
 
   {% comment %} If full width isn't selected, include these grid containers {% endcomment %}
-
   {% unless section.settings.full_width %}
   <div class="row">
     <div class="desktop-12 tablet-6 mobile-3">
       {% endunless %}
-
       {% assign slider_speed = section.settings.slider_speed | times: 1000 %}
 
       {% if section.blocks.size > 0 %}
 
         {% comment %} Add a class for sliders with solo images {% endcomment %}      
-
         {% if section.blocks.size == 1 %}
           {% assign solo_class = 'one-image-only' %}
         {% else %}
           {% assign solo_class = '' %}
         {% endif %}
 
-      <div class="flexslider index_Slider {{ solo_class }}" id="Slideshow-{{ section.id }}" data-speed="{{ slider_speed }}">
-        <ul class="slides">
-          {% for block in section.blocks %}
+        <div class="flexslider index_Slider {{ solo_class }}" id="Slideshow-{{ section.id }}" data-speed="{{ slider_speed }}">
+          <ul class="slides">
+            {% for block in section.blocks %}
 
-          <li id="slide--{{ block.id }}"
-            data-block-id="{{ block.id }}"
-            class="slide--{{ block.id }} slide_image"
-            data-flexslider-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
-  
-            {% comment %} :: IMAGES - MOBILE AND DESKTOP :: {% endcomment %}
+              <li id="slide--{{ block.id }}"
+                data-block-id="{{ block.id }}"
+                class="slide--{{ block.id }} slide_image align-text--{{ block.settings.caption_text_align }}"
+                data-flexslider-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+      
+                {% comment %} :: IMAGES - MOBILE AND DESKTOP :: {% endcomment %}
+                {% if block.settings.image != blank %}
 
-            {% if block.settings.image != blank %}
-
-              <div class="box-ratio">
-                <picture>
-                  
-                  {% comment %} :: MOBILE IMAGE :: {% endcomment %}
-
-                  {% if block.settings.mobile_image != blank %}
-                    {% assign mobile_img_url = block.settings.mobile_image | img_url: '767x' %}
-
-                    <source srcset="{{ mobile_img_url }}" media="(max-width: 767px)">
-
+                  {% comment %} :: IMAGE LINK :: Wrap in an anchor tag if link is supplied {% endcomment %}
+                  {% if block.settings.image_link != blank %}
+                    <a href="{{ block.settings.image_link }}">
                   {% endif %}
 
-                  {% assign desktop_img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+                  <div class="box-ratio">
+                    <picture>
+                      
+                      {% comment %} :: MOBILE IMAGE :: {% endcomment %}
+                      {% if block.settings.mobile_image != blank %}
+                        {% assign mobile_img_url = block.settings.mobile_image | img_url: '767x' %}
+                        <source srcset="{{ mobile_img_url }}" media="(max-width: 767px)">
+                      {% endif %}
 
-                  <img class="slideshow__image slideshow__image__{{ block.id }} lazyload lazyload-fade" 
-                    data-src="{{ desktop_img_url }}" 
-                    data-sizes="auto"
-                    data-parent-fit="cover"
-                    alt="{{ block.settings.image.alt | escape }}">
-                </picture>
+                      {% assign desktop_img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+                      <img class="slideshow__image slideshow__image__{{ block.id }} lazyload lazyload-fade" 
+                        data-src="{{ desktop_img_url }}" 
+                        data-sizes="auto"
+                        data-parent-fit="cover"
+                        alt="{{ block.settings.image.alt | escape }}">
+                    </picture>
 
-                <noscript>
-                  <img src="{{ block.settings.image | img_url: '1024x' }}" alt="{{ block.settings.image.alt | escape }}" class="slideshow__image slideshow__image--{{ block.id }}">
-                </noscript>
+                    <noscript>
+                      <img src="{{ block.settings.image | img_url: '1024x' }}" alt="{{ block.settings.image.alt | escape }}" class="slideshow__image slideshow__image--{{ block.id }}">
+                    </noscript>
+                  </div>
+                  <!-- End of .box-ratio -->
 
-              </div><!-- .box-ratio -->
+                  {% if block.settings.image_link != blank %}
+                    </a>
+                  {% endif %}
 
-              {% comment %} Styling to accommodate the box ratio for lazy-loaded images {% endcomment %}
+                  {% comment %} Styling to accommodate the box ratio for lazy-loaded images {% endcomment %}
+                  <style>
+                    {% assign image_box_ratio = block.settings.image.height | append: ".0" | times: 1 | divided_by: block.settings.image.width | times: 100 | append: "%" %}
+
+                    {% if block.settings.mobile_image != blank %}
+                      {% assign mobile_image_box_ratio = block.settings.mobile_image.height | append: ".0" | times: 1 | divided_by: block.settings.mobile_image.width | times: 100 | append: "%" %}
+
+                      /* Mobile */
+                      #slide--{{ block.id }} .box-ratio {
+                        padding-bottom: {{ mobile_image_box_ratio }};
+                      }
+
+                    {% else %}
+                      #slide--{{ block.id }} .box-ratio {
+                        padding-bottom: {{ image_box_ratio }};
+                      }
+
+                    {% endif %}
+
+                    {% if block.settings.image != blank and block.settings.mobile_image != blank %}
+                      /* Tablet and up */
+                      @media screen and (min-width: 768px) {
+                        #slide--{{ block.id }} .box-ratio {
+                          padding-bottom: {{ image_box_ratio }};
+                        }
+                      }
+                    {% endif %}
+                  </style>
+
+                {% endif %}
+
+                {% comment %} :: NO IMAGE - PLACEHOLDER :: {% endcomment %}
+                {% if block.settings.image == blank %}
+                  {% capture current %}{% cycle 1, 2 %}{% endcapture %}
+                  {%- assign placeholder = 'lifestyle-' | append: current -%}
+                  {{ placeholder | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
+
+                {% comment %} :: CAPTION BLOCK :: {% endcomment %}
+                <div class="flex-caption slide-{{ block.id }} 
+                  caption-box-align-{{ block.settings.caption_horizontal }} 
+                  caption-text-align-{{ block.settings.caption_text_align }}
+                  caption-theme-{{ block.settings.caption_color_scheme }}">
+
+                  <div class="caption-inners">
+                    {% if block.settings.heading != blank %}
+                      <h2 class="slide-title">{{ block.settings.heading }}</h2>
+                    {% endif %}
+                    
+                    {% if block.settings.subheading != blank %}
+                      <p class="caption">{{ block.settings.subheading }}</p>
+                    {% endif %}
+
+                    {% comment %} :: CTA BUTTONS :: {% endcomment %}
+                    {% if block.settings.cta_one_link != blank and block.settings.cta_one_button_text != blank %}
+                      <div class="buttons-row">
+
+                        {% comment %} :: BUTTON #1 :: {% endcomment %}
+                        <div class="cta show-lines--{{ block.settings.cta_one_line }}" id="cta-one-{{ block.id }}">
+                          <a href="{{ block.settings.cta_one_link }}">
+
+                            {% comment %}
+                              :: CTA LINES + TEXT :: 
+                                - Lines always present for flex item alignment behavior, invisible unless enabled {% endcomment %}
+                            <div class="cta-line-left"></div>
+                            {{ block.settings.cta_one_button_text }}
+                            <div class="cta-line-right"></div>
+                          </a>
+                        </div>
+
+                        {% comment %} CTA TWO - Only show if link exists. Duplicate this and the necessary schema code if client asks for more buttons. {% endcomment %}
+                        {% if block.settings.cta_two_link != blank and block.settings.cta_two_button_text != blank %}
+
+                          {% comment %} :: BUTTON #2 :: {% endcomment %}
+                          <div class="cta show-lines--{{ block.settings.cta_two_line }}" id="cta-two-{{ block.id }}">
+                            <a href="{{ block.settings.cta_two_link }}" class="{{ buttonWrapClasses }}">
+                              
+                              {% comment %}
+                                :: CTA LINES + TEXT :: 
+                                  - Lines always present for flex item alignment behavior, invisible unless enabled {% endcomment %}
+                              <div class="cta-line-left"></div>
+                              {{ block.settings.cta_two_button_text }}
+                              <div class="cta-line-right"></div>
+                            </a>
+                          </div>
+                        {% endif %}
+
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              </li>
+
 
               <style>
+                .flex-caption.slide-{{ block.id }} {
+                  top: {{ block.settings.caption_vertical }}%;
+                }
 
-                {% assign image_box_ratio = block.settings.image.height | append: ".0" | times: 1 | divided_by: block.settings.image.width | times: 100 | append: "%" %}
+                .flex-caption.slide-{{ block.id }} .caption-inners {
+                  {% assign bg_color = block.settings.caption_background %}
+                  {% assign caption_opacity = block.settings.caption_opacity | plus: 0 %}
+                  
+                  {% if block.settings.caption_background == 'rgba(0,0,0,0)' %}
+                    background: transparent;
+                  {% else %}
+                    background: {{ bg_color | color_modify: 'alpha', caption_opacity }};
+                  {% endif %}
+                }
 
-                {% if block.settings.mobile_image != blank %}
-                  {% assign mobile_image_box_ratio = block.settings.mobile_image.height | append: ".0" | times: 1 | divided_by: block.settings.mobile_image.width | times: 100 | append: "%" %}
 
-                  /* Mobile */
+                {% comment %} :: COLOR SCHEME STYLING :: {% endcomment %}
+                {% assign color_scheme = block.settings.caption_color_scheme %}
+                {% assign buttons_right_align = '0' %}
 
-                  #slide--{{ block.id }} .box-ratio {
-                    padding-bottom: {{ mobile_image_box_ratio }};
-                  }
+                {% if color_scheme == 'light' or color_scheme == 'white' %}
+                  {% assign slide_text_color = '#ffffff' %}
+                  {% assign cta_bg_color = 'transparent' %}
+                  {% assign cta_bg_hover_color = 'transparent' %}
+                  {% assign cta_padding_mobile = '0' %}
+                  {% assign cta_padding_desktop = '0' %}
+
+                {% elsif color_scheme == 'dark' %}
+                  {% assign slide_text_color = '#000000' %}
+                  {% assign cta_bg_color = 'transparent' %}
+                  {% assign cta_bg_hover_color = 'transparent' %}
+                  {% assign cta_padding_mobile = '0' %}
+                  {% assign cta_padding_desktop = '0' %}
 
                 {% else %}
-
-                  #slide--{{ block.id }} .box-ratio {
-                    padding-bottom: {{ image_box_ratio }};
-                  }
-
+                  {% assign slide_text_color = block.settings.custom_slide_main_color %}
+                  {% assign cta_bg_color = block.settings.custom_slide_alt_color %}
+                  {% assign cta_bg_hover_color = block.settings.custom_slide_alt_color %}
+                  {% assign cta_padding_mobile = '10px' %}
+                  {% assign cta_padding_desktop = '15px 24px' %}
                 {% endif %}
 
-                {% if block.settings.image != blank and block.settings.mobile_image != blank %}
+                .flex-caption.slide-{{ block.id }} h2.slide-title {
+                  color: {{ slide_text_color }};
+                  text-align: {{ block.settings.caption_text_align }};
+                }
 
-                  /* Tablet and up */
+                .flex-caption.slide-{{ block.id }} .caption {
+                  color: {{ slide_text_color }};
+                  text-align: {{ block.settings.caption_text_align }};
+                }
 
-                  @media screen and (min-width: 768px) {
-                    #slide--{{ block.id }} .box-ratio {
-                      padding-bottom: {{ image_box_ratio }};
-                    }
+                .flex-caption.slide-{{ block.id }} .cta a {
+                  color: {{ slide_text_color }};
+                  padding: {{ cta_padding_mobile }};
+                  background-color: {{ cta_bg_color }};
+                }
+
+                @media only screen and ( min-width: 768px ) {
+                  .flex-caption.slide-{{ block.id }} .cta a {
+                    padding: {{ cta_padding_desktop }};
                   }
+                }
 
-                {% endif %}
-                
+                .flex-caption.slide-{{ block.id }} .cta a:hover {
+                  background-color: {{ cta_bg_hover_color }};
+                }
+
+                .flex-caption.slide-{{ block.id }} .cta .cta-line-left,
+                .flex-caption.slide-{{ block.id }} .cta .cta-line-right {
+                  background-color: {{ slide_text_color }};
+                }
+
               </style>
+            {% endfor %}
+          </ul>
+        </div><!-- .flexslider -->
 
-            {% endif %}
-
-            {% comment %} :: NO IMAGE - PLACEHOLDER :: {% endcomment %}
-
-            {% if block.settings.image == blank %}
-              {% capture current %}{% cycle 1, 2 %}{% endcapture %}
-              {%- assign placeholder = 'lifestyle-' | append: current -%}
-              {{ placeholder | placeholder_svg_tag: 'placeholder-svg' }}
-            {% endif %}
-
-            {% comment %} :: CAPTION BLOCK :: {% endcomment %}
-
-            <div class="flex-caption slide-{{ block.id }} caption-align-{{ block.settings.caption_horizontal }}">
-              <div class="caption-inners">
-                {% if block.settings.heading != blank %}
-                <h2 class="slide-title">{{ block.settings.heading }}</h2>
-                {% endif %}
-                {% if block.settings.subheading != blank %}
-                <p class="caption">{{ block.settings.subheading }}</p>
-                {% endif %}
-
-                {% comment %} CTA BUTTONS {% endcomment %}
-
-                {% if block.settings.cta_one_link != blank and block.settings.cta_one_button_text != blank %}
-                <div class="buttons-row">
-
-                  <div class="cta" id="cta-one-{{ block.id }}">
-                    <a href="{{ block.settings.cta_one_link }}">
-                    {{ block.settings.cta_one_button_text }}
-                    </a>
-                  </div>
-
-                  {% comment %} CTA TWO - Only show if link exists. Duplicate this and the necessary schema code if client asks for more buttons. {% endcomment %}
-
-                  {% if block.settings.cta_two_link != blank and block.settings.cta_two_button_text != blank %}
-                  
-                    <div class="cta" id="cta-one-{{ block.id }}">
-                      <a href="{{ block.settings.cta_two_link }}">
-                      {{ block.settings.cta_two_button_text }}
-                      </a>
-                    </div>
-                  
-                  {% endif %}
-
-                </div>
-                {% endif %}
-              </div>
+        {% comment %} New navigation {% endcomment %}
+        {% if section.blocks.size > 1 %}
+          <div class="slider--nav {% if section.settings.show_nav_pagination == false %} hide-nav {% endif %}">
+            <a href="#" class="flex-prev">
+              {% include 'svg-icon-arrow-left' %}
+            </a>
+            <div class="pagination">
+              <span class="flexslider--current-slide"></span>
+              <span class="slash">/</span>
+              <span class="flexslider--total-slides"></span>
             </div>
-          </li>
-          <style>
-            .flex-caption.slide-{{ block.id }} {
-              top: {{ block.settings.caption_vertical }}%;
-            }
-            .flex-caption.slide-{{ block.id }} .caption-inners {
-
-              {% assign bg_color = block.settings.caption_background %}
-              {% assign caption_opacity = block.settings.caption_opacity | plus: 0 %}
-              {% if block.settings.caption_background == 'rgba(0,0,0,0)' %}
-              background: transparent;
-              {% else %}
-              background: {{ bg_color | color_modify: 'alpha', caption_opacity }};
-              {% endif %}
-              display: inline-block;
-              padding: 10px 20px;
-            }
-            {% comment %} COLOR SCHEME STYLING {% endcomment %}
-
-            {% if block.settings.caption_color_scheme == 'white' %}
-              {% assign slide_text_color = '#ffffff' %}
-              {% assign cta_color = '#e41c39' %}
-              {% assign cta_hover_color = '#c1152e' %}
-            {% elsif block.settings.caption_color_scheme == 'dark' %}
-              {% assign slide_text_color = '#0a56a4' %}
-              {% assign cta_color = '#e41c39' %}
-              {% assign cta_hover_color = '#c1152e' %}
-            {% else %}
-              {% assign slide_text_color = block.settings.custom_slide_main_color %}
-              {% assign cta_color = block.settings.custom_slide_alt_color %}
-              {% assign cta_hover_color = block.settings.custom_slide_alt_color %}
-            {% endif %}
-
-            .flex-caption.slide-{{ block.id }} h2.slide-title {
-              color: {{ slide_text_color }};
-            }
-            .flex-caption.slide-{{ block.id }} p {
-              color: {{ slide_text_color }};
-            }
-            .flex-caption.slide-{{ block.id }} .cta a {
-              background-color: {{ cta_color }};
-            }
-            .flex-caption.slide-{{ block.id }} .cta a:hover {
-              background-color: {{ cta_hover_color }};
-            }
-
-          </style>
-          {% endfor %}
-        </ul>
-      </div><!-- .flexslider -->
-
-      {% comment %} New navigation {% endcomment %}
-
-      {% if section.blocks.size > 1 %}
-
-        <div class="slider--nav">
-          <a href="#" class="flex-prev">
-            {% include 'svg-icon-arrow-left' %}
-          </a>
-          <div class="pagination">
-            <span class="flexslider--current-slide"></span>
-            <span class="slash">/</span>
-            <span class="flexslider--total-slides"></span>
-          </div>
-          <a href="#" class="flex-next">
-            {% include 'svg-icon-arrow-right' %}
-          </a>
-        </div><!-- .slider--nav -->
-
-      {% endif %}
+            <a href="#" class="flex-next">
+              {% include 'svg-icon-arrow-right' %}
+            </a>
+          </div><!-- .slider--nav -->
+        {% endif %}
 
       {% endif %}
 
       {% if section.blocks.size == 0 %}
-      {% include 'no-blocks' %}
+        {% include 'no-blocks' %}
       {% endif %}
 
       {% unless section.settings.full_width %}
@@ -239,21 +274,30 @@
       "settings": [
         {
           "type": "header",
-          "content": "Images"
+          "content": "-- IMAGES --"
         },      
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Image (Desktop)"
+          "label": "Image (Desktop)",
+          "info": "Size: ~2300x1200 (slide height congruency is more important than adherence to suggested size)"
         },
         {
           "type": "image_picker",
           "id": "mobile_image",
-          "label": "Image (Mobile)"
-        },        
+          "label": "Image (Mobile)",
+          "info": "Size: ~728x1024 (slide height congruency is more important than adherence to suggested size)"
+        },
+        {
+          "type": "url",
+          "id": "image_link",
+          "label": "Image Link"
+        },
+
+
         {
           "type": "header",
-          "content": "Text Box - Content"
+          "content": "-- TEXT BOX : CONTENT --"
         },
         {
           "type": "text",
@@ -264,12 +308,33 @@
         {
           "type": "text",
           "id": "subheading",
-          "label": "Subheading",
+          "label": "Sub-Heading",
           "default": "Tell your brand's story through images"
         },
         {
+          "type": "select",
+          "id": "caption_text_align",
+          "label": "Text Alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ]
+        },
+
+
+        {
           "type": "header",
-          "content": "Button 1"
+          "content": "-- BUTTON #1 --"
         },
         {
           "type": "url",
@@ -281,11 +346,37 @@
           "id": "cta_one_button_text",
           "label": "Button text",
           "default": "Add a button",
-          "info": "Visible only if a link is chosen"
+          "info": "(Visible only if a link is set)"
         },
         {
+          "type": "select",
+          "id": "cta_one_line",
+          "label": "CTA Line Placement",
+          "default": "none",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            },
+            {
+              "value": "both",
+              "label": "Both"
+            }
+          ]
+        },
+
+
+        {
           "type": "header",
-          "content": "Button 2"
+          "content": "-- BUTTON #2 --"
         },
         {
           "type": "url",
@@ -297,11 +388,37 @@
           "id": "cta_two_button_text",
           "label": "Button text",
           "default": "Add a button",
-          "info": "Visible only if a link is chosen"
-        },        
+          "info": "(Visible only if a link is set)"
+        },
+        {
+          "type": "select",
+          "id": "cta_two_line",
+          "label": "CTA Line Placement",
+          "default": "none",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            },
+            {
+              "value": "both",
+              "label": "Both"
+            }
+          ]
+        },  
+
+
         {
           "type": "header",
-          "content": "Text Box - Color Scheme"
+          "content": "-- TEXT BOX : COLOR SCHEME --"
         },
         {
           "type": "select",
@@ -310,8 +427,8 @@
           "info": "Choose a color scheme from the prescribed branding colors, or select CUSTOM to select your own colors",
           "options": [
             {
-              "value": "white",
-              "label": "White"
+              "value": "light",
+              "label": "Light"
             },
             {
               "value": "dark",
@@ -335,14 +452,16 @@
           "label": "Custom - Alternate Color",
           "default": "#e41c39"
         },
+
+
         {
           "type": "header",
-          "content": "Text Box - Position"
+          "content": "-- TEXT BOX : POSITION --"
         },
         {
           "type": "select",
           "id": "caption_horizontal",
-          "label": "Horizontal position",
+          "label": "Horizontal Box Position",
           "options": [
             {
               "value": "left",
@@ -362,15 +481,18 @@
           "type": "range",
           "id": "caption_vertical",
           "min": 5,
-          "max": 50,
-          "step": 5,
+          "max": 90,
+          "step": 1,
           "unit": "%",
-          "label": "Vertical position",
+          "label": "Vertical Box Position",
+          "info": "*Check mobile & desktop to ensure no text clipping occurs.",
           "default": 50
         },
+
+
         {
           "type": "header",
-          "content": "Text Box - Background"
+          "content": "-- TEXT BOX : BACKGROUND --"
         },
         {
           "type": "color",
@@ -428,17 +550,25 @@
       ]
     }
   ],
+
+
   "settings": [
     {
       "type": "checkbox",
       "id": "full_width",
-      "label": "Enable full width"
+      "label": "Enable Full Width"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_nav_pagination",
+      "label": "Show Nav Pagination",
+      "default": true
     },
     {
       "type": "range",
       "id": "slider_speed",
-      "min": 3,
-      "max": 10,
+      "min": 2,
+      "max": 30,
       "step": 1,
       "label": "Slideshow speed (seconds)",
       "default": 5
