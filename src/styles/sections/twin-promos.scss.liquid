@@ -4,10 +4,24 @@
   @include mq('tablet-and-up') {
     margin-top: 60px;
   }
+
   @include mq('lap-and-up') {
     margin-top: 100px;
   }
 
+
+  /* FULL-WIDTH : Negate the redundant bootstrap
+   *              padding for row wrappers here
+   * -------------------------------------------- */
+  .gridlock-fluid.twin-promos-full-width {
+    .row {
+      padding: 0;
+    }
+  }
+
+
+  /* SINGLE-PROMO : Individual promo element wrap
+   * ---------------------------------------------- */
   .single-promo {
     margin-bottom: 40px;
     text-align: center;
@@ -23,56 +37,78 @@
       &:only-of-type { padding-left: 0; padding-right: 0;}
     }
 
+
+    /* TEXT BOX : Wrapper for the text content
+     * -------------------------------------------- */
     .text-promo-content {
       margin-top: 24px;
       padding-left: 20px;
       padding-right: 20px;
 
-      @include mq('tablet-and-up') {
-        width: 90%;
+      @include mq( 'tablet-and-up' ) {
+        width: 100%;
         margin: 30px auto 0;
-        padding-left: 0;
-        padding-right: 0;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      &.align-promo-text-left {
+        text-align: left;
+      }
+      &.align-promo-text-center {
+        text-align: center;
+      }
+      &.align-promo-text-right {
+        text-align: right;
       }
     }
 
-    h3 {
+
+    /* HEADER : Primary text heading
+     * -------------------------------------------- */
+    .heading-text {
       color: $color--primary-1;
-      font-weight: $font-weight--black;
-      @include fontDim(22px,26px,0);
-      text-transform: uppercase;
+      font-weight: $font-weight--medium;
+      @include fontDim( 22px, 26px, 3px );
 
       @include mq('tablet-and-up') {
         @include fontSize(24px);
       }
     }
-    .copy {
+
+
+    /* BODY : Smaller content text for description
+     * -------------------------------------------- */
+    .body-text {
       @include mq('tablet-and-up') {
         margin-top: 12px;
       }
-      p {
-        font-weight: $font-weight--bold;
-        @include fontDim(14px,20px,0);
 
-        @include mq('tablet-and-up') {
-          @include fontDim(16px,24px,0);
-        }
+      p {
+        @include fontDim( 18px, 22px, 1px );
+        font-weight: $font-weight--medium;
+        color: $color--dark-gray;
       }
     }
+
+
+    /* CTA : Button for the promo element
+     * -------------------------------------------- */
     .cta {
+      @include fontDim( 16px, 18px, 2px );
+      font-weight: $font-weight--medium;
       margin-top: 12px;
-      @include fontDim(13px,13px,0);
-      font-weight:  $font-weight--bold;
-      text-transform: uppercase;
       display: block;
 
-      @include mq('tablet-and-up') {
+      @include mq( 'tablet-and-up' ) {
         margin-top: 15px;
-        @include fontSize(16px);
       }
 
+      // NOTE : Not all cta will necessarily be wrapped in an anchor tag
       a {
-        color: $color--primary-2;
+        @include inline-flex;
+        @include align-items( center );
+        color: $color--primary-2; // Fallback, color set via block config
         text-decoration: none;
         letter-spacing: inherit;
 
@@ -81,6 +117,38 @@
         }
       }
 
+      // CTA TYPE : Text Only
+      &.cta-type-text a {
+        padding: 10px 0;
+      }
+
+      // CTA TYPE : Button w/ Background
+      &.cta-type-button a {
+        padding: 12px 20px;
+      }
+
+      // ACCENT MARK : LINE : Sort of accent mark that Aquatalia likes to use
+      .cta-line-left,
+      .cta-line-right {
+        width: 30px;
+        height: 1px;
+        margin-top: -2px;
+        opacity: 0.25;
+        display: none; // Hidden by default
+      }
+      .cta-line-left  { margin-right: 11px; }
+      .cta-line-right { margin-left: 11px;  }
+
+      // Display triggers
+      &.cta-accent-mark-both .cta-line-right,
+      &.cta-accent-mark-both .cta-line-left,
+      &.cta-accent-mark-left .cta-line-left,
+      &.cta-accent-mark-right .cta-line-right {
+        display: block;
+      }
+
+
+      // ACCENT MARK : CARET : Accent mark used by muck/xtratuf style
       svg {
         width: 10px;
         height: 10px;
