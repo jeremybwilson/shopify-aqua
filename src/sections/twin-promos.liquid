@@ -1,70 +1,99 @@
 <div class="homepage-section twin-promos index-section" id="text-promo-{{ section.id }}" data-section-id="{{ section.id }}">
 
-  {% if section.settings.full_width %}<div class="gridlock-fluid"><div class="row">{% endif %}
+  {% comment %} :: FULL-WIDTH WRAPPING ELEMENTS :: {% endcomment %}
+  {% if section.settings.full_width %}<div class="gridlock-fluid twin-promos-full-width"><div class="row">{% endif %}
 
   <div class="row homepage-section no-fouc">
     {% case section.blocks.size %}
-    {% when 1 %}
-    {%- assign image_size = '900x' -%}
-    {%- assign column_width = 'desktop-8 desktop-push-2 tablet-4 tablet-push-1' -%}
-    {% when 2 %}
-    {%- assign image_size = '800x' -%}
-    {%- assign column_width = 'desktop-6 tablet-3' -%}
+      {% when 1 %}
+        {%- assign image_size = '900x' -%}
+        {%- assign column_width = 'desktop-8 desktop-push-2 tablet-4 tablet-push-1' -%}
+    
+      {% when 2 %}
+        {%- assign image_size = '800x' -%}
+        {%- assign column_width = 'desktop-6 tablet-3' -%}
     {% endcase %}
 
-    {% comment %} THE LOOP {% endcomment %}
-
+    {% comment %} :: THE LOOP :: {% endcomment %}
     {% for block in section.blocks %}
+      {%- assign img_url = block.settings.image | img_url: image_size -%}
 
-    {%- assign img_url = block.settings.image | img_url: image_size -%}
-
-    <div class="single-promo {{ column_width }} mobile-3 promo-{{ block.id }}" {{ block.shopify_attributes }}>
-  
-      {% comment %} IMAGE {% endcomment %}
-
-      {% if block.settings.link != blank %}<a href="{{ block.settings.link }}">{% endif %}
-        {% if block.settings.image != blank %}
-          {% include 'advanced-responsive-image' | default_image: block.settings.image, mobile_image: block.settings.mobile_image, block_id: block.id %}
-          <noscript>
-            <img src="{{ block.settings.image | img_url: '800x' }}" alt="{{ block.settings.image.alt }}">
-          </noscript>
-        {% endif %}
-      {% if block.settings.link != blank %}</a>{% endif %}
-
-        {% comment %} TEXT {% endcomment %}
-
-        <div class="text-promo-content">
-          {% if block.settings.heading_text != blank %}
-          <h3>{{ block.settings.heading_text | escape }}</h3>
+      {% comment %} :: SINGLE PROMO - WRAP :: {% endcomment %}
+      <div id="promo-{{ block.id }}" class="single-promo {{ column_width }} mobile-3 promo-{{ block.id }}" {{ block.shopify_attributes }}>
+    
+        {% comment %} :: IMAGE :: {% endcomment %}
+        {% if block.settings.link != blank %}<a href="{{ block.settings.link }}">{% endif %}
+          {% if block.settings.image != blank %}
+            {% include 'advanced-responsive-image' | default_image: block.settings.image, mobile_image: block.settings.mobile_image, block_id: block.id %}
+            <noscript>
+              <img src="{{ block.settings.image | img_url: '800x' }}" alt="{{ block.settings.image.alt }}">
+            </noscript>
           {% endif %}
-          {% if block.settings.text != blank %}
-          <div class="copy">{{ block.settings.text }}</div>
-          {% endif %}
+        {% if block.settings.link != blank %}</a>{% endif %}
 
-          {% comment %} CTA {% endcomment %}
+          {% comment %} :: HEADER - TEXT :: {% endcomment %}
+          <div class="text-promo-content align-promo-text-{{ block.settings.text_align }}">
+            {% if block.settings.heading_text != blank %}
+              <h3 class="heading-text">{{ block.settings.heading_text | escape }}</h3>
+            {% endif %}
+            
+            {% comment %} :: BODY - TEXT :: {% endcomment %}
+            {% if block.settings.body_text != blank %}
+              <div class="body-text">{{ block.settings.body_text }}</div>
+            {% endif %}
 
-          {% if block.settings.cta_text != blank %}
-          <div class="cta">
-            {% if block.settings.link != blank %}<a href="{{ block.settings.link }}">{% endif %}
-              <span>{{ block.settings.cta_text }}</span> {% include 'svg-icon-caret-right' %}
-            {% if block.settings.link != blank %}</a>{% endif %}
+            {% comment %} :: CTA - BUTTON :: {% endcomment %}
+            {% if block.settings.cta_text != blank %}
+              <div class="cta cta-accent-mark-{{ block.settings.cta_accent_mark }} cta-type-{{ block.settings.cta_type }}">
+                
+                {% if block.settings.link != blank %}<a href="{{ block.settings.link }}">{% endif %}
+                  <div class="cta-line-left"></div>
+                  <span>{{ block.settings.cta_text }}</span>
+                  <div class="cta-line-right"></div>
+                {% if block.settings.link != blank %}</a>{% endif %}
+              
+              </div>
+            {% endif %}
+
           </div>
-          {% endif %}
+      </div>
 
-        </div>
-    </div>
+      {% comment %} 
+        :: STYLE :: 
+          - Config supplied colorations only, everything else belongs in the twin-promos stylesheet please. {% endcomment %}
+      <style>
+        #promo-{{ block.id }} .cta span {
+          color: {{ block.settings.cta_color_text }};
+        }
+
+        #promo-{{ block.id }} .cta .cta-line-left,
+        #promo-{{ block.id }} .cta .cta-line-right {
+          background-color: {{ block.settings.cta_color_text }};
+        }
+
+        {% if block.settings.cta_type == 'button' %}
+          #promo-{{ block.id }} .cta a {
+            background-color: {{ block.settings.cta_color_bg }};
+          }
+        {% endif %}
+      </style>
     {% endfor %}
-
-    {% comment %} END LOOP {% endcomment %}
+    {% comment %} :: END LOOP :: {% endcomment %}
   </div>
+
+  {% comment %} :: FULL-WIDTH WRAPPING ELEMENTS :: {% endcomment %}
   {% if section.settings.full_width %}</div></div>{% endif %}
 
+
+  {% comment %} :: SAFETY - NO DEFINED CONTENT :: {% endcomment %}
   {% if section.blocks.size == 0 %}
-  {% include 'no-blocks' %}
+    {% include 'no-blocks' %}
   {% endif %}
 
 </div>
 <div class="clear"></div>
+
+
 
 {% schema %}
 {
