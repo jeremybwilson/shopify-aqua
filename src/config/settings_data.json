@@ -422,10 +422,10 @@
       },
 
 
-      "index-hero_slideshow": {
+      "home-hero_slideshow": {
         "type": "slideshow",
         "blocks": {
-          "index-hero_slideshow--slide-1": {
+          "home-hero_slideshow--slide-1": {
             "type": "image",
             "settings": {
               "image": "shopify:\/\/shop_images\/home-hero-desktop-slide-1.jpg",
@@ -433,7 +433,7 @@
               "image_link": "\/collections\/legacy\/audience_men",
               "heading": "FROM ITALY WITH LOVE",
               "heading_size": 30,
-              "subheading": "From kitten heels to over the knee boots.",
+              "subheading": "From kitten heels to over-the-knee boots.",
               "subheading_size": 16,
               "cta_one_link": "\/collections\/legacy\/audience_men",
               "cta_one_button_text": "SHOP NOW",
@@ -451,7 +451,7 @@
               "caption_opacity": "0.2"
             }
           },
-          "index-hero_slideshow--slide-2": {
+          "home-hero_slideshow--slide-2": {
             "type": "image",
             "settings": {
               "image": "shopify:\/\/shop_images\/home-hero-desktop-slide-2.jpg",
@@ -459,7 +459,7 @@
               "image_link": "\/collections\/legacy\/audience_men",
               "heading": "FROM ITALIA WITH LOVE",
               "heading_size": 30,
-              "subheading": "From over the knee boots to kitten heels.",
+              "subheading": "From over-the-knee boots to kitten heels.",
               "subheading_size": 16,
               "cta_one_link": "\/collections\/legacy\/audience_men",
               "cta_one_button_text": "Button #1",
@@ -479,8 +479,8 @@
           }
         },
         "block_order": [
-          "index-hero_slideshow--slide-1",
-          "index-hero_slideshow--slide-2"
+          "home-hero_slideshow--slide-1",
+          "home-hero_slideshow--slide-2"
         ],
         "settings": {
           "full_width": true,
@@ -490,29 +490,39 @@
       },
 
 
-      "index-twin_promos": {
+      "home-twin_promos": {
         "type": "twin-promos",
         "blocks": {
           "1536251685211-1": {
             "type": "text_block",
             "settings": {
-              "image": "shopify:\/\/shop_images\/home-twin-promo-desktop-1.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/home-twin-promo-mobile-1.jpg",
+              "image": "shopify:\/\/shop_images\/home-twin_promo--desktop-left.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/home-twin_promo--desktop-left.jpg",
               "link": "\/collections\/mid-tall-boots\/audience_women",
-              "heading_text": "Tougher than the Rest",
-              "text": "",
-              "cta_text": "Shop Women's Boots"
+              "heading_text": "URBAN EXPLORER",
+              "body_text": "The Modern Chelsea",
+              "text_align": "left",
+              "cta_type": "text",
+              "cta_text": "SHOP BOOTS",
+              "cta_color_text": "#000000",
+              "cta_color_bg": "rgba(0,0,0,0)",
+              "cta_accent_mark": "left"
             }
           },
           "1536251685211-0": {
             "type": "text_block",
             "settings": {
-              "image": "shopify:\/\/shop_images\/home-twin-promo-desktop-2.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/home-twin-promo-mobile-2.jpg",
+              "image": "shopify:\/\/shop_images\/home-twin_promo--desktop-right.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/home-twin_promo--desktop-right.jpg",
               "link": "shopify:\/\/collections\/kids",
-              "heading_text": "Keep Tradition Alive",
-              "text": "",
-              "cta_text": "Shop Kids"
+              "heading_text": "WELL ZIPPED",
+              "body_text": "The Updated Bootie",
+              "text_align": "left",
+              "cta_type": "text",
+              "cta_text": "SHOP BOOTIES",
+              "cta_color_text": "#000000",
+              "cta_color_bg": "rgba(0,0,0,0)",
+              "cta_accent_mark": "left"
             }
           }
         },
@@ -521,24 +531,22 @@
           "1536251685211-0"
         ],
         "settings": {
-          "full_width": false
+          "full_width": true
         }
       },
 
 
-      "index-collection_slideshow": {
+      "home-featured_collection_slideshow": {
         "type": "slideshow",
         "blocks": {
-          "index-collection_slideshow--slide-1": {
+          "home-featured_collection_slideshow--slide-1": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/home-hero-desktop-slide-1.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/home-hero-mobile-slide-1.jpg",
+              "image": "shopify:\/\/shop_images\/home-featured_collection_slideshow--desktop-1.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/home-featured_collection_slideshow--mobile-1.jpg",
               "image_link": "\/collections\/legacy\/audience_men",
-              "heading": "FROM ITALY WITH LOVE",
-              "heading_size": 30,
-              "subheading": "From kitten heels to over the knee boots.",
-              "subheading_size": 16,
+              "heading": "FRESH FOR FALL",
+              "subheading": "From kitten heels to over-the-knee boots.",
               "cta_one_link": "\/collections\/legacy\/audience_men",
               "cta_one_button_text": "SHOP NOW",
               "cta_one_line": "left",
@@ -546,28 +554,28 @@
               "cta_two_button_text": "",
               "cta_two_line": "none",
               "caption_color_scheme": "light",
-              "caption_text_align": "left",
+              "caption_text_align": "center",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "left",
-              "caption_vertical": 80,
+              "caption_horizontal": "right",
+              "caption_vertical": 50,
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.2"
             }
           }
         },
         "block_order": [
-          "index-collection_slideshow--slide-1"
+          "home-featured_collection_slideshow--slide-1"
         ],
         "settings": {
           "full_width": true,
           "show_nav_pagination": false,
-          "slider_speed": 3
+          "slider_speed": 10
         }
       },
 
 
-      "index-collection_list": {
+      "home-featured_products_list": {
         "type": "featured-collection",
         "settings": {
           "heading": "Best Sellers",
@@ -579,38 +587,36 @@
       },
 
 
-      "index-about_slideshow": {
+      "home-about_slideshow": {
         "type": "slideshow",
         "blocks": {
-          "index-about_slideshow--slide-1": {
+          "home-about_slideshow--slide-1": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/home-hero-desktop-slide-1.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/home-hero-mobile-slide-1.jpg",
+              "image": "shopify:\/\/shop_images\/home-about_slideshow--desktop-1.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/home-about_slideshow--mobile-1.jpg",
               "image_link": "\/collections\/legacy\/audience_men",
-              "heading": "FROM ITALY WITH LOVE",
-              "heading_size": 30,
-              "subheading": "From kitten heels to over the knee boots.",
-              "subheading_size": 16,
+              "heading": "Visit Us in NYC",
+              "subheading": "965 Madison Ave at 75th Street",
               "cta_one_link": "\/collections\/legacy\/audience_men",
-              "cta_one_button_text": "SHOP NOW",
+              "cta_one_button_text": "LEARN MORE",
               "cta_one_line": "left",
               "cta_two_link": "",
               "cta_two_button_text": "",
               "cta_two_line": "none",
-              "caption_color_scheme": "light",
-              "caption_text_align": "left",
+              "caption_color_scheme": "dark",
+              "caption_text_align": "center",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "left",
-              "caption_vertical": 80,
+              "caption_horizontal": "right",
+              "caption_vertical": 50,
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.2"
             }
           }
         },
         "block_order": [
-          "index-about_slideshow--slide-1"
+          "home-about_slideshow--slide-1"
         ],
         "settings": {
           "full_width": true,
@@ -620,54 +626,52 @@
       },
 
 
-      "index-feature_highlight_slideshow": {
+      "home-feature_highlight_slideshow": {
         "type": "slideshow",
         "blocks": {
-          "index-feature_highlight_slideshow--slide-1": {
+          "home-feature_highlight_slideshow--slide-1": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/home-hero-desktop-slide-1.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/home-hero-mobile-slide-1.jpg",
+              "image": "shopify:\/\/shop_images\/home-feature_highlight_slideshow--desktop-1.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/home-feature_highlight_slideshow--mobile-1.jpg",
               "image_link": "\/collections\/legacy\/audience_men",
-              "heading": "FROM ITALY WITH LOVE",
-              "heading_size": 30,
-              "subheading": "From kitten heels to over the knee boots.",
-              "subheading_size": 16,
+              "heading": "",
+              "subheading": "When you see this symbol the shoe is engineered to be weatherproof & stain resistant",
               "cta_one_link": "\/collections\/legacy\/audience_men",
-              "cta_one_button_text": "SHOP NOW",
+              "cta_one_button_text": "LEARN MORE",
               "cta_one_line": "left",
               "cta_two_link": "",
               "cta_two_button_text": "",
               "cta_two_line": "none",
               "caption_color_scheme": "light",
-              "caption_text_align": "left",
+              "caption_text_align": "center",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "left",
-              "caption_vertical": 80,
+              "caption_horizontal": "center",
+              "caption_vertical": 67,
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.2"
             }
           }
         },
         "block_order": [
-          "index-feature_highlight_slideshow--slide-1"
+          "home-feature_highlight_slideshow--slide-1"
         ],
         "settings": {
           "full_width": true,
           "show_nav_pagination": false,
-          "slider_speed": 3
+          "slider_speed": 8
         }
       },
 
 
-      "index-instagram_feed": {
+      "home-instagram_feed": {
         "type": "instagram",
         "settings": {
-          "heading": "@xtratufboots",
-          "text": "<p>Tag your photos with <strong>#XTRATUFBOOTS<\/strong> to be featured on our feed<\/p>",
-          "link": "http:\/\/www.instagram.com\/xtratufboots",
-          "cta_text": "View all",
+          "heading": "@Aquatalia",
+          "text": "",
+          "link": "http:\/\/www.instagram.com\/aquatalia",
+          "cta_text": "FOLLOW US",
           "instagram_access_token": "1022365975.1677ed0.a29a97191f864ee0afeb65ef0024312b"
         }
       },
@@ -962,13 +966,13 @@
       }
     },
     "content_for_index": [
-      "index-hero_slideshow",
-      "index-twin_promos",
-      "index-collection_slideshow",
-      "index-collection_list",
-      "index-about_slideshow",
-      "index-feature_highlight_slideshow",
-      "index-instagram_feed"
+      "home-hero_slideshow",
+      "home-twin_promos",
+      "home-featured_collection_slideshow",
+      "home-featured_products_list",
+      "home-about_slideshow",
+      "home-feature_highlight_slideshow",
+      "home-instagram_feed"
     ]
   }
 }
