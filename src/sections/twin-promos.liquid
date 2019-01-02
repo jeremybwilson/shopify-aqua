@@ -62,18 +62,39 @@
         :: STYLE :: 
           - Config supplied colorations only, everything else belongs in the twin-promos stylesheet please. {% endcomment %}
       <style>
+        /* CTA TEXT - COLOR */
         #promo-{{ block.id }} .cta span {
           color: {{ block.settings.cta_color_text }};
         }
+        #promo-{{ block.id }} .cta:hover span {
+          color: {{ block.settings.cta_color_text_hover }};
+        }
 
+        /* CTA SYMBOL (LINE) - COLOR */
         #promo-{{ block.id }} .cta .cta-line-left,
         #promo-{{ block.id }} .cta .cta-line-right {
           background-color: {{ block.settings.cta_color_text }};
         }
+        #promo-{{ block.id }} .cta:hover .cta-line-left,
+        #promo-{{ block.id }} .cta:hover .cta-line-right {
+          background-color: {{ block.settings.cta_color_text_hover }};
+        }
 
+        /* CTA SYMBOL (SVG) - COLOR */
+        #promo-{{ block.id }} .cta svg * {
+          fill: {{ block.settings.cta_color_text }};
+        }
+        #promo-{{ block.id }} .cta:hover svg * {
+          fill: {{ block.settings.cta_color_text_hover }};
+        }
+
+        /* CTA BUTTON - BG COLOR (if applicable) */
         {% if block.settings.cta_type == 'button' %}
           #promo-{{ block.id }} .cta a {
             background-color: {{ block.settings.cta_color_bg }};
+          }
+          #promo-{{ block.id }} .cta:hover a {
+            background-color: {{ block.settings.cta_color_bg_hover }};
           }
         {% endif %}
       </style>
@@ -207,6 +228,19 @@
             "label": "CTA BG Color",
             "info" : "(Only applies to 'Button' type CTA)",
             "default": "#8C1D21"
+          },
+          {
+            "type": "color",
+            "id": "cta_color_text_hover",
+            "label": "CTA Text Color",
+            "default": "#616365"
+          },
+          {
+            "type": "color",
+            "id": "cta_color_bg_hover",
+            "label": "CTA BG Color",
+            "info" : "(Only applies to 'Button' type CTA)",
+            "default": "#8C1D22"
           },
           {
             "type": "select",
