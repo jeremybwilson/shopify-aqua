@@ -505,7 +505,9 @@
               "cta_type": "text",
               "cta_text": "SHOP BOOTS",
               "cta_color_text": "#000000",
+              "cta_color_text_hover": "#616365",
               "cta_color_bg": "rgba(0,0,0,0)",
+              "cta_color_bg_hover": "rgba(0,0,0,0)",
               "cta_accent_mark": "left"
             }
           },
@@ -521,7 +523,9 @@
               "cta_type": "text",
               "cta_text": "SHOP BOOTIES",
               "cta_color_text": "#000000",
+              "cta_color_text_hover": "#616365",
               "cta_color_bg": "rgba(0,0,0,0)",
+              "cta_color_bg_hover": "rgba(0,0,0,0)",
               "cta_accent_mark": "left"
             }
           }
