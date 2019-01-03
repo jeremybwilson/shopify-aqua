@@ -4,7 +4,6 @@
   margin-bottom: 0;
 
 
-
   /* IMAGE HOLDER : For lazy loading images
    * ------------------------------------------ */
   .box-ratio {
@@ -86,6 +85,7 @@
     }    
   }
 
+
   /* HEADING : Primary text for slide
    * ------------------------------------------ */
   .slide-title {
@@ -104,18 +104,21 @@
     }
   }
   
+
   /* SUB-HEADING : Smaller text under header
    * ------------------------------------------ */
   .caption {
     margin-top: 5px;
+    max-width: 400px;
     padding-right: 5px;
     font-weight: $font-weight--medium;
-    @include fontDim(14px,22px,0);
+    @include fontDim( 18px, 22px, 0 );
 
     @include mq('lap-and-up') {
-      @include fontDim(16px,26px,0);
+      @include fontDim( 18px, 26px, 0 );
     }
   }
+
 
   /* BUTTONS : CTA Button in text box
    * ------------------------------------------ */
@@ -246,5 +249,13 @@
         margin: 0 2px;
       }
     }
+  }
+}
+
+/* SPECIAL CASE : About Store Slider (homepage)
+ * -------------------------------------------- */
+#shopify-section-home-about_slideshow {
+  .flex-caption {
+    padding-right: 0; // So the text fits within the space they wanted..
   }
 }
