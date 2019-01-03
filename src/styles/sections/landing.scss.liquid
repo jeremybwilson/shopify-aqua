@@ -1,5 +1,14 @@
 @charset "UTF-8";
 
+// HOME : Spacing between content blocks
+.page-wrap .index-sections .index-section {
+  margin-bottom: 10px;
+
+  @include mq( 'lap-and-up' ) {
+    margin-bottom: 110px;
+  }
+}
+
 
 #subpage {
   @include flexbox;

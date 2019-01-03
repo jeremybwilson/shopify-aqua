@@ -1,102 +1,266 @@
 @charset "UTF-8";
-
 .twin-promos {
-  @include mq('tablet-and-up') {
-    margin-top: 60px;
+
+  // Double layer of "homepage-section" wrapping this one, undo inner foot padding
+  .homepage-section {
+    margin-bottom: 0;
   }
-  @include mq('lap-and-up') {
-    margin-top: 100px;
+
+
+  /* FULL-WIDTH : Negate the redundant bootstrap
+   *              padding for row wrappers here
+   * -------------------------------------------- */
+  .gridlock-fluid.twin-promos-full-width {
+    .row {
+      padding: 0;
+    }
   }
 
-  .single-promo {
-    margin-bottom: 40px;
-    text-align: center;
 
-    @include mq('tablet-and-up') {
-      &:first-of-type { padding-right: 20px; }
-      &:last-of-type { padding-left: 20px; }
-      &:only-of-type { padding-left: 0; padding-right: 0;}
-    }
-    @include mq('lap-and-up') {
-      &:first-of-type { padding-right: 40px; }
-      &:last-of-type { padding-left: 40px; }
-      &:only-of-type { padding-left: 0; padding-right: 0;}
-    }
+  /* SINGLE-PROMO : Individual promo element wrap
+   *     (Mobile starts as stacked single promos)
+   * ---------------------------------------------- */
+  .promo-wrapper { //Extra class layer so we can override bootstrap settings.
+    @include inline-flex;
+    @include align-items( flex-start );
+    @include flex-wrap( wrap );
+    width: 100%;
 
-    .text-promo-content {
-      margin-top: 24px;
-      padding-left: 20px;
-      padding-right: 20px;
+    .single-promo {
+      text-align: center;
+      margin: 0 0 30px;
+      width: 100%;
+      float: none;
 
+      // LAYOUT : Side-by-Side promos, mobile text layout still
       @include mq('tablet-and-up') {
-        width: 90%;
-        margin: 30px auto 0;
-        padding-left: 0;
-        padding-right: 0;
+        width: 50%;
+
+        &:first-of-type { // Left Side
+          padding-left: 20px;
+          padding-right: 10px;
+          padding-top: 12px;
+        }
+
+        &:last-of-type { // Right Side
+          padding-left: 10px;
+          padding-right: 20px; 
+          padding-top: 12px;
+        }
+
+        &:only-of-type { //Only one shown
+          padding-left: 0; 
+          padding-right: 0;
+        }
       }
-    }
 
-    h3 {
-      color: $color--primary-1;
-      font-weight: $font-weight--black;
-      @include fontDim(22px,26px,0);
-      text-transform: uppercase;
+      // LAYOUT : Side-by-side, Desktop text layout (CTA moves opposite of text basically)
+      @include mq( 'lap-and-up' ) {
+        margin-bottom: 0;
 
-      @include mq('tablet-and-up') {
-        @include fontSize(24px);
+        &:first-of-type { // Left Side
+          padding-top: 0;
+        }
+        &:last-of-type { // Right Side
+          padding-top: 0;
+        }
       }
-    }
-    .copy {
-      @include mq('tablet-and-up') {
+
+      // LAYOUT : Side-by-Side promos, desktop text layout with more spacing
+      @include mq( 'desk-and-up' ) {
+        &:first-of-type { // Left Side
+          padding-left: 40px;
+          padding-right: 20px; 
+        }
+
+        &:last-of-type { // Right Side
+          padding-left: 20px; 
+          padding-right: 40px;
+        }
+
+        &:only-of-type { // Only one shown
+          padding-left: 0; 
+          padding-right: 0;
+        }
+      }
+
+
+      /* TEXT BOX : Wrapper for the text content
+       * -------------------------------------------- */
+      .text-promo-content {
+        position: relative;
+        margin-top: 24px;
+        padding-left: 20px;
+        padding-right: 20px;
+
+        @include mq( 'tablet-and-up' ) {
+          width: 100%;
+          margin: 30px auto 0;
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+
+        // TEXT ALIGNMENT : LEFT : CTA on desktop sits on opposite side of the heading/sub
+        &.align-promo-text-left {
+          text-align: left;
+
+          @include mq( 'lap-and-up' ) {
+            .cta { 
+              right: 10px; 
+            }
+          }
+        }
+
+        // TEXT ALIGNMENT : CENTER : CTA Would sit in center, text centrally aligned
+        &.align-promo-text-center {
+          text-align: center;
+
+          @include mq( 'lap-and-up' ) {
+            .cta { 
+              position: relative;
+              right: auto;
+              left: auto; 
+              top: 20px;
+            }
+          }
+        }
+
+        // TEXT ALIGNMENT : RIGHT : CTA on opposite side of text, same as was in left block
+        &.align-promo-text-right {
+          text-align: right;
+
+          @include mq( 'lap-and-up' ) {
+            .cta { 
+              right: auto; 
+              left: 10px;
+            }
+          }
+        }
+      }
+
+
+      /* HEADER : Primary text heading
+       * -------------------------------------------- */
+      .heading-text {
+        color: $color--primary-1;
+        font-weight: $font-weight--medium;
+        @include fontDim( 20px, 26px, 3px );
+
+        @include mq('tablet-and-up') {
+          @include fontSize( 18px );
+        }
+      }
+
+
+      /* BODY : Smaller content text for description
+       * -------------------------------------------- */
+      .body-text {
+        @include mq('tablet-and-up') {
+          margin-top: 12px;
+        }
+
+        p {
+          @include fontDim( 18px, 22px, 1px );
+          font-weight: $font-weight--medium;
+          color: $color--dark-gray;
+        }
+      }
+
+
+      /* CTA : Button for the promo element
+       * -------------------------------------------- */
+      $ctaHoverTiming: 0.25s ease-in-out;
+
+      .cta {
+        @include fontDim( 16px, 18px, 2px );
+        font-weight: $font-weight--medium;
         margin-top: 12px;
-      }
-      p {
-        font-weight: $font-weight--bold;
-        @include fontDim(14px,20px,0);
+        display: block;
 
-        @include mq('tablet-and-up') {
-          @include fontDim(16px,24px,0);
-        }
-      }
-    }
-    .cta {
-      margin-top: 12px;
-      @include fontDim(13px,13px,0);
-      font-weight:  $font-weight--bold;
-      text-transform: uppercase;
-      display: block;
-
-      @include mq('tablet-and-up') {
-        margin-top: 15px;
-        @include fontSize(16px);
-      }
-
-      a {
-        color: $color--primary-2;
-        text-decoration: none;
-        letter-spacing: inherit;
-
-        &:hover {
-          color: $color--gray-1;
-        }
-      }
-
-      svg {
-        width: 10px;
-        height: 10px;
-        margin-left: 20px;
-
-        @include mq('tablet-and-up') {
-          width: 12px;
-          height: 12px;
+        @include mq( 'tablet-and-up' ) {
+          margin-top: 15px;
         }
 
-        * {
+        @include mq( 'lap-and-up' ) {
+          position: absolute;
+          margin-top: 0;
+          right: 10px; // Default
+          top: 0;
+        }
+
+        // NOTE : Not all cta will necessarily be wrapped in an anchor tag
+        a {
+          @include inline-flex;
+          @include align-items( center );
+          color: $color--primary-2; // Fallback, color set via block config in twin-promos.liquid
+          text-decoration: none;
+          letter-spacing: inherit;
+          transition: color #{$ctaHoverTiming};
+
+          &:hover {
+            color: $color--gray-1; // Fallback, color set via block config in twin-promos.liquid
+          }
+
+          span {
+            transition: color #{$ctaHoverTiming};
+          }
+        }
+
+        // CTA TYPE : Text Only
+        &.cta-type-text a {
+          padding: 10px 0;
+
+          @include mq( 'lap-and-up' ) {
+            padding: 0 0 10px;
+          }
+        }
+
+        // CTA TYPE : Button w/ Background
+        &.cta-type-button a {
+          padding: 12px 20px;
+        }
+
+        // ACCENT MARK : LINE : Sort of accent mark that Aquatalia likes to use
+        .cta-line-left,
+        .cta-line-right {
+          width: 30px;
+          height: 1px;
+          margin-top: -2px;
+          opacity: 0.25;
+          display: none; // Hidden by default
+          transition: background-color #{$ctaHoverTiming};
+        }
+        .cta-line-left  { margin-right: 11px; }
+        .cta-line-right { margin-left: 11px;  }
+
+        // Display triggers
+        &.cta-accent-mark-both .cta-line-right,
+        &.cta-accent-mark-both .cta-line-left,
+        &.cta-accent-mark-left .cta-line-left,
+        &.cta-accent-mark-right .cta-line-right {
+          display: block;
+        }
+
+
+        // ACCENT MARK : CARET : Accent mark used by muck/xtratuf style
+        svg {
+          width: 10px;
+          height: 10px;
+          margin-left: 20px;
+
+          @include mq('tablet-and-up') {
+            width: 12px;
+            height: 12px;
+          }
+
+          * {
+            fill: $color--accent-1;
+            transition: fill #{$ctaHoverTiming};
+          }
+        }
+        a:hover svg * {
           fill: $color--accent-1;
         }
-      }
-      a:hover svg * {
-        fill: $color--accent-1;
       }
     }
   }
