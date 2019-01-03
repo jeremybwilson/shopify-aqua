@@ -493,7 +493,7 @@
       "home-twin_promos": {
         "type": "twin-promos",
         "blocks": {
-          "1536251685211-1": {
+          "promo-left": {
             "type": "text_block",
             "settings": {
               "image": "shopify:\/\/shop_images\/home-twin_promo--desktop-left.jpg",
@@ -511,7 +511,7 @@
               "cta_accent_mark": "left"
             }
           },
-          "1536251685211-0": {
+          "promo-right": {
             "type": "text_block",
             "settings": {
               "image": "shopify:\/\/shop_images\/home-twin_promo--desktop-right.jpg",
@@ -531,8 +531,8 @@
           }
         },
         "block_order": [
-          "1536251685211-1",
-          "1536251685211-0"
+          "promo-left",
+          "promo-right"
         ],
         "settings": {
           "full_width": true
