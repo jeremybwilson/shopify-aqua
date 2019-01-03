@@ -1,7 +1,9 @@
 <div id="{{ section.id }}" 
   class="homepage-section featured-collection no-fouc index-section" 
   data-section-id="{{ section.id }}" 
-  data-section-type="homepage-products">
+  data-section-type="featured-collection"
+  data-nav-arrows="{{ section.settings.show_nav_arrows }}"
+  data-nav-dots="{{ section.settings.show_nav_dots }}">
 
   {% assign collection = collections[section.settings.homepage_collection] %}
   {% assign prod_limit = section.settings.homepage_product_limit %}
@@ -138,6 +140,60 @@
         {
           "value": "hidden",
           "label": "Hidden"
+        }
+      ]
+    },
+
+
+    {
+      "type": "header",
+      "content": "-- NAV CONTROLS --"
+    },
+    {
+      "type": "select",
+      "id": "show_nav_arrows",
+      "label": "Show Nav Arrows",
+      "default": "all",
+      "options": [
+        {
+          "value": "all",
+          "label": "All Screen Sizes"
+        },
+        {
+          "value": "mobile",
+          "label": "Mobile Only"
+        },
+        {
+          "value": "desktop",
+          "label": "Desktop Only"
+        },
+        {
+          "value": "hidden",
+          "label": "Do Not Show"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "show_nav_dots",
+      "label": "Show Nav Dots",
+      "default": "all",
+      "options": [
+        {
+          "value": "all",
+          "label": "All Screen Sizes"
+        },
+        {
+          "value": "mobile",
+          "label": "Mobile Only"
+        },
+        {
+          "value": "desktop",
+          "label": "Desktop Only"
+        },
+        {
+          "value": "hidden",
+          "label": "Do Not Show"
         }
       ]
     },
