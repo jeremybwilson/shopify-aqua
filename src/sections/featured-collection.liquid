@@ -1,52 +1,67 @@
-<div class="homepage-section featured-collection no-fouc index-section" data-section-id="{{ section.id }}" data-section-type="homepage-products">
+<div id="{{ section.id }}" 
+  class="homepage-section featured-collection no-fouc index-section" 
+  data-section-id="{{ section.id }}" 
+  data-section-type="homepage-products">
+
   {% assign collection = collections[section.settings.homepage_collection] %}
   {% assign prod_limit = section.settings.homepage_product_limit %}
+  {% assign money_display = section.settings.money_display %}
+  
   <div class="row">
     {% if section.settings.heading != blank %}
-    <div class="section-header">
-      <h2 class="section-heading desktop-12 tablet-6 mobile-3">{{ section.settings.heading | escape }}</h2>
-      <div class="cta">
-        <a href="{{ collection.url }}"><span>View All</span>{% include 'svg-icon-caret-right' %}</a>
+      <div class="section-header">
+        <h2 class="section-heading desktop-12 tablet-6 mobile-3">{{ section.settings.heading | escape }}</h2>
+        <div class="cta cta-symbol-{{ section.settings.cta_symbol_placement }}">
+          <a href="{{ collection.url }}">
+            {% include 'svg-icon-button-symbol', side: 'left' %}
+            <span>View All</span>
+            {% include 'svg-icon-button-symbol', side: 'right' %}
+          </a>
+        </div>
       </div>
-    </div>
     {% endif %}
+
     <div class="clear"></div>
+
     {% if section.settings.homepage_product_display == 'grid' %}
-    {% include 'product-grid' with collection %}
+      {% include 'product-grid' with collection %}
+
     {% elsif section.settings.homepage_product_display == 'carousel' %}
-    {% include 'product-carousel' with collection %}
+      {% include 'product-carousel' with collection %}
     {% endif %}
   </div><!-- .row --> 
-</div>
-<style>
-  {% if section.settings.homepage_product_display == 'grid' %}
-  .product-car { margin: 0; }
-  {% endif %}
 
+</div>
+
+
+
+<style>
+  /* SECTION CONFIG STYLES ONLY -- Rest are in 'featured-collection.scss.liquid' */
+  {% if section.settings.homepage_product_display == 'grid' %}
+    .product-car { margin: 0; }
+  {% endif %}
 </style>
+
+
+
 {% schema %}
 {
   "name": "Featured collection",
   "settings": [
     {
+      "type": "header",
+      "content": "-- CONTENT --"
+    },
+    {
       "type": "text",
       "id": "heading",
-      "label": "Heading",
-      "default": "Featured collection"
+      "label": "Heading Text",
+      "default": "Featured Collection"
     },
     {
       "type": "collection",
       "id": "homepage_collection",
       "label": "Collection"
-    },
-    {
-      "type": "range",
-      "id": "homepage_product_limit",
-      "min": 2,
-      "max": 30,
-      "step": 1,
-      "label": "Products shown",
-      "default": 8
     },
     {
       "type": "select",
@@ -64,6 +79,83 @@
         }
       ]
     },
+
+
+    {
+      "type": "header",
+      "content": "-- CTA BUTTON --"
+    },
+    {
+      "type": "select",
+      "id": "cta_symbol_placement",
+      "label": "CTA Symbol Location",
+      "info": "(Line / caret next to cta text)",
+      "default": "none",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        },
+        {
+          "value": "both",
+          "label": "Both"
+        }
+      ]
+    },
+
+
+    {
+      "type": "header",
+      "content": "-- MONEY --"
+    },
+    {
+      "type": "select",
+      "id": "money_display",
+      "label": "Price Display",
+      "info": "(What price to show when variants range in price)",
+      "default": "lowest",
+      "options": [
+        {
+          "value": "lowest",
+          "label": "Lowest Price"
+        },
+        {
+          "value": "highest",
+          "label": "Highest Price"
+        },
+        {
+          "value": "range",
+          "label": "Range"
+        },
+        {
+          "value": "hidden",
+          "label": "Hidden"
+        }
+      ]
+    },
+
+
+    {
+      "type": "header",
+      "content": "-- ITEM LIMITS --"
+    },
+    {
+      "type": "range",
+      "id": "homepage_product_limit",
+      "min": 2,
+      "max": 30,
+      "step": 1,
+      "label": "Products shown",
+      "default": 8
+    },
     {
       "type": "range",
       "id": "products_per_row",
@@ -71,15 +163,15 @@
       "max": 6,
       "step": 1,
       "label": "Products per row",
-	    "info": "Grid use only",
+	    "info": "(Grid Mode use only)",
       "default": 4
     }
   ],
   "presets": [
     {
-      "name": "Featured collection",
+      "name": "Featured Collection",
       "category": "Collection"
     }
   ]
-  }
+}
 {% endschema %}
