@@ -582,8 +582,9 @@
       "home-featured_products_list": {
         "type": "featured-collection",
         "settings": {
-          "heading": "Best Sellers",
-          "homepage_collection": "best-sellers",
+          "heading": "Recommended For You",
+          "homepage_collection": "recommended-for-you",
+          "cta_symbol_placement": "left",
           "homepage_product_limit": 8,
           "homepage_product_display": "carousel",
           "products_per_row": 4
@@ -652,7 +653,7 @@
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
               "caption_horizontal": "center",
-              "caption_vertical": 67,
+              "caption_vertical": 75,
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.2"
             }
