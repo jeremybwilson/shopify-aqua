@@ -585,6 +585,8 @@
           "heading": "Recommended For You",
           "homepage_collection": "recommended-for-you",
           "cta_symbol_placement": "left",
+          "show_nav_dots": "mobile",
+          "show_nav_arrows": "hidden",
           "homepage_product_limit": 8,
           "homepage_product_display": "carousel",
           "products_per_row": 4
