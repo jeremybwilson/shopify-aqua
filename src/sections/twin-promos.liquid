@@ -1,9 +1,9 @@
 <div class="homepage-section twin-promos index-section" id="text-promo-{{ section.id }}" data-section-id="{{ section.id }}">
 
   {% comment %} :: FULL-WIDTH WRAPPING ELEMENTS :: {% endcomment %}
-  {% if section.settings.full_width %}<div class="gridlock-fluid twin-promos-full-width"><div class="row">{% endif %}
+  {% if section.settings.full_width %}<div class="gridlock-fluid twin-promos-full-width">{% endif %}
 
-  <div class="row homepage-section no-fouc">
+  <div class="row homepage-section no-fouc promo-wrapper">
     {% case section.blocks.size %}
       {% when 1 %}
         {%- assign image_size = '900x' -%}
@@ -103,7 +103,7 @@
   </div>
 
   {% comment %} :: FULL-WIDTH WRAPPING ELEMENTS :: {% endcomment %}
-  {% if section.settings.full_width %}</div></div>{% endif %}
+  {% if section.settings.full_width %}</div>{% endif %}
 
 
   {% comment %} :: SAFETY - NO DEFINED CONTENT :: {% endcomment %}
