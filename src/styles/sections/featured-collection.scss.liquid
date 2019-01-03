@@ -6,6 +6,18 @@
 
 /* WRAPPER : Outermost wrapper on this component
  * ----------------------------------------------------------------------- */
+.page-wrap .index-sections .index-section.featured-collection {
+  margin-bottom: 40px; // override standard spacing defaults
+
+  @include mq( 'tablet-and-up' ) {
+    margin-bottom: 60px;
+  }
+
+  @include mq( 'lap-and-up' ) {
+    margin-bottom: 100px;
+  }
+}
+
 .featured-collection {
   text-align: left;
 
@@ -139,23 +151,29 @@
 
     // PRODUCT INFO : BODY TEXT CONTENT
     .product-info {
+      text-align: left;
+      width: 100%;
+      padding-left: 10px;
+      margin: 0 auto;
+
       a {
         text-decoration: none;
       }
 
       h3 {
-        max-width: 250px;
         margin: 0;
         color: $color--primary-2;
         font-weight: $font-weight--medium;
         @include fontDim( 18px, 20px, 2px );
         text-transform: uppercase;
         text-align: left;
+        margin-bottom: 6px;
       }
 
       .price {
         margin-top: 0;
         color: $color--primary-2;
+        font-weight: $font-weight--medium;
         @include fontDim( 16px, 16px, 0 );
 
         @include mq('tablet-and-up') {
@@ -197,49 +215,184 @@
   .product-index {
     margin-bottom: 0;
   }
+}
 
+/* CAROUSEL NAV : Navigation controls on the carousel body
+ * ------------------------------------------------------------------------- */
+.featured-collection {
 
-  /* CAROUSEL NAV : Navigation controls for the carousel
-   * ----------------------------------------------------------------------- */  
-  .owl-nav {
-    display: block;
-
-    button {
-      position: absolute;
-      top: 50%; 
-      transform: translateY(-50%);
-
-      &.disabled {
-        opacity: .3;
+  /* NAV DISPLAY : ARROWS : Show arrows only when config specifies
+   * ------------------------------------------------------------------------- */
+  &[data-nav-arrows='desktop'] {
+    @include mq( 'phone' ) {
+      .owl-nav { 
+        display: none !important; 
       }
     }
-    svg {
-      width: 18px;
-
-      @include mq('tablet-and-up') {
-        width: 20px;
+    @include mq( 'tablet' ) {
+      .owl-nav { 
+        display: none !important; 
       }
     }
   }
-  .owl-prev {
-    left: 0;
+  &[data-nav-arrows='mobile'] {
+    @include mq( 'lap-and-up' ) {
+      .owl-nav { 
+        display: none !important; 
+      }
+    }
   }
-  .owl-next {
-    right: 0;
-  }
-
-  .owl-next:before {
-    display: none;
-  }
-  .owl-prev:before {
-    display: none;
+  &[data-nav-arrows='hidden'] {
+    .owl-nav { display: none !important; }
   }
 
-  .owl-dots {
-    display: none;
+  /* NAV DISPLAY : DOTS : Show dots only when config specifies
+   * ------------------------------------------------------------------------- */
+  &[data-nav-dots='desktop'] {
+    @include mq( 'phone' ) {
+      .owl-dots { 
+        display: none !important; 
+      }
+    }
+    @include mq( 'tablet' ) {
+      .owl-dots { 
+        display: none !important; 
+      }
+    }
   }
+  &[data-nav-dots='mobile'] {
+    @include mq( 'lap-and-up' ) {
+      .owl-dots { 
+        display: none !important; 
+      }
+    }
+  }
+  &[data-nav-dots='hidden'] {
+    .owl-dots { display: none !important; }
+  }
+
+  /* CAROUSEL NAV : BUTTONS : Navigation controls for the carousel
+   * ----------------------------------------------------------------------- */   
+  .product-collection-carousel {
+    .owl-nav {
+      display: block; //Default, displays always
+
+      button {
+        position: absolute;
+        top: 50%; 
+        transform: translateY(-50%);
+
+        &.disabled {
+          opacity: 0.3;
+        }
+
+        &.owl-prev,
+        &.owl-next {
+          width: 30px;
+          outline: none;
+
+          &:before {
+            display: none;
+          }
+        }
+
+        &.owl-prev {
+          left: 0;
+        }
+        &.owl-next {
+          right: 0;
+        }
+      }
+
+      svg {
+        width: 18px;
+
+        path {
+          fill: $color--accent-1;
+        }
+
+        @include mq('tablet-and-up') {
+          width: 20px;
+        }
+      }
+    }
+
+    /* CAROUSEL NAV : DOTS : Navigation Dots for mobile experience
+     * ----------------------------------------------------------------------- */
+    .owl-dots {
+      text-align: center;
+      display: block;
+
+      .owl-dot {
+        margin: 10px 5px;
+        outline: none;
+        padding: 10px; //Dot is click region, span is visible dot
+        width: 30px;
+        height: 30px;
+
+        span {
+          width: 100%;
+          height: 100%;
+          display: block;
+          margin: 0 auto;
+          border-radius: 20px;
+          background: $color--gray-2;
+          transition: background 0.25s ease-in-out;
+        }
+        
+        &.active span,
+        &:hover span {
+          background: $color--accent-1;
+        }
+      }
+    }
+  }
+
 }
 
 .product-carousel--nav {
   display: none;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
