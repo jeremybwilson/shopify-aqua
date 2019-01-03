@@ -1388,11 +1388,12 @@ theme.Testimonials = (function() {
 })();
 
 /*============================================================================
-  Featured Products
+  Featured Collection
 ==============================================================================*/
-theme.FeaturedProducts = (function() {
-  function FeaturedProducts(container) {
+theme.FeaturedCollection = (function() {
+  function FeaturedCollection(container) {
 
+    // INIT : Config for carousel initialization
     var initHomepageCarousel = function(productCarousel) {
       productCarousel.owlCarousel({
         responsive: {
@@ -1403,40 +1404,39 @@ theme.FeaturedProducts = (function() {
             items: 3
           }
         },
+        dots: true,
         nav: true,
-        navText: [$('.product-carousel--prev'),$('.product-carousel--next')],
+        navText: [ $('.product-carousel--prev'), $('.product-carousel--next') ],
         lazyLoad : true
       });
-
-
     };
 
-    initHomepageCarousel($('.product-collection-carousel'));
+    // INIT : Start!
+    initHomepageCarousel( $('.product-collection-carousel') );
 
+    // UNMOUNT : Remove carousel on component unmount
     $(document).on('shopify:section:unload', function(event) {
       var target = $(event.target);
       target.find('.product-collection-carousel').owlCarousel("destroy");
       $(document).off('.product-collection-carousel');
     });
 
+    // MOUNT : Initalize the component!
     $(document).on('shopify:section:load', function(event) {
-      initHomepageCarousel($(event.target).find('.product-collection-carousel'));
+      initHomepageCarousel( $(event.target ).find('.product-collection-carousel') );
     });
-
   }
 
-  FeaturedProducts.prototype = _.assignIn({}, FeaturedProducts.prototype, {});
-
-  return FeaturedProducts;
+  FeaturedCollection.prototype = _.assignIn({}, FeaturedCollection.prototype, {});
+  return FeaturedCollection;
 })();
 
 /*============================================================================
-  Featured Collections
+  Tabbed Collections
 ==============================================================================*/
-theme.FeaturedCollections = (function() {
-  function FeaturedCollections(container) {
+theme.TabbedCollections = (function() {
 
-
+  function TabbedCollections(container) {
     var $container = this.$container = $(container);
     var sectionId = $container.data('section-id');
 
@@ -1446,8 +1446,9 @@ theme.FeaturedCollections = (function() {
         active = links.first().addClass('active');
         content = $(active.attr('href'));
         links.not(':first').each(function () {
-          $($(this).attr('href')).hide();
+          $( $(this).attr('href') ).hide();
         });
+
         $(this).find('a').click(function(e){
           active.removeClass('active');
           content.hide();
@@ -1459,8 +1460,6 @@ theme.FeaturedCollections = (function() {
         });
       });
 
-
-
     $(document).on('shopify:block:select', function(event) {
       var activeTab = $(event.target);
       var tabLink = $(event.target).children();
@@ -1469,9 +1468,9 @@ theme.FeaturedCollections = (function() {
 
   }
 
-  FeaturedCollections.prototype = _.assignIn({}, FeaturedCollections.prototype, {});
+  TabbedCollections.prototype = _.assignIn({}, TabbedCollections.prototype, {});
 
-  return FeaturedCollections;
+  return TabbedCollections;
 })();
 
 /*============================================================================
@@ -2968,8 +2967,8 @@ $(document).ready(function() {
   sections.register('header-section', theme.Header);
   sections.register('newsletter-social', theme.Newsletter);
   sections.register('instagram', theme.Instagram);
-  sections.register('featured-collections', theme.FeaturedCollections);
-  sections.register('homepage-products', theme.FeaturedProducts);
+  sections.register('tabbed-collections', theme.TabbedCollections);
+  sections.register('featured-collection', theme.FeaturedCollection);
   sections.register('collection-template', theme.Collection);
   sections.register('slideshow-section', theme.Slideshow);
   sections.register('columns-carousel-section', theme.ColumnsCarousel);
