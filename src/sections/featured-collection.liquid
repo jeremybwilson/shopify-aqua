@@ -5,9 +5,11 @@
   data-nav-arrows="{{ section.settings.show_nav_arrows }}"
   data-nav-dots="{{ section.settings.show_nav_dots }}">
 
+  {% comment %} :: DATA TOGGLES :: Singular source for snippet vars so snippets aren't bound to one section schema, given their multi-use nature {% endcomment %}
   {% assign collection = collections[section.settings.homepage_collection] %}
   {% assign prod_limit = section.settings.homepage_product_limit %}
-  {% assign money_display = section.settings.money_display %}
+  {% assign show_money = section.settings.show_money %}
+  {% assign show_swatches = section.settings.show_swatches %}
   
   <div class="row">
     {% if section.settings.heading != blank %}
@@ -81,6 +83,12 @@
         }
       ]
     },
+    {
+      "type": "checkbox",
+      "id": "show_swatches",
+      "label": "Show Color Swatches",
+      "default": false
+    },
 
 
     {
@@ -120,7 +128,7 @@
     },
     {
       "type": "select",
-      "id": "money_display",
+      "id": "show_money",
       "label": "Price Display",
       "info": "(What price to show when variants range in price)",
       "default": "lowest",
