@@ -12,7 +12,7 @@
  *   variantImgUrl                                     // IMAGE : Product Variant Image for that color option
  *
  * ..:: REQUIRED - IMAGE LOCATION: ID of image to swap src ::..
- *   'product-image-PRODUCT_ID_HERE' (EX: 'product-image-13243223')
+ *   'product-image-PRODUCT_ID' (EX: 'product-image-13243223')
  *****************************************************************************/ 
 var PropTypes = require( 'prop-types' );
 var SwatchItem = require( './SwatchItem.js' );
@@ -34,9 +34,26 @@ class SwatchList extends React.Component {
       productId: productId
     };
 
+    // Image Sizes for Src Set Generation, when encountered
+    this.srcSetSizes = [ 180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2160, 2376, 2592, 2808, 3024 ];
+
     // BIND CONTEXT : Imperative, bind 'this' context to the current class scope
     this.selectSwatch = this.selectSwatch.bind(this);
     this.resetProductImg = this.resetProductImg.bind(this);
+    this.generateSrcSet = this.generateSrcSet.bind(this);
+  }
+
+  generateSrcSet( url ) {
+    // SOURCE: //cdn.shopify.com/s/files/1/0061/8532/0512/products/product_sample_shot_1_600x.png?v=1546469249
+    // GOAL : //cdn.shopify.com/s/files/1/0061/8532/0512/products/product_sample_shot_1_180x.png?v=1546469249 180w,
+    const srcSet = this.srcSetSizes.map( size => {
+
+      // SIZED URL : Replace original size in url with srcSet size
+      const resizedUrl = url.replace( /[0-9]{3,4}x\./, `${size}x.` );
+      return resizedUrl + ` ${size}w`;
+    });
+
+    return srcSet;
   }
 
 
@@ -47,14 +64,22 @@ class SwatchList extends React.Component {
     // SWAP IMAGE : When hover / click swap image to that color variant if it is present
     if ( variantImgUrl && variantImgUrl.length > 10 ) {
       const targetImg = document.getElementById( 'product-image-' + productId );
-      targetImg.src = variantImgUrl;
+
+      // RESPONSIVE IMG : Change img url properly if it happens to be using srcset
+      if ( targetImg.srcset ) {
+        targetImg.srcset = this.generateSrcSet( variantImgUrl );
+
+      // STANDARD IMG : Set plain src
+      } else {
+        targetImg.src = variantImgUrl;
+      }
     }
 
     // SET ACTIVE : Indicate which swatch is active currently
     if ( !isHover ) {
       this.setState({ 
         activeSwatchId: swatchId,
-        activeImgUrl: variantImgUrl.length > 10 ? variantImgUrl : activeImgUrl
+        activeImgUrl: variantImgUrl.length > 10 ? variantImgUrl : activeImgUrl //fallback in case of invalid urls
       });
     }
   }
@@ -63,7 +88,15 @@ class SwatchList extends React.Component {
   resetProductImg() {
     const { activeImgUrl, productId } = this.state;
     const targetImg = document.getElementById( 'product-image-' + productId );
-    targetImg.src = activeImgUrl;
+    
+    // RESPONSIVE IMG SET : Generate src set for img tag if its currently using one
+    if ( targetImg.srcset ) {
+      targetImg.srcset = this.generateSrcSet( activeImgUrl );
+
+    // STANDARD IMG : Set plain src
+    } else {
+      targetImg.src = activeImgUrl;
+    }
   }
 
 
