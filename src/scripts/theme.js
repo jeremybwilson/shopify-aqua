@@ -1411,19 +1411,26 @@ theme.FeaturedCollection = (function() {
       });
     };
 
-    // INIT : Start!
+    // CAROUSEL : Initialize owl-carousel for products
     initHomepageCarousel( $('.product-collection-carousel') );
+
+    // SWATCHES : BUILD : Method to build the swatch components on featured collection display
+    const buildSwatches = require('./react-components/swatches/SwatchParent.js');
+    buildSwatches();
+
+
+    // MOUNT : Initalize the component!
+    $(document).on('shopify:section:load', function(event) {
+      initHomepageCarousel( $(event.target ).find('.product-collection-carousel') );
+      buildSwatches();
+    });
+
 
     // UNMOUNT : Remove carousel on component unmount
     $(document).on('shopify:section:unload', function(event) {
       var target = $(event.target);
       target.find('.product-collection-carousel').owlCarousel("destroy");
       $(document).off('.product-collection-carousel');
-    });
-
-    // MOUNT : Initalize the component!
-    $(document).on('shopify:section:load', function(event) {
-      initHomepageCarousel( $(event.target ).find('.product-collection-carousel') );
     });
   }
 
@@ -2846,7 +2853,7 @@ theme.Product = (function () {
      *    / scripts / react-components / swatches / SwatchParent.js <-- Parent, renders React component root into DOM Node
      *    / scripts / react-components / swatches / SwatchList.js <---- List Container for Swatch Circles
      *    / scripts / react-components / swatches / SwatchItem.js <---- Actual swatch circle single template
-     *    / snippets / component-react-swatches.liquid <-- DOM Node 'include'-able snippet
+     *    / snippets / react-swatches.liquid <-- DOM Node 'include'-able snippet
      *    / sections / product-template.liquid <---------- Template we include snippet into
      *
      *  Here, we require in the parent component for our "React-Swatches" feature.
