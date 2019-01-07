@@ -1,0 +1,138 @@
+ {% comment %}
+  :: REACT-SWATCHES (SNIPPET) ::
+
+    PURPOSE :
+      - Generates swatch list root element
+      - Generates all swatch data for the react component to consume
+
+
+    REQUIREMENTS : 
+      1. Product object access (liquid)
+      2. <img> tag showing the product MUST have an ID like "product-image-PRODUCT_ID"
+        EX: 
+          <img id="product-image-123456760" />
+
+      3. Initialize React-Swatches component (EXAMPLE: theme.js > theme.FeaturedCollection block)
+        EX: 
+          const buildSwatches = require('./react-components/swatches/SwatchParent.js');
+          buildSwatches(); // <-- This tells react to find & build the swatch elements
+{% endcomment %}
+
+
+{% comment %} :: OPTIONS : COLOR PRESENT? :: {% endcomment %}
+{% for option in product.options %}
+  {% assign option_handle = option | handle %}
+  {% assign option_index = forloop.index0 %}
+  {% capture downcased_option %}{{ option | downcase }}{% endcapture %}
+
+  {% comment %} :: COLOR OPTION : Generate swatch data and root swatch element :: {% endcomment %}
+  {% if downcased_option contains 'color' or downcased_option contains 'colour' %}
+    {% assign values = '' %}
+    {% assign swatches = '' %}
+    {% assign used_colors = '' %}
+
+    {% comment %} :: COLORS LOOP :: {% endcomment %}
+    {% for variant in product.variants %}
+      {% assign value = variant.options[option_index] %}
+
+      {% comment %} :: PREVENT DUPLICATES :: {% endcomment %}
+      {% unless used_colors contains value %}
+
+        {% comment %} :: SWATCH : PRODUCT IMAGE : Original, to put back after hovers :: {% endcomment %}
+        {% if product.featured_image %}
+          {% assign product_img_url = product.featured_image | img_url: '1x1' | replace: '_1x1.', '_600x.' %}
+        {% else %}
+          {% assign product_img_url = 'product-1' | placeholder_svg_tag %}
+        {% endif %}
+
+
+        {% comment %} :: SWATCH : COLOR VALUE NAME :: (for use with identifying individual swatches) {% endcomment %}
+        {% assign color_value_name = value | escape | replace: ' ', '-' | replace: '/', '' | replace: '--', '-' | downcase %}
+
+
+        {% comment %} :: SWATCH : VARIANT IMAGE :: {% endcomment %}
+        {% for image in product.images %}
+          
+          {% comment %} VARIANT IMAGE : FIND : Find first image w/ alt tag matching color name, since PDP Color silo works same way {% endcomment %}
+          {% if image.alt == value %} 
+            {% capture variant_img_url %}{{ image.src | img_url: '600x' }}{% endcapture %}
+            {% break %}
+          {% endif %}
+
+          {% comment %} VARIANT IMAGE : FALLBACK : No matching Image, use original image instead {% endcomment %}
+          {% if forloop.last == true %}
+            {% assign variant_img_url = product_img_url %}
+          {% endif %}
+        {% endfor %}
+
+
+        {% comment %} :: SWATCH : SWATCH IMAGE URL :: Note: Swatch name format is the one from Photo Studio. Adjust as needed. {% endcomment %}
+        {% capture swatch_file_name %}{{ variant.sku }}_{{ value | escape | replace: ' ', '_' | replace: '/', '' | replace: '__', '_' }}_sw.jpg{% endcapture %}
+        {% assign swatch_img_url = 'swatch_url_source_do_not_remove.png' | file_url | replace: 'swatch_url_source_do_not_remove.png', swatch_file_name %}
+
+
+        {% comment %} :: COMPLETE SWATCH DATA OBJECT :: {% endcomment %}
+        {%- capture swatch_data -%}
+          {
+            "colorDisplayName": "{{ value }}",
+            "colorValueName": "{{ color_value_name }}",
+            "productId": {{ product.id }},
+            "productImgUrl": "{{ product_img_url }}",
+            "swatchId": "{{ product.id }}-{{ color_value_name }}",
+            "swatchImgUrl": "{{ swatch_img_url }}",
+            "variantImgUrl": "{{ variant_img_url }}",
+            "used_colors": "{{ used_colors }}"
+          }
+        {%- endcapture -%}
+
+
+        {% comment %} :: MERGE SWATCH OBJECTS :: {% endcomment %}
+        {% if swatches == blank %}
+          {% assign swatches = swatch_data %}
+        {% else %}
+          {% capture swatches %}{{ swatches }}, {{ swatch_data }}{% endcapture %}
+        {% endif %}
+        
+        {% comment %} :: MARK VALUE AS USED :: {% endcomment %}
+        {% if used_colors == blank %}
+          {% assign used_colors = value %}
+        {% else %}
+          {% capture used_colors %}{{ used_colors }}, {{ value }}{% endcapture %}
+        {% endif %}
+
+      {% endunless %}
+    {% endfor %}
+
+
+    {% comment %} :: RENDER POINT - Component will render inside here :: {% endcomment %}
+    <div class="react-swatch-list" data-swatches='[ {{ swatches }} ]'></div>
+
+  {% endif %}
+{% endfor %}
+
+
+
+{% comment %}
+  :: SAMPLE SWATCH DATA :: 
+
+    data-swatches='[
+      {
+        "colorDisplayName": "Black / White",
+        "colorValueName": "black-white",
+        "productId": 1449825992798,
+        "productImgUrl": "https://cdn.shopify.com/s/files/1/0015/2525/2190/products/product_WALV-000-BLK_1_large.jpg?v=1538594637",
+        "swatchId": "1449825992798-black-white",
+        "swatchImgUrl": "//cdn.shopify.com/s/files/1/0015/2525/2190/t/7/assets/swatch_black-white.png?10561935491791426528",
+        "variantImgUrl": "https://cdn.shopify.com/s/files/1/0015/2525/2190/products/product_WALV-000-BLK_1_large.jpg?v=1538594637"
+      },
+      {
+        "colorDisplayName": "Brown",
+        "colorValueName": "brown",
+        "productId":1449825992798,
+        "productImgUrl": "https://cdn.shopify.com/s/files/1/0015/2525/2190/products/product_WALV-000-BLK_1_large.jpg?v=1538594637",
+        "swatchId": "1449825992798-brown",
+        "swatchImgUrl": "//cdn.shopify.com/s/files/1/0015/2525/2190/t/7/assets/swatch_brown.png?10561935491791426528",
+        "variantImgUrl": "https://cdn.shopify.com/s/files/1/0015/2525/2190/products/product_WALV-900_1_9a4b8301-da5e-47d7-9514-8621dbff44bd_large.jpg?v=1538594638"
+      }
+    ]'
+{% endcomment %}

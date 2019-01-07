@@ -1,4 +1,4 @@
-{% comment %}{% for option in product.options %}
+{% for option in product.options %}
 
   {% assign option_handle = option | handle %}
   {% assign option_index = forloop.index0 %}
@@ -50,4 +50,4 @@
       });
     });
   </script>
-{% endunless %}{% endcomment %}
+{% endunless %}

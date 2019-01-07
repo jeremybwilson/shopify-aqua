@@ -5,6 +5,7 @@ class SwatchItem extends React.Component {
     super(props);
     this.callSelectSwatch = this.callSelectSwatch.bind(this);
     this.hoverSwatch = this.hoverSwatch.bind(this);
+    this.hoverLeave = this.hoverLeave.bind(this);
   }
 
 
@@ -19,13 +20,21 @@ class SwatchItem extends React.Component {
   // HOVER TILE : Swap variant image on hover, don't store as selection
   hoverSwatch() { this.callSelectSwatch( true ) }
 
+  // HOVER LEAVE : Swap back imagery if the image was changed by hover state
+  hoverLeave() {
+    const { active, resetProductImg } = this.props;
+
+    // ACTIVE CHECK : If this swatch is active, then the user clicked on it, so don't undo the display
+    if ( !active ) {
+      resetProductImg();
+    }
+  }
 
 
   render() {
     const { 
       active,
       colorValueName, 
-      resetProductImg, 
       swatchId,
       swatchImgUrl,
       variantImgUrl
@@ -41,7 +50,7 @@ class SwatchItem extends React.Component {
       <div 
         className={ 'swatch-item-wrap ' + isActive }
         onMouseEnter={ this.hoverSwatch }
-        onMouseLeave={ resetProductImg }
+        onMouseLeave={ this.hoverLeave }
         onClick={ this.callSelectSwatch }>
         
         <div className="swatch-highlight"></div>

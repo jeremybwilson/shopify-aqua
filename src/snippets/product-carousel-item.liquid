@@ -1,0 +1,136 @@
+{% comment %} :: FEATURE TOGGLE FALLBACKS :: Comes from parent "Featured-Collection.liquid" (unless you're using it somewhere new!) {% endcomment %}
+{% if show_money == blank %}
+  {% assign show_money = 'lowest' %}
+{% endif %}
+{% if show_swatches == blank %}
+  {% assign show_swatches = false %}
+{% endif %}
+
+
+{% comment %} :: PRODUCT IMAGE :: {% endcomment %}
+<div class="prod-container">
+
+  {% comment %} :: AVAILABILITY CHECK :: {% endcomment %}
+  {% if product.available %}
+    {% for col in product.collections %}
+      {% if col.handle == 'new' %}
+        <div class="new icn">{{ 'products.general.new' | t }}</div>
+      {% endif %}
+    {% endfor %}
+
+    {% if product.price < product.compare_at_price %}
+      <div class="sale-item icn">{{ 'products.general.sale' | t }}</div>
+    {% endif %}
+
+  {% else %}
+    <div class="so icn">{{ 'products.general.sold' | t }}</div>
+  {% endif %}
+  
+
+  {% comment %} :: PRE-ORDER :: {% endcomment %}
+  {% if product.template_suffix == 'pre-order' %}
+    <div class="pre-order icn">{{ 'products.product.pre_order' | t }}</div>
+  {% endif %}
+
+  {% comment %} :: PRODUCT IMAGE ITSELF :: {% endcomment %}
+  <div class="prod-image">
+    <a href="{{ product.url | within: collection }}" title="{{ product.title | escape }}">
+      <div class="reveal">
+        
+        {% comment %} :: IMAGE - None :: {% endcomment %}
+        {%- if product.images.size < 1 -%}
+          {{ 'product-1' | placeholder_svg_tag }}
+
+        {% comment %} :: IMAGE - 1+ :: {% endcomment %}
+        {%- else -%}
+          {% assign image_box_ratio = product.featured_image.height | append: ".0" | times: 1 | divided_by: product.featured_image.width | times: 100 | append: "%" %}
+          {% assign img_url = product.featured_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+          {% assign image_id = product.id | prepend: 'product-image-' %}
+
+          <div class="box-ratio" style="padding-bottom: {{ image_box_ratio }};">
+            <img id="{{ image_id }}" 
+              class="lazyload lazyload-fade {% if settings.secondary_images_hover == 'image_flip' and product.images.size > 1 %}first-image{% endif %}"
+              data-src="{{ img_url }}"
+              data-sizes="auto"
+              data-original="{{ product.featured_image | img_url: '500x' }}"
+              alt="{{ product.featured_image.alt | escape }}">
+          </div>
+
+          <noscript>
+            <img id="{{ image_id }}" src="{{ product.featured_image | img_url: '1024x' }}" alt="{{ product.featured_image.alt | escape }}">
+          </noscript>
+
+          {% comment %} :: RESPONSIVE IMAGE - Overrides above default :: {% endcomment %}
+          {% if settings.secondary_images_hover == 'image_flip' and product.images.size > 1 %}
+            <div class="hidden">
+              {% include 'basic-responsive-image', type: product.images[1], image_id: image_id  %}
+              
+              <noscript>
+                <img id="{{ image_id }}" src="{{ product.images[1] | img_url: '1024x' }}" alt="{{ product.images[1].alt | escape }}">
+              </noscript>
+            </div>
+          {% endif %}
+        {%- endif -%}
+
+      </div>
+    </a>
+  </div>
+</div>
+
+
+{% comment %} :: PRODUCT INFO :: {% endcomment %}
+<div class="product-info">
+  
+  {% comment %} :: TITLE + VENDOR :: {% endcomment %}
+  <a href="{{ product.url | within: collection }}">
+    {% if settings.vendor %}<p>{{ product.vendor }}</p>{% endif %}
+    <h3>{{ product.title }}</h3>
+  </a>
+
+  {% comment %} :: PRICE DISPLAY :: {% endcomment %}
+  {% if show_money != 'hidden' %}
+    <div class="price">
+
+      {% comment %} :: PRICE - COMPARE AT SET (overrides show_money setting) :: {% endcomment %}
+      {% if product.price < product.compare_at_price %}
+        <div class="onsale"><span class="money">{{ product.price | money }}</span></div>
+        <div class="was"><span class="money">{{ product.compare_at_price | money }}</span></div>
+      
+      {% comment %} :: PRICE - SETTING BASED :: {% endcomment %}
+      {% else %}
+        <div class="prod-price">
+
+          {% comment %} :: RANGE - Handle price display according to section settings from featured-collection parent :: {% endcomment %}
+          {% if product.price_varies and show_money == 'range' %}
+            {{ 'products.general.from' | t }}
+            <span class="money">{{ product.price_min | money }}</span> - <span class="money">{{ product.price_max | money }}</span>
+          
+          {% elsif show_money == 'highest' %}
+            <span class="money">{{ product.price_max | money }}</span>
+
+          {% elsif show_money == 'lowest' %}
+            <span class="money">{{ product.price_min | money }}</span>
+
+          {% else %}
+            <span class="money">{{ product.price | money }}</span>
+          {% endif %}
+
+        </div>
+      {% endif %}
+
+    </div>
+  {% endif %}
+
+  {% comment %} :: SWATCHES :: {% endcomment %}
+  {% if product.images.size > 1 and show_swatches %}
+    <div class="prod-colors" data-options="{{ product.options }}">
+      {% include 'react-swatches' %}
+    </div>
+  {% endif %}
+
+</div>
+
+
+{% if settings.quickview %}
+  <a class="fancybox.ajax product-modal" rel="no-index nofollow" href="{{ product.url }}?view=quick">{{ 'products.general.quick_view' | t }}</a>
+{% endif %}
