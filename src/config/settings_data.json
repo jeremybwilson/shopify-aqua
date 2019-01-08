@@ -596,41 +596,21 @@
       },
 
 
-      "home-about_slideshow": {
-        "type": "slideshow",
-        "blocks": {
-          "home-about_slideshow--slide-1": {
-            "type": "image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/home-about_slideshow--desktop-1.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/home-about_slideshow--mobile-1.jpg",
-              "image_link": "\/collections\/legacy\/audience_men",
-              "heading": "Visit Us in NYC",
-              "subheading": "965 Madison Ave at 75th Street",
-              "cta_one_link": "\/collections\/legacy\/audience_men",
-              "cta_one_button_text": "LEARN MORE",
-              "cta_one_line": "left",
-              "cta_two_link": "",
-              "cta_two_button_text": "",
-              "cta_two_line": "none",
-              "caption_color_scheme": "dark",
-              "caption_text_align": "center",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "right",
-              "caption_vertical": 50,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.2"
-            }
-          }
-        },
-        "block_order": [
-          "home-about_slideshow--slide-1"
-        ],
+      "home-about_image_with_text": {
+        "type": "image-with-text",
         "settings": {
-          "full_width": true,
-          "show_nav_pagination": false,
-          "slider_speed": 3
+          "image_desktop": "shopify:\/\/shop_images\/home-about_image_with_text--desktop.jpg",
+          "image_mobile": "shopify:\/\/shop_images\/home-about_image_with_text--mobile.jpg",
+          "heading_text": "Visit Us in NYC",
+          "body_text": "<p>965 Madison Ave at 75th Street</p>",
+          "button_text": "LEARN MORE",
+          "button_link": "/pages/about",
+          "button_symbol_placement": "left",
+
+          "image_side": "left",
+          "image_width": 64,
+          "text-vertical": "center",
+          "text_align": "center"
         }
       },
 
@@ -979,9 +959,9 @@
       "home-twin_promos",
       "home-featured_collection_slideshow",
       "home-featured_products_list",
-      "home-about_slideshow",
       "home-feature_highlight_slideshow",
-      "home-instagram_feed"
+      "home-instagram_feed",
+      "home-about_image_with_text"
     ]
   }
 }
