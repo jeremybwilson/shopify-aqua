@@ -1,92 +1,246 @@
-<div class="homepage-section images-with-text no-fouc index-section{% if section.settings.no_bottom_margin %} nbm{% endif %}" data-section-id="{{ section.id }}">
-{% if section.settings.full_width %}
-  <div class="gridlock-fluid"><div class="row">
+{% comment %}
+  SECTION : IMAGE-WITH-TEXT
+    - Improved version of "image-with-text"
+    - Granular text placement control
+    - Image vs Text spatial allotment control {% endcomment %}
+
+
+{% comment %} :: IMAGE SOURCE - Mobile - If none given use desktop image :: {% endcomment %}
+{% assign image_mobile = section.settings.image_mobile %}
+{% if image_mobile == blank %}
+  {% assign image_mobile = section.settings.image_desktop %}
+  GREG
 {% endif %}
-    {% capture image_layout %}
-      <div class="desktop-6 tablet-3 mobile-3 text-with-image">
-        {% if section.settings.image != blank %}
-          {% include 'basic-responsive-image', type: section.settings.image %}
-          <noscript>
-            <img src="{{ section.settings.image | img_url: '800x' }}" alt="{{ section.settings.image.alt }}">
-          </noscript>
-        {% else %}
-        <div class="onboard">
+
+{% comment %} :: PANEL - IMAGE :: (See bottom portion for layout placement usage) {% endcomment %}
+{% capture image_panel %}
+  <div class="featured-image-wrap">
+
+    {% comment %} :: DESKTOP IMAGE :: (Will be the mobile image also if none given) {% endcomment %}
+    <div class="featured-image-desktop">
+      {% if section.settings.image_desktop != blank %}
+        {% include 'basic-responsive-image', type: section.settings.image_desktop %}
+        <noscript>
+          <img class="featured-image" src="{{ section.settings.image_desktop | img_url: '800x' }}" alt="{{ section.settings.image_desktop.alt }}">
+        </noscript>
+
+      {% else %}
+        <div class="featured-image-fallback onboard">
           {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
         </div>
-        {% endif %}
-      </div>
-    {% endcapture %}
-
-    <div class="row images-with-text">
-      {% unless section.settings.full_width %}<div class="desktop-12 tablet-6 image-with-text-wrapper">{% endunless %}
-      {% if section.settings.layout == 'left' %}
-      {{ image_layout }}
       {% endif %}
+    </div>
 
-      <div class="desktop-6 tablet-3 mobile-3 text-with-image text_section{% if section.settings.text_align == 'center' %} text-centered{% endif %}">
-        {% if section.settings.heading != blank %}
-        <h3>{{ section.settings.heading | escape }}</h3>
-        {% endif %}
-        {% if section.settings.text != blank %}
-        <div class="rte">{{ section.settings.text }}</div>
-        {% endif %}
-        {% if section.settings.button != blank and section.settings.link != blank %}
-        <a href="{{ section.settings.link }}" class="button">
-          {{ section.settings.button | escape }}
-        </a>
-        {% endif %}
-      </div>
 
-      {% if section.settings.layout == 'right' %}
-      {{ image_layout }}
+    {% comment %} :: MOBILE IMAGE :: (Will be the mobile image also if none given) {% endcomment %}
+    <div class="featured-image-mobile">
+
+      {% comment %} :: SOURCE : "image_mobile" {% endcomment %}
+      {% if image_mobile != blank %}
+        {% include 'basic-responsive-image', type: image_mobile %}
+        <noscript>
+          <img class="featured-image" src="{{ image_mobile | img_url: '800x' }}" alt="{{ image_mobile.alt }}">
+        </noscript>
+
+      {% comment %} :: SOURCE : No image, use placeholder :: {% endcomment %}
+      {% else %}
+        <div class="featured-image-fallback onboard">
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
       {% endif %}
-    {% unless section.settings.full_width %}</div>{% endunless %}
+    </div>
+
   </div>
-  {% if section.settings.full_width %}</div></div>{% endif %}
+{% endcapture %}
+
+
+{% comment %} :: PANEL - TEXT :: (See bottom portion for layout placement usage) {% endcomment %}
+{% capture text_panel %}
+  <div class="featured-text-wrap" 
+    data-text-align="{{ section.settings.text_align }}"
+    data-text-vertical="{{ section.settings.text_vertical }}">
+    <div class="featured-text-inner">
+
+      {% comment %} :: HEADER :: {% endcomment %}
+      {% if section.settings.heading_text != blank %}
+        <div class="heading-text">{{ section.settings.heading_text }}</div>
+      {% endif %}
+
+
+      {% comment %} :: BODY :: {% endcomment %}
+      {% if section.settings.body_text != blank %}
+        <div class="body-text">{{ section.settings.body_text }}</div>
+      {% endif %}
+
+
+      {% comment %} :: CTA BUTTON :: {% endcomment %}
+      {% if section.settings.button_text != blank and section.settings.button_link != blank %}
+        <a href="{{ section.settings.button_link }}" class="featured-button" data-symbol-placement="{{ section.settings.button_symbol_placement }}">
+          {% include 'svg-icon-button-symbol', side: 'left' %}
+          <span>{{ section.settings.button_text | escape }}</span>
+          {% include 'svg-icon-button-symbol', side: 'right' %}
+        </a>
+      {% endif %}
+
+    </div>
+  </div>
+{% endcapture %}
+
+
+
+{% comment %} :: LAYOUT :: {% endcomment %}
+<div id="img-with-text-{{ section.id }}" class="homepage-section image-with-text-section no-fouc index-section" data-section-id="{{ section.id }}">
+  {% if section.settings.image_side == 'left' %}
+    {{ image_panel }}
+    {{ text_panel }}
+
+  {% else %}
+    {{ text_panel }}
+    {{ image_panel }}
+  {% endif %}
 </div>
+
+
+<style>
+  /* NOTE : If your style is not directly related to a section setting, it belongs in image-with-text.scss.liquid! */
+
+  @media only screen and ( min-width: 768px ) {
+    #img-with-text-{{ section.id }} .featured-text-wrap {
+      width: calc( 100% - {{ section.settings.image_width }}% );
+    }
+    #img-with-text-{{ section.id }} .featured-image-wrap {
+      width: {{ section.settings.image_width }}%;
+    }
+  }
+</style>
+
+
 {% schema %}
   {
-    "name": "Image with text",
+    "name": "Featured Image w/ Text",
     "class": "index-section",
     "settings": [
-    {
-      "type": "checkbox",
-      "id": "full_width",
-      "label": "Enable full width",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "no_bottom_margin",
-      "label": "Remove bottom margin",
-      "default": false
-    },
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Image"
-    },
       {
-      "type": "select",
-      "id": "layout",
-      "label": "Layout",
-      "default": "left",
-      "options": [
-        {
-          "value": "left",
-          "label": "Image on left"
-        },
-        {
-          "value": "right",
-          "label": "Image on right"
-        }
-      ]
-    },
-     {
+        "type": "header",
+        "content": "-- CONTENT --"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_desktop",
+        "label": "Image (Desktop)",
+        "info": "Size: about ~1800px wide, ~300-400kb"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_mobile",
+        "label": "Image (Mobile)",
+        "info": "Size: about ~900px wide, ~100-150kb"
+      },
+      {
+        "type": "text",
+        "id": "heading_text",
+        "label": "Heading Text",
+        "default": "Image With Text"
+      },
+      {
+        "type": "richtext",
+        "id": "body_text",
+        "label": "Body Text",
+        "default": "<p>Pair text with an image to give focus to your chosen product, collection, or blog post.</p>"
+      },
+      {
+        "type": "text",
+        "id": "button_text",
+        "label": "Button text"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      },
+      {
+        "type": "select",
+        "id": "button_symbol_placement",
+        "label": "Button Symbol Location",
+        "info": "(Line / caret next to button text)",
+        "default": "none",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          },
+          {
+            "value": "both",
+            "label": "Both"
+          }
+        ]
+      },
+
+
+      {
+        "type": "header",
+        "content": "-- LAYOUT --"
+      },
+      {
+        "type": "select",
+        "id": "image_side",
+        "label": "Image Placement",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Image on left (Mobile: Top)"
+          },
+          {
+            "value": "right",
+            "label": "Image on right (Mobile: Bottom)"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "image_width",
+        "min": 20,
+        "max": 80,
+        "step": 1,
+        "label": "Image Width (in %)",
+        "info": "768px and greater, mobile will stack vertically",
+        "default": 50
+      },
+      {
+        "type": "select",
+        "id": "text_vertical",
+        "label": "Text Placement - Vertical",
+        "info": "(Tablet and greater)",
+        "default": "center",
+        "options": [
+          {
+            "value": "top",
+            "label": "Top"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "bottom",
+            "label": "Bottom"
+          }
+        ]
+      },
+      {
         "type": "select",
         "id": "text_align",
-        "label": "Text alignment",
-        "default": "left",
+        "label": "Text Alignment",
+        "default": "center",
         "options": [
           {
             "value": "left",
@@ -95,37 +249,22 @@
           {
             "value": "center",
             "label": "Center"
+          },
+          {
+            "value": "right",
+            "label": "Right"
           }
         ]
-      },
-      {
-        "type": "text",
-        "id": "heading",
-        "label": "Heading",
-        "default": "Image with text"
-      },
-      {
-        "type": "richtext",
-        "id": "text",
-        "label": "Text",
-        "default": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
-      },
-      {
-        "type": "text",
-        "id": "button",
-        "label": "Button text"
-      },
-      {
-        "type": "url",
-        "id": "link",
-        "label": "Button link"
       }
     ],
+
+
     "presets": [
       {
         "name": "Image with text",
         "category": "Image"
       }
     ]
+
   }
 {% endschema %}
