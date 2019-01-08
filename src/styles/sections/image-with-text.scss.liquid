@@ -1,0 +1,208 @@
+// SECTION : IMAGE WITH TEXT 
+
+/* WRAPPER : Outermost element on this component
+ * ----------------------------------------------------------------------- */
+.image-with-text-section {
+	position: relative;
+	margin-top: 30px;
+	width: 100%;
+	@include inline-flex;
+	@include flex-wrap( wrap );
+
+	@include mq( 'tablet-and-up' ) {
+		@include flex-wrap( nowrap );
+	}
+
+	@include mq( 'lap-and-up' ) {
+		margin-top: 0;
+	}
+
+
+	/* IMAGES : Image panel for Mobile x Desktop responsive images
+ 	* ----------------------------------------------------------------------- */
+ 	.featured-image-wrap {
+ 		position: relative;
+ 		width: 100%;
+
+ 		// MOBILE
+ 		.featured-image-mobile {
+ 			display: block;
+
+ 			@include mq( 'tablet-and-up' ) {
+ 				display: none;
+ 			}
+ 		}
+
+ 		// DESKTOP
+ 		.featured-image-desktop {
+ 			display: none;
+
+ 			@include mq( 'tablet-and-up' ) {
+ 				display: block;
+ 			}
+ 		}
+ 	}
+
+
+ 	/* TEXT : Text content panel shown at all sizes (stacks on mobile)
+	 * Defaults :
+	 *	- Text-Align = center
+	 *	- Vertical = center
+	 * 	- Horizontal = center
+ 	 * ----------------------------------------------------------------------- */
+ 	.featured-text-wrap {
+ 		position: relative;
+ 		text-align: center;
+ 		padding: 40px 15px 60px;
+ 		width: 100%;
+ 		@include inline-flex;
+ 		@include justify-content( center );
+ 		@include align-items( center );
+ 		@include flex-wrap( wrap );
+
+ 		@include mq( 'tablet-and-up' ) {
+ 			padding: 0 15px;
+ 		}
+
+   		// TEXT ALIGNMENT
+   		&[data-text-align='left'] {
+   			text-align: left;
+   			@include justify-content( flex-start );
+   		}
+   		&[data-text-align='right'] {
+   			text-align: right;
+   			@include justify-content( flex-end );
+   		}
+
+   		// VERTICAL POSITION
+ 		&[data-text-vertical='top'] {
+ 			@include align-items( flex-start );
+ 		}
+ 		&[data-text-vertical='bottom'] {
+ 			@include align-items( flex-end );
+ 		}
+
+
+	 	// HEADER 
+	 	.heading-text {
+	 		@include fontDim( 27px, 30px, 0 );
+	 		font-weight: $font-weight--medium;
+	 		color: $color--text-1;
+	 		margin-bottom: 15px;
+	 		width: 100%;
+	 	}
+
+	 	// BODY TEXT (Note: "richtext" type, instead of "text")
+	 	.body-text {
+	 		width: 100%;
+	 		margin-bottom: 15px;
+
+	 		// Inner Text content
+	 		p, div, span, a {
+	 			@include fontDim( 20px, 22px, 0 );
+	 			font-weight: $font-weight--medium;
+	 			color: $color--text-1;
+	 			opacity: 0.8; // Slightly lighten text
+	 		}
+	 	}
+
+	 	.featured-button {
+	 		@include inline-flex;
+	 		@include align-items( center );
+	 		@include justify-content( center );
+
+	 		span {
+	 			@include fontSize( 16px );
+	 			font-weight: $font-weight--medium;
+	 			color: $color--text-1;
+	 			opacity: 0.8;
+	 		}
+
+	 		.icon-button-symbol {
+	 			width: 30px;
+	 			display: none;
+	 			opacity: 0.8;
+
+	 			&.icon-button-symbol-left {
+	 				margin-right: 10px;
+	 			}
+	 			&.icon-button-symbol-right{
+	 				margin-left: 10px;
+	 			}
+
+	 			* {
+	 				fill: $color--text-1;
+	 			}
+	 		}
+
+	 		// BUTTON SYMBOL PLACEMENT
+	 		&[data-symbol-placement='left'],
+	 		&[data-symbol-placement='both'] {
+	 			.icon-button-symbol-left {
+	 				display: block;
+	 			}
+	 		}
+	 		&[data-symbol-placement='right'],
+	 		&[data-symbol-placement='both'] {
+	 			.icon-button-symbol-right {
+	 				display: block;
+	 			}
+	 		}
+	 	}
+ 	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
