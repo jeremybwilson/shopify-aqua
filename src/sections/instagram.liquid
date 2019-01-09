@@ -32,7 +32,7 @@
 
           {% comment %} :: CTA BUTTON :: {% endcomment %}
           {% if section.settings.cta_text != blank %}
-            {% include 'cta-button-with-symbols', 
+            {% include 'cta-with-symbols', 
               cta_text: section.settings.cta_text, 
               cta_link: section.settings.cta_link,
               symbol_placement: section.settings.cta_symbol_placement %}
