@@ -58,9 +58,17 @@
         .buttons-row {
           right: -5px;
 
-          > .cta:last-child.show-lines--right,
-          > .cta:last-child.show-lines--both {
-            padding-right: 12px;
+          // Ensure buttons align with rest of block when in right text alignment mode
+          > .cta-with-symbols:last-child {
+            &[data-symbol-placement='right'],
+            &[data-symbol-placement='both'] {
+              padding-right: 12px;
+            }
+          }
+
+          // Space between buttons if 2 are present (wont apply if only one basically)
+          >.cta-with-symbols:nth-child(2) {
+              margin-left: 20px;
           }
         }
       }
@@ -114,6 +122,10 @@
     font-weight: $font-weight--medium;
     @include fontDim( 18px, 22px, 0 );
 
+    @include mq( 'tablet-and-up' ) {
+      max-width: 100%;
+    }
+
     @include mq('lap-and-up') {
       @include fontDim( 18px, 26px, 0 );
     }
@@ -128,41 +140,8 @@
     margin-top: 5px;
     width: 100%;
 
-    > .cta {
+    > .cta-with-symbols {
       margin: 0;
-
-      &:not(:first-child) {
-        margin-left: 15px;
-      }
-
-      // CTA LINES : Hidden by default
-      .cta-line-left,
-      .cta-line-right {
-        height: 1px;
-        width: 0;
-        opacity: 0.6;
-      }
-
-      .cta-line-left {
-        margin-right: 10px;
-      }
-      .cta-line-right {
-        margin-left: 10px;
-      }
-
-      &.show-lines--left,
-      &.show-lines--both {
-        .cta-line-left {
-          width: 25px;
-        }
-      }
-
-      &.show-lines--right,
-      &.show-lines--both {
-        .cta-line-right {
-          width: 25px;
-        }
-      }
 
       a {
         @include inline-flex;

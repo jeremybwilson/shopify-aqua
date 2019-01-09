@@ -67,7 +67,7 @@
 
     /* CTA - Call to Action button link
      * ----------------------------------------------------------------------- */
-    .cta {
+    .cta-with-symbols {
       position: relative;
       display: block;
       margin: 0;
@@ -114,16 +114,16 @@
       }
 
       // BUTTON SYMBOL : Left Reveal Triggers
-      &.cta-symbol-left,
-      &.cta-symbol-both {
+      &[data-symbol-placement='left'],
+      &[data-symbol-placement='both'] {
         a svg.icon-button-symbol-left {
           display: block;
         }
       }
 
       // BUTTON SYMBOL : Right Reveal Triggers
-      &.cta-symbol-right,
-      &.cta-symbol-both {
+      &[data-symbol-placement='right'],
+      &[data-symbol-placement='both'] {
         a svg.icon-button-symbol-right {
           display: block;
         }

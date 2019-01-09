@@ -116,7 +116,7 @@
           text-align: center;
 
           @include mq( 'lap-and-up' ) {
-            .cta { 
+            .cta-with-symbols { 
               position: relative;
               right: auto;
               left: auto; 
@@ -130,7 +130,7 @@
           text-align: right;
 
           @include mq( 'lap-and-up' ) {
-            .cta { 
+            .cta-with-symbols { 
               right: auto; 
               left: 10px;
             }
@@ -171,7 +171,7 @@
        * -------------------------------------------- */
       $ctaHoverTiming: 0.25s ease-in-out;
 
-      .cta {
+      .cta-with-symbols {
         @include fontDim( 16px, 18px, 2px );
         font-weight: $font-weight--medium;
         margin-top: 12px;
@@ -218,48 +218,6 @@
         // CTA TYPE : Button w/ Background
         &.cta-type-button a {
           padding: 12px 20px;
-        }
-
-        // ACCENT MARK : LINE : Sort of accent mark that Aquatalia likes to use
-        .cta-line-left,
-        .cta-line-right {
-          width: 30px;
-          height: 1px;
-          margin-top: -2px;
-          opacity: 0.25;
-          display: none; // Hidden by default
-          transition: background-color #{$ctaHoverTiming};
-        }
-        .cta-line-left  { margin-right: 11px; }
-        .cta-line-right { margin-left: 11px;  }
-
-        // Display triggers
-        &.cta-accent-mark-both .cta-line-right,
-        &.cta-accent-mark-both .cta-line-left,
-        &.cta-accent-mark-left .cta-line-left,
-        &.cta-accent-mark-right .cta-line-right {
-          display: block;
-        }
-
-
-        // ACCENT MARK : CARET : Accent mark used by muck/xtratuf style
-        svg {
-          width: 10px;
-          height: 10px;
-          margin-left: 20px;
-
-          @include mq('tablet-and-up') {
-            width: 12px;
-            height: 12px;
-          }
-
-          * {
-            fill: $color--accent-1;
-            transition: fill #{$ctaHoverTiming};
-          }
-        }
-        a:hover svg * {
-          fill: $color--accent-1;
         }
       }
     }

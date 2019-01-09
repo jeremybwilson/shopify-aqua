@@ -8,6 +8,7 @@
 
   OPTIONAL DATA:
     - cta_link = location to link the text to when clicked
+    - cta_type = extra class name if you need to specify a special modification like twin-promos.liquid does
 
 {% endcomment %}
 
@@ -16,7 +17,12 @@
   {% assign symbol_placement = 'none' %}
 {% endif %}
 
-<div class="cta-with-symbols" data-symbol-placement="{{ symbol_placement }}">     
+{% if cta_type == blank %}
+  {% assign cta_type = 'text' %}
+{% endif %}
+
+
+<div class="cta-with-symbols cta-type-{{ cta_type }}" data-symbol-placement="{{ symbol_placement }}">     
   {% if cta_link != blank %}
     <a href="{{ cta_link }}" target="_blank">
   {% endif %}

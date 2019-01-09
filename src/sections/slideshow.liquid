@@ -114,37 +114,24 @@
                     {% endif %}
 
                     {% comment %} :: CTA BUTTONS :: {% endcomment %}
-                    {% if block.settings.cta_one_link != blank and block.settings.cta_one_button_text != blank %}
+                    {% if block.settings.cta_one_button_text != blank %}
                       <div class="buttons-row">
 
                         {% comment %} :: BUTTON #1 :: {% endcomment %}
-                        <div class="cta show-lines--{{ block.settings.cta_one_line }}" id="cta-one-{{ block.id }}">
-                          <a href="{{ block.settings.cta_one_link }}">
+                        {% include 'cta-with-symbols', 
+                          cta_text: block.settings.cta_one_button_text,
+                          cta_link: block.settings.cta_one_link,
+                          symbol_placement: block.settings.cta_one_line %}
 
-                            {% comment %}
-                              :: CTA LINES + TEXT :: 
-                                - Lines always present for flex item alignment behavior, invisible unless enabled {% endcomment %}
-                            <div class="cta-line-left"></div>
-                            {{ block.settings.cta_one_button_text }}
-                            <div class="cta-line-right"></div>
-                          </a>
-                        </div>
 
                         {% comment %} CTA TWO - Only show if link exists. Duplicate this and the necessary schema code if client asks for more buttons. {% endcomment %}
-                        {% if block.settings.cta_two_link != blank and block.settings.cta_two_button_text != blank %}
+                        {% if block.settings.cta_two_button_text != blank %}
 
                           {% comment %} :: BUTTON #2 :: {% endcomment %}
-                          <div class="cta show-lines--{{ block.settings.cta_two_line }}" id="cta-two-{{ block.id }}">
-                            <a href="{{ block.settings.cta_two_link }}" class="{{ buttonWrapClasses }}">
-                              
-                              {% comment %}
-                                :: CTA LINES + TEXT :: 
-                                  - Lines always present for flex item alignment behavior, invisible unless enabled {% endcomment %}
-                              <div class="cta-line-left"></div>
-                              {{ block.settings.cta_two_button_text }}
-                              <div class="cta-line-right"></div>
-                            </a>
-                          </div>
+                          {% include 'cta-with-symbols', 
+                            cta_text: block.settings.cta_two_button_text,
+                            cta_link: block.settings.cta_two_link,
+                            symbol_placement: block.settings.cta_two_line %}
                         {% endif %}
 
                       </div>
@@ -207,25 +194,28 @@
                   text-align: {{ block.settings.caption_text_align }};
                 }
 
-                .flex-caption.slide-{{ block.id }} .cta a {
+                .flex-caption.slide-{{ block.id }} .cta-with-symbols a {
                   color: {{ slide_text_color }};
                   padding: {{ cta_padding_mobile }};
                   background-color: {{ cta_bg_color }};
                 }
 
                 @media only screen and ( min-width: 768px ) {
-                  .flex-caption.slide-{{ block.id }} .cta a {
+                  .flex-caption.slide-{{ block.id }} .cta-with-symbols a {
                     padding: {{ cta_padding_desktop }};
                   }
                 }
 
-                .flex-caption.slide-{{ block.id }} .cta a:hover {
+                .flex-caption.slide-{{ block.id }} .cta-with-symbols a span {
+                  color: {{ slide_text_color }};
+                }
+
+                .flex-caption.slide-{{ block.id }} .cta-with-symbols a:hover {
                   background-color: {{ cta_bg_hover_color }};
                 }
 
-                .flex-caption.slide-{{ block.id }} .cta .cta-line-left,
-                .flex-caption.slide-{{ block.id }} .cta .cta-line-right {
-                  background-color: {{ slide_text_color }};
+                .flex-caption.slide-{{ block.id }} .cta-with-symbols svg * {
+                  stroke: {{ slide_text_color }};
                 }
 
               </style>

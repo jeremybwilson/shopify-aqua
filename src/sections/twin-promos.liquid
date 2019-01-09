@@ -44,15 +44,11 @@
 
             {% comment %} :: CTA - BUTTON :: {% endcomment %}
             {% if block.settings.cta_text != blank %}
-              <div class="cta cta-accent-mark-{{ block.settings.cta_accent_mark }} cta-type-{{ block.settings.cta_type }}">
-                
-                {% if block.settings.link != blank %}<a href="{{ block.settings.link }}">{% endif %}
-                  <div class="cta-line-left"></div>
-                  <span>{{ block.settings.cta_text }}</span>
-                  <div class="cta-line-right"></div>
-                {% if block.settings.link != blank %}</a>{% endif %}
-              
-              </div>
+              {% include 'cta-with-symbols', 
+                cta_text: block.settings.cta_text,
+                cta_link: block.settings.link,
+                cta_type: block.settings.cta_type,
+                symbol_placement: block.settings.cta_accent_mark %}
             {% endif %}
 
           </div>
@@ -63,37 +59,29 @@
           - Config supplied colorations only, everything else belongs in the twin-promos stylesheet please. {% endcomment %}
       <style>
         /* CTA TEXT - COLOR */
-        #promo-{{ block.id }} .cta span {
+        #promo-{{ block.id }} .cta-with-symbols span {
           color: {{ block.settings.cta_color_text }};
         }
-        #promo-{{ block.id }} .cta:hover span {
+        #promo-{{ block.id }} .cta-with-symbols:hover span {
           color: {{ block.settings.cta_color_text_hover }};
         }
 
-        /* CTA SYMBOL (LINE) - COLOR */
-        #promo-{{ block.id }} .cta .cta-line-left,
-        #promo-{{ block.id }} .cta .cta-line-right {
-          background-color: {{ block.settings.cta_color_text }};
+
+        /* CTA SYMBOL (svg) - COLOR */
+        #promo-{{ block.id }} .cta-with-symbols svg * {
+          stroke: {{ block.settings.cta_color_text }};
         }
-        #promo-{{ block.id }} .cta:hover .cta-line-left,
-        #promo-{{ block.id }} .cta:hover .cta-line-right {
-          background-color: {{ block.settings.cta_color_text_hover }};
+        #promo-{{ block.id }} .cta-with-symbols:hover svg * {
+          stroke: {{ block.settings.cta_color_text_hover }};
         }
 
-        /* CTA SYMBOL (SVG) - COLOR */
-        #promo-{{ block.id }} .cta svg * {
-          fill: {{ block.settings.cta_color_text }};
-        }
-        #promo-{{ block.id }} .cta:hover svg * {
-          fill: {{ block.settings.cta_color_text_hover }};
-        }
 
         /* CTA BUTTON - BG COLOR (if applicable) */
         {% if block.settings.cta_type == 'button' %}
-          #promo-{{ block.id }} .cta a {
+          #promo-{{ block.id }} .cta-with-symbols a {
             background-color: {{ block.settings.cta_color_bg }};
           }
-          #promo-{{ block.id }} .cta:hover a {
+          #promo-{{ block.id }} .cta-with-symbols:hover a {
             background-color: {{ block.settings.cta_color_bg_hover }};
           }
         {% endif %}
@@ -232,13 +220,13 @@
           {
             "type": "color",
             "id": "cta_color_text_hover",
-            "label": "CTA Text Color",
+            "label": "CTA Hover Text Color ",
             "default": "#616365"
           },
           {
             "type": "color",
             "id": "cta_color_bg_hover",
-            "label": "CTA BG Color",
+            "label": "CTA Hover BG Color",
             "info" : "(Only applies to 'Button' type CTA)",
             "default": "#8C1D22"
           },
