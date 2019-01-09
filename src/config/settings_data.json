@@ -42,8 +42,8 @@
     "alt_button_border_color_hover": "rgba(0,0,0,0)",
     "alt_button_border_width": 0,
 
-    "homepage_instagram_header": "#fff",
-    "homepage_instagram_text": "#fff",
+    "homepage_instagram_header": "#000",
+    "homepage_instagram_text": "#000",
     "filter_bg": "#ffffff",
     "filter_text_color": "#000000",
     "filter_arrow_color": "#0153a6",
@@ -659,9 +659,10 @@
         "settings": {
           "heading": "@Aquatalia",
           "text": "",
-          "link": "http:\/\/www.instagram.com\/aquatalia",
           "cta_text": "FOLLOW US",
-          "instagram_access_token": "1022365975.1677ed0.a29a97191f864ee0afeb65ef0024312b"
+          "cta_link": "http:\/\/www.instagram.com\/aquatalia",
+          "cta_symbol_placement": "left",
+          "instagram_access_token": ""
         }
       },
 
