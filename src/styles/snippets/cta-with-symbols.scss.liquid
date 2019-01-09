@@ -1,0 +1,67 @@
+// SNIPPET : cta-with-symbols.liquid
+
+.cta-with-symbols {
+    @include inline-flex;
+    @include align-items( center );
+    @include justify-content( center );
+
+    // CTA LINK WRAPPER (only present when cta_link is passed)
+    a {
+      @include inline-flex;
+      @include align-items( center );
+      @include justify-content( center );
+    }
+
+    // CTA TEXT 
+    span {
+      @include fontDim( 16px, 18px, 2px );
+      transition: color 0.25s ease-in-out;
+      font-weight: $font-weight--medium;
+      color: $color--text-1;
+      opacity: 0.8;
+    }
+
+    // CTA SYMBOL 
+    .icon-button-symbol {
+      width: 30px;
+      display: none;
+      opacity: 0.8;
+
+      &.icon-button-symbol-left {
+        margin-right: 10px;
+      }
+      &.icon-button-symbol-right{
+        margin-left: 10px;
+      }
+
+      * {
+        transition: fill 0.25s ease-in-out;
+        fill: $color--text-1;
+      }
+    }
+
+    // CTA SYMBOL PLACEMENT
+    &[data-symbol-placement='left'],
+    &[data-symbol-placement='both'] {
+      .icon-button-symbol-left {
+        display: block;
+      }
+    }
+    &[data-symbol-placement='right'],
+    &[data-symbol-placement='both'] {
+      .icon-button-symbol-right {
+        display: block;
+      }
+    }
+
+    // HOVER EFFECTS
+    &:hover {
+      span {
+        color: $color--gray-1;
+      }
+
+      .icon-button-symbol * {
+        fill: $color--gray-1;
+      }
+    }
+  }

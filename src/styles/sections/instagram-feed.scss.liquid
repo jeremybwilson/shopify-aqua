@@ -3,8 +3,8 @@
 .instagram-feed {
   margin-bottom: 0;
   padding-top: 50px;
-  padding-bottom: 50px;
-  background-image: url({{ 'bg-home-instagram-mobile.jpg' | asset_url }});
+  padding-bottom: 15px;
+  // background-image: url({{ 'bg-home-instagram-mobile.jpg' | asset_url }});
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -12,115 +12,110 @@
 
   @include mq('tablet-and-up') {
     padding-top: 115px;
-    padding-bottom: 145px;
-    background-image: url({{ 'bg-home-instagram.jpg' | asset_url }});
+    padding-bottom: 90px;
+    // background-image: url({{ 'bg-home-instagram.jpg' | asset_url }});
   }
 
-  // text box
 
+  .row {
+    padding: 0;
+  }
+
+  // TEXT WRAPPER
   .text-box {
-    max-width: 360px;
-    margin: 0 auto 35px;
+    display: block;
+    position: relative;
+    padding: 0 24px;
+    width: 100%;
+    margin: 0 0 25px;
 
-    @include mq('tablet-and-up') {
-      margin-bottom: 45px;
-    }
-  }
-
-  h2 {
-    margin-bottom: 15px;
-    color: {{ settings.homepage_instagram_header }};
-    @include fontDim(22px,22px,.04em);
-    font-weight: $font-weight--black;
-    text-transform: uppercase;
-    
-    @include mq('tablet-and-up') {
-      @include fontSize(42px);
-      letter-spacing: 0;
+    @include mq( 'tablet-and-up' ) {
+      margin-bottom: 30px;
+      height: 25px;
     }
 
-    &:after {
-      display: none;
-    }
-  }
-  .copy {
-    @include mq('tablet-and-up') {
-      margin-top: 12px;
-    }
-    p {
-      color: {{ settings.homepage_instagram_text }};
-      font-weight: $font-weight--bold;
-      @include fontDim(14px,22px,0);
 
+    // HEADER
+    .heading {
+      @include fontDim( 27px, 22px, 0 );
+      position: relative;
+      color: {{ settings.homepage_instagram_header }};
+      font-weight: $font-weight--medium;
+      margin-bottom: 12px;
+      display: block;
+
+      @include mq( 'tablet-and-up' ) {
+        position: absolute;
+        left: 0;
+      }
+    }
+
+
+    // BODY TEXT
+    .body {
       @include mq('tablet-and-up') {
-        @include fontDim(16px,26px,0);
+        margin-top: 12px;
+      }
+
+      p {
+        @include fontDim( 16px, 20px, 0 );
+        color: {{ settings.homepage_instagram_text }};
+        font-weight: $font-weight--medium;
+      }
+    }
+
+
+    // CTA BUTTON
+    .cta-with-symbols {
+      position: relative;
+
+      @include mq( 'tablet-and-up' ) {
+        position: absolute;
+        right: 0;
+      }
+
+      a, span {
+        color: {{ settings.homepage_instagram_text }};
+        text-decoration: none;
       }
     }
   }
-  .cta {
-    display: inherit;
-    margin-top: 12px;
-    @include fontDim(13px,13px,.06em);
-    font-weight:  $font-weight--bold;
-    text-transform: uppercase;
 
-    @include mq('tablet-and-up') {
-      margin-top: 15px;
-      @include fontSize(16px);
-    }
 
-    a {
-      color: {{ settings.homepage_instagram_text }};
-      text-decoration: none;
-      letter-spacing: inherit;
-    }
 
-    svg {
-      width: 10px;
-      height: 10px;
-      margin-left: 4px;
-
-      @include mq('tablet-and-up') {
-        width: 12px;
-        height: 12px;
-      }
-
-      * {
-        fill: {{ settings.homepage_instagram_text }};
-      }
-    }
-    a:hover svg * {
-      fill: {{ settings.homepage_instagram_text }};
-    }
-  }
-
-  // item
-
+  // INSTAGRAM FEED IMAGES
   .instagram-user-feed {
     & > div {
       @include flexbox;
       @include flex-wrap(wrap);
     }
-  }
 
-  .instagram-item {    
-    width: 50%;
-    padding: 5px;
+    .instagram-item {    
+      width: 50%;
+      padding: 0;
 
-    @include mq('tablet-and-up') {
-      width: 25%;
-      padding: 3px;
+      @include mq( 'tablet-and-up' ) {
+        width: 25%;
+      }
+
+      .instagram-image-container {
+        display: block;
+        height: 100%;
+        margin-bottom: 0;
+        background-size: cover;
+        background-position: center center;
+
+        img {
+          opacity: 0;
+        }
+      }
     }
 
-    img {
-      opacity: 0;
+    // NO TOKEN LINK - Link to generate instagram token so its easier to get done. 
+    .ig-token-missing-notice {
+      margin-top: 15px;
+      color: $color--error;
     }
-  }
-
-  .instagram-image-container {
-    margin-bottom: 0;
-    background-size: cover;
-    background-position: center center;
   }
 
 }
