@@ -1,0 +1,31 @@
+{% comment %}
+  SNIPPET : CTA-BUTTON-WITH-SYMBOLS 
+    --> a shortcut for adding CTA buttons with brand svg symbol on a configurable side (Aquatalia uses this extensively for example)
+  
+  REQUIRED DATA:
+    - cta_link = some kind of text
+    - symbol_placement = none / left / right / both (side does the svg icon go on)
+
+  OPTIONAL DATA:
+    - cta_link = location to link the text to when clicked
+
+{% endcomment %}
+
+
+{% if symbol_placement == blank %}
+  {% assign symbol_placement = 'none' %}
+{% endif %}
+
+<div class="cta-button-with-symbols" data-symbol-placement="{{ symbol_placement }}">     
+  {% if cta_link != blank %}
+    <a href="{{ cta_link }}" target="_blank">
+  {% endif %}
+
+  {% include 'svg-icon-button-symbol', side: 'left' %}
+  <span>{{ cta_text }}</span>
+  {% include 'svg-icon-button-symbol', side: 'right' %}
+
+  {% if cta_link != blank %}
+    </a>
+  {% endif %}
+</div>

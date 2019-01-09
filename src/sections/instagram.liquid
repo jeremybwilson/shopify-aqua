@@ -1,73 +1,68 @@
 {% comment %} TEMPLATE {% endcomment %}
-
 <script id="instagram-template" type="text/template">
   {% raw %}
     <div class="instagram-item">
       <a class="instagram-image-container" target="_blank" href="{{link}}" rel="ig" title="{{caption}}" style="background-image: url({{image}}); ">
-        
         <img class="instagram-image" src="{{image}}" />
       </a>
     </div>
   {% endraw %}
 </script>
 
-<div class="homepage-section instagram-feed no-fouc index-section" data-section-id="{{ section.id }}" data-section-type="instagram">
-  <section id="index-social" class="row">
 
-    {% if section.settings.heading != blank or section.settings.text != blank%}
+<div class="homepage-section instagram-feed no-fouc index-section" 
+  id="instagram-feed-{{ section.id }}"
+  data-section-id="{{ section.id }}" 
+  data-section-type="instagram">
 
-    <div class="text-box">
-      {% if section.settings.heading != blank %}
-      <h2>{{ section.settings.heading | escape }}</h2>
-      {% endif %}
+    {% comment %} :: TEXT CONTENT :: {% endcomment %}
+    {% if section.settings.heading != blank or section.settings.body != blank %}
+      <div class="row instagram-text-wrap">
+        <div class="text-box">
+          
+          {% comment %} :: HEADING :: {% endcomment %}
+          {% if section.settings.heading != blank %}
+            <h2 class="heading">{{ section.settings.heading | escape }}</h2>
+          {% endif %}
 
-      {% if section.settings.text != blank %}
-      <div class="copy">{{ section.settings.text }}</div>
-      {% endif %}
+          {% comment %} :: BODY TEXT :: {% endcomment %}
+          {% if section.settings.body != blank %}
+            <div class="body">{{ section.settings.body }}</div>
+          {% endif %}
 
-      {% comment %} CTA {% endcomment %}
+          {% comment %} :: CTA BUTTON :: {% endcomment %}
+          {% if section.settings.cta_text != blank %}
+            {% include 'cta-button-with-symbols', 
+              cta_text: section.settings.cta_text, 
+              cta_link: section.settings.cta_link,
+              symbol_placement: section.settings.cta_symbol_placement %}
+          {% endif %}
 
-      {% if section.settings.cta_text != blank %}
-      <div class="cta">
-        {% if section.settings.link != blank %}<a href="{{ section.settings.link }}" target="_blank">{% endif %}
-          <span>{{ section.settings.cta_text }}</span> {% include 'svg-icon-caret-right' %}
-        {% if section.settings.link != blank %}</a>{% endif %}
+        </div><!-- .text-box -->
       </div>
-      {% endif %}
-
-    </div><!-- .text-box -->
-
     {% endif %}
 
-    <div class="clear"></div>
 
+    {% comment %} :: IG TOKEN DATA PARSING :: {% endcomment %}
     {% assign token = section.settings.instagram_access_token %}
     {% capture userid %}
-    {{- token | truncate: 9, "" -}}
+      {{- token | truncate: 9, "" -}}
     {% endcapture %}
 
+
+    {% comment %} :: INSTAGRAM IMAGES :: {% endcomment %}
     <div class="instagram-user-feed">
-
       {% if section.settings.instagram_access_token != blank %}
-      <div id="instafeed-{{ section.id }}" data-access-token="{{ token }}"></div>
+        <div id="instafeed-{{ section.id }}" data-access-token="{{ token }}"></div>
+      
       {% else %}
-
-      {% include 'onboard-instagram' %}
+        {% include 'onboard-instagram' %}
+        <a class="ig-token-missing-notice" href="https://www.weareunderground.com/pages/instagram" target="_blank">(Click here to generate your Instagram token, then add in the theme customizer in this section's settings.)</a>
       {% endif %}
-
     </div>
-  </section>
+
 </div>
 
-<style>
-  .instagram-image-container {
-    display: block;
-    height: 0;
-    padding-bottom: 100%;
-    overflow: hidden;
-    margin-bottom: 15px;
-  }
-</style>
 
 
 {% schema %}
@@ -75,35 +70,64 @@
 	"name": "Instagram feed",
 	"settings": [
     {
+      "type": "header",
+      "content": "-- CONTENT --"
+    },
+    {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Follow us on Instagram"
+      "default": "Heading here!"
     },
     {
       "type": "richtext",
-      "id": "text",
-      "label": "Text",
-      "default": "<p>Lorem ipsum dolor sit amet, coasins ec tetur adipiscing elit</p>"
+      "id": "body",
+      "label": "Body Text"
     },
     {
-       "type": "url",
-         "id": "link",
-      "label": "Link"
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link"
     },
     {
-       "type": "text",
-         "id": "cta_text",
+      "type": "text",
+      "id": "cta_text",
       "label": "CTA text",
-    "default": "View All"
-    },    
+      "default": "View All"
+    },
     {
-        "type": "textarea",
-        "id": "instagram_access_token",
-        "label": "Instagram access token",
-    	  "info": "Required for permission to show your Instagram content [instructions here](http://support.undergroundmedia.co.uk/customer/en/portal/articles/2386318-home-page---instagram-feed) for setup."
+      "type": "select",
+      "id": "cta_symbol_placement",
+      "label": "CTA Symbol Location",
+      "info": "(Line / caret next to button text)",
+      "default": "none",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        },
+        {
+          "value": "both",
+          "label": "Both"
+        }
+      ]
+    },  
+    {
+      "type": "textarea",
+      "id": "instagram_access_token",
+      "label": "Instagram access token",
+    	"info": "Required to show your Instagram content [instructions here](https://www.weareunderground.com/pages/instagram)."
     }
   ],
+
   "presets": [
     {
       "name": "Instagram feed",
