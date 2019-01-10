@@ -12,8 +12,12 @@
 
   @include mq('tablet-and-up') {
     padding-top: 115px;
-    padding-bottom: 90px;
+    padding-bottom: 60px;
     // background-image: url({{ 'bg-home-instagram.jpg' | asset_url }});
+  }
+
+  @include mq( 'lap-and-up' ) {
+    padding-bottom: 0;
   }
 
 
