@@ -229,33 +229,33 @@
       "header": {
         "type": "header",
         "blocks": {
-          "1522184323686": {
+          "nav-item-1": {
             "type": "mega_menu",
             "settings": {
-              "menu_item": "Womens",
-              "nav_image": "shopify:\/\/shop_images\/nav-megamenu-1.png",
+              "menu_item": "Women",
+              "nav_image": "shopify:\/\/shop_images\/nav-megamenu-1.jpg",
               "nav_image_link": "shopify:\/\/collections\/women",
               "nav_image_title": "New Arrivals",
               "nav_image_sub_title": "Shop Now"
             }
           },
-          "1535652898841": {
+          "nav-item-2": {
             "type": "mega_menu",
             "settings": {
-              "menu_item": "Mens",
+              "menu_item": "Men",
               "nav_image": "shopify:\/\/shop_images\/nav-megamenu-2.jpg",
               "nav_image_link": "shopify:\/\/collections\/men",
               "nav_image_title": "New Arrivals",
               "nav_image_sub_title": "Shop Now"
             }
           },
-          "1535652979932": {
+          "nav-item-3": {
             "type": "simple_menu",
             "settings": {
               "menu_item": "Accessories"
             }
           },
-          "1535653033501": {
+          "nav-item-4": {
             "type": "simple_menu",
             "settings": {
               "menu_item": "Weatherproof"
@@ -263,10 +263,10 @@
           }
         },
         "block_order": [
-          "1522184323686",
-          "1535652898841",
-          "1535652979932",
-          "1535653033501"
+          "nav-item-1",
+          "nav-item-2",
+          "nav-item-3",
+          "nav-item-4"
         ],
         "settings": {
           "full_width_header": false,
