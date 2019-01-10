@@ -25,7 +25,7 @@
     "link_hover_color": "#000000",
     "sale_color": "#bc0000",
     "dotted_color": "#e5e5e5",
-    "error_text": "#f00",
+    "error_text": "#cb0000",
     "google_tag_manager_id": "NONE",
     "button_bg": "#e41c39",
     "button_bg_hover": "#a6041c",
@@ -118,7 +118,7 @@
     "soldout_text": "#ffffff",
     "icons": "#333333",
     "icons_hover": "#333333",
-    "newsletter_footer_background": "#e41c39",
+    "newsletter_footer_background": "#8B8C90",
     "newsletter_footer_text": "#ffffff",
     "social_footer_background": "#ffffff",
     "social_footer_header": "#0d57a3",
@@ -300,31 +300,18 @@
       "footer": {
         "type": "footer",
         "blocks": {
-          "1480972996114": {
+          "footer-menu-content": {
             "type": "link_list",
             "settings": {
               "menu_id": "footer",
-              "show_headings": true
+              "show_headings": false
             }
           }
         },
         "block_order": [
-          "1480972996114"
+          "footer-menu-content"
         ],
         "settings": {
-          "tel_text": "855-377-BOOT (2668)",
-          "tel_number": "18553772668",
-          "show_credit_cards": true,
-          "visit_brand_link_one": "http:\/\/www.xtratuf.com",
-          "visit_brand_image_one": "shopify:\/\/shop_images\/visit-brand-image-1.png",
-          "visit_brand_link_two": "",
-          "visit_brand_image_two": "",
-          "visit_brand_link_three": "http:\/\/www.howardleight.com",
-          "visit_brand_image_three": "shopify:\/\/shop_images\/visit-brand-image-3.png",
-          "trust_icon_image_one": "",
-          "trust_icon_image_two": "",
-          "trust_icon_image_three": "",
-          "show_payment_icons": false,
           "color_footer_bg": "#f5f5f5",
           "color_footer_text": "#3d4246"
         }
@@ -412,12 +399,12 @@
       "newsletter": {
         "type": "newsletter",
         "settings": {
-          "heading": "Join Our Newsletter",
-          "newsletter_subheading": "<p>Sign up now for exclusive offers<\/p>",
-          "newsletter_placeholder": "Enter Email Address",
+          "heading": "Email",
+          "newsletter_subheading": "",
+          "newsletter_placeholder": "",
+          "newsletter_submit_text": "SUBMIT",
           "newsletter_error": "Please enter a valid e-mail address",
-          "newsletter_success": "<p>You have successfully joined our newsletter<\/p>",
-          "social_heading": "Connect With Us"
+          "newsletter_success": "<p>You have successfully joined our newsletter<\/p>"
         }
       },
 
