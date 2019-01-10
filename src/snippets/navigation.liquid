@@ -7,11 +7,13 @@
 
         {% assign meganav = false %}
         {% for block in section.blocks %}
+
+          {% comment %} First Checks if the top link name matches the "menu_item" in its block settings and that its a mega_menu type {% endcomment %}
           {% if block.settings.menu_item == link.title and block.type == 'mega_menu' %}
             
             {% comment %} :: MEGA-MENU - WRAPPER :: {% endcomment %}
             {% capture megalink %}
-              <li class="nav-primary-link {{ link.title | replace: ' ', '-' | downcase }} dropdown has_sub_menu" aria-haspopup="true" aria-expanded="false">
+              <li class="nav-primary-link nav-mega-menu {{ link.title | replace: ' ', '-' | downcase }} dropdown has_sub_menu" aria-haspopup="true" aria-expanded="false">
 
 
                 {% comment %} :: CATEGORY HEADER :: {% endcomment %}
@@ -150,7 +152,8 @@
           {% endcomment %}
 
           {% comment %} :: Start math for calculated multi column dropdowns :: {% endcomment %}
-          <li class="nav-primary-link dropdown has_sub_menu" aria-haspopup="true" aria-expanded="false">{{ link.title | link_to: link.url }}
+          <li class="nav-primary-link nav-simple-menu dropdown has_sub_menu" aria-haspopup="true" aria-expanded="false">
+            <a href="{{ link.url }}" class="nav-category-header">{{ link.title }}</a>
             
             {% comment %} :: PLAIN DROPDOWN : Multi-Columns :: {% endcomment %}
             {% if link.links.size > num %}
@@ -183,7 +186,7 @@
 
 {% comment %} :: SINGLE LINK : One lonely weeb link :: {% endcomment %}
         {% else %}
-          <li class="nav-primary-link {{ link.title | replace: ' ', '-' | downcase }}">
+          <li class="nav-primary-link nav-single-link {{ link.title | replace: ' ', '-' | downcase }}">
             <a class="nav-category-header" href="{{ link.url }}">{{ link.title }}</a>
           </li>
         {% endif %}
