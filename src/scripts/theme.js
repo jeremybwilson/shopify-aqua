@@ -1871,8 +1871,7 @@ $(document).ready(function() {
 
   (function cookie_banner() {
     
-    // check the cookie 
-
+    // COOKIE BANNER : Show if no cookie is present for having seen it before
     var check_banner_cookie = $.cookie('gdpr_banner_read');
     if(check_banner_cookie == null) {
       $.fancybox({
@@ -1887,15 +1886,16 @@ $(document).ready(function() {
         closeEffect: 'fade'
       });
 
-      // close the button 
 
-      $('.button-close').click(function() {
+      // CLOSE BUTTON
+      $('#cookie-banner--popup .button-close').click(function() {
         $.cookie('gdpr_banner_read','true', { expires: 180 }); // make the cookie, expires in 180 days
         parent.$.fancybox.close();
 
-        setTimeout(function(){
-          email_popup_load();
-        }, 5000);
+        //  UNCOMMENT BELOW TO ENABLE EMAIL SIGN UP POPUP
+        // setTimeout(function(){
+        //   email_popup_load();
+        // }, 5000);
 
       });
     }
