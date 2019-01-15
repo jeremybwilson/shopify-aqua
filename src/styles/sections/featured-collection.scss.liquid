@@ -199,6 +199,12 @@
       opacity: 0;
       border-radius: 0;
       transition: opacity .25s ease-in-out;
+      pointer-events: none;
+      display: none;
+
+      @include mq( 'lap-and-up' ) {
+        display: block; // so we can fade in, but keep mobile from losing the hover region when over the button
+      }
     }
 
     @include mq('lap-and-up') {
