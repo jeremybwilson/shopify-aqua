@@ -68,7 +68,12 @@
           {% comment %} ..:: WISHLIST ::.. {% endcomment %}
           {% if section.settings.show_wishlist %}
             <li class="nav-item nav-wishlist">
-              {% include 'svg-icon-heart' %}
+              {% comment %} :: PLACEHOLDER HEART ICON ::
+                {% include 'svg-icon-heart' %}
+              {% endcomment %}
+
+              {% comment %} :: Wishlist King App :: {% endcomment %}
+              <!-- include 'wishlist-link' -->
             </li>
           {% endif %}
 
