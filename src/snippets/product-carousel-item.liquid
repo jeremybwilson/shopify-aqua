@@ -85,6 +85,9 @@
   <a href="{{ product.url | within: collection }}">
     {% if settings.vendor %}<p>{{ product.vendor }}</p>{% endif %}
     <h3>{{ product.title }}</h3>
+
+    {% comment %} :: WISHLIST HEART BUTON :: {% endcomment %}
+    <!-- include 'wishlist-button-product' with '{{ product.id }}' -->
   </a>
 
   {% comment %} :: PRICE DISPLAY :: {% endcomment %}

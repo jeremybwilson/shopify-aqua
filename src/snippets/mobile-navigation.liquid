@@ -74,11 +74,21 @@
   </ul>
 
 
-  {% comment %} :: FOOTER - Mobile Nav Menu :: {% endcomment %}
-  {% assign footerItemCount = 1 %}
-  {% if section.settings.show_site_picker and shop.customer_accounts_enabled %}
-    {% assign footerItemCount = 2 %}
+  {% comment %} :: FOOTER - Nav Element Count to size properly :: {% endcomment %}
+  {% assign footerItemCount = 0 %}
+  {% if section.settings.show_site_picker %}
+    {% assign footerItemCount = footerItemCount | plus: 1 %}
   {% endif %}
+
+  {% if shop.customer_accounts_enabled %}
+    {% assign footerItemCount = footerItemCount | plus: 1 %}
+  {% endif %}
+
+  {% if section.settings.show_wishlist %}
+    {% assign footerItemCount = footerItemCount | plus: 1 %}
+  {% endif %}
+
+  {% comment %} :: FOOTER - Mobile Nav Menu :: {% endcomment %}
   <div id="nav-menu-mobile-footer" data-child-count="{{ footerItemCount }}">
 
     {% comment %} ..:: SITE PICKER : (US, UK, EU, CAN) ::.. {% endcomment %}
@@ -92,6 +102,17 @@
     {% if shop.customer_accounts_enabled %}
       <div class="nav-footer-item-mobile nav-account {% if section.settings.account_icon == 'text' %}nav-account-text-mode{% endif %}">
         {% include 'nav-account-item' %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.show_wishlist %}
+      <div class="nav-footer-item-mobile nav-wishlist">
+        {% comment %} :: PLACEHOLDER HEART ICON ::
+          {% include 'svg-icon-heart' %}
+        {% endcomment %}
+
+        {% comment %} :: Wishlist King App :: {% endcomment %}
+        <!-- include 'wishlist-link' -->
       </div>
     {% endif %}
 

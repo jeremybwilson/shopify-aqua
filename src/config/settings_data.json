@@ -1,8 +1,9 @@
 {
-  "presets": {},
+  "presets": {
+  },
   "current": {
-    "international_store_version": "US",
-    "favicon": "shopify:\/\/shop_images\/favicon.png",    
+    "favicon": "shopify:\/\/shop_images\/favicon.png",
+    "google_tag_manager_id": "NONE",
     "announcement_text_color": "#ffffff",
     "announcement_bg_one": "#000000",
     "announcement_bg_two": "#757575",
@@ -10,11 +11,11 @@
     "header_background": "#ffffff",
     "logo_color": "#000000",
     "nav_links": "#000000",
-    "nav_links_hover": "#000000",
-    "nav_links_sale": "#aa5131",
     "nav_header_color": "#000000",
     "nav_sub_header_color": "#757575",
     "nav_list_item_color": "#757575",
+    "nav_links_hover": "#000000",
+    "nav_links_sale": "#aa5131",
     "nav_minor_border_color": "#cccccc",
     "social_links": "#000000",
     "social_links_hover": "#000000",
@@ -26,7 +27,6 @@
     "sale_color": "#bc0000",
     "dotted_color": "#e5e5e5",
     "error_text": "#cb0000",
-    "google_tag_manager_id": "NONE",
     "button_bg": "#e41c39",
     "button_bg_hover": "#a6041c",
     "button_text": "#ffffff",
@@ -41,7 +41,6 @@
     "alt_button_border_color": "rgba(0,0,0,0)",
     "alt_button_border_color_hover": "rgba(0,0,0,0)",
     "alt_button_border_width": 0,
-
     "homepage_instagram_header": "#000",
     "homepage_instagram_text": "#000",
     "filter_bg": "#ffffff",
@@ -54,7 +53,8 @@
     "filter_button_alt_bg": "#ffffff",
     "filter_button_alt_text": "#0153a6",
     "filter_bar_border_color": "#0153a6",
-    "filter_bar_border_width": 3,
+    "quickview_button_bg": "#e41c39",
+    "quickview_button_text": "#FEFFFE",
     "catalog_item_text_color": "#000000",
     "catalog_item_price_color": "#525252",
     "catalog_item_accent_color": "#e61533",
@@ -68,22 +68,28 @@
     "product_badge_diamond_bg": "#0152a6",
     "product_badge_text_color": "#fefffe",
     "react_swatch_outline_color": "#BABABA",
-    "quickview_button_bg": "#e41c39",
-    "quickview_button_text": "#FEFFFE",
     "fancybox_overlay_bg": "0,0,0,0.8",
     "fancybox_close_color": "#5b5b5b",
     "fancybox_close_hover_color": "#9b492b",
+    "discount_modal_enable": true,
+    "discount_modal_config": "eyJjb29raWVFeHBpcmVJbkRheXMiOiA2MCwidGhyZXNob2xkRGlzY291bnRzIjogW3siZGlzY291bnRJZCI6IDEsImRpc3BsYXlOYW1lIjogIldpZ3dhbSBIYXQgKEJsYWNrKSIsImdpZnRJZCI6IDE1NDU5OTY0MDkyNTEwLCJncmFudFR5cGUiOiAicGljayIsImludmVudG9yeUlkIjogMTU0MDIyMTI5ODI4NzgsIm1pblNwZW5kIjogMjAwLCJwcm9kdWN0SGFuZGxlIjogIndpZ3dhbS13aW50ZXItaGF0In0seyJkaXNjb3VudElkIjogMiwiZGlzcGxheU5hbWUiOiAiV2lnd2FtIEhhdCAoR3JheSkiLCJnaWZ0SWQiOiAxNTQ1OTk2NTM3MDQ2MiwiZ3JhbnRUeXBlIjogInBpY2siLCJpbnZlbnRvcnlJZCI6IDE1NDAyMjEzMDE1NjQ2LCJtaW5TcGVuZCI6IDIwMCwicHJvZHVjdEhhbmRsZSI6ICJ3aWd3YW0td2ludGVyLWhhdCJ9LHsiZGlzY291bnRJZCI6IDMsImRpc3BsYXlOYW1lIjogIldpZ3dhbSBIYXQgKE5hdHVyYWwpIiwiZ2lmdElkIjogMTU0NTk5NjU1MDE1MzQsImdyYW50VHlwZSI6ICJwaWNrIiwiaW52ZW50b3J5SWQiOiAxNTQwMjIxMzA0ODQxNCwibWluU3BlbmQiOiAyMDAsInByb2R1Y3RIYW5kbGUiOiAid2lnd2FtLXdpbnRlci1oYXQifV19",
+    "discount_modal_bg": "#fefffe",
+    "discount_modal_text": "#000000",
+    "discount_modal_header": "#164732",
+    "discount_modal_button_bg": "#164732",
+    "discount_modal_button_text": "#fefffe",
+    "discount_modal_button_alt_bg": "#ab5232",
+    "discount_modal_button_alt_text": "#fefffe",
     "gdpr_bg": "#e6e6e6",
     "gdpr_text": "#000000",
     "gdpr_border_color": "#0b56a3",
     "gdpr_border_width": 0,
     "gdpr_button_bg": "#000000",
-    "gdpr_button_text":"#ffffff",
-    "gdpr_button_bg_hover":"#3c3c3c",
-    "gdpr_alt_button_bg":"#ffffff",
-    "gdpr_alt_button_text":"000000",
-    "gdpr_alt_button_bg_hover":"#d6d6d6",
-
+    "gdpr_button_text": "#ffffff",
+    "gdpr_button_bg_hover": "#3c3c3c",
+    "gdpr_alt_button_bg": "#ffffff",
+    "gdpr_alt_button_text": "#000000",
+    "gdpr_alt_button_bg_hover": "#d6d6d6",
     "navigation": "#000000",
     "nav_color": "#ffffff",
     "nav_hover_color": "#000000",
@@ -102,15 +108,6 @@
     "swatch_selected_color": "#ffffff",
     "swatch_selected_background": "#000000",
     "swatch_selected_border": "#000000",
-    "discount_modal_enable": true,
-    "discount_modal_config": "eyJjb29raWVFeHBpcmVJbkRheXMiOiA2MCwidGhyZXNob2xkRGlzY291bnRzIjogW3siZGlzY291bnRJZCI6IDEsImRpc3BsYXlOYW1lIjogIldpZ3dhbSBIYXQgKEJsYWNrKSIsImdpZnRJZCI6IDE1NDU5OTY0MDkyNTEwLCJncmFudFR5cGUiOiAicGljayIsImludmVudG9yeUlkIjogMTU0MDIyMTI5ODI4NzgsIm1pblNwZW5kIjogMjAwLCJwcm9kdWN0SGFuZGxlIjogIndpZ3dhbS13aW50ZXItaGF0In0seyJkaXNjb3VudElkIjogMiwiZGlzcGxheU5hbWUiOiAiV2lnd2FtIEhhdCAoR3JheSkiLCJnaWZ0SWQiOiAxNTQ1OTk2NTM3MDQ2MiwiZ3JhbnRUeXBlIjogInBpY2siLCJpbnZlbnRvcnlJZCI6IDE1NDAyMjEzMDE1NjQ2LCJtaW5TcGVuZCI6IDIwMCwicHJvZHVjdEhhbmRsZSI6ICJ3aWd3YW0td2ludGVyLWhhdCJ9LHsiZGlzY291bnRJZCI6IDMsImRpc3BsYXlOYW1lIjogIldpZ3dhbSBIYXQgKE5hdHVyYWwpIiwiZ2lmdElkIjogMTU0NTk5NjU1MDE1MzQsImdyYW50VHlwZSI6ICJwaWNrIiwiaW52ZW50b3J5SWQiOiAxNTQwMjIxMzA0ODQxNCwibWluU3BlbmQiOiAyMDAsInByb2R1Y3RIYW5kbGUiOiAid2lnd2FtLXdpbnRlci1oYXQifV19",
-    "discount_modal_bg": "#fefffe",
-    "discount_modal_text": "#000000",
-    "discount_modal_header": "#164732",
-    "discount_modal_button_bg": "#164732",
-    "discount_modal_button_text": "#fefffe",
-    "discount_modal_button_alt_bg": "#ab5232",
-    "discount_modal_button_alt_text": "#fefffe",
     "new_background": "#222",
     "new_text": "#ffffff",
     "sale_background": "#af0000",
@@ -148,6 +145,7 @@
     "quickview": true,
     "vendor": false,
     "show_collection_seo_block": true,
+    "filter_bar_border_width": 3,
     "details_align": "center",
     "secondary_images_hover": "image_flip",
     "cart_notes_enable": false,
@@ -192,6 +190,7 @@
     "checkout_accent_color": "#e41c39",
     "checkout_button_color": "#0a56a4",
     "checkout_error_color": "#ff6d6d",
+    "international_store_version": "US",
     "cart_links": "#000000",
     "cart_links_hover": "#000000",
     "newsletter_color": "#ffffff",
@@ -271,7 +270,6 @@
         ],
         "settings": {
           "full_width_header": false,
-          "megamenu_full_width": true,
           "nav_transparent_landing": true,
           "show_announcement_text": true,
           "num_of_promo_banners": "1",
@@ -284,10 +282,10 @@
           "logo_size": 24,
           "logo_transform": "uppercase",
           "logo_weight": "bold",
-          "cart_icon": "text",
-          "cart_icon_text_value": "Cart",
           "account_icon": "text",
           "account_icon_text_value": "Sign In",
+          "cart_icon": "text",
+          "cart_icon_text_value": "Cart",
           "show_site_picker": true,
           "site_picker_manifest": "US|United States|https:\/\/xtratuf.com,EU|European Union|https:\/\/www.muckbootcompany.eu,UK|United Kingdom|https:\/\/www.muckbootcompany.co.uk",
           "show_search": true,
@@ -295,6 +293,7 @@
           "main_nav": "main-menu",
           "nav_center": true,
           "nav_height": 60,
+          "megamenu_full_width": true,
           "linklist_breakpoint": 10
         }
       },
@@ -313,8 +312,6 @@
           "footer-menu-content"
         ],
         "settings": {
-          "color_footer_bg": "#f5f5f5",
-          "color_footer_text": "#3d4246"
         }
       },
       "collection-template": {
@@ -347,8 +344,6 @@
           "thumbnails": "left",
           "zoom_image_position": "zoom_over_main",
           "related_products": "none",
-          "free_shipping_header_text": "Free Shipping & Returns",
-          "free_shipping_text": "<p>FREE Shipping and FREE Returns for all ground orders. Orders placed before 2PM EST Monday &ndash; Friday will ship next day. For additional information, visit our <a href=\"\/pages\/shipping-returns\" title=\"Shipping and Return\">Shipping page<\/a>.<\/p>",
           "show_social": false,
           "size_chart_page": "size-chart"
         }
@@ -408,8 +403,6 @@
           "newsletter_success": "<p>You have successfully joined our newsletter<\/p>"
         }
       },
-
-
       "home-hero_slideshow": {
         "type": "slideshow",
         "blocks": {
@@ -420,9 +413,8 @@
               "mobile_image": "shopify:\/\/shop_images\/home-hero-mobile-slide-1.jpg",
               "image_link": "\/collections\/legacy\/audience_men",
               "heading": "FROM ITALY WITH LOVE",
-              "heading_size": 30,
               "subheading": "From kitten heels to over-the-knee boots.",
-              "subheading_size": 16,
+              "caption_text_align": "left",
               "cta_one_link": "\/collections\/legacy\/audience_men",
               "cta_one_button_text": "SHOP NOW",
               "cta_one_line": "left",
@@ -430,7 +422,6 @@
               "cta_two_button_text": "",
               "cta_two_line": "none",
               "caption_color_scheme": "light",
-              "caption_text_align": "left",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
               "caption_horizontal": "left",
@@ -446,9 +437,8 @@
               "mobile_image": "shopify:\/\/shop_images\/home-hero-mobile-slide-2.jpg",
               "image_link": "\/collections\/legacy\/audience_men",
               "heading": "FROM ITALIA WITH LOVE",
-              "heading_size": 30,
               "subheading": "From over-the-knee boots to kitten heels.",
-              "subheading_size": 16,
+              "caption_text_align": "right",
               "cta_one_link": "\/collections\/legacy\/audience_men",
               "cta_one_button_text": "Button #1",
               "cta_one_line": "none",
@@ -456,7 +446,6 @@
               "cta_two_button_text": "Button #2",
               "cta_two_line": "right",
               "caption_color_scheme": "light",
-              "caption_text_align": "right",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
               "caption_horizontal": "right",
@@ -476,8 +465,6 @@
           "slider_speed": 3
         }
       },
-
-
       "home-twin_promos": {
         "type": "twin-promos",
         "blocks": {
@@ -488,13 +475,13 @@
               "mobile_image": "shopify:\/\/shop_images\/home-twin_promo--desktop-left.jpg",
               "link": "\/collections\/mid-tall-boots\/audience_women",
               "heading_text": "URBAN EXPLORER",
-              "body_text": "The Modern Chelsea",
+              "body_text": "<p>The Modern Chelsea<\/p>",
               "text_align": "left",
               "cta_type": "text",
               "cta_text": "SHOP BOOTS",
               "cta_color_text": "#000000",
-              "cta_color_text_hover": "#616365",
               "cta_color_bg": "rgba(0,0,0,0)",
+              "cta_color_text_hover": "#616365",
               "cta_color_bg_hover": "rgba(0,0,0,0)",
               "cta_accent_mark": "left"
             }
@@ -506,13 +493,13 @@
               "mobile_image": "shopify:\/\/shop_images\/home-twin_promo--desktop-right.jpg",
               "link": "shopify:\/\/collections\/kids",
               "heading_text": "WELL ZIPPED",
-              "body_text": "The Updated Bootie",
+              "body_text": "<p>The Updated Bootie<\/p>",
               "text_align": "left",
               "cta_type": "text",
               "cta_text": "SHOP BOOTIES",
               "cta_color_text": "#000000",
-              "cta_color_text_hover": "#616365",
               "cta_color_bg": "rgba(0,0,0,0)",
+              "cta_color_text_hover": "#616365",
               "cta_color_bg_hover": "rgba(0,0,0,0)",
               "cta_accent_mark": "left"
             }
@@ -526,8 +513,6 @@
           "full_width": true
         }
       },
-
-
       "home-featured_collection_slideshow": {
         "type": "slideshow",
         "blocks": {
@@ -539,6 +524,7 @@
               "image_link": "\/collections\/legacy\/audience_men",
               "heading": "FRESH FOR FALL",
               "subheading": "From kitten heels to over-the-knee boots.",
+              "caption_text_align": "center",
               "cta_one_link": "\/collections\/legacy\/audience_men",
               "cta_one_button_text": "SHOP NOW",
               "cta_one_line": "left",
@@ -546,7 +532,6 @@
               "cta_two_button_text": "",
               "cta_two_line": "none",
               "caption_color_scheme": "light",
-              "caption_text_align": "center",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
               "caption_horizontal": "right",
@@ -565,44 +550,36 @@
           "slider_speed": 10
         }
       },
-
-
       "home-featured_products_list": {
         "type": "featured-collection",
         "settings": {
           "heading": "Recommended For You",
           "homepage_collection": "do-not-delete-this-collection",
+          "homepage_product_display": "carousel",
+          "show_swatches": true,
           "cta_symbol_placement": "left",
           "show_money": "lowest",
-          "show_swatches": true,
-          "show_nav_dots": "mobile",
           "show_nav_arrows": "hidden",
+          "show_nav_dots": "mobile",
           "homepage_product_limit": 8,
-          "homepage_product_display": "carousel",
           "products_per_row": 4
         }
       },
-
-
       "home-about_image_with_text": {
         "type": "image-with-text",
         "settings": {
           "image_desktop": "shopify:\/\/shop_images\/home-about_image_with_text--desktop.jpg",
           "image_mobile": "shopify:\/\/shop_images\/home-about_image_with_text--mobile.jpg",
           "heading_text": "Visit Us in NYC",
-          "body_text": "<p>965 Madison Ave at 75th Street</p>",
+          "body_text": "<p>965 Madison Ave at 75th Street<\/p>",
           "button_text": "LEARN MORE",
-          "button_link": "/pages/about",
+          "button_link": "\/pages\/about",
           "button_symbol_placement": "left",
-
           "image_side": "left",
           "image_width": 64,
-          "text-vertical": "center",
           "text_align": "center"
         }
       },
-
-
       "home-feature_highlight_slideshow": {
         "type": "slideshow",
         "blocks": {
@@ -614,6 +591,7 @@
               "image_link": "\/collections\/legacy\/audience_men",
               "heading": "",
               "subheading": "When you see this symbol the shoe is engineered to be weatherproof & stain resistant",
+              "caption_text_align": "center",
               "cta_one_link": "\/collections\/legacy\/audience_men",
               "cta_one_button_text": "LEARN MORE",
               "cta_one_line": "left",
@@ -621,7 +599,6 @@
               "cta_two_button_text": "",
               "cta_two_line": "none",
               "caption_color_scheme": "light",
-              "caption_text_align": "center",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
               "caption_horizontal": "center",
@@ -640,21 +617,16 @@
           "slider_speed": 8
         }
       },
-
-
       "home-instagram_feed": {
         "type": "instagram",
         "settings": {
           "heading": "@Aquatalia",
-          "text": "",
-          "cta_text": "FOLLOW US",
           "cta_link": "http:\/\/www.instagram.com\/aquatalia",
+          "cta_text": "FOLLOW US",
           "cta_symbol_placement": "left",
           "instagram_access_token": ""
         }
       },
-
-
       "page-about-template": {
         "type": "page-about-template",
         "blocks": {
@@ -710,7 +682,6 @@
           "about_text_color": "#e6e6e6"
         }
       },
-
       "slideshow": {
         "type": "slideshow",
         "blocks": {
@@ -951,6 +922,14 @@
       "home-feature_highlight_slideshow",
       "home-instagram_feed",
       "home-about_image_with_text"
-    ]
+    ],
+    "app_wk_enabled": true,
+    "app_wk_login_required": false,
+    "app_wk_icon": "heart",
+    "app_wk_icon_stroke": "#9e9e9e",
+    "app_wk_icon_fill": "#000000",
+    "app_wk_col_bg_shape": "square",
+    "app_wk_share_position": "top",
+    "app_wk_products_per_row": "4"
   }
 }

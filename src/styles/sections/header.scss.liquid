@@ -65,6 +65,9 @@ body.index #nav-bar-wrapper {
             fill: $transparentLandingFontColor !important;
             transition: all 0.25s ease-in-out;
         }
+        .nav-wishlist svg path {
+            stroke: $transparentLandingFontColor !important;
+        }
         .icon-nav-mobile-menu .bar {
             background: $transparentLandingFontColor !important;
         }
@@ -101,6 +104,10 @@ body.index #nav-bar-wrapper {
             .icon-header-logo path {
                 color: $navHeaderColor !important; 
                 fill: $navHeaderColor !important;
+            }
+
+            .nav-wishlist svg path {
+                stroke: $navHeaderColor !important;
             }
 
             .icon-nav-mobile-menu .bar {
@@ -456,11 +463,31 @@ body.js-drawer-open {
                 width: 40px;
                 padding-right: 10px; 
 
+                // PLACEHOLDER ICON : Heart icon to stub out wishlist image
                 svg .heart-polygon {
                     fill: rgba( 0, 0, 0, 0 );
                     stroke: {{ settings.nav_links }};
                     stroke-miterlimit: 10;
                     stroke-width: 4px;
+                }
+
+                // WISHLIST KING : button icon from wishlist app
+                .wk-link {
+
+                    // SVG ICON WRAP : wrapping around svg icon
+                    .wk-icon {
+                        margin-top: -3px; // Alignment adjustment
+
+                        // SVG ICON : preventing the natural fill in when items in list in this design
+                        svg path {
+                            fill: transparent !important; // override filled in state for icon
+                        }
+                    }
+
+                    // Count of wishlist items, hidden on this design
+                    .wk-count {
+                        display: none;
+                    }
                 }
             }
 
@@ -1187,11 +1214,23 @@ body.js-drawer-open {
             }
 
             // Site Picker + Accounts Both Enabled
-            &[data-child-count*='2'] {
+            &[data-child-count='2'] {
                 .nav-footer-item-mobile {
                     width: 50%;
 
                     .site-picker-item { // Add a border liner to clean up menu display for now
+                        border-right: 1px solid $color--light-gray;
+                    }
+                }
+            }
+
+            // Site Picker + Accounts + Wishlist enabled
+            &[data-child-count='3'] {
+                .nav-footer-item-mobile {
+                    width: 33.33%;
+
+                    .site-picker-item,
+                    &.nav-account { // Add a border liner to clean up menu display for now
                         border-right: 1px solid $color--light-gray;
                     }
                 }
@@ -1291,6 +1330,22 @@ body.js-drawer-open {
                 text-align: center;
                 border-top: 1px solid $color--light-gray;
                 background: {{ settings.header_background }};
+            }
+
+            // WISHLIST : Styles specific to the wishlist block on mobile
+            .nav-wishlist {
+                text-align: center;
+                border-top: 1px solid $color--light-gray;
+                background: {{ settings.header_background }};
+
+                .wk-link {
+                    width: 100%; // increase clickability
+
+                    .wk-icon {
+                        margin-top: 2px;
+                    }
+                }
+                    
             }
         }
     }

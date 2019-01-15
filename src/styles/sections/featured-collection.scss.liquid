@@ -151,6 +151,7 @@
 
     // PRODUCT INFO : BODY TEXT CONTENT
     .product-info {
+      position: relative;
       text-align: left;
       width: 100%;
       padding-left: 10px;
@@ -160,7 +161,9 @@
         text-decoration: none;
       }
 
+      // GRID ITEM : PRODUCT NAME HEADING
       h3 {
+        width: calc( 100% - 50px );
         margin: 0;
         color: $color--primary-2;
         font-weight: $font-weight--medium;
@@ -168,6 +171,19 @@
         text-transform: uppercase;
         text-align: left;
         margin-bottom: 6px;
+      }
+
+      // WISHLIST ICON 
+      .wk-button-product {
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin: 0;
+        padding-top: 2px;
+
+        .wk-icon {
+          top: 0;
+        }
       }
 
       .price {
