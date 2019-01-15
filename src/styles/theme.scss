@@ -11,6 +11,13 @@
 @import url('global.scss.liquid');
 
 
+/*================= Vendor =================*/
+@import url('./vendor/appmate-wishlist-king.scss.liquid');
+@import url('./vendor/fancybox.scss.liquid');
+@import url('./vendor/owlcarousel.scss.liquid');
+@import url('./vendor/slick.scss.liquid');
+
+
 /*================ Sections ================*/
 // please refer to global for any notes re:styling
 @import url('./sections/about.scss.liquid');
@@ -48,9 +55,3 @@
 @import url('./react-components/react-badge.scss.liquid');
 @import url('./react-components/react-discounts.scss.liquid');
 @import url('./react-components/react-swatches.scss.liquid');
-
-
-/*================= Vendor =================*/
-@import url('./vendor/fancybox.scss.liquid');
-@import url('./vendor/owlcarousel.scss.liquid');
-@import url('./vendor/slick.scss.liquid');
