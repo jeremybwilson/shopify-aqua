@@ -4,8 +4,8 @@
     "theme_name": "Aquatalia 2019",
     "theme_author": "Branded Online",
     "theme_version": "1.0.0",
-    "theme_documentation_url": "https://www.brandedonline.com",
-    "theme_support_url": "https://www.brandedonline.com"
+    "theme_documentation_url": "https:\/\/www.brandedonline.com",
+    "theme_support_url": "https:\/\/www.brandedonline.com"
   },
   {
     "name": "Favicon",
@@ -29,11 +29,10 @@
         "default": "GTM-NONE"
       }
     ]
-  },  
+  },
   {
     "name": "Colors",
     "settings": [
-
       {
         "type": "header",
         "content": "Announcement Header"
@@ -56,8 +55,6 @@
         "label": "Announcement BG - #2",
         "default": "#073322"
       },
-
-
       {
         "type": "header",
         "content": "Navigation Header"
@@ -137,8 +134,6 @@
         "label": "Social icons hover",
         "default": "#000000"
       },
-
-
       {
         "type": "header",
         "content": "General"
@@ -191,8 +186,6 @@
         "label": "Error text",
         "default": "#f00"
       },
-
-
       {
         "type": "header",
         "content": "Buttons"
@@ -289,9 +282,6 @@
         "label": "Secondary Button Border Width",
         "default": 0
       },
-
-
-
       {
         "type": "header",
         "content": "Homepage"
@@ -308,7 +298,6 @@
         "label": "Instagram Feed - Text",
         "default": "#ffffff"
       },
-
       {
         "type": "header",
         "content": "Collection + Filters"
@@ -465,8 +454,6 @@
         "info": "(For React Swatches on Collection Views)",
         "default": "#9a9a9a"
       },
-
-
       {
         "type": "header",
         "content": "Modals + Fancybox"
@@ -490,19 +477,16 @@
         "label": "Modal Close Hover Color",
         "default": "#9B492B"
       },
-
-
-
       {
         "type": "header",
         "content": "Discount Modal (React-Discounts)"
       },
       {
         "type": "checkbox",
-        "default" : false,
+        "default": false,
         "id": "discount_modal_enable",
         "label": "Enable Discount Modals",
-        "info" : "(Powers the 'Spend X, Pick Free Gift' component)"
+        "info": "(Powers the 'Spend X, Pick Free Gift' component)"
       },
       {
         "type": "text",
@@ -553,9 +537,6 @@
         "label": "Secondary button Text",
         "default": "#fefffe"
       },
-
-
-
       {
         "type": "header",
         "content": "GDPR Banner"
@@ -624,10 +605,6 @@
         "label": "GDPR Alt Button Hover",
         "default": "#d6d6d6"
       },
-
-
-
-
       {
         "type": "header",
         "content": "Navigation"
@@ -709,8 +686,6 @@
         "label": "Text hover",
         "default": "#000000"
       },
-
-
       {
         "type": "header",
         "content": "Product variant swatches"
@@ -751,8 +726,6 @@
         "label": "Swatch selected border",
         "default": "#000000"
       },
-
-
       {
         "type": "header",
         "content": "Product icons"
@@ -832,8 +805,7 @@
         "id": "social_footer_header",
         "label": "Social - Header",
         "default": "#0a56a4"
-      },   
-
+      },
       {
         "type": "header",
         "content": "Footer"
@@ -888,14 +860,14 @@
         "content": "Sizes"
       },
       {
-        "type":      "range",
-        "id":        "announcement_text_size",
-        "min":       12,
-        "max":       24,
-        "step":      1,
-        "unit":      "px",
-        "label":     "Announcement Promo Text",
-        "default":   18
+        "type": "range",
+        "id": "announcement_text_size",
+        "min": 12,
+        "max": 24,
+        "step": 1,
+        "unit": "px",
+        "label": "Announcement Promo Text",
+        "default": 18
       },
       {
         "type": "range",
@@ -1071,10 +1043,10 @@
       },
       {
         "type": "checkbox",
-        "default" : true,
+        "default": true,
         "id": "enable_nav_name_styling",
         "label": "Stylize Key Nav Items",
-        "info" : "(Adds bold/color-selection to nav items like 'Sale' in the menu)"
+        "info": "(Adds bold\/color-selection to nav items like 'Sale' in the menu)"
       }
     ]
   },
@@ -1150,7 +1122,7 @@
           }
         ],
         "default": "no_hover_effect",
-        "info": "On swatch hover requires an image to be assigned to a variant [See instructions](https://help.shopify.com/manual/products/product-variant-images#add-images-to-existing-variants)"
+        "info": "On swatch hover requires an image to be assigned to a variant [See instructions](https:\/\/help.shopify.com\/manual\/products\/product-variant-images#add-images-to-existing-variants)"
       }
     ]
   },
@@ -1188,7 +1160,7 @@
         "id": "ajax_cart_low_stock_text",
         "label": "Low stock alert text",
         "default": "This item does not have enough stock to add to your cart."
-      }      
+      }
     ]
   },
   {
@@ -1198,37 +1170,37 @@
         "type": "text",
         "id": "twittername",
         "label": "Your Twitter link",
-        "info": "Example: //twitter.com/shopify"
+        "info": "Example: \/\/twitter.com\/shopify"
       },
       {
         "type": "text",
         "id": "facebook_url",
         "label": "Your facebook url",
-        "info": "Example: //facebook.com/shopify"
+        "info": "Example: \/\/facebook.com\/shopify"
       },
       {
         "type": "text",
         "id": "pinterest_url",
         "label": "Your Pinterest url",
-        "info": "Example: //pinterest.com/shopify"
+        "info": "Example: \/\/pinterest.com\/shopify"
       },
       {
         "type": "text",
         "id": "tumblr_url",
         "label": "Your Tumblr url",
-        "info": "Example: //shopify.tumblr.com"
+        "info": "Example: \/\/shopify.tumblr.com"
       },
       {
         "type": "text",
         "id": "youtube_url",
         "label": "Your YouTube url",
-        "info": "Example: //youtube.com/shopify"
+        "info": "Example: \/\/youtube.com\/shopify"
       },
       {
         "type": "text",
         "id": "googleplus_url",
         "label": "Your Google+ url",
-        "info": "Example: //plus.google.com/shopify"
+        "info": "Example: \/\/plus.google.com\/shopify"
       },
       {
         "type": "text",
@@ -1269,14 +1241,14 @@
         "id": "email_popup_input_placeholder",
         "label": "Email popup placeholder text",
         "default": "Enter Your Email Address"
-      },      
+      },
       {
         "type": "html",
         "id": "email_popup_bottom_text",
         "label": "Fine print",
-        "default": "<p>By providing your email address, you agree to our <a href=\"https://www.honeywell.com/privacy-statement\">Privacy Policy</a> & <a href=\"/pages/terms-and-conditions\">Terms of Service</a>.</p>"
+        "default": "<p>By providing your email address, you agree to our <a href=\"https:\/\/www.honeywell.com\/privacy-statement\">Privacy Policy<\/a> & <a href=\"\/pages\/terms-and-conditions\">Terms of Service<\/a>.<\/p>"
       },
-      { 
+      {
         "type": "text",
         "id": "email_popup_error",
         "label": "Error Text",
@@ -1286,7 +1258,7 @@
         "type": "richtext",
         "id": "email_popup_success",
         "label": "Success Text",
-        "default": "<p>You have successfully joined our newsletter</p>"
+        "default": "<p>You have successfully joined our newsletter<\/p>"
       }
     ]
   },
@@ -1305,7 +1277,7 @@
         "type": "richtext",
         "id": "cookie_banner_mobile_text",
         "label": "Mobile text",
-        "default": "<p>We use cookies.</p>"
+        "default": "<p>We use cookies.<\/p>"
       },
       {
         "type": "url",
@@ -1326,7 +1298,7 @@
         "type": "html",
         "id": "cookie_banner_desktop_text",
         "label": "Desktop text",
-        "default": "<p>This site uses cookies to simplify and improve your usage and experience of this website. Cookies are small text files stored on the device you are using to access this website. If you ignore this message and continue without changing your browser settings, we will assume that you are consenting to our use of cookies. For further information on our use of cookies, please see our <a href=\"https://www.honeywell.com/privacy-statement\">Privacy Statement</a></p>"
+        "default": "<p>This site uses cookies to simplify and improve your usage and experience of this website. Cookies are small text files stored on the device you are using to access this website. If you ignore this message and continue without changing your browser settings, we will assume that you are consenting to our use of cookies. For further information on our use of cookies, please see our <a href=\"https:\/\/www.honeywell.com\/privacy-statement\">Privacy Statement<\/a><\/p>"
       },
       {
         "type": "text",
@@ -1341,7 +1313,7 @@
     "settings": [
       {
         "type": "paragraph",
-        "content": "To offer multiple currencies on your online store, you must first [edit your store's currency formatting](https://docs.shopify.com/support/settings/general/tell-my-script-where-to-find-money-formats)."
+        "content": "To offer multiple currencies on your online store, you must first [edit your store's currency formatting](https:\/\/docs.shopify.com\/support\/settings\/general\/tell-my-script-where-to-find-money-formats)."
       },
       {
         "type": "checkbox",
@@ -1371,13 +1343,139 @@
         "id": "supported_currencies",
         "label": "Supported currencies",
         "default": "INR GBP CAD USD AUD EUR JPY",
-        "info": "Use the country's ISO [currency code](http://www.xe.com/iso4217.php). Separate your currency codes with a space."
+        "info": "Use the country's ISO [currency code](http:\/\/www.xe.com\/iso4217.php). Separate your currency codes with a space."
       },
       {
         "type": "text",
         "id": "default_currency",
         "label": "Default currency",
         "default": "USD"
+      }
+    ]
+  },
+  {
+    "name": "Wishlist App",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Styling & Customisations",
+        "info": "Please note: Wishlist King is 100% customisable to integrate seamlessly with any theme. If you need customisations beyond what you can change below, please get in touch: support@appmate.io"
+      },
+      {
+        "type": "checkbox",
+        "id": "app_wk_enabled",
+        "label": "Enable Wishlist King",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "app_wk_login_required",
+        "label": "Customer Login Required",
+        "default": false
+      },
+      {
+        "type": "select",
+        "id": "app_wk_icon",
+        "label": "Wishlist Icon",
+        "info": "Choose between Heart or Star icon. For your own custom icon, please contact support@appmate.io",
+        "options": [
+          {
+            "value": "heart",
+            "label": "Heart"
+          },
+          {
+            "value": "star",
+            "label": "Star"
+          }
+        ],
+        "default": "heart"
+      },
+      {
+        "type": "color",
+        "id": "app_wk_icon_stroke",
+        "label": "Wishlist Icon Unfilled Color",
+        "info": "(The 'Add to Wishlist' state of icon)",
+        "default": "#9e9e9e"
+      },
+      {
+        "type": "color",
+        "id": "app_wk_icon_fill",
+        "label": "Wishlist Icon Filled Color",
+        "info": "(The 'Added' state of icon)",
+        "default": "#000000"
+      },
+
+      {
+        "type": "header",
+        "content": "Button - Collection"
+      },
+      {
+        "type": "select",
+        "id": "app_wk_col_bg_shape",
+        "label": "Button Shape",
+        "options": [
+          {
+            "value": "square",
+            "label": "Square"
+          },
+          {
+            "value": "circle",
+            "label": "Circle"
+          },
+          {
+            "value": "none",
+            "label": "No Background"
+          }
+        ],
+        "default": "square"
+      },
+      {
+        "type": "header",
+        "content": "Wishlist Page"
+      },
+      {
+        "type": "select",
+        "id": "app_wk_share_position",
+        "label": "Share Wishlist Position",
+        "options": [
+          {
+            "value": "top",
+            "label": "Top"
+          },
+          {
+            "value": "bottom",
+            "label": "Bottom"
+          },
+          {
+            "value": "hidden",
+            "label": "Hidden"
+          }
+        ],
+        "default": "top"
+      },
+      {
+        "type": "select",
+        "id": "app_wk_products_per_row",
+        "label": "Products per Row",
+        "options": [
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5"
+          },
+          {
+            "value": "6",
+            "label": "6"
+          }
+        ],
+        "default": "4"
       }
     ]
   }
