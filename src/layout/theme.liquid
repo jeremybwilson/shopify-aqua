@@ -70,6 +70,11 @@
     {{ 'instafeed.js' | asset_url | script_tag }}
 	{% endif %}
 
+  {% comment %} :: Wishlist King App :: {% endcomment %}
+  {% if settings.app_wk_enabled %}
+    {% include 'appmate-wishlist-king' %}
+  {% endif %}
+
 
 
   <!-- Favicons
