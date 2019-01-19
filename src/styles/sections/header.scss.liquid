@@ -20,7 +20,7 @@ $navHeaderColor: {{ settings.nav_header_color }};
 $navSubHeaderColor: {{ settings.nav_sub_header_color }};
 $navListItemColor: {{ settings.nav_list_item_color }};
 $navHoverColor: {{ settings.nav_hover_color }};
-$transparentLandingFontColor: #ffffff;
+$transparentLandingFontColor: {{ settings.nav_transparent_landing_color }};
 
 #header-section {
     position: relative;
@@ -38,82 +38,21 @@ $transparentLandingFontColor: #ffffff;
  *  When setting 'nav_transparent_landing' is enabled, we set navbar colorations to 
  *  be transparent when idle on ONLY the homepage, can use the classing on body
  *  to add more pages by classnames when needed. 
+ * 
+ * NOTE : The show-transparent-landing is for COLLECTION PAGE HEADERS with BANNERS
  * --------------------------------------------- */
-body.index #nav-bar-wrapper {
-
-    &.transparent-landing {
-        margin-bottom: -80px;
-        background: rgba( 0,0,0,0 );
-
-        #nav-bar-bg,
-        #nav-user ul#nav-user-list .nav-sites ul.sites-picker,
-        #nav-user ul#nav-user-list .nav-sites ul.sites-picker li,
-        #nav-user ul#nav-user-list .nav-sites ul.sites-picker li .site-name {
-            background: rgba( 0, 0, 0, 0 );
-            transition: $navShadowAni;
-        }
-
-        // Easier to bundle it as an important'd override, then override again elow this in the isStuck block
-        .nav-category-header,
-        .account-text,
-        .icon-cart-text,
-        .cart-count,
-        .site-name,
-        .nav-item svg path,
-        .icon-header-logo path {
-            color: $transparentLandingFontColor !important; 
-            fill: $transparentLandingFontColor !important;
-            transition: all 0.25s ease-in-out;
-        }
-        .nav-wishlist svg path {
-            stroke: $transparentLandingFontColor !important;
-        }
-        .icon-nav-mobile-menu .bar {
-            background: $transparentLandingFontColor !important;
-        }
+body.index, // Always on homepage
+body.show-transparent-landing { // Apply this class via js to enable transparent landing on other pages
+    @import url('../snippets/header-transparent-landing.scss.liquid');
+}
+body.show-transparent-landing-mobile {
+    @include mq( 'phone-and-tablet' ) {
+        @import url('../snippets/header-transparent-landing.scss.liquid');
     }
-
-    // SHADOW : When stick nav is active
-    &:hover,
-    &.isStuck,
-    &.show-search-bar,
-    &.mobile-nav-open {
-        box-shadow: $navBoxShadow; 
-
-        #nav-logo-backing {
-            box-shadow: $navBoxShadow;
-        }
-
-        &.transparent-landing {
-            background: {{ settings.header_background }};
-
-            #nav-bar-bg,
-            #nav-user ul#nav-user-list .nav-sites ul.sites-picker,
-            #nav-user ul#nav-user-list .nav-sites ul.sites-picker li,
-            #nav-user ul#nav-user-list .nav-sites ul.sites-picker li .site-name {
-                background: {{ settings.header_background }};
-            }
-
-            // Easier to bundle it as an important'd override, then override again elow this in the isStuck block
-            .nav-category-header,
-            .account-text,
-            .icon-cart-text,
-            .cart-count,
-            .site-name,
-            .nav-item svg path,
-            .icon-header-logo path {
-                color: $navHeaderColor !important; 
-                fill: $navHeaderColor !important;
-            }
-
-            .nav-wishlist svg path {
-                stroke: $navHeaderColor !important;
-            }
-
-            .icon-nav-mobile-menu .bar {
-                background: $navHeaderColor !important;
-            }
-        }
+}
+body.show-transparent-landing-desktop {
+    @include mq( 'lap-and-up' ) {
+        @import url('../snippets/header-transparent-landing.scss.liquid');
     }
 }
 

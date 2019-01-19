@@ -1,0 +1,83 @@
+// HEADER-TRANSPARENT-LANDING.SCSS
+// Note : this file is imported into header.scss directly as it needed to nest in various media queries cleanly
+
+
+/*  TRANSPARENT LANDING : Core Styles
+ * ---------------------------------------------- */
+#nav-bar-wrapper {
+
+    &.transparent-landing {
+        margin-bottom: -80px;
+        background: rgba( 0,0,0,0 );
+
+        #nav-bar-bg,
+        #nav-user ul#nav-user-list .nav-sites ul.sites-picker,
+        #nav-user ul#nav-user-list .nav-sites ul.sites-picker li,
+        #nav-user ul#nav-user-list .nav-sites ul.sites-picker li .site-name {
+            background: rgba( 0, 0, 0, 0 );
+            transition: $navShadowAni;
+        }
+
+        // Easier to bundle it as an important'd override, then override again elow this in the isStuck block
+        .nav-category-header,
+        .account-text,
+        .icon-cart-text,
+        .cart-count,
+        .site-name,
+        .nav-item svg path,
+        .icon-header-logo path {
+            color: $transparentLandingFontColor !important; 
+            fill: $transparentLandingFontColor !important;
+            transition: all 0.25s ease-in-out;
+        }
+        .nav-wishlist svg path {
+            stroke: $transparentLandingFontColor !important;
+        }
+        .icon-nav-mobile-menu .bar {
+            background: $transparentLandingFontColor !important;
+        }
+    }
+
+    // SHADOW : When stick nav is active
+    &:hover,
+    &.isStuck,
+    &.show-search-bar,
+    &.mobile-nav-open {
+        box-shadow: $navBoxShadow; 
+
+        #nav-logo-backing {
+            box-shadow: $navBoxShadow;
+        }
+
+        &.transparent-landing {
+            background: {{ settings.header_background }};
+
+            #nav-bar-bg,
+            #nav-user ul#nav-user-list .nav-sites ul.sites-picker,
+            #nav-user ul#nav-user-list .nav-sites ul.sites-picker li,
+            #nav-user ul#nav-user-list .nav-sites ul.sites-picker li .site-name {
+                background: {{ settings.header_background }};
+            }
+
+            // Easier to bundle it as an important'd override, then override again elow this in the isStuck block
+            .nav-category-header,
+            .account-text,
+            .icon-cart-text,
+            .cart-count,
+            .site-name,
+            .nav-item svg path,
+            .icon-header-logo path {
+                color: $navHeaderColor !important; 
+                fill: $navHeaderColor !important;
+            }
+
+            .nav-wishlist svg path {
+                stroke: $navHeaderColor !important;
+            }
+
+            .icon-nav-mobile-menu .bar {
+                background: $navHeaderColor !important;
+            }
+        }
+    }
+}
