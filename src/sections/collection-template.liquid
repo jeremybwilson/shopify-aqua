@@ -1,84 +1,120 @@
-<div data-section-id="{{ section.id }}" class="collection-template" data-section-type="collection-template">
+{% comment %} :: BANNER SETUP : Check for a configured banner-image for this collection :: {% endcomment %}
+{% assign has_banner_desktop = false %}
+{% assign has_banner_mobile = false %}
+{% for block in section.blocks %}
+  {% if block.settings.collection_handle == collection.handle %}
+
+    {% comment %} :: BANNER CONFIG - Populate config + set has_banner flag :: {% endcomment %}
+    {% assign banner_config = block.settings %}
+
+    {% comment %} :: TRANSPARENT NAV HELPER FLAGS - basically only do a transparent nav when banner is present :: {% endcomment %}
+    {% if block.settings.banner_image_desktop %}
+      {% assign has_banner_desktop = true %}
+    {% endif %}
+    {% if block.settings.banner_image_mobile %}
+      {% assign has_banner_mobile = true %}
+    {% endif %}
+
+    {% comment %} :: STOP ITERATION - Config is built :: {% endcomment %}
+    {% break %}
+
+  {% endif %}
+{% endfor %}
+
+
+
+{% comment %} :: BEGIN COLLECTION SECTION :: {% endcomment %}
+<div class="collection-template" 
+  data-section-id="{{ section.id }}" 
+  data-section-type="collection-template"
+  data-has-banner-desktop="{{ has_banner_desktop }}"
+  data-has-banner-mobile="{{ has_banner_mobile }}"
+  data-transparent-landing="{{ section.settings.nav_transparent_landing }}">
   
+  {% comment %} :: BANNER IMAGE : Build banner header if one setup for this collection :: {% endcomment %}
+  <div class="collection-full-width-wrap">
+    {% if has_banner_desktop or has_banner_mobile %}
+      {% include 'collection-banner-image', config: banner_config %}
+    {% endif %}
+
+    {% comment %} :: DESCRIPTION - HIDE FOR NOW :: {% endcomment %}
+    {% if section.settings.show_description %}
+      {% assign titleSplit = collection.title | split: ' / ' %}
+      {% assign collectionTitle = titleSplit | last %}
+      <div class="collection-description">
+        <header class="description-header">{{ collectionTitle }}</header>
+        <div class="description-divider"></div>
+        <div class="rte description-body">{{ collection.description | remove: "[banner]" }}</div> 
+      </div>
+    {% endif %}
+  </div>
+
+
+  
+
+
+  {% comment %} :: GRID WIDTHS + PAGINATION LOOP:: {% endcomment %}
   {% case section.settings.grid %}
-  {% when '2' or 2 %}
-  {%- assign grid_item_width = 'desktop-6 tablet-3 mobile-half' -%}
-  {% when '3' or 3 %}
-  {%- assign grid_item_width = 'desktop-4 tablet-2 mobile-half' -%}
-  {% when '4' or 4 %}
-  {%- assign grid_item_width = 'desktop-3 tablet-2 mobile-half' -%}
-  {% endcase %} 
+    {% when '2' or 2 %}
+      {%- assign grid_item_width = 'desktop-6 tablet-3 mobile-half' -%}
+    {% when '3' or 3 %}
+      {%- assign grid_item_width = 'desktop-4 tablet-2 mobile-half' -%}
+    {% when '4' or 4 %}
+      {%- assign grid_item_width = 'desktop-3 tablet-2 mobile-half' -%}
+  {% endcase %}
 
-  {%- assign product_limit = section.settings.grid | times: section.settings.rows -%}   
-  {% paginate collection.products by product_limit %}
+  <div class="collection-content-wrap">
+    {%- assign product_limit = section.settings.grid | times: section.settings.rows -%}
+    {% paginate collection.products by product_limit %}
 
-    {% comment %} :: DESCRIPTION - HIDE FOR NOW :: 
-      <div id="collection-description" class="desktop-12 mobile-3">
-        <h1 id="bc-sf-filter-collection-header">{{ collection.title }}</h1>
-        <div class="rte" id="bc-sf-filter-collection-description">{{ collection.description | remove: "[banner]" }}</div> 
-      </div>
-    {% endcomment %}
-
-
-    {% comment %} :: FILTER + SORT - Desktop Component :: {% endcomment %}
-    <div id="full-width-filter" class="filter-wrap-desktop">
-      <h4 class="filter-label">FILTER</h4>
-      <div id="bc-sf-filter-tree-h" class="filter-list-desktop"></div>
-      <ul id="sortme" class="sort-options animate25">
-        {% if section.settings.sort_by %} 
-          <li id="bc-sf-filter-top-sorting" class="clearfix filter"></li>
-        {% endif %}
-      </ul>
-    </div>
-    
-
-
-    {% comment %} :: FILTER - Mobile Component :: {% endcomment %}
-    <div id="filter-list-mobile-wrap">
-      <div id="filter-list-button-wrap">
-        
-        {% comment %} FILTER BUTTON {% endcomment %}
-        <div id="filter-button-mobile">
-          <div id="bc-sf-filter-tree-mobile"></div>
-          <div id="filter-button-arrow"></div>
-        </div>
+      {% comment %} :: BREADCRUMB - Inline breadcrumb for easier design accomodation :: {% endcomment %}
+      <div class="collection-breadcrumb-wrap">
+        {% include 'breadcrumb' %}
       </div>
 
-      {% comment %} FILTERS LIST {% endcomment %}
-      <div id="bc-sf-filter-tree"></div>
-    </div>
-    
 
+      {% comment %} :: FILTER + SORT - Desktop Component :: {% endcomment %}
+      <div id="full-width-filter" class="filter-wrap-desktop">
+        <h4 class="filter-label">Filter By</h4>
+        <div id="bc-sf-filter-tree-h" class="filter-list-desktop"></div>
+        <ul id="sortme" class="sort-options animate25">
+          {% if section.settings.sort_by %} 
+            <li id="bc-sf-filter-top-sorting" class="clearfix filter"></li>
+          {% endif %}
+        </ul>
+      </div>
+      
 
-    {% comment %} :: PRODUCT LIST :: {% endcomment %}
-    <div id="product-loop" data-bc-sort="{{ collection.sort_by }}">
-      {% comment %} :: ORIGINAL TEMPLATE TRIGGER (bc-sf-filter.js Overwrites this) :: 
-
-      {% assign products-per-row = section.settings.products-per-row %}
-        {% if collection.image %}
-          <div class="product-index {{ grid_item_width }}" data-alpha="{{ collection.title }}">     
-            {{ collection.image.src | collection_img_url: 'grande' | img_tag: collection_title }}     
-          </div>  
-        {% endif %}
-
-        {% for product in collection.products %}
-          <div class="product-index {{ grid_item_width }}" data-alpha="{{ product.title }}" data-price="{{ product.price }}">     
-            {% include 'product-listing' %}
+      {% comment %} :: FILTER - Mobile Component :: {% endcomment %}
+      <div id="filter-list-mobile-wrap">
+        <div id="filter-list-button-wrap">
+          
+          {% comment %} FILTER BUTTON {% endcomment %}
+          <div id="filter-button-mobile">
+            <div id="bc-sf-filter-tree-mobile"></div>
+            <div id="filter-button-arrow"></div>
           </div>
-        {% endfor %}
+        </div>
 
-      {% endcomment %}
-    </div>
+        {% comment %} FILTERS LIST {% endcomment %}
+        <div id="bc-sf-filter-tree"></div>
+      </div>
+      
+
+      {% comment %} :: PRODUCT LIST - Render point for BC-SF-FILTER app :: {% endcomment %}
+      <div id="product-loop" data-bc-sort="{{ collection.sort_by }}"></div>
 
 
-    {% comment %} :: PAGINATION :: {% endcomment %}
-    <div id="pagination" class="desktop-12 tablet-6 mobile-3">
-      <div id="bc-sf-filter-bottom-pagination"></div>
-    </div>
-  	<div id="bc-sf-filter-load-more"></div>
+      {% comment %} :: PAGINATION :: {% endcomment %}
+      <div id="pagination" class="desktop-12 tablet-6 mobile-3">
+        <div id="bc-sf-filter-bottom-pagination"></div>
+      </div>
+    	<div id="bc-sf-filter-load-more"></div>
 
-  {% endpaginate %}
-</div>
+    {% endpaginate %}
+  </div> {% comment %} END : .collection-content-wrap {% endcomment %}
+
+</div>{% comment %} END : Collection section {% endcomment %}
 
 
 
@@ -127,8 +163,7 @@
 
 {% schema %}  
   {
-    "name": "Collection page",
-    "max_blocks":4,
+    "name": "Config + Banners",
     "settings": [
       {
         "type": "range",
@@ -137,7 +172,7 @@
         "max": 4,
         "step": 1,
         "label": "Products per row",
-        "default": 4
+        "default": 3
       },
       {
         "type": "range",
@@ -145,87 +180,215 @@
         "min": 1,
         "max": 10,
         "step": 1,
-        "label": "Rows",
-        "default": 4
+        "label": "Rows of Products",
+        "default": 8
       },
       {
         "type": "checkbox",
         "id": "sort_by",
-        "label": "Show sort by",
+        "label": "Show Sorting",
         "default": true
       },
       {
-        "type": "paragraph",
-        "content": "Your customers can filter collections using tags that you have added to your products. [See our setup instructions for these filters](http:\/\/support.undergroundmedia.co.uk\/customer\/en\/portal\/articles\/1348811-filter-collections-with-tags)."
+        "type": "checkbox",
+        "id": "show_description",
+        "label": "Show Descriptions",
+        "default": false
       },
       {
-        "type": "text",
-        "id": "filter_1_title",
-        "label": "Filter 1 title",
-        "default": "Filter by X"
-      },
-      {
-        "type": "textarea",
-        "id": "sort_a",
-        "label": "Filter 1 tags",
-        "info": "Comma separated"
-      },
-      {
-        "type": "text",
-        "id": "filter_2_title",
-        "label": "Filter 2 title",
-        "default": "Filter by Y"
-      },
-      {
-        "type": "textarea",
-        "id": "sort_b",
-        "label": "Filter 2 tags",
-        "info": "Comma separated"
-      },
-      {
-        "type": "text",
-        "id": "filter_3_title",
-        "label": "Filter 3 title",
-        "default": "Filter by Z"
-      },
-      {
-        "type": "textarea",
-        "id": "sort_c",
-        "label": "Filter 3 tags",
-        "info": "Comma separated"
+        "type": "checkbox",
+        "id": "nav_transparent_landing",
+        "label": "Enable Transparent Nav Landing",
+        "info": "When banner images are present, set the nav bar to be transparent bg mode.",
+        "default": false
       }
     ],
+
     "blocks":[
-    {
-      "type":"menu",
-      "name":"Menu",
-      "settings":[
-        {
-         "type": "link_list",
-         "id": "side_nav",
-         "label": "Sidebar menu"
-        },
-        {
-          "type": "text",
-          "id": "heading",
-          "label": "Menu title",
-          "default": "Explore"
-        }
-      ]
-    },
-    {
-      "type":"vendor_list",
-      "name":"Vendor list",
-      "limit": 1,
-      "settings":[
-        {
-          "type": "text",
-          "id": "shop_by_designer_title",
-          "label": "Vendor list title",
-          "default": "Shop by Designer"
-        }
-      ]
-    }
+      {
+        "type": "collection_banner",
+        "name": "Collection Banner",
+        "settings": [
+          {
+            "type": "header",
+            "content": "-- WHICH COLLECTION --"
+          },
+          {
+            "type": "collection",
+            "id": "collection_handle",
+            "label": "Collection:"
+          },
+
+
+          {
+            "type": "header",
+            "content": "-- CONTENT : IMAGES --",
+            "info": "*If no mobile image given, banner will only show on 1024px and higher."
+          },
+          {
+            "type": "image_picker",
+            "id": "banner_image_desktop",
+            "label": "Desktop Banner Image:",
+            "info": "~2000px wide, ~300-400kb Max for fast loads"
+          },
+          {
+            "type": "image_picker",
+            "id": "banner_image_mobile",
+            "label": "Mobile Banner Image:",
+            "info": "~800px wide, ~50-200kb Max for fast loads"
+          },
+
+
+          {
+            "type": "header",
+            "content": "-- CONTENT : TEXT BOX --",
+            "info": "*If no header or body are present, the text box will be hidden."
+          },
+          {
+            "type": "text",
+            "id": "banner_text_header",
+            "label": "Header Text:"
+          },
+          {
+            "type": "text",
+            "id": "banner_text_body",
+            "label": "Body Text:"
+          },
+          {
+            "type": "checkbox",
+            "id": "banner_text_divider",
+            "label": "Show Divider",
+            "default": true
+          },
+
+
+          {
+            "type": "header",
+            "content": "-- TEXT BOX : POSITION --"
+          },
+          {
+            "type": "select",
+            "id": "textbox_horizontal",
+            "label": "Horizontal Text Box Position:",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Center"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ]
+          },
+          {
+            "type": "range",
+            "id": "textbox_vertical",
+            "min": 5,
+            "max": 80,
+            "step": 1,
+            "unit": "%",
+            "label": "Vertical Text Box Position:",
+            "info": "*Check mobile & desktop to ensure no box clipping occurs!",
+            "default": 50
+          },
+          {
+            "type": "select",
+            "id": "textbox_text_align",
+            "label": "Text Alignment Within Text Box",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Center"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ]
+          },
+
+
+          {
+            "type": "header",
+            "content": "-- TEXT BOX : COLOR --"
+          },
+          {
+            "type": "color",
+            "id": "textbox_color_text",
+            "label": "Text Color",
+            "default": "#FFFFFF"
+          },
+          {
+            "type": "color",
+            "id": "textbox_color_divider",
+            "label": "Divider Color",
+            "default": "#FFFFFF"
+          },
+          {
+            "type": "color",
+            "id": "textbox_color_bg",
+            "label": "Text Box BG Color",
+            "default": "#000000"
+          },
+          {
+            "type": "select",
+            "id": "textbox_opacity",
+            "label": "Background Opacity",
+            "options": [
+              {
+                "value": "0.1",
+                "label": "10%"
+              },
+              {
+                "value": "0.2",
+                "label": "20%"
+              },
+              {
+                "value": "0.3",
+                "label": "30%"
+              },
+              {
+                "value": "0.4",
+                "label": "40%"
+              },
+              {
+                "value": "0.5",
+                "label": "50%"
+              },
+              {
+                "value": "0.6",
+                "label": "60%"
+              },
+              {
+                "value": "0.7",
+                "label": "70%"
+              },
+              {
+                "value": "0.8",
+                "label": "80%"
+              },
+              {
+                "value": "0.9",
+                "label": "90%"
+              },
+              {
+                "value": "1.0",
+                "label": "100%"
+              }
+            ]
+          }
+
+        ]
+      }
     ]
   }
 {% endschema %}
