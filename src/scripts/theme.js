@@ -2877,10 +2877,27 @@ theme.Collection = (function() {
   function Collection(container) {
     const ui = {
       collectionWrap: $( '#shopify-section-collection-template' ), //Can store these b/c they are unaffected by the filter app JS re-renders
+      collectionInner: $( '#shopify-section-collection-template .collection-template' ),
       mobileFilterBtn: $( '#filter-button-mobile' ),
       seoBlockWrap: $( '#collection-seo-wrap' ),
       seoReadMoreBtn: $( '#collection-seo-read-more' )
     }
+
+    // TRANSPARENT LANDING : When a banner is present, add the transparent landing class to body so header goes transparent
+    const config = ui.collectionInner.data();
+    if ( config.transparentLanding ) {
+
+      // MOBILE : If banner present, set mobile transparent class
+      if ( config.hasBannerMobile ) {
+        $( 'body' ).addClass( 'show-transparent-landing-mobile' );
+      }
+
+      // DESKTOP : If banner present, set desktop transparent class
+      if ( config.hasBannerDesktop ) {
+        $( 'body' ).addClass( 'show-transparent-landing-desktop' );
+      }
+    }
+
     
     // EVENTS : Bind DOM events when ready
     $(document).ready( () => {
