@@ -1,3 +1,15 @@
+{% assign has_breadcrumb = true %}
+
+{% comment %} :: FEATURE TOGGLES : Can assign page specific global component hides here :: {% endcomment %}
+{% case template %}
+  {% when 'index' %}
+    {% assign has_breadcrumb = false %}
+
+  {% when 'collection' %}
+    {% assign has_breadcrumb = false %}
+{% endcase %}
+
+
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
@@ -139,10 +151,8 @@
       {% else %}
 
         {% comment %} :: BREADCRUMBS :: {% endcomment %}
-        {% if template != 'index' %}
-          {% if settings.breadcrumb %}
-            {% include 'breadcrumb' %}
-          {% endif %}
+        {% if settings.breadcrumb and has_breadcrumb %}
+          {% include 'breadcrumb' %}
         {% endif %}
 
         {% comment %} :: PAGE CONTENT :: {% endcomment %}
