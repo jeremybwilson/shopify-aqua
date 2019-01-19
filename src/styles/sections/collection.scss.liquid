@@ -7,26 +7,95 @@
 $resultsTextColor: {{ settings.filter_text_color }};
 
 
+/*  COLLECTION: Parent Element Tweaks
+ * ---------------------------------------------- */
+body.collection #content.row {
+    width: 100%; // Banner is full width, so moving the row wrapping inward
+}
+
+
 /*  COLLECTION : Main styling block
  * ---------------------------------------------- */
 #shopify-section-collection-template {
 
-
-    /* COLLECTION : Product Grid + Item View
+    /* COLLECTION : Primary wrapper around component
      * ---------------------------------------------- */
     .collection-template {
-        margin-top: 65px;
+        margin-top: 0;
 
-        @include mq( 'lap-and-up' ) {
-            margin-top: 0;
+        // BANNERS VISIBILITY : 
+        //      If Transparent Landing + Banner Present, adjust 
+        //      top margin so its under the transparent navbar
+        &[data-transparent-landing='true'] {
+            
+            // MOBILE BANNER : Present, adjust to under transparent nav
+            @include mq( 'phone-and-tablet' ){
+                &[data-has-banner-mobile='true']  {
+                    margin-top: 30px;
+                }
+            }
+
+            // DESKTOP BANNER : Present, adjust to under transparent nav
+            @include mq( 'lap-and-up' ) {
+                &[data-has-banner-desktop='true']  {
+                    margin-top: 0; // I know it matches, 
+                }
+            }
         }
+        
 
+        /* COLLECTION FULL-WIDTH WRAP : Keeps width of screen
+         * --------------------------------------------------- */
+         .collection-full-width-wrap {
+
+            /* COLLECTION BANNER : Header image and content
+             * ---------------------------------------------- */
+            .collection-banner {
+                
+                // BANNER : IMAGES
+                .banner-image-desktop {
+                    display: none;
+                }
+
+                @include mq( 'lap-and-up' ) {
+                    .banner-image-desktop {
+                        display: block;
+                    }
+
+                    .banner-image-mobile {
+                        display: none;
+                    }
+                }
+            }
+
+            /* COLLECTION DESCRIPTION : If enabled..
+             * ---------------------------------------------- */
+            .collection-description {
+                position: relative;
+            }
+         }
+
+
+        /* COLLECTION CONTENT WRAP : Has max-width like a row
+         * NOTE : please dont' move the imports into here, as 
+         *        they both use & in their top levels
+         * --------------------------------------------------- */
+         .collection-content-wrap {
+            // can't do a row inside a row, so might have to mirror the breakdowns to reflect the layout desired
+         }
+
+        
+
+
+        /* COLLECTION : Product Grid + Item View
+         * ---------------------------------------------- */
         @import url('../snippets/product-grid.scss.liquid');
     }
     
 
     /* FILTERS : Styling for filter sets
-     * ---------------------------------------------- */
+     *    --> keep at this level, uses a few &.name inside
+     * -------------------------------------------------- */
     @import url('../snippets/filters.scss.liquid');
 }
 
@@ -38,6 +107,7 @@ $resultsTextColor: {{ settings.filter_text_color }};
  *    (NOTE: #results-count in breadcrumbs.liquid)
  * ---------------------------------------------- */
 #results-count {
+    display: none; //Not used in aquatalia
     @include h7;
     @include fontSize( 16px );
     position: static;
