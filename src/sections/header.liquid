@@ -12,7 +12,7 @@
   {% comment %} ..:: NAVIGATION PORTION ::.. {% endcomment %}
   {%- capture wrapperClasses -%}
     {% if section.settings.full_width_header %} gridlock-fluid {% endif %}
-    {% if section.settings.nav_transparent_landing %} transparent-landing {% endif %}
+    {% if settings.nav_transparent_landing %} transparent-landing {% endif %}
   {%- endcapture -%}
 
   <header id="nav-bar-wrapper" class="{{ wrapperClasses }}">
@@ -187,13 +187,6 @@
         "type": "checkbox",
         "id": "full_width_header",
         "label": "Enable full width"
-      },
-      {
-        "type": "checkbox",
-        "id": "nav_transparent_landing",
-        "label": "Transparent Nav on Landing",
-        "info": "(Nav bg transparent & text inverted on initial landing state)",
-        "default": false
       },
 
 
