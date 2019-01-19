@@ -1,10 +1,46 @@
-{% capture banner %}{{ collection.handle }}.jpg{% endcapture %}
+{% comment %} :: DEBUG : Shows config object :: {% endcomment %}
+<div 
+  data-block-config='{{ config }}'
+  data-config-handle='{{ config.collection_handle }}'
+  data-config-desktop-img='{{ config.banner_image_desktop }}'></div>
 
-{% assign img_url = banner | file_img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
 
-<div class="collection-banner box-ratio" style="padding-bottom: 33%;">
-  <img class="lazyload lazyload-fade"
-    data-src="{{ img_url }}"
+
+{% comment %} :: BANNER WRAP :: {% endcomment %}
+<div class="collection-banner">
+
+  {% comment %} :: BANNER IMAGE - Desktop :: {% endcomment %}
+  <img class="lazyload lazyload-fade banner-image-desktop"
+    data-src="{{ config.banner_image_desktop | img_url: '2000x' }}"
     data-sizes="auto"
-    alt="{{ collection.title | escape }}">
+    alt="{{ collection.title | escape }}'s Collection Banner Image"/>
+
+  {% comment %} :: BANNER IMAGE - Mobile :: {% endcomment %}
+  <img class="lazyload lazyload-fade banner-image-mobile"
+    data-src="{{ config.banner_image_mobile | img_url: '800x' }}"
+    data-sizes="auto"
+    alt="{{ collection.title | escape }}'s Collection Banner Image"/>
+
+
+  {% comment %} :: BANNER TEXT BOX :: {% endcomment %}
+  {% if config.banner_text_header or config.banner_text_body %}
+    <div class="banner-text-box">
+
+      {% comment %} :: HEADER :: {% endcomment %}
+      {% if config.banner_text_header != blank %}
+        <div class="banner-header">{{ config.banner_text_header }}</div>
+      {% endif %}
+
+      {% comment %} :: DIVIDER :: {% endcomment %}
+      {% if config.banner_text_divider == true %}
+        <div class="banner-divider"></div>
+      {% endif %}
+
+      {% comment %} :: BODY :: {% endcomment %}
+      {% if config.banner_text_body != blank %}
+        <div class="banner-body">{{ config.banner_text_body }}</div>
+      {% endif %}
+
+    </div>
+  {% endif %}
 </div>
