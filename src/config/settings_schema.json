@@ -63,8 +63,14 @@
         "type": "checkbox",
         "id": "nav_transparent_landing",
         "label": "Transparent Nav on Landing",
-        "info": "(Nav bg will be transparent & text inverted when on homepage)",
+        "info": "(Nav bg will be transparent & text colored when on homepage)",
         "default": false
+      },
+      {
+        "type": "color",
+        "id": "nav_transparent_landing_color",
+        "label": "Transparent Landing Text Color",
+        "default": "#ffffff"
       },
       {
         "type": "color",

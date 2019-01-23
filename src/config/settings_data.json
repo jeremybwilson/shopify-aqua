@@ -8,6 +8,7 @@
     "announcement_bg_one": "#000000",
     "announcement_bg_two": "#757575",
     "nav_transparent_landing": true,
+    "nav_transparent_landing_color": "#FFFFFF",
     "header_background": "#ffffff",
     "logo_color": "#000000",
     "nav_links": "#000000",
@@ -270,7 +271,6 @@
         ],
         "settings": {
           "full_width_header": false,
-          "nav_transparent_landing": true,
           "show_announcement_text": true,
           "num_of_promo_banners": "1",
           "announcement_text_one": "Sign Up & Recieve $50 Off Purchases Of $150 Or More",
@@ -316,16 +316,37 @@
       },
       "collection-template": {
         "type": "collection-template",
+        "blocks": {
+          "Women": {
+            "type": "collection_banner",
+            "settings": {
+              "collection_handle": "women",
+              "banner_image_desktop": "shopify:\/\/shop_images\/collection_header_test.jpg",
+              "banner_image_mobile": "shopify:\/\/shop_images\/mobile_banner_test.jpg",
+              "banner_text_header": "BOOTIES",
+              "banner_text_body": "Sed ut predciptalis unde omnis iste natus sit voluptatem accusatium dolorem.",
+              "banner_text_divider": true,
+              "textbox_horizontal": "left",
+              "textbox_horizontal_nudge": "78",
+              "textbox_vertical": "center",
+              "textbox_vertical_nudge": "-40",
+              "textbox_text_align": "center",
+              "textbox_color_text": "#FFFFFF",
+              "textbox_color_divider": "#969696",
+              "textbox_color_bg": "#000000",
+              "textbox_opacity": "1"
+            }
+          }
+        },
+        "block_order": [
+          "Women"
+        ],
         "settings": {
           "grid": 3,
           "rows": 8,
           "sort_by": true,
-          "filter_1_title": "Filter by X",
-          "sort_a": "",
-          "filter_2_title": "Filter by Y",
-          "sort_b": "",
-          "filter_3_title": "Filter by Z",
-          "sort_c": ""
+          "show_description": false,
+          "nav_transparent_landing": true
         }
       },
       "product-template": {

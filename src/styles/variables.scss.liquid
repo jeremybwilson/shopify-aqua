@@ -364,6 +364,7 @@ $button--alt-border-hover: {{ settings.alt_button_border_width }}px solid {{ set
  * ------------------------------------------------------------------------- */
 $phone:            "screen and (max-width: 767px)";
 $tablet:           "screen and (min-width: 768px) and (max-width: 1023px)";
+$phone-and-tablet: "screen and (max-width: 1023px)";
 $tablet-and-up:    "screen and (min-width: 768px)";
 $tablet-portrait:  "screen and (min-width: 768px) and (max-width: 959px)";
 $tablet-landscape: "screen and (min-width: 960px) and (max-width: 1023px)";
@@ -381,6 +382,10 @@ $retina:           "(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi)
     }
   } @else if $alias == "tablet" {
     @media #{$tablet} {
+      @content;
+    }
+  } @else if $alias == "phone-and-tablet" {
+    @media #{$phone-and-tablet} {
       @content;
     }
   } @else if $alias == "tablet-and-up" {
