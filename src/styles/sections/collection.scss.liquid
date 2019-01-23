@@ -13,23 +13,38 @@ body.collection #content.row {
     width: 100%; // Banner is full width, so moving the row wrapping inward
 }
 
-// NAV MENU STUCK - have to adjust margins so its transition state is smooth...
+// NAV MENU STUCK : TRANSPARENT LANDING : - have to adjust margins so its transition state is smooth...
 body.collection.nav-menu-stuck {
- #shopify-section-collection-template .collection-template {
+    #shopify-section-collection-template .collection-template {
 
-    // BANNERS VISIBILITY : 
-    //      If Transparent Landing + Banner Present, adjust 
-    //      top margin so its under the transparent navbar during scrolling down so it doesn't jump 
-    &[data-transparent-landing='true'] {
+        // TRANSPARENT LANDING ADJUSTMENTS : 
+        //      If Transparent Landing + Banner Present, adjust 
+        //      top margin so its under the transparent navbar during scrolling down so it doesn't jump 
+        &[data-transparent-landing='true'] {
 
-        // MOBILE BANNER : Prevent jumping on mobile scroll state transition
-        @include mq( 'phone-and-tablet' ){
-            &[data-has-banner-mobile='true']  {
-                margin-top: 0;
+            // MOBILE BANNER : Prevent jumping on mobile scroll state transition
+            @include mq( 'phone-and-tablet' ){
+                &[data-has-banner-mobile='true']  {
+                    margin-top: 0;
+                }
             }
         }
+
+        // REGULAR LANDING ADJUSTMENTS : 
+        //      Adjust top margin so the transition to floating nav on scroll is smooth
+        &[data-transparent-landing='false'] {
+
+            // REGULAR LANDING : Mobile (Transparent Landing = Disabled)
+            @include mq( 'phone-and-tablet' ){
+                margin-top: 50px;
+            }
+
+            // REGULAR LANDING : Desktop (Transparent Landing = Disabled)
+            @include mq( 'lap-and-up' ) {
+                margin-top: 82px; // I know it matches, 
+            } 
+        }
     }
- }
 }
 
 
@@ -40,7 +55,7 @@ body.collection.nav-menu-stuck {
     /* COLLECTION : Primary wrapper around component
      * ---------------------------------------------- */
     .collection-template {
-        margin-top: 0;
+        margin-top: 0; // Initial State before scrolling down (See above in "nav-menu-stuck" for scrolling adjustments)
 
         // BANNERS VISIBILITY : 
         //      If Transparent Landing + Banner Present, adjust 
@@ -59,11 +74,7 @@ body.collection.nav-menu-stuck {
                 &[data-has-banner-desktop='true']  {
                     margin-top: 0; // I know it matches, 
                 }
-            }
-
-            // TEXTBOX : Positioning of the Textbox (DEFAULT = top)
-            //      --> Textbox layout only applies to desktop sizes (1024+)
-            
+            }   
         }
         
 
