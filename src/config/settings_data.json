@@ -327,12 +327,14 @@
               "banner_text_body": "Sed ut predciptalis unde omnis iste natus sit voluptatem accusatium dolorem.",
               "banner_text_divider": true,
               "textbox_horizontal": "left",
-              "textbox_vertical": 50,
-              "textbox_text_align": "left",
+              "textbox_horizontal_nudge": "78",
+              "textbox_vertical": "center",
+              "textbox_vertical_nudge": "-40",
+              "textbox_text_align": "center",
               "textbox_color_text": "#FFFFFF",
-              "textbox_color_divider": "#FFFFFF",
+              "textbox_color_divider": "#969696",
               "textbox_color_bg": "#000000",
-              "textbox_opacity": "1.0"
+              "textbox_opacity": "1"
             }
           }
         },
