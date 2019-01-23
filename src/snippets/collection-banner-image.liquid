@@ -4,10 +4,40 @@
   data-config-handle='{{ config.collection_handle }}'
   data-config-desktop-img='{{ config.banner_image_desktop }}'></div>
 
+{% comment %}
+  .: BANNER IMAGE COMPONENT :.
+    - Ingests config object and populates the banner when properties exist
+
+  .: CONFIG OBJECT BREAKDOWN :.
+    config: {
+
+      // IMAGE PROPS
+      banner_image_desktop = desktop banner image url
+      banner_image_mobile = mobile banner image url
+      
+      // POSITION PROPS
+      textbox_horizontal = X-Axis position ( left / center / right )
+      textbox_horizontal_nudge = 50px of left or right margin nudging (for granular placement)
+      textbox_vertical = Y-Axis position ( top / center / bottom )
+      textbox_vertical_nudge = 50px of top or bottom margin nudging (for granular placement)
+      textbox_text_align = Alignment of inner text ( left / center / right )
+      
+      // TEXTBOX CONTENT
+      banner_text_header = Heading Text (hidden if not entered)
+      banner_text_divider = Show Divider (Boolean)
+      banner_text_body = Body text (hidden if not entered)
+
+      // TEXTBOX COLOR
+      textbox_color_text = Color of header / body text
+      textbox_color_divider = Divider color
+      textbox_color_bg = Color of Textbox BG
+      textbox_opacity = Opacity of textbox BG
+    }
+{% endcomment %}
 
 
 {% comment %} :: BANNER WRAP :: {% endcomment %}
-<div class="collection-banner">
+<div class="collection-banner banner-{{ config.collection_handle }}">
 
   {% comment %} :: BANNER IMAGE - Desktop :: {% endcomment %}
   <img class="lazyload lazyload-fade banner-image-desktop"
@@ -23,24 +53,98 @@
 
 
   {% comment %} :: BANNER TEXT BOX :: {% endcomment %}
-  {% if config.banner_text_header or config.banner_text_body %}
-    <div class="banner-text-box">
+  {% if config.banner_text_header != blank or config.banner_text_body != blank %}
+    <div class="banner-text-box-wrap"
+      data-constrain-width="{{ config.textbox_constrain }}"
+      data-textbox-horizontal="{{ config.textbox_horizontal }}"
+      data-textbox-vertical="{{ config.textbox_vertical }}">
+      <div class="banner-text-box text-{{ config.textbox_text_align }}">
 
-      {% comment %} :: HEADER :: {% endcomment %}
-      {% if config.banner_text_header != blank %}
-        <div class="banner-header">{{ config.banner_text_header }}</div>
-      {% endif %}
+        {% comment %} :: HEADER :: {% endcomment %}
+        {% if config.banner_text_header != blank %}
+          <div class="banner-header">{{ config.banner_text_header }}</div>
+        {% endif %}
 
-      {% comment %} :: DIVIDER :: {% endcomment %}
-      {% if config.banner_text_divider == true %}
-        <div class="banner-divider"></div>
-      {% endif %}
+        {% comment %} :: DIVIDER :: {% endcomment %}
+        {% if config.banner_text_divider == true %}
+          <div class="banner-divider"></div>
+        {% endif %}
 
-      {% comment %} :: BODY :: {% endcomment %}
-      {% if config.banner_text_body != blank %}
-        <div class="banner-body">{{ config.banner_text_body }}</div>
-      {% endif %}
+        {% comment %} :: BODY :: {% endcomment %}
+        {% if config.banner_text_body != blank %}
+          <div class="banner-body">{{ config.banner_text_body }}</div>
+        {% endif %}
 
+      </div>
     </div>
   {% endif %}
 </div>
+
+
+
+{% comment %} :: STYLE - Banner Config Specific Styles :: {% endcomment %}
+<style>
+
+  /* DESKTOP ONLY - Mobile puts textbox below banner, so colors are ignored */
+  @media only screen and ( min-width: 1024px ) {
+
+    /* .: TEXTBOX : COLORS :. */
+    /* COLOR : Header / Body */
+    #shopify-section-collection-template #collection-{{ collection.handle }} .banner-header,
+    #shopify-section-collection-template #collection-{{ collection.handle }} .banner-body {
+      color: {{ config.textbox_color_text }};
+    }
+
+    /* COLOR : Divider */
+    #shopify-section-collection-template #collection-{{ collection.handle }} .banner-divider {
+      background: {{ config.textbox_color_divider }};
+    }
+
+    /* COLOR: Box BG */
+    {% assign bg_opacity = config.textbox_opacity | plus: 0 %} /* Plus filter converts value to math value */
+    #shopify-section-collection-template #collection-{{ collection.handle }} .banner-text-box {
+      background: {{ config.textbox_color_bg | color_modify: 'alpha', bg_opacity }};
+    }
+
+
+    /* 
+    .: TEXTBOX : POSITIONS :. 
+        - Prevent negative margin values when not in 'center' mode setting for vertical or horizontal
+    */
+    {% assign vert_nudge = config.textbox_vertical_nudge %}
+    {% assign horiz_nudge = config.textbox_horizontal_nudge %}
+    
+    /* NUDGE : NO NEGATIVE MARGIN : Vertical */
+    {% if config.textbox_vertical == 'top' or config.textbox_vertical == 'bottom' %}
+      {% if vert_nudge < 0 %}
+        {% assign vert_nudge = 0 %}
+      {% endif %}
+    {% endif %}
+
+    /* NUDGE : NO NEGATIVE MARGIN : Horizontal */
+    {% if config.textbox_horizontal == 'left' or config.textbox_horizontal == 'right' %}
+      {% if horiz_nudge < 0 %}
+        {% assign horiz_nudge = 0 %}
+      {% endif %}
+    {% endif %}
+
+    /* NUDGE : VERTICAL : Top & Center Nudges */
+    #collection-{{ collection.handle }} .banner-text-box-wrap[data-textbox-vertical='top'] .banner-text-box,
+    #collection-{{ collection.handle }} .banner-text-box-wrap[data-textbox-vertical='center'] .banner-text-box {
+      margin-top: {{ vert_nudge }}px !important;
+    }
+    /* NUDGE : VERTICAL : Bottom Nudges */
+    #collection-{{ collection.handle }} .banner-text-box-wrap[data-textbox-vertical='bottom'] .banner-text-box {
+      margin-bottom: {{ vert_nudge }}px !important;
+    }
+
+    /* NUDGE : HORIZONTAL : Top & Center Nudges */
+    #collection-{{ collection.handle }} .banner-text-box-wrap[data-textbox-horizontal='left'] .banner-text-box,
+    #collection-{{ collection.handle }} .banner-text-box-wrap[data-textbox-horizontal='center'] .banner-text-box {
+      margin-left: {{ horiz_nudge }}px !important;
+    }
+    /* NUDGE : HORIZONTAL : Bottom Nudges */
+    #collection-{{ collection.handle }} .banner-text-box-wrap[data-textbox-horizontal='right'] .banner-text-box {
+      margin-right: {{ horiz_nudge }}px !important;
+    }
+</style>

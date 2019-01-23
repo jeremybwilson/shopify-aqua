@@ -24,7 +24,8 @@
 
 
 {% comment %} :: BEGIN COLLECTION SECTION :: {% endcomment %}
-<div class="collection-template" 
+<div class="collection-template"
+  id="collection-{{ collection.handle }}"
   data-section-id="{{ section.id }}" 
   data-section-type="collection-template"
   data-has-banner-desktop="{{ has_banner_desktop }}"
@@ -36,20 +37,7 @@
     {% if has_banner_desktop or has_banner_mobile %}
       {% include 'collection-banner-image', config: banner_config %}
     {% endif %}
-
-    {% comment %} :: DESCRIPTION - HIDE FOR NOW :: {% endcomment %}
-    {% if section.settings.show_description %}
-      {% assign titleSplit = collection.title | split: ' / ' %}
-      {% assign collectionTitle = titleSplit | last %}
-      <div class="collection-description">
-        <header class="description-header">{{ collectionTitle }}</header>
-        <div class="description-divider"></div>
-        <div class="rte description-body">{{ collection.description | remove: "[banner]" }}</div> 
-      </div>
-    {% endif %}
   </div>
-
-
   
 
 
@@ -63,15 +51,30 @@
       {%- assign grid_item_width = 'desktop-3 tablet-2 mobile-half' -%}
   {% endcase %}
 
-  <div class="collection-content-wrap">
+  {% comment %} :: GRID DISPLAY - Follows .row maximums using '.grid-max-width' :: {% endcomment %}
+  <div class="collection-content-wrap grid-max-width">
+
+    {% comment %} :: DESCRIPTION - Hidden for now :: {% endcomment %}
+    {% if section.settings.show_description %}
+      {% assign titleSplit = collection.title | split: ' / ' %}
+      {% assign collectionTitle = titleSplit | last %}
+      <div class="collection-description">
+        <header class="description-header">{{ collectionTitle }}</header>
+        <div class="description-divider"></div>
+        <div class="rte description-body">{{ collection.description | remove: "[banner]" }}</div> 
+      </div>
+    {% endif %}
+
+
+    {% comment %} :: BREADCRUMB - Inline breadcrumb for easier design accomodation :: {% endcomment %}
+    <div class="collection-breadcrumb-wrap">
+      {% include 'breadcrumb' %}
+    </div>
+
+
+    {% comment %} :: PRODUCT LOOP :: {% endcomment %}
     {%- assign product_limit = section.settings.grid | times: section.settings.rows -%}
     {% paginate collection.products by product_limit %}
-
-      {% comment %} :: BREADCRUMB - Inline breadcrumb for easier design accomodation :: {% endcomment %}
-      <div class="collection-breadcrumb-wrap">
-        {% include 'breadcrumb' %}
-      </div>
-
 
       {% comment %} :: FILTER + SORT - Desktop Component :: {% endcomment %}
       <div id="full-width-filter" class="filter-wrap-desktop">
@@ -115,6 +118,7 @@
   </div> {% comment %} END : .collection-content-wrap {% endcomment %}
 
 </div>{% comment %} END : Collection section {% endcomment %}
+
 
 
 
@@ -211,7 +215,7 @@
         "settings": [
           {
             "type": "header",
-            "content": "-- WHICH COLLECTION --"
+            "content": "-- PICK COLLECTION --"
           },
           {
             "type": "collection",
@@ -267,9 +271,17 @@
             "content": "-- TEXT BOX : POSITION --"
           },
           {
+            "type": "checkbox",
+            "id": "textbox_constrain",
+            "label": "Constrain to nav max-width",
+            "info": "(Obey navbar max widths or go full-width like banner image)",
+            "default": true
+          },
+          {
             "type": "select",
             "id": "textbox_horizontal",
             "label": "Horizontal Text Box Position:",
+            "default": "center",
             "options": [
               {
                 "value": "left",
@@ -287,15 +299,46 @@
           },
           {
             "type": "range",
+            "id": "textbox_horizontal_nudge",
+            "min": -150,
+            "max": 150,
+            "step": 3,
+            "unit": "px",
+            "label": "Horizontal Box Nudge:",
+            "info": "*Negative values ignored if not in 'center' mode",
+            "default": 0
+          }, 
+          {
+            "type": "select",
             "id": "textbox_vertical",
-            "min": 5,
-            "max": 80,
-            "step": 1,
-            "unit": "%",
             "label": "Vertical Text Box Position:",
-            "info": "*Check mobile & desktop to ensure no box clipping occurs!",
-            "default": 50
+            "default": "center",
+            "options": [
+              {
+                "value": "top",
+                "label": "Top"
+              },
+              {
+                "value": "center",
+                "label": "Center"
+              },
+              {
+                "value": "bottom",
+                "label": "Bottom"
+              }
+            ]
           },
+          {
+            "type": "range",
+            "id": "textbox_vertical_nudge",
+            "min": -50,
+            "max": 50,
+            "step": 1,
+            "unit": "px",
+            "label": "Vertical Box Nudge:",
+            "info": "*Negative values ignored if not in 'center' mode",
+            "default": 0
+          },     
           {
             "type": "select",
             "id": "textbox_text_align",
