@@ -78,15 +78,35 @@
 
       {% comment %} :: FILTER + SORT - Desktop Component :: {% endcomment %}
       <div id="full-width-filter" class="filter-wrap-desktop">
-        <h4 class="filter-label">Filter By</h4>
-        <div id="bc-sf-filter-tree-h" class="filter-list-desktop"></div>
-        <ul id="sortme" class="sort-options animate25">
-          {% if section.settings.sort_by %} 
-            <li id="bc-sf-filter-top-sorting" class="clearfix filter"></li>
-          {% endif %}
-        </ul>
+
+        {% comment %} :: FILTER + SORT TOGGLE WRAP :: {% endcomment %}
+        <div class="filter-toggle-wrap">
+
+          {% comment %} :: TOGGLE : Filters :: {% endcomment %}
+          <h4 id="filter-button-desktop" class="filter-label">Filter By</h4>
+          
+          {% comment %} :: TOGGLE : Sort List :: {% endcomment %}
+          <ul id="sortme" class="sort-options animate25">
+            {% if section.settings.sort_by %} 
+              <li id="bc-sf-filter-top-sorting" class="clearfix filter"></li>
+            {% endif %}
+          </ul>
+        </div>
+
+
+
+        {% comment %} :: FILTER CONTAINER HEADER :: (Header on open filter panel) {% endcomment %}
+        <div id="filter-header-desktop">Filter By</div>
+
+
+
+        {% comment %} :: FILTER SETS :: {% endcomment %}
+        <div id="bc-sf-filter-tree-h" class="filter-list-desktop">
+          <div id="filter-list-header">Filter By:</div>
+        </div>
       </div>
       
+
 
       {% comment %} :: FILTER - Mobile Component :: {% endcomment %}
       <div id="filter-list-mobile-wrap">
