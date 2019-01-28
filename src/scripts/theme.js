@@ -2877,6 +2877,7 @@ theme.Collection = (function() {
     const ui = {
       collectionWrap: $( '#shopify-section-collection-template' ), //Can store these b/c they are unaffected by the filter app JS re-renders
       collectionInner: $( '#shopify-section-collection-template .collection-template' ),
+      desktopFilterBtn: $( '#filter-button-desktop' ),
       mobileFilterBtn: $( '#filter-button-mobile' ),
       seoBlockWrap: $( '#collection-seo-wrap' ),
       seoReadMoreBtn: $( '#collection-seo-read-more' )
@@ -2903,6 +2904,9 @@ theme.Collection = (function() {
 
       // FILTER MENU : OPEN / CLOSE : Indicator for the whole filter menu
       ui.mobileFilterBtn.click( () => {
+        ui.collectionWrap.toggleClass( 'filter-open' );
+      });
+      ui.desktopFilterBtn.click( () => {
         ui.collectionWrap.toggleClass( 'filter-open' );
       });
 
