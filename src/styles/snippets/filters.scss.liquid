@@ -10,6 +10,7 @@ $filterBtnAltBg: {{ settings.filter_button_alt_bg }};
 $filterBtnAltText: {{ settings.filter_button_alt_text }};
 $filterBorder: 1px solid {{ settings.filter_divider_color }};
 $filterBarBorder: {{ settings.filter_bar_border_width }}px solid {{ settings.filter_bar_border_color }};
+$filterPanelWidthDesktop: 95%;
 
 
 /* FILTERS : DESKTOP - WRAPPER 
@@ -27,63 +28,208 @@ $filterBarBorder: {{ settings.filter_bar_border_width }}px solid {{ settings.fil
     border-top: $filterBarBorder;
     border-bottom: $filterBarBorder;
 
-
     @include mq( 'lap-and-up' ){
-        margin: 65px 0 55px;
-    }
-
-    @include mq( 'desk-and-up' ) {
-        padding: 15px 30px;
+        margin: 0 0 20px 0;
+        padding: 44px 0;
+        border: none;
     }
 
 
     // FILTERS : LABEL : "Filter" on desktop
-    .filter-label {
-        color: $filterTextColor;
-        margin-bottom: 0;
-        margin-right: 5px; //for 1024 - 1240 spacing
+    .filter-toggle-wrap {
 
-        @include mq( 'desk-and-up' ) {
-            @include fontSize( 16px );
-            margin-right: 20px;
-            margin-top: 0;
+        @include mq( 'lap-and-up' ) {
+            @include flexbox;
+            @include align-items( center );
+            position: absolute;
+            top: 40px;
+            right: 0;
+        }
+        
+        .filter-label {
+            position: relative;
+            color: $filterTextColor;
+            margin: 0 50px 0 0;
+            font-weight: $font-weight--medium;
+            letter-spacing: 1px;
+            cursor: pointer;
+
+            &:after {
+                position: absolute;
+                right: -21px;
+                top: 50%;
+                border-bottom: none;
+                border-left: 4px solid transparent;
+                border-right: 4px solid transparent;
+                border-top: 7px solid $filterArrowColor;
+                transition: all 0.25s ease-in-out;
+                margin-top: -5px;
+                content: ' ';
+                background: transparent;
+                pointer-events: none; // so it doesn't become an unclickable area
+                z-index: 25; // sit on top of select arrow thats native
+            }
+        }
+
+        // SORT : Sorting option dropdown (shows up on mobile too)
+        .sort-options {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            cursor: pointer;
+
+            // Mobile styles
+            width: 50%;
+            padding-left: 20px;
+            border-left: $filterBorder;
+            border-bottom: 0px solid transparent;
+
+            @include mq( 'lap-and-up' ) {
+                position: relative;
+                width: 77px; // prevents it acting like a block element
+                padding-left: 0;
+                border-left: none;
+            }
+
+            @include mq( 'desk-and-up' ) {
+                width: 85px; // so it stays aligned with edge of last nav item
+            }
+
+            #bc-sf-filter-top-sorting {
+                @include inline-flex;
+                @include align-items( center );
+                height: 100%;
+                width: 100%;
+
+                .sort-label,
+                .styled-select {
+                    margin: 0;
+                }
+
+                // SORT : Side Label
+                .sort-label {
+                    @include inline-flex;
+                    font-weight: $font-weight--medium;
+                    color: $filterTextColor;
+                    letter-spacing: 1px;
+
+                    &:after {
+                        position: absolute;
+                        right: 20px;
+                        top: 50%;
+                        border-bottom: none;
+                        border-left: 4px solid transparent;
+                        border-right: 4px solid transparent;
+                        border-top: 7px solid $filterArrowColor;
+                        transition: all 0.25s ease-in-out;
+                        margin-top: -5px;
+                        content: ' ';
+                        background: $filterBg;
+                        pointer-events: none; // so it doesn't become an unclickable area
+                        z-index: 25; // sit on top of select arrow thats native
+                    
+                        @include mq( 'lap-and-up' ) {
+                            right: -21px;
+                        }
+                    }
+
+                    @include mq( 'lap-and-up' ) {
+                        position: absolute;
+                    }
+                }
+
+                .styled-select {
+                    @include h7;
+                    @include inline-flex;
+                    
+                    position: absolute;
+                    height: 100%;
+                    width: 100%;
+                    left: 0;
+                    top: 0;
+
+                    font-family: $font-stack--default;
+                    font-weight: $font-weight--medium;
+                    text-transform: uppercase;
+                    color: $filterTextColor;
+                    border: none;
+                    float: none;
+                    padding: 0 10px;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    opacity: 0;
+
+                    // Mobile
+                    @include mq( 'lap-and-up' ) {
+                        position: relative;
+                    }
+                }
+            }
         }
     }
+
+
+    // FILTER PANEL HEADER (when open, this is the big text header)
+    #filter-header-desktop {
+        @include fontDim( 26px, 26px, 1px );
+        position: absolute;
+        top: 105px;
+        left: 50%;
+        opacity: 0;
+        width: $filterPanelWidthDesktop; // JS Wipes anything in filter-list-desktop on render, have to match it outside it
+        transform: translateX( -50% );
+        pointer-events: none;
+        font-weight: $font-weight--medium;
+        text-transform: capitalize;
+        transition: opacity 0.25s ease-in-out;
+    }
+
 
     // FILTERS : OPTIONS - DESKTOP : Actual filter Labels + Dropdown Lists
     .filter-list-desktop {
         position: static; // Undoes the relative position by stylesheet so we can move the filter selections bar on desktop
         margin-bottom: 0;
         display: none;
+        top: 72px;
+        height: 0;
+        opacity: 0;
+        width: $filterPanelWidthDesktop;
+        left: 50%;
+        transform: translateX( -50% );
+        padding-top: 70px; // Make room for "Filter By" title
+        pointer-events: none;
+        transition: all 0.25s ease-in-out;
 
         @include mq( 'lap-and-up' ) {
-            display: block;
+            position: absolute;
+            @include flexbox;
+            @include justify-content( space-around );
+            @include align-items( flex-start );
         }
 
-        .bc-sf-filter-option-block {
-            position: relative; // So the giant menu will align with items, comment out to make full width menus
-            margin-bottom: 0; 
-            padding-top: 3px; // So line is cleanly centered horizontally
 
-            // FILTER : WRAPPER : Padding Wrapper, didn't think we needed to go ham with nesting :p
+        // SINGLE FILTER WRAPPER
+        .bc-sf-filter-option-block {
+            position: relative; // Align giant menu with items, comment out to make full width menus
+            margin-bottom: 0;
+            width: 100%; 
+
+            // FILTER : INNER WRAPPER : Padding Wrapper, didn't think we needed to go ham with nesting :p
             .bc-sf-filter-block-content-inner {
-                padding: 30px 15px 15px;
+                padding: 5px 15px 15px 0;
             }
 
             // FILTER : TITLE : Single filter title dropdown parent
             .bc-sf-filter-block-title a {
                 border: none;
                 background: transparent;
-                padding: 5px 16px 5px 9px;
-                margin-right: 11px;
-
-                @include mq( 'desk-and-up' ) {
-                    // padding: 5px 32px 5px 9px;
-                    margin-right: 20px;
-                }
+                padding: 5px 16px 5px 0;
 
                 // ARROW : Yes its visually after, no clue why they did a before tag, but w.e
                 &:before {
+                    display: none;
                     transform: rotate( 0deg );
                     border-bottom: none;
                     border-left: 5px solid transparent;
@@ -97,8 +243,9 @@ $filterBarBorder: {{ settings.filter_bar_border_width }}px solid {{ settings.fil
                 // LABEL : Filter label for that dropdown set
                 span {
                     @include h7;
+                    @include fontDim( 16px, 18px, 2px );
                     text-transform: uppercase;
-                    font-weight: $font-weight--medium;
+                    font-weight: $font-weight--book;
                     color: $filterTextColor;
                 }
 
@@ -116,13 +263,14 @@ $filterBarBorder: {{ settings.filter_bar_border_width }}px solid {{ settings.fil
                 }
             }
 
-            // FILTER : LIST : Block of options for a given feature
+            // FILTER : CONTENT LIST : Block of options for a given feature
             .bc-sf-filter-block-content {
+                position: relative;
                 background: $filterBg;
                 border: none;
-                width: 190px;
-                top: 54px !important; //Has to override inline set style by js
-                border: $filterBarBorder;
+                width: 100%;
+                top: 0 !important; // Override inline style from BC-SF-Filter
+                display: block !important; // Override inline style from BC-SF-Filter
 
                 // CLEAR : Hide the in-filter list clear button, desktop has exposed list of filters already
                 .bc-sf-filter-clear {
@@ -138,14 +286,85 @@ $filterBarBorder: {{ settings.filter_bar_border_width }}px solid {{ settings.fil
                     background: $filterBtnMainBg; // Reverse it so the button matches convention
                 }
 
-                // LIST : The actual list itself
+
+                // CATEGORY : Filter set around "Category" (2 column style)
+                &#bc-sf-filter-block-content-category {
+                    ul.bc-sf-filter-option-multiple-list {
+                        column-count: 2;
+                    }
+                }
+
+                // SIZE : Filter set around "Size"
+                &#bc-sf-filter-block-content-size {
+
+                    // LIST : Available Size Options
+                    ul.bc-sf-filter-option-multiple-list {
+                        @include inline-flex;
+                        @include flex-wrap( wrap );
+
+                        // SINGLE SIZE : One LI = One Size Tile
+                        li {
+                            margin: 0;
+                            width: 72px;
+                            height: 50px;
+                            padding-top: 2px;
+                            @include flexbox;
+                            @include align-items( center );
+                            @include justify-content( center );
+                            border: 1px solid $color--light-gray;
+
+                            // 4 Grid Boxes wide @ 1024px
+                            @include mq( 'lap' ) {
+
+                                // Side Border handling
+                                &:not(:nth-child( 4n ) ) {
+                                    margin-right: -1px;
+                                }
+
+                                // Bottom Border Unification
+                                &:nth-child( n + 5 ) {
+                                    margin-top: -1px;
+                                }
+                            }
+
+                            // 5 Grid Boxes wide @ 1220px+
+                            @include mq( 'desk-and-up' ) {
+                                
+                                // Side Border Merging (uniformly and simply crate single border regardless of #)
+                                &:not(:nth-child( 5n ) ) {
+                                    margin-right: -1px;
+                                }
+
+                                // Bottom Border Unification
+                                &:nth-child( n + 6 ) {
+                                    margin-top: -1px;
+                                }
+                            }
+                            
+
+
+
+                            // LINK CONTENTS
+                            input[type=checkbox] + a {
+                                padding-left: 0;
+
+                                > span:first-child {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // FILTER OPTION LIST : List of all the options in this filter set
                 ul.bc-sf-filter-option-multiple-list {
+
 
                     // FILTER : OPTION : Parent list item for individual item in filter options
                     li {
-                        display: block; // one item per row
+                        @include inline-flex;
                         width: 100%; // Default: 30% in inital styles
-                        margin-bottom: 15px;
+                        margin-bottom: 7px;
 
                         // FILTER : OPTION : link wrapper around the 3 spans of data 
                         a {
@@ -162,7 +381,10 @@ $filterBarBorder: {{ settings.filter_bar_border_width }}px solid {{ settings.fil
                         // FILTER : OPTION : Checkbox styling (namespace from app stylesheet)
                         input[type=checkbox]+a>span:first-child {
                             top: 50%;
-                            transform: translateY( -54% ); // Center box for multi-line option cases
+                            width: 9px;
+                            height: 9px;
+                            border-radius: 6px;
+                            transform: translateY( -64% ); // Center box for multi-line option cases
                             background: $filterCheckboxBg;
                         }
                     }
@@ -178,17 +400,17 @@ $filterBarBorder: {{ settings.filter_bar_border_width }}px solid {{ settings.fil
         position: absolute;
         width: 100%;
         left: 0;
-        top: 75px;
+        top: 35px;
         margin-bottom: 0;
-        padding-left: 5px;
 
-        // APPLIED FILTERS : TITLE : hide extra generated title for filters
+        // APPLIED FILTERS : TITLE : Title for selected filters (hidden in mocks)
         > span {
             display: none;
         }
 
         // APPLIED FILTERS : LIST : Selected filters styling
         .bc-sf-filter-selected-items {
+            display: none; // UI doesn't have them in this mock
             padding-right: 140px;
 
             // SINGLE FILTER : item in list of selected filters below picker
@@ -248,101 +470,6 @@ $filterBarBorder: {{ settings.filter_bar_border_width }}px solid {{ settings.fil
                 -moz-transform: rotate(-45deg);
                 -webkit-transform: rotate(-45deg);
                 -o-transform: rotate(-45deg);
-            }
-        }
-    }
-
-    // SORT : Sorting option dropdown (shows up on mobile too)
-    .sort-options {
-        position: absolute;
-        right: 0;
-        top: 0;
-        height: 100%;
-
-        // Mobile styles
-        width: 50%;
-        padding-left: 20px;
-        border-left: $filterBorder;
-        border-bottom: 0px solid transparent;
-
-        @include mq( 'lap-and-up' ) {
-            width: auto; // prevents it acting like a block element
-            padding-left: 0;
-            border-left: none;
-        }
-
-        @include mq( 'desk-and-up' ) {
-            right: 10px;
-        }
-
-        #bc-sf-filter-top-sorting {
-            @include inline-flex;
-            @include align-items( center );
-            height: 100%;
-            width: 100%;
-
-            .sort-label,
-            .styled-select {
-                margin: 0;
-            }
-
-            // SORT : Side Label
-            .sort-label {
-                @include inline-flex;
-                text-transform: uppercase;
-                color: $filterTextColor;
-
-                &:after {
-                    position: absolute;
-                    right: 20px;
-                    top: 50%;
-                    border-bottom: none;
-                    border-left: 5px solid transparent;
-                    border-right: 5px solid transparent;
-                    border-top: 8px solid $filterArrowColor;
-                    transition: all 0.25s ease-in-out;
-                    margin-top: -5px;
-                    content: ' ';
-                    background: $filterBg;
-                    pointer-events: none; // so it doesn't become an unclickable area
-                    z-index: 25; // sit on top of select arrow thats native
-                
-                    @include mq( 'lap-and-up' ) {
-                        right: 16px;
-                    }
-                }
-
-                
-            }
-
-            .styled-select {
-                @include h7;
-                @include inline-flex;
-                
-                position: absolute;
-                height: 100%;
-                width: 100%;
-                left: 0;
-                top: 0;
-
-                font-family: $font-stack--default;
-                font-weight: $font-weight--medium;
-                text-transform: uppercase;
-                color: $filterTextColor;
-                border: none;
-                float: none;
-                padding: 0 10px;
-                -webkit-appearance: none;
-                -moz-appearance: none;
-                appearance: none;
-                opacity: 0;
-
-                // Mobile
-                @include mq( 'lap-and-up' ) {
-                    position: relative;
-                    opacity: 1;
-                    padding-right: 32px;
-                }
             }
         }
     }
@@ -412,7 +539,7 @@ $filterBarBorder: {{ settings.filter_bar_border_width }}px solid {{ settings.fil
  * ---------------------------------------------- */
 #filter-list-mobile-wrap {
     position: relative;
-    top: -73px;
+    top: -71px;
 
     // FILTER : BUTTON - MOBILE : Filter open button for mobile sizes
     #filter-list-button-wrap {
@@ -420,7 +547,7 @@ $filterBarBorder: {{ settings.filter_bar_border_width }}px solid {{ settings.fil
         z-index: 25;
         width: 50%;
         left: 0;
-        top: {{ settings.filter_bar_border_width }}px; //Adjust top position for border settings
+        top: calc( {{ settings.filter_bar_border_width }}px + 2px ); //Adjust top position for border settings
         height: 47px;
         padding: 0;
 
@@ -452,8 +579,8 @@ $filterBarBorder: {{ settings.filter_bar_border_width }}px solid {{ settings.fil
                 background: none;
                 text-align: left;
                 color: $filterTextColor;
-                text-transform: uppercase;
-                font-weight: $font-weight--bold;
+                text-transform: capitalize;
+                font-weight: $font-weight--medium;
             }
 
             // FILTER : BUTTON ARROW : (can't do ':after' on above elm as its innerHTML changes via the app js code)
@@ -504,18 +631,21 @@ $filterBarBorder: {{ settings.filter_bar_border_width }}px solid {{ settings.fil
             
             // TITLE : Title text + click object is actually attached to this oof..
             h3 {
-                @include h6; //tpl in js, can't swap to match it
+                @include h6;
                 position: relative;
                 width: 100%;
                 height: 100%;
                 padding: 15px 0; // Easier clickability if moved here from filter-option-block
                 cursor: pointer; // yes, they bound the click event to a heading directly... *barf*
                 color: $filterTextColor;
+                letter-spacing: 2px;
+                font-weight: $font-weight--medium;
             }
 
             // ARROW : Arrow portion of the title block header
             span {
                 &:before {
+                    display: none; // Hide arrows for AQUA
                     position: absolute;
                     right: 5px;
                     top: 50%;
@@ -568,11 +698,23 @@ $filterBarBorder: {{ settings.filter_bar_border_width }}px solid {{ settings.fil
             margin-top: 0;
             margin-bottom: 10px;
 
-            .bc-sf-filter-option-value {
-                @include h8;
-                @include fontSize( 14px );
-                color: $filterTextColor;
-            }
+            .bc-sf-filter-option-item {
+
+                // OPTION : CHECKBOX
+                > span:first-child {
+                    top: 4px;
+                    width: 9px;
+                    height: 9px;
+                    border-radius: 6px;
+                }
+
+                // OPTION : VALUE NAME LABEL
+                .bc-sf-filter-option-value {
+                    @include h8;
+                    @include fontSize( 14px );
+                    color: $filterTextColor;
+                }
+            } 
         }
 
         // BUTTON : APPLY : Filters activate on user selection, this closes the menu.
@@ -655,30 +797,16 @@ $filterBarBorder: {{ settings.filter_bar_border_width }}px solid {{ settings.fil
  * ---------------------------------------------- */
 // FILTER CHECKBOX MARK : Mark that appears when selecting filters
 .bc-sf-filter-block-content ul li input[type=checkbox]+a.selected>span:first-child {
-    &:before,
     &:after {
         position: absolute;
         display: block;
-        content: '';
-        top: 7px;
-        right: -1px;
-        width: 16px;
-        height: 1px;
+        content: ' ';
+        top: 1px;
+        right: 1px;
+        width: 7px;
+        height: 7px;
+        border-radius: 6px;
         background: $filterArrowColor;
-    }
-
-    &:before {
-        transform: rotate(45deg);
-        -moz-transform: rotate(45deg);
-        -webkit-transform: rotate(45deg);
-        -o-transform: rotate(45deg);
-    }
-
-    &:after {
-        transform: rotate(-45deg);
-        -moz-transform: rotate(-45deg);
-        -webkit-transform: rotate(-45deg);
-        -o-transform: rotate(-45deg);
     }
 }
 
@@ -695,17 +823,48 @@ $filterBarBorder: {{ settings.filter_bar_border_width }}px solid {{ settings.fil
     }
 }
 
-// FILTER OPEN CHANGES : When filter is open, filter-open class is appended
+
+/* FILTER : OPEN TOGGLE CHANGES
+ *   When filter is open, 'filter-open' class is appended
+ * ------------------------------------------------------ */
 &.filter-open {
-    #filter-button-arrow {
-        transform: rotateX( 180deg ); // flip arrow
+
+    // ARROW : Filp arrow during open states
+    #filter-button-arrow,
+    #filter-button-desktop:after {
+        transform: rotateX( 180deg ); 
     }
 
-    // Sort options dropdown from desktop, tricked on mobile lol
+    // DESKTOP : FILTER HEADER
+    #filter-header-desktop {
+        @include mq( 'lap-and-up' ) {
+            opacity: 1;
+        }
+    }
+
+    // DESKTOP : FILTER MENU (is display:none until 1024px)
+    .filter-list-desktop {
+        opacity: 1;
+        height: auto;
+        pointer-events: all;
+    }
+
+
+    // SORT DROPDOWN : Sort options dropdown is present on mobile / desktop as same element
     {% if settings.filter_bar_border_width == 0 %}
-        .sort-options {
+        .filter-toggle-wrap .sort-options {
             border-bottom: $filterBorder;
             border-bottom-left-radius: 3px;
+        }
+    {% else %}
+        @include mq( 'phone-and-tablet' ) {
+            .filter-toggle-wrap .sort-options {
+                border-bottom: $filterBarBorder;
+                border-bottom-left-radius: 3px;
+            }
+            #full-width-filter.filter-wrap-desktop {
+                border-bottom-width: 0px;
+            }
         }
     {% endif %}
 }
