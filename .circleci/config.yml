@@ -73,7 +73,7 @@ jobs:
             echo '
             production:
               password:' $SLATE_PASSWORD '
-              theme_id: "66248114240"
+              theme_id: "live"
               store: aquatalia.myshopify.com
               ignore_files:
                 - settings_data.json' > ./config.yml
