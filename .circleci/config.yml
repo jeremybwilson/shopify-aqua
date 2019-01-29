@@ -54,8 +54,7 @@ jobs:
               theme_id: "66248114240"
               store: aquatalia.myshopify.com
               ignore_files:
-                # - settings_data.json #This is commented out so we keep in sync with repo
-                - settings_data.presets-portion.bak.json' > ./config.yml
+                # - settings_data.json #This is commented out so we keep in sync with repo' > ./config.yml
       - run:
           name: Deploy
           command: npm run deploy
