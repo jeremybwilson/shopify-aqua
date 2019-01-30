@@ -21,56 +21,21 @@
         {% if block.settings.module_html_p %}
           <p>{{ block.settings.module_html_p }}</p>
         {% endif %}
-				{% comment %} {{ block.settings.module_html_h2 }} {% endcomment %}
-			</div>
+      </div>
 
-			<div class="image-box">
-				<img src="{{ block.settings.module_image | img_url: '800x' }}" />
+      <div class="image-box">
+        <img src="{{ block.settings.module_image | img_url: '800x' }}" />
+      </div>
+    </div><!-- .content-module -->
 
-			</div>
-		</div><!-- .content-module -->
-
-		{% else %}
-
-			{% comment %} ALL OTHER BLOCKS {% endcomment %}
-
-		  <div class="block {% if block.type == 'image_picker' %}image-block{% endif %}{% if block.type == 'video_url' %}video-url{% endif %} " style="order:{{ block.settings.block_order }}; {% if block.type == 'html' %}background-color:{{ block.settings.html_block_color }}{% elsif block.type == 'image_picker' %}margin-top:{{ block.settings.image_offset }}{% endif %}">
-		   	{% if block.type == 'image_picker' %}
-		    <img src="{{ block.settings.image_picker_block | img_url: '800x' }}" />
-		  	{% elsif block.type == 'html' %}
-		  	{{ block.settings.html_block }}
-		  	{% else %}
-		      {% if block.settings.video_url_block.type == "youtube" %}
-		        <a class="fancybox" data-type="iframe" href="//www.youtube.com/embed/{{ block.settings.video_url_block.id }}?rel=0&showinfo=0&vq=720" title="youtube">
-			  		<img src="{{ block.settings.video_image_block | img_url: '800x' }}" />
-				  	<div class="columns-carousel--nav">
-				      <div class="pagination">
-				        PLAY
-				      </div>
-				    </div>
-			    </a>
-		      {% elsif block.settings.video_url_block.type == "vimeo" %}
-		      <a class="fancybox" data-type="iframe" href="//player.vimeo.com/video/{{ block.settings.video_url_block.id }}?byline=0&portrait=0&badge=0" title="youtube">
-			  		<img src="{{ block.settings.video_image_block | img_url: '800x' }}" />
-				  	<div class="columns-carousel--nav">
-				      <div class="pagination">
-				        PLAY
-				      </div>
-				    </div>
-			  	</a>
-		      {% endif %}
-		  	{% endif %}
-		  </div>
-
-		{% endif %}
-	{% endfor %}
+    {% endif %}
+  {% endfor %}
 
   {% comment %} {% include 'about-page-banner' %} {% endcomment %}
 
   {% if section.settings.about_bottom_banner_enabled %}
   {% comment %}  ABOUT PAGE ::: Bottom Full Width Banner {% endcomment %}
   <div class="about-bottom-banner layout-mob--{{ section.settings.banner_image_position_mobile }}">
-    {% comment %} <div class="banner-image-box"><img src="https://i.imgur.com/Z8klxaK.jpg" /></div> {% endcomment %}
     <div class="banner-image-box"><img src="{{ section.settings.banner_image | img_url: '800x' }}" /></div>
     <div class="banner-text-box {% if section.settings.banner_text_box_position_desktop %}{{ section.settings.banner_text_box_position_desktop }}{% endif %} {% if section.settings.banner_text_box_color_scheme %}{{ section.settings.banner_text_box_color_scheme }}{% endif %}">
       {% if section.settings.about_bottom_banner_h2 %}<h2>{{ section.settings.about_bottom_banner_h2 }}</h2>{% endif %}
@@ -98,15 +63,9 @@
 
 
 <style>
-  /*
-  .banner-text-box {
-    border: 1px dotted black;
-    opacity: 1;
-  } */
-
-  .zEWidget-launcher {
+  /* .zEWidget-launcher {
     display: none;
-  }
+  } */
   .live-chat-bubble {
     width: auto;
     position: absolute;
@@ -403,190 +362,6 @@
           ]
         }
       ]
-      },
-      {
-        "type":"html",
-        "name":"HTML Block",
-        "settings":[
-          {
-            "type": "html",
-            "id": "html_block",
-            "label": "HTML Block"
-          },
-          {
-            "type": "color",
-            "id": "html_block_color",
-            "label": "HTML Block Background Color"
-          },
-          {
-            "type": "select",
-            "id": "block_order",
-            "label": "Mobile Block Order",
-            "options": [
-              {
-                "value": "initial",
-                "label": "None"
-              },
-              {
-                "value": "1",
-                "label": "1st"
-              },
-              {
-                "value": "2",
-                "label": "2nd"
-              },
-              {
-                "value": "3",
-                "label": "3rd"
-              },
-              {
-                "value": "4",
-                "label": "4th"
-              },
-              {
-                "value": "5",
-                "label": "5th"
-              },
-              {
-                "value": "6",
-                "label": "6th"
-              },
-              {
-                "value": "7",
-                "label": "7th"
-              },
-              {
-                "value": "8",
-                "label": "8th"
-              }
-            ],
-            "default": "initial",
-            "info": "None"
-          }
-        ]
-      },
-      {
-        "type":"image_picker",
-        "name":"Image Block",
-        "settings":[
-          {
-            "type": "image_picker",
-            "id": "image_picker_block",
-            "label": "Image Block"
-          },
-          {
-            "type": "text",
-            "id": "image_offset",
-            "label": "Image Offset Top (In Percent)"
-          },
-          {
-            "type": "select",
-            "id": "block_order",
-            "label": "Mobile Block Order",
-            "options": [
-              {
-                "value": "initial",
-                "label": "None"
-              },
-              {
-                "value": "1",
-                "label": "1st"
-              },
-              {
-                "value": "2",
-                "label": "2nd"
-              },
-              {
-                "value": "3",
-                "label": "3rd"
-              },
-              {
-                "value": "4",
-                "label": "4th"
-              },
-              {
-                "value": "5",
-                "label": "5th"
-              },
-              {
-                "value": "6",
-                "label": "6th"
-              },
-              {
-                "value": "7",
-                "label": "7th"
-              },
-              {
-                "value": "8",
-                "label": "8th"
-              }
-            ],
-            "default": "initial",
-            "info": "None"
-          }
-        ]
-      },
-      {
-        "type":"video_url",
-        "name":"Lightbox Video Block",
-        "settings":[
-          {
-            "type": "video_url",
-            "id": "video_url_block",
-            "label": "YouTube or Vimeo link",
-            "accept": ["youtube", "vimeo"]
-          },
-          {
-            "type": "image_picker",
-            "id": "video_image_block",
-            "label": "Image Block"
-          },
-          {
-            "type": "select",
-            "id": "block_order",
-            "label": "Mobile Block Order",
-            "options": [
-              {
-                "value": "initial",
-                "label": "None"
-              },
-              {
-                "value": "1",
-                "label": "1st"
-              },
-              {
-                "value": "2",
-                "label": "2nd"
-              },
-              {
-                "value": "3",
-                "label": "3rd"
-              },
-              {
-                "value": "4",
-                "label": "4th"
-              },
-              {
-                "value": "5",
-                "label": "5th"
-              },
-              {
-                "value": "6",
-                "label": "6th"
-              },
-              {
-                "value": "7",
-                "label": "7th"
-              },
-              {
-                "value": "8",
-                "label": "8th"
-              }
-            ],
-            "default": "initial",
-            "info": "None"
-          }
-        ]
       }
     ]
   }
