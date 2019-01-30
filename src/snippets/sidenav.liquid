@@ -1,21 +1,22 @@
 <div class="left-nav">
-    <div class="desktop-left-nav">
-        <ul>
-            {% for link in linklists.side-menu.links %}
-            <li>
-              <a href="{{ link.url }}">{{ link.title }}</a>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
+  <div class="desktop-left-nav">
+  {% assign menu_faq_template = linklists[section.settings.faq_page_left_nav] %}
+    <ul class="menu-faq-page"">
+      {% for link in menu_faq_template.links %}
+      <li{% if link.active %} class="active"{% endif %}>{{ link.title | link_to: link.url }}</li>
+      {% endfor %}
+    </ul>
+  </div>
 
 
   <div class="left-nav--categories">
     <div class="opener"><span>Select Options</span>{% include 'svg-icon-caret-down' %}</div>
+  {% assign menu_faq_template_mobile = linklists[section.settings.faq_page_left_nav] %}
     <div class="dropdown">
-      {% for link in linklists.side-menu.links %}
+      {% for link in menu_faq_template_mobile.links %}
         <!-- <div class="category"> -->
-          <a href="{{ link.url }}">{{ link.title }}</a>
+          {% comment %} <a href="{{ link.url }}">{{ link.title }}</a> {% endcomment %}
+          {{ link.title | link_to: link.url }}
         <!-- </div> -->
       {% endfor %}
     </div>

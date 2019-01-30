@@ -1,40 +1,84 @@
-{% comment %} CONTENT :: Before Questions {% endcomment %}
+<div id="faq">
+  <div id="subpage">
 
-{% if section.settings.before_content != blank %}
-    {{ section.settings.before_content }}
-{% endif %}
+    {% include 'sidenav' %}
 
-{% comment %} FAQ :: Block loop {% endcomment %}
+    <div class="page-content-field">
+      {% comment %} CONTENT :: Page Title - removing from Pre Questions field {% endcomment %}
+      {% if section.settings.section_title_top != blank %}
+          <h1 class="faq-title">{{ section.settings.section_title_top }}</h1>
+      {% endif %}
 
-{% for block in section.blocks %}
-    <div class="toggle">
-        <div class="toggle-title">
-            <h4>{{ block.settings.title }}</h4>
-            <span class="opener">{% include 'svg-icon-caret-down' %}
-            </span>
-        </div>
-        <div class="toggle-inner">
-            {% if block.settings.anchor != blank %}
-            <a id="{{ block.settings.anchor | escape }}" style="display: block; position: relative; top: {{ section.settings.anchor_top_offset }}px; visibility: hidden;"></a>
-            {% endif %}
+      {{ page.content }}
 
-            {{ block.settings.answer }}
-        </div>
-    </div>
+      {% comment %} CONTENT :: Before Questions {% endcomment %}
+      {% if section.settings.before_content != blank %}
+        {{ section.settings.before_content }}
+      {% endif %}
 
-{% endfor %}
+      {% comment %} FAQ :: Block loop {% endcomment %}
 
-{% comment %} CONTENT :: After Questions {% endcomment %}
+      {% for block in section.blocks %}
 
-{% if section.settings.after_content != blank %}
-    {{ section.settings.after_content }}
-{% endif %}
+        {% if block.settings.heading_only != false %}
+
+          <h2 class="heading">{{ block.settings.title }}</h2>
+
+          {% else %}
+          <div class="toggle">
+            <div class="toggle-title">
+              <h4>{{ block.settings.title }}</h4>
+              <span class="opener">{% include 'svg-icon-caret-down' %}
+              </span>
+            </div>
+            <div class="toggle-inner">
+              {% if block.settings.anchor != blank %}
+              <a id="{{ block.settings.anchor | escape }}" style="display: block; position: relative; top: {{ section.settings.anchor_top_offset }}px; visibility: hidden;"></a>
+              {% endif %}
+
+              {{ block.settings.answer }}
+            </div>
+          </div>
+        {% endif %}
+
+      {% endfor %}
+
+      {% comment %} CONTENT :: After Questions {% endcomment %}
+      {% if section.settings.after_content != blank %}
+          {{ section.settings.after_content }}
+      {% endif %}
+
+    </div><!-- .page-content-field -->
+  </div><!-- /#subpage -->
+</div><!-- /#faq -->
+<script>
+$( document).ready(function() {
+	// Expand section if url contains a direct anchor reference
+	var targetSection = window.location.href.split( '#' )[1]; // undefined if not present, aka false
+	if ( targetSection ) {
+		$( '#' + targetSection ).parent('.toggle-title').addClass( 'active' );
+	}
+
+	if( $(".toggle .toggle-title").hasClass('active') ){
+      $(".toggle .toggle-title.active").closest('.toggle').find('.toggle-inner').show();
+    }
+
+    $(".toggle .toggle-title").click(function(){
+      if( $(this).hasClass('active') ){
+        $(this).removeClass("active").closest('.toggle').find('.toggle-inner').slideUp(200);
+      }
+      else{
+        $(this).addClass("active").closest('.toggle').find('.toggle-inner').slideDown(200);
+      }
+    });
+});
+</script>
 
 {% schema %}
   {
     "name": "FAQ page",
     "settings": [
-    {
+      {
         "type": "range",
         "id": "anchor_top_offset",
         "min": -300,
@@ -43,39 +87,54 @@
         "unit": "px",
         "label": "Anchor - Top offset",
         "default": -100
-    },
-    {
+      },
+      {
+        "type": "text",
+        "id": "section_title_top",
+        "label": "Sectional Title for Questions (text)"
+      },
+      {
         "type": "html",
         "id": "before_content",
         "label": "Pre-questions content (HTML)"
-    },
-    {
+      },
+      {
         "type": "html",
         "id": "after_content",
         "label": "Post-questions content (HTML)"
-    }   
-    ], 
-    "blocks": [ 
+      },
+      {
+        "type": "link_list",
+        "id": "faq_page_left_nav",
+        "label": "FAQ Page Navigation Customer Service Links"
+      }
+    ],
+    "blocks": [
     {
-        "type": "html",
-        "name": "FAQ Question",
-        "settings":[
-            {
-                "type": "text",
-                "id": "title",
-                "label": "Question"
-            },
-            {
-                "type": "html",
-                "id": "answer",
-                "label": "Answer"
-            },
-            {
-                "type": "text",
-                "id": "anchor",
-                "label": "Anchor ID"
-            }
-        ]
+      "type": "html",
+      "name": "FAQ Question",
+      "settings":[
+        {
+          "type": "checkbox",
+          "id": "heading_only",
+          "label": "Check the box to enable section heading (optional)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Question"
+        },
+        {
+          "type": "html",
+          "id": "answer",
+          "label": "Answer"
+        },
+        {
+          "type": "text",
+          "id": "anchor",
+          "label": "Anchor ID"
+        }
+      ]
     }
     ]
   }

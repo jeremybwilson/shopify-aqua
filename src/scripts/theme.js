@@ -1719,6 +1719,14 @@ $(document).ready(function() {
       }
     });
 
+    // CONTENT PAGES - Sidebar navigation
+
+    $('div.left-nav--categories .opener').click(function(){
+      if ($(this).length) {
+        $(this).toggleClass('is-on');
+        $('.left-nav--categories .dropdown').slideToggle();
+      }
+    });
 
     /*============================================================================
     Shopify Section Load
@@ -2675,11 +2683,11 @@ theme.ProductGallery = function (context, events) {
         });
       }
 
-      // initialize filter on first load 
+      // initialize filter on first load
       var init_color = $('.swatch-element.color input[checked]').closest('.swatch-element').data('swatch-value');
       filter_images(init_color);
 
-      // trigger filter on first load 
+      // trigger filter on first load
       events.on("swatch:change:1",filter_images);
 
       // utilize the Image Color (via the Image Alt Text as filter for image thumbnails)
@@ -2709,7 +2717,7 @@ theme.ProductGallery = function (context, events) {
       target.find('.product-main-image').zoom('destroy');
       $(document).off('.product-main-image');
     });
-    
+
   })();
 };
 
@@ -2794,13 +2802,13 @@ theme.Product = (function () {
         });
       }
 
-      // DESCRIPTION : Accordion 
+      // DESCRIPTION : Accordion
 
       if ( ui.descriptionMobileContent.length > 0 ) {
         ui.descriptionMobileTrigger.click( () => {
           ui.descriptionMobileTrigger.toggleClass( 'open' );
           ui.descriptionMobileContent.slideToggle(350);
-        });        
+        });
       }
 
 
@@ -2821,20 +2829,20 @@ theme.Product = (function () {
         });
       }
 
-      // SIZE CHART 
+      // SIZE CHART
 
       if ( ui.sizeChartPopup.length > 0 ) {
         var size_chart_type = ui.sizeChartPopup.data('size-chart-type');
         if ( size_chart_type != 'all' ) {
           ui.sizeChartPopup.find('.size-chart--wrapper').hide();
           ui.sizeChartPopup.find('#size-chart--' + size_chart_type).show();
-        } 
+        }
       }
     });
 
     /* REACT - EXAMPLE #2
      *
-     * PAGE-SPECIFIC COMPONENT : 
+     * PAGE-SPECIFIC COMPONENT :
      *     Swatch-Picker react component that appears only on the product template
      *     if given the proper DOM Nodes to render into ( see 'SwatchParent.js' for
      *     the node name being rendered into)
@@ -2848,7 +2856,7 @@ theme.Product = (function () {
      *
      *  Here, we require in the parent component for our "React-Swatches" feature.
      *  React components will always have a single root parent built via invoking
-     *  ReactDOM.render() into a DOM Node. Open 'SwatchParent.js' to learn more. 
+     *  ReactDOM.render() into a DOM Node. Open 'SwatchParent.js' to learn more.
      *****************************************************************************/
     // require('./react-components/swatches/SwatchParent.js');
 
@@ -2897,7 +2905,7 @@ theme.Collection = (function() {
       }
     }
 
-    
+
     // EVENTS : Bind DOM events when ready
     $(document).ready( () => {
 
@@ -2914,7 +2922,7 @@ theme.Collection = (function() {
           ui.seoBlockWrap.addClass( 'seo-open' ).delay( 250 ).queue(function(){
               $(this).addClass( 'seo-visible' ).dequeue();
           });
-        
+
         } else {
           seoExpanded = false;
           ui.seoBlockWrap.removeClass( 'seo-visible' ).delay( 250 ).queue( function() {
@@ -2956,7 +2964,7 @@ theme.Search = (function() {
       mobileFilterBtn: '#filter-button-mobile',
       searchWrap: '#search-template'
     }
-    
+
     // EVENTS : Bind DOM events when ready
     $(document).ready( () => {
 
