@@ -642,6 +642,7 @@
         "type": "instagram",
         "settings": {
           "heading": "@Aquatalia",
+          "body": "",
           "cta_link": "http:\/\/www.instagram.com\/aquatalia",
           "cta_text": "FOLLOW US",
           "cta_symbol_placement": "left",
@@ -654,10 +655,11 @@
           "1539644589684": {
             "type": "text_block",
             "settings": {
-              "module_image": "shopify:\/\/shop_images\/about-image-1.jpg",
-              "module_html": "<p>We've earned the <strong>Respect, Loyalty and trust<\/strong> of people who can't afford to take trust lightly.<\/p>",
+              "module_image": "shopify:\/\/shop_images\/mobile_banner_test.jpg",
+              "module_html_h2": "Versatile Style",
+              "module_html_p": "We've earned the <strong>Respect, Loyalty and trust<\/strong> of people who can't afford to take trust lightly.  Aquatalia transcends trend. \n Mixing sophistication, fasion, and versatility into Women's and Men's shoese and accessories.  Aquatalia designs are contemporary yet classic, elegant yet everyday.",
               "module_image_color_scheme": "light",
-              "module_image_position_desktop": "image_right",
+              "module_image_position_desktop": "image_left",
               "module_image_position_mobile": "image_top"
             }
           },
@@ -665,29 +667,21 @@
             "type": "text_block",
             "settings": {
               "module_image": "shopify:\/\/shop_images\/about-image-2.jpg",
-              "module_html": "<p>We make essential gear <strong>engineered to withstand the world's toughest conditions<\/strong> and to protect people who put their lives on the line to live and work on the water.<\/p>",
-              "module_image_color_scheme": "dark",
+              "module_html_h2": "Versatile Style",
+              "module_html_p": "Aquatalia transcends trend. \n Mixing sophistication, fasion, and versatility into Women's and Men's shoese and accessories.  Aquatalia designs are contemporary yet classic, elegant yet everyday.",
+              "module_image_color_scheme": "gray",
               "module_image_position_desktop": "image_left",
               "module_image_position_mobile": "image_top"
             }
           },
-          "1539646807998": {
+          "1548737684033": {
             "type": "text_block",
             "settings": {
-              "module_image": "shopify:\/\/shop_images\/about-image-3.jpg",
-              "module_html": "<p> We're part of a marine lifestyle that values <strong>authenticity, performance and hard work<\/strong> whether you \nfish to live or live to fish.<\/p>",
+              "module_image": "shopify:\/\/shop_images\/home-twin_promo--desktop-right.jpg",
+              "module_html_h2": "Functional Luxury",
+              "module_html_p": "Crafted in Italy, Aquatalia footwear adheres to the tradition of meticulous Italian shoemaking. \n Using fine leathers and sueses, Aquatalia transforms their texture and finish through an exclusive process that adds exceptional softness and the ultimate luxury of weatherproofing and stain-resistance.",
               "module_image_color_scheme": "light",
-              "module_image_position_desktop": "image_right",
-              "module_image_position_mobile": "image_top"
-            }
-          },
-          "1539646813012": {
-            "type": "text_block",
-            "settings": {
-              "module_image": "shopify:\/\/shop_images\/about-image-4.jpg",
-              "module_html": "<p><strong>XTRATUF<\/strong> is chosen not only by fisherman on the Bering Sea, but by commercial, sport and water-enthusiasts everywhere.<\/p>",
-              "module_image_color_scheme": "light",
-              "module_image_position_desktop": "image_left",
+              "module_image_position_desktop": "image_overlap_left",
               "module_image_position_mobile": "image_top"
             }
           }
@@ -695,12 +689,20 @@
         "block_order": [
           "1539644589684",
           "1539646800597",
-          "1539646807998",
-          "1539646813012"
+          "1548737684033"
         ],
         "settings": {
-          "about_text": "<h2>Choose Your Footwear<\/h2>\n<p>We have a variety of footwear to fit your marine lifestyle.<\/p>",
-          "about_text_color": "#e6e6e6"
+          "nav_transparent_landing": true,
+          "about_text": "<p>Established in 1994, Aquatalia offers the finest combination of fashion, quality, and comfort in luxury footwear and is the first to mix distinctive Italian design with innovative weatherproof and stain-resistant technology. \n Bridging the gap betwewn style and function, Aquatalia sets a new standard in fine footwear and accessories.  Taking the brand to the next level, Aquatalia will continue to introduce category expansions, establish retail presence and expand the brand globally.<\/p>",
+          "about_text_color": "rgba(0,0,0,0)",
+          "about_bottom_banner_enabled": true,
+          "banner_text_box_position_desktop": "right",
+          "banner_image": "shopify:\/\/shop_images\/nav-megamenu-3.jpg",
+          "banner_image_position_mobile": "image_top",
+          "banner_text_box_color_scheme": "light",
+          "about_bottom_banner_h2": "Beautiful Wearability",
+          "about_bottom_banner_p": "Stepping out in any weather.  Aquatalia transcends trend. \n Mixing sophistication, fasion, and versatility into Women's and Men's shoese and accessories.  Aquatalia designs are contemporary yet classic, elegant yet everyday. Cras orci nulla, cursus vitae felis sit amet, fringilla placerat nisl. Curabitur imperdiet commodo dapibus. Sed ipsum augue, interdum ut neque vitae, rutrum posuere tortor.",
+          "live_chat_enabled": false
         }
       },
       "slideshow": {
@@ -709,19 +711,23 @@
           "1537562942330": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/about-hero-desktop-slide-1.jpg",
+              "image": "shopify:\/\/shop_images\/home-hero-desktop-slide-2.jpg",
               "mobile_image": "shopify:\/\/shop_images\/about-hero-mobile-slide-1.jpg",
-              "heading": "We Come From Alaska",
-              "subheading": "Where nothing is forgiven and no compromise goes unpunished. <br> Where 50-foot seas swallow the slightest missteps.",
+              "image_link": "",
+              "heading": "About",
+              "subheading": "",
+              "caption_text_align": "center",
               "cta_one_link": "",
               "cta_one_button_text": "Add a button",
+              "cta_one_line": "none",
               "cta_two_link": "",
               "cta_two_button_text": "Add a button",
+              "cta_two_line": "none",
               "caption_color_scheme": "white",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "left",
-              "caption_vertical": 50,
+              "caption_horizontal": "center",
+              "caption_vertical": 45,
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
             }
@@ -732,6 +738,7 @@
         ],
         "settings": {
           "full_width": true,
+          "show_nav_pagination": true,
           "slider_speed": 5
         }
       },
@@ -799,41 +806,73 @@
       "page-faq-template": {
         "type": "page-faq-template",
         "blocks": {
+          "1548783731769": {
+            "type": "html",
+            "settings": {
+              "heading_only": true,
+              "title": "Shipping",
+              "answer": "",
+              "anchor": "shipping"
+            }
+          },
+          "1548787756013": {
+            "type": "html",
+            "settings": {
+              "heading_only": false,
+              "title": "Do you ship to military addresses?",
+              "answer": "<p>For security reasons, we do not currently ship to APO\/FPO addresses.<\/p>",
+              "anchor": ""
+            }
+          },
+          "1548787816716": {
+            "type": "html",
+            "settings": {
+              "heading_only": false,
+              "title": "Do you ship to PO boxes?",
+              "answer": "<p>Yes, we do currently ship to PO boxes.<\/p>",
+              "anchor": ""
+            }
+          },
           "1542219298126": {
             "type": "html",
             "settings": {
-              "title": "What's Important About Measurements?",
-              "answer": "<h5>Tips for measurement<\/h5>\n        <ul>\n            <li>Measure your feet regularly as they can change shape and size over time.<\/li>\n            <li>Different styles use different lasts in construction, therefore sizing may vary with a new style.<\/li>\n            <li>Feet are 3-dimensional, any measuring device can only approximate your true size.<\/li>\n        <\/ul>",
-              "anchor": ""
+              "heading_only": true,
+              "title": "Technology",
+              "answer": "",
+              "anchor": "technology"
             }
           },
           "1542220082322": {
             "type": "html",
             "settings": {
-              "title": "How To Find your Muck Boots Size?",
-              "answer": "<h5>Tricks for measurement<\/h5>\n            <ul>\n                <li>Measure at the end of the day when your feet are at their largest.<\/li>\n                <li>Tools: ruler, pen, and a piece of paper.<\/li>\n                <li>Follow these steps:\n                    <ol>\n                        <li>Place the paper on the ground and stand on it with your weight slightly forward to make sure your foot is flat.<\/li>\n                        <li>Draw a line behind your heel and another line in front of your longest toe. It is common to have one foot longer than the other, so use the longer foot to measure.<\/li>\n                        <li>Measure the distance between lines in inches or centimeters.<\/li>\n                        <li>Find your measurement on the Muck Boot size chart to figure out the best. Round up if your size falls in between.<\/li>\n                    <\/ol>\n                <\/li>\n            <\/ul>",
+              "heading_only": false,
+              "title": "What is weatherproofing (fall\/winter collection)?",
+              "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas quam risus, accumsan vel venenatis in, molestie a justo. Sed ac congue mi. Fusce nec rutrum.<\/p>",
               "anchor": ""
             }
           },
           "1542220259294": {
             "type": "html",
             "settings": {
-              "title": "What makes these boots so great?",
-              "answer": "<h5>It's all in the design. All MUCK® BOOTS are 100% waterproof keeping feet warm, dry and protected in harsh weather and messy working conditions.<\/h5>\n        <h5>The secret:<\/h5>\n            <ul>\n                <li>Our exclusive, self-insulating, waterproof NEOPRENE shell construction. The NEOPRENE bootie material acts as a \"neutral medium\" between inside and outside temperatures. Naturally lightweight, and very comfortable, the material keeps the foot and lower leg warm and protected in cold and wet conditions.<\/li>\n                <li>Natural rubber overlays act as a protective skin for the upper bootie. The upper has a triple-reinforced toe area and quadruple-reinforced heel area. The outsole is made of high abrasion natural rubber. The rubber in the boots will stay flexible for years.<\/li>\n            <\/ul>",
+              "heading_only": false,
+              "title": "What type of insoles are used in Aquatalia footwear?",
+              "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas quam risus, accumsan vel venenatis in, molestie a justo. Sed ac congue mi. Fusce nec rutrum.<\/p>",
               "anchor": ""
             }
           },
-          "1542220285963": {
+          "1548794634222": {
             "type": "html",
             "settings": {
-              "title": "How are the boots sized?",
-              "answer": "<p>Boots and shoes are available in whole sizes only, but will stretch to fit half sizes. There is a 15mm toe allowance built into the sizing. For men who are a 1\/2 size, order the next size up. For Women who are a 1\/2 size order the next size down.<\/p>\n        <p>Many of our best selling boots are built for men and women- we call them unisex sizing. Women should order 1 size down from the men's size shown. Our size charts will help you find the perfect fit.<\/p>\n\n            <div class=\"faq-size-charts-wrapper\">\n                <a href=\"\/pages\/size-chart\" target=\"_blank\">Men's Size Chart<\/a> | <a href=\"\/pages\/size-chart#size-chart--womens\" target=\"_blank\">Women's Size Chart<\/a> | <a href=\"\/pages\/size-chart#size-chart--kids\" target=\"_blank\">Kids Size Chart<\/a>\n            <\/div>",
-              "anchor": ""
+              "heading_only": true,
+              "title": "Product Care",
+              "answer": "",
+              "anchor": "care"
             }
           },
           "1542220342731": {
             "type": "html",
             "settings": {
+              "heading_only": false,
               "title": "Do the boots fit wide widths?",
               "answer": "<p>Yes. Our boots are made to standard widths, but the materials will stretch to fit widths up to a EEE. For narrow feet, we suggest wearing a thicker sock or putting in an additional sock liner to take up room.<\/p>",
               "anchor": ""
@@ -842,96 +881,30 @@
           "1542220365959": {
             "type": "html",
             "settings": {
+              "heading_only": false,
               "title": "Are the collar and calf stiff?",
               "answer": "<p>No. The upper calf and topline areas are made of soft, flexible NEOPRENE and will stretch. With the flexible upper, the pant leg can be worn over or inside the boot. The collar material can be turned down to allow hands-free removal and vent humidity in warmer working conditions.<\/p>",
               "anchor": ""
             }
-          },
-          "1542220387334": {
-            "type": "html",
-            "settings": {
-              "title": "Should people wear thick socks?",
-              "answer": "<p>It isn't necessary unless activities are planned for extreme, cold conditions. The NEOPRENE bootie material is rated sub-zero during active use and will effectively withstand freezing temperatures for up to one hour. Medium-weight athletic socks should provide the best fit. The upper will stretch to accommodate thicker socks.<\/p>",
-              "anchor": ""
-            }
-          },
-          "1542220434241": {
-            "type": "html",
-            "settings": {
-              "title": "What are the benefits of NEOPRENE?",
-              "answer": "<p>Work boots and hiking shoes typically use lofted insulations to resist cold temperatures. They are usually laminated to the whole shoe lining or glued into the toe area of a shoe or boot. It is not a waterproof material.<\/p>\n        <p>The NEOPRENE used in MUCK® BOOTS is both waterproof and self insulating. Our materials exceed the long-term effectiveness of waterproof membrane materials and provide greater insulating properties than all non-specialty temperature-control substrates.<\/p>",
-              "anchor": ""
-            }
-          },
-          "1542220460535": {
-            "type": "html",
-            "settings": {
-              "title": "Do these boots allow your feet to breathe?",
-              "answer": "<p>One of the most important and revolutionary features of The Original Muck Boot Company® footwear is the structured, Breathable Airmesh lining used in all our products. Airmesh is made up of thousands of tiny vertical fibers that allow air to circulate throughout the interior lining surfaces. Excess humidity and perspiration that might build up in the boot are quickly wicked away. This creates a comfortable environment for your feet that lasts for extended periods of use.<\/p>",
-              "anchor": ""
-            }
-          },
-          "1542220481622": {
-            "type": "html",
-            "settings": {
-              "title": "How do you care for and clean these products?",
-              "answer": "<p>The rubber shell and nylon upper are very durable and clean up easily with a spray of water or gentle scrubbing with soap and water. The rubber upper can be conditioned with wax polish, Armor All® or liquid detergent. It is not recommended to use conditioners on the outsole area. This may cause it to become slick in wet or icy conditions.<\/p>",
-              "anchor": ""
-            }
-          },
-          "1542220502350": {
-            "type": "html",
-            "settings": {
-              "title": "Can the rubber be repaired if punctured?",
-              "answer": "<p>Yes. The natural rubber can be repaired with sealant found in local hardware stores. We recommend Aquaseal® brand marine sealant. First, clean the punctured area thoroughly with mineral spirits. Then, apply the sealant over affected area and wipe to a thin film. The sealant should air dry for at least 24 hours.<\/p>",
-              "anchor": ""
-            }
-          },
-          "1542220523668": {
-            "type": "html",
-            "settings": {
-              "title": "How Do I check My Order Status?",
-              "answer": "<p>If you are a registered customer, you can access your order history by logging into your account using the credentials you used to create your account. You will find the “My Account” link located at the top of each page. Once you have accessed your account, you can click on the “Track Order” link for order status. If you are not a registered user, you can contact Customer Service at 855-377-BOOT (2668) by submitting an email via the Contact Us section on our site <a href=\"\/pages\/contact-us\"> here<\/a>. Customer Service hours are 7am to 11pm (PST\/PDT) Monday through Friday.<\/p>",
-              "anchor": "orderstatus"
-            }
-          },
-          "1542220577233": {
-            "type": "html",
-            "settings": {
-              "title": "Do you offer special discounts for active military troops and their families?",
-              "answer": "<p>Muck Boots is proud to help outfit active troops and their families by offering a 25% discount. Discounts are currently available via phone orders only, please call our customer care center at 1-855-377-2668 for complete details.<\/p>",
-              "anchor": "militarydiscount"
-            }
-          },
-          "1542220607549": {
-            "type": "html",
-            "settings": {
-              "title": "Do you offer discounts for bulk orders?",
-              "answer": "<p>Need Mucks for the whole crew? The Original Muck Boot Company® is happy to offer bulk discounts on large orders of boots and shoes. Discounts are currently available via phone orders only, please call our customer care center at 1-855-377-2668 for complete details.<\/p>",
-              "anchor": "bulkdiscount"
-            }
           }
         },
         "block_order": [
+          "1548783731769",
+          "1548787756013",
+          "1548787816716",
           "1542219298126",
           "1542220082322",
           "1542220259294",
-          "1542220285963",
+          "1548794634222",
           "1542220342731",
-          "1542220365959",
-          "1542220387334",
-          "1542220434241",
-          "1542220460535",
-          "1542220481622",
-          "1542220502350",
-          "1542220523668",
-          "1542220577233",
-          "1542220607549"
+          "1542220365959"
         ],
         "settings": {
           "anchor_top_offset": -100,
-          "before_content": "<h1>FAQ<\/h1>",
-          "after_content": "<div class=\"fineprint\">\n\t<p>AQUASEAL® is a registered symbol of the McNett Corporation<\/p>\n\t<p>ARMOR ALL® is a registered symbol of Armor All Products Company<\/p>\n<\/div>"
+          "section_title_top": "Faq",
+          "before_content": "<h2 class=\"heading\">Shipping<\/h2>\n<p>Aquatalia is pleased to offer free Standard shipping anywhere in the continental United States.  Standard shipping takes 3 to 7 business days after processing and Aquatalia does not ship on weekends or hoidays.<\/p>\n<div class=\"shipping-container\">\n        <div class=\"container 1\">\n          <div class=\"title\">Shipping Method<\/div>\n          <div class=\"rules\">\n            <ul>\n              <li>Ground<\/li>\n              <li>2nd Day<\/li>\n              <li>Next Day<\/li>\n            <\/ul>\n          <\/div>\n        <\/div>\n        <div class=\"container 2\">\n          <div class=\"title\">Delivery Time<\/div>\n          <div class=\"rules\">\n            <ul>\n              <li>3-7 Business Days<\/li>\n              <li>2 Business Days<\/li>\n              <li>1 Business Day<\/li>\n            <\/ul>\n          <\/div>\n        <\/div>\n        <div class=\"container 3\">\n          <div class=\"title\">Shipping Charge<\/div>\n          <div class=\"rules\">\n            <ul>\n              <li>Free<\/li>\n              <li>$15 Flat Rate<\/li>\n              <li>$28.95 Flat Rate<\/li>\n            <\/ul>\n          <\/div>\n        <\/div>\n        <div class=\"container 4\">\n          <div class=\"title\">Order Cutoff Time<\/div>\n          <div class=\"rules\">\n            <ul>\n              <li>None<\/li>\n              <li>1pm EST<\/li>\n              <li>1pm EST<\/li>\n            <\/ul>\n          <\/div>\n        <\/div>\n      <\/div>",
+          "after_content": "<p> <\/p>\n<p><a href=\"#top\">Back to Top<\/a><\/p>\n<div class=\"fineprint\">\n\t<p>AQUASEAL® is a registered symbol of the McNett Corporation<\/p>\n\t<p>ARMOR ALL® is a registered symbol of Armor All Products Company<\/p>\n<\/div>",
+          "faq_page_left_nav": "side-menu"
         }
       }
     },
@@ -943,14 +916,6 @@
       "home-feature_highlight_slideshow",
       "home-instagram_feed",
       "home-about_image_with_text"
-    ],
-    "app_wk_enabled": true,
-    "app_wk_login_required": false,
-    "app_wk_icon": "heart",
-    "app_wk_icon_stroke": "#9e9e9e",
-    "app_wk_icon_fill": "#000000",
-    "app_wk_col_bg_shape": "square",
-    "app_wk_share_position": "top",
-    "app_wk_products_per_row": "4"
+    ]
   }
 }

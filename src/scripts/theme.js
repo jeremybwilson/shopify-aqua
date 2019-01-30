@@ -1,9 +1,9 @@
 /* IMPORT STATEMENTS - Proof of Concept
- * 
- * With our build tool tweak, we can use top-level imports even, but 
- * due to the limitations of them needing to be just that - top-level, 
- * you'll find that require('thing') is much more effective and can 
- * go where you need it to in the conditional logic. 
+ *
+ * With our build tool tweak, we can use top-level imports even, but
+ * due to the limitations of them needing to be just that - top-level,
+ * you'll find that require('thing') is much more effective and can
+ * go where you need it to in the conditional logic.
  *****************************************************************************/
 // import PropTypes from 'prop-types'; // Example, check compiled theme.js in dist to see
 
@@ -11,28 +11,28 @@
 
 /* REACT - FOREWORD
  *
- *   You probably notice that "React" and "ReactDOM" are not imported in the 
+ *   You probably notice that "React" and "ReactDOM" are not imported in the
  *   top of this theme file. They are included as libraries globally in our
  *   <HEAD> tag of "theme.liquid" so we don't need to continually write
  *   the "var React = require('react')" statements into every component!
- * 
+ *
  *   The goal is to make each component self contained, and embedded into its
- *   respective template or section by invoking them directly on that 
+ *   respective template or section by invoking them directly on that
  *   section's JS Portion of the Theme.SectionName blocks. (See "Product" for
  *   a good example of what we mean.) Global components can be invoked in a
  *   ready block anywhere in theme otherwise.
  *
  *   Lastly, React Components in Shopify are meant to help, but not replace,
- *   common liquid and JS architecture in the theme. React will excel at 
+ *   common liquid and JS architecture in the theme. React will excel at
  *   global components like "Compare Tool" and feel cumbersome on other things.
- *   State-heavy features are where you will find it most useful. 
- *   
+ *   State-heavy features are where you will find it most useful.
+ *
  *****************************************************************************/
 
 
 /* REACT - EXAMPLE #1
  *
- * GLOBAL-COMPONENT : 
+ * GLOBAL-COMPONENT :
  *     Simple React-Component Rendered into our "Theme.Liquid" template's
  *     DOM Node with ID "example-global-react"
  *
@@ -43,7 +43,7 @@
  *
  *  Here, we are requiring in the parent component for our "Example" feature.
  *  React components will always have a single root parent built via invoking
- *  ReactDOM.render() into a DOM Node. Open 'ExploreParent.js' to learn more. 
+ *  ReactDOM.render() into a DOM Node. Open 'ExploreParent.js' to learn more.
  *****************************************************************************/
 // require('./react-components/example/ExampleParent.js');
 
@@ -63,7 +63,7 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 }
 
 // POLYFILL : Object.assign (IE 11)
-require( 'es6-object-assign/auto' ); //812 bytes, pretty safe and small :D 
+require( 'es6-object-assign/auto' ); //812 bytes, pretty safe and small :D
 
  /**
  * ----------------------------------------------------------------------------------------------------
@@ -660,9 +660,9 @@ require( 'es6-object-assign/auto' ); //812 bytes, pretty safe and small :D
  * ----------------------------------------------------------------------------------------------------
  * ELEMENT.CLOSEST() POLYFILL -- This fixes IE 11 bug when changing swatches and others
  * ----------------------------------------------------------------------------------------------------
- */ 
+ */
 if (!Element.prototype.matches)
-    Element.prototype.matches = Element.prototype.msMatchesSelector || 
+    Element.prototype.matches = Element.prototype.msMatchesSelector ||
                                 Element.prototype.webkitMatchesSelector;
 
 if (!Element.prototype.closest) {
@@ -672,7 +672,7 @@ if (!Element.prototype.closest) {
         do {
             if (el.matches(s)) return el;
             el = el.parentElement || el.parentNode;
-        } while (el !== null && el.nodeType === 1); 
+        } while (el !== null && el.nodeType === 1);
         return null;
     };
 }
@@ -974,7 +974,7 @@ theme.Header = (function() {
     // MOBILE NAV : Attach menu toggle event
     if ( ui.mobileNavButton && ui.mobileNavMenu ) {
       ui.mobileNavButton.on( 'click', () => {
-        ui.mobileNavMenu.toggleClass( 'mobile-nav-open' ); // TOGGLE : Menu itself 
+        ui.mobileNavMenu.toggleClass( 'mobile-nav-open' ); // TOGGLE : Menu itself
         ui.desktopNavWrap.toggleClass( 'mobile-nav-open' ); // TOGGLE : Transparent landing mode needs an extra flag to color right
         ui.body.toggleClass( 'js-drawer-open' ); // TOGGLE : Page scrolling (built in to a lib so tied to this classname)
         ui.html.toggleClass( 'menu-open' ); // TOGGLE : Html has some oddness from the theme, this clears it so iPoos can render right
@@ -992,14 +992,14 @@ theme.Header = (function() {
     // MOBILE NAV : LEVEL 1 HEADER ACCORDION : Accordion Functionality
     ui.mobileHeaders.click( function(){
       const header = $(this);
-      
+
       //Expand or collapse this panel
       if ( !header.hasClass('open') ) {
         $('.accordion-header').removeClass('open'); // Clear other major sections that are open
       }
       header.toggleClass('open');         // Add open class to the requested header
       header.next().slideToggle('fast');  // Reveal accordion content for requested header
-      
+
       //Hide the other panels
       $(".accordion-content").not(header.next()).slideUp('fast');
     });
@@ -1007,14 +1007,14 @@ theme.Header = (function() {
     // MOBILE NAV : LEVEL 2 - SUB-HEADER ACCORDION : Accordion Functionality
     ui.mobileSubHeaders.click( function(){
       const subHead = $(this);
-      
+
       //Expand or collapse this panel
       if ( !subHead.hasClass('open') ) {
         $('.accordion-sub-header').removeClass('open'); // Clear other major sections that are open
       }
       subHead.toggleClass('open');             // Open this header
       subHead.next().slideToggle('fast');     // Reveal requested panel
-      
+
       //Hide the other panels
       $(".accordion-content2").not(subHead.next()).slideUp('fast');
     });
@@ -1048,7 +1048,7 @@ theme.Header = (function() {
           swapPromos();
         }, ui.swapRate * 1000 );
       };
-      
+
       // METHOD : RESUME : Resume toggle after 25 secs of no user activity
       const resume = () => {
         if ( this.resumeTimer ) {
@@ -1063,7 +1063,7 @@ theme.Header = (function() {
       // EVENT : CLICK : User clicks either arrow, banner toggles and pauses swapping for ~30 secs
       ui.arrows.on( 'click', () => {
         swapPromos();
-        
+
         // DISABLE : Pause auto-toggle, user is focusing on banner
         if ( this.autoToggle ) {
           clearInterval( this.autoToggle );
@@ -1098,7 +1098,7 @@ theme.Newsletter = (function() {
            submit: $( '#button-footer-newsletter-submit' ),
          errorMsg: $( '#newsletter-error-response'),
        successMsg: $( '#newsletter-success-response')
-    }; 
+    };
 
     // EMAIL : Regex to check for a valid email
     const regexEmail = new RegExp(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i);
@@ -1119,14 +1119,14 @@ theme.Newsletter = (function() {
         let validEmail = regexEmail.test(ui.textbox.val());
         if(!validEmail) {
 
-          // error state 
+          // error state
           ui.formId.addClass('has-error');
           ui.errorMsg.fadeIn();
 
         } else {
 
           // success state
-          zaius.subscribe({         
+          zaius.subscribe({
               list_id: 'newsletter',
               email: ui.textbox.val()
             },
@@ -1298,7 +1298,7 @@ theme.ColumnsCarousel = (function() {
         cols.trigger('next.owl.carousel');
       });
 
-      // ITEM HOVER 
+      // ITEM HOVER
 
       ui.item.on('mouseenter', this, function() {
         ui.item.removeClass('hovered');
@@ -1308,7 +1308,7 @@ theme.ColumnsCarousel = (function() {
         ui.currentSlide.text($('.column-item').index(this)+1);
       }).on('mouseleave', function() {
 
-        // restore the current slide from the carousel index 
+        // restore the current slide from the carousel index
         //ui.currentSlide.text(current);
       });
     };
@@ -1874,10 +1874,10 @@ $(document).ready(function() {
 
   /*============================================================================
    Cookie Banner
-  ==============================================================================*/  
+  ==============================================================================*/
 
   (function cookie_banner() {
-    
+
     // COOKIE BANNER : Show if no cookie is present for having seen it before
     var check_banner_cookie = $.cookie('gdpr_banner_read');
     if(check_banner_cookie == null) {
@@ -1911,7 +1911,7 @@ $(document).ready(function() {
 
   /*============================================================================
    Email Popup
-  ==============================================================================*/  
+  ==============================================================================*/
 
   (function email_popup() {
 
@@ -1963,7 +1963,7 @@ $(document).ready(function() {
 
         if(!validEmail) {
 
-          // error state 
+          // error state
 
           ui.formId.addClass('has-error');
           ui.errorMsg.fadeIn();
@@ -1972,7 +1972,7 @@ $(document).ready(function() {
 
           // success state
 
-          zaius.subscribe({         
+          zaius.subscribe({
               list_id: 'newsletter',
               email: ui.textbox.val()
             },
@@ -2019,7 +2019,7 @@ $(document).ready(function() {
 
     $('#subscribe--close').click(function() {
       parent.$.fancybox.close();
-    });    
+    });
   };
 
 });
@@ -2161,7 +2161,7 @@ theme.ProductForm = function (context, events) {
 
       function current_option_text_change() {
         var current_option_text = element.closest('.swatch').querySelector('.current-option');
-        current_option_text.innerHTML = element.value;        
+        current_option_text.innerHTML = element.value;
       }
 
       function set_availability(current_variant) {
@@ -2322,11 +2322,11 @@ theme.ProductForm = function (context, events) {
     });
 
     // trigger the click
-    addToCart.on('click',this, function() {     
+    addToCart.on('click',this, function() {
       const ui = {
         navLogo: $('#nav-logo svg'),
         prodDesc: $('#product-description')
-      } 
+      }
 
       if ( ui.navLogo.length > 0 && ui.prodDesc.length > 0 ) {
 
@@ -2457,18 +2457,18 @@ theme.ProductGallery = function (context, events) {
       });
 
       /* Call vimeo */
-      var Vimeo = require('@vimeo/player');  
+      var Vimeo = require('@vimeo/player');
       var options = {
         id: vimeo_id,
         width: 850
       }
       video_player = new Vimeo('product-video--vimeo', options);
 
-    })(); 
+    })();
 
     (function youtube_player() {
 
-      var $youtube_thumbnail = $('.youtube-thumbnail'); 
+      var $youtube_thumbnail = $('.youtube-thumbnail');
 
       if ( !$youtube_thumbnail.length ) {
         return false;
@@ -2491,7 +2491,7 @@ theme.ProductGallery = function (context, events) {
             origin: window.location.protocol + window.location.hostname
           },
           videoId: youtube_id
-        });  
+        });
       });
     })();
 
