@@ -97,6 +97,11 @@
             }
           {% endcapture %}
 
+          {% if current_variant.sku != blank %}
+            <div class="product-number">
+              Item# <span class="product-sku">{{ current_variant.sku }}</span>
+            </div>
+          {% endif %}
 
           {% include 'product-form' %}
 
