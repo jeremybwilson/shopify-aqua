@@ -1,13 +1,14 @@
+{% comment %}  ABOUT PAGE ::: Bottom Full Width Banner {% endcomment %}
 {% if section.settings.about_bottom_banner_enabled %}
 
-{% comment %}  ABOUT PAGE ::: Bottom Full Width Banner {% endcomment %}
-<div class="about-bottom-banner">
-  <img src="https://i.imgur.com/Z8klxaK.jpg" />
-  <div class="banner-text-box right">
-    <h2>Beautiful Wearability</h2>
+<div class="about-bottom-banner layout-mob--{{ section.settings.banner_image_position_mobile }}">
+  <div class="banner-image-box"><img src="{{ section.settings.banner_image | img_url: '800x' }}" /></div>
+  <div class="banner-text-box {% if section.settings.banner_text_box_position_desktop %}{{ section.settings.banner_text_box_position_desktop }}{% endif %} {% if section.settings.banner_text_box_color_scheme %}{{ section.settings.banner_text_box_color_scheme }}{% endif %}">
+    {% if section.settings.about_bottom_banner_h2 %}<h2>{{ section.settings.about_bottom_banner_h2 }}</h2>{% endif %}
     <div class="banner-divider"></div>
-    <p>Stepping out in any weather.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus ex at semper ornare. Cras orci nulla, cursus vitae felis sit amet, fringilla placerat nisl. Curabitur imperdiet commodo dapibus. Sed ipsum augue, interdum ut neque vitae, rutrum posuere tortor. Quisque felis metus, feugiat in porta sit amet, venenatis quis tellus. Suspendisse ut interdum quam.</p>
+    {% if section.settings.about_bottom_banner_p %}
+      <p>{{ section.settings.about_bottom_banner_p }}</p>
+    {% endif %}
   </div>
-</div>
 
 {% endif %}

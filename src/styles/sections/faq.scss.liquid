@@ -101,8 +101,12 @@
           color: $color--primary-1;
           font-weight: $font-weight--bold;
           text-transform: uppercase;
+          text-align: center;
           padding: 15px 0;
-          // border-bottom: solid 1px $color--light-gray;
+
+          @include mq( 'lap-and-up' ){
+            text-align: left;
+          }
         }
       }
 
@@ -162,16 +166,23 @@
 
         .container {
           @include flexbox;
-          @include justify-content(center);
-          @include flex-direction(column);
+          @include justify-content(flex-start);
+          @include flex-direction(row);
           @include align-content(center);
+          border-bottom: 1px solid $color--primary-1;
           border-right: 0;
           text-align: center;
           width: 100%;
 
+          &:nth-child(4){
+            border-bottom: 0;
+          }
+
           @include mq( 'lap-and-up' ){
+            @include justify-content(center);
             @include flex-direction(column);
             border-right: 1px solid $color--primary-1;
+            border-bottom: 0;
             width: 25%;
 
             &:nth-child(4){
@@ -180,24 +191,37 @@
           }
 
           .title {
-            @include flexbox;
-            @include justify-content(center);
-            @include align-content(center);
             background: $color--primary-1;
             color: $color--white;
-            padding: 10px 0;
+            padding: 10%;
+            width: 33%;
+            text-align: center;
+
+            @include mq( 'lap-and-up' ){
+              width: 100%;
+            }
 
           }
           .rules {
             @include flexbox;
+            @include flex-direction(column);
             @include justify-content(center);
-            @include align-content(center);
+            padding: 0;
+            width: 66%;
+
+            @include mq( 'lap-and-up' ){
+              padding: 15% 0;
+              width: 100%;
+            }
 
             ul li {
               @include fontSize(14px);
               list-style-type: none;
-              list-style: none;
               padding-bottom: 0;
+
+              &:before {
+                display: none;
+              }
             }
           }
         }

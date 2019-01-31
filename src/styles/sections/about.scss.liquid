@@ -168,6 +168,97 @@
         }
       }
     }
+
+    /* CSS for new live chat bubble */
+
+    .live-chat-bubble {
+      width: auto;
+      position: absolute;
+      right: 5%;
+      bottom: 12%;
+      padding: 5px;
+      border-radius: 50px;
+
+      &.color-scheme-light {
+        background-color: rgba(255,255,255, 0);
+
+        a {
+          color: $color--primary-1;
+
+          span {
+            color: $color--primary-1;
+          }
+
+          &:hover {
+            color: #616365;
+
+            svg.live-chat-bubble-icon {
+              path {
+                fill: #616365;
+              }
+            }
+          }
+
+          svg.live-chat-bubble-icon {
+            path {
+              fill: $color--primary-1;
+            }
+          }
+        }
+      }
+
+      &.color-scheme-dark {
+        background-color: $color--primary-1;
+
+        a {
+          color: $color--white;
+
+          span {
+            color: $color--white;
+          }
+
+          &:hover {
+            color: red;
+
+            svg.live-chat-bubble-icon {
+              path {
+                fill: #616365;
+              }
+            }
+          }
+
+          svg.live-chat-bubble-icon {
+            path {
+              fill: $color--white;
+            }
+          }
+        }
+      }
+
+      a {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex-direction: row;
+        transition: color .25s ease;
+        padding: 0 10px;
+
+        span {
+          @include fontSize(14px);
+          margin: 0;
+          padding: 0 10px;
+          text-transform: uppercase;
+          width: auto;
+        }
+
+        svg.live-chat-bubble-icon {
+          width: 20px;
+          height: 18px;
+          margin-top: -5px;
+          transition: fill .3s ease;
+        }
+      }
+    }
   }
 }
 
