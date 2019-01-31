@@ -1,19 +1,20 @@
 <div class="about-container">
 
-  {% comment %} ABOUT MODULE - centered text directly below banner image {% endcomment %}
-  {% if section.settings.about_text != 'blank' %}
-  <div class="about-block" style="background-color:{{ section.settings.about_text_color }}">
-    {{ section.settings.about_text }}
-  </div>
-  {% endif %}
+  {% for block in section.blocks %}
 
-	{% for block in section.blocks %}
+    {% if block.type == 'html' %}
 
-		{% comment %} CONTENT MODULE - Paired text & images {% endcomment %}
+      {% comment %} ABOUT MODULE - centered text directly below banner image {% endcomment %}
+      {% if block.settings.about_html_block != 'blank' %}
+        <div class="about-block" style="background-color:{{ block.settings.about_html_block_color }}">
+          {{ block.settings.about_html_block }}
+        </div>
+      {% endif %}
 
-		{% if block.type == 'text_block' %}
+    {% elsif block.type == 'text_block' %}
 
-		<div class="content-module layout-desk--{{ block.settings.module_image_position_desktop }} layout-mob--{{ block.settings.module_image_position_mobile }} color-scheme--{{ block.settings.module_image_color_scheme }}">
+      {% comment %} CONTENT MODULE - Paired text & images {% endcomment %}
+      <div class="content-module layout-desk--{{ block.settings.module_image_position_desktop }} layout-mob--{{ block.settings.module_image_position_mobile }} color-scheme--{{ block.settings.module_image_color_scheme }}">
         <div class="text-box">
 
         {% if block.settings.module_html_h2 %}<h2>{{ block.settings.module_html_h2 }}</h2>{% endif %}
@@ -31,83 +32,28 @@
     {% endif %}
   {% endfor %}
 
-  {% comment %} {% include 'about-page-banner' %} {% endcomment %}
+  {% comment %}  ABOUT PAGE ::: Bottom Full Width Banner if banner option is enabled in Customizer{% endcomment %}
+  {% include 'about-page-banner' %}
 
-  {% if section.settings.about_bottom_banner_enabled %}
-  {% comment %}  ABOUT PAGE ::: Bottom Full Width Banner {% endcomment %}
-  <div class="about-bottom-banner layout-mob--{{ section.settings.banner_image_position_mobile }}">
-    <div class="banner-image-box"><img src="{{ section.settings.banner_image | img_url: '800x' }}" /></div>
-    <div class="banner-text-box {% if section.settings.banner_text_box_position_desktop %}{{ section.settings.banner_text_box_position_desktop }}{% endif %} {% if section.settings.banner_text_box_color_scheme %}{{ section.settings.banner_text_box_color_scheme }}{% endif %}">
-      {% if section.settings.about_bottom_banner_h2 %}<h2>{{ section.settings.about_bottom_banner_h2 }}</h2>{% endif %}
-      <div class="banner-divider"></div>
-      {% if section.settings.about_bottom_banner_p %}
-        <p>{{ section.settings.about_bottom_banner_p }}</p>
-      {% endif %}
-    </div>
-
-    {% if section.settings.live_chat_enabled %}
-    <div class="live-chat-bubble">
-      <a href="#" title="Live Chat">
-        <p style="width: auto;">Live chat</p>
+  {% if section.settings.live_chat_enabled %}
+  {% assign live_chat_color_scheme = section.settings.live_chat_color_scheme %}
+    <div class="live-chat-bubble{% if live_chat_color_scheme != 'blank' %} color-scheme-{{ live_chat_color_scheme }}{% endif %}">
+      <a href="#" title="{{ section.settings.live_chat_text }}">
+        <span>{{ section.settings.live_chat_text }}</span>
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="live-chat-bubble-icon"  width="448" height="448" viewBox="0 0 448 448">
-          <title>Chat Icon</title>
-          <path fill="{{ settings.footer_color }}" d="M0 224c0 88.5 100.25 160 224 160 12.25 0 24.5-0.75 36.25-2 32.75 29 71.75 49.5 115 60.5 9 2.5 18.75 4.25 28.5 5.5 5.5 0.5 10.75-3.5 12-9.5v-0.25c1.25-6.25-3-10-6.75-14.5-15.75-17.75-33.75-32.75-45.5-74.5 51.5-29.25 84.5-74.5 84.5-125.25 0-88.25-100.25-160-224-160s-224 71.5-224 160z"></path>
+          <title>{{ section.settings.live_chat_text }} Icon</title>
+          <path fill="" d="M0 224c0 88.5 100.25 160 224 160 12.25 0 24.5-0.75 36.25-2 32.75 29 71.75 49.5 115 60.5 9 2.5 18.75 4.25 28.5 5.5 5.5 0.5 10.75-3.5 12-9.5v-0.25c1.25-6.25-3-10-6.75-14.5-15.75-17.75-33.75-32.75-45.5-74.5 51.5-29.25 84.5-74.5 84.5-125.25 0-88.25-100.25-160-224-160s-224 71.5-224 160z"></path>
         </svg>
       </a>
     </div>
-    {% endif %}
-
   {% endif %}
 
-</div>
+</div><!-- /.about-container -->
 
 
 <style>
   /* .zEWidget-launcher {
     display: none;
-  } */
-  .live-chat-bubble {
-    width: auto;
-    position: absolute;
-    right: 0;
-    bottom: 12%;
-    /* transform: translateY(-50%); */
-    background-color: #000;
-    border-radius: 50px;
-  }
-
-  .live-chat-bubble a {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex-direction: row;
-    transition: color .25s ease;
-    color: #FFFFFF;
-    padding: 0 10px;
-  }
-  .live-chat-bubble-icon a:hover; {
-    color: #616365;
-  }
-  .live-chat-bubble p {
-    margin: 0;
-    padding: 0 10px;
-    color: #FFFFFF;
-    text-transform: uppercase;
-  }
-  .live-chat-bubble svg {
-    width: 20px;
-    height: 18px;
-    transition: fill .3s ease;
-    fill: #FFFFFF;
-  }
-  .live-chat-bubble-icon svg:hover; {
-    fill: #616365;
-    /* cursor: pointer; */
-  }
-  /*
-  .live-chat-bubble-icon path {
-    transition: fill .3s ease;
-    fill: #FFFFFF;
   } */
 
   #content.row {
@@ -183,25 +129,15 @@
     "max_blocks": 12,
     "settings": [
       {
+        "type": "header",
+        "content": "Transparent Nav"
+      },
+      {
         "type": "checkbox",
         "id": "nav_transparent_landing",
         "label": "Enable Transparent Nav Landing",
         "info": "When banner images are present, set the nav bar to be transparent bg mode.",
         "default": false
-      },
-      {
-        "type": "header",
-        "content": "About Page banner text - below transparent nav"
-      },
-      {
-        "type": "html",
-        "id": "about_text",
-        "label": "About Text"
-      },
-      {
-        "type": "color",
-        "id": "about_text_color",
-        "label": "About Text Background Color"
       },
       {
         "type": "header",
@@ -286,9 +222,42 @@
         "label": "Enable Live Chat bubble on banner",
         "info": "Checking this box will enable Live Chat bubble on About page template.",
         "default": false
+      },
+      {
+        "type": "text",
+        "id": "live_chat_text",
+        "label": "Enter Live chat bubble text here.",
+        "default": "Live chat"
+      },
+      {
+        "type": "select",
+        "id": "live_chat_color_scheme",
+        "label": "Live Chat text and fill color",
+        "options": [
+          {
+            "value": "light",
+            "label": "Light Background (Transparent Bubble)"
+          },
+          {
+            "value": "dark",
+            "label": "Dark Background (Black Bubble)"
+          }
+        ]
       }
     ],
-    "blocks":[{
+    "blocks":[
+      {
+        "type":"html",
+        "name":"HTML Block",
+        "settings":[
+          {
+            "type": "html",
+            "id": "about_html_block",
+            "label": "About Page text banner"
+          }
+        ]
+      },
+      {
       "type": "text_block",
       "name": "Content Module",
       "settings":[
