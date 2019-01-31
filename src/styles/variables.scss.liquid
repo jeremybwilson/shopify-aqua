@@ -6,7 +6,7 @@ $color--primary-2: #000000;  // Second Main Color (Lets use this for Headers?)
 $color--accent-1: #000000;   // Color For Arrows, Buttons, etc
 $color--accent-2: #000000;   // Alternative accent in some cases (still working this one out)
 
-// TEXT 
+// TEXT
 $color--text-1: #000000;  // Text Color (Ex: Muck is Dark Green)
 
 // BACKGROUND + GREYS
@@ -16,6 +16,7 @@ $color--gray-3: #5b5b5b;
 $color--dark-gray: #3e3e3e;
 $color--light-gray: #e6e6e6;
 $color--border-gray: rgba( 227, 227, 227, 0.65 );
+$color--transparent: rgba( 255, 255, 255, 0 );
 
 // DARK BACKGROUND
 $color--white: #ffffff;
@@ -30,7 +31,7 @@ $font-stack--default: $sans;
 $font-stack--heading: $sans;
 
 // FONT WEIGHTS
-$font-weight--book: 400; 
+$font-weight--book: 400;
 $font-weight--medium: 500;
 $font-weight--bold: 700;
 $font-weight--black: 800;
@@ -173,7 +174,7 @@ $button--alt-border-hover: {{ settings.alt_button_border_width }}px solid {{ set
   line-height: 22px / 16px * 1em;
   letter-spacing: 0;
 
-  @include fontSize(16px); 
+  @include fontSize(16px);
 }
 @mixin h7 {
   font-weight: $font-weight--bold;
@@ -395,11 +396,11 @@ $retina:           "(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi)
   } @else if $alias == "tablet-portrait" {
     @media #{$tablet-portrait} {
       @content;
-    }    
+    }
   } @else if $alias == "tablet-landscape" {
     @media #{$tablet-landscape} {
       @content;
-    }        
+    }
   } @else if $alias == "lap" {
     @media #{$lap} {
       @content;
