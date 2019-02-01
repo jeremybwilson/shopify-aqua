@@ -2882,9 +2882,17 @@ Events.on("quickview:load", function (container) {
 ==============================================================================*/
 theme.Collection = (function() {
   function Collection(container) {
+    const Entities = require( 'html-entities' ).AllHtmlEntities;
+    const entities = new Entities();
+
     const ui = {
+      backingShadow: $( '#filter-bg-shadow' ),
       collectionWrap: $( '#shopify-section-collection-template' ), //Can store these b/c they are unaffected by the filter app JS re-renders
       collectionInner: $( '#shopify-section-collection-template .collection-template' ),
+      desktopApplyBtn: $( '#filter-apply-button-desktop' ),
+      desktopClearBtn: $( '#filter-clear-button-desktop' ),
+      desktopFilterBtn: $( '#filter-button-desktop' ),
+      desktopFilterSet: $( '.filter-list-desktop' ),
       mobileFilterBtn: $( '#filter-button-mobile' ),
       seoBlockWrap: $( '#collection-seo-wrap' ),
       seoReadMoreBtn: $( '#collection-seo-read-more' )
@@ -2912,6 +2920,63 @@ theme.Collection = (function() {
       // FILTER MENU : OPEN / CLOSE : Indicator for the whole filter menu
       ui.mobileFilterBtn.click( () => {
         ui.collectionWrap.toggleClass( 'filter-open' );
+      });
+      ui.desktopFilterBtn.click( () => {
+        ui.collectionWrap.toggleClass( 'filter-open' );
+      });
+      ui.backingShadow.click( () => {
+        ui.collectionWrap.removeClass( 'filter-open' );
+      });
+
+
+      // CLOSE PANEL
+      const closeAndApply = ( queryParams = '' ) => { // location.search = '' when none present
+
+        // APPLY : Close Panel
+        ui.collectionWrap.removeClass( 'filter-open' );
+        
+        // APPLY : If selectiosn have changed, wait for panel close then apply new filters
+        if ( location && location.search !== queryParams ) {
+
+          // LOADING : Show user filters are applying
+          ui.collectionWrap.addClass( 'applying-filters' );
+
+          // APPLY : Filter application via query params
+          setTimeout( () => {
+            location.search = queryParams; // Triggers repaint!
+          }, 250 ); // 0.25s is close animation time
+        }
+      }
+
+
+      // FILTER APPLY : DESKTOP : Filter app can't do multi-column apply, had to make one
+      ui.desktopApplyBtn.click( () => {
+        const selected = ui.desktopFilterSet.find( '.bc-sf-filter-option-item.selected' );
+
+        // SELECTIONS MADE? : If we have selections, lets build the query params that will apply them!
+        if ( selected && selected.length > 0 ) {
+          var queryParams = '?_=pf';
+
+          // QUERY PARAMS : Parse through selections and build the query params for filter app
+          for ( var i=0; i < selected.length; i++ ) {
+            const id = selected[i].getAttribute( 'data-id' );
+            const value = selected[i].getAttribute( 'data-value' );
+            const cleanValue = value ? entities.encode( value ) : 'NO_VALUE_ERROR';
+
+            // Safety first
+            if ( id && cleanValue ) {
+              queryParams += `&${id}=${cleanValue}`;
+            }
+          }
+
+          // APPLY : Apply the new selections via the url query params
+          closeAndApply( queryParams );
+          
+
+        // SELECTIONS EMPTY : Trigger closeAndApply(), if user emptied selections manually will trigger update
+        } else {
+          closeAndApply();
+        }
       });
 
       // SEO PARAGRAPH : OPEN / CLOSE : Reveals the rest of the SEO Paragraph text on click

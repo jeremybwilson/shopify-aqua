@@ -2,262 +2,217 @@
 // -- sections/collection-template.liquid
 
 
-/*  COLLECTION: Core Variables
+/* COLLECTION: Core Variables
  * ---------------------------------------------- */
 $resultsTextColor: {{ settings.filter_text_color }};
 
 
-/*  COLLECTION: Parent Element Tweaks
- * ---------------------------------------------- */
-body.collection #content.row {
-    width: 100%; // Banner is full width, so moving the row wrapping inward
-}
+/* COLLECTION: Main Styles 
+ *    Various landing styles needed to see body class 
+ *    changes, thus the high level wrapper. Most styles
+ *    are a bit futher in at '#shopify-section-collection-template'
+ * ----------------------------------------------------------------- */
+body.collection {
+    #content.row {
+        width: 100%; // Banner is full width, so moving the row wrapping inward
+    }
 
-// NAV MENU STUCK : TRANSPARENT LANDING : - have to adjust margins so its transition state is smooth...
-body.collection.nav-menu-stuck {
-    #shopify-section-collection-template .collection-template {
 
-        // TRANSPARENT LANDING ADJUSTMENTS : 
-        //      If Transparent Landing + Banner Present, adjust 
-        //      top margin so its under the transparent navbar during scrolling down so it doesn't jump 
-        &[data-transparent-landing='true'] {
+    /* TRANSPARENT LANDING : NAV SCROLLED DOWN (Sticky nav floats w/ scroll)
+     *      Adjust margins so transition to floating nav state is smooth
+     * ---------------------------------------------------------------------- */
+    &.nav-menu-stuck {
+        #shopify-section-collection-template .collection-template {
 
-            // MOBILE BANNER : Prevent jumping on mobile scroll state transition
-            @include mq( 'phone-and-tablet' ){
-                &[data-has-banner-mobile='true']  {
-                    margin-top: 0;
+            // TRANSPARENT LANDING ADJUSTMENTS : 
+            //      If Transparent Landing + Banner Present, adjust 
+            //      top margin so its under the transparent navbar during scrolling down so it doesn't jump 
+            &[data-transparent-landing='true'] {
+
+                // MOBILE BANNER : Prevent jumping on mobile scroll state transition
+                @include mq( 'phone-and-tablet' ){
+                    &[data-has-banner-mobile='true']  {
+                        margin-top: 0;
+                    }
                 }
             }
-        }
 
-        // REGULAR LANDING ADJUSTMENTS : 
-        //      Adjust top margin so the transition to floating nav on scroll is smooth
-        &[data-transparent-landing='false'] {
+            // REGULAR LANDING ADJUSTMENTS : 
+            //      Adjust top margin so the transition to floating nav on scroll is smooth
+            &[data-transparent-landing='false'] {
 
-            // REGULAR LANDING : Mobile (Transparent Landing = Disabled)
-            @include mq( 'phone-and-tablet' ){
-                margin-top: 50px;
+                // REGULAR LANDING : Mobile (Transparent Landing = Disabled)
+                @include mq( 'phone-and-tablet' ){
+                    margin-top: 50px;
+                }
+
+                // REGULAR LANDING : Desktop (Transparent Landing = Disabled)
+                @include mq( 'lap-and-up' ) {
+                    margin-top: 82px;
+                } 
             }
-
-            // REGULAR LANDING : Desktop (Transparent Landing = Disabled)
-            @include mq( 'lap-and-up' ) {
-                margin-top: 82px; // I know it matches, 
-            } 
         }
     }
-}
 
-
-/*  COLLECTION : Main styling block
- * ---------------------------------------------- */
-#shopify-section-collection-template {
-
-    /* COLLECTION : Primary wrapper around component
+    /*  COLLECTION : Main styling block
      * ---------------------------------------------- */
-    .collection-template {
-        margin-top: 0; // Initial State before scrolling down (See above in "nav-menu-stuck" for scrolling adjustments)
+    #shopify-section-collection-template {
 
-        // BANNERS VISIBILITY : 
-        //      If Transparent Landing + Banner Present, adjust 
-        //      top margin so its under the transparent navbar
-        &[data-transparent-landing='true'] {
+
+        /* COLLECTION : Primary wrapper around component
+         * ---------------------------------------------- */
+        .collection-template {
+            margin-top: 0; // Initial State before scrolling down (See above in "nav-menu-stuck" for scrolling adjustments)
+
             
-            // MOBILE BANNER : Present, adjust to under transparent nav
-            @include mq( 'phone-and-tablet' ){
-                &[data-has-banner-mobile='true']  {
-                    margin-top: 30px;
-                }
-            }
-
-            // DESKTOP BANNER : Present, adjust to under transparent nav
-            @include mq( 'lap-and-up' ) {
-                &[data-has-banner-desktop='true']  {
-                    margin-top: 0; // I know it matches, 
-                }
-            }   
-        }
-        
-
-        /* COLLECTION FULL-WIDTH WRAP : Keeps width of screen
-         * --------------------------------------------------- */
-         .collection-full-width-wrap {
-
-            /* COLLECTION BANNER : Header image and content
-             * ---------------------------------------------- */
-            .collection-banner {
-                position: relative;
+            /* TRANSPARENT LANDING : INITIAL
+             *    If Transparent Landing Enabled + Banner Present, 
+             *    adjust top margins so banner under transparent navbar
+             * ---------------------------------------------------------- */
+            &[data-transparent-landing='true'] {
                 
-                // BANNER : IMAGES
-                .banner-image-desktop {
-                    display: none;
+                // MOBILE BANNER : Present, adjust to under transparent nav
+                @include mq( 'phone-and-tablet' ){
+                    &[data-has-banner-mobile='true']  {
+                        margin-top: 30px;
+                    }
                 }
 
+                // DESKTOP BANNER : Present, adjust to under transparent nav
                 @include mq( 'lap-and-up' ) {
-                    .banner-image-desktop {
-                        display: block;
+                    &[data-has-banner-desktop='true']  {
+                        margin-top: 0; // I know it matches, 
                     }
+                }   
+            }
+            
 
-                    .banner-image-mobile {
-                        display: none;
-                    }
-                }
+            /* COLLECTION FULL-WIDTH WRAP : Keeps width of screen
+             * --------------------------------------------------- */
+             .collection-full-width-wrap {
+
+                /* COLLECTION BANNER : Header image and content
+                 * ---------------------------------------------- */
+                @import url('../snippets/collection-banner.scss.liquid');
+             }
 
 
-                // BANNER : Textbox
-                .banner-text-box-wrap {
-                    width: 100%;
-                    height: auto;
+            /* COLLECTION CONTENT WRAP : Has max-width like a row
+             * NOTE : please dont' move the imports into here, as 
+             *        they both use & in their top levels
+             * --------------------------------------------------- */
+             .collection-content-wrap {
+                position: relative;
+                float: none;
+                margin: 0 auto;
+                min-height: 500px; // So the filter menu can fully expand in case user finds no results they can clear filters still
 
+                // COLLECTION DETAILS : Breadcrumb + Description
+                #collection-details {
+                    margin: 0 auto;
 
-                    // DESKTOP DISPLAY - Textbox position is paid attention to on desktop, ignored on mobile
-                    @include mq( 'lap-and-up' ) {
-                        @include flexbox;
-                        @include align-items( center ); // VERTICAL : Center (Default)
-                        @include justify-content( center ); // HORIZONTAL : Center (Default)
-                        position: absolute;
-                        height: 100%;
-                        left: 0;
-                        top: 0;
-
-                        // TRANSPARENT LANDING : Account for landing transparent nav
-                        {% if settings.nav_transparent_landing %} 
-                            padding: 80px 0 0; //Navbar = 80px high
-                        {% else %}
-                            padding: 0 20px;
-                        {% endif %}
-
-                        // CONSTRAIN WIDTH : Match nav-bar max widths on desktop sizes
-                        &[data-constrain-width='true'] {
-                            left: 50%;
-                            transform: translateX( -50% );
-                            max-width: 1000px;
-                        }
-
-                        // VERTICAL PLACEMENT : TOP
-                        &[data-textbox-vertical='top'] {
-                            @include align-items( flex-start );
-                        }
-                        // VERTICAL PLACEMENT : BOTTOM
-                        &[data-textbox-vertical='bottom'] {
-                            @include align-items( flex-end );
-                        }
-
-                        // HORIZONTAL PLACEMENT : LEFT
-                        &[data-textbox-horizontal='left'] {
-                            @include justify-content( flex-start );
-                        }
-                        // HORIZONTAL PLACEMENT : BOTTOM
-                        &[data-textbox-horizontal='right'] {
-                            @include justify-content( flex-end );
-                        }
-                    }
-
-                    @include mq( 'desk-and-up' ) {
-                        // CONSTRAIN WIDTH : Match nav-bar max widths on desktop sizes
-                        &[data-constrain-width='true'] {
-                            max-width: 1200px;
-                        }
-                    }
-
-                    @include mq( 'wide-and-up' ) {
-                        // CONSTRAIN WIDTH : Match nav-bar max widths on desktop sizes
-                        &[data-constrain-width='true'] {
-                            max-width: 1400px;
-                        }
-                    }
-
-                    .banner-text-box {
-                        @include flexbox;
-                        @include flex-wrap( wrap );
-                        @include flex-direction( column );
-                        @include align-items ( center ); // Center Text alignment is default, always center on mobile
-                        @include justify-content( center );
+                    .collection-breadcrumb-wrap {
                         position: relative;
-                        padding: 30px 20px;
-                        max-width: 440px;
-                        margin: 0 auto; // Center block for mobile
-                        text-align: center; // Mobile default
+                        padding: 20px 20px 15px;
 
-                        // TEXT-ALIGNMENT : Mobile always center aligned, move ".text-____" blocks up if wanted on mobile
                         @include mq( 'lap-and-up' ) {
-                            margin: 0;
-                            padding: 50px 40px;
-
-                            // TEXT-ALIGN : Left
-                            &.text-left {
-                                text-align: left;
-                                @include align-items( flex-start );
-                            }
-                            // TEXT-ALIGN : Right
-                            &.text-right {
-                                text-align: right;
-                                @include align-items( flex-end );
-                            }
+                            position: absolute;
+                            padding: 40px 0 15px;
+                            max-width: 50%;
                         }
 
-
-                        // TEXTBOX : Header
-                        .banner-header {
-                            @include fontSize( 25px );
-                            font-weight: $font-weight--medium;
-                            margin-bottom: 15px;
+                        #breadcrumb {
+                            top: 0;
+                            width: 100%;
+                            text-align: center;
+                            padding: 0;
+                            margin: 0;
 
                             @include mq( 'lap-and-up' ) {
-                                @include fontDim( 28px, 32px, 7px );
+                                text-align: left;
                             }
-                            
-                        }
-
-                        // TEXTBOX : Divider
-                        .banner-divider {
-                            position: relative;
-                            width: 65px;
-                            height: 1px;
-                            margin-bottom: 20px;
-                            background: $color--text-1;
-                        }
-
-                        // TEXTBOX : Body
-                        .banner-body {
-                            color: $color--dark-gray;
-                            font-weight: $font-weight--medium;
                         }
                     }
                 }
-                
-            }
 
-            /* COLLECTION DESCRIPTION : If enabled..
+             }
+
+            
+
+
+            /* COLLECTION : Product Grid + Item View
              * ---------------------------------------------- */
-            .collection-description {
-                position: relative;
+            #collection-product-wrap {
+                margin: 0 auto;
+
+                @import url('../snippets/product-grid.scss.liquid');
             }
-         }
-
-
-        /* COLLECTION CONTENT WRAP : Has max-width like a row
-         * NOTE : please dont' move the imports into here, as 
-         *        they both use & in their top levels
-         * --------------------------------------------------- */
-         .collection-content-wrap {
-            float: none;
-            margin: 0 auto;
-         }
-
+        }
         
 
+        /* FILTERS : Styling for filter sets
+         *    --> keep at this level, uses a few &.name inside
+         * -------------------------------------------------- */
+        @import url('../snippets/filters.scss.liquid');
 
-        /* COLLECTION : Product Grid + Item View
+
+
+        /* LOADING INDICATOR : Filter Loading Indicator
          * ---------------------------------------------- */
-        @import url('../snippets/product-grid.scss.liquid');
-    }
-    
+        #collection-loading-bar {
+            position: fixed;
+            bottom: -30px;
+            width: 100vw;
+            height: 30px;
+            opacity: 0;
+            text-align: center;
+            pointer-events: none;
+            background: $color--accent-1;
 
-    /* FILTERS : Styling for filter sets
-     *    --> keep at this level, uses a few &.name inside
-     * -------------------------------------------------- */
-    @import url('../snippets/filters.scss.liquid');
+            .loading-bar-text {
+                position: absolute;
+                left: 50%;
+                bottom: 0;
+                transform: translateX( -50% );
+                color: $color--white;
+                font-weight: $font-weight--medium;
+                @include fontDim( 14px, 30px, 1px );
+
+                &:after {
+                    position: absolute;
+                    bottom: 0;
+                    left: 100%;
+                    height: 30px;
+                    content: ' ';
+                }
+            } 
+        }
+
+        &.applying-filters {
+            #collection-loading-bar {
+                bottom: 0;
+                opacity: 1;
+
+                .loading-bar-text:after {
+                    animation: 0.8s animatedDots 0s linear infinite; //Animates 3 dots, only when visiblelk
+                }
+            }
+        }
+    }
 }
+
+
+// LOADING ANIMATIONS : Animates the 3 dots while displayed
+@keyframes animatedDots {
+    0%  { content: ' '; }
+    25% { content: '.'; }
+    50% { content: '..'; }
+    75% { content: '...'; }
+    100%{ content: ' '; }
+}
+
+
+
 
 
 /* RESULTS COUNT : 
