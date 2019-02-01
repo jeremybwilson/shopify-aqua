@@ -1,6 +1,20 @@
+const ICONS = {
+  WEATHERPROOFSEAL: require('./icons').WeatherproofSeal,
+}
+
+const getIconByKey = key => {
+  const noop = () => {}
+  const icon = ICONS[key]
+  return icon ? icon() : noop
+}
+
 const BadgeIcon = props => {
+  const key = props.icon.toString().toUpperCase().replace(/\s/g, '')
+
   return (
-    <div className="item-badge-icon" dangerouslySetInnerHTML={{ __html: props.icon }} />
+    <div className="item-badge-icon">
+      {getIconByKey(key)}
+    </div>
   )
 }
 

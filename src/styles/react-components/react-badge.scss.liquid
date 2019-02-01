@@ -21,22 +21,30 @@ $badgeSizeDesktop: 72px;
 }
 
 .item-badge-icon {
+    line-height: 0;
     position: absolute;
     width: 10%;
     min-width: 50px;
-    max-width: 150px;
-    top: 35px;
-    right: 35px;
+    max-width: 85px;
+    top: 0;
+    right: 0;
     z-index: 20;
-    
-    @media screen and (min-width: 1024px) {
-        top: 70px;
-    }
 
     .icon-badge {
         width: 100%;
         height: auto;
         display: block;
+    }
+}
+
+.template-product .item-badge,
+.template-product .item-badge-icon {
+    text-align: center;
+    margin-top: 35px;
+    margin-right: 35px;
+
+    @media screen and (min-width: 1024px) {
+        margin-top: 70px;
     }
 }
 

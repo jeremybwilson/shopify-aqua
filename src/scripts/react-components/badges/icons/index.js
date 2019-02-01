@@ -1,0 +1,1 @@
+exports.WeatherproofSeal = require('./WeatherproofSeal')

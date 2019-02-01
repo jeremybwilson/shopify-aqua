@@ -29,12 +29,6 @@ const findTag = (searchString) => {
   return foundTag;
 };
 
-const findTagHTML = searchString => {
-  const tag = badgeData.filter(d => d.indexOf(searchString) !== -1)[0]
-  const htmlSection = tag.split(searchString).slice(-1)
-  return decodeURIComponent(htmlSection).trim()
-}
-
 
 // HELPER : Builds Proper data object to pass to component
 const prepData = () => {
@@ -42,11 +36,11 @@ const prepData = () => {
   const badgeShapeTag = findTag( 'item_badge_shape_' ); // Optional, default is square
   const badgeColorTag = findTag( 'item_badge_color_' ); // Optional
   const badgeBgTag = findTag( 'item_badge_bg_' );       // Optional
-  const badgeIconTag = findTagHTML( 'item_badge_icon_' ); // Special badge: makes all other options obsolete
+  const badgeIconTag = findTag( 'item_badge_icon_' ); // Special badge: makes all other options obsolete
 
   if (badgeIconTag) {
     return {
-      icon: badgeIconTag,
+      icon: badgeIconTag.split('item_badge_icon_').slice(-1)[0],
       Component: BadgeIcon,
     }
   }
@@ -59,7 +53,7 @@ const prepData = () => {
       text  : badgeTextTag.split( 'item_badge_text_' )[1],
       shape : badgeShapeTag ? badgeShapeTag.split( 'item_badge_shape_' )[1] : null,
       color : badgeColorTag ? badgeColorTag.split( 'item_badge_color_' )[1] : null,
-      bg    : badgeBgTag ? badgeColorTag.split( 'item_badge_bg_' )[1] : null,
+      bg    : badgeBgTag ? badgeBgTag.split( 'item_badge_bg_' )[1] : null,
       Component : BadgeItem,
     };
   
