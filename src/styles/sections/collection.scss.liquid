@@ -58,6 +58,7 @@ body.collection {
      * ---------------------------------------------- */
     #shopify-section-collection-template {
 
+
         /* COLLECTION : Primary wrapper around component
          * ---------------------------------------------- */
         .collection-template {
@@ -93,13 +94,6 @@ body.collection {
                 /* COLLECTION BANNER : Header image and content
                  * ---------------------------------------------- */
                 @import url('../snippets/collection-banner.scss.liquid');
-
-
-                /* COLLECTION DESCRIPTION : If enabled..
-                 * ---------------------------------------------- */
-                .collection-description {
-                    position: relative;
-                }
              }
 
 
@@ -111,29 +105,36 @@ body.collection {
                 position: relative;
                 float: none;
                 margin: 0 auto;
+                min-height: 500px; // So the filter menu can fully expand in case user finds no results they can clear filters still
 
-                .collection-breadcrumb-wrap {
-                    position: relative;
-                    padding: 20px 20px 15px;
+                // COLLECTION DETAILS : Breadcrumb + Description
+                #collection-details {
+                    margin: 0 auto;
 
-                    @include mq( 'lap-and-up' ) {
-                        position: absolute;
-                        padding: 40px 0 15px;
-                        max-width: 50%;
-                    }
-
-                    #breadcrumb {
-                        top: 0;
-                        width: 100%;
-                        text-align: center;
-                        padding: 0;
-                        margin: 0;
+                    .collection-breadcrumb-wrap {
+                        position: relative;
+                        padding: 20px 20px 15px;
 
                         @include mq( 'lap-and-up' ) {
-                            text-align: left;
+                            position: absolute;
+                            padding: 40px 0 15px;
+                            max-width: 50%;
+                        }
+
+                        #breadcrumb {
+                            top: 0;
+                            width: 100%;
+                            text-align: center;
+                            padding: 0;
+                            margin: 0;
+
+                            @include mq( 'lap-and-up' ) {
+                                text-align: left;
+                            }
                         }
                     }
                 }
+
              }
 
             
@@ -141,7 +142,11 @@ body.collection {
 
             /* COLLECTION : Product Grid + Item View
              * ---------------------------------------------- */
-            @import url('../snippets/product-grid.scss.liquid');
+            #collection-product-wrap {
+                margin: 0 auto;
+
+                @import url('../snippets/product-grid.scss.liquid');
+            }
         }
         
 
@@ -149,8 +154,61 @@ body.collection {
          *    --> keep at this level, uses a few &.name inside
          * -------------------------------------------------- */
         @import url('../snippets/filters.scss.liquid');
-    }
 
+
+
+        /* LOADING INDICATOR : Filter Loading Indicator
+         * ---------------------------------------------- */
+        #collection-loading-bar {
+            position: fixed;
+            bottom: -30px;
+            width: 100vw;
+            height: 30px;
+            opacity: 0;
+            text-align: center;
+            pointer-events: none;
+            background: $color--accent-1;
+
+            .loading-bar-text {
+                position: absolute;
+                left: 50%;
+                bottom: 0;
+                transform: translateX( -50% );
+                color: $color--white;
+                font-weight: $font-weight--medium;
+                @include fontDim( 14px, 30px, 1px );
+
+                &:after {
+                    position: absolute;
+                    bottom: 0;
+                    left: 100%;
+                    height: 30px;
+                    content: ' ';
+                }
+            } 
+        }
+
+        &.applying-filters {
+            #collection-loading-bar {
+                bottom: 0;
+                opacity: 1;
+
+                .loading-bar-text:after {
+                    animation: 0.8s animatedDots 0s linear infinite; //Animates 3 dots, only when visiblelk
+                }
+            }
+        }
+    }
+}
+
+
+// LOADING ANIMATIONS : Animates the 3 dots while displayed
+@keyframes animatedDots {
+    0%  { content: ' '; }
+    25% { content: '.'; }
+    50% { content: '..'; }
+    75% { content: '...'; }
+    100%{ content: ' '; }
 }
 
 

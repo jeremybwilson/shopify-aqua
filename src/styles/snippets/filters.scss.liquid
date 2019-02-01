@@ -10,7 +10,6 @@ $filterBtnAltBg: {{ settings.filter_button_alt_bg }};
 $filterBtnAltText: {{ settings.filter_button_alt_text }};
 $filterBorder: 1px solid {{ settings.filter_divider_color }};
 $filterBarBorder: {{ settings.filter_bar_border_width }}px solid {{ settings.filter_bar_border_color }};
-$filterPanelWidthDesktop: 95%;
 
 
 /* FILTERS : DESKTOP - WRAPPER 
@@ -21,7 +20,7 @@ $filterPanelWidthDesktop: 95%;
     @include align-items( center );
     position: relative;
     width: 100%;
-    padding: 15px 30px;
+    padding: 0;
     background: $filterBg;
     z-index: 25; // Prevent it going on top of navbar when scrolling down long lists of filters
     margin: 0 auto 20px;
@@ -34,13 +33,31 @@ $filterPanelWidthDesktop: 95%;
         border: none;
     }
 
+    // Container to hold filter toggle and header
+    .constrain-container {
+        position: relative;
+        margin: 0 auto;
+        height: 50px;
+        top: -15px;
+
+        // Width on desktop causes issues, segregate to mobile style layout
+        @include mq( 'phone-and-tablet' ) {
+            width: 100%;
+        }
+
+        @include mq( 'lap-and-up' ) {
+            height: auto;
+            top: -45px;
+        }
+    }
+
 
     // FILTERS : LABEL : "Filter" on desktop
     .filter-toggle-wrap {
 
         @include mq( 'lap-and-up' ) {
             @include flexbox;
-            @include align-items( center );
+            @include align-items( center ); 
             position: absolute;
             top: 40px;
             right: 0;
@@ -53,6 +70,11 @@ $filterPanelWidthDesktop: 95%;
             font-weight: $font-weight--medium;
             letter-spacing: 1px;
             cursor: pointer;
+            display: none;
+
+            @include mq( 'lap-and-up' ) {
+                display: block;
+            }
 
             &:after {
                 position: absolute;
@@ -75,20 +97,20 @@ $filterPanelWidthDesktop: 95%;
         .sort-options {
             position: absolute;
             right: 0;
-            top: 0;
+            top: 15px;
             height: 100%;
             cursor: pointer;
 
             // Mobile styles
             width: 50%;
-            padding-left: 20px;
+            padding-left: 0;
             border-left: $filterBorder;
             border-bottom: 0px solid transparent;
 
             @include mq( 'lap-and-up' ) {
                 position: relative;
+                top: 0;
                 width: 77px; // prevents it acting like a block element
-                padding-left: 0;
                 border-left: none;
             }
 
@@ -101,6 +123,11 @@ $filterPanelWidthDesktop: 95%;
                 @include align-items( center );
                 height: 100%;
                 width: 100%;
+                padding-left: 20px;
+
+                @include mq( 'lap-and-up' ) {
+                    padding-left: 0;
+                }
 
                 .sort-label,
                 .styled-select {
@@ -175,15 +202,57 @@ $filterPanelWidthDesktop: 95%;
     #filter-header-desktop {
         @include fontDim( 26px, 26px, 1px );
         position: absolute;
-        top: 105px;
+        top: 110px;
         left: 50%;
         opacity: 0;
-        width: $filterPanelWidthDesktop; // JS Wipes anything in filter-list-desktop on render, have to match it outside it
+        z-index: 5;
+        pointer-events: none;
+        width: 100%; // JS Wipes anything in filter-list-desktop on render, have to match it outside it
         transform: translateX( -50% );
         pointer-events: none;
         font-weight: $font-weight--medium;
         text-transform: capitalize;
         transition: opacity 0.25s ease-in-out;
+    }
+
+    // FILTER WRAP : Desktop is full-width, but panel is grid obey, so have to wrap it
+    .filter-list-desktop-wrap {
+        position: absolute;
+        background: $filterBg;
+        width: 100%;
+        height: 0; //.filter-open sets to auto
+        top: 70px;
+        left: 0;
+
+        // APPLY : Button to apply selected filters in a list
+        #filter-apply-button-desktop {
+            @include h6;
+            @include fontDim( 18px, 18px, 2px );
+            width: 225px;
+            height: 50px;
+            outline: none;
+            display: none;
+            margin: 30px auto 20px;
+            color: $filterBtnMainText;
+            background: $filterBtnMainBg;
+            font-weight: $font-weight--book;
+        }
+
+        // APPLY : Button to apply selected filters in a list
+        #filter-clear-button-desktop {
+            @include h6;
+            width: 225px;
+            height: 30px;
+            outline: none;
+            display: none;
+            cursor: pointer;
+            text-align: center;
+            margin: 0 auto 35px;
+            color: $filterTextColor;
+            background: transparent; 
+            text-decoration: underline;
+            font-weight: $font-weight--medium;
+        }
     }
 
 
@@ -192,20 +261,19 @@ $filterPanelWidthDesktop: 95%;
         position: static; // Undoes the relative position by stylesheet so we can move the filter selections bar on desktop
         margin-bottom: 0;
         display: none;
-        top: 72px;
+        top: 0;
         height: 0;
         opacity: 0;
-        width: $filterPanelWidthDesktop;
         left: 50%;
         transform: translateX( -50% );
-        padding-top: 70px; // Make room for "Filter By" title
+        padding-top: 80px; // Make room for "Filter By" title
         pointer-events: none;
         transition: all 0.25s ease-in-out;
 
         @include mq( 'lap-and-up' ) {
-            position: absolute;
+            position: relative;
             @include flexbox;
-            @include justify-content( space-around );
+            @include justify-content( space-between );
             @include align-items( flex-start );
         }
 
@@ -215,10 +283,16 @@ $filterPanelWidthDesktop: 95%;
             position: relative; // Align giant menu with items, comment out to make full width menus
             margin-bottom: 0;
             width: 100%; 
+            max-width: 286px;
+
+            @include mq( 'desk-and-up' ) {
+                max-width: 362px; // Keeps lists from growing too wide
+            }
+            
 
             // FILTER : INNER WRAPPER : Padding Wrapper, didn't think we needed to go ham with nesting :p
             .bc-sf-filter-block-content-inner {
-                padding: 5px 15px 15px 0;
+                padding: 5px 0 15px 0;
             }
 
             // FILTER : TITLE : Single filter title dropdown parent
@@ -282,6 +356,7 @@ $filterPanelWidthDesktop: 95%;
                     @include h6;
                     width: 100%;
                     outline: none;
+                    display: none; // We use our own button, hide these for now
                     color: $filterBtnMainText;
                     background: $filterBtnMainBg; // Reverse it so the button matches convention
                 }
@@ -294,67 +369,6 @@ $filterPanelWidthDesktop: 95%;
                     }
                 }
 
-                // SIZE : Filter set around "Size"
-                &#bc-sf-filter-block-content-size {
-
-                    // LIST : Available Size Options
-                    ul.bc-sf-filter-option-multiple-list {
-                        @include inline-flex;
-                        @include flex-wrap( wrap );
-
-                        // SINGLE SIZE : One LI = One Size Tile
-                        li {
-                            margin: 0;
-                            width: 72px;
-                            height: 50px;
-                            padding-top: 2px;
-                            @include flexbox;
-                            @include align-items( center );
-                            @include justify-content( center );
-                            border: 1px solid $color--light-gray;
-
-                            // 4 Grid Boxes wide @ 1024px
-                            @include mq( 'lap' ) {
-
-                                // Side Border handling
-                                &:not(:nth-child( 4n ) ) {
-                                    margin-right: -1px;
-                                }
-
-                                // Bottom Border Unification
-                                &:nth-child( n + 5 ) {
-                                    margin-top: -1px;
-                                }
-                            }
-
-                            // 5 Grid Boxes wide @ 1220px+
-                            @include mq( 'desk-and-up' ) {
-                                
-                                // Side Border Merging (uniformly and simply crate single border regardless of #)
-                                &:not(:nth-child( 5n ) ) {
-                                    margin-right: -1px;
-                                }
-
-                                // Bottom Border Unification
-                                &:nth-child( n + 6 ) {
-                                    margin-top: -1px;
-                                }
-                            }
-                            
-
-
-
-                            // LINK CONTENTS
-                            input[type=checkbox] + a {
-                                padding-left: 0;
-
-                                > span:first-child {
-                                    display: none;
-                                }
-                            }
-                        }
-                    }
-                }
 
                 // FILTER OPTION LIST : List of all the options in this filter set
                 ul.bc-sf-filter-option-multiple-list {
@@ -581,6 +595,22 @@ $filterPanelWidthDesktop: 95%;
                 color: $filterTextColor;
                 text-transform: capitalize;
                 font-weight: $font-weight--medium;
+
+                &:after {
+                    position: absolute;
+                    right: 20px;
+                    top: 50%;
+                    border-bottom: none;
+                    border-left: 4px solid transparent;
+                    border-right: 4px solid transparent;
+                    border-top: 7px solid $filterArrowColor;
+                    transition: all 0.25s ease-in-out;
+                    margin-top: -5px;
+                    content: ' ';
+                    background: $filterBg;
+                    pointer-events: none; // so it doesn't become an unclickable area
+                    z-index: 25; // sit on top of select arrow thats native
+                }
             }
 
             // FILTER : BUTTON ARROW : (can't do ':after' on above elm as its innerHTML changes via the app js code)
@@ -609,11 +639,15 @@ $filterPanelWidthDesktop: 95%;
         z-index: 25;
         padding: 15px 20px;
         background: $filterBg;
+        display: none !important;
+
+
 
         // SET : WRAP : Wrapper around each filter block on mobile
         .bc-sf-filter-option-block {
             padding: 0; // Moving the spacing to improve header clickability
             position: relative; // Lets us move the "Reset" or "Clear" button to bottom of this block
+            border: none;
             padding-bottom: 0;
 
             &[data-selected-filter-count] {
@@ -698,33 +732,41 @@ $filterPanelWidthDesktop: 95%;
             margin-top: 0;
             margin-bottom: 10px;
 
-            .bc-sf-filter-option-item {
+            ul:not(.bc-sf-filter-option-swatch) {
+                .bc-sf-filter-option-item {
 
-                // OPTION : CHECKBOX
-                > span:first-child {
-                    top: 4px;
-                    width: 9px;
-                    height: 9px;
-                    border-radius: 6px;
-                }
+                    // OPTION : CHECKBOX
+                    > span:first-child {
+                        top: 7px;
+                        width: 9px;
+                        height: 9px;
+                        border-radius: 6px;
+                    }
 
-                // OPTION : VALUE NAME LABEL
-                .bc-sf-filter-option-value {
-                    @include h8;
-                    @include fontSize( 14px );
-                    color: $filterTextColor;
-                }
-            } 
+                    // OPTION : VALUE NAME LABEL
+                    .bc-sf-filter-option-value {
+                        @include h8;
+                        @include fontSize( 14px );
+                        color: $filterTextColor;
+                        text-transform: capitalize;
+                    }
+                } 
+            }
+
+            
         }
 
         // BUTTON : APPLY : Filters activate on user selection, this closes the menu.
         .mobile-apply-button {
             position: absolute;
-            bottom: 16px;
+            bottom: 70px;
             left: 50%;
             float: none;
             height: 50px;
-            width: calc( 100% - 30px ); //15px gutters
+            width: 75%;
+            max-width: 290px;
+            @include fontDim( 20px, 20px, 2px );
+            font-weight: $font-weight--book;
             transform: translateX( -50% );
             margin: 0;
             outline: none;
@@ -733,10 +775,7 @@ $filterPanelWidthDesktop: 95%;
         }
 
         &.selections-active  .mobile-apply-button {
-            width: calc( 50% - 20px ); // 20px margin for 2 buttons on edge
-            left: auto;
-            right: 20px;
-            transform: translateX( 0 );
+            // Use this section to style the button when filters are selected to make room for clear button side by side
         }
 
         // BUTTON : CLEAR ALL - WRAP : Selections of what filters you wanted, basically just canabalizing the clear button :p 
@@ -756,18 +795,19 @@ $filterPanelWidthDesktop: 95%;
                 @include inline-flex;
                 @include align-content( space-around );
                 position: absolute;
-                width: 50%;
+                width: 100%;
                 bottom: 15px;
                 left: 0;
-                padding: 0 10px 0 20px;
+                padding: 0 20px;
                 float: none;
 
                 .bc-sf-filter-clear-all {
                     @include h6;
-                    @include fontSize( 14px );
-                    text-transform: uppercase;
+                    @include fontSize( 18px );
+                    font-weight: $font-weight--medium;
+                    text-transform: capitalize;
                     text-align: center;
-                    text-decoration: none;
+                    text-decoration: underline;
                     background: $filterBtnAltBg;
                     color: $filterBtnAltText;
                     padding: 15px;
@@ -780,11 +820,17 @@ $filterPanelWidthDesktop: 95%;
 
         // OPTIONS WRAPPER : Give padding for button and bottom border
         #bc-sf-filter-options-wrapper {
-            padding-bottom: 60px;
+            padding-bottom: 90px;
+            max-width: 280px;
+            margin: 0 auto 30px;
+
+            @media only screen and ( min-width: 400px ) {
+                max-width: 350px;
+            }
 
             .bc-sf-filter-option-block:last-child {
-                border-bottom: $filterBorder;
                 margin-bottom: 10px;
+                padding-bottom: 30px;
             }
         }
     }
@@ -816,6 +862,7 @@ $filterPanelWidthDesktop: 95%;
     // GENERATED BY : fc-sf-filter-lib.js - function that populates values
     &[data-selected-filter-count] {
         &:after {
+            display: none; // Not visible in aquatalia
             content: " (" attr(data-selected-filter-count) ") "; //Read data attr and display in after element content
             transition: opacity 0.25s ease-in-out;
             font-weight: $font-weight--medium;
@@ -824,6 +871,242 @@ $filterPanelWidthDesktop: 95%;
 }
 
 
+// FILTER : SIZE (Special layout look for this filter set)
+#full-width-filter,
+#filter-list-mobile-wrap {
+    [data-block-id="bc-sf-filter-option-block-size"] {
+
+        // LIST : Available Size Options
+        ul.bc-sf-filter-option-multiple-list {
+            @include inline-flex;
+            @include flex-wrap( wrap );
+
+            // SINGLE SIZE : One LI = One Size Tile
+            li {
+                margin: 0;
+                width: 70px;
+                height: 50px;
+                padding-top: 0;
+                @include flexbox;
+                @include align-items( center );
+                @include justify-content( center );
+                border: 1px solid $color--light-gray;
+
+                // 5 Grid Boxes wide @ 768-1023px
+                @include mq( 'phone-and-tablet' ) {
+                    
+                    // Side Border Merging (uniformly and simply crate single border regardless of #)
+                    &:not(:nth-child( 5n ) ) {
+                        margin-right: -1px;
+                    }
+
+                    // Bottom Border Unification
+                    &:nth-child( n + 6 ) {
+                        margin-top: -1px;
+                    }
+                }
+
+                // 4 Grid Boxes wide @ 320-400px (MUST BE BELOW 'phone-and-tablet' to work)
+                @media only screen and ( max-width: 400px ) {
+
+                    // Side Border handling
+                    &:not(:nth-child( 4n ) ) {
+                        margin-right: -1px;
+                    }
+
+                    // Bottom Border Unification
+                    &:nth-child( n + 5 ) {
+                        margin-top: -1px;
+                    }
+                }
+
+                // 4 Grid Boxes wide @ 1024px - 1219px
+                @include mq( 'lap' ) {
+                    width: 72px;
+
+                    // Side Border handling
+                    &:not(:nth-child( 4n ) ) {
+                        margin-right: -1px;
+                    }
+
+                    // Bottom Border Unification
+                    &:nth-child( n + 5 ) {
+                        margin-top: -1px;
+                    }
+                }
+
+                // 5 Grid Boxes wide @ 1220px+
+                @include mq( 'desk-and-up' ) {
+                    
+                    // Side Border Merging (uniformly and simply crate single border regardless of #)
+                    &:not(:nth-child( 5n ) ) {
+                        margin-right: -1px;
+                    }
+
+                    // Bottom Border Unification
+                    &:nth-child( n + 6 ) {
+                        margin-top: -1px;
+                    }
+                }
+
+
+                // LINK CONTENTS
+                input[type=checkbox] + a {
+                    width: 100%;
+                    height: 100%;
+                    padding-left: 0;
+                    margin-bottom: 0;
+                    background: transparent;
+                    transition: background 0.25s ease-in-out;
+
+                    &.selected {
+                        background: $color--accent-1;
+                        
+                        .bc-sf-filter-option-value {
+                            color: $color--white !important;
+                        }
+                    }
+
+                    // Hover messes with ipad, don't provide a hover state until we're fully to desktop sizes
+                    @include mq( 'desk-and-up' ) {
+                        &:hover {
+                            background: $color--accent-1;
+                            
+                            .bc-sf-filter-option-value {
+                                color: $color--white !important;
+                            }
+                        }
+                    }
+
+                    // Input circle, hidden in this design
+                    > span:first-child {
+                        display: none;
+                    }
+
+                    // Text Content for size
+                    .bc-sf-filter-option-value {
+                        @include inline-flex;
+                        @include align-items( center );
+                        @include justify-content( center );
+
+                        width: 100%;
+                        height: 100%;
+                        text-align: center;
+                        color: $filterTextColor;
+                        transition: color 0.25s ease-in-out;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// FILTER : COLOR (Special layout look for color filter set)
+#full-width-filter,
+#filter-list-mobile-wrap #bc-sf-filter-tree {
+    .bc-sf-filter-option-block-color {
+        padding-bottom: 30px; // makes room for "clear" button on mobile
+
+        // LIST : Filter set of swatch items
+        ul {
+            @include flexbox;
+            @include flex-wrap( wrap );
+
+            // So the color dots sit flush like rest of filters
+            @include mq( 'lap-and-up' ) {
+                margin-left: -17px;
+            }
+            
+
+            // SWATCH : Single color in filter set
+            li {
+                width: auto;
+
+                a.bc-sf-filter-option-item {
+                    @include flexbox;
+                    @include flex-direction( column );
+                    @include flex-wrap( wrap );
+                    @include align-items( center ); // Remember, align is vert axis in column mode
+                    width: 40px;
+                    position: relative;
+                    margin: 0 15px 15px;
+                    padding: 3px 0 25px;
+
+
+                    .bc-sf-filter-option-swatch-image {
+                        position: relative;
+                        margin-right: 0;
+                        border: 3px solid $filterBg !important; // Override inline style
+                        width: 30px !important;
+                        height: 30px !important;
+
+                        &:after {
+                            content: ' ';
+                            border: 1px solid transparent;
+                            position: absolute;
+                            left: -4px;
+                            top: -4px;
+                            width: 32px;
+                            height: 32px;
+                            border-radius: 15px;
+                        }
+                    }
+
+                    // HOVER : swatch hover state
+                    &:hover,
+                    &.selected {
+                        &[data-value="base_color_white"] .bc-sf-filter-option-swatch-image {
+                            border: 3px solid $color--border-gray !important; // Override inline style
+                        }
+
+                        &[data-value="base_color_white"] .bc-sf-filter-option-swatch-image:after,
+                        .bc-sf-filter-option-swatch-image:after {
+                            border: 1px solid $color--gray-3;
+                            left: -4px;
+                            top: -4px;
+                            width: 32px;
+                            height: 32px; // reset position on hover so white works as well
+                        }
+                    }
+
+                    // WHITE SWATCH : Add a border so its visible
+                    &[data-value="base_color_white"] {
+                        .bc-sf-filter-option-swatch-image:after {
+                            border: 1px solid $color--gray-3;
+                            width: 26px;
+                            height: 26px;
+                            left: 0;
+                            top: 0;
+                        }
+                    }
+
+                    // SWATCH NAME : color name under swatch circle
+                    .bc-sf-filter-option-value {
+                        position: absolute;
+                        top: 40px;
+                        left: 50%;
+                        transform: translateX( -50% );
+                        text-transform: capitalize;
+                    }
+                }    
+            }
+            
+        }  
+    }
+}
+
+// FILTER BACKGROUND SHADOW : Black overlay behind filter menu mobile / desktop
+#filter-bg-shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 10;
+    background: #000; //Overlay always a dark shadow
+    pointer-events: none;
+    transition: opacity 0.25s ease-in-out;
+}
+
 /* FILTER : OPEN TOGGLE CHANGES
  *   When filter is open, 'filter-open' class is appended
  * ------------------------------------------------------ */
@@ -831,7 +1114,8 @@ $filterPanelWidthDesktop: 95%;
 
     // ARROW : Filp arrow during open states
     #filter-button-arrow,
-    #filter-button-desktop:after {
+    #filter-button-desktop:after,
+    #filter-list-mobile-wrap #filter-list-button-wrap #filter-button-mobile #bc-sf-filter-tree-mobile-button:after {
         transform: rotateX( 180deg ); 
     }
 
@@ -842,10 +1126,35 @@ $filterPanelWidthDesktop: 95%;
         }
     }
 
-    // DESKTOP : FILTER MENU (is display:none until 1024px)
-    .filter-list-desktop {
-        opacity: 1;
+    // DESKTOP : FILTER MENU WRAP
+    .filter-list-desktop-wrap {
         height: auto;
+
+        // DESKTOP : FILTER MENU (is display:none until 1024px)
+        .filter-list-desktop {
+            opacity: 1;
+            height: auto;
+            pointer-events: all;
+            background: $filterBg;
+        }
+
+        #filter-apply-button-desktop,
+        #filter-clear-button-desktop {
+            display: block;
+        }
+    }
+
+    // MOBILE : undo a strange style that they set on ipad in the filter lib
+    @include mq( 'phone-and-tablet' ) {
+        #filter-list-mobile-wrap #bc-sf-filter-tree {
+            display: block !important;
+        }
+    }
+
+
+    // FILTER BACKGROUND SHADOW : Black overlay behind filter menu mobile / desktop
+    #filter-bg-shadow {
+        opacity: 0.7;
         pointer-events: all;
     }
 
