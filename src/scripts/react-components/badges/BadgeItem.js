@@ -26,6 +26,7 @@ class BadgeItem extends React.Component {
 	}
 
 	render() {
+		console.log(this.props.icon)
 		var { bg, color, shape, text } = this.props;
 		const style = {};
 

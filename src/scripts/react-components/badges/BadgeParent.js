@@ -16,6 +16,7 @@
  *      ]
  *********************************************/
 const BadgeItem = require('./BadgeItem.js');
+const BadgeIcon = require('./BadgeIcon.js');
 var badgeData = []; // Top level so findTag() can use it also
 
 
@@ -28,6 +29,11 @@ const findTag = (searchString) => {
   return foundTag;
 };
 
+const findTagHTML = searchString => {
+  const tag = badgeData.filter(d => d.indexOf(searchString) !== -1)[0]
+  const htmlSection = tag.split(searchString).slice(-1)
+  return decodeURIComponent(htmlSection).trim()
+}
 
 
 // HELPER : Builds Proper data object to pass to component
@@ -36,6 +42,14 @@ const prepData = () => {
   const badgeShapeTag = findTag( 'item_badge_shape_' ); // Optional, default is square
   const badgeColorTag = findTag( 'item_badge_color_' ); // Optional
   const badgeBgTag = findTag( 'item_badge_bg_' );       // Optional
+  const badgeIconTag = findTagHTML( 'item_badge_icon_' ); // Special badge: makes all other options obsolete
+
+  if (badgeIconTag) {
+    return {
+      icon: badgeIconTag,
+      Component: BadgeIcon,
+    }
+  }
 
   // ADD BADGE : text tag content required
   if ( badgeTextTag ) {
@@ -45,7 +59,8 @@ const prepData = () => {
       text  : badgeTextTag.split( 'item_badge_text_' )[1],
       shape : badgeShapeTag ? badgeShapeTag.split( 'item_badge_shape_' )[1] : null,
       color : badgeColorTag ? badgeColorTag.split( 'item_badge_color_' )[1] : null,
-      bg    : badgeBgTag ? badgeColorTag.split( 'item_badge_bg_' )[1] : null
+      bg    : badgeBgTag ? badgeColorTag.split( 'item_badge_bg_' )[1] : null,
+      Component : BadgeItem,
     };
   
 
@@ -79,8 +94,8 @@ var buildBadges = function() {
 
           // BUILD : No errors, Render badge component
           if ( !preparedData.error ) {
-            const { bg, color, text, shape } = preparedData;
-            ReactDOM.render( <BadgeItem bg={bg} color={color} shape={shape} text={text} />, el );
+            const { bg, color, text, shape, icon, Component } = preparedData;
+            ReactDOM.render( <Component bg={bg} color={color} shape={shape} text={text} icon={icon} />, el );
           
           } else {
             console.log( preparedData.msg );

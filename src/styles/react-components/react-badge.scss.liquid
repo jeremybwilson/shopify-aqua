@@ -11,6 +11,35 @@ $textColor: {{ settings.product_badge_text_color }};
 $badgeSizeMobile: 52px;
 $badgeSizeDesktop: 72px;
 
+.icon-badge {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+.item-badge-icon {
+    position: absolute;
+    width: 10%;
+    min-width: 50px;
+    max-width: 150px;
+    top: 35px;
+    right: 35px;
+    z-index: 20;
+    
+    @media screen and (min-width: 1024px) {
+        top: 70px;
+    }
+
+    .icon-badge {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+}
+
 .item-badge {
     @include flexbox;
     @include justify-content( center );
