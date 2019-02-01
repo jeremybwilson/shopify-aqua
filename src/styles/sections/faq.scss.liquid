@@ -1,55 +1,236 @@
 @charset "UTF-8";
 
+.page-wrap {
+  background-color: $color--white;
+
+  #breadcrumb {
+    max-width: 960px;
+    width: 100%;
+  }
+}
 
 #faq {
-	h1 {
-		padding: 0;
-		margin: 0;
-	}
-	h4 {
-		display: inline-block;
-		width: 90%;
-		line-height: 2;
-		margin: 0;
-	}
-	h5 {
-		margin: 0 0 15px 0;
-	}
-	p {
-		margin: 0;
-	}
-	.toggle .opener {
-		float: right;
-	}
-	.toggle .opener svg {
-		display: inline-block;
-		width: 10px;
-	    height: 10px;
-	    transition: transform .25s ease;
-	    transform-origin: center;
-	}
-	.toggle-title {
-		padding: 15px 0;
-		border-bottom: 1px solid #e5e5e5;
-	}
-	.toggle-title.active {
-		border-bottom: none;
-	}
-	.toggle-title.active h4 {
-		color: $color--accent-2;
-	}
-	.toggle-title.active svg {
-		transform: rotate(180deg);
-	}
-	.toggle-inner {
-		display: none;
-		margin: 10px 0;
-	}
+  #subpage {
 
-	.fineprint {
-    	margin-top: 30px;
-    	p {
-    		font-size: 11px;
-    	}
-	}
+    @include mq('lap-and-up'){
+      margin: 0 auto;
+      padding: 0;
+      max-width: 960px;
+      width: 100%;
+    }
+
+    h1 {
+      padding: 0;
+      margin: 0;
+    }
+    h4 {
+      display: inline-block;
+      width: 90%;
+      line-height: 2;
+      margin: 0;
+    }
+    h5 {
+      margin: 0 0 15px 0;
+    }
+    p {
+      margin: 0;
+    }
+    .toggle .opener {
+      float: right;
+    }
+    .toggle .opener svg {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      transition: transform .25s ease;
+      transform-origin: center;
+    }
+    .toggle-title {
+      padding: 15px 0;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .toggle-title.active {
+      border-bottom: none;
+    }
+    .toggle-title.active h4 {
+      color: $color--accent-2;
+    }
+    .toggle-title.active svg {
+      transform: rotate(180deg);
+    }
+    .toggle-inner {
+      display: none;
+      margin: 10px 0;
+    }
+
+    .fineprint {
+      margin-top: 30px;
+      p {
+        font-size: 11px;
+      }
+    }
+    .left-nav {
+
+      ul.menu-faq-page {
+
+        li {
+          font-weight: $font-weight--medium;
+
+          &.active {
+            font-weight: $font-weight--bold;
+
+            a {
+              color: $color--primary-1;
+            }
+          }
+
+          a {
+            color: $color--gray-2;
+          }
+        }
+      }
+
+
+    }
+
+    .page-content-field {
+      h1 {
+        &.faq-title {
+          @include fontSize(20px);
+          // margin-bottom: 10px;
+          color: $color--primary-1;
+          font-weight: $font-weight--bold;
+          text-transform: uppercase;
+          text-align: center;
+          padding: 15px 0;
+
+          @include mq( 'lap-and-up' ){
+            text-align: left;
+          }
+        }
+      }
+
+      h2 {
+        @include fontSize(18px);
+        font-weight: $font-weight--black;
+
+        &.heading {
+          padding: 15px 0;
+          margin: 0;
+          border-top: solid 1px $color--light-gray;
+        }
+      }
+
+      p {
+        @include fontSize(16px);
+        font-weight: $font-weight--medium;
+      }
+
+      .toggle {
+        .toggle-title {
+          border-bottom: none;
+
+          h4 {
+            @include fontSize(16px);
+            text-transform: none;
+            font-weight: $font-weight--medium;
+          }
+        }
+
+        .toggle-inner {
+          p {
+            @include fontSize(16px);
+            font-weight: $font-weight--medium;
+            padding: 0 20px;
+          }
+        }
+
+        svg.icon {
+          path {
+            fill: $color--primary-1;
+          }
+        }
+      }
+
+      .shipping-container {
+        @include flexbox;
+        @include justify-content(flex-start);
+        @include flex-direction(column);
+        @include flex-wrap(wrap);
+        border: 1px solid $color--primary-1;
+        margin: 20px 0;
+
+        @include mq( 'lap-and-up' ){
+          @include flex-direction(row);
+        }
+
+        .container {
+          @include flexbox;
+          @include justify-content(flex-start);
+          @include flex-direction(row);
+          @include align-content(center);
+          border-bottom: 1px solid $color--primary-1;
+          border-right: 0;
+          text-align: center;
+          width: 100%;
+
+          &:nth-child(4){
+            border-bottom: 0;
+          }
+
+          @include mq( 'lap-and-up' ){
+            @include justify-content(center);
+            @include flex-direction(column);
+            border-right: 1px solid $color--primary-1;
+            border-bottom: 0;
+            width: 25%;
+
+            &:nth-child(4){
+              border-right: 0;
+            }
+          }
+
+          .title {
+            background: $color--primary-1;
+            color: $color--white;
+            padding: 10%;
+            width: 33%;
+            text-align: center;
+
+            @include mq( 'lap-and-up' ){
+              width: 100%;
+            }
+
+          }
+          .rules {
+            @include flexbox;
+            @include flex-direction(column);
+            @include justify-content(center);
+            padding: 0;
+            width: 66%;
+
+            @include mq( 'lap-and-up' ){
+              padding: 15% 0;
+              width: 100%;
+            }
+
+            ul li {
+              @include fontSize(14px);
+              list-style-type: none;
+              padding-bottom: 0;
+
+              &:before {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Temporarily commenting out Live Help bubble :: bottom right of page */
+.zEWidget-launcher {
+  display: none;
 }

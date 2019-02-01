@@ -1,0 +1,14 @@
+{% comment %}  ABOUT PAGE ::: Bottom Full Width Banner {% endcomment %}
+{% if section.settings.about_bottom_banner_enabled %}
+
+<div class="about-bottom-banner layout-mob--{{ section.settings.banner_image_position_mobile }}">
+  <div class="banner-image-box"><img src="{{ section.settings.banner_image | img_url: '800x' }}" /></div>
+  <div class="banner-text-box {% if section.settings.banner_text_box_position_desktop %}{{ section.settings.banner_text_box_position_desktop }}{% endif %} {% if section.settings.banner_text_box_color_scheme %}{{ section.settings.banner_text_box_color_scheme }}{% endif %}">
+    {% if section.settings.about_bottom_banner_h2 %}<h2>{{ section.settings.about_bottom_banner_h2 }}</h2>{% endif %}
+    <div class="banner-divider"></div>
+    {% if section.settings.about_bottom_banner_p %}
+      <p>{{ section.settings.about_bottom_banner_p }}</p>
+    {% endif %}
+  </div>
+
+{% endif %}
