@@ -32,13 +32,13 @@
   data-has-banner-mobile="{{ has_banner_mobile }}"
   data-transparent-landing="{{ section.settings.nav_transparent_landing }}">
   
+
   {% comment %} :: BANNER IMAGE : Build banner header if one setup for this collection :: {% endcomment %}
   <div class="collection-full-width-wrap">
     {% if has_banner_desktop or has_banner_mobile %}
       {% include 'collection-banner-image', config: banner_config %}
     {% endif %}
   </div>
-  
 
 
   {% comment %} :: GRID WIDTHS + PAGINATION LOOP:: {% endcomment %}
@@ -51,59 +51,66 @@
       {%- assign grid_item_width = 'desktop-3 tablet-2 mobile-half' -%}
   {% endcase %}
 
+
   {% comment %} :: GRID DISPLAY - Follows .row maximums using '.grid-max-width' :: {% endcomment %}
-  <div class="collection-content-wrap grid-max-width">
+  <div class="collection-content-wrap">
 
-    {% comment %} :: DESCRIPTION - Hidden for now :: {% endcomment %}
-    {% if section.settings.show_description %}
-      {% assign titleSplit = collection.title | split: ' / ' %}
-      {% assign collectionTitle = titleSplit | last %}
-      <div class="collection-description">
-        <header class="description-header">{{ collectionTitle }}</header>
-        <div class="description-divider"></div>
-        <div class="rte description-body">{{ collection.description | remove: "[banner]" }}</div> 
+    {% comment %} :: DETAILS - Filter Toggle, Breadcrumb, Descriptions :: {% endcomment %}
+    <div id="collection-details" class="grid-max-width">
+
+      {% comment %} :: DESCRIPTION - Hidden for now :: {% endcomment %}
+      {% if section.settings.show_description %}
+        {% assign titleSplit = collection.title | split: ' / ' %}
+        {% assign collectionTitle = titleSplit | last %}
+        <div class="collection-description grid-max-width">
+          <header class="description-header">{{ collectionTitle }}</header>
+          <div class="description-divider"></div>
+          <div class="rte description-body">{{ collection.description | remove: "[banner]" }}</div> 
+        </div>
+      {% endif %}
+
+
+      {% comment %} :: BREADCRUMB - Inline breadcrumb for easier design accomodation :: {% endcomment %}
+      <div class="collection-breadcrumb-wrap grid-max-width">
+        {% include 'breadcrumb' %}
       </div>
-    {% endif %}
+    </div>{% comment %} END : #collection-details {% endcomment %}
 
 
-    {% comment %} :: BREADCRUMB - Inline breadcrumb for easier design accomodation :: {% endcomment %}
-    <div class="collection-breadcrumb-wrap">
-      {% include 'breadcrumb' %}
-    </div>
+    {% comment %} :: FILTER SETS :: {% endcomment %}
+    <div id="collection-filters">
 
-
-    {% comment %} :: PRODUCT LOOP :: {% endcomment %}
-    {%- assign product_limit = section.settings.grid | times: section.settings.rows -%}
-    {% paginate collection.products by product_limit %}
-
-      {% comment %} :: FILTER + SORT - Desktop Component :: {% endcomment %}
+      {% comment %} :: FILTER + SORT - Desktop Component (Sort also on mobile) :: {% endcomment %}
       <div id="full-width-filter" class="filter-wrap-desktop">
 
-        {% comment %} :: FILTER + SORT TOGGLE WRAP :: {% endcomment %}
-        <div class="filter-toggle-wrap">
+        {% comment %} :: FILTER TOGGLE + HEADER :: Constrain wrap keeps it following max widths of grid row {% endcomment %}
+        <div class="constrain-container grid-max-width">
 
-          {% comment %} :: TOGGLE : Filters :: {% endcomment %}
-          <h4 id="filter-button-desktop" class="filter-label">Filter By</h4>
-          
-          {% comment %} :: TOGGLE : Sort List :: {% endcomment %}
-          <ul id="sortme" class="sort-options animate25">
-            {% if section.settings.sort_by %} 
-              <li id="bc-sf-filter-top-sorting" class="clearfix filter"></li>
-            {% endif %}
-          </ul>
+          {% comment %} :: FILTER + SORT TOGGLE WRAP :: {% endcomment %}
+          <div class="filter-toggle-wrap">
+
+            {% comment %} :: TOGGLE : Filters :: {% endcomment %}
+            <h4 id="filter-button-desktop" class="filter-label">Filter By</h4>
+            
+            {% comment %} :: TOGGLE : Sort List :: {% endcomment %}
+            <ul id="sortme" class="sort-options animate25">
+              {% if section.settings.sort_by %} 
+                <li id="bc-sf-filter-top-sorting" class="clearfix filter"></li>
+              {% endif %}
+            </ul>
+          </div>
+
+          {% comment %} :: FILTER CONTAINER HEADER :: (Header on open filter panel) {% endcomment %}
+          <div id="filter-header-desktop">Filter By</div>
         </div>
 
-
-
-        {% comment %} :: FILTER CONTAINER HEADER :: (Header on open filter panel) {% endcomment %}
-        <div id="filter-header-desktop">Filter By</div>
-
-
-
-        {% comment %} :: FILTER SETS :: {% endcomment %}
-        <div id="bc-sf-filter-tree-h" class="filter-list-desktop">
-          <div id="filter-list-header">Filter By:</div>
+        {% comment %} :: FILTER SETS - JS Overwrites .filter-list-desktop div content :: {% endcomment %}
+        <div class="filter-list-desktop-wrap">
+          <div id="bc-sf-filter-tree-h" class="filter-list-desktop grid-max-width"></div>
+          <button id="filter-apply-button-desktop">Apply</button>
+          <div id="filter-clear-button-desktop" onClick="clearAllFilterOptions(event)">Clear Filters</div>
         </div>
+
       </div>
       
 
@@ -115,27 +122,47 @@
           {% comment %} FILTER BUTTON {% endcomment %}
           <div id="filter-button-mobile">
             <div id="bc-sf-filter-tree-mobile"></div>
-            <div id="filter-button-arrow"></div>
           </div>
         </div>
 
         {% comment %} FILTERS LIST {% endcomment %}
         <div id="bc-sf-filter-tree"></div>
       </div>
-      
 
-      {% comment %} :: PRODUCT LIST - Render point for BC-SF-FILTER app :: {% endcomment %}
-      <div id="product-loop" data-bc-sort="{{ collection.sort_by }}"></div>
+    </div> {% comment %} END : #collection-filters {% endcomment %}
 
 
-      {% comment %} :: PAGINATION :: {% endcomment %}
-      <div id="pagination" class="desktop-12 tablet-6 mobile-3">
-        <div id="bc-sf-filter-bottom-pagination"></div>
-      </div>
-    	<div id="bc-sf-filter-load-more"></div>
+    {% comment %} :: FILTER BG - Background when open (covers catalog contents) :: {% endcomment %}
+    <div id="filter-bg-shadow"></div>
 
-    {% endpaginate %}
+
+    {% comment %} :: PRODUCT LOOP :: {% endcomment %}
+    <div id="collection-product-wrap" class="grid-max-width">
+      {%- assign product_limit = section.settings.grid | times: section.settings.rows -%}
+      {% paginate collection.products by product_limit %}
+
+
+        
+
+        {% comment %} :: PRODUCT LIST - Render point for BC-SF-FILTER app :: {% endcomment %}
+        <div id="product-loop" data-bc-sort="{{ collection.sort_by }}"></div>
+
+
+        {% comment %} :: PAGINATION :: {% endcomment %}
+        <div id="pagination" class="desktop-12 tablet-6 mobile-3">
+          <div id="bc-sf-filter-bottom-pagination"></div>
+        </div>
+      	<div id="bc-sf-filter-load-more"></div>
+
+      {% endpaginate %}
+    </div>
   </div> {% comment %} END : .collection-content-wrap {% endcomment %}
+
+
+  {% comment %} :: LOADING INDICATOR - Shows when new filters are applied :: {% endcomment %}
+  <div id="collection-loading-bar">
+    <div class="loading-bar-text">Applying Filters</div>
+  </div>
 
 </div>{% comment %} END : Collection section {% endcomment %}
 
