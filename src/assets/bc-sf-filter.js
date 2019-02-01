@@ -406,6 +406,28 @@ BCSfFilter.prototype.buildAdditionalElements = function(data, eventType) {
     }
 
 
+    // SWATCH FILTERS : These are the color filters, the filter app is incorrectly building the urls!
+    // EX: background-image: url(//cdn.shopify.com/s/files/1/0061/8532/0512/files/swatch_url_source_do_not_remove.pngcolor_tags-black.png?v=111111);
+    var filterSwatches = $( '.bc-sf-filter-option-swatch-image' );
+    if ( filterSwatches.length > 0 ) {
+
+        // ITERATE : Read filter swatches in filter set
+        for ( var i in filterSwatches ) {
+
+            // SWATCH CHECK : Swatch has style obj, check its bg image url and clean its bug
+            if ( filterSwatches[i] && filterSwatches[i].style ) {
+                var bgUrl = filterSwatches[i].style.backgroundImage;
+                
+                // CLEAN : Remove misplaced file name rev from filter app
+                if ( bgUrl && bgUrl.length > 0 ) {
+                    var cleanBgUrl = bgUrl.replace( 'swatch_url_source_do_not_remove.png', '' );
+                    filterSwatches[i].style.backgroundImage = cleanBgUrl;
+                }
+            }
+            
+        }
+    }
+
     // FILTER SELECTION COUNTS : Indicates how many filters in each set are selected
     var updateFilterCounts = function() {
         
