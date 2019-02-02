@@ -1,7 +1,10 @@
 <div id="faq">
   <div id="subpage">
 
+  {% comment %} {% assign template_name_suffix = template.suffix %} {% endcomment %}
+  {%- if section.settings.left_nav_enabled and template.suffix == 'faq' -%}
     {% include 'sidenav' %}
+  {%- endif -%}
 
     <div class="page-content-field">
       {% comment %} CONTENT :: Page Title - removing from Pre Questions field {% endcomment %}
@@ -79,6 +82,10 @@ $( document).ready(function() {
     "name": "FAQ page",
     "settings": [
       {
+        "type": "header",
+        "content": "DEFAULT PAGE OPTIONS"
+      },
+      {
         "type": "range",
         "id": "anchor_top_offset",
         "min": -300,
@@ -104,9 +111,20 @@ $( document).ready(function() {
         "label": "Post-questions content (HTML)"
       },
       {
+        "type": "header",
+        "content": "LEFT NAV (OPTIONAL)"
+      },
+      {
+        "type": "checkbox",
+        "id": "left_nav_enabled",
+        "label": "Enable Left Nav",
+        "info": "Checking this box will enable Left (sidebar) Nav on this template.",
+        "default": false
+      },
+      {
         "type": "link_list",
-        "id": "faq_page_left_nav",
-        "label": "FAQ Page Navigation Customer Service Links"
+        "id": "interior_page_left_nav",
+        "label": "FAQ Page Navigation Left Nav"
       }
     ],
     "blocks": [

@@ -4,19 +4,29 @@
   background-color: $color--white;
 
   #breadcrumb {
-    max-width: 960px;
     width: 100%;
+
+    @include mq( 'lap-and-up' ){
+      max-width: 960px;
+    }
+    @include mq( 'desk-and-up' ){
+      max-width: 1200px;
+    }
   }
 }
 
 #faq {
   #subpage {
+    width: 100%;
 
     @include mq('lap-and-up'){
       margin: 0 auto;
       padding: 0;
       max-width: 960px;
-      width: 100%;
+    }
+
+    @include mq('desk-and-up'){
+      max-width: 1200px;
     }
 
     h1 {
@@ -69,43 +79,21 @@
         font-size: 11px;
       }
     }
-    .left-nav {
-
-      ul.menu-faq-page {
-
-        li {
-          font-weight: $font-weight--medium;
-
-          &.active {
-            font-weight: $font-weight--bold;
-
-            a {
-              color: $color--primary-1;
-            }
-          }
-
-          a {
-            color: $color--gray-2;
-          }
-        }
-      }
-
-
-    }
 
     .page-content-field {
       h1 {
         &.faq-title {
           @include fontSize(20px);
-          // margin-bottom: 10px;
+          margin: 20px 0;
           color: $color--primary-1;
           font-weight: $font-weight--bold;
           text-transform: uppercase;
           text-align: center;
           padding: 15px 0;
 
-          @include mq( 'lap-and-up' ){
+          @include mq( 'tablet-and-up' ){
             text-align: left;
+            margin: 0 0 20px 0;
           }
         }
       }
@@ -115,7 +103,7 @@
         font-weight: $font-weight--black;
 
         &.heading {
-          padding: 15px 0;
+          padding: 25px 0 20px 0;
           margin: 0;
           border-top: solid 1px $color--light-gray;
         }
