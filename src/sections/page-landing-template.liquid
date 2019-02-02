@@ -1,0 +1,121 @@
+<div id="subpage">
+
+  {% comment %} {% assign template_name_suffix = template.suffix %} {% endcomment %}
+  {%- if section.settings.left_nav_enabled and template.suffix == 'landing' -%}
+    {% include 'sidenav' %}
+  {%- endif -%}
+
+  <div class="page-content-field">
+    {% comment %} CONTENT :: Page Title - removing from Pre Questions field {% endcomment %}
+    {% if section.settings.page_title_top != blank %}
+        <h1 class="landing-title">{{ section.settings.page_title_top }}</h1>
+    {% endif %}
+    <div class="content-module">
+    {{ page.content }}
+
+    {% for block in section.blocks %}
+
+      {% if block.type == 'html' %}
+
+        {% comment %} HTML MODULE {% endcomment %}
+        {% if block.settings.html_block != 'blank' %}
+            {{ block.settings.html_block }}
+        {% endif %}
+
+      {% elsif block.type == 'text_block' %}
+
+        {% comment %} CONTENT MODULE {% endcomment %}
+        {% if block.settings.module_html_block != 'blank' %}
+            {{ block.settings.module_html_block }}
+        {% endif %}
+
+      {% endif %}
+    {% endfor %}
+    </div><!-- .content-module -->
+  {% if section.settings.live_chat_enabled %}
+    <div class="live-chat-bubble">
+      <a href="#" title="{{ section.settings.live_chat_text }}">
+        <span>{{ section.settings.live_chat_text }}</span>
+        {% include 'svg-icon-chat-bubble' %}
+      </a>
+    </div>
+  {% endif %}
+  </div><!-- /.page-content-field -->
+</div><!-- /#subpage -->
+
+{% schema %}
+{
+  "name": "Landing page",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "header",
+      "content": "PAGE CONTENT"
+    },
+    {
+      "type": "text",
+      "id": "page_title_top",
+      "label": "Page title"
+    },
+    {
+      "type": "header",
+      "content": "LEFT NAV (OPTIONAL)"
+    },
+    {
+      "type": "checkbox",
+      "id": "left_nav_enabled",
+      "label": "Enable Left Nav",
+      "info": "Checking this box will enable Left (sidebar) Nav on this template.",
+      "default": false
+    },
+    {
+      "type": "link_list",
+      "id": "interior_page_left_nav",
+      "label": "Landing Page Navigation Left Nav"
+    },
+    {
+      "type": "header",
+      "content": "LIVE CHAT"
+    },
+    {
+      "type": "checkbox",
+      "id": "live_chat_enabled",
+      "label": "Enable Live Chat bubble below content modules",
+      "info": "Checking this box will enable Live Chat bubble on Landing page template(s).",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "live_chat_text",
+      "label": "Enter Live chat bubble text here.",
+      "default": "Live chat"
+    }
+  ],
+    "blocks":[
+      {
+        "type":"html",
+        "name":"HTML Block",
+        "settings":[
+          {
+            "type": "html",
+            "id": "html_block",
+            "label": "HTML block module",
+            "default": "Put basic header, paragraph and list information in this field"
+          }
+        ]
+      },
+      {
+        "type": "text_block",
+        "name": "Content Module",
+        "settings":[
+          {
+            "type": "html",
+            "id": "module_html_block",
+            "label": "HTML Content module",
+            "default": "Put basic header, paragraph and list information in this field"
+          }
+        ]
+      }
+    ]
+}
+{% endschema %}
