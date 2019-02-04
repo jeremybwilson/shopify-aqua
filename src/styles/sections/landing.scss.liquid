@@ -31,6 +31,13 @@
     max-width: 1200px;
   }
 
+  &.no-left-nav {
+
+    @include mq( 'tablet-and-up' ){
+      width: 60%;
+    }
+  }
+
   // SUBPAGE : Left-nav
 
   div.left-nav {
@@ -141,7 +148,7 @@
     p {
       font-weight: $font-weight--medium;
 
-      @include mq("tablet-and-up") {
+      @include mq( 'tablet-and-up' ) {
         @include fontDim(16px,32px,0);
       }
     }
@@ -154,49 +161,66 @@
       @include h1;
 
       &.landing-title {
-        text-transform: capitalize;
+        text-transform: uppercase;
         border-bottom: 1px solid $color--light-gray;
-        padding-bottom: 10px;
-        margin: 20px 0;
+        padding: 20px 0;
+        margin: 10px 0;
         text-align: center;
         @include fontSize(20px);
 
         @include mq( 'tablet-and-up' ){
           @include fontSize(26px);
-          padding-bottom: 20px;
+          text-transform: capitalize;
+          padding: 0 0 20px 0;
           margin: 0 0 20px 0;
           text-align: left;
         }
       }
     }
 
-    ul > li, ol > li {
-      @include fontDim(14px,24px,0);
-      color: $color--primary-1;
-      font-weight: $font-weight--medium;
-
-      @include mq( 'tablet-and-up' ) {
-        @include fontDim(16px,30px,0);
-      }
-
-      &:last-child {
-        padding-bottom: 10px;
-      }
+    hr {
+      margin-bottom: 20px;
     }
 
-    ul > li {
-      list-style: none;
+    ul, ol {
+      li {
+        @include fontDim(14px,24px,0);
+        color: $color--primary-1;
+        font-weight: $font-weight--medium;
 
-      &:before {
-        content: "•";
-        margin-right: 5px;
+        @include mq( 'tablet-and-up' ) {
+          @include fontDim(16px,30px,0);
+        }
+
+        &:last-child {
+          padding-bottom: 10px;
+        }
       }
     }
 
-    ol > li {
-      list-style-type: decimal;
+    ul {
+      li {
+        list-style: none;
+
+        &:before {
+          content: "•";
+          margin-right: 5px;
+        }
+      }
     }
 
+    ol {
+      list-style-position: outside;
+      font-weight: $font-weight--black;
+      margin: 0 auto;
+      width: 90%;
+
+      li {
+        list-style-type: decimal;
+        padding-left: 10px;
+        width: 100%;
+      }
+    }
 
     .content-module {
       @include flex-direction(column);
@@ -239,6 +263,12 @@
         }
       }
     }
+
+    strong {
+      color: $color--primary-1;
+      font-weight: $font-weight--black;
+      text-transform: uppercase;
+    }
   }
 
   p {
@@ -264,24 +294,23 @@
   h2 {
     color: $color--primary-1;
     font-weight: $font-weight--black;
-    @include fontSize(17px);
+    @include fontDim(17px, 22px, 0);
 
     @include mq('tablet-and-up') {
-      @include fontSize(22px);
+      @include fontDim(22px, 22px, 0);
     }
   }
+
   h3 {
     color: $color--primary-1;
     font-weight: $font-weight--black;
-    @include fontSize(14px);
+    @include fontDim(14px, 18px, 0);
 
     @include mq('tablet-and-up') {
-      @include fontSize(18px);
+      @include fontDim(18px, 18px, 0);
     }
   }
-  h2 + h3 {
-    margin-top: 20px;
-  }
+
   h4 {
     @include fontSize(14px);
     font-weight: $font-weight--black;

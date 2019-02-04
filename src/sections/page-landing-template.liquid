@@ -1,15 +1,16 @@
-<div id="subpage">
+<div id="subpage" {% if section.settings.left_nav_enabled == false %}class="no-left-nav"{% endif %}>
 
   {% comment %} {% assign template_name_suffix = template.suffix %} {% endcomment %}
   {%- if section.settings.left_nav_enabled and template.suffix == 'landing' -%}
     {% include 'sidenav' %}
+  {%- else -%}
+
   {%- endif -%}
 
   <div class="page-content-field">
     {% comment %} CONTENT :: Page Title - removing from Pre Questions field {% endcomment %}
-    {% if section.settings.page_title_top != blank %}
-        <h1 class="landing-title">{{ section.settings.page_title_top }}</h1>
-    {% endif %}
+    <h1 class="landing-title">{{ page.title }}</h1>
+
     <div class="content-module">
     {{ page.content }}
 
@@ -48,15 +49,6 @@
   "name": "Landing page",
   "max_blocks": 12,
   "settings": [
-    {
-      "type": "header",
-      "content": "PAGE CONTENT"
-    },
-    {
-      "type": "text",
-      "id": "page_title_top",
-      "label": "Page title"
-    },
     {
       "type": "header",
       "content": "LEFT NAV (OPTIONAL)"

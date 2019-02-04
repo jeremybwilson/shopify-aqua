@@ -1,3 +1,14 @@
+// ABOUT US : Hiding the breadcrumb
+
+body {
+  &.page\.about {
+
+    #breadcrumb {
+      display: none;
+    }
+  }
+}
+
 // ABOUT US : Slideshow
 
 #content {
@@ -24,14 +35,11 @@
         }
 
         h2.slide-title {
-          // @include fontDim(30px,40px,.05em);
+          display: none;
           @include fontDim(30px,40px,.05em);
 
           @include mq('tablet-and-up') {
-            // @include fontDim(45px,60px,.05em);
-          }
-          @include mq('lap-and-up') {
-            // @include fontDim(68px,90px,.05em);
+            display: block;
           }
 
           &:after {
@@ -73,24 +81,21 @@
   @include flexbox;
   @include flex-wrap(wrap);
   @include justify-content(center);
-
   // position: relative;
   // z-index: 2;
+
   @include mq('tablet-and-up') {
     // width: 83.33%;
     // max-width: 1200px;
     // margin: 0 auto;
 
+    // ABOUT US : Removes top margin from first Content Module, overall second content element on page
     div {
       &:nth-child(2){
         margin-top: 0;
       }
     }
   }
-
-  // div:nth-child(2){
-  //   margin-top: 0;
-  // }
 
   .about-bottom-banner {
     display: flex;
@@ -283,10 +288,6 @@
   @include mq('tablet-and-up') {
     @include flex-direction(row);
     margin: 75px 0;
-  }
-
-  &:first-child {
-
   }
 
   .text-box {
@@ -575,13 +576,14 @@
   }
 
   h2 {
+    @include fontSize(26px);
     color: $color--primary-1;
     font-weight: $font-weight--black;
-    @include fontDim(30px,44px,0);
     text-transform: uppercase;
 
     @include mq('lap-and-up') {
-      @include fontDim(42px,44px,0);
+      display: none;
+      @include fontSize(36px);
     }
   }
   p {
