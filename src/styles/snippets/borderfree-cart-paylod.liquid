@@ -1,0 +1,34 @@
+<div class=" main bfx-checkout-container" style="display: none !important;"> <!-- BFX TAG -->
+   <div class="bfx-price-container"> <!-- BFX TAG -->
+   <table id="shopping-cart">
+        <tr>
+            <th></th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+        </tr>
+        {% for line_item in cart.items %}
+        <tr class="bfx-product bfx-price-product"> <!-- BFX TAG -->
+            <td>
+                <img class="bfx-product-image" src="{{ line_item.image}}"/> <!-- BFX TAG -->
+            </td>
+            <td>
+                <a class="bfx-product-name" href="{{ line_item.url }}">{{ line_item.title }}</a> <!-- BFX TAG -->
+                <br />
+                SKU: <span class="bfx-sku">{{ line_item.sku }}</span> <!-- BFX TAG -->
+            </td>
+            <td>
+                <span class="bfx-price bfx-list-price">{{ line_item.price | money_with_currency | replace: ",", "" }}</span> <!-- BFX TAG -->
+            </td>
+            <td>
+                <input class="bfx-product-qty" type="text" pattern="\d*" name="qty" value="{{ line_item.quantity }}"> BFX TAG -->
+            </td>
+            <td>
+                <span class="bfx-price bfx-product-subtotal">{{ line_item.line_price | money_without_currency | replace: ",", "" }}</span> <!-- BFX TAG -->
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+  </div>
+</div>

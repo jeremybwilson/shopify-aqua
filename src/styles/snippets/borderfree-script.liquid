@@ -1,0 +1,46 @@
+{% comment %} Borderfree Styling {% endcomment %}
+
+<style>
+  #bfx-cc-wrapper {margin: 26px 10px 0px 0px;}
+  .bfx-cc-collapsed {background-color: rgba(0,0,0,0) !important;}
+  span.bfx-cc-country-name {display: none !important;}
+  #nav-user-list > li.nav-item.nav-sites {display: none !important;}
+</style>
+
+{% comment %} Borderfree Main Script {% endcomment %}
+
+<script id="bfx-snippet">
+(function(e,n,o,t,a){function c(n){e[t]._apiKey=n.key;e[t]._env=n.env;e[t]._logLevel=n.logLevel;
+e[t]._mode=n.mode;e[t]._brand=n.brand;e[t]._cookieFlag=n.cookieFlag}e[t]=c;e[t].l=1*new Date;var i,l;
+i=n.createElement(o);l=n.getElementsByTagName(o)[0];i.async=1;i.src=a;l.parentNode.insertBefore(i,l);
+})(window,document,"script","bfx",
+"https://bfx-objects.stage.borderfree.com/v1/dist/bfx.js");
+bfx({key:'bca2f6b0-0273-11e6-8da6-4920e7373927', env:'STAGE', mode:'default', brand:'default'});
+  
+{% comment %} Borderfree Tagging {% endcomment %}
+
+var startTime = new Date().getTime();
+var interval = setInterval(function(){
+    if(new Date().getTime() - startTime > 3000){
+        clearInterval(interval);
+        return;
+    }
+  {% comment %} Add Price Tagging {% endcomment %}
+  $('span.money').each(function(){$(this).addClass('bfx-price');});   
+  $('div.product-price-wrap > div').each(function(){$(this).addClass('bfx-price');});
+  $('div.ajaxcart > div > p:nth-child(2) > strong').each(function(){$(this).addClass('bfx-price');});
+  
+  {% comment %} Move Country Selector {% endcomment %}
+  $('#bfx-cc-wrapper').prependTo('#nav-user-list')
+  
+  {% comment %} Add Cart Tagging {% endcomment %}
+  $('#checkout').addClass('bfx-checkout');
+                                    
+  {% if template == 'checkout' %}
+  {% comment %} Add Checkout Tag {% endcomment %}
+  $('body > div.content > div.wrap').addClass('bfx-checkout-container');
+  {% endif %}
+  
+}, 500);
+
+</script>
