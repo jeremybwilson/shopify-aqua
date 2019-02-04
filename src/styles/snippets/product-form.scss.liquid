@@ -51,12 +51,18 @@
     }
   }
 
+  .swatch-elements {
+    font-size: 0;
+  }
+
   // swatch loop
   .swatch-element {
     display: inline-block;
     -webkit-transform:translateZ(0); /* webkit flicker fix */
     -webkit-font-smoothing:antialiased; /* webkit text rendering fix */
-    position:relative;    
+    position:relative;
+    margin-right: -1px;
+    margin-bottom: -1px;
 
     input {
       display: none;
@@ -70,7 +76,7 @@
       position: relative;
       min-width: {{ width }};
       height: {{ height }};
-      margin: 0 5px 5px 0;
+      // margin: 0 5px 5px 0;
       padding:0;
       border: solid 1px $color--primary-2;
       color: $color--primary-2;
