@@ -1,93 +1,101 @@
+// ABOUT US : Hiding the breadcrumb
+
+body {
+  &.page\.about {
+
+    #breadcrumb {
+      display: none;
+    }
+  }
+}
+
 // ABOUT US : Slideshow
 
 #content {
+  padding: 50px 0 50px 0;
 
-  &.row {
+  @include mq( 'tablet-and-up' ) {
+    padding: 75px 0 75px 0;
     width: 100%;
   }
+}
 
-  .about--wrapper {
-    .slideshow-section {
-      .flex-caption {
-        @include flexbox;
-        @include justify-content(center);
+.about--wrapper {
+  .slideshow-section {
+    .flex-caption {
+      @include flexbox;
+      @include justify-content(center);
 
-        .caption-inners {
-          background: none;
-          margin: 0 auto;
+      .caption-inners {
+        background: none;
+        margin: 0 auto;
 
-          @include mq('lap-and-up') {
-            min-width: 930px;
-          }
-
-          h2.slide-title {
-            // @include fontDim(30px,40px,.05em);
-            @include fontDim(30px,40px,.05em);
-
-            @include mq('tablet-and-up') {
-              // @include fontDim(45px,60px,.05em);
-            }
-            @include mq('lap-and-up') {
-              // @include fontDim(68px,90px,.05em);
-            }
-
-            &:after {
-              display: block !important;
-              content: '';
-              width: 50%;
-              margin: 20px auto 12px;
-              // border-bottom: solid 2px $color--white;
-
-              @include mq('tablet-and-up') {
-                // border-bottom-width: 3px;
-              }
-            }
-          }
+        @include mq('lap-and-up') {
+          min-width: 930px;
         }
 
-        .caption {
-          font-weight: $font-weight--bold;
-          @include fontDim(16px,26px,0);
+        h2.slide-title {
+          display: none;
+          @include fontDim(30px,40px,.05em);
 
           @include mq('tablet-and-up') {
-            @include fontDim(18px,30px,0);
+            display: block;
           }
-          @include mq('lap-and-up') {
-            @include fontDim(22px,36px,0);
-          }
-        }
 
-        .buttons-row {
-          display: none;
+          &:after {
+            display: block !important;
+            content: '';
+            width: 50%;
+            margin: 20px auto 12px;
+            // border-bottom: solid 2px $color--white;
+
+            @include mq('tablet-and-up') {
+              // border-bottom-width: 3px;
+            }
+          }
         }
+      }
+
+      .caption {
+        font-weight: $font-weight--bold;
+        @include fontDim(16px,26px,0);
+
+        @include mq('tablet-and-up') {
+          @include fontDim(18px,30px,0);
+        }
+        @include mq('lap-and-up') {
+          @include fontDim(22px,36px,0);
+        }
+      }
+
+      .buttons-row {
+        display: none;
       }
     }
   }
 }
+
 // ABOUT US : Content Modules
 
 .about-container {
   @include flexbox;
   @include flex-wrap(wrap);
   @include justify-content(center);
-
   // position: relative;
   // z-index: 2;
+
   @include mq('tablet-and-up') {
     // width: 83.33%;
     // max-width: 1200px;
     // margin: 0 auto;
 
+    // ABOUT US : Removes top margin from first Content Module, overall second content element on page
     div {
       &:nth-child(2){
         margin-top: 0;
       }
     }
   }
-
-  // div:nth-child(2){
-  //   margin-top: 0;
-  // }
 
   .about-bottom-banner {
     display: flex;
@@ -172,12 +180,20 @@
     /* CSS for new live chat bubble */
 
     .live-chat-bubble {
-      width: auto;
-      position: absolute;
-      right: 5%;
-      bottom: 12%;
+      margin: 0 auto 20px;
+      position: relative;
+      right: unset;
+      bottom: unset;
       padding: 5px;
-      border-radius: 50px;
+      border-radius: 40px;
+      width: auto;
+      order: 3;
+
+      @include mq( 'tablet-and-up' ){
+        position: absolute;
+        right: 5%;
+        bottom: 12%;
+      }
 
       &.color-scheme-light {
         background-color: rgba(255,255,255, 0);
@@ -236,10 +252,10 @@
       }
 
       a {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        flex-direction: row;
+        @include flexbox;
+        @include justify-content(flex-end);
+        @include align-items(center);
+        @include flex-direction(row);
         transition: color .25s ease;
         padding: 0 10px;
 
@@ -251,7 +267,7 @@
           width: auto;
         }
 
-        svg.live-chat-bubble-icon {
+        .live-chat-bubble-icon, .icon-chat-bubble {
           width: 20px;
           height: 18px;
           margin-top: -5px;
@@ -378,12 +394,17 @@
     }
   }
   &.layout-desk--image_overlap_left, &.layout-desk--image_overlap_right {
-    width: 85%;
 
+    @include mq( 'tablet-and-up' ){
+      width: 85%;
+    }
     .text-box {
       z-index: 10;
       background: $color--primary-1;
-      width: 60%;
+
+      @include mq( 'tablet-and-up' ){
+        width: 60%;
+      }
 
       h2, p {
         color: $color--white;
@@ -454,22 +475,23 @@
   }
 }
 
-.content-module:first-child {
-  .image-box {
-    margin-top: -50px;
-    padding-left: 15px;
-    padding-right: 15px;
+/* Not sure what this was being used for - is currently blowing up reskinned About page .image-box class */
+// .content-module:first-child {
+//   .image-box {
+//     margin-top: -50px;
+//     padding-left: 15px;
+//     padding-right: 15px;
 
-    @include mq('tablet-and-up') {
-      margin-top: -70px;
-      padding-left: 0;
-      padding-right: 0;
-    }
-    @include mq('lap-and-up') {
-      margin-top: -110px;
-    }
-  }
-}
+//     @include mq('tablet-and-up') {
+//       margin-top: -70px;
+//       padding-left: 0;
+//       padding-right: 0;
+//     }
+//     @include mq('lap-and-up') {
+//       margin-top: -110px;
+//     }
+//   }
+// }
 
 .layout-desk--image_overlap_left {
   .image-box {
@@ -554,13 +576,14 @@
   }
 
   h2 {
+    @include fontSize(26px);
     color: $color--primary-1;
     font-weight: $font-weight--black;
-    @include fontDim(30px,44px,0);
     text-transform: uppercase;
 
     @include mq('lap-and-up') {
-      @include fontDim(42px,44px,0);
+      display: none;
+      @include fontSize(36px);
     }
   }
   p {
