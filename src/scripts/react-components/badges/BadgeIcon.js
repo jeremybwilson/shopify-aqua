@@ -3,9 +3,8 @@ const ICONS = {
 }
 
 const getIconByKey = key => {
-  const noop = () => {}
   const icon = ICONS[key]
-  return icon ? icon() : noop
+  return icon ? icon() : null
 }
 
 const BadgeIcon = props => {

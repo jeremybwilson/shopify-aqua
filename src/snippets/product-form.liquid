@@ -49,9 +49,17 @@
   
   {% endif %}
 
+  {% if current_variant.sku != blank %}
+    <div class="product-number">
+      Item# <span class="product-sku">{{ current_variant.sku }}</span>
+    </div>
+  {% endif %}
+
   <div class="clear"></div>
 
   {% comment %} REVIEWS - STAR RATING {% endcomment %}
+
+  {% include 'pr-review-snippet' %}
 
   {% comment %}
 

@@ -97,12 +97,6 @@
             }
           {% endcapture %}
 
-          {% if current_variant.sku != blank %}
-            <div class="product-number">
-              Item# <span class="product-sku">{{ current_variant.sku }}</span>
-            </div>
-          {% endif %}
-
           {% include 'product-form' %}
 
           {% unless template == 'product.quick' %}
@@ -222,7 +216,7 @@
     {% include 'recently-viewed' %}
 
     {% comment %} :: REVIEWS :: {% endcomment %}
-    {% include 'yotpo-reviews' %}
+    {% include 'pr-review-summary' %}
     
   {% endunless %}
 </div>
