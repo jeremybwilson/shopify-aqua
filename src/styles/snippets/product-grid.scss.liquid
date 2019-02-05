@@ -36,18 +36,26 @@ $loadMoreBgHover: {{ settings.collection_load_more_bg_hover }};
         // QUICKVIEW BUTTON : Button to show the quickview
         .product-modal {
             @include h7;
-            @include fontSize( 16px );
+            @include flexbox;
+            @include fontSize( 14px );
+            @include align-items( center );
+            @include justify-content( center );
+
+            transition: opacity 0.25s ease-in-out;
+            font-weight: $font-weight--medium;
             background: $quickviewBtnBg;
             color: $quickviewBtnText;
-            opacity: 0;
+            padding: 6px 10px 4px;
+            letter-spacing: 2px;
             border-radius: 0;
-            transition: opacity 0.25s ease-in-out;
+            top: -21px;
+            opacity: 0;
         }
 
         @include mq( 'lap-and-up' ) {
             &:hover .product-modal {
+                opacity: 1;
                 display: block;
-                opacity: 0.9;
                 pointer-events: all;
             }
         }
@@ -160,6 +168,7 @@ $loadMoreBgHover: {{ settings.collection_load_more_bg_hover }};
 
         @include mq( 'lap-and-up' ) {
             max-width: 230px;
+            margin: 20px auto 0; // extra spacing for quickview button
         }
 
         @include mq( 'desk-and-up' ) {
