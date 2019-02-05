@@ -16,9 +16,7 @@
   @include flexbox;
   @include flex-direction(column);
   @include justify-content(flex-end);
-
-  margin-right: 27px;
-  margin-left: 27px;
+  margin: 0 auto;
 
   @include p;
   @include fontDim(14px,24px,0);
@@ -26,16 +24,27 @@
 
   @include mq( 'lap-and-up' ) {
     @include flex-direction(row);
+    max-width: 960px;
   }
   @include mq( 'desk-and-up' ) {
-    padding-left: 15%;
+    // padding-left: 15%;
+    max-width: 1200px;
+  }
+
+  &.no-left-nav {
+
+    @include mq( 'tablet-and-up' ){
+      width: 60%;
+    }
   }
 
   // SUBPAGE : Left-nav
 
   div.left-nav {
-    margin: 0 0 25px 0;
+    margin: 25px 0 25px 0;
+
     @include mq( 'lap-and-up' ) {
+      margin: 0 0 25px 0;
       @include flex-basis(220px);
       padding-right: 20px;
     }
@@ -50,16 +59,31 @@
         display: block;
       }
 
-      ul > li {
-        margin-bottom: 0px;
+      ul {
+        list-style-type: none;
 
-        &:before {
-          content: " ";
-          margin-right: 0;
-        }
+        li {
+          @include fontDim(16px,30px,0);
+          font-weight: $font-weight--medium;
+          padding: 5px 0;
+          margin-bottom: 0px;
 
-        a {
-          color: $color--primary-2;
+          &:before {
+            content: " ";
+            margin-right: 0;
+          }
+
+          &.active {
+            font-weight: $font-weight--bold;
+
+            a {
+              color: $color--primary-1;
+            }
+          }
+
+          a {
+            color: $color--gray-2;
+          }
         }
       }
     }
@@ -112,13 +136,138 @@
     }
   }
 
-  div.page-content-field {
+  .page-content-field {
     @include mq( 'lap-and-up' ) {
       @include flex-basis(100%);
     }
 
     a {
       color: $color--accent-1;
+    }
+
+    p {
+      font-weight: $font-weight--medium;
+
+      @include mq( 'tablet-and-up' ) {
+        @include fontDim(16px,32px,0);
+      }
+    }
+
+    h1, h2 {
+      color: $color--primary-1;
+    }
+
+    h1 {
+      @include h1;
+
+      &.landing-title {
+        text-transform: uppercase;
+        border-bottom: 1px solid $color--light-gray;
+        padding: 20px 0;
+        margin: 10px 0;
+        text-align: center;
+        @include fontSize(20px);
+
+        @include mq( 'tablet-and-up' ){
+          @include fontSize(26px);
+          text-transform: capitalize;
+          padding: 0 0 20px 0;
+          margin: 0 0 20px 0;
+          text-align: left;
+        }
+      }
+    }
+
+    hr {
+      margin-bottom: 20px;
+    }
+
+    ul, ol {
+      li {
+        @include fontDim(14px,24px,0);
+        color: $color--primary-1;
+        font-weight: $font-weight--medium;
+
+        @include mq( 'tablet-and-up' ) {
+          @include fontDim(16px,30px,0);
+        }
+
+        &:last-child {
+          padding-bottom: 10px;
+        }
+      }
+    }
+
+    ul {
+      li {
+        list-style: none;
+
+        &:before {
+          content: "•";
+          margin-right: 5px;
+        }
+      }
+    }
+
+    ol {
+      list-style-position: outside;
+      font-weight: $font-weight--black;
+      margin: 0 auto;
+      width: 90%;
+
+      li {
+        list-style-type: decimal;
+        padding-left: 10px;
+        width: 100%;
+      }
+    }
+
+    .content-module {
+      @include flex-direction(column);
+      @include align-items(flex-start);
+      margin: 10px 0;
+
+      @include mq('tablet-and-up') {
+        margin: 25px 0;
+      }
+    }
+
+    .live-chat-bubble {
+      width: auto;
+
+      a {
+        @include flexbox;
+        @include justify-content(center);
+        @include align-items(center);
+        @include flex-direction(row);
+        transition: color .25s ease;
+        padding: 0 10px;
+
+        @include mq( 'tablet-and-up' ){
+          @include justify-content(flex-end);
+        }
+
+        span {
+          @include fontSize(14px);
+          margin: 0;
+          padding: 0 10px;
+          text-transform: uppercase;
+          width: auto;
+        }
+
+        .live-chat-bubble-icon, .icon-chat-bubble {
+          width: 20px;
+          height: 18px;
+          margin-top: -5px;
+          transition: fill .3s ease;
+        }
+      }
+    }
+
+    strong {
+      color: $color--primary-1;
+      font-weight: $font-weight--black;
+      text-transform: uppercase;
     }
   }
 
@@ -131,12 +280,12 @@
       @include fontDim(16px,36px,0);
     }
   }
+
   h1 {
     @include h1;
     color: $color--primary-1;
     @include fontSize(22px);
     text-transform: uppercase;
-    border-bottom: none;
 
     @include mq("tablet-and-up") {
       @include fontSize(30px);
@@ -145,24 +294,23 @@
   h2 {
     color: $color--primary-1;
     font-weight: $font-weight--black;
-    @include fontSize(17px);
+    @include fontDim(17px, 22px, 0);
 
     @include mq('tablet-and-up') {
-      @include fontSize(22px);
+      @include fontDim(22px, 22px, 0);
     }
   }
+
   h3 {
     color: $color--primary-1;
     font-weight: $font-weight--black;
-    @include fontSize(14px);
+    @include fontDim(14px, 18px, 0);
 
     @include mq('tablet-and-up') {
-      @include fontSize(18px);
+      @include fontDim(18px, 18px, 0);
     }
   }
-  h2 + h3 {
-    margin-top: 20px;
-  }
+
   h4 {
     @include fontSize(14px);
     font-weight: $font-weight--black;
@@ -181,48 +329,6 @@
       @include fontDim(25px,34px,0);
     }
   }
-  table {
-    margin-bottom: 30px;
-  }
-  ul > li {
-    list-style: none;
-    color: $color--primary-2;
-    padding-bottom: 10px;
-    @include fontDim(14px,24px,0);
-
-    @include mq( 'tablet-and-up' ) {
-      @include fontDim(16px,36px,0);
-    }
-
-    &:before {
-      content: "•";
-      color: $color--primary-1;
-      margin-right: 10px;
-    }
-  }
-  ol > li {
-    list-style-type: decimal;
-    content: " ";
-    padding-bottom: 10px;
-    padding-left: 40px;
-
-    &:last-child {
-      padding-bottom: 0;
-    }
-  }
-
-  table {
-    tr:first-child {
-    }
-    td {
-      border: 1px solid #ccc;
-      padding: 5px 10px;
-    }
-  }
-  table table {
-    margin-bottom: 0;
-  }
-
 
   // SUBPAGE : Content : Columns for Shipping
 
@@ -240,7 +346,7 @@
       padding: 20px 30px;
       border: 1px dotted $color--white;
       background: $color--primary-1;
-      color: $color--white;   
+      color: $color--white;
       text-align: center;
 
       @include mq("tablet-and-up") {
