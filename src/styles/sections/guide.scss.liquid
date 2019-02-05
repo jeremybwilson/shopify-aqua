@@ -1,16 +1,3 @@
-// ABOUT US : Hiding the breadcrumb
-
-body {
-  &.page\.about {
-
-    #breadcrumb {
-      display: none;
-    }
-  }
-}
-
-// ABOUT US : Slideshow
-
 #content {
   padding: 50px 0 50px 0;
 
@@ -18,66 +5,22 @@ body {
     padding: 75px 0 75px 0;
     width: 100%;
   }
-}
 
-.about--wrapper {
-  .slideshow-section {
-    .flex-caption {
-      @include flexbox;
-      @include justify-content(center);
-
-      .caption-inners {
-        background: none;
-        margin: 0 auto;
-
-        @include mq('lap-and-up') {
-          min-width: 930px;
-        }
-
-        h2.slide-title {
-          display: none;
-          @include fontDim(30px,40px,.05em);
-
-          @include mq('tablet-and-up') {
-            display: block;
-          }
-
-          &:after {
-            display: block !important;
-            content: '';
-            width: 50%;
-            margin: 20px auto 12px;
-            // border-bottom: solid 2px $color--white;
-
-            @include mq('tablet-and-up') {
-              // border-bottom-width: 3px;
-            }
-          }
-        }
-      }
-
-      .caption {
-        font-weight: $font-weight--bold;
-        @include fontDim(16px,26px,0);
-
-        @include mq('tablet-and-up') {
-          @include fontDim(18px,30px,0);
-        }
-        @include mq('lap-and-up') {
-          @include fontDim(22px,36px,0);
-        }
-      }
-
-      .buttons-row {
-        display: none;
-      }
+  h1 {
+    &.guide-title {
+      text-transform: uppercase;
+      letter-spacing: .75em;
+      margin: 75px auto 50px;
+      padding-bottom: 0;
+      border-bottom: 0;
+      width: auto;
     }
   }
 }
 
-// ABOUT US : Content Modules
+// SHOE GUIDE : Content Modules
 
-.about-container {
+.guide-container {
   @include flexbox;
   @include flex-wrap(wrap);
   @include justify-content(center);
@@ -97,182 +40,96 @@ body {
     }
   }
 
-  .about-bottom-banner {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  /* CSS for new live chat bubble */
+  .live-chat-bubble {
+    @include flexbox;
+    @include justify-content(flex-end);
+    margin: 0 0 20px;
+    padding: 5px;
+    border-radius: 40px;
+    width: auto;
 
-    @include mq('tablet-and-up') {
-      position: relative;
-    }
-
-    img {
+    @include mq( 'tablet-and-up' ){
       width: 100%;
     }
 
-    .banner-text-box {
-      background: $color--white;
-      width: 100%;
-      margin: 0;
-      padding: 35px;
-
-      @include mq('tablet-and-up') {
-        position: absolute;
-        top: 50%;
-        width: 41%;
-        padding: 50px;
-        transform: translateY(-50%);
-
-        &.left {
-          left: 0;
-        }
-
-        &.right {
-          right: 0;
-        }
-      }
-
-      .banner-divider {
-        background: $color--light-gray;
-        margin-bottom: 12px;
-        margin: 0 auto 12px;
-        width: 65px;
-        height: 1px;
-
-        @include mq('tablet-and-up') {
-          margin: 0 0 12px;
-        }
-      }
-
-      &.dark {
-        // background: $color--primary-1;
-        background: $color--gray-1;
-
-        h2, p {
-          color: $color--white;
-        }
-      }
-
-      h2, p {
-        width: 100%;
-        text-align: center;
-
-        @include mq('tablet-and-up') {
-          text-align: left;
-        }
-      }
-
-      h2 {
-        font-size: 24px;
-        margin-bottom: 10px;
-      }
-
-      p {
-        font-size: 14px;
-        font-weight: 600;
-
-        @include mq('tablet-and-up') {
-
-        }
-      }
-    }
-
-    /* CSS for new live chat bubble */
-
-    .live-chat-bubble {
-      margin: 0 auto 20px;
-      position: relative;
-      right: unset;
-      bottom: unset;
-      padding: 5px;
-      border-radius: 40px;
-      width: auto;
-      order: 3;
-
-      @include mq( 'tablet-and-up' ){
-        position: absolute;
-        right: 5%;
-        bottom: 12%;
-      }
-
-      &.color-scheme-light {
-        background-color: rgba(255,255,255, 0);
-
-        a {
-          color: $color--primary-1;
-
-          span {
-            color: $color--primary-1;
-          }
-
-          &:hover {
-            color: #616365;
-
-            svg.live-chat-bubble-icon {
-              path {
-                fill: #616365;
-              }
-            }
-          }
-
-          svg.live-chat-bubble-icon {
-            path {
-              fill: $color--primary-1;
-            }
-          }
-        }
-      }
-
-      &.color-scheme-dark {
-        background-color: $color--primary-1;
-
-        a {
-          color: $color--white;
-
-          span {
-            color: $color--white;
-          }
-
-          &:hover {
-            color: red;
-
-            svg.live-chat-bubble-icon {
-              path {
-                fill: #616365;
-              }
-            }
-          }
-
-          svg.live-chat-bubble-icon {
-            path {
-              fill: $color--white;
-            }
-          }
-        }
-      }
+    &.color-scheme-light {
+      background-color: rgba(255,255,255, 0);
 
       a {
-        @include flexbox;
-        @include justify-content(flex-end);
-        @include align-items(center);
-        @include flex-direction(row);
-        transition: color .25s ease;
-        padding: 0 10px;
+        color: $color--primary-1;
 
         span {
-          @include fontSize(14px);
-          margin: 0;
-          padding: 0 10px;
-          text-transform: uppercase;
-          width: auto;
+          color: $color--primary-1;
         }
 
-        .live-chat-bubble-icon, .icon-chat-bubble {
-          width: 20px;
-          height: 18px;
-          margin-top: -5px;
-          transition: fill .3s ease;
+        &:hover {
+          color: #616365;
+
+          svg.live-chat-bubble-icon {
+            path {
+              fill: #616365;
+            }
+          }
         }
+
+        svg.live-chat-bubble-icon {
+          path {
+            fill: $color--primary-1;
+          }
+        }
+      }
+    }
+
+    &.color-scheme-dark {
+      background-color: $color--primary-1;
+
+      a {
+        color: $color--white;
+
+        span {
+          color: $color--white;
+        }
+
+        &:hover {
+          color: red;
+
+          svg.live-chat-bubble-icon {
+            path {
+              fill: #616365;
+            }
+          }
+        }
+
+        svg.live-chat-bubble-icon {
+          path {
+            fill: $color--white;
+          }
+        }
+      }
+    }
+
+    a {
+      @include flexbox;
+      @include justify-content(flex-end);
+      @include align-items(center);
+      @include flex-direction(row);
+      transition: color .25s ease;
+      padding: 0 10px;
+
+      span {
+        @include fontSize(14px);
+        margin: 0;
+        padding: 0 10px;
+        text-transform: uppercase;
+        width: auto;
+      }
+
+      .live-chat-bubble-icon, .icon-chat-bubble {
+        width: 20px;
+        height: 18px;
+        margin-top: -5px;
+        transition: fill .3s ease;
       }
     }
   }
@@ -363,20 +220,6 @@ body {
     }
   }
 
-  [class*='--image_left '] {
-    .text-box {
-      @include justify-content(center);
-
-      h2, p {
-        text-align: left;
-      }
-
-      .banner-divider {
-        margin-left: 0;
-      }
-    }
-  }
-
   &.layout-desk--image_left, &.layout-desk--image_overlap_left {
 
     @include mq('lap-and-up'){
@@ -434,6 +277,10 @@ body {
       }
     }
   }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 // ABOUT US : Content Modules : Variations
@@ -474,24 +321,6 @@ body {
     }
   }
 }
-
-/* Not sure what this was being used for - is currently blowing up reskinned About page .image-box class */
-// .content-module:first-child {
-//   .image-box {
-//     margin-top: -50px;
-//     padding-left: 15px;
-//     padding-right: 15px;
-
-//     @include mq('tablet-and-up') {
-//       margin-top: -70px;
-//       padding-left: 0;
-//       padding-right: 0;
-//     }
-//     @include mq('lap-and-up') {
-//       margin-top: -110px;
-//     }
-//   }
-// }
 
 .layout-desk--image_overlap_left {
   .image-box {
@@ -565,7 +394,7 @@ body {
 
 // ABOUT US : Bottom Block
 
-.about-block {
+.guide-block {
   padding: 40px;
   text-align: center;
   width: 100%;
