@@ -301,3 +301,35 @@ input.add {
     background: $color--primary-1;
   }
 }
+
+.atc-wrapper {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  margin-bottom: 10px;
+  border: 1px solid #000;
+
+  .AddtoCart,
+  .wk-link {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .AddtoCart {
+    margin-bottom: 0;
+  }
+
+  .wk-link {
+    text-align: center;
+    width: 55px;
+  }
+
+  a.wk-link .wk-icon {
+    margin: 0;
+  }
+
+  .wk-icon svg {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}

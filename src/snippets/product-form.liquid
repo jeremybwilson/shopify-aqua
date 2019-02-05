@@ -179,7 +179,10 @@
       {% endif %}
 
       {% if section.settings.show_payment_button %}<div class="clear"></div>{% endif %}
-      <input type="submit" name="button" class="add clearfix AddtoCart{% if section.settings.show_payment_button %} secondary-button{% endif %}" value="{{ call_to_action }}" {% unless current_variant.available %}disabled{% endunless %} />
+      <div class="atc-wrapper">
+        <input type="submit" name="button" class="add clearfix AddtoCart{% if section.settings.show_payment_button %} secondary-button{% endif %}" value="{{ call_to_action }}" {% unless current_variant.available %}disabled{% endunless %} />
+        <!-- include 'wishlist-link' -->
+      </div>
       {% if section.settings.show_payment_button %}
        {{ form | payment_button }}
       {% endif %}
