@@ -3004,11 +3004,15 @@ theme.Collection = (function() {
   // BADGES : BUILD : Method to build react-badges component on collection updates (rebuilt in JS)
   const buildBadges = require('./react-components/badges/BadgeParent.js');
 
+  // WISHLISTH : BUILD : Attach click handlers to all rendered wishlist buttons (rebuilt in JS from bc-sf-filter.js template)
+  const buildWishlistButtons = require('./third-party-apps/wishlist-king/WishlistParent.js');
+
 
   // UPDATE : FIRE : Fires all build functions on subscribed event trigger
   const updateTemplate = function() {
     buildSwatches();
     buildBadges();
+    buildWishlistButtons();
   }
 
   // UPDATES : SUB : Subscribe to collection updates to re-render react-components
