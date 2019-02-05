@@ -28,6 +28,7 @@ var bcSfFilterTemplate = {
                                 '</div>' +
 
                                 '<div class="product-info">' +
+                                    '{{itemQuickview}}' +
                                     '<a class="product-title-wrap" href="{{itemUrl}}"> ' +
                                         '{{itemVendor}}' +
                                         '<h3 class="product-title">{{itemTitle}}</h3>' +
@@ -36,7 +37,6 @@ var bcSfFilterTemplate = {
                                     '<div class="product-price-wrap">{{itemPrice}}</div>' +
                                     '{{itemSwatch}}' +
                                 '</div>' +
-                                '{{itemQuickview}}' +
                             '</div>',
 
     // Badge Template
