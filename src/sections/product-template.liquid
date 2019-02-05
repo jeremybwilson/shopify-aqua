@@ -99,6 +99,14 @@
 
           {% include 'product-form' %}
 
+          {% comment %} :: Social sharing :: {% endcomment %}
+          {% if section.settings.show_social_sharing %}
+            <div class="share-me">
+              <span>Share:</span>
+              {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+            </div>
+          {% endif %}
+
           {% unless template == 'product.quick' %}
 
             {% comment %}
@@ -429,6 +437,12 @@
       {
         "type": "header",
         "content": "Additional content"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_social_sharing",
+        "label": "Show social sharing",
+        "default": true
       },
       {
         "type": "select",
