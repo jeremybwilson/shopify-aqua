@@ -28,18 +28,26 @@ var bcSfFilterTemplate = {
                                 '</div>' +
 
                                 '<div class="product-info">' +
-                                    '{{itemSwatch}}' +
                                     '<a class="product-title-wrap" href="{{itemUrl}}"> ' +
                                         '{{itemVendor}}' +
                                         '<h3 class="product-title">{{itemTitle}}</h3>' +
                                     '</a>' +
+                                    '{{wishlistButton}}' +
                                     '<div class="product-price-wrap">{{itemPrice}}</div>' +
+                                    '{{itemSwatch}}' +
                                 '</div>' +
                                 '{{itemQuickview}}' +
                             '</div>',
 
     // Badge Template
     'itemBadgeHtml': '<div class="react-badge" data-badge=\'{{badgeTags}}\'></div>',
+
+    // Wishlist Heart Template
+    'wishlistBtnHtml': '<button class="button-wishlist-product" data-on-wishlist="{{isOnWishlist}}" data-product-id="{{itemProductId}}" data-variant-id="{{itemVaraintId}}">' +
+        '<svg version="1.1" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 64 60.833">' +
+            '<path stroke="#000" stroke-width="5" stroke-miterlimit="10" d="M45.684,2.654c-6.057,0-11.27,4.927-13.684,10.073 c-2.417-5.145-7.63-10.073-13.687-10.073c-8.349,0-15.125,6.776-15.125,15.127c0,16.983,17.134,21.438,28.812,38.231 c11.038-16.688,28.811-21.787,28.811-38.231C60.811,9.431,54.033,2.654,45.684,2.654z"></path>' +
+        '</svg>' +
+    '</button>',
 
     // Pagination Template
     'previousHtml': '<a href="{{itemUrl}}"><i class="fa fa-angle-left" aria-hidden="true"></i></a>',
@@ -144,21 +152,50 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
     itemHtml = itemHtml.replace(/{{itemVendor}}/g, itemVendorHtml);
 
 
+    // WISHLIST BUTTON : Add wishlist button to grid item (Needs ID, so fill this before "{{itemProductId}}" )
+    itemHtml = itemHtml.replace(/{{wishlistButton}}/g, bcSfFilterTemplate.wishlistBtnHtml);
+    var isOnWishlist = false;
+    var wishlistObj = Appmate && Appmate.wk ? Appmate.wk.getProduct( data.id ) : null;
+    if ( wishlistObj && wishlistObj.in_wishlist ) {
+        isOnWishlist = true;
+    }
+    itemHtml = itemHtml.replace(/{{isOnWishlist}}/g, isOnWishlist);
+
+
     // PRICE : Add price and original price if discounted
     var itemPriceHtml = '';
+    var showRange = false;  // RANGE : Show "from $10 - $1,000" type displays for range pricing
+    var showCents = false;  // CENTS : show the ".00" on a price
+    var showSales = true;   // SALE : Show red strike through and discount price 
+
+    // FORMAT : Remove cents if setting if showCents false
+    var formatPrice = function( price ) {
+        if ( showCents ) {
+            return price;
+        } else {
+            return price.replace( /\.[0-9]{2}/, '' );
+        }  
+    }
+
+    // PRICE VALUE : Store min value for reusable reference
+    var minPrice = formatPrice( this.formatMoney(data.price_min, this.moneyFormat) );
+
+    // PRICE : BUILD TEMPLATE
     if (onSale) {
-        itemPriceHtml += '<div class="onsale">' + this.formatMoney(data.price_min, this.moneyFormat) + '</div>';
-        itemPriceHtml += '<div class="was">' + this.formatMoney(data.compare_at_price_min, this.moneyFormat) + '</div>';
+        var compareAtPrice = formatPrice( this.formatMoney(data.compare_at_price_min, this.moneyFormat) );
+        itemPriceHtml += '<div class="onsale">' + minPrice + '</div>';
+        itemPriceHtml += '<div class="was">' + compareAtPrice + '</div>';
         
     } else {
         itemPriceHtml += '<div class="prod-price">';
+
+        if ( priceVaries && showRange ) {
+            var maxPrice = formatPrice( this.formatMoney(data.price_max, this.moneyFormat ) );
+            itemPriceHtml += bcSfFilterConfig.label.from_price + ' ' + minPrice + ' - ' + maxPrice;
         
-        if (priceVaries) {
-            itemPriceHtml += bcSfFilterConfig.label.from_price + ' ' + this.formatMoney(data.price_min, this.moneyFormat) + ' - ' + this.formatMoney(data.price_max, this.moneyFormat);
         } else {
-            itemPriceHtml += this.formatMoney(data.price_min, this.moneyFormat);
+            itemPriceHtml += minPrice;
         }
-        
         itemPriceHtml += '</div>';
     }
     itemHtml = itemHtml.replace(/{{itemPrice}}/g, itemPriceHtml);
@@ -231,6 +268,7 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
     // INFO : Add main attributes for product data
     itemHtml = itemHtml.replace(/{{itemPriceAttr}}/g, data.price_min);
     itemHtml = itemHtml.replace(/{{itemId}}/g, data.id);
+    itemHtml = itemHtml.replace(/{{itemVaraintId}}/g, firstVariant.id);
     itemHtml = itemHtml.replace(/{{itemTitle}}/g, data.title);
     itemHtml = itemHtml.replace(/{{itemHandle}}/g, data.handle);
     itemHtml = itemHtml.replace(/{{itemUrl}}/g, this.buildProductItemUrl(data));
