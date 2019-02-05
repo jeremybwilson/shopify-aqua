@@ -693,8 +693,6 @@
         ],
         "settings": {
           "nav_transparent_landing": true,
-          "about_text": "<p>Established in 1994, Aquatalia offers the finest combination of fashion, quality, and comfort in luxury footwear and is the first to mix distinctive Italian design with innovative weatherproof and stain-resistant technology. \n Bridging the gap betwewn style and function, Aquatalia sets a new standard in fine footwear and accessories.  Taking the brand to the next level, Aquatalia will continue to introduce category expansions, establish retail presence and expand the brand globally.<\/p>",
-          "about_text_color": "rgba(0,0,0,0)",
           "about_bottom_banner_enabled": true,
           "banner_text_box_position_desktop": "right",
           "banner_image": "shopify:\/\/shop_images\/nav-megamenu-3.jpg",
@@ -702,7 +700,9 @@
           "banner_text_box_color_scheme": "light",
           "about_bottom_banner_h2": "Beautiful Wearability",
           "about_bottom_banner_p": "Stepping out in any weather.  Aquatalia transcends trend. \n Mixing sophistication, fasion, and versatility into Women's and Men's shoese and accessories.  Aquatalia designs are contemporary yet classic, elegant yet everyday. Cras orci nulla, cursus vitae felis sit amet, fringilla placerat nisl. Curabitur imperdiet commodo dapibus. Sed ipsum augue, interdum ut neque vitae, rutrum posuere tortor.",
-          "live_chat_enabled": false
+          "live_chat_enabled": false,
+          "live_chat_text": "Live chat",
+          "live_chat_color_scheme": "light"
         }
       },
       "slideshow": {
@@ -904,7 +904,8 @@
           "section_title_top": "Faq",
           "before_content": "<h2 class=\"heading\">Shipping<\/h2>\n<p>Aquatalia is pleased to offer free Standard shipping anywhere in the continental United States.  Standard shipping takes 3 to 7 business days after processing and Aquatalia does not ship on weekends or hoidays.<\/p>\n<div class=\"shipping-container\">\n        <div class=\"container 1\">\n          <div class=\"title\">Shipping Method<\/div>\n          <div class=\"rules\">\n            <ul>\n              <li>Ground<\/li>\n              <li>2nd Day<\/li>\n              <li>Next Day<\/li>\n            <\/ul>\n          <\/div>\n        <\/div>\n        <div class=\"container 2\">\n          <div class=\"title\">Delivery Time<\/div>\n          <div class=\"rules\">\n            <ul>\n              <li>3-7 Business Days<\/li>\n              <li>2 Business Days<\/li>\n              <li>1 Business Day<\/li>\n            <\/ul>\n          <\/div>\n        <\/div>\n        <div class=\"container 3\">\n          <div class=\"title\">Shipping Charge<\/div>\n          <div class=\"rules\">\n            <ul>\n              <li>Free<\/li>\n              <li>$15 Flat Rate<\/li>\n              <li>$28.95 Flat Rate<\/li>\n            <\/ul>\n          <\/div>\n        <\/div>\n        <div class=\"container 4\">\n          <div class=\"title\">Order Cutoff Time<\/div>\n          <div class=\"rules\">\n            <ul>\n              <li>None<\/li>\n              <li>1pm EST<\/li>\n              <li>1pm EST<\/li>\n            <\/ul>\n          <\/div>\n        <\/div>\n      <\/div>",
           "after_content": "<p> <\/p>\n<p><a href=\"#top\">Back to Top<\/a><\/p>\n<div class=\"fineprint\">\n\t<p>AQUASEAL® is a registered symbol of the McNett Corporation<\/p>\n\t<p>ARMOR ALL® is a registered symbol of Armor All Products Company<\/p>\n<\/div>",
-          "faq_page_left_nav": "side-menu"
+          "left_nav_enabled": true,
+          "interior_page_left_nav": "side-menu"
         }
       }
     },
