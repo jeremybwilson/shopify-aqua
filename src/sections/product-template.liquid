@@ -102,8 +102,25 @@
           {% comment %} :: Social sharing :: {% endcomment %}
           {% if section.settings.show_social_sharing %}
             <div class="share-me">
-              <span>Share:</span>
-              {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+              <span class="share-me__label">Share</span>
+              <div class="share-me__social-sharing">
+                {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+              </div>
+            </div>
+          {% endif %}
+
+          {% comment %} :: Product description :: {% endcomment %}
+          {% if product.description != blank %}
+            <hr class="product-hr">
+            <div class="product-desc">
+              {% assign product_description = product.description | split: '<!-- split -->' %}
+              <div class="product-desc__main">{{ product_description[0] }}</div>
+              {% if product_description[1] != blank %}
+                <div id="read-more" class="product-desc__more">
+                  {{ product_description[1] }}
+                </div>
+                <a class="product-desc__read js-read-toggle" href="#read-more">Read More</a>
+              {% endif %}
             </div>
           {% endif %}
 
@@ -155,6 +172,7 @@
 
   <div class="clear"></div>
   
+  {% comment %}
   {% unless template == 'product.quick' %}
     <div class="product-description--area">
       <div class="row">
@@ -200,7 +218,8 @@
 
       </div><!-- .row -->
     </div>
-  {% endunless %}    
+  {% endunless %}
+  {% endcomment %}
 
   <div class="clear"></div>
   {% unless template == 'product.quick' %}

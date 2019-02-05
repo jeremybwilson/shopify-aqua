@@ -487,3 +487,50 @@
     }
   }  
 }
+
+/* Social sharing
+ * Rest is in ./social-sharing.scss.liquid
+ * ---------------------------------------------- */
+.share-me {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include align-items(center);
+  float: left;
+  width: 100%;
+}
+
+.share-me__label {
+  margin-right: 20px;
+}
+
+.product-hr {
+  float: left;
+  width: 100%;
+  margin: 20px 0;
+}
+
+/* Product Description / Read more
+* ---------------------------------------------- */
+.product-desc {
+  float: left;
+  width: 100%;
+}
+
+.product-desc__read {
+  display: inline-block;
+  margin: 10px 0;
+  padding: 1px;
+  border-bottom: 1px solid $color--primary-2;
+}
+
+ .product-desc__more {
+  display: none;
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
+
+  &.js-read-more-active {
+    opacity: 1;
+  }
+}
