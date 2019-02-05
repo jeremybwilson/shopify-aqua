@@ -14,7 +14,7 @@
     {% elsif block.type == 'text_block' %}
 
       {% comment %} CONTENT MODULE - Paired text & images {% endcomment %}
-      <div class="content-module layout-desk--{{ block.settings.module_image_position_desktop }} layout-mob--{{ block.settings.module_image_position_mobile }} color-scheme--{{ block.settings.module_image_color_scheme }}">
+      <div class="content-module layout-desk--{{ block.settings.module_image_position_desktop }} layout-mob--{{ block.settings.module_image_position_mobile }} color-scheme--{{ block.settings.module_image_color_scheme }} {%- if block.settings.image_offset_enabled != false -%}image-offset-enabled{%- endif -%}">
         <div class="text-box">
 
         {% if block.settings.module_html_h2 %}<h2>{{ block.settings.module_html_h2 }}</h2>{% endif %}
@@ -24,7 +24,7 @@
         {% endif %}
       </div>
 
-      <div class="image-box" {%- if block.settings.image_offset != '0' -%}style="margin-{{ block.settings.offset_direction }}:{{ block.settings.image_offset }}px;"{%- endif -%}}>
+      <div class="image-box">
         <img src="{{ block.settings.module_image | img_url: '800x' }}" />
       </div>
     </div><!-- .content-module -->
@@ -238,29 +238,11 @@
           ]
         },
         {
-          "type": "select",
-          "id": "offset_direction",
-          "label": "Image Offset direction (desktop only)",
-          "options": [
-            {
-              "value": "left",
-              "label": "Add left padding to image"
-            },
-            {
-              "value": "right",
-              "label": "Add right padding to image"
-            }
-          ]
-        },
-        {
-          "type": "range",
-          "id": "image_offset",
-          "min": 0,
-          "max": 200,
-          "step": 25,
-          "unit": "px",
-          "label": "Image Offset amount",
-          "default": 0
+          "type": "checkbox",
+          "id": "image_offset_enabled",
+          "label": "Enable image offset (desktop only)",
+          "info": "Checking this box will push the image in from the left/right.",
+          "default": false
         }
       ]
       }

@@ -9,11 +9,14 @@
   h1 {
     &.guide-title {
       text-transform: uppercase;
-      letter-spacing: .75em;
-      margin: 75px auto 50px;
+      margin: 75px auto 25px;
       padding-bottom: 0;
       border-bottom: 0;
-      width: auto;
+
+      @include mq( 'tablet-and-up' ){
+        letter-spacing: .75em;
+        margin: 75px auto 50px;
+      }
     }
   }
 }
@@ -217,6 +220,13 @@
       width: 100%;
       max-width: none;
       height: auto;
+    }
+  }
+
+  &.image-offset-enabled {
+
+    @include mq( 'tablet-and-up' ){
+      width: 85%;
     }
   }
 
