@@ -1,12 +1,12 @@
-<div class="about-container">
-
+<div class="guide-container">
+  <h1 class="guide-title">{{ page.title }}</h1>
   {% for block in section.blocks %}
 
     {% if block.type == 'html' %}
 
       {% comment %} ABOUT MODULE - centered text directly below banner image {% endcomment %}
       {% if block.settings.guide_html_block != 'blank' %}
-        <div class="about-block" style="background-color:{{ block.settings.guide_html_block_color }}">
+        <div class="guide-block" style="background-color:{{ block.settings.guide_html_block_color }}">
           {{ block.settings.guide_html_block }}
         </div>
       {% endif %}
@@ -24,7 +24,7 @@
         {% endif %}
       </div>
 
-      <div class="image-box">
+      <div class="image-box" {%- if block.settings.image_offset != '0' -%}style="margin-{{ block.settings.offset_direction }}:{{ block.settings.image_offset }}px;"{%- endif -%}}>
         <img src="{{ block.settings.module_image | img_url: '800x' }}" />
       </div>
     </div><!-- .content-module -->
@@ -42,7 +42,7 @@
     </div>
   {% endif %}
 
-</div><!-- /.about-container -->
+</div><!-- /.guide-container -->
 
 
 <style>
@@ -56,14 +56,10 @@
   .video-url {
     position: relative;
   }
-  #breadcrumb {
-    display: none;
-  }
   #content {
     padding-top: 0;
     padding-bottom: 0;
   }
-
   .block {
     width: 40%;
   }
@@ -122,68 +118,6 @@
       {
         "type": "header",
         "content": "SHOE GUIDE SETTINGS"
-      },
-      {
-        "type": "select",
-        "id": "banner_text_box_position_desktop",
-        "label": "Text Box Position (Desktop)",
-        "options": [
-          {
-            "value": "left",
-            "label": "Text Left"
-          },
-          {
-            "value": "right",
-            "label": "Text Right"
-          }
-        ]
-      },
-      {
-        "type": "image_picker",
-        "id": "banner_image",
-        "label": "Banner image (mobile)"
-      },
-      {
-        "type": "select",
-        "id": "banner_image_position_mobile",
-        "label": "Image Position (Mobile)",
-        "options": [
-          {
-            "value": "image_top",
-            "label": "Image Top"
-          },
-          {
-            "value": "image_bottom",
-            "label": "Image Bottom"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "banner_text_box_color_scheme",
-        "label": "Color Scheme",
-        "options": [
-          {
-            "value": "light",
-            "label": "Light Background"
-          },
-          {
-            "value": "dark",
-            "label": "Dark (Black) Background"
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "id": "about_bottom_banner_h2",
-        "label": "Banner text inside of <h2> tag.",
-        "default": "Title text here"
-      },
-      {
-        "type": "html",
-        "id": "about_bottom_banner_p",
-        "label": "Banner text inside of <p> tag.",
-        "default": "Descriptive text here"
       },
       {
         "type": "header",
@@ -302,6 +236,31 @@
               "label": "Image Bottom"
             }
           ]
+        },
+        {
+          "type": "select",
+          "id": "offset_direction",
+          "label": "Image Offset direction (desktop only)",
+          "options": [
+            {
+              "value": "left",
+              "label": "Add left padding to image"
+            },
+            {
+              "value": "right",
+              "label": "Add right padding to image"
+            }
+          ]
+        },
+        {
+          "type": "range",
+          "id": "image_offset",
+          "min": 0,
+          "max": 200,
+          "step": 25,
+          "unit": "px",
+          "label": "Image Offset amount",
+          "default": 0
         }
       ]
       }
