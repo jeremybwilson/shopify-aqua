@@ -6,7 +6,7 @@
 
       {% comment %} ABOUT MODULE - centered text directly below banner image {% endcomment %}
       {% if block.settings.about_html_block != 'blank' %}
-        <div class="about-block" style="background-color:{{ block.settings.about_html_block_color }}">
+        <div class="about-block">
           {{ block.settings.about_html_block }}
         </div>
       {% endif %}
@@ -56,9 +56,6 @@
   #content.row {
     width: 100%;
   }
-  .video-url {
-    position: relative;
-  }
   #breadcrumb {
     display: none;
   }
@@ -66,42 +63,8 @@
     padding-top: 0;
     padding-bottom: 0;
   }
-
-  .block {
-    width: 40%;
-  }
   .fancybox img {
     margin-bottom: -6px;
-  }
-
-  @media screen and ( min-width: 741px ) {
-    .block {
-      order: inherit !important;
-    }
-    .block:nth-of-type(even) {
-      margin-left: 10%;
-    }
-    .block:nth-of-type(odd) {
-      margin-right: 10%;
-    }
-  }
-
-	@media screen and ( max-width: 740px ) {
-    .about-container {
-      flex-direction: column;
-        align-items: flex-start;
-    }
-    .block {
-      width: 100%;
-    }
-    .image-block {
-      margin-top: 0 !important;
-    }
-  }
-
-  .block img {
-    width: 100%;
-    height: 100%;
   }
 </style>
 

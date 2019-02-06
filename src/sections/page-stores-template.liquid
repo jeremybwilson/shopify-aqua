@@ -6,16 +6,7 @@
   {% endif %}
   {% for block in section.blocks %}
 
-    {% if block.type == 'html' %}
-
-      {% comment %} ABOUT MODULE - centered text directly below banner image {% endcomment %}
-      {% if block.settings.guide_html_block != 'blank' %}
-        <div class="guide-block" style="background-color:{{ block.settings.guide_html_block_color }}">
-          {{ block.settings.guide_html_block }}
-        </div>
-      {% endif %}
-
-    {% elsif block.type == 'text_block' %}
+    {% if block.type == 'text_block' %}
 
       {% comment %} CONTENT MODULE - Paired text & images {% endcomment %}
       <div class="content-module layout-desk--{{ block.settings.module_image_position_desktop }} layout-mob--{{ block.settings.module_image_position_mobile }} color-scheme--{{ block.settings.module_image_color_scheme }} {%- if block.settings.image_offset_enabled != false -%}image-offset-enabled{%- endif -%}">
@@ -68,41 +59,8 @@
     display: none;
   } */
 
-  .block {
-    width: 40%;
-  }
   .fancybox img {
     margin-bottom: -6px;
-  }
-
-  @media screen and ( min-width: 741px ) {
-    .block {
-      order: inherit !important;
-    }
-    .block:nth-of-type(even) {
-      margin-left: 10%;
-    }
-    .block:nth-of-type(odd) {
-      margin-right: 10%;
-    }
-  }
-
-  @media screen and ( max-width: 740px ) {
-    .about-container {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .block {
-      width: 100%;
-    }
-    .image-block {
-      margin-top: 0 !important;
-    }
-  }
-
-  .block img {
-    width: 100%;
-    height: 100%;
   }
 </style>
 
@@ -167,7 +125,7 @@
         "settings":[
           {
             "type": "html",
-            "id": "guide_html_block",
+            "id": "store_html_block",
             "label": "Shoe Guide text banner"
           }
         ]

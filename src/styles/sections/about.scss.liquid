@@ -86,13 +86,12 @@ body {
   @include flexbox;
   @include flex-wrap(wrap);
   @include justify-content(center);
+  @include flex-direction(column);
+  @include align-items(flex-start);
   // position: relative;
   // z-index: 2;
 
   @include mq('tablet-and-up') {
-    // width: 83.33%;
-    // max-width: 1200px;
-    // margin: 0 auto;
 
     // ABOUT US : Removes top margin from first Content Module, overall second content element on page
     div {
@@ -109,6 +108,7 @@ body {
 
     @include mq('tablet-and-up') {
       position: relative;
+      margin-top: 75px
     }
 
     img {
@@ -572,6 +572,7 @@ body {
 
 .about-block {
   padding: 40px;
+  margin: 0 auto;
   text-align: center;
   width: 100%;
 
