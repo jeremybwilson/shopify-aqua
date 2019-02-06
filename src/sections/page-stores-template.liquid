@@ -1,0 +1,294 @@
+<div class="stores-container">
+  {% if section.settings.page_title_h1 != blank %}
+    <h1 class="stores-title">{{ section.settings.page_title_h1 }}</h1>
+  {% else %}
+    <h1 class="stores-title">{{ page.title }}</h1>
+  {% endif %}
+  {% for block in section.blocks %}
+
+    {% if block.type == 'html' %}
+
+      {% comment %} ABOUT MODULE - centered text directly below banner image {% endcomment %}
+      {% if block.settings.guide_html_block != 'blank' %}
+        <div class="guide-block" style="background-color:{{ block.settings.guide_html_block_color }}">
+          {{ block.settings.guide_html_block }}
+        </div>
+      {% endif %}
+
+    {% elsif block.type == 'text_block' %}
+
+      {% comment %} CONTENT MODULE - Paired text & images {% endcomment %}
+      <div class="content-module layout-desk--{{ block.settings.module_image_position_desktop }} layout-mob--{{ block.settings.module_image_position_mobile }} color-scheme--{{ block.settings.module_image_color_scheme }} {%- if block.settings.image_offset_enabled != false -%}image-offset-enabled{%- endif -%}">
+        <div class="text-box">
+
+        {% if block.settings.module_html_h2 %}<h2>{{ block.settings.module_html_h2 }}</h2>{% endif %}
+        <div class="banner-divider"></div>
+        {% if block.settings.module_html_p %}
+          <p>{{ block.settings.module_html_p }}</p>
+        {% endif %}
+
+        {% comment %} :: CTA BUTTONS :: {% endcomment %}
+        {% if block.settings.button_text != blank %}
+          <div class="buttons-row">
+
+            {% comment %} :: BUTTON #1 :: {% endcomment %}
+            {% include 'cta-with-symbols',
+              cta_text: block.settings.button_text,
+              cta_link: block.settings.button_link,
+              symbol_placement: block.settings.button_symbol_placement %}
+
+          </div>
+        {% endif %}
+
+      </div>
+
+      <div class="image-box">
+        <img src="{{ block.settings.module_image | img_url: '800x' }}" />
+      </div>
+    </div><!-- .content-module -->
+
+    {% endif %}
+  {% endfor %}
+
+  {% if section.settings.live_chat_enabled %}
+  {% assign live_chat_color_scheme = section.settings.live_chat_color_scheme %}
+    <div class="live-chat-bubble{% if live_chat_color_scheme != 'blank' %} color-scheme-{{ live_chat_color_scheme }}{% endif %}">
+      <a href="#" title="{{ section.settings.live_chat_text }}">
+        <span>{{ section.settings.live_chat_text }}</span>
+        {% include 'svg-icon-chat-bubble' %}
+      </a>
+    </div>
+  {% endif %}
+
+</div><!-- /.guide-container -->
+
+
+<style>
+  /* .zEWidget-launcher {
+    display: none;
+  } */
+
+  .block {
+    width: 40%;
+  }
+  .fancybox img {
+    margin-bottom: -6px;
+  }
+
+  @media screen and ( min-width: 741px ) {
+    .block {
+      order: inherit !important;
+    }
+    .block:nth-of-type(even) {
+      margin-left: 10%;
+    }
+    .block:nth-of-type(odd) {
+      margin-right: 10%;
+    }
+  }
+
+  @media screen and ( max-width: 740px ) {
+    .about-container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .block {
+      width: 100%;
+    }
+    .image-block {
+      margin-top: 0 !important;
+    }
+  }
+
+  .block img {
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+<script>
+  jQuery(document).ready(function($){
+      $(".fancybox").on("click", function(){
+        $.fancybox({
+          href: this.href,
+          type: $(this).data("type")
+        }); // fancybox
+        return false
+      }); // on
+	}); // ready
+</script>
+
+{% schema %}
+  {
+    "name": "Stores page",
+    "settings": [
+      {
+        "type": "text",
+        "id": "page_title_h1",
+        "label": "Page (section) title override (Optional)"
+      },
+      {
+        "type": "header",
+        "content": "LIVE CHAT"
+      },
+      {
+        "type": "checkbox",
+        "id": "live_chat_enabled",
+        "label": "Enable Live Chat bubble on banner",
+        "info": "Checking this box will enable Live Chat bubble on About page template.",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "live_chat_text",
+        "label": "Enter Live chat bubble text here.",
+        "default": "Live chat"
+      },
+      {
+        "type": "select",
+        "id": "live_chat_color_scheme",
+        "label": "Live Chat text and fill color",
+        "options": [
+          {
+            "value": "light",
+            "label": "Light Background (Transparent Bubble)"
+          },
+          {
+            "value": "dark",
+            "label": "Dark Background (Black Bubble)"
+          }
+        ]
+      }
+    ],
+    "blocks":[
+      {
+        "type":"html",
+        "name":"HTML Block",
+        "settings":[
+          {
+            "type": "html",
+            "id": "guide_html_block",
+            "label": "Shoe Guide text banner"
+          }
+        ]
+      },
+      {
+      "type": "text_block",
+      "name": "Content Module",
+      "settings":[
+        {
+          "type": "image_picker",
+          "id": "module_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "module_html_h2",
+          "label": "HTML Content - <h2> text"
+        },
+        {
+          "type": "html",
+          "id": "module_html_p",
+          "label": "HTML Content - <p> text",
+          "default": "Descriptive paragraph text here"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "HTML Content - <a> text"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Select page to link to"
+        },
+        {
+          "type": "select",
+          "id": "button_symbol_placement",
+          "label": "Button Symbol Location",
+          "info": "(Line / caret next to button text)",
+          "default": "none",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            },
+            {
+              "value": "both",
+              "label": "Both"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "module_image_color_scheme",
+          "label": "Color Scheme",
+          "options": [
+            {
+              "value": "light",
+              "label": "Light Background"
+            },
+            {
+              "value": "gray",
+              "label": "Dark (Gray) Background"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "module_image_position_desktop",
+          "label": "Image Position (Desktop)",
+          "options": [
+            {
+              "value": "image_left",
+              "label": "Image Left"
+            },
+            {
+              "value": "image_overlap_left",
+              "label": "Image Left (Overlap)"
+            },
+            {
+              "value": "image_right",
+              "label": "Image Right"
+            },
+            {
+              "value": "image_overlap_right",
+              "label": "Image Right (Overlap)"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "module_image_position_mobile",
+          "label": "Image Position (Mobile)",
+          "options": [
+            {
+              "value": "image_top",
+              "label": "Image Top"
+            },
+            {
+              "value": "image_bottom",
+              "label": "Image Bottom"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "image_offset_enabled",
+          "label": "Enable image offset (desktop only)",
+          "info": "Checking this box will push the image in from the left/right.",
+          "default": false
+        }
+      ]
+      }
+    ]
+  }
+{% endschema %}
