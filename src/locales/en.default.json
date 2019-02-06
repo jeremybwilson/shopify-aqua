@@ -39,7 +39,15 @@
       "submit": "Search"
     },
     "social": {
-   	  "share": "Share"
+       "share": "Share",
+       "email_subject": "These would look great on you",
+       "email_message": "I was shopping at {{ name }}, saw {{ title }}, and thought they'd look amazing on you.",
+       "alt_text": {
+         "share_on_facebook": "Share on Facebook",
+         "share_on_twitter": "Tweet on Twitter",
+         "share_on_pinterest": "Pin on Pinterest",
+         "share_on_email": "Email this to a friend"
+       }
    	}
   },
   "sections": {

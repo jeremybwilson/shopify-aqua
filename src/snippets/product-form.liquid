@@ -49,9 +49,22 @@
   
   {% endif %}
 
+  {% comment %} REVIEWS - STAR RATING {% endcomment %}
+
+  <div class="product-star-rating">
+    {% include 'pr-review-snippet' %}
+    {% comment %}{- Copied from Review Snapshot -}{% endcomment %}
+    <a href="/pages/reviews?&amp;pr_merchant_id=683283&amp;pr_api_key=ecee97b3-ae68-483f-ae4b-756350853c06&amp;pr_merchant_group_id=79437&amp;pr_page_id=123456789" class="product-star-rating__write-review">Write a Review</a>
+  </div>
   <div class="clear"></div>
 
-  {% comment %} REVIEWS - STAR RATING {% endcomment %}
+  {% if current_variant.sku != blank %}
+    <div class="product-number">
+      Item# <span class="product-sku">{{ current_variant.sku }}</span>
+    </div>
+  {% endif %}
+
+  <div class="clear"></div>
 
   {% comment %}
 
@@ -160,13 +173,20 @@
     <div id="product-add">
       {% if section.settings.show_quantity %}
       <div class="quanity-select">
-        <label for="quantity">{{ 'products.product.quantity' | t }}</label>
-        <input min="1" type="number" id="quantity" name="quantity" value="1" />
+        <label for="quantity" class="quantity-select__label">{{ 'products.product.quantity' | t }}</label>
+        <select name="quantity" id="quantity">
+          {% for i in (1..10) %}
+            <option value="{{ i }}">{{ i }}</option>
+          {% endfor %}
+        </select>
       </div>
       {% endif %}
 
       {% if section.settings.show_payment_button %}<div class="clear"></div>{% endif %}
-      <input type="submit" name="button" class="add clearfix AddtoCart{% if section.settings.show_payment_button %} secondary-button{% endif %}" value="{{ call_to_action }}" {% unless current_variant.available %}disabled{% endunless %} />
+      <div class="atc-wrapper">
+        <input type="submit" name="button" class="add clearfix AddtoCart{% if section.settings.show_payment_button %} secondary-button{% endif %}" value="{{ call_to_action }}" {% unless current_variant.available %}disabled{% endunless %} />
+        <!-- include 'wishlist-link' -->
+      </div>
       {% if section.settings.show_payment_button %}
        {{ form | payment_button }}
       {% endif %}

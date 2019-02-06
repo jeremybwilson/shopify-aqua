@@ -354,7 +354,7 @@
         "settings": {
           "product_nav": false,
           "vendor": false,
-          "show_quantity": false,
+          "show_quantity": true,
           "show_sku": false,
           "product_variants": "swatches",
           "use_swatch_images": true,
@@ -365,8 +365,11 @@
           "thumbnails": "left",
           "zoom_image_position": "zoom_over_main",
           "related_products": "none",
-          "show_social": false,
-          "size_chart_page": "size-chart"
+          "shipping_header_text": "Shipping & Returns",
+          "shipping_text": "<p>Shipping &amp; Returns content<\/p>",
+          "show_social": true,
+          "size_chart_header_text": "Size Chart",
+          "size_chart_page": ""
         }
       },
       "blog-template": {

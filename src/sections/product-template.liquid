@@ -10,9 +10,11 @@
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
   <meta itemprop="image" content="{{ product.featured_image.src | img_url: '800x' }}">
 
+  {% comment %}
   {% unless template == 'product.quick' %}
     {% include 'product-mobile-header' %}
   {% endunless %}
+  {% endcomment %}
 
   {% include 'product-video' %}
 
@@ -97,8 +99,41 @@
             }
           {% endcapture %}
 
-
           {% include 'product-form' %}
+
+          {% comment %} :: Social sharing :: {% endcomment %}
+          {% if section.settings.show_social %}
+            <div class="share-me">
+              <span class="share-me__label">Share</span>
+              <div class="share-me__social-sharing">
+                {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+              </div>
+            </div>
+          {% endif %}
+
+          {% comment %} :: Product description :: {% endcomment %}
+          {% if product.description != blank %}
+            <hr class="product-hr">
+            <div class="product-desc">
+              {% assign product_description = product.description | split: '<!-- split -->' %}
+              <div class="product-desc__heading">Product Details</div>
+              <div class="product-desc__main">
+                <div class="rte">
+                  {{ product_description[0] }}
+                </div>
+              </div>
+              {% if product_description[1] != blank %}
+                <div id="read-more" class="product-desc__more">
+                  <div class="rte">
+                    {{ product_description[1] }}
+                  </div>
+                </div>
+                <div class="product-desc__read-wrapper">
+                  <a class="product-desc__read js-read-toggle" href="#" data-target="#read-more">Read More</a>
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
 
           {% unless template == 'product.quick' %}
 
@@ -110,10 +145,12 @@
             {% endcomment %}
 
             {% if section.settings.shipping_text != blank %}
+              <hr class="product-hr">
               <dl id="free-shipping--accordion">
-                <dt id="free-shipping--accordion-header">{% include 'svg-icon-shipping' %}<h3>{{ section.settings.shipping_header_text }}</h3><span class="opener">{% include 'svg-icon-caret-down' %}</span></dt>
+                <dt id="free-shipping--accordion-header"><h3>{{ section.settings.shipping_header_text }}</h3><span class="opener">{% include 'svg-icon-caret-down' %}</span></dt>
                 <dd id="free-shipping--accordion-content">{{ section.settings.shipping_text }}</dd>
               </dl><!-- .free-shipping--accordion -->
+              <hr class="product-hr">
             {% endif %}
 
           {% endunless %}
@@ -123,11 +160,6 @@
           <div class="zoom-box"></div>
         {% endif %}
 
-        {% if section.settings.show_social %}
-          <div class="desc">
-            {% include 'social' with product %}
-          </div>
-        {% endif %}
         {% if template == 'product.quick' %}
           <a href="{{ product.url | within_collection }}" class="full-click">{{ 'products.general.view_full' | t }}</a>
         {% endif %}
@@ -148,6 +180,7 @@
 
   <div class="clear"></div>
   
+  {% comment %}
   {% unless template == 'product.quick' %}
     <div class="product-description--area">
       <div class="row">
@@ -193,9 +226,23 @@
 
       </div><!-- .row -->
     </div>
-  {% endunless %}    
+  {% endunless %}
+  {% endcomment %}
 
   <div class="clear"></div>
+
+  {% comment %} :: REVIEWS :: {% endcomment %}
+  <div class="row">
+    <dl class="accordion accordion--product-review js-accordion">
+      <dt class="accordion__header js-accordion-toggle">
+        <h3>Ratings &amp; Reviews</h3><span class="opener">{% include 'svg-icon-caret-down' %}</span>
+      </dt>
+      <dd class="accordion__content js-accordion-content">
+        {% include 'pr-review-summary' %}
+      </dd>
+    </dl>
+  </div>
+
   {% unless template == 'product.quick' %}
     {% comment %} BOTTOM CONTENT {% endcomment %}
 
@@ -206,18 +253,17 @@
       <div class="clear"></div>
     {% endif %}
 
-    {% comment %} YOU MAY ALSO LIKE {% endcomment %}
-
     {% comment %} INSTAGRAM YOTPO FEED {% endcomment %}
 
     {% comment %} :: CAMPAIGN VIDEO :: {% endcomment %}
     {% include 'product-campaign-video' %}
 
-    {% comment %} :: RECENTLY VIEWED :: {% endcomment %}
-    {% include 'recently-viewed' %}
+    {% comment %} YOU MAY ALSO LIKE {% endcomment %}
 
-    {% comment %} :: REVIEWS :: {% endcomment %}
-    {% include 'yotpo-reviews' %}
+
+    {% comment %} :: RECENTLY VIEWED :: {% endcomment %}
+    {% comment %} {% include 'recently-viewed' %} {% endcomment %}
+
     
   {% endunless %}
 </div>

@@ -5,7 +5,7 @@
 .swatch {
   @include flexbox;
   @include flex-wrap(wrap);
-  margin: 0 0 20px;
+  margin-bottom: 14px;
 
   // swatch header
   .swatch-header {
@@ -16,24 +16,23 @@
   h5, 
   .current-option {
     display: inline;
-    color: $color--primary-2;    
-    @include fontDim(16px,16px,0);
-    text-transform: uppercase;
+    @include fontDim(16px,16px,1.23px);
+    font-weight: $font-weight--medium;
 
-    @include mq('tablet-and-up') {
-      @include fontSize(16px);
-    }
+    // @include mq('tablet-and-up') {
+    //   @include fontSize(16px);
+    // }
   }
 
   // swatch main label
   h5 { 
-    font-weight: $font-weight--black;
+    color: $color--primary-1;
   }
 
   // swatch current option 
   .current-option { 
     margin-left: .5em;
-    font-weight: $font-weight--bold;
+    color: $color--general-grey;
   }
 
   // SIZE SQUARES : Improve size alignment for small and large size squares so they map cleanly into the spacing
@@ -51,12 +50,18 @@
     }
   }
 
+  .swatch-elements {
+    font-size: 0;
+  }
+
   // swatch loop
   .swatch-element {
     display: inline-block;
     -webkit-transform:translateZ(0); /* webkit flicker fix */
     -webkit-font-smoothing:antialiased; /* webkit text rendering fix */
-    position:relative;    
+    position:relative;
+    margin-right: -1px;
+    margin-bottom: -1px;
 
     input {
       display: none;
@@ -65,15 +70,16 @@
     & > label { // actual visible swatch
       display:-moz-inline-stack;
       display:inline-block;
+      cursor: pointer;
       zoom:1;
       *display:inline;
       position: relative;
       min-width: {{ width }};
       height: {{ height }};
-      margin: 0 5px 5px 0;
+      // margin: 0 5px 5px 0;
       padding:0;
-      border: solid 1px $color--primary-2;
-      color: $color--primary-2;
+      border: solid 1px $color--general-grey;
+      color: $color--primary-1;
       @include fontDim(16px,16px,.025em);
       font-weight: $font-weight--bold;
       line-height: {{ height }};
@@ -107,8 +113,8 @@
   .swatch-element.color {
     & > label {
       position: relative;
-      width: 30px;
-      height: 30px;
+      width: 20px;
+      height: 20px;
       min-width: 0;
       border: solid 2px $color--white;
       border-radius: 50%;
@@ -123,8 +129,8 @@
         content: '';
         display: block;
         position: absolute;
-        width: 34px;
-        height: 34px;
+        width: 24px;
+        height: 24px;
         border-radius: 50%;
         left: -4px;
         top: -4px;
@@ -277,9 +283,21 @@
   }
 }
 
+.swatch.color {
+  // 20px for swatch spacing; 14px for margin bottom
+  margin-bottom: (14px - 20px);
+}
+
 #product-add {
   margin-top: 0;
 }
+
+.quantity-select__label {
+  font-weight: $font-weight--medium;
+  font-size: 16px;
+  letter-spacing: 1.23px;
+}
+
 input.add {
   width: 100%;
   height: 48px;
@@ -292,5 +310,44 @@ input.add {
 
   &:hover {
     background: $color--primary-1;
+  }
+}
+
+.atc-wrapper {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  margin-bottom: 10px;
+  border: 1px solid #000;
+
+  .AddtoCart,
+  .wk-link {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .AddtoCart {
+    margin-bottom: 0;
+    letter-spacing: 2.96px;
+  }
+
+  .wk-link {
+    text-align: center;
+    width: 55px;
+  }
+
+  a.wk-link .wk-icon {
+    margin: 0;
+    line-height: 0;
+  }
+
+  .wk-icon svg {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  a.wk-link .wk-icon svg path {
+    fill: $color--primary-1;
+    stroke: $color--primary-1;
   }
 }

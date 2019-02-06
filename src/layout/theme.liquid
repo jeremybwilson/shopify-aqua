@@ -50,6 +50,12 @@
 ================================================== -->
   {% include 'google-fonts' %}
   
+  
+  
+  <!-- Borderfree
+================================================== -->
+  {% include 'borderfree-script' %}
+  
 
 
   <!-- JS
@@ -86,6 +92,8 @@
   {% if settings.app_wk_enabled %}
     {% include 'appmate-wishlist-king' %}
   {% endif %}
+  
+  {% include 'pr-review-master-script' %}
 
 
 
@@ -98,7 +106,7 @@
   {{ content_for_header }}
 </head>
 
-<body class="gridlock shifter {% if template contains 'product' %}product{% elsif template contains 'collection' %}collection{% else %}{{ template }}{% endif %}">
+<body class="template-{{ template.name }} gridlock shifter {% if template contains 'product' %}product{% elsif template contains 'collection' %}collection{% else %}{{ template }}{% endif %}">
   {% include 'script-google-tag-body' %}
   {% include 'timber-cart' %}
 
@@ -236,7 +244,8 @@
           addToCartSelector: '.AddtoCart',
           cartCountSelector: '.CartCount, .cart-count',
           cartCostSelector: '.CartCost',
-          moneyFormat: {{ shop.money_format | json }}
+          moneyFormat: {{ shop.money_format | json }},
+          enableQtySelectors: false,
        });
       });
 

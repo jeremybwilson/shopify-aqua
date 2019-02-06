@@ -11,6 +11,43 @@ $textColor: {{ settings.product_badge_text_color }};
 $badgeSizeMobile: 52px;
 $badgeSizeDesktop: 72px;
 
+.icon-badge {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+.item-badge-icon {
+    line-height: 0;
+    position: absolute;
+    width: 10%;
+    min-width: 50px;
+    max-width: 85px;
+    top: 0;
+    right: 0;
+    z-index: 20;
+
+    .icon-badge {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+}
+
+.template-product .item-badge,
+.template-product .item-badge-icon {
+    text-align: center;
+    margin-top: 35px;
+    margin-right: 35px;
+
+    @media screen and (min-width: 1024px) {
+        margin-top: 70px;
+    }
+}
+
 .item-badge {
     @include flexbox;
     @include justify-content( center );

@@ -4,6 +4,10 @@
   PDP
  ==================*/
 
+.template-product #breadcrumb {
+  text-align: center;
+}
+
 .product {
   #breadcrumb {
     @include fontSize(14px);
@@ -105,19 +109,20 @@
 .product {
   #content {
     h1 {
-      color: $color--primary-2;
-      @include fontDim(15px,16px,0);
-      font-weight: $font-weight--black;
+      color: $color--primary-1;
+      @include fontDim(22px,22px,4px);
+      font-weight: $font-weight--medium;
       text-align: center;
       text-transform: uppercase;
 
       @include mq('phone') {
-        display: none;
+        text-align: left;
       }
 
       @include mq('tablet-and-up') {
         max-width: 400px;
-        @include fontDim(25px,34px,0);
+        // @include fontDim(25px,34px,0);
+        @include fontDim(26px, 26px, 4px);
         text-align: left;
       }
     }
@@ -131,13 +136,13 @@
 
 #product-price {
   border-bottom: none;
-  color: $color--primary-2;
-  font-weight: $font-weight--bold;
+  color: $color--primary-1;
+  font-weight: $font-weight--medium;
   @include fontDim(16px,16px,0);
   text-align: center;
 
   @include mq('phone') {
-    display: none;
+    text-align: left;
   }
 
   @include mq('tablet-and-up') {
@@ -180,15 +185,23 @@
  * ---------------------------------------------- */
 @import url('../snippets/product-form.scss.liquid');
 
+.product-number {
+  @include fontDim(16px, 18px, 1.23px);
+  font-weight: $font-weight--medium;
+  margin-bottom: 15px;
+}
 
-/* Free Shipping
+
+/* Free Shipping / Accordion
  * ---------------------------------------------- */
 
-#free-shipping--accordion {
+#free-shipping--accordion,
+.accordion {
   @include flexbox;
   @include flex-direction(column);
   width: 100%;
-  margin-bottom: 40px;
+  margin-bottom: 0;
+  // margin-bottom: 40px;
 
   // header & accordion trigger
 
@@ -214,15 +227,13 @@
       }
     }
     h3 {
-      margin-top: 3px;
       color: $color--primary-1;
-      @include fontDim(14px,14px,0);
-      font-weight: $font-weight--black;
-      text-transform: uppercase;
+      @include fontDim(16px,16px,1.23px);
+      font-weight: $font-weight--medium;
+      margin-bottom: 0;
 
       @include mq('tablet-and-up') {
-        margin-top: 5px;
-        @include fontDim(16px,16px,0);
+        @include fontDim(16px,16px,1.23px);
       }
     }
     .opener {
@@ -250,14 +261,31 @@
 
   dd {
     display: none;
-    margin-top: 16px;
+    margin-top: 20px;
     padding-right: 10px;
+    color: $color--primary-1;
 
     @include mq('tablet-and-up') {
       padding-right: 24px;
     }
     p {
       @include fontDim(16px,25px,.025em);
+    }
+  }
+}
+
+/* Reviews Accordion
+ * ---------------------------------------------- */
+.accordion--product-review {
+  @media (min-width: 740px) {
+    .accordion__header {
+      display: none;
+    }
+
+    .accordion__content {
+      display: block !important;
+      padding: 0;
+      margin: 0;
     }
   }
 }
@@ -482,4 +510,107 @@
       color: $color--primary-2;
     }
   }  
+}
+
+/* Social sharing
+ * Rest is in ./social-sharing.scss.liquid
+ * ---------------------------------------------- */
+.share-me {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include align-items(center);
+  float: left;
+  width: 100%;
+}
+
+.share-me__label {
+  margin-right: 15px;
+  font-weight: $font-weight--medium;
+  letter-spacing: 1.23px;
+}
+
+.product-hr {
+  float: left;
+  width: 100%;
+  margin: 20px 0;
+}
+
+/* Product Description / Read more
+* ---------------------------------------------- */
+.product-desc {
+  float: left;
+  width: 100%;
+  line-height: 1.6;
+  font-weight: $font-weight--medium;
+  letter-spacing: 1.23px;
+
+  .rte {
+    margin-bottom: 0;
+
+    ul li {
+      margin-bottom: 0.25em;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.product-desc__heading {
+  margin-bottom: 0.5em;
+}
+
+ .product-desc__more {
+  display: none;
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
+  margin: 20px 0;
+
+  &.js-read-more-active {
+    opacity: 1;
+  }
+}
+
+.product-desc__read-wrapper {
+  margin: 10px 0;
+}
+
+.product-desc__read {
+  display: inline-block;
+  padding: 1px;
+  border-bottom: 1px solid $color--general-grey;
+}
+
+/* Power Reviews
+* ---------------------------------------------- */
+.product-star-rating {
+  @include flexbox;
+  @include align-items(center);
+  @include flex(row wrap);
+
+  #pr-reviewsnippet {
+    margin-right: 15px;
+  }
+
+  .pr-snippet-stars .pr-star-v4 {
+    width: 12px !important;
+    height: 12px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    margin-right: 8px !important;
+
+    &:last-child {
+      margin-right: 0 !important;
+    }
+  }
+}
+
+.product-star-rating__write-review {
+  @include fontDim(16px,16px,1.23px);
+  font-weight: $font-weight--medium;
+  color: $color--general-grey;
+  margin-bottom: 5px;
 }

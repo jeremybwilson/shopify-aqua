@@ -830,7 +830,62 @@ require( './react-components/discounts/DiscountParent.js' );
 
 
 
+/*============================================================================
+  Theme scripts
+==============================================================================*/
+window.theme = window.theme || {};
+theme.scripts = theme.scripts || {};
 
+theme.scripts.readMoreToggle = (function () {
+  let timeout;
+  let cache = {};
+  const resourceText = {
+    more: 'Read More',
+    less: 'Read Less',
+  };
+  const activeClassName = 'js-read-more-active';
+
+  function cacheSelectors() {
+    cache.$readToggle = $('.js-read-toggle');
+  }
+
+  function handleClickToggle(e) {
+    e.preventDefault();
+    const $self = $(this);
+    const id = $self.attr('data-target');
+    const $target = $(id);
+    const targetIsHidden = $target.is(':hidden');
+
+    if (targetIsHidden) {
+      clearTimeout(timeout);
+      $target.show();
+      timeout = setTimeout(function () {
+        $target.addClass(activeClassName);
+        $self.text(resourceText.less);
+      }, 200);
+    } else {
+      clearTimeout(timeout);
+      $target.removeClass(activeClassName);
+      timeout = setTimeout(function () {
+        $target.hide();
+        $self.text(resourceText.more);
+      }, 400);
+    }
+  }
+
+  function init() {
+    cacheSelectors()
+    cache.$readToggle.on('click', handleClickToggle)
+  }
+
+  return {
+    init: init,
+  }
+})();
+
+theme.scripts.init = function () {
+  theme.scripts.readMoreToggle.init();
+};
 
 /*============================================================================
   Sections
@@ -2773,7 +2828,8 @@ theme.Product = (function () {
        freeShippingAccordionContent: $( '#free-shipping--accordion-content'),
        descriptionMobileTrigger: $( '#product-description--mobile-dropdown-trigger' ),
        descriptionMobileContent: $( '#product-description--mobile-dropdown' ),
-       campaignVideoTrigger: $( '.campaign-video--trigger' )
+       campaignVideoTrigger: $( '.campaign-video--trigger' ),
+       accordionToggle: $('.js-accordion-toggle'),
     }
 
     theme.ProductMobileGallery(events);
@@ -2792,6 +2848,14 @@ theme.Product = (function () {
     $(document).ready( () => {
       // BADGES : Generate badge in div slot if present
       buildBadges();
+
+      ui.accordionToggle.on('click', function (e) {
+        console.log('click')
+        e.preventDefault()
+        const $accordionContent = $(this).parent('.js-accordion').find('.js-accordion-content')
+        $(this).toggleClass('open')
+        $accordionContent.slideToggle(250)
+      })
 
       // FREE SHIPPING : Accordion
 
@@ -3070,6 +3134,12 @@ $(document).ready(function() {
   sections.register('product-section', theme.Product);
   sections.register('search-template', theme.Search);
 });
+
+theme.init = function () {
+  theme.scripts.init();
+};
+
+$(theme.init);
 
 /*============================================================================
   Debounce for window resizing

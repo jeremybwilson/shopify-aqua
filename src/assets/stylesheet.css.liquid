@@ -301,10 +301,6 @@ select {
   height: 40px;
 }
 
-select {
-  padding: 0;
-}
-
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus,
@@ -1868,21 +1864,29 @@ ul#popups li.last {
 }
 
 #quantity {
-  line-height: 40px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   text-indent: 0! important;
   text-align: center;
-  padding: 0! important;
-  width: 50px;
-  background: transparent! important;
-  border: 1px solid {{ settings.dotted_color }};
-  display: inline-block;
+  width: 60px;
+  display: block; 
+  margin-bottom: 0;
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+  cursor: pointer;
+  padding-left: 14px;
+  border: 1px solid #9b9b9b;
   color: {{ settings.text_color }};
+  background-image: url('{{ "ico-select.svg" | asset_url }}');
 }
-  .quanity-select {
-    display: block;
-    float: left;
-    width: 100%;
-  }
+
+.quanity-select {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+}
 
 .desc {
   float: left;

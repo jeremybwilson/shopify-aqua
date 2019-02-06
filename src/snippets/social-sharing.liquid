@@ -1,0 +1,37 @@
+<ul class="social-sharing">
+  {% if settings.share_facebook %}
+    <li class="social-sharing__item">
+      <a class="social-sharing__link" href="//www.facebook.com/sharer.php?u={{ shop.url | append: share_permalink }}" target="_blank" title="{{ 'general.social.alt_text.share_on_facebook' | t }}">
+        <span class="sr-only">{{ 'general.social.alt_text.share_on_facebook' | t }}</span>
+        {% include 'svg-icon-facebook' %}
+      </a>
+    </li>
+  {% endif %}
+
+  {% if settings.share_twitter %}
+    <li class="social-sharing__item">
+      <a class="social-sharing__link" href="//twitter.com/share?text={{ share_title | url_param_escape }}&amp;url={{ shop.url | append: share_permalink }}" target="_blank" title="{{ 'general.social.alt_text.share_on_twitter' | t }}">
+        <span class="sr-only">{{ 'general.social.alt_text.share_on_twitter' | t }}</span>
+        {% include 'svg-icon-twitter' %}
+      </a>
+    </li>
+  {% endif %}
+
+  {% if settings.share_pinterest %}
+    <li class="social-sharing__item">
+      <a class="social-sharing__link" href="//pinterest.com/pin/create/button/?url={{ shop.url | append: share_permalink }}&amp;media={{ share_image | img_url: '1024x1024' }}&amp;description={{ share_title | url_param_escape }}" target="_blank" title="{{ 'general.social.alt_text.share_on_pinterest' | t }}">
+        <span class="sr-only">{{ 'general.social.alt_text.share_on_pinterest' | t }}</span>
+        {% include 'svg-icon-pinterest-p' %}
+      </a>
+    </li>
+  {% endif %}
+
+  {% if settings.share_email %}
+    <li class="social-sharing__item">
+      <a class="social-sharing__link" href="mailto:?subject={{ 'general.social.email_subject' | t: title: title }}&amp;body={{ 'general.social.email_message' | t: title: title, name: shop.name }}%0D%0A%0D%0A{{ current_url }}" target="_blank" title="{{ 'general.social.alt_text.share_on_email' | t }}">
+        <span class="sr-only">{{ 'general.social.alt_text.share_on_email' | t }}</span>
+        {% include 'svg-icon-envelope' %}
+      </a>
+    </li>
+  {% endif %}
+</ul>
