@@ -230,6 +230,19 @@
   {% endcomment %}
 
   <div class="clear"></div>
+
+  {% comment %} :: REVIEWS :: {% endcomment %}
+  <div class="row">
+    <dl class="accordion accordion--product-review js-accordion">
+      <dt class="accordion__header js-accordion-toggle">
+        <h3>Ratings &amp; Reviews</h3><span class="opener">{% include 'svg-icon-caret-down' %}</span>
+      </dt>
+      <dd class="accordion__content js-accordion-content">
+        {% include 'pr-review-summary' %}
+      </dd>
+    </dl>
+  </div>
+
   {% unless template == 'product.quick' %}
     {% comment %} BOTTOM CONTENT {% endcomment %}
 
@@ -244,11 +257,6 @@
 
     {% comment %} :: CAMPAIGN VIDEO :: {% endcomment %}
     {% include 'product-campaign-video' %}
-
-    {% comment %} :: REVIEWS :: {% endcomment %}
-    <div class="row">
-      {% include 'pr-review-summary' %}
-    </div>
 
     {% comment %} YOU MAY ALSO LIKE {% endcomment %}
 

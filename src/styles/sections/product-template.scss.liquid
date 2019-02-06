@@ -192,10 +192,11 @@
 }
 
 
-/* Free Shipping
+/* Free Shipping / Accordion
  * ---------------------------------------------- */
 
-#free-shipping--accordion {
+#free-shipping--accordion,
+.accordion {
   @include flexbox;
   @include flex-direction(column);
   width: 100%;
@@ -269,6 +270,22 @@
     }
     p {
       @include fontDim(16px,25px,.025em);
+    }
+  }
+}
+
+/* Reviews Accordion
+ * ---------------------------------------------- */
+.accordion--product-review {
+  @media (min-width: 740px) {
+    .accordion__header {
+      display: none;
+    }
+
+    .accordion__content {
+      display: block !important;
+      padding: 0;
+      margin: 0;
     }
   }
 }
@@ -596,4 +613,10 @@
   font-weight: $font-weight--medium;
   color: $color--primary-2;
   margin-bottom: 5px;
+}
+
+/* Accordion
+* ---------------------------------------------- */
+.accordion__header {
+
 }

@@ -2828,7 +2828,8 @@ theme.Product = (function () {
        freeShippingAccordionContent: $( '#free-shipping--accordion-content'),
        descriptionMobileTrigger: $( '#product-description--mobile-dropdown-trigger' ),
        descriptionMobileContent: $( '#product-description--mobile-dropdown' ),
-       campaignVideoTrigger: $( '.campaign-video--trigger' )
+       campaignVideoTrigger: $( '.campaign-video--trigger' ),
+       accordionToggle: $('.js-accordion-toggle'),
     }
 
     theme.ProductMobileGallery(events);
@@ -2847,6 +2848,14 @@ theme.Product = (function () {
     $(document).ready( () => {
       // BADGES : Generate badge in div slot if present
       buildBadges();
+
+      ui.accordionToggle.on('click', function (e) {
+        console.log('click')
+        e.preventDefault()
+        const $accordionContent = $(this).parent('.js-accordion').find('.js-accordion-content')
+        $(this).toggleClass('open')
+        $accordionContent.slideToggle(250)
+      })
 
       // FREE SHIPPING : Accordion
 
