@@ -35,6 +35,151 @@
     }
   }
 
+  .content-module {
+    @include flexbox;
+    @include flex-direction(column);
+    @include align-items(center);
+    margin: 0;
+    width: 100%;
+
+    @include mq('tablet-and-up') {
+      @include flex-direction(row);
+      margin: 75px 0;
+    }
+
+    .text-box {
+      @include flexbox;
+      @include justify-content(center);
+      @include align-content(center);
+      @include flex-direction(column);
+      @include flex-wrap(wrap);
+      width: 100%;
+      padding: 45px 30px;
+      text-align: center;
+
+      @include mq('tablet-and-up') {
+        @include justify-content(flex-end);
+        width: 50%;
+        padding-left: 7.5%;
+        padding-right: 7.5%;
+      }
+
+      h2 {
+        color: $color--primary-1;
+        @include fontDim(16px,26px,0);
+
+        @include mq('lap-and-up') {
+          @include fontDim(22px,36px,0);
+          width: 100%;
+          text-align: right;
+        }
+      }
+
+      p {
+        color: $color--primary-1;
+        font-weight: $font-weight--medium;
+        @include fontDim(16px,26px,0);
+
+        @include mq('tablet-and-up') {
+          width: 100%;
+          margin: 0 0 20px;
+          text-align: right;
+        }
+      }
+
+      .banner-divider {
+        background-color: $color--light-gray;
+        margin-bottom: 12px;
+        margin: 0 auto 12px;
+        width: 65px;
+        height: 1px;
+
+        @include mq('tablet-and-up') {
+          margin-right: 0;
+        }
+      }
+
+      .cta-with-symbols {
+        @include flexbox;
+        @include justify-content(center);
+
+        @include mq( 'tablet-and-up' ){
+          @include justify-content(flex-end);
+        }
+      }
+
+      a {
+        span {
+          text-transform: uppercase;
+        }
+      }
+
+      strong {
+        color: $color--primary-1;
+        font-weight: $font-weight--black;
+        text-transform: uppercase;
+      }
+    }
+
+    .image-box {
+      width: 100%;
+
+      @include mq('tablet-and-up') {
+        width: 50%;
+      }
+
+      /* IMAGES : Image panel for Mobile x Desktop responsive images
+      * ----------------------------------------------------------------------- */
+
+      // MOBILE
+      .featured-image-mobile {
+        display: block;
+
+        @include mq( 'tablet-and-up' ) {
+          display: none;
+        }
+      }
+
+      // DESKTOP
+      .featured-image-desktop {
+        display: none;
+
+        @include mq( 'tablet-and-up' ) {
+          display: block;
+        }
+      }
+
+    }
+
+    &.image-offset-enabled {
+
+      @include mq( 'tablet-and-up' ){
+        width: 85%;
+      }
+    }
+
+    &.layout-desk--image_left {
+      @include mq('tablet-and-up'){
+        .text-box {
+          @include justify-content(center);
+
+          h2, p {
+            text-align: left;
+          }
+
+          .banner-divider {
+            margin-left: 0;
+          }
+
+          .cta-with-symbols {
+            @include flexbox;
+            @include justify-content(flex-start);
+          }
+        }
+      }
+    }
+  }
+
   /* CSS for new live chat bubble */
   .live-chat-bubble {
     @include flexbox;
@@ -126,6 +271,76 @@
         margin-top: -5px;
         transition: fill .3s ease;
       }
+    }
+  }
+}
+
+.layout-mob--image_top {
+  .image-box, .banner-image-box {
+    order: 1;
+  }
+  .text-box, .banner-text-box {
+    order: 2;
+  }
+}
+.layout-mob--image_bottom {
+  .image-box, .banner-image-box {
+    order: 2;
+  }
+  .text-box, .banner-text-box {
+    order: 1;
+  }
+}
+
+@include mq('tablet-and-up') {
+  .layout-desk--image_right {
+    .image-box, .banner-image-box {
+      order: 2;
+    }
+    .text-box, .banner-text-box {
+      order: 1;
+    }
+  }
+  .layout-desk--image_left {
+    .image-box, .banner-image-box {
+      order: 1;
+    }
+    .text-box, .banner-text-box {
+      order: 2;
+    }
+  }
+}
+
+// STORES : Bottom Block
+
+.store-block {
+  padding: 40px;
+  text-align: center;
+  width: 100%;
+
+  @include mq('lap-and-up') {
+    padding: 110px 50px;
+    width: 60%;
+  }
+
+  h2 {
+    @include fontSize(26px);
+    color: $color--primary-1;
+    font-weight: $font-weight--black;
+    text-transform: uppercase;
+
+    @include mq('lap-and-up') {
+      display: none;
+      @include fontSize(36px);
+    }
+  }
+  p {
+    color: $color--primary-2;
+    font-weight: $font-weight--medium;
+    @include fontDim(16px,26px,0);
+
+    @include mq('lap-and-up') {
+      @include fontDim(16px,26px,0);
     }
   }
 }
