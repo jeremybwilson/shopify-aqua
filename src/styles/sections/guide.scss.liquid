@@ -1,23 +1,8 @@
 #content {
-  padding: 50px 0 50px 0;
-
-  @include mq( 'tablet-and-up' ) {
-    padding: 75px 0 75px 0;
-    width: 100%;
-  }
-
-  h1 {
-    &.guide-title {
-      text-transform: uppercase;
-      letter-spacing: .75em;
-      margin: 75px auto 50px;
-      padding-bottom: 0;
-      border-bottom: 0;
-      width: auto;
-    }
+  h1.guide-title {
+    border-bottom: 0;
   }
 }
-
 // SHOE GUIDE : Content Modules
 
 .guide-container {
@@ -36,6 +21,19 @@
     div {
       &:nth-child(2){
         margin-top: 0;
+      }
+    }
+  }
+
+  h1 {
+    &.guide-title {
+      text-transform: uppercase;
+      margin: 25px auto 25px;
+      border-bottom: 0;
+
+      @include mq( 'tablet-and-up' ){
+        letter-spacing: .75em;
+        margin: 25px auto 50px;
       }
     }
   }
@@ -182,7 +180,7 @@
 
       @include mq('tablet-and-up') {
         width: 100%;
-        margin: 0 0 12px;
+        margin: 0 0 20px;
         text-align: right;
       }
     }
@@ -196,6 +194,21 @@
 
       @include mq('tablet-and-up') {
         margin-right: 0;
+      }
+    }
+
+    .cta-with-symbols {
+      @include flexbox;
+      @include justify-content(center);
+
+      @include mq( 'tablet-and-up' ){
+        @include justify-content(flex-end);
+      }
+    }
+
+    a {
+      span {
+        text-transform: uppercase;
       }
     }
 
@@ -220,6 +233,13 @@
     }
   }
 
+  &.image-offset-enabled {
+
+    @include mq( 'tablet-and-up' ){
+      width: 85%;
+    }
+  }
+
   &.layout-desk--image_left, &.layout-desk--image_overlap_left {
 
     @include mq('lap-and-up'){
@@ -232,6 +252,11 @@
 
         .banner-divider {
           margin-left: 0;
+        }
+
+        .cta-with-symbols {
+          @include flexbox;
+          @include justify-content(flex-start);
         }
       }
     }

@@ -32,10 +32,9 @@ body {
 
 #faq {
   #subpage {
-    width: 100%;
 
     @include mq('lap-and-up'){
-      margin: 0 auto;
+      margin: 25px auto;
       padding: 0;
       max-width: 960px;
     }
@@ -109,6 +108,7 @@ body {
           // margin: 0;
 
           @include mq( 'tablet-and-up' ){
+            @include fontSize(26px);
             text-transform: capitalize;
             text-align: left;
             padding: 0 0 20px 0;

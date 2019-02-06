@@ -1,8 +1,8 @@
-<div class="guide-container">
+<div class="stores-container">
   {% if section.settings.page_title_h1 != blank %}
-    <h1 class="guide-title">{{ section.settings.page_title_h1 }}</h1>
+    <h1 class="stores-title">{{ section.settings.page_title_h1 }}</h1>
   {% else %}
-    <h1 class="guide-title">{{ page.title }}</h1>
+    <h1 class="stores-title">{{ page.title }}</h1>
   {% endif %}
   {% for block in section.blocks %}
 
@@ -120,7 +120,7 @@
 
 {% schema %}
   {
-    "name": "Shoe Guide page",
+    "name": "Stores page",
     "settings": [
       {
         "type": "text",
