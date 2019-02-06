@@ -25,6 +25,7 @@
   @include mq( 'lap-and-up' ) {
     @include flex-direction(row);
     max-width: 960px;
+    margin: 25px auto 0;
   }
   @include mq( 'desk-and-up' ) {
     // padding-left: 15%;
@@ -137,6 +138,9 @@
   }
 
   .page-content-field {
+    width: 90%;
+    margin: 0 auto;
+
     @include mq( 'lap-and-up' ) {
       @include flex-basis(100%);
     }
@@ -164,7 +168,7 @@
         text-transform: uppercase;
         border-bottom: 1px solid $color--light-gray;
         padding: 20px 0;
-        margin: 10px 0;
+        margin: 25px 0 25px 0;
         text-align: center;
         @include fontSize(20px);
 
@@ -172,7 +176,7 @@
           @include fontSize(26px);
           text-transform: capitalize;
           padding: 0 0 20px 0;
-          margin: 0 0 20px 0;
+          margin: 25px auto 30px;
           text-align: left;
         }
       }

@@ -9,7 +9,12 @@
 
   <div class="page-content-field">
     {% comment %} CONTENT :: Page Title - removing from Pre Questions field {% endcomment %}
-    <h1 class="landing-title">{{ page.title }}</h1>
+    {% if section.settings.page_title_h1 != blank %}
+      <h1 class="landing-title">{{ section.settings.page_title_h1 }}</h1>
+    {% else %}
+      <h1 class="landing-title">{{ page.title }}</h1>
+    {% endif %}
+
 
     <div class="content-module">
     {{ page.content }}
@@ -49,6 +54,11 @@
   "name": "Landing page",
   "max_blocks": 12,
   "settings": [
+    {
+      "type": "text",
+      "id": "page_title_h1",
+      "label": "Page (section) title override (Optional)"
+    },
     {
       "type": "header",
       "content": "LEFT NAV (OPTIONAL)"

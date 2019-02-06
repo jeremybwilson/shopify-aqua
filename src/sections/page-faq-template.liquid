@@ -8,8 +8,10 @@
 
     <div class="page-content-field">
       {% comment %} CONTENT :: Page Title - removing from Pre Questions field {% endcomment %}
-      {% if section.settings.section_title_top != blank %}
-          <h1 class="faq-title">{{ section.settings.section_title_top }}</h1>
+      {% if section.settings.page_title_h1 != blank %}
+          <h1 class="faq-title">{{ section.settings.page_title_h1 }}</h1>
+      {% else %}
+        <h1 class="faq-title">{{ page.title }}</h1>
       {% endif %}
 
       {{ page.content }}
@@ -97,8 +99,8 @@ $( document).ready(function() {
       },
       {
         "type": "text",
-        "id": "section_title_top",
-        "label": "Sectional Title for Questions (text)"
+        "id": "page_title_h1",
+        "label": "Page (section) title override (Optional)"
       },
       {
         "type": "html",
