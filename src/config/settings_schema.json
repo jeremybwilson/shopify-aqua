@@ -35,6 +35,16 @@
     "settings": [
       {
         "type": "header",
+        "content": "General"
+      },
+      {
+        "type": "color",
+        "id": "color_grey",
+        "label": "Color grey",
+        "default": "#9b9b9b"
+      },
+      {
+        "type": "header",
         "content": "Announcement Header"
       },
       {
