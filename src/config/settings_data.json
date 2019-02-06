@@ -684,9 +684,16 @@
               "module_image_position_desktop": "image_overlap_left",
               "module_image_position_mobile": "image_top"
             }
+          },
+          "1549421101615": {
+            "type": "html",
+            "settings": {
+              "about_html_block": "<p>Established in 1994, Aquatalia offers the finest combination of fashion, quality and comfort in luxury footwear and is the first to mix distinctive Italian design with innovative weatherproof and stain-resistant technology. Bridging the gap between style and function, Aquatalia sets a new standard in fine footwear and accessories. Taking the brand to the next level, Aquatalia will continue to introduce category expansions, establish a retail presence and expand the brand globally.<\/p>"
+            }
           }
         },
         "block_order": [
+          "1549421101615",
           "1539644589684",
           "1539646800597",
           "1548737684033"
@@ -901,11 +908,72 @@
         ],
         "settings": {
           "anchor_top_offset": -100,
-          "section_title_top": "Faq",
+          "page_title_h1": "",
           "before_content": "<h2 class=\"heading\">Shipping<\/h2>\n<p>Aquatalia is pleased to offer free Standard shipping anywhere in the continental United States.  Standard shipping takes 3 to 7 business days after processing and Aquatalia does not ship on weekends or hoidays.<\/p>\n<div class=\"shipping-container\">\n        <div class=\"container 1\">\n          <div class=\"title\">Shipping Method<\/div>\n          <div class=\"rules\">\n            <ul>\n              <li>Ground<\/li>\n              <li>2nd Day<\/li>\n              <li>Next Day<\/li>\n            <\/ul>\n          <\/div>\n        <\/div>\n        <div class=\"container 2\">\n          <div class=\"title\">Delivery Time<\/div>\n          <div class=\"rules\">\n            <ul>\n              <li>3-7 Business Days<\/li>\n              <li>2 Business Days<\/li>\n              <li>1 Business Day<\/li>\n            <\/ul>\n          <\/div>\n        <\/div>\n        <div class=\"container 3\">\n          <div class=\"title\">Shipping Charge<\/div>\n          <div class=\"rules\">\n            <ul>\n              <li>Free<\/li>\n              <li>$15 Flat Rate<\/li>\n              <li>$28.95 Flat Rate<\/li>\n            <\/ul>\n          <\/div>\n        <\/div>\n        <div class=\"container 4\">\n          <div class=\"title\">Order Cutoff Time<\/div>\n          <div class=\"rules\">\n            <ul>\n              <li>None<\/li>\n              <li>1pm EST<\/li>\n              <li>1pm EST<\/li>\n            <\/ul>\n          <\/div>\n        <\/div>\n      <\/div>",
-          "after_content": "<p> <\/p>\n<p><a href=\"#top\">Back to Top<\/a><\/p>\n<div class=\"fineprint\">\n\t<p>AQUASEAL® is a registered symbol of the McNett Corporation<\/p>\n\t<p>ARMOR ALL® is a registered symbol of Armor All Products Company<\/p>\n<\/div>",
+          "after_content": "<p> <\/p>\n<p><a href=\"#top\">Back to Top<\/a><\/p>",
           "left_nav_enabled": true,
           "interior_page_left_nav": "side-menu"
+        }
+      },
+      "page-guide-template": {
+        "type": "page-guide-template",
+        "blocks": {
+          "1549339064751": {
+            "type": "text_block",
+            "settings": {
+              "module_image": "shopify:\/\/shop_images\/Shoe_Guide_banner-00.jpg",
+              "module_html_h2": "How to Care for Leather Shoes",
+              "module_html_p": "Properly caring for Italian leather is key in extending the life of your shoes and boots and keeping them looking newer longer.<br><br>\n\nTo remove liquid stains such as coffee, soda, and wine, gently wipe your shoes with a soft cloth that’s been moistened with water. For harder stains, gently wipe your shoe with a soft cloth that has been moistened with a water and neutral soap solution or use a mixture of water and 5% ammonia.<br><br>\n\nIf the outer surface of your footwear gets wet, we recommend that you air dry your leather footwear in a cool, dry environment and away from direct heat. To restore your leather shoes or boots back to their original shine, polish them with a quality wax and buff off using a soft cloth or brush.",
+              "button_text": "Shop Women’s Shoes",
+              "button_link": "shopify:\/\/collections\/women",
+              "button_symbol_placement": "left",
+              "module_image_color_scheme": "light",
+              "module_image_position_desktop": "image_left",
+              "module_image_position_mobile": "image_top",
+              "image_offset_enabled": true
+            }
+          },
+          "1549333580067": {
+            "type": "text_block",
+            "settings": {
+              "module_image": "shopify:\/\/shop_images\/Shoe_Guide_banner-01.jpg",
+              "module_html_h2": "How to Care for Suede Shoes",
+              "module_html_p": "With a little time and the proper tool, cleaning and protecting suede shoes and boots is easy. <br><br>\n\nEvery pair of suede shoes is packaged with its very own suede sponge. This is an essential tool made for the best suede care and protecting your footwear from dirt and\/or liquid stains. Using the soft rectangular sponge to gently brush off your suede footwear will also help in restoring the suedes’ original texture and enhance its appearance without damaging the material.<br><br> \n\nTo retain the original beauty and texture of your suede shoes and boots, store them in a cool, dry environment and away from direct heat.",
+              "button_text": "Shop Women's",
+              "button_link": "shopify:\/\/collections\/women",
+              "button_symbol_placement": "left",
+              "module_image_color_scheme": "light",
+              "module_image_position_desktop": "image_right",
+              "module_image_position_mobile": "image_top",
+              "image_offset_enabled": false
+            }
+          },
+          "1549333978219": {
+            "type": "text_block",
+            "settings": {
+              "module_image": "shopify:\/\/shop_images\/Shoe_Guide_banner-02.jpg",
+              "module_html_h2": "How to Care for Weatherproof Shoes",
+              "module_html_p": "Aquatalia’s weatherproofing technology protects your shoes in wet weather conditions, keeping your feet dry and comfortable.<br><br> \n\nWeatherproof shoes require the same care as all leather and suede footwear. Please refer to the above care instructions to keep your shoes in good condition. Any stain that sits on your shoes for an extended period of time can become permanent. We recommend using a soft, lightly moistened cloth to remove stains immediately. Always store your weatherproof shoes in a cool, dry environment and away from direct heat and\/or sunlight.",
+              "button_text": "Shop Men's Shoes",
+              "button_link": "shopify:\/\/collections\/men-shoes",
+              "button_symbol_placement": "left",
+              "module_image_color_scheme": "light",
+              "module_image_position_desktop": "image_left",
+              "module_image_position_mobile": "image_top",
+              "image_offset_enabled": false
+            }
+          }
+        },
+        "block_order": [
+          "1549339064751",
+          "1549333580067",
+          "1549333978219"
+        ],
+        "settings": {
+          "page_title_h1": "",
+          "live_chat_enabled": false,
+          "live_chat_text": "Live chat",
+          "live_chat_color_scheme": "light"
         }
       }
     },
