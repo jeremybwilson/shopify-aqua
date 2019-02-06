@@ -51,7 +51,11 @@
 
   {% comment %} REVIEWS - STAR RATING {% endcomment %}
 
-  {% include 'pr-review-snippet' %}
+  <div class="product-star-rating">
+    {% include 'pr-review-snippet' %}
+    {% comment %}{- Copied from Review Snapshot -}{% endcomment %}
+    <a href="/pages/reviews?&amp;pr_merchant_id=683283&amp;pr_api_key=ecee97b3-ae68-483f-ae4b-756350853c06&amp;pr_merchant_group_id=79437&amp;pr_page_id=123456789" class="product-star-rating__write-review">Write a Review</a>
+  </div>
   <div class="clear"></div>
 
   {% if current_variant.sku != blank %}
@@ -169,7 +173,7 @@
     <div id="product-add">
       {% if section.settings.show_quantity %}
       <div class="quanity-select">
-        <label for="quantity">{{ 'products.product.quantity' | t }}</label>
+        <label for="quantity" class="quantity-select__label">{{ 'products.product.quantity' | t }}</label>
         <select name="quantity" id="quantity">
           {% for i in (1..10) %}
             <option value="{{ i }}">{{ i }}</option>

@@ -852,7 +852,7 @@ theme.scripts.readMoreToggle = (function () {
   function handleClickToggle(e) {
     e.preventDefault();
     const $self = $(this);
-    const id = $self.attr('href');
+    const id = $self.attr('data-target');
     const $target = $(id);
     const targetIsHidden = $target.is(':hidden');
 
