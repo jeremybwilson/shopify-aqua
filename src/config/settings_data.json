@@ -286,7 +286,7 @@
           "account_icon_text_value": "Sign In",
           "cart_icon": "text",
           "cart_icon_text_value": "Cart",
-          "show_site_picker": true,
+          "show_site_picker": false,
           "site_picker_manifest": "US|United States|https:\/\/xtratuf.com,EU|European Union|https:\/\/www.muckbootcompany.eu,UK|United Kingdom|https:\/\/www.muckbootcompany.co.uk",
           "show_search": true,
           "show_wishlist": true,
