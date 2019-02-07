@@ -1,13 +1,13 @@
 {
   "presets": {},
   "current": {
-    "favicon": "",
+    "favicon": "shopify://shop_images/favicon.png",
     "google_tag_manager_id": "NONE",
     "announcement_text_color": "#ffffff",
     "announcement_bg_one": "#000000",
     "announcement_bg_two": "#757575",
     "nav_transparent_landing": true,
-    "nav_transparent_landing_color": "#ffffff",
+    "nav_transparent_landing_color": "#FFFFFF",
     "header_background": "#ffffff",
     "logo_color": "#000000",
     "nav_links": "#000000",
@@ -53,8 +53,8 @@
     "filter_button_alt_bg": "#ffffff",
     "filter_button_alt_text": "#000000",
     "filter_bar_border_color": "#e8e8e8",
-    "quickview_button_bg": "#e41c39",
-    "quickview_button_text": "#fefffe",
+    "quickview_button_bg": "#000000",
+    "quickview_button_text": "#FEFFFE",
     "catalog_item_text_color": "#000000",
     "catalog_item_price_color": "#525252",
     "catalog_item_accent_color": "#e61533",
@@ -63,11 +63,11 @@
     "collection_load_more_text": "#fefffe",
     "collection_load_more_bg": "#757575",
     "collection_load_more_bg_hover": "#0153a6",
-    "product_badge_square_bg": "#757575",
-    "product_badge_circle_bg": "#0153a6",
-    "product_badge_diamond_bg": "#0152a6",
+    "product_badge_square_bg": "#000000",
+    "product_badge_circle_bg": "#000000",
+    "product_badge_diamond_bg": "#000000",
     "product_badge_text_color": "#fefffe",
-    "react_swatch_outline_color": "#bababa",
+    "react_swatch_outline_color": "#BABABA",
     "fancybox_overlay_bg": "0,0,0,0.8",
     "fancybox_close_color": "#5b5b5b",
     "fancybox_close_hover_color": "#9b492b",
@@ -144,7 +144,7 @@
     "enable_nav_name_styling": true,
     "quickview": true,
     "vendor": false,
-    "show_collection_seo_block": true,
+    "show_collection_seo_block": false,
     "filter_bar_border_width": 1,
     "details_align": "center",
     "secondary_images_hover": "image_flip",
@@ -176,14 +176,6 @@
     "currency_format": "money_with_currency_format",
     "supported_currencies": "INR GBP CAD USD AUD EUR JPY",
     "default_currency": "USD",
-    "app_wk_enabled": true,
-    "app_wk_login_required": false,
-    "app_wk_icon": "heart",
-    "app_wk_icon_stroke": "#9e9e9e",
-    "app_wk_icon_fill": "#000000",
-    "app_wk_col_bg_shape": "square",
-    "app_wk_share_position": "top",
-    "app_wk_products_per_row": "4",
     "checkout_header_image": "",
     "checkout_logo_image": "shopify://shop_images/checkout-logo.png",
     "checkout_logo_position": "left",
@@ -291,7 +283,6 @@
           "logo_weight": "bold",
           "account_icon": "text",
           "account_icon_text_value": "Sign In",
-          "account_show_user_name": false,
           "cart_icon": "text",
           "cart_icon_text_value": "Cart",
           "show_site_picker": true,
@@ -333,13 +324,12 @@
               "banner_text_header": "BOOTIES",
               "banner_text_body": "Sed ut predciptalis unde omnis iste natus sit voluptatem accusatium dolorem.",
               "banner_text_divider": true,
-              "textbox_constrain": true,
               "textbox_horizontal": "left",
               "textbox_horizontal_nudge": 78,
               "textbox_vertical": "center",
               "textbox_vertical_nudge": -40,
               "textbox_text_align": "center",
-              "textbox_color_text": "#ffffff",
+              "textbox_color_text": "#FFFFFF",
               "textbox_color_divider": "#969696",
               "textbox_color_bg": "#000000",
               "textbox_opacity": "1"
@@ -362,7 +352,7 @@
         "settings": {
           "product_nav": false,
           "vendor": false,
-          "show_quantity": false,
+          "show_quantity": true,
           "show_sku": false,
           "product_variants": "swatches",
           "use_swatch_images": true,
@@ -374,8 +364,8 @@
           "zoom_image_position": "zoom_over_main",
           "related_products": "none",
           "shipping_header_text": "Shipping & Returns",
-          "shipping_text": "",
-          "show_social": false,
+          "shipping_text": "<p>Shipping &amp; Returns content</p>",
+          "show_social": true,
           "size_chart_header_text": "Size Chart",
           "size_chart_page": ""
         }
@@ -504,7 +494,7 @@
             "settings": {
               "image": "shopify://shop_images/home-twin_promo--desktop-left.jpg",
               "mobile_image": "shopify://shop_images/home-twin_promo--desktop-left.jpg",
-              "link": "shopify://collections/women-boots",
+              "link": "/collections/mid-tall-boots/audience_women",
               "heading_text": "URBAN EXPLORER",
               "body_text": "<p>The Modern Chelsea</p>",
               "text_align": "left",
@@ -522,7 +512,7 @@
             "settings": {
               "image": "shopify://shop_images/home-twin_promo--desktop-right.jpg",
               "mobile_image": "shopify://shop_images/home-twin_promo--desktop-right.jpg",
-              "link": "shopify://collections/women-booties",
+              "link": "shopify://collections/kids",
               "heading_text": "WELL ZIPPED",
               "body_text": "<p>The Updated Bootie</p>",
               "text_align": "left",
@@ -552,7 +542,7 @@
             "settings": {
               "image": "shopify://shop_images/home-featured_collection_slideshow--desktop-1.jpg",
               "mobile_image": "shopify://shop_images/home-featured_collection_slideshow--mobile-1.jpg",
-              "image_link": "shopify://collections/women-new-arrivals",
+              "image_link": "/collections/legacy/audience_men",
               "heading": "FRESH FOR FALL",
               "subheading": "From kitten heels to over-the-knee boots.",
               "caption_text_align": "center",
@@ -608,7 +598,6 @@
           "button_symbol_placement": "left",
           "image_side": "left",
           "image_width": 64,
-          "text_vertical": "center",
           "text_align": "center"
         }
       },
@@ -695,9 +684,16 @@
               "module_image_position_desktop": "image_overlap_left",
               "module_image_position_mobile": "image_top"
             }
+          },
+          "1549421101615": {
+            "type": "html",
+            "settings": {
+              "about_html_block": "<p>Established in 1994, Aquatalia offers the finest combination of fashion, quality and comfort in luxury footwear and is the first to mix distinctive Italian design with innovative weatherproof and stain-resistant technology. Bridging the gap between style and function, Aquatalia sets a new standard in fine footwear and accessories. Taking the brand to the next level, Aquatalia will continue to introduce category expansions, establish a retail presence and expand the brand globally.</p>"
+            }
           }
         },
         "block_order": [
+          "1549421101615",
           "1539644589684",
           "1539646800597",
           "1548737684033"
@@ -911,10 +907,72 @@
         ],
         "settings": {
           "anchor_top_offset": -100,
-          "section_title_top": "Faq",
+          "page_title_h1": "",
           "before_content": "<h2 class=\"heading\">Shipping</h2>\n<p>Aquatalia is pleased to offer free Standard shipping anywhere in the continental United States.  Standard shipping takes 3 to 7 business days after processing and Aquatalia does not ship on weekends or hoidays.</p>\n<div class=\"shipping-container\">\n        <div class=\"container 1\">\n          <div class=\"title\">Shipping Method</div>\n          <div class=\"rules\">\n            <ul>\n              <li>Ground</li>\n              <li>2nd Day</li>\n              <li>Next Day</li>\n            </ul>\n          </div>\n        </div>\n        <div class=\"container 2\">\n          <div class=\"title\">Delivery Time</div>\n          <div class=\"rules\">\n            <ul>\n              <li>3-7 Business Days</li>\n              <li>2 Business Days</li>\n              <li>1 Business Day</li>\n            </ul>\n          </div>\n        </div>\n        <div class=\"container 3\">\n          <div class=\"title\">Shipping Charge</div>\n          <div class=\"rules\">\n            <ul>\n              <li>Free</li>\n              <li>$15 Flat Rate</li>\n              <li>$28.95 Flat Rate</li>\n            </ul>\n          </div>\n        </div>\n        <div class=\"container 4\">\n          <div class=\"title\">Order Cutoff Time</div>\n          <div class=\"rules\">\n            <ul>\n              <li>None</li>\n              <li>1pm EST</li>\n              <li>1pm EST</li>\n            </ul>\n          </div>\n        </div>\n      </div>",
-          "after_content": "<p> </p>\n<p><a href=\"#top\">Back to Top</a></p>\n<div class=\"fineprint\">\n\t<p>AQUASEAL® is a registered symbol of the McNett Corporation</p>\n\t<p>ARMOR ALL® is a registered symbol of Armor All Products Company</p>\n</div>",
-          "faq_page_left_nav": "side-menu"
+          "after_content": "<p> </p>\n<p><a href=\"#top\">Back to Top</a></p>",
+          "left_nav_enabled": true,
+          "interior_page_left_nav": "side-menu"
+        }
+      },
+      "page-guide-template": {
+        "type": "page-guide-template",
+        "blocks": {
+          "1549339064751": {
+            "type": "text_block",
+            "settings": {
+              "module_image": "shopify://shop_images/Shoe_Guide_banner-00.jpg",
+              "module_html_h2": "How to Care for Leather Shoes",
+              "module_html_p": "Properly caring for Italian leather is key in extending the life of your shoes and boots and keeping them looking newer longer.<br><br>\n\nTo remove liquid stains such as coffee, soda, and wine, gently wipe your shoes with a soft cloth that’s been moistened with water. For harder stains, gently wipe your shoe with a soft cloth that has been moistened with a water and neutral soap solution or use a mixture of water and 5% ammonia.<br><br>\n\nIf the outer surface of your footwear gets wet, we recommend that you air dry your leather footwear in a cool, dry environment and away from direct heat. To restore your leather shoes or boots back to their original shine, polish them with a quality wax and buff off using a soft cloth or brush.",
+              "button_text": "Shop Women’s Shoes",
+              "button_link": "shopify://collections/women",
+              "button_symbol_placement": "left",
+              "module_image_color_scheme": "light",
+              "module_image_position_desktop": "image_left",
+              "module_image_position_mobile": "image_top",
+              "image_offset_enabled": true
+            }
+          },
+          "1549333580067": {
+            "type": "text_block",
+            "settings": {
+              "module_image": "shopify://shop_images/Shoe_Guide_banner-01.jpg",
+              "module_html_h2": "How to Care for Suede Shoes",
+              "module_html_p": "With a little time and the proper tool, cleaning and protecting suede shoes and boots is easy. <br><br>\n\nEvery pair of suede shoes is packaged with its very own suede sponge. This is an essential tool made for the best suede care and protecting your footwear from dirt and/or liquid stains. Using the soft rectangular sponge to gently brush off your suede footwear will also help in restoring the suedes’ original texture and enhance its appearance without damaging the material.<br><br> \n\nTo retain the original beauty and texture of your suede shoes and boots, store them in a cool, dry environment and away from direct heat.",
+              "button_text": "Shop Women's",
+              "button_link": "shopify://collections/women",
+              "button_symbol_placement": "left",
+              "module_image_color_scheme": "light",
+              "module_image_position_desktop": "image_right",
+              "module_image_position_mobile": "image_top",
+              "image_offset_enabled": false
+            }
+          },
+          "1549333978219": {
+            "type": "text_block",
+            "settings": {
+              "module_image": "shopify://shop_images/Shoe_Guide_banner-02.jpg",
+              "module_html_h2": "How to Care for Weatherproof Shoes",
+              "module_html_p": "Aquatalia’s weatherproofing technology protects your shoes in wet weather conditions, keeping your feet dry and comfortable.<br><br> \n\nWeatherproof shoes require the same care as all leather and suede footwear. Please refer to the above care instructions to keep your shoes in good condition. Any stain that sits on your shoes for an extended period of time can become permanent. We recommend using a soft, lightly moistened cloth to remove stains immediately. Always store your weatherproof shoes in a cool, dry environment and away from direct heat and/or sunlight.",
+              "button_text": "Shop Men's Shoes",
+              "button_link": "shopify://collections/men-shoes",
+              "button_symbol_placement": "left",
+              "module_image_color_scheme": "light",
+              "module_image_position_desktop": "image_left",
+              "module_image_position_mobile": "image_top",
+              "image_offset_enabled": false
+            }
+          }
+        },
+        "block_order": [
+          "1549339064751",
+          "1549333580067",
+          "1549333978219"
+        ],
+        "settings": {
+          "page_title_h1": "",
+          "live_chat_enabled": false,
+          "live_chat_text": "Live chat",
+          "live_chat_color_scheme": "light"
         }
       }
     },
