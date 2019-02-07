@@ -57,23 +57,23 @@
 
           {% comment %} :: MOBILE IMAGE :: (Will be the mobile image also if none given) {% endcomment %}
 
-        {% comment %} :: SOURCE : "image_mobile" {% endcomment %}
-        <div class="featured-image-mobile">
-        {% if image_mobile != blank %}
-          {% include 'basic-responsive-image', type: image_mobile %}
-          <noscript>
-            <img class="featured-image" src="{{ image_mobile | img_url: '800x' }}" alt="{{ image_mobile.alt }}">
-          </noscript>
+          {% comment %} :: SOURCE : "image_mobile" {% endcomment %}
+          <div class="featured-image-mobile">
+          {% if image_mobile != blank %}
+            {% include 'basic-responsive-image', type: image_mobile %}
+            <noscript>
+              <img class="featured-image" src="{{ image_mobile | img_url: '800x' }}" alt="{{ image_mobile.alt }}">
+            </noscript>
 
-        {% comment %} :: SOURCE : No image, use placeholder :: {% endcomment %}
-        {% else %}
-          <div class="featured-image-fallback onboard">
-            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-          </div>
-        {% endif %}
+          {% comment %} :: SOURCE : No image, use placeholder :: {% endcomment %}
+          {% else %}
+            <div class="featured-image-fallback onboard">
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          {% endif %}
 
-        </div><!-- /.featured-image-mobile -->
-      </div><!-- /.image-box -->
+          </div><!-- /.featured-image-mobile -->
+        </div><!-- /.image-box -->
 
       {% comment %} <div class="image-box"> {% endcomment %}
         {% comment %} <img src="{{ block.settings.module_image | img_url: '800x' }}" /> {% endcomment %}

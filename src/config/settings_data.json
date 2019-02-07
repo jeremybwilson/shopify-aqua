@@ -924,13 +924,13 @@
           "1549339064751": {
             "type": "text_block",
             "settings": {
-              "module_image": "shopify:\/\/shop_images\/Shoe_Guide_banner-00.jpg",
+              "image_desktop": "shopify:\/\/shop_images\/Shoe_Guide_banner-00.jpg",
+              "image_mobile": "shopify:\/\/shop_images\/shoe_guide_banner-00-mob.jpg",
               "module_html_h2": "How to Care for Leather Shoes",
               "module_html_p": "Properly caring for Italian leather is key in extending the life of your shoes and boots and keeping them looking newer longer.<br><br>\n\nTo remove liquid stains such as coffee, soda, and wine, gently wipe your shoes with a soft cloth that’s been moistened with water. For harder stains, gently wipe your shoe with a soft cloth that has been moistened with a water and neutral soap solution or use a mixture of water and 5% ammonia.<br><br>\n\nIf the outer surface of your footwear gets wet, we recommend that you air dry your leather footwear in a cool, dry environment and away from direct heat. To restore your leather shoes or boots back to their original shine, polish them with a quality wax and buff off using a soft cloth or brush.",
               "button_text": "Shop Women’s Shoes",
               "button_link": "shopify:\/\/collections\/women",
               "button_symbol_placement": "left",
-              "module_image_color_scheme": "light",
               "module_image_position_desktop": "image_left",
               "module_image_position_mobile": "image_top",
               "image_offset_enabled": true
@@ -939,13 +939,13 @@
           "1549333580067": {
             "type": "text_block",
             "settings": {
-              "module_image": "shopify:\/\/shop_images\/Shoe_Guide_banner-01.jpg",
+              "image_desktop": "shopify:\/\/shop_images\/Shoe_Guide_banner-01.jpg",
+              "image_mobile": "shopify:\/\/shop_images\/shoe_guide_banner-01-mob.jpg",
               "module_html_h2": "How to Care for Suede Shoes",
               "module_html_p": "With a little time and the proper tool, cleaning and protecting suede shoes and boots is easy. <br><br>\n\nEvery pair of suede shoes is packaged with its very own suede sponge. This is an essential tool made for the best suede care and protecting your footwear from dirt and\/or liquid stains. Using the soft rectangular sponge to gently brush off your suede footwear will also help in restoring the suedes’ original texture and enhance its appearance without damaging the material.<br><br> \n\nTo retain the original beauty and texture of your suede shoes and boots, store them in a cool, dry environment and away from direct heat.",
               "button_text": "Shop Women's",
               "button_link": "shopify:\/\/collections\/women",
               "button_symbol_placement": "left",
-              "module_image_color_scheme": "light",
               "module_image_position_desktop": "image_right",
               "module_image_position_mobile": "image_top",
               "image_offset_enabled": false
@@ -954,13 +954,13 @@
           "1549333978219": {
             "type": "text_block",
             "settings": {
-              "module_image": "shopify:\/\/shop_images\/Shoe_Guide_banner-02.jpg",
+              "image_desktop": "shopify:\/\/shop_images\/Shoe_Guide_banner-02.jpg",
+              "image_mobile": "shopify:\/\/shop_images\/shoe_guide_banner-02-mob.jpg",
               "module_html_h2": "How to Care for Weatherproof Shoes",
               "module_html_p": "Aquatalia’s weatherproofing technology protects your shoes in wet weather conditions, keeping your feet dry and comfortable.<br><br> \n\nWeatherproof shoes require the same care as all leather and suede footwear. Please refer to the above care instructions to keep your shoes in good condition. Any stain that sits on your shoes for an extended period of time can become permanent. We recommend using a soft, lightly moistened cloth to remove stains immediately. Always store your weatherproof shoes in a cool, dry environment and away from direct heat and\/or sunlight.",
               "button_text": "Shop Men's Shoes",
               "button_link": "shopify:\/\/collections\/men-shoes",
               "button_symbol_placement": "left",
-              "module_image_color_scheme": "light",
               "module_image_position_desktop": "image_left",
               "module_image_position_mobile": "image_top",
               "image_offset_enabled": false
@@ -971,6 +971,35 @@
           "1549339064751",
           "1549333580067",
           "1549333978219"
+        ],
+        "settings": {
+          "page_title_h1": "",
+          "live_chat_enabled": false,
+          "live_chat_text": "Live chat",
+          "live_chat_color_scheme": "light"
+        }
+      },
+      "page-stores-template": {
+        "type": "page-stores-template",
+        "blocks": {
+          "1549482916445": {
+            "type": "text_block",
+            "settings": {
+              "image_desktop": "shopify:\/\/shop_images\/home-about_image_no_text_769d20e2-48c4-4191-9e76-721bbbd4962e.jpg",
+              "image_mobile": "shopify:\/\/shop_images\/home-about_image_no_text.jpg",
+              "module_html_h2": "Shop With Us",
+              "module_html_p": "From the latest arrivals to exclusive products\nand special services, discover a one-stop shop for style.\n<br><br>\nNEW YORK FLAGSHIP<br>\n965 Madison Avenue<br>\nBetween 75th and 76th Street<br>\nNew York, NY 10021\n<br><br>\nPhone 646-677-5555\n<br><br>\nStore Hours<br>\nMonday-Saturday: 10am-7pm<br>\nSunday: 12pm-5pm",
+              "button_text": "",
+              "button_link": "",
+              "button_symbol_placement": "none",
+              "module_image_position_desktop": "image_left",
+              "module_image_position_mobile": "image_top",
+              "image_offset_enabled": false
+            }
+          }
+        },
+        "block_order": [
+          "1549482916445"
         ],
         "settings": {
           "page_title_h1": "",
