@@ -274,8 +274,8 @@
           "show_announcement_text": true,
           "num_of_promo_banners": "1",
           "announcement_text_one": "Sign Up & Recieve $50 Off Purchases Of $150 Or More",
-          "announcement_link_one": "\/pages\/shipping-returns",
-          "announcement_text_two": "40% OFF YOUR PURCHASE. NO CODE NEEDED.",
+          "announcement_link_one": "\/account",
+          "announcement_text_two": "Second banner text here",
           "announcement_link_two": "http:\/\/google.com",
           "announcement_height": 40,
           "announcement_swap_rate": 5,
@@ -649,7 +649,7 @@
           "cta_link": "http:\/\/www.instagram.com\/aquatalia",
           "cta_text": "FOLLOW US",
           "cta_symbol_placement": "left",
-          "instagram_access_token": ""
+          "instagram_access_token": "324973178.5ea0515.593a03d541c143998399b8204d258599"
         }
       },
       "page-about-template": {
