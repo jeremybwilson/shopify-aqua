@@ -195,8 +195,17 @@ $hoverAnimationTiming: 0.25s ease-in-out; // Note: Hover states use opacity in t
             cursor: pointer;
           }
 
-          svg path {
-            fill: {{ settings.footer_color }};
+          svg {
+            width: 100%;
+            height: 100%;
+
+            &.icon-instagram {
+              margin-top: 4px;
+            }
+
+            path {
+              fill: {{ settings.footer_color }};
+            }
           }
 
           i {

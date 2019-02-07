@@ -23,6 +23,11 @@
 		width: 100% !important;
 	}
 
+	.fancybox-close {
+		top: 10px;
+		right: 10px;
+	}
+
 
 	@include mq( 'lap-and-up' ){
 		display: block;
@@ -70,6 +75,14 @@
 				.bx-viewport {
 					height: 311px !important; // fancybox is an inline style nazi...
 				}
+
+				.slick-list {
+					height: auto !important; // Inline style override (was setting it to 14px...)
+
+					.slick-slide {
+						outline: none;
+					}
+				}
 			}
 		}
 
@@ -96,6 +109,11 @@
 					border: none;
 					padding: 0;
 					margin: 0;
+				}
+
+				// Wishlist Count
+				.wk-count {
+					display: none;
 				}
 
 				// SIZE SQUARES : Needed so it sits flush on right edge, 
@@ -128,7 +146,21 @@
 						color: $color--accent-1;
 					}
 				}
+
+				// HIDE : Share buttons, description and HR dividing the two for quickview
+				.share-me, 
+				.product-hr, 
+				.product-desc {
+				    display: none;
+				}
 			}
+		}
+
+		// 
+
+		// REVIEWS : Hide the reviews on quickview
+		.accordion--product-review {
+			display: none;
 		}
 	}
 }

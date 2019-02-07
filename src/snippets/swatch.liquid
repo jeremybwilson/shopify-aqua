@@ -27,7 +27,16 @@
   <div class="swatch-elements clearfix{% if color_swatch_options contains option_name %} color{% endif %}">
     {% for value in option.values %}
       {% unless value contains 'Gift Item' or value contains 'Free Gift' %}
-        {% assign image_url = value | handle | prepend: 'swatch_' | append: '.png' | file_url %}
+        
+
+        {% comment %} :: SWATCH : SWATCH IMAGE URL ::  Swatch name format is one from Photo Studio. Adjust as needed. {% endcomment %}
+        {% assign sku_parts = current_variant.sku | split: '-' %} 
+        {% assign sku_base = sku_parts | first | downcase %}
+        {% assign clean_color_name = value | escape | replace: ' ', '_' | replace: '/', '_' | replace: '__', '_' | downcase %}
+        {% capture swatch_file_name %}{{ sku_base }}_{{ clean_color_name }}_sw.gif{% endcapture %}
+        {% assign swatch_img_url = 'swatch_url_source_do_not_remove.png' | file_url | replace: 'swatch_url_source_do_not_remove.png', swatch_file_name %}
+
+        {% comment %} :: SWATCH - Data Properties ::{% endcomment %}
         {% assign css_color = value | split: ' ' | last | handle %}
         {% capture id %}swatch-{{ option.position }}-{{ value | handle }}{% endcapture %}
         {% assign available = false %}
@@ -101,7 +110,7 @@
 
             {{ radio_button }}
 
-            <label for="{{ id }}" style="background-color: {{ css_color }}; {% if settings.use_swatch_images or section.settings.use_swatch_images %}background-image: url({{ image_url }}){% endif %}">
+            <label for="{{ id }}" style="background-color: {{ css_color }}; {% if settings.use_swatch_images or section.settings.use_swatch_images %}background-image: url({{ swatch_img_url }}){% endif %}">
               {{ sold_out_image }}
             </label>
           </div>
