@@ -220,7 +220,7 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
         if (typeof options[0] !== 'undefined' && options[0]['values'] && options[0]['values'].length > 1 ) {
             var swatchManifest = [];
 
-            // MANIFEST : LOOP : Build Swatch List for the Swatch List Display
+            // MANIFEST : LOOP : Build Swatch List for the Swatch Component to Display
             for ( var k = 0; k < options[0]['values'].length; k++ ) {
                 var option = options[0]['values'][k]; //One color in the list of variant colors
 
@@ -234,8 +234,22 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
                     variantImgUrl = this.optimizeImage(data['images'][imageIndex]['src']);
                 }
 
+                // SKU : EXACT (for Swatch URL) : Try to use color name to ensure we grab the matching sku
+                var sku = data.skus.find( function( sku ) {
+                    return sku.indexOf( option[ 'title' ] ) > -1;
+                });
+
+                // SKU : FALLBACK (For Swatch URL) : If no match, use first sku. All color variant skus use same base ID it looks like
+                if ( !sku ) {
+                    sku = data.skus[0];
+                }
+                var skuId = sku.split( '-' )[0];
+
+
                 // SWATCH IMAGE : Build swatch image, fallback to color setting in case that fails
-                var swatchImgUrl = bcSfFilterConfig.general.file_url.replace( 'swatch_url_source_do_not_remove.png', 'swatch_' + this.slugify(option['title']) + '.png' );
+                var colorName = this.slugify( option['title'] ).replace( '-', '_' ); //Replace slug dash for _ to support photo studio tool format
+                var swatchFileName = skuId + '_' + colorName + '_sw.gif';
+                var swatchImgUrl = bcSfFilterConfig.general.file_url.replace( 'swatch_url_source_do_not_remove.png', swatchFileName.toLowerCase() );
 
                 // SWATCH OBJ: Single swatch object for manifest
                 var colorValueName = this.slugify( option['title'] );
