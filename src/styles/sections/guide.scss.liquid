@@ -123,6 +123,7 @@
         text-transform: uppercase;
       }
     }
+
     .image-box {
       width: 100%;
 
@@ -130,11 +131,25 @@
         width: 50%;
       }
 
-      img {
+      /* IMAGES : Image panel for Mobile x Desktop responsive images
+      * ----------------------------------------------------------------------- */
+
+      // MOBILE
+      .featured-image-mobile {
         display: block;
-        width: 100%;
-        max-width: none;
-        height: auto;
+
+        @include mq( 'tablet-and-up' ) {
+          display: none;
+        }
+      }
+
+      // DESKTOP
+      .featured-image-desktop {
+        display: none;
+
+        @include mq( 'tablet-and-up' ) {
+          display: block;
+        }
       }
     }
 
@@ -165,10 +180,6 @@
           }
         }
       }
-    }
-
-    &:last-child {
-      margin-bottom: 0;
     }
   }
 

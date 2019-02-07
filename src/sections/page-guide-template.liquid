@@ -10,9 +10,9 @@
 
       {% comment %} ABOUT MODULE - centered text directly below banner image {% endcomment %}
       {% if block.settings.guide_html_block != 'blank' %}
-        <div class="guide-block">
-          {{ block.settings.guide_html_block }}
-        </div>
+      <div class="guide-block">
+        {{ block.settings.guide_html_block }}
+      </div>
       {% endif %}
 
     {% elsif block.type == 'text_block' %}
@@ -40,11 +40,53 @@
           </div>
         {% endif %}
 
-      </div>
+        </div><!-- /.text-box -->
 
-      <div class="image-box">
-        <img src="{{ block.settings.module_image | img_url: '800x' }}" />
-      </div>
+        {% comment %} :: IMAGE SOURCE - Mobile - If none given use desktop image :: {% endcomment %}
+        {% assign image_mobile = block.settings.image_mobile %}
+        {% if image_mobile == blank %}
+          {% assign image_mobile = block.settings.image_desktop %}
+        {% endif %}
+
+        {% comment %} :: PANEL - IMAGE :: (See bottom portion for layout placement usage) {% endcomment %}
+        <div class="image-box">
+
+          {% comment %} :: DESKTOP IMAGE :: (Will be the mobile image also if none given) {% endcomment %}
+          <div class="featured-image-desktop">
+          {% if block.settings.image_desktop != blank %}
+            {% include 'basic-responsive-image', type: block.settings.image_desktop %}
+            <noscript>
+              <img class="featured-image" src="{{ block.settings.image_desktop | img_url: '800x' }}" alt="{{ block.settings.image_desktop.alt }}">
+            </noscript>
+
+          {% else %}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+          </div><!-- /.featured-image-desktop -->
+
+          {% comment %} :: MOBILE IMAGE :: (Will be the mobile image also if none given) {% endcomment %}
+
+          {% comment %} :: SOURCE : "image_mobile" {% endcomment %}
+          <div class="featured-image-mobile">
+          {% if image_mobile != blank %}
+            {% include 'basic-responsive-image', type: image_mobile %}
+            <noscript>
+              <img class="featured-image" src="{{ image_mobile | img_url: '800x' }}" alt="{{ image_mobile.alt }}">
+            </noscript>
+
+          {% comment %} :: SOURCE : No image, use placeholder :: {% endcomment %}
+          {% else %}
+            <div class="featured-image-fallback onboard">
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          {% endif %}
+
+          </div><!-- /.featured-image-mobile -->
+
+        </div><!-- /.image-box -->
+      {% comment %} <div class="image-box"> {% endcomment %}
+        {% comment %} <img src="{{ block.settings.module_image | img_url: '800x' }}" /> {% endcomment %}
+      {% comment %} </div> {% endcomment %}
     </div><!-- .content-module -->
 
     {% endif %}
@@ -144,9 +186,20 @@
       "name": "Content Module",
       "settings":[
         {
+          "type": "header",
+          "content": "-- CONTENT --"
+        },
+        {
           "type": "image_picker",
-          "id": "module_image",
-          "label": "Image"
+          "id": "image_desktop",
+          "label": "Image (Desktop)",
+          "info": "Size: about ~1100px wide, ~300-400kb"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Image (Mobile)",
+          "info": "Size: about ~600px wide, ~100-150kb"
         },
         {
           "type": "text",
