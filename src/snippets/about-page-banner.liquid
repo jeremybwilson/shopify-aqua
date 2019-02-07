@@ -1,14 +1,58 @@
 {% comment %}  ABOUT PAGE ::: Bottom Full Width Banner {% endcomment %}
 {% if section.settings.about_bottom_banner_enabled %}
 
+{% comment %} :: IMAGE SOURCE - Mobile - If none given use desktop image :: {% endcomment %}
+{% assign image_mobile = section.settings.image_mobile %}
+{% if image_mobile == blank %}
+  {% assign image_mobile = section.settings.image_desktop %}
+{% endif %}
+
 <div class="about-bottom-banner layout-mob--{{ section.settings.banner_image_position_mobile }}">
-  <div class="banner-image-box"><img src="{{ section.settings.banner_image | img_url: '800x' }}" /></div>
+
+  {% comment %} :: PANEL - IMAGE :: (See bottom portion for layout placement usage) {% endcomment %}
+  <div class="banner-image-box">
+
+    {% comment %} :: DESKTOP IMAGE :: (Will be the mobile image also if none given) {% endcomment %}
+    <div class="featured-image-desktop">
+    {% if section.settings.image_desktop != blank %}
+      {% include 'basic-responsive-image', type: section.settings.image_desktop %}
+      <noscript>
+        <img class="featured-image" src="{{ section.settings.image_desktop | img_url: '800x' }}" alt="{{ section.settings.image_desktop.alt }}">
+      </noscript>
+
+    {% else %}
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    {% endif %}
+    </div><!-- /.featured-image-desktop -->
+
+    {% comment %} :: MOBILE IMAGE :: (Will be the mobile image also if none given) {% endcomment %}
+
+    {% comment %} :: SOURCE : "image_mobile" {% endcomment %}
+    <div class="featured-image-mobile">
+    {% if image_mobile != blank %}
+      {% include 'basic-responsive-image', type: image_mobile %}
+      <noscript>
+        <img class="featured-image" src="{{ image_mobile | img_url: '800x' }}" alt="{{ image_mobile.alt }}">
+      </noscript>
+
+    {% comment %} :: SOURCE : No image, use placeholder :: {% endcomment %}
+    {% else %}
+      <div class="featured-image-fallback onboard">
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      </div>
+    {% endif %}
+
+    </div><!-- /.featured-image-mobile -->
+  </div><!-- /.banner-image-box -->
+
   <div class="banner-text-box {% if section.settings.banner_text_box_position_desktop %}{{ section.settings.banner_text_box_position_desktop }}{% endif %} {% if section.settings.banner_text_box_color_scheme %}{{ section.settings.banner_text_box_color_scheme }}{% endif %}">
     {% if section.settings.about_bottom_banner_h2 %}<h2>{{ section.settings.about_bottom_banner_h2 }}</h2>{% endif %}
     <div class="banner-divider"></div>
     {% if section.settings.about_bottom_banner_p %}
       <p>{{ section.settings.about_bottom_banner_p }}</p>
     {% endif %}
-  </div>
+  </div><!-- /.banner-text-box -->
+
+</div><!-- /.about-bottom-banner -->
 
 {% endif %}

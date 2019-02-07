@@ -115,6 +115,30 @@ body {
       width: 100%;
     }
 
+    .banner-image-box {
+
+      /* IMAGES : Image panel for Mobile x Desktop responsive images
+      * ----------------------------------------------------------------------- */
+
+      // MOBILE
+      .featured-image-mobile {
+        display: block;
+
+        @include mq( 'tablet-and-up' ) {
+          display: none;
+        }
+      }
+
+      // DESKTOP
+      .featured-image-desktop {
+        display: none;
+
+        @include mq( 'tablet-and-up' ) {
+          display: block;
+        }
+      }
+    }
+
     .banner-text-box {
       background: $color--white;
       width: 100%;
