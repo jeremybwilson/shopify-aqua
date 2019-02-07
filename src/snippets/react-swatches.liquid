@@ -67,7 +67,9 @@
 
 
         {% comment %} :: SWATCH : SWATCH IMAGE URL :: Note: Swatch name format is the one from Photo Studio. Adjust as needed. {% endcomment %}
-        {% capture swatch_file_name %}{{ variant.sku }}_{{ value | escape | replace: ' ', '_' | replace: '/', '' | replace: '__', '_' }}_sw.jpg{% endcapture %}
+        {% assign sku_parts = variant.sku | split: '-' %}
+        {% assign sku_base = sku_parts | first | downcase %}
+        {% capture swatch_file_name %}{{ sku_base }}_{{ value | escape | replace: ' ', '_' | replace: '/', '_' | replace: '__', '_' | downcase }}_sw.gif{% endcapture %}
         {% assign swatch_img_url = 'swatch_url_source_do_not_remove.png' | file_url | replace: 'swatch_url_source_do_not_remove.png', swatch_file_name %}
 
 
