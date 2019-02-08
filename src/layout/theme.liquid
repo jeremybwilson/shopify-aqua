@@ -49,13 +49,16 @@
   <!-- Typography
 ================================================== -->
   {% include 'google-fonts' %}
-  
-  
-  
+
+
   <!-- Borderfree
 ================================================== -->
   {% include 'borderfree-script' %}
-  
+
+
+  <!-- Sailthru
+================================================== -->
+  {% include 'sailthru-script' %}
 
 
   <!-- JS
@@ -92,7 +95,7 @@
   {% if settings.app_wk_enabled %}
     {% include 'appmate-wishlist-king' %}
   {% endif %}
-  
+
   {% include 'pr-review-master-script' %}
 
 
@@ -122,9 +125,9 @@
       {% section 'header' %}
       <div class="clear"></div>
 
-      
-      {% comment %} :: COLLECTION - Banner Image :: 
-        
+
+      {% comment %} :: COLLECTION - Banner Image ::
+
         Notes:
         ------
         To activate a collection banner, you'll need the following images uploaded to the "Files" section:
@@ -134,7 +137,7 @@
         To display the banners, enter the following HTML in the collection description:
         <div class="category-banner has--category-banner banner--only"></div>
 
-        IMPORTANT: 
+        IMPORTANT:
         ----------
         If the description ONLY contains the Category Banner code above, then you need to include the classname "banner--only".
         Otherwise, enter the code below if you have other content (such as the SEO footer text)
@@ -178,11 +181,11 @@
           {% endif %}
         {% endif %}
 
-      {% endif %} 
+      {% endif %}
       {% comment %} :: End of 'ALL OTHER PAGES' IF block :: {% endcomment %}
     </div>  <!-- close the page-wrap class -->
 
-    
+
     {% section 'newsletter' %}
     {% section 'footer' %}
   </div> <!-- close the shifter-page class -->
@@ -235,7 +238,7 @@
     {{ 'handlebars.min.js' | asset_url | script_tag }}
     {% include 'ajax-cart-template' %}
     {{ 'ajax-cart.js' | asset_url | script_tag }}
-    
+
     <script>
       jQuery(function($) {
         ajaxCart.init({
@@ -267,7 +270,7 @@
   {{ 'lazysizes.min.js' | asset_url | script_tag }}
 
   <script>document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
-  
+
   <!-- FILTER APP (PLP) -->
   {% include 'bc-sf-filter' %}
 </body>

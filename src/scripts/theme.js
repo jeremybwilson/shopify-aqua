@@ -1146,6 +1146,19 @@ theme.Header = (function() {
 
 theme.Newsletter = (function() {
   function Newsletter(container) {
+    $('.js-offer-tab, .js-offer-tab-email').fancybox({
+      hideContentOnClick: true,
+    });
+
+    $('.js-offer-tab').on('click', function () {
+      $(this).parent().fadeOut();
+    });
+
+    $('.js-offer-tab-close').on('click', function (e) {
+      e.preventDefault();
+      $(this).parent().fadeOut();
+    });
+
     const $container = this.$container = $(container);
     const ui = {
            formId: $( '#footer-newsletter' ),
@@ -1181,23 +1194,45 @@ theme.Newsletter = (function() {
         } else {
 
           // success state
-          zaius.subscribe({
-              list_id: 'newsletter',
-              email: ui.textbox.val()
+          Sailthru.integration(userSignUp,
+          {
+            "email" : ui.textbox.val(),
+            "lists" : {
+              "Master List" : 1 // list to add user to (must exist in Sailthru account)
+              // "Anonymous" : 0 // list to remove user from (must exist in Sailthru account)
             },
-
-            // success state
-            function() {
+            "source" : "web",
+            "onSuccess" : function() {
+              // alert('Thank you for signing up for our list');
+              console.log('we got here so success...');
               ui.formId.fadeOut( () => {
                 ui.successMsg.fadeIn();
               });
             },
-
-            // fail state
-            function(error) {
+            "onError" : function(error) {
+              // alert('We encountered an issue signing you up. Please try again');
               console.log(error);
             }
-          );
+          });
+
+          // // success state
+          // zaius.subscribe({
+          //     list_id: 'newsletter',
+          //     email: ui.textbox.val()
+          //   },
+
+          //   // success state
+          //   function() {
+          //     ui.formId.fadeOut( () => {
+          //       ui.successMsg.fadeIn();
+          //     });
+          //   },
+
+          //   // fail state
+          //   function(error) {
+          //     console.log(error);
+          //   }
+          // );
         }
       });
     }
@@ -2026,24 +2061,42 @@ $(document).ready(function() {
         } else {
 
           // success state
-
-          zaius.subscribe({
-              list_id: 'newsletter',
-              email: ui.textbox.val()
+          Sailthru.integration("userSignUp",
+          {
+            "email" : ui.textbox.val(),
+            "lists" : {
+              "Master List" : 1 // list to add user to (must exist in Sailthru account)
+              // "Anonymous" : 0 // list to remove user from (must exist in Sailthru account)
             },
-
-            // success state
-            function() {
+            "onSuccess" : function() {
+              // alert('Thank you for signing up for our list');
               ui.fadeOutGroup.fadeOut( () => {
                 ui.successMsg.fadeIn();
               });
-            },
-
-            // fail state
-            function(error) {
+             },
+            "onError" : function(error) {
+              // alert('We encountered an issue signing you up. Please try again');
               console.log(error);
-            }
-          );
+             }
+          });
+
+          // zaius.subscribe({
+          //     list_id: 'newsletter',
+          //     email: ui.textbox.val()
+          //   },
+
+          //   // success state
+          //   function() {
+          //     ui.fadeOutGroup.fadeOut( () => {
+          //       ui.successMsg.fadeIn();
+          //     });
+          //   },
+
+          //   // fail state
+          //   function(error) {
+          //     console.log(error);
+          //   }
+          // );
         }
       });
     }
@@ -2998,7 +3051,7 @@ theme.Collection = (function() {
 
         // APPLY : Close Panel
         ui.collectionWrap.removeClass( 'filter-open' );
-        
+
         // APPLY : If selectiosn have changed, wait for panel close then apply new filters
         if ( location && location.search !== queryParams ) {
 
@@ -3035,7 +3088,7 @@ theme.Collection = (function() {
 
           // APPLY : Apply the new selections via the url query params
           closeAndApply( queryParams );
-          
+
 
         // SELECTIONS EMPTY : Trigger closeAndApply(), if user emptied selections manually will trigger update
         } else {
