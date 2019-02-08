@@ -1,13 +1,14 @@
 {
   "presets": {},
   "current": {
-    "favicon": "shopify://shop_images/favicon.png",
+    "favicon": "",
     "google_tag_manager_id": "NONE",
+    "color_grey": "#9b9b9b",
     "announcement_text_color": "#ffffff",
     "announcement_bg_one": "#000000",
     "announcement_bg_two": "#757575",
     "nav_transparent_landing": true,
-    "nav_transparent_landing_color": "#FFFFFF",
+    "nav_transparent_landing_color": "#ffffff",
     "header_background": "#ffffff",
     "logo_color": "#000000",
     "nav_links": "#000000",
@@ -54,7 +55,7 @@
     "filter_button_alt_text": "#000000",
     "filter_bar_border_color": "#e8e8e8",
     "quickview_button_bg": "#000000",
-    "quickview_button_text": "#FEFFFE",
+    "quickview_button_text": "#fefffe",
     "catalog_item_text_color": "#000000",
     "catalog_item_price_color": "#525252",
     "catalog_item_accent_color": "#e61533",
@@ -67,7 +68,7 @@
     "product_badge_circle_bg": "#000000",
     "product_badge_diamond_bg": "#000000",
     "product_badge_text_color": "#fefffe",
-    "react_swatch_outline_color": "#BABABA",
+    "react_swatch_outline_color": "#bababa",
     "fancybox_overlay_bg": "0,0,0,0.8",
     "fancybox_close_color": "#5b5b5b",
     "fancybox_close_hover_color": "#9b492b",
@@ -152,6 +153,10 @@
     "ajax_cart_method": "drawer",
     "ajax_cart_remove_text": "This will remove the item from your cart. Continue?",
     "ajax_cart_low_stock_text": "This item does not have enough stock to add to your cart.",
+    "share_facebook": true,
+    "share_twitter": true,
+    "share_pinterest": true,
+    "share_email": true,
     "twittername": "",
     "facebook_url": "//www.facebook.com/Aquatalia",
     "pinterest_url": "//www.pinterest.com/aquatalia",
@@ -176,6 +181,14 @@
     "currency_format": "money_with_currency_format",
     "supported_currencies": "INR GBP CAD USD AUD EUR JPY",
     "default_currency": "USD",
+    "app_wk_enabled": true,
+    "app_wk_login_required": false,
+    "app_wk_icon": "heart",
+    "app_wk_icon_stroke": "#9e9e9e",
+    "app_wk_icon_fill": "#000000",
+    "app_wk_col_bg_shape": "square",
+    "app_wk_share_position": "top",
+    "app_wk_products_per_row": "4",
     "checkout_header_image": "",
     "checkout_logo_image": "shopify://shop_images/checkout-logo.png",
     "checkout_logo_position": "left",
@@ -283,6 +296,7 @@
           "logo_weight": "bold",
           "account_icon": "text",
           "account_icon_text_value": "Sign In",
+          "account_show_user_name": false,
           "cart_icon": "text",
           "cart_icon_text_value": "Cart",
           "show_site_picker": true,
@@ -324,12 +338,13 @@
               "banner_text_header": "BOOTIES",
               "banner_text_body": "Sed ut predciptalis unde omnis iste natus sit voluptatem accusatium dolorem.",
               "banner_text_divider": true,
+              "textbox_constrain": true,
               "textbox_horizontal": "left",
               "textbox_horizontal_nudge": 78,
               "textbox_vertical": "center",
               "textbox_vertical_nudge": -40,
               "textbox_text_align": "center",
-              "textbox_color_text": "#FFFFFF",
+              "textbox_color_text": "#ffffff",
               "textbox_color_divider": "#969696",
               "textbox_color_bg": "#000000",
               "textbox_opacity": "1"
@@ -575,7 +590,7 @@
         "type": "featured-collection",
         "settings": {
           "heading": "Recommended For You",
-          "homepage_collection": "do-not-delete-this-collection",
+          "homepage_collection": "recommended-for-you",
           "homepage_product_display": "carousel",
           "show_swatches": true,
           "cta_symbol_placement": "left",
@@ -598,6 +613,7 @@
           "button_symbol_placement": "left",
           "image_side": "left",
           "image_width": 64,
+          "text_vertical": "center",
           "text_align": "center"
         }
       },
@@ -652,6 +668,12 @@
       "page-about-template": {
         "type": "page-about-template",
         "blocks": {
+          "1549421101615": {
+            "type": "html",
+            "settings": {
+              "about_html_block": "<p>Established in 1994, Aquatalia offers the finest combination of fashion, quality and comfort in luxury footwear and is the first to mix distinctive Italian design with innovative weatherproof and stain-resistant technology. Bridging the gap between style and function, Aquatalia sets a new standard in fine footwear and accessories. Taking the brand to the next level, Aquatalia will continue to introduce category expansions, establish a retail presence and expand the brand globally.</p>"
+            }
+          },
           "1539644589684": {
             "type": "text_block",
             "settings": {
@@ -683,12 +705,6 @@
               "module_image_color_scheme": "light",
               "module_image_position_desktop": "image_overlap_left",
               "module_image_position_mobile": "image_top"
-            }
-          },
-          "1549421101615": {
-            "type": "html",
-            "settings": {
-              "about_html_block": "<p>Established in 1994, Aquatalia offers the finest combination of fashion, quality and comfort in luxury footwear and is the first to mix distinctive Italian design with innovative weatherproof and stain-resistant technology. Bridging the gap between style and function, Aquatalia sets a new standard in fine footwear and accessories. Taking the brand to the next level, Aquatalia will continue to introduce category expansions, establish a retail presence and expand the brand globally.</p>"
             }
           }
         },
@@ -920,13 +936,13 @@
           "1549339064751": {
             "type": "text_block",
             "settings": {
-              "module_image": "shopify://shop_images/Shoe_Guide_banner-00.jpg",
+              "image_desktop": "",
+              "image_mobile": "",
               "module_html_h2": "How to Care for Leather Shoes",
               "module_html_p": "Properly caring for Italian leather is key in extending the life of your shoes and boots and keeping them looking newer longer.<br><br>\n\nTo remove liquid stains such as coffee, soda, and wine, gently wipe your shoes with a soft cloth that’s been moistened with water. For harder stains, gently wipe your shoe with a soft cloth that has been moistened with a water and neutral soap solution or use a mixture of water and 5% ammonia.<br><br>\n\nIf the outer surface of your footwear gets wet, we recommend that you air dry your leather footwear in a cool, dry environment and away from direct heat. To restore your leather shoes or boots back to their original shine, polish them with a quality wax and buff off using a soft cloth or brush.",
               "button_text": "Shop Women’s Shoes",
               "button_link": "shopify://collections/women",
               "button_symbol_placement": "left",
-              "module_image_color_scheme": "light",
               "module_image_position_desktop": "image_left",
               "module_image_position_mobile": "image_top",
               "image_offset_enabled": true
@@ -935,13 +951,13 @@
           "1549333580067": {
             "type": "text_block",
             "settings": {
-              "module_image": "shopify://shop_images/Shoe_Guide_banner-01.jpg",
+              "image_desktop": "",
+              "image_mobile": "",
               "module_html_h2": "How to Care for Suede Shoes",
               "module_html_p": "With a little time and the proper tool, cleaning and protecting suede shoes and boots is easy. <br><br>\n\nEvery pair of suede shoes is packaged with its very own suede sponge. This is an essential tool made for the best suede care and protecting your footwear from dirt and/or liquid stains. Using the soft rectangular sponge to gently brush off your suede footwear will also help in restoring the suedes’ original texture and enhance its appearance without damaging the material.<br><br> \n\nTo retain the original beauty and texture of your suede shoes and boots, store them in a cool, dry environment and away from direct heat.",
               "button_text": "Shop Women's",
               "button_link": "shopify://collections/women",
               "button_symbol_placement": "left",
-              "module_image_color_scheme": "light",
               "module_image_position_desktop": "image_right",
               "module_image_position_mobile": "image_top",
               "image_offset_enabled": false
@@ -950,13 +966,13 @@
           "1549333978219": {
             "type": "text_block",
             "settings": {
-              "module_image": "shopify://shop_images/Shoe_Guide_banner-02.jpg",
+              "image_desktop": "",
+              "image_mobile": "",
               "module_html_h2": "How to Care for Weatherproof Shoes",
               "module_html_p": "Aquatalia’s weatherproofing technology protects your shoes in wet weather conditions, keeping your feet dry and comfortable.<br><br> \n\nWeatherproof shoes require the same care as all leather and suede footwear. Please refer to the above care instructions to keep your shoes in good condition. Any stain that sits on your shoes for an extended period of time can become permanent. We recommend using a soft, lightly moistened cloth to remove stains immediately. Always store your weatherproof shoes in a cool, dry environment and away from direct heat and/or sunlight.",
               "button_text": "Shop Men's Shoes",
               "button_link": "shopify://collections/men-shoes",
               "button_symbol_placement": "left",
-              "module_image_color_scheme": "light",
               "module_image_position_desktop": "image_left",
               "module_image_position_mobile": "image_top",
               "image_offset_enabled": false
