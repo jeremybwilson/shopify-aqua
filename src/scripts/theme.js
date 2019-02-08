@@ -1010,6 +1010,7 @@ theme.Header = (function() {
     const ui = {
       arrows: $( '#promo-arrow-left, #promo-arrow-right' ),
       body: $( 'body' ),
+      borderFreeLink: $( '#borderfree-nav-item' ),
       desktopNavWrap: $( '#nav-bar-wrapper' ),
       desktopNavItem: $( '.nav-primary-link' ),
       html: $( 'html' ),
@@ -1025,6 +1026,14 @@ theme.Header = (function() {
       swapRate: $container.attr( 'data-swap-rate' )
     }
     const self = this;
+
+
+    // BORDER-FREE : Extra toggle event so we can also tell when the borderfree panel is open on nav
+    if ( ui.borderFreeLink.length > -1 ) {
+      ui.borderFreeLink.on( 'click', () => {
+        ui.desktopNavWrap.toggleClass( 'borderfree-open' );
+      })
+    }
 
     // MOBILE NAV : Attach menu toggle event
     if ( ui.mobileNavButton && ui.mobileNavMenu ) {
