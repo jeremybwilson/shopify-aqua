@@ -43,6 +43,11 @@
           {% endif %}
 
 
+          {% comment %} ..:: BORDER-FREE ::.. {% endcomment %}
+          {% if settings.borderfree_enabled %}
+            <li id="borderfree-nav-item" class="nav-item nav-border-free"></li>
+          {% endif %}
+
           {% comment %} ..:: ACCOUNT ::.. {% endcomment %}
           {% if shop.customer_accounts_enabled %}
             <li class="nav-item nav-account {% if section.settings.account_icon == 'text' %}nav-account-text-mode{% endif %}">
