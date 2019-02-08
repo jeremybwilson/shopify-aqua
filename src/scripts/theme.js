@@ -2786,10 +2786,10 @@ theme.ProductMobileGallery = function (events) {
   element.owlCarousel({
     items: 1,
     margin: 20,
-    nav: true,
-    navText: [$('.mobile-product-carousel--prev'),$('.mobile-product-carousel--next')],
+    // nav: true,
+    // navText: [$('.mobile-product-carousel--prev'),$('.mobile-product-carousel--next')],
     lazyLoad : true,
-    dots: false
+    // dots: false,
 
     /*navigation : true, // Show next and prev buttons
     navigationText: ["",""],
