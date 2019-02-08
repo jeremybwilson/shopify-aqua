@@ -230,7 +230,8 @@ body.js-drawer-open {
             .nav-search,
             .nav-currency,
             .nav-account,
-            .nav-wishlist {
+            .nav-wishlist,
+            .nav-border-free {
                 display: none;
                 @include justify-content( center );
 
@@ -350,6 +351,56 @@ body.js-drawer-open {
                 }
             }
 
+
+            // BORDER-FREE : Nav entry for Border Free country/currency selector
+            .nav-border-free {
+                width: 35px;
+                cursor: pointer;
+                padding-right: 10px;
+
+                // Normally do mobile first, but this is a bit of a unique case
+                @include mq( 'phone-and-tablet' ) {
+                    position: fixed;
+                    bottom: 0;
+                    left: 50%;
+                    width: 33%;
+                    opacity: 0;
+                    cursor: pointer;
+                    padding: 18px 0;
+                    margin-left: -34%; // Align to left 3rd of blocks
+                    transform: translateX( -50% ); // Center the axis on centerline of el
+                }
+                
+                #bfx-cc-wrapper {
+
+                    // NAV LINK (Closed State)
+                    .bfx-cc-collapsed {
+                        background: transparent;
+                        height: auto;
+                        padding: 0;
+
+                        .bfx-cc-menu {
+                            float: none;
+
+                            // ICON : Flag Icon
+                            .bfx-cc-flag img {
+                                width: auto;
+                                height: auto;
+                            }
+
+                            // NAME : Country Name
+                            .bfx-cc-country-name {
+                                display: none !important; //Override any inline styles
+                            }
+                        }   
+                    }
+
+                    // MODAL MENU : Menu layout itself
+                    .bfx-cc-expanded {
+                        display: none !important;
+                    }
+                }
+            }
 
             // ACCOUNT : User account item
             .nav-account {
@@ -484,6 +535,17 @@ body.js-drawer-open {
                     }
                 }
             }
+        }
+    }
+
+    /*  NAV : BORDERFREE : Mobile Open Reveal Trigger
+     *    Since we can only generate one dom node, we
+     *    had to relocate desktop icon into mobile menu
+     * ------------------------------------------------ */
+    &.mobile-nav-open {
+        #nav-user ul#nav-user-list #borderfree-nav-item {
+            @include flexbox;
+            animation: 0.25s borderfreeMobileReveal 0.25s linear 1 forwards;
         }
     }
 
@@ -1143,6 +1205,7 @@ body.js-drawer-open {
             height: $navMobileSitesHeight;
             bottom: 0;
             left: 0;
+            background: {{ settings.header_background }};
             @include inline-flex;
             @include justify-content( space-between );
 
@@ -1150,6 +1213,7 @@ body.js-drawer-open {
             .nav-footer-item-mobile {
                 position: relative;
                 width: 100%;
+                border-top: 1px solid $color--light-gray;
             }
 
             // Site Picker + Accounts Both Enabled
@@ -1157,7 +1221,7 @@ body.js-drawer-open {
                 .nav-footer-item-mobile {
                     width: 50%;
 
-                    .site-picker-item { // Add a border liner to clean up menu display for now
+                    &:first-child {
                         border-right: 1px solid $color--light-gray;
                     }
                 }
@@ -1168,8 +1232,8 @@ body.js-drawer-open {
                 .nav-footer-item-mobile {
                     width: 33.33%;
 
-                    .site-picker-item,
-                    &.nav-account { // Add a border liner to clean up menu display for now
+                    &:nth-child(1),
+                    &:nth-child(2) {
                         border-right: 1px solid $color--light-gray;
                     }
                 }
@@ -1302,6 +1366,13 @@ body.js-drawer-open {
     &.three {
         opacity: 0;
     }
+}
+
+
+// BORDER-FREE : Hide icon until menu open animation finishes
+@keyframes borderfreeMobileReveal {
+    0%  { opacity: 0; }
+    100%{ opacity: 1; }
 }
 
 
