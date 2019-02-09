@@ -1,4 +1,4 @@
-// Override Settings : Note, custom object cant' be overriden and rquires direct modification
+// Override Settings : Note, custom object can't be overriden and requires direct modification
 var bcSfFilterSettings = {
     general: {
        limit: bcSfFilterConfig.custom.products_per_page,
