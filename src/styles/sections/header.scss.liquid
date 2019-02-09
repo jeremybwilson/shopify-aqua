@@ -65,6 +65,9 @@ body.js-drawer-open {
         display: none;
     }
 }
+#bfx-cc-wrapper {
+    display: none;
+}
 
 
 /*  NAV : Styles for the Nav-Bar portion
@@ -80,6 +83,16 @@ body.js-drawer-open {
 
     @include mq( 'lap-and-up' ){
         height: $navBarDesktopHeight;
+    }
+
+
+    // For Borderfree
+    &.isStuck {
+        @include mq( 'lap-and-up' ) {
+            #nav-modal-borderfree {
+                top: 0;
+            }
+        }
     }
     
     /* NAV BG :
@@ -374,7 +387,7 @@ body.js-drawer-open {
                 // BORDER-FREE : NAV LINK BUTTON 
                 .bfx-cc-collapsed {
                     background: transparent;
-                    height: auto;
+                    height: auto !important;
                     padding: 0;
 
                     .bfx-cc-menu {
@@ -669,7 +682,7 @@ body.js-drawer-open {
                     position: absolute;
                     top: 50%;
                     transform: translateY( -50% );
-                    right: 10px;
+                    right: 9px;
                     content: " "; // undo the preset arrow type
                     border-left: 5px solid transparent;
                     border-right: 5px solid transparent;
@@ -682,6 +695,8 @@ body.js-drawer-open {
                     border-radius: 0;
                     padding-right: 20px;
                     border: 1px solid #000;
+                    -moz-appearance: none;
+                    -webkit-appearance: none;
 
                     &:disabled {
                         opacity: 0.5;
