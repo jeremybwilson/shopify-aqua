@@ -37,8 +37,8 @@
     var startTime = new Date().getTime();
     var interval = setInterval( function(){
 
-      // SCAN : Checks the DOM for 3 secs after init and attempts to inject the hidden dom nodes
-      if(new Date().getTime() - startTime > 3000){
+      // SCAN : Checks the DOM for 6 secs after init and attempts to inject the hidden dom nodes
+      if(new Date().getTime() - startTime > 6000){ //Don't lower this, tends to break w.o a longer window to attach
         clearInterval(interval);
         return;
       }
