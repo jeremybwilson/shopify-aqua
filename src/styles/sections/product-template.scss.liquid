@@ -271,8 +271,23 @@
     }
     p {
       @include fontDim(16px,25px,.025em);
+      color: inherit;
+      font-weight: $font-weight--medium;
+      margin-bottom: 0;
     }
   }
+}
+
+.free-shipping-links {
+  margin-top: 20px;
+}
+
+.free-shipping-link {
+  font-weight: $font-weight--medium;
+  display: inline-block;
+  padding-bottom: 1px;
+  border-bottom: 1px solid $color--dotted;
+  margin-right: 15px;
 }
 
 /* Reviews Accordion
@@ -582,7 +597,7 @@
 .product-desc__read {
   display: inline-block;
   padding: 1px;
-  border-bottom: 1px solid $color--general-grey;
+  border-bottom: 1px solid $color--dotted;
 }
 
 /* Power Reviews
