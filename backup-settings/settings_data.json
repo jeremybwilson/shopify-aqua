@@ -1,14 +1,13 @@
 {
   "presets": {},
   "current": {
-    "favicon": "",
+    "favicon": "shopify://shop_images/favicon.png",
     "google_tag_manager_id": "NONE",
-    "color_grey": "#9b9b9b",
     "announcement_text_color": "#ffffff",
     "announcement_bg_one": "#000000",
     "announcement_bg_two": "#757575",
     "nav_transparent_landing": true,
-    "nav_transparent_landing_color": "#ffffff",
+    "nav_transparent_landing_color": "#FFFFFF",
     "header_background": "#ffffff",
     "logo_color": "#000000",
     "nav_links": "#000000",
@@ -55,7 +54,7 @@
     "filter_button_alt_text": "#000000",
     "filter_bar_border_color": "#e8e8e8",
     "quickview_button_bg": "#000000",
-    "quickview_button_text": "#fefffe",
+    "quickview_button_text": "#FEFFFE",
     "catalog_item_text_color": "#000000",
     "catalog_item_price_color": "#525252",
     "catalog_item_accent_color": "#e61533",
@@ -68,7 +67,7 @@
     "product_badge_circle_bg": "#000000",
     "product_badge_diamond_bg": "#000000",
     "product_badge_text_color": "#fefffe",
-    "react_swatch_outline_color": "#bababa",
+    "react_swatch_outline_color": "#BABABA",
     "fancybox_overlay_bg": "0,0,0,0.8",
     "fancybox_close_color": "#5b5b5b",
     "fancybox_close_hover_color": "#9b492b",
@@ -153,10 +152,6 @@
     "ajax_cart_method": "drawer",
     "ajax_cart_remove_text": "This will remove the item from your cart. Continue?",
     "ajax_cart_low_stock_text": "This item does not have enough stock to add to your cart.",
-    "share_facebook": true,
-    "share_twitter": true,
-    "share_pinterest": true,
-    "share_email": true,
     "twittername": "",
     "facebook_url": "//www.facebook.com/Aquatalia",
     "pinterest_url": "//www.pinterest.com/aquatalia",
@@ -181,6 +176,13 @@
     "currency_format": "money_with_currency_format",
     "supported_currencies": "INR GBP CAD USD AUD EUR JPY",
     "default_currency": "USD",
+    "borderfree_enabled": true,
+    "borderfree_js_url_dev": "https://bfx-objects.stage.borderfree.com/v1/dist/bfx.js",
+    "borderfree_js_config_dev": "bfx({key:'bca2f6b0-0273-11e6-8da6-4920e7373927', env:'STAGE', mode:'default', brand:'default'});",
+    "borderfree_merchant_url_dev": "https://stagecheckout.borderfree.com/htmlcheckout/resources/js/merchant.js",
+    "borderfree_js_url_prod": "https://bfx-objects.stage.borderfree.com/v1/dist/bfx.js",
+    "borderfree_js_config_prod": "bfx({key:'bca2f6b0-0273-11e6-8da6-4920e7373927', env:'STAGE', mode:'default', brand:'default'});",
+    "borderfree_merchant_url_prod": "https://stagecheckout.borderfree.com/htmlcheckout/resources/js/merchant.js",
     "app_wk_enabled": true,
     "app_wk_login_required": false,
     "app_wk_icon": "heart",
@@ -286,8 +288,8 @@
           "show_announcement_text": true,
           "num_of_promo_banners": "1",
           "announcement_text_one": "Sign Up & Recieve $50 Off Purchases Of $150 Or More",
-          "announcement_link_one": "/pages/shipping-returns",
-          "announcement_text_two": "40% OFF YOUR PURCHASE. NO CODE NEEDED.",
+          "announcement_link_one": "/account",
+          "announcement_text_two": "Second banner text here",
           "announcement_link_two": "http://google.com",
           "announcement_height": 40,
           "announcement_swap_rate": 5,
@@ -296,10 +298,9 @@
           "logo_weight": "bold",
           "account_icon": "text",
           "account_icon_text_value": "Sign In",
-          "account_show_user_name": false,
           "cart_icon": "text",
           "cart_icon_text_value": "Cart",
-          "show_site_picker": true,
+          "show_site_picker": false,
           "site_picker_manifest": "US|United States|https://xtratuf.com,EU|European Union|https://www.muckbootcompany.eu,UK|United Kingdom|https://www.muckbootcompany.co.uk",
           "show_search": true,
           "show_wishlist": true,
@@ -338,13 +339,12 @@
               "banner_text_header": "BOOTIES",
               "banner_text_body": "Sed ut predciptalis unde omnis iste natus sit voluptatem accusatium dolorem.",
               "banner_text_divider": true,
-              "textbox_constrain": true,
               "textbox_horizontal": "left",
               "textbox_horizontal_nudge": 78,
               "textbox_vertical": "center",
               "textbox_vertical_nudge": -40,
               "textbox_text_align": "center",
-              "textbox_color_text": "#ffffff",
+              "textbox_color_text": "#FFFFFF",
               "textbox_color_divider": "#969696",
               "textbox_color_bg": "#000000",
               "textbox_opacity": "1"
@@ -590,7 +590,7 @@
         "type": "featured-collection",
         "settings": {
           "heading": "Recommended For You",
-          "homepage_collection": "recommended-for-you",
+          "homepage_collection": "do-not-delete-this-collection",
           "homepage_product_display": "carousel",
           "show_swatches": true,
           "cta_symbol_placement": "left",
@@ -613,7 +613,6 @@
           "button_symbol_placement": "left",
           "image_side": "left",
           "image_width": 64,
-          "text_vertical": "center",
           "text_align": "center"
         }
       },
@@ -662,7 +661,7 @@
           "cta_link": "http://www.instagram.com/aquatalia",
           "cta_text": "FOLLOW US",
           "cta_symbol_placement": "left",
-          "instagram_access_token": ""
+          "instagram_access_token": "324973178.5ea0515.593a03d541c143998399b8204d258599"
         }
       },
       "page-about-template": {
@@ -681,18 +680,7 @@
               "module_html_h2": "Versatile Style",
               "module_html_p": "We've earned the <strong>Respect, Loyalty and trust</strong> of people who can't afford to take trust lightly.  Aquatalia transcends trend. \n Mixing sophistication, fasion, and versatility into Women's and Men's shoese and accessories.  Aquatalia designs are contemporary yet classic, elegant yet everyday.",
               "module_image_color_scheme": "light",
-              "module_image_position_desktop": "image_left",
-              "module_image_position_mobile": "image_top"
-            }
-          },
-          "1539646800597": {
-            "type": "text_block",
-            "settings": {
-              "module_image": "shopify://shop_images/about-image-2.jpg",
-              "module_html_h2": "Versatile Style",
-              "module_html_p": "Aquatalia transcends trend. \n Mixing sophistication, fasion, and versatility into Women's and Men's shoese and accessories.  Aquatalia designs are contemporary yet classic, elegant yet everyday.",
-              "module_image_color_scheme": "gray",
-              "module_image_position_desktop": "image_left",
+              "module_image_position_desktop": "image_right",
               "module_image_position_mobile": "image_top"
             }
           },
@@ -710,19 +698,19 @@
         },
         "block_order": [
           "1549421101615",
-          "1539644589684",
-          "1539646800597",
-          "1548737684033"
+          "1548737684033",
+          "1539644589684"
         ],
         "settings": {
           "nav_transparent_landing": true,
           "about_bottom_banner_enabled": true,
           "banner_text_box_position_desktop": "right",
-          "banner_image": "shopify://shop_images/nav-megamenu-3.jpg",
+          "image_desktop": "shopify://shop_images/pages-about_bottom_banner_no_text.jpg",
+          "image_mobile": "",
           "banner_image_position_mobile": "image_top",
           "banner_text_box_color_scheme": "light",
           "about_bottom_banner_h2": "Beautiful Wearability",
-          "about_bottom_banner_p": "Stepping out in any weather.  Aquatalia transcends trend. \n Mixing sophistication, fasion, and versatility into Women's and Men's shoese and accessories.  Aquatalia designs are contemporary yet classic, elegant yet everyday. Cras orci nulla, cursus vitae felis sit amet, fringilla placerat nisl. Curabitur imperdiet commodo dapibus. Sed ipsum augue, interdum ut neque vitae, rutrum posuere tortor.",
+          "about_bottom_banner_p": "Stepping out in any weather. Waving off the taxi and walking. Wearing suede in the rain. Aquatalia footwear is inspired by women and men who make bold moves and don’t want to compromise fashion for comfort. Aquatalia offers luxury, style, and effortless ease every step of the way.",
           "live_chat_enabled": false,
           "live_chat_text": "Live chat",
           "live_chat_color_scheme": "light"
@@ -734,8 +722,8 @@
           "1537562942330": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/home-hero-desktop-slide-2.jpg",
-              "mobile_image": "shopify://shop_images/about-hero-mobile-slide-1.jpg",
+              "image": "shopify://shop_images/about-banner-transparent-nav-desk.jpg",
+              "mobile_image": "shopify://shop_images/about-banner-transparent-nav-mob.jpg",
               "image_link": "",
               "heading": "About",
               "subheading": "",
@@ -936,8 +924,8 @@
           "1549339064751": {
             "type": "text_block",
             "settings": {
-              "image_desktop": "",
-              "image_mobile": "",
+              "image_desktop": "shopify://shop_images/Shoe_Guide_banner-00.jpg",
+              "image_mobile": "shopify://shop_images/shoe_guide_banner-00-mob.jpg",
               "module_html_h2": "How to Care for Leather Shoes",
               "module_html_p": "Properly caring for Italian leather is key in extending the life of your shoes and boots and keeping them looking newer longer.<br><br>\n\nTo remove liquid stains such as coffee, soda, and wine, gently wipe your shoes with a soft cloth that’s been moistened with water. For harder stains, gently wipe your shoe with a soft cloth that has been moistened with a water and neutral soap solution or use a mixture of water and 5% ammonia.<br><br>\n\nIf the outer surface of your footwear gets wet, we recommend that you air dry your leather footwear in a cool, dry environment and away from direct heat. To restore your leather shoes or boots back to their original shine, polish them with a quality wax and buff off using a soft cloth or brush.",
               "button_text": "Shop Women’s Shoes",
@@ -951,8 +939,8 @@
           "1549333580067": {
             "type": "text_block",
             "settings": {
-              "image_desktop": "",
-              "image_mobile": "",
+              "image_desktop": "shopify://shop_images/Shoe_Guide_banner-01.jpg",
+              "image_mobile": "shopify://shop_images/shoe_guide_banner-01-mob.jpg",
               "module_html_h2": "How to Care for Suede Shoes",
               "module_html_p": "With a little time and the proper tool, cleaning and protecting suede shoes and boots is easy. <br><br>\n\nEvery pair of suede shoes is packaged with its very own suede sponge. This is an essential tool made for the best suede care and protecting your footwear from dirt and/or liquid stains. Using the soft rectangular sponge to gently brush off your suede footwear will also help in restoring the suedes’ original texture and enhance its appearance without damaging the material.<br><br> \n\nTo retain the original beauty and texture of your suede shoes and boots, store them in a cool, dry environment and away from direct heat.",
               "button_text": "Shop Women's",
@@ -966,8 +954,8 @@
           "1549333978219": {
             "type": "text_block",
             "settings": {
-              "image_desktop": "",
-              "image_mobile": "",
+              "image_desktop": "shopify://shop_images/Shoe_Guide_banner-02.jpg",
+              "image_mobile": "shopify://shop_images/shoe_guide_banner-02-mob.jpg",
               "module_html_h2": "How to Care for Weatherproof Shoes",
               "module_html_p": "Aquatalia’s weatherproofing technology protects your shoes in wet weather conditions, keeping your feet dry and comfortable.<br><br> \n\nWeatherproof shoes require the same care as all leather and suede footwear. Please refer to the above care instructions to keep your shoes in good condition. Any stain that sits on your shoes for an extended period of time can become permanent. We recommend using a soft, lightly moistened cloth to remove stains immediately. Always store your weatherproof shoes in a cool, dry environment and away from direct heat and/or sunlight.",
               "button_text": "Shop Men's Shoes",
@@ -983,6 +971,35 @@
           "1549339064751",
           "1549333580067",
           "1549333978219"
+        ],
+        "settings": {
+          "page_title_h1": "",
+          "live_chat_enabled": false,
+          "live_chat_text": "Live chat",
+          "live_chat_color_scheme": "light"
+        }
+      },
+      "page-stores-template": {
+        "type": "page-stores-template",
+        "blocks": {
+          "1549482916445": {
+            "type": "text_block",
+            "settings": {
+              "image_desktop": "shopify://shop_images/home-about_image_no_text_769d20e2-48c4-4191-9e76-721bbbd4962e.jpg",
+              "image_mobile": "shopify://shop_images/home-about_image_no_text.jpg",
+              "module_html_h2": "Shop With Us",
+              "module_html_p": "From the latest arrivals to exclusive products\nand special services, discover a one-stop shop for style.\n<br><br>\nNEW YORK FLAGSHIP<br>\n965 Madison Avenue<br>\nBetween 75th and 76th Street<br>\nNew York, NY 10021\n<br><br>\nPhone 646-677-5555\n<br><br>\nStore Hours<br>\nMonday-Saturday: 10am-7pm<br>\nSunday: 12pm-5pm",
+              "button_text": "",
+              "button_link": "",
+              "button_symbol_placement": "none",
+              "module_image_position_desktop": "image_left",
+              "module_image_position_mobile": "image_top",
+              "image_offset_enabled": false
+            }
+          }
+        },
+        "block_order": [
+          "1549482916445"
         ],
         "settings": {
           "page_title_h1": "",
