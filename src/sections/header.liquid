@@ -43,9 +43,9 @@
           {% endif %}
 
 
-          {% comment %} ..:: BORDER-FREE ::.. {% endcomment %}
+          {% comment %} ..:: BORDER FREE - Nav Button ::.. {% endcomment %}
           {% if settings.borderfree_enabled %}
-            <li id="borderfree-nav-item" class="nav-item nav-border-free"></li>
+            <li id="nav-item-borderfree" class="nav-item nav-borderfree"></li>
           {% endif %}
 
           {% comment %} ..:: ACCOUNT ::.. {% endcomment %}
@@ -118,6 +118,16 @@
     {% if section.settings.show_search %}
       <div id="nav-search-bar-wrapper">
         {% include 'nav-search-input' %}
+      </div>
+    {% endif %}
+
+    {% comment %} ..:: BORDER-FREE - Modal (injected via borderfree-script.liquid snippet) ::.. {% endcomment %}
+    {% if settings.borderfree_enabled %}
+      <div id="nav-modal-borderfree">
+        <div id="nav-modal-borderfree-close">
+          <div class='bar-one'></div>
+          <div class='bar-two'></div>
+        </div>
       </div>
     {% endif %}
 
