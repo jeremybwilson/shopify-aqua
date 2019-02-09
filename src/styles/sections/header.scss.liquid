@@ -231,7 +231,7 @@ body.js-drawer-open {
             .nav-currency,
             .nav-account,
             .nav-wishlist,
-            .nav-border-free {
+            .nav-borderfree {
                 display: none;
                 @include justify-content( center );
 
@@ -353,7 +353,7 @@ body.js-drawer-open {
 
 
             // BORDER-FREE : Nav entry for Border Free country/currency selector
-            .nav-border-free {
+            .nav-borderfree {
                 width: 35px;
                 cursor: pointer;
                 padding-right: 10px;
@@ -371,34 +371,30 @@ body.js-drawer-open {
                     transform: translateX( -50% ); // Center the axis on centerline of el
                 }
                 
-                #bfx-cc-wrapper {
+                // BORDER-FREE : NAV LINK BUTTON 
+                .bfx-cc-collapsed {
+                    background: transparent;
+                    height: auto;
+                    padding: 0;
 
-                    // NAV LINK (Closed State)
-                    .bfx-cc-collapsed {
-                        background: transparent;
-                        height: auto;
-                        padding: 0;
+                    .bfx-cc-menu {
+                        float: none;
 
-                        .bfx-cc-menu {
-                            float: none;
+                        // ICON : Flag Icon
+                        .bfx-cc-flag {
+                            @include flexbox; 
 
-                            // ICON : Flag Icon
-                            .bfx-cc-flag img {
+                            img {
                                 width: auto;
                                 height: auto;
                             }
+                        }
 
-                            // NAME : Country Name
-                            .bfx-cc-country-name {
-                                display: none !important; //Override any inline styles
-                            }
-                        }   
-                    }
-
-                    // MODAL MENU : Menu layout itself
-                    .bfx-cc-expanded {
-                        display: none !important;
-                    }
+                        // NAME : Country Name
+                        .bfx-cc-country-name {
+                            display: none !important; //Override any inline styles
+                        }
+                    }   
                 }
             }
 
@@ -538,16 +534,207 @@ body.js-drawer-open {
         }
     }
 
-    /*  NAV : BORDERFREE : Mobile Open Reveal Trigger
-     *    Since we can only generate one dom node, we
+
+    /* BORDER-FREE : MODAL : Modal for Nav button
+     * ------------------------------------------------ */
+     #nav-modal-borderfree {
+        position: fixed;
+        left: 0;
+        opacity: 0;
+        width: 100%;
+        z-index: 100;
+        padding: 20px;
+        pointer-events: none;
+        transition: opacity 0.25s ease-in-out, bottom 0.25s ease-in-out;
+        background: {{ settings.header_background }};
+        box-shadow: 1px -3px 6px 0px rgba(0, 0, 0, 0.45); //mobile shadow
+
+        @include mq( 'phone-and-tablet' ) {
+            bottom: -400px;
+        }
+
+        @include mq( 'lap-and-up' ) {
+            top: 40px;
+        }
+
+        // BF Wrapper (needs a few important tags to override its jquery animation that is glitchy)
+        .bfx-cc-expanded {
+            display: block !important;
+            height: 222px !important;
+
+            @include mq( 'tablet-and-up' ) {
+                height: 198px !important;
+            }
+
+            @include mq( 'lap-and-up' ) {
+                height: 113px !important;
+            }
+        }
+
+        // LOGO + LABELS : Not needed
+        .bfx-cc-logo-wrapper,
+        #bfx-cc-countries-label,
+        #bfx-cc-currencies-label {
+            display: none;
+        }
+
+        // CLOSE BUTTON
+        #nav-modal-borderfree-close {
+            position: absolute;
+            top: 21px;
+            right: 15px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+
+            @include mq( 'tablet-and-up' ) {
+                right: 30px;
+            }
+
+            @include mq( 'lap-and-up' ) {
+                top: 13px;
+                right: 13px;
+            }
+
+
+            [class^='bar-'] {
+                position: absolute;
+                top: 9px;
+                left: 0;
+                width: 20px;
+                height: 1px;
+                background: #000;
+                transform: rotate( 45deg );
+            }
+            .bar-two {
+                transform: rotate( -45deg );
+            }
+        }
+
+        // MODAL FORM CONTENT
+        #bfx-cc-form {
+            position: relative;
+            max-width: 390px;
+            margin: 0 auto;
+
+            @include flexbox;
+            @include flex-wrap( wrap );
+            @include justify-content( space-between );
+
+            @include mq( 'lap-and-up' ) {
+                max-width: 980px;
+                @include align-items( center );
+            }
+
+            // HEADER + BODY TEXT
+            .bfx-cc-text {
+                margin-bottom: 15px;
+                padding-right: 20px;
+                width: 100%;
+
+                @include mq( 'lap-and-up' ) {
+                    width: 300px;
+                    padding-right: 0;
+                }
+
+                .bf-modal-title {
+                    @include fontDim( 20px, 24px, 2px );
+                    font-weight: $font-weight--bold;
+                    margin-bottom: 12px;
+                }
+
+                .bf-modal-body {
+                    @include fontSize( 16px );
+                    font-weight: $font-weight--medium;
+                    color: $color--gray-2;
+                }
+            }
+
+            // SELECTORS : Country + Currency
+            .bfx-cc-select-wrapper {
+                position: relative;
+                width: calc( 50% - 5px );
+                margin-bottom: 15px;
+
+                @include mq( 'lap-and-up' ) {
+                    width: 160px;
+                    height: 40px;
+                    margin-bottom: 0;
+                }
+                
+                // Arrow Icon
+                &:after {
+                    width: 0; 
+                    height: 0; 
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY( -50% );
+                    right: 10px;
+                    content: " "; // undo the preset arrow type
+                    border-left: 5px solid transparent;
+                    border-right: 5px solid transparent;
+                    border-top: 8px solid $color--text-1;
+                }
+
+                select {
+                    outline: none !important; //added via js annoyingly lol
+                    margin-bottom: 0;
+                    border-radius: 0;
+                    padding-right: 20px;
+                    border: 1px solid #000;
+
+                    &:disabled {
+                        opacity: 0.5;
+                        background: $color--gray-2;
+                    }
+                }
+            }
+
+            // "OK" Button
+            #bfx-cc-btn {
+                width: 100%;
+                background: $color--accent-1;
+
+                @include mq( 'lap-and-up' ) {
+                    @include flex-grow( 0.5 );
+                    margin-bottom: 0;
+                    width: 180px;
+                }
+            }
+        }
+     }
+
+    /*  NAV TOGGLE : BORDER-FREE : Menu Reveal Toggles
+     *    *Since we can only generate one dom node, we
      *    had to relocate desktop icon into mobile menu
      * ------------------------------------------------ */
     &.mobile-nav-open {
-        #nav-user ul#nav-user-list #borderfree-nav-item {
+        #nav-user ul#nav-user-list #nav-item-borderfree {
             @include flexbox;
             animation: 0.25s borderfreeMobileReveal 0.25s linear 1 forwards;
         }
+
+        &.borderfree-open {
+
+            @include mq( 'phone-and-tablet' ) {
+                #nav-modal-borderfree {
+                    opacity: 1;
+                    pointer-events: all;
+                    bottom: 60px; // don't let this apply on desktop sizes
+                }
+            }
+        }
     }
+
+    &.borderfree-open {
+        @include mq( 'lap-and-up' ) {
+            #nav-modal-borderfree {
+                opacity: 1;
+                pointer-events: all;
+            }
+        }
+    }
+
 
 
     /*  SEARCH BAR : DESKTOP 
