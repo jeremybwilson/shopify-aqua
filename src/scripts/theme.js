@@ -1010,6 +1010,8 @@ theme.Header = (function() {
     const ui = {
       arrows: $( '#promo-arrow-left, #promo-arrow-right' ),
       body: $( 'body' ),
+      borderFreeLink: $( '#nav-item-borderfree' ),
+      borderFreeClose: $( '#nav-modal-borderfree-close' ),
       desktopNavWrap: $( '#nav-bar-wrapper' ),
       desktopNavItem: $( '.nav-primary-link' ),
       html: $( 'html' ),
@@ -1025,6 +1027,18 @@ theme.Header = (function() {
       swapRate: $container.attr( 'data-swap-rate' )
     }
     const self = this;
+
+
+    // BORDER-FREE : Extra toggle event so we can also tell when the borderfree panel is open on nav
+    if ( ui.borderFreeLink.length > -1 ) {
+      ui.borderFreeLink.on( 'click', () => {
+        ui.desktopNavWrap.toggleClass( 'borderfree-open' );
+      });
+
+      ui.borderFreeClose.on( 'click', () => {
+        ui.desktopNavWrap.toggleClass( 'borderfree-open' );
+      })
+    }
 
     // MOBILE NAV : Attach menu toggle event
     if ( ui.mobileNavButton && ui.mobileNavMenu ) {
@@ -2981,15 +2995,20 @@ theme.Collection = (function() {
     // EVENTS : Bind DOM events when ready
     $(document).ready( () => {
 
-      // FILTER MENU : OPEN / CLOSE : Indicator for the whole filter menu
-      ui.mobileFilterBtn.click( () => {
+      // FILTER MENU : STATE : Open state indicator for filters
+      const toggleFilterOpen = () => {
         ui.collectionWrap.toggleClass( 'filter-open' );
+      };
+
+      // FILTER MENU : EVENT BINDING : Attach open/close handles
+      ui.mobileFilterBtn.click( () => {
+        toggleFilterOpen();
       });
       ui.desktopFilterBtn.click( () => {
-        ui.collectionWrap.toggleClass( 'filter-open' );
+        toggleFilterOpen();
       });
       ui.backingShadow.click( () => {
-        ui.collectionWrap.removeClass( 'filter-open' );
+        toggleFilterOpen();
       });
 
 
@@ -3007,7 +3026,7 @@ theme.Collection = (function() {
 
           // APPLY : Filter application via query params
           setTimeout( () => {
-            location.search = queryParams; // Triggers repaint!
+            location.search = queryParams; // Triggers reload
           }, 250 ); // 0.25s is close animation time
         }
       }
@@ -3058,7 +3077,7 @@ theme.Collection = (function() {
             $(this).removeClass( 'seo-open' ).dequeue();
           });
         }
-      })
+      });
     });
   }
 
@@ -3068,7 +3087,7 @@ theme.Collection = (function() {
   // BADGES : BUILD : Method to build react-badges component on collection updates (rebuilt in JS)
   const buildBadges = require('./react-components/badges/BadgeParent.js');
 
-  // WISHLISTH : BUILD : Attach click handlers to all rendered wishlist buttons (rebuilt in JS from bc-sf-filter.js template)
+  // WISHLIST : BUILD : Attach click handlers to all rendered wishlist buttons (rebuilt in JS from bc-sf-filter.js template)
   const buildWishlistButtons = require('./third-party-apps/wishlist-king/WishlistParent.js');
 
 

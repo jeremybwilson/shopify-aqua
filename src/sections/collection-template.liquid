@@ -11,6 +11,7 @@
     {% if block.settings.banner_image_desktop %}
       {% assign has_banner_desktop = true %}
     {% endif %}
+    
     {% if block.settings.banner_image_mobile %}
       {% assign has_banner_mobile = true %}
     {% endif %}
@@ -141,8 +142,6 @@
       {%- assign product_limit = section.settings.grid | times: section.settings.rows -%}
       {% paginate collection.products by product_limit %}
 
-
-        
 
         {% comment %} :: PRODUCT LIST - Render point for BC-SF-FILTER app :: {% endcomment %}
         <div id="product-loop" data-bc-sort="{{ collection.sort_by }}"></div>

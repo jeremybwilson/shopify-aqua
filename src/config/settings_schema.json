@@ -1398,12 +1398,66 @@
     ]
   },
   {
+    "name": "Borderfree",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "borderfree_enabled",
+        "label": "Enable Border-Free",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Dev Scripts"
+      },
+      {
+        "type": "url",
+        "label": "JS Script URL (Dev)",
+        "id": "borderfree_js_url_dev",
+        "info": "(Is usually: https://bfx-objects.stage.borderfree.com/v1/dist/bfx.js)"
+      },
+      {
+        "type": "text",
+        "label": "JS Script Config (Dev)",
+        "id": "borderfree_js_config_dev",
+        "default": "bfx({key:'bca2f6b0-0273-11e6-8da6-4920e7373927', env:'STAGE', mode:'default', brand:'default'});"
+      },
+      {
+        "type": "url",
+        "label": "Merchant Script URL (Dev)",
+        "id": "borderfree_merchant_url_dev",
+        "info": "(Is usually: https://stagecheckout.borderfree.com/htmlcheckout/resources/js/merchant.js)"
+      },
+
+
+      {
+        "type": "header",
+        "content": "Production Scripts"
+      },
+      {
+        "type": "url",
+        "label": "JS Script URL (Prod)",
+        "id": "borderfree_js_url_prod"
+      },
+      {
+        "type": "text",
+        "label": "JS Script Config (Prod)",
+        "id": "borderfree_js_config_prod",
+        "default": "bfx({key:'bca2f6b0-0273-11e6-8da6-4920e7373927', env:'STAGE', mode:'default', brand:'default'});"
+      },
+      {
+        "type": "url",
+        "label": "Merchant Script URL (Prod)",
+        "id": "borderfree_merchant_url_prod"
+      }
+    ]
+  },
+  {
     "name": "Wishlist App",
     "settings": [
       {
         "type": "header",
-        "content": "Styling & Customisations",
-        "info": "Please note: Wishlist King is 100% customisable to integrate seamlessly with any theme. If you need customisations beyond what you can change below, please get in touch: support@appmate.io"
+        "content": "Styling & Customisations"
       },
       {
         "type": "checkbox",
@@ -1421,7 +1475,7 @@
         "type": "select",
         "id": "app_wk_icon",
         "label": "Wishlist Icon",
-        "info": "Choose between Heart or Star icon. For your own custom icon, please contact support@appmate.io",
+        "info": "Choose between Heart or Star icon.",
         "options": [
           {
             "value": "heart",

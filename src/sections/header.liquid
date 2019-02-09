@@ -43,6 +43,11 @@
           {% endif %}
 
 
+          {% comment %} ..:: BORDER FREE - Nav Button ::.. {% endcomment %}
+          {% if settings.borderfree_enabled %}
+            <li id="nav-item-borderfree" class="nav-item nav-borderfree"></li>
+          {% endif %}
+
           {% comment %} ..:: ACCOUNT ::.. {% endcomment %}
           {% if shop.customer_accounts_enabled %}
             <li class="nav-item nav-account {% if section.settings.account_icon == 'text' %}nav-account-text-mode{% endif %}">
@@ -113,6 +118,16 @@
     {% if section.settings.show_search %}
       <div id="nav-search-bar-wrapper">
         {% include 'nav-search-input' %}
+      </div>
+    {% endif %}
+
+    {% comment %} ..:: BORDER-FREE - Modal (injected via borderfree-script.liquid snippet) ::.. {% endcomment %}
+    {% if settings.borderfree_enabled %}
+      <div id="nav-modal-borderfree">
+        <div id="nav-modal-borderfree-close">
+          <div class='bar-one'></div>
+          <div class='bar-two'></div>
+        </div>
       </div>
     {% endif %}
 

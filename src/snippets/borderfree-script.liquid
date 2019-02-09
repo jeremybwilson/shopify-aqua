@@ -1,46 +1,84 @@
-{% comment %} Borderfree Styling {% endcomment %}
+{% comment %} :: BORDER-FREE : Setup proper script/config based on domain :: {% endcomment %}
 
-<style>
-  #bfx-cc-wrapper {margin: 26px 10px 0px 0px;}
-  .bfx-cc-collapsed {background-color: rgba(0,0,0,0) !important;}
-  span.bfx-cc-country-name {display: none !important;}
-  #nav-user-list > li.nav-item.nav-sites {display: none !important;}
-</style>
+{% comment %} :: CONFIG - Default to Dev, unless domain = Prod Url :: {% endcomment %}
+{% assign prod_domain = 'aquatalia.myshopify.com' %}
+{% assign prod_cname = 'aquatalia.com' %}
+{% assign borderfree_js_url = settings.borderfree_js_url_dev %} 
+{% assign borderfree_js_config = settings.borderfree_js_config_dev %}
+{% assign borderfree_merchant_url = settings.borderfree_merchant_url_dev %}
 
-{% comment %} Borderfree Main Script {% endcomment %}
 
-<script id="bfx-snippet">
-(function(e,n,o,t,a){function c(n){e[t]._apiKey=n.key;e[t]._env=n.env;e[t]._logLevel=n.logLevel;
-e[t]._mode=n.mode;e[t]._brand=n.brand;e[t]._cookieFlag=n.cookieFlag}e[t]=c;e[t].l=1*new Date;var i,l;
-i=n.createElement(o);l=n.getElementsByTagName(o)[0];i.async=1;i.src=a;l.parentNode.insertBefore(i,l);
-})(window,document,"script","bfx",
-"https://bfx-objects.stage.borderfree.com/v1/dist/bfx.js");
-bfx({key:'bca2f6b0-0273-11e6-8da6-4920e7373927', env:'STAGE', mode:'default', brand:'default'});
-  
-{% comment %} Borderfree Tagging {% endcomment %}
+{% comment %} :: PROD CHECK - Update URL & Config if Production URLs :: {% endcomment %}
+{% if shop.domain contains prod_domain or shop.domain contains prod_cname %}
+  {% assign borderfree_js_url = settings.borderfree_js_url_prod %} 
+  {% assign borderfree_js_config = settings.borderfree_js_config_prod %}
+  {% assign borderfree_merchant_url = settings.borderfree_merchant_url_prod %}
+{% endif %}
 
-var startTime = new Date().getTime();
-var interval = setInterval(function(){
-    if(new Date().getTime() - startTime > 3000){
+
+
+
+
+{% comment %} :: BORDER-FREE : JS Snippets :: {% endcomment %}
+{% if settings.borderfree_enabled == true %}
+
+
+  {% comment %} :: MAIN SCRIPT :: {% endcomment %}
+  <script id="bfx-snippet">
+    (function(e,n,o,t,a){function c(n){e[t]._apiKey=n.key;e[t]._env=n.env;e[t]._logLevel=n.logLevel;
+    e[t]._mode=n.mode;e[t]._brand=n.brand;e[t]._cookieFlag=n.cookieFlag}e[t]=c;e[t].l=1*new Date;var i,l;
+    i=n.createElement(o);l=n.getElementsByTagName(o)[0];i.async=1;i.src=a;l.parentNode.insertBefore(i,l);
+    })(window,document,"script","bfx",
+    "{{ borderfree_js_url }}");
+    {{ borderfree_js_config }}
+      
+
+    {% comment %} :: UI ELEMENT APPENDING :: (Script builds hidden UI elements, then appends to desired DOM nodes) {% endcomment %}
+    var startTime = new Date().getTime();
+    var interval = setInterval( function(){
+
+      // SCAN : Checks the DOM for 6 secs after init and attempts to inject the hidden dom nodes
+      if(new Date().getTime() - startTime > 6000){ //Don't lower this, tends to break w.o a longer window to attach
         clearInterval(interval);
         return;
-    }
-  {% comment %} Add Price Tagging {% endcomment %}
-  $('span.money').each(function(){$(this).addClass('bfx-price');});   
-  $('div.product-price-wrap > div').each(function(){$(this).addClass('bfx-price');});
-  $('div.ajaxcart > div > p:nth-child(2) > strong').each(function(){$(this).addClass('bfx-price');});
-  
-  {% comment %} Move Country Selector {% endcomment %}
-  $('#bfx-cc-wrapper').prependTo('#nav-user-list')
-  
-  {% comment %} Add Cart Tagging {% endcomment %}
-  $('#checkout').addClass('bfx-checkout');
-                                    
-  {% if template == 'checkout' %}
-  {% comment %} Add Checkout Tag {% endcomment %}
-  $('body > div.content > div.wrap').addClass('bfx-checkout-container');
-  {% endif %}
-  
-}, 500);
+      }
 
-</script>
+      // UI : Append built nodes to the UI elements specified
+      {% comment %} :: PRICE - Add Price Tagging :: {% endcomment %}
+      $('span.money').each(function(){$(this).addClass('bfx-price');});   
+      $('div.product-price-wrap > div').each(function(){$(this).addClass('bfx-price');});
+      $('div.ajaxcart > div > p:nth-child(2) > strong').each(function(){$(this).addClass('bfx-price');});
+      
+
+      {% comment %} :: NAV - Country Selector :: {% endcomment %}
+      $('#bfx-cc-wrapper .bfx-cc-collapsed').prependTo('#nav-item-borderfree'); // Nav Icon
+      $('#bfx-cc-wrapper .bfx-cc-expanded').prependTo('#nav-modal-borderfree'); // Modal Portion
+
+      // NAV - MODAL MODIFICATIONS
+      $( '#nav-modal-borderfree .bfx-cc-text' ).html('<div class="bf-modal-title">CHOOSE COUNTRY & CURRENCY</div><div class="bf-modal-body">Please select the country you would like to ship to and your currency.</div>' );
+      
+
+      {% comment %} :: CART - Attach cart tagging :: {% endcomment %}
+      $('#checkout').addClass('bfx-checkout');
+        
+
+      {% comment %} :: CHECKOUT - Add Checkout Tag :: {% endcomment %}                                  
+      {% if template == 'checkout' %}
+        $('body > div.content > div.wrap').addClass('bfx-checkout-container');
+      {% endif %}
+      
+    }, 500);
+  </script>
+
+
+  {% comment %} :: MERCHANT SCRIPT :: {% endcomment %}
+  <script src="{{ borderfree_merchant_url }}"></script>
+
+{% endif %}
+
+
+
+
+
+
+
