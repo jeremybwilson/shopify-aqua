@@ -1,9 +1,13 @@
 // Mini-Cart
+.is-transitioning {
+  display: block !important;
+  visibility: visible !important;
+}
 
 .drawer__header {
   @include flexbox;
   @include align-items(center);
-  @incldue justify-content(space-between);
+  @include justify-content(space-between);
 
   h3 {
     @include fontDim(18px,18px,0);
