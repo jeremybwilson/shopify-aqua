@@ -1258,6 +1258,22 @@
     "name": "Newsletter",
     "settings": [
       {
+        "type": "header",
+        "content": "EMAIL SIGNUP FORM SETTINGS"
+      },
+      {
+        "type": "url",
+        "id": "newsletter_subscription_api_url",
+        "label": "Sailthru API Endpoint URL",
+        "info": "Required"
+      },
+      {
+        "type": "text",
+        "id": "newsletter_email_service_provider_cid",
+        "label": "Sailthru Client ID",
+        "default": "ad4b11c18c08f631a75f9702c24575ed"
+      },
+      {
         "type": "checkbox",
         "id": "popup",
         "label": "Show Join Mailing List Popup"
@@ -1282,15 +1298,15 @@
       },
       {
         "type": "text",
-        "id": "email_popup_input_placeholder",
-        "label": "Email popup placeholder text",
-        "default": "Enter Your Email Address"
+        "id": "email_popup_bottom_text",
+        "label": "Email popup fine print text",
+        "default": "Sign up for free shipping & returns in the US on your first order."
       },
       {
-        "type": "html",
-        "id": "email_popup_bottom_text",
-        "label": "Fine print",
-        "default": "<p>By providing your email address, you agree to our <a href=\"https:\/\/www.honeywell.com\/privacy-statement\">Privacy Policy<\/a> & <a href=\"\/pages\/terms-and-conditions\">Terms of Service<\/a>.<\/p>"
+        "type": "text",
+        "id": "email_popup_input_placeholder",
+        "label": "Email popup placeholder text",
+        "default": "Enter Email Address"
       },
       {
         "type": "text",
