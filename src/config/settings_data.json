@@ -386,7 +386,9 @@
           "zoom_image_position": "zoom_over_main",
           "related_products": "none",
           "shipping_header_text": "Shipping & Returns",
-          "shipping_text": "<p>Shipping &amp; Returns content<\/p>",
+          "shipping_text": "<p>Shoprunner Free 2 Day<\/p>\n<p>Shipping &amp; Free Returns<\/p>",
+          "shipping_learn_more_link": "shopify:\/\/pages\/faq",
+          "shipping_show_account_link": true,
           "show_social": true,
           "size_chart_header_text": "Size Chart",
           "size_chart_page": ""

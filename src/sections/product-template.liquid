@@ -260,8 +260,10 @@
     {% comment %} BOTTOM CONTENT {% endcomment %}
 
     {% if section.settings.related_products == 'bottom' %}
-      <div id="related" class="bottom-related">
-        {% include 'related-products' %}
+      <div class="row">
+        <div id="related" class="bottom-related">
+          {% include 'related-products' %}
+        </div>
       </div>
       <div class="clear"></div>
     {% endif %}
