@@ -117,7 +117,7 @@
       height: 20px;
       min-width: 0;
       min-height: auto;
-      border: solid 2px $color--white;
+      border: solid 1px $color--white;
       border-radius: 50%;
       background-color: $color--light-gray; // shows a default color until we get swatch images up
       margin-right: 16px;
@@ -133,9 +133,9 @@
         width: 24px;
         height: 24px;
         border-radius: 50%;
-        left: -4px;
-        top: -4px;
-        border: solid 2px transparent;
+        left: -3px;
+        top: -3px;
+        border: solid 1px transparent;
       }
     }
     label:hover {
@@ -144,7 +144,8 @@
       box-shadow: none;
 
       &:after {
-        border-color: $color--primary-1;
+        // border-color: $color--primary-1;
+        border-color: #c6c6c6;
       }
     }
     input:checked + label {
@@ -153,7 +154,8 @@
       box-shadow: none;
 
       &:after {
-        border-color: $color--primary-1;  
+        // border-color: $color--primary-1;
+        border-color: #c6c6c6;
       }
     }
   }
