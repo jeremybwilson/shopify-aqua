@@ -1146,18 +1146,19 @@ theme.Header = (function() {
 
 theme.Newsletter = (function() {
   function Newsletter(container) {
-    $('.js-offer-tab, .js-offer-tab-email').fancybox({
-      hideContentOnClick: true,
-    });
 
-    $('.js-offer-tab').on('click', function () {
-      $(this).parent().fadeOut();
-    });
+    // $('#subscribe--popup').fancybox({
+    //   hideContentOnClick: true
+    // });
 
-    $('.js-offer-tab-close').on('click', function (e) {
-      e.preventDefault();
-      $(this).parent().fadeOut();
-    });
+    // $('.js-newsletter-modal').on('click', function () {
+    //   $(this).parent().fadeOut();
+    // });
+
+    // $('.js-newsletter-modal-close').on('click', function (e) {
+    //   e.preventDefault();
+    //   $(this).parent().fadeOut();
+    // });
 
     const $container = this.$container = $(container);
     const ui = {
@@ -1194,7 +1195,7 @@ theme.Newsletter = (function() {
         } else {
 
           // success state
-          Sailthru.integration(userSignUp,
+          Sailthru.integration("userSignUp",
           {
             "email" : ui.textbox.val(),
             "lists" : {
@@ -1203,14 +1204,12 @@ theme.Newsletter = (function() {
             },
             "source" : "web",
             "onSuccess" : function() {
-              // alert('Thank you for signing up for our list');
-              console.log('we got here so success...');
               ui.formId.fadeOut( () => {
                 ui.successMsg.fadeIn();
               });
             },
             "onError" : function(error) {
-              // alert('We encountered an issue signing you up. Please try again');
+              console.log(`We encountered an issue signing you up. Please try again`);
               console.log(error);
             }
           });
@@ -2014,48 +2013,58 @@ $(document).ready(function() {
 
     // the newsletter is set to popup again after 7 days. though the cookie banner has already been read,
 
-    if(check_popup_cookie == null && check_banner_cookie != null){
-      setTimeout(function(){
+    // if(check_popup_cookie == null && check_banner_cookie != null){
+    //   setTimeout(function(){
+    //     email_popup_load();
+    //   }, 5000);
+    // }
+
+    // here we are not checking for the delay popup cookie, we will load the modal anytime the email input (footer) is clicked
+    if(check_banner_cookie != null){
+      $('.js-newsletter-modal').on('click', function(){
         email_popup_load();
-      }, 5000);
+      });
     }
 
     const ui = {
-         formId: $( '#subscribe--popup--form' ),
-        textbox: $( '#email-popup' ),
-         submit: $( '#subscribe--popup--button' ),
-       errorMsg: $( '#subscribe--popup--error-response' ),
-     successMsg: $( '#subscribe--popup--success-response' ),
-   fadeOutGroup: $( '#subscribe--popup--form, #subscribe--popup .fine-print')
+            formId: $( '#subscribe--popup--form' ),
+           textbox: $( '#email-popup' ),
+    genderButtonId: $( '#gender' ),
+       birthDateId: $( '#birth-date' ),
+            submit: $( '#subscribe--popup--button' ),
+    errorContainer: $( '#subscribe--popup--form-response' ),
+          errorMsg: $( '#subscribe--popup--error-response' ),
+        successMsg: $( '#subscribe--popup--success-response' ),
+      fadeOutGroup: $( '#subscribe--popup--form' )
+      // fadeOutGroup: $( '#subscribe--popup--form, #subscribe--popup')
     };
 
+    // EMAIL : Regex to check for a valid email
     const regexEmail = new RegExp(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i);
 
     if ( ui.formId ) {
-
+      // ERROR STATE : Reset error state
       ui.textbox.on('focus', () => {
 
         // remove any pre-existing error class
-
         ui.formId.removeClass('has-error');
+        ui.errorContainer.removeClass('has-error');
         ui.errorMsg.fadeOut();
 
       });
 
       // submit form
-
       ui.formId.submit( (e) => {
         e.preventDefault();
 
         // validation code
-
         let validEmail = regexEmail.test(ui.textbox.val());
-
         if(!validEmail) {
 
           // error state
 
           ui.formId.addClass('has-error');
+          ui.errorContainer.addClass('has-error');
           ui.errorMsg.fadeIn();
 
         } else {
@@ -2068,35 +2077,22 @@ $(document).ready(function() {
               "Master List" : 1 // list to add user to (must exist in Sailthru account)
               // "Anonymous" : 0 // list to remove user from (must exist in Sailthru account)
             },
+            "source" : "web",
+            "vars" : {
+             "gender" : ui.genderButtonId.val(),
+             "birth_date" : ui.birthDateId.val(),  // date format needs to be "YYYY-MM-DD"
+            },
             "onSuccess" : function() {
-              // alert('Thank you for signing up for our list');
               ui.fadeOutGroup.fadeOut( () => {
                 ui.successMsg.fadeIn();
               });
              },
             "onError" : function(error) {
-              // alert('We encountered an issue signing you up. Please try again');
+              console.log(`We encountered an issue signing you up. Please try again`);
               console.log(error);
              }
           });
 
-          // zaius.subscribe({
-          //     list_id: 'newsletter',
-          //     email: ui.textbox.val()
-          //   },
-
-          //   // success state
-          //   function() {
-          //     ui.fadeOutGroup.fadeOut( () => {
-          //       ui.successMsg.fadeIn();
-          //     });
-          //   },
-
-          //   // fail state
-          //   function(error) {
-          //     console.log(error);
-          //   }
-          // );
         }
       });
     }
@@ -2111,12 +2107,23 @@ $(document).ready(function() {
       return false;
     }
 
+    // setting the cookie to delay the popup again for 7 days
+    // popup delay will not be implemented with onclick event for footer newsletter input (email) field
     $.cookie('mailing_list_delay_popup', 'expires_seven_days', { expires: 7 });
+
+    const fancybox_markup = `
+    <div class="fancybox-wrap" tabIndex="-1" id="subscribe--popup-wrapper">
+      <div class="fancybox-skin">
+        <div class="fancybox-outer">
+          <div class="fancybox-inner"></div>
+        </div>
+      </div>
+    </div>`;
 
     $.fancybox({
       href: "#subscribe--popup",
       tpl: {
-        wrap : '<div class="fancybox-wrap" tabIndex="-1" id="subscribe--popup-wrapper"><div class="fancybox-skin"><div class="fancybox-outer"><div class="fancybox-inner"></div></div></div></div>',
+        wrap : fancybox_markup,
       },
       helpers: {
         overlay: null

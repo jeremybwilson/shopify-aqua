@@ -1,17 +1,17 @@
 #subscribe--popup-wrapper {
   position: fixed !important;
   width: 100% !important;
-  top: auto !important;
-  bottom: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  border-top: solid 3px $color--accent-1;
+  // top: auto !important;
+  // bottom: 0 !important;
+  // left: 0 !important;
+  // right: 0 !important;
+  // border-top: solid 3px $color--white;
   box-shadow: 0px 2px 25px 0px rgba(0,0,0,0.33);
 
   @include mq('tablet-and-up') {
-    max-width: 480px;
-    left: auto !important;
-    right: 0 !important;
+    max-width: 490px;
+    // left: auto !important;
+    // right: 0 !important;
   }
 
   .fancybox-inner {
@@ -24,24 +24,23 @@
   }
 
   .fancybox-skin {
-    background-color: $color--primary-1;
-  } 
-  p {
-    margin-bottom: 0;
-    color: $color--white;
-    text-align: center;
+    background-color: $color--transparent;
   }
 }
 
 #subscribe--close {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 20px;
+  right: 20px;
   cursor: pointer;
 
   svg {
     width: 24px;
     height: 24px;
+
+    polygon {
+      fill: $color--primary-1;
+    }
 
     @include mq('tablet-and-up') {
       width: 35px;
@@ -59,42 +58,88 @@
 }
 
 #subscribe--popup {
-  padding: 35px 35px 20px;
+  padding-top: 35px;
   position: relative;
+  background-color: $color--white;
+  border: 1px dotted #FFF;
 
   @include mq('tablet-and-up') {
-    padding: 45px 45px 30px;
+    padding-top: 45px;
   }
 
-  h3 {
-    margin-bottom: 12px;
-    color: $color--white;
-    @include fontDim(22px,28px,.2em);
-    font-weight: $font-weight--black;
+  h3, p {
+    color: $color--primary-1;
     text-align: center;
-    text-transform: uppercase;
 
-    @include mq('tablet-and-up') {
+    @include mq( 'tablet-and-up' ) {
       max-width: 300px;
       margin-left: auto;
       margin-right: auto;
     }
   }
 
+  h3 {
+    margin-bottom: 0;
+    @include fontDim(22px,28px, .2em);
+    font-weight: $font-weight--black;
+    text-transform: uppercase;
+
+    @include mq( 'tablet-and-up' ) {
+    //  max-width: 300px;
+    //  margin-left: auto;
+    //  margin-right: auto;
+    }
+  }
+
+  p {
+    @include fontDim(16px,20px, 0);
+    color: $color--primary-1;
+    font-weight: $font-weight--medium;
+    margin-bottom: 0;
+    text-align: center;
+
+    &.fine-print {
+      // display:none;
+      background-color: $color--white;
+      color: $color--gray-1;
+
+      @include fontDim(12px,16px, .04em);
+      width: 100%;
+      padding: 10px;
+    }
+
+    a {
+      color: $color--primary-1;
+      font-weight: $font-weight--bold;
+      text-decoration: underline;
+
+      &:hover {
+        color: $color--accent-1;
+      }
+    }
+  }
+
+
   // form
 
   form {
     @include flexbox;
     @include justify-content(space-between);
+    @include flex-direction(column);
     position: relative;
-    margin-top: 20px;
-    margin-bottom: 12px;
-    background: $color--white; 
+    padding-top: 20px;
+    padding-bottom: 12px;
+    background-color: $color--primary-1;
     border: solid 1px transparent;
     transition: border .3s ease;
+
+    &#subscribe--popup-form {
+      background-color: $color--primary-1;
+    }
+
   }
   form.has-error {
-    border: solid 1px $color--error;
+    border: solid 1px 1px 0 1px $color--error;
   }
   input[type="email"] {
     box-sizing: border-box;
@@ -103,44 +148,100 @@
     width: 100%;
     height: 47px;
     margin-bottom: 0;
-    padding: 15px 68px 15px 15px;
+    padding: 15px;
     border: none;
-    border-radius: none;
+    border-radius: 0;
+    background-color: $color--white;
     color: $color--gray-2;
     @include fontSize(14px);
     letter-spacing: .025em;
-    text-align: left;
+    // text-align: center;
     line-height: 14px;
 
     @include mq('tablet-and-up') {
       height: 46px;
-      padding: 20px 68px 20px 20px;
+      padding: 20px;
       @include fontSize(16px);
       line-height: 16px;
     }
 
     &:focus {
-      color: $color--dark-gray;
+      color: $color--white;
     }
   }
   form.has-error input[type="email"] {
     color: $color--error;
   }
+
+  .gender, .birth_date, .email, .subscribe--popup-submit {
+    @include flexbox;
+    @include flex-direction(row);
+    @include align-items(center);
+    width: 80%;
+    margin: 0 auto;
+
+  }
+
+  .gender {
+    @include justify-content(space-evenly);
+    margin: 0 auto;
+
+    label {
+      color: $color--white;
+    }
+
+    input[type="radio"] {
+
+    }
+  }
+
+  .birth_date {
+    @include flexbox;
+    @include flex-direction(row);
+    @include justify-content(center);
+
+    label {
+      padding: 0px 15px;
+
+      select {
+        background-color: $color--white;
+      }
+    }
+  }
+
+  .email {
+    padding: 20px 0;
+
+    label {
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+
+  #subscribe--popup--header {
+    @include flexbox;
+    @include flex-direction(column);
+    @include justify-content(center);
+    background-color: $color--white;
+    padding-bottom: 25px;
+  }
+
+
   #subscribe--popup--button {
-    position: absolute;
-    z-index: 2;
+    // position: absolute;
+    // z-index: 2;
+    // top: 0;
+    // right: 0;
     @include flexbox;
     @include justify-content(center);
     @include align-items(center);
-    top: 0;
-    right: 0;
-    width: 47px;
-    height: 47px;
+    width: auto;
+    margin: 0 auto;
+    // height: 47px;
     cursor: pointer;
 
     @include mq('tablet-and-up') {
-      width: 46px;
-      height: 46px;
+      // height: 46px;
     }
 
     svg {
@@ -160,44 +261,36 @@
     }
   }
   input[type="submit"] {
-    display: none;
+    // display: none;
+    background: $color--primary-1;
   }
 
   // response messages
 
   #subscribe--popup--form-response {
     color: $color--white;
+    background-color: $color--primary-1;
+    padding: 10px;
     text-align: center;
+
+    &.has-error {
+
+      div#subscribe--popup--error-response {
+        color: #F00;
+      }
+
+    }
 
     #subscribe--popup--error-response {
       @include h7;
       margin-bottom: 12px;
-    }  
+    }
     #subscribe--popup--success-response {
       text-transform: none;
 
       p {
         color: inherit;
         @include fontSize(16px);
-      }
-    }
-  }
-
-  .fine-print {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-
-    p {
-      @include fontDim(9px,16px,.04em);
-    }
-    a {
-      color: $color--white;
-      font-weight: $font-weight--bold;
-      text-decoration: underline;
-
-      &:hover {
-        color: $color--accent-1;
       }
     }
   }
