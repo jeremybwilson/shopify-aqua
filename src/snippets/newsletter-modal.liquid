@@ -1,5 +1,7 @@
 <div id="newsletter-modal" class="newsletter-modal" style="display:none;">
 
+  <span class="offer-tab__cross js-offer-tab-close">{% include 'svg-icon-x' %}</span>
+
   <div class="newsletter-modal__head">
     {%- if settings.newsletter_popup_title != blank -%}
       <h3 class="newsletter-modal__heading">{{ settings.newsletter_popup_title }}</h3>
@@ -14,10 +16,7 @@
     {%- endif -%}
   </div>
 
-  <form id="modal-newsletter"
-        action="{{ settings.newsletter_subscription_api_url }}"
-        method="POST">
-    <input type="hidden" name="lid" value="{{ settings.newsletter_email_service_provider_cid }}">
+  <form id="modal-newsletter">
     <div>
       <label id="subscribe-modal-newsletter" for="modal-newsletter">
         <input type="email"

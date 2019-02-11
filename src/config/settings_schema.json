@@ -1298,15 +1298,15 @@
       },
       {
         "type": "text",
-        "id": "email_popup_input_placeholder",
-        "label": "Email popup placeholder text",
-        "default": "Enter Your Email Address"
+        "id": "email_popup_bottom_text",
+        "label": "Email popup fine print text",
+        "default": "Sign up for free shipping & returns in the US on your first order."
       },
       {
-        "type": "html",
-        "id": "email_popup_bottom_text",
-        "label": "Fine print",
-        "default": "<p>By providing your email address, you agree to our <a href=\"https:\/\/www.honeywell.com\/privacy-statement\">Privacy Policy<\/a> & <a href=\"\/pages\/terms-and-conditions\">Terms of Service<\/a>.<\/p>"
+        "type": "text",
+        "id": "email_popup_input_placeholder",
+        "label": "Email popup placeholder text",
+        "default": "Enter Email Address"
       },
       {
         "type": "text",
