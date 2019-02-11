@@ -25,6 +25,16 @@
   CYCLE 2 - Cycle through the available values (ie: Color->Black, Color-> Red) {% endcomment %}
 
   <div class="swatch-elements clearfix{% if color_swatch_options contains option_name %} color{% endif %}">
+    {% comment %} :: Take longest size class to align all swatches :: {% endcomment %}
+    {% assign sizeClass = 'short-label' %}
+    {% for value in option.values %}
+      {% assign sizeValueLength = value | size %}
+      {% if sizeValueLength > 4 %}
+        {% assign sizeClass = 'long-label' %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+
     {% for value in option.values %}
       {% unless value contains 'Gift Item' or value contains 'Free Gift' %}
         
@@ -83,6 +93,7 @@
 
 
         {% capture regular_swatch %}
+          {% comment %}
           {% assign sizeValueLength = value | size %}
           {% if sizeValueLength > 4 %}
             {% assign sizeClass = 'long-label' %}
@@ -91,6 +102,7 @@
             {% assign sizeClass = 'short-label' %}
 
           {% endif %}
+          {% endcomment %}
           <div class="swatch-element {{ sizeClass }} {% unless available %}soldout{% endunless %}">
             {{ radio_button }}
 
