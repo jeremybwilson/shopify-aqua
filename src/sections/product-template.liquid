@@ -35,14 +35,6 @@
       {{ mobile_product_video }}
     </div>
 
-    <a class="mobile-product-carousel--prev">
-      {% include 'svg-icon-caret-left' %}
-    </a>
-
-    <a class="mobile-product-carousel--next">
-      {% include 'svg-icon-caret-right' %}
-    </a>
-
   </div>
 
 
@@ -148,7 +140,28 @@
               <hr class="product-hr">
               <dl id="free-shipping--accordion">
                 <dt id="free-shipping--accordion-header"><h3>{{ section.settings.shipping_header_text }}</h3><span class="opener">{% include 'svg-icon-caret-down' %}</span></dt>
-                <dd id="free-shipping--accordion-content">{{ section.settings.shipping_text }}</dd>
+                <dd id="free-shipping--accordion-content">
+                  <div>
+                    {{ section.settings.shipping_text }}
+                  </div>
+
+                  {% if section.settings.shipping_learn_more_link != blank or section.settings.shipping_show_account_link %}
+                    <div class="free-shipping-links">
+                      {% if section.settings.shipping_learn_more_link != blank %}
+                        <a href="{{ section.settings.shipping_learn_more_link }}" class="free-shipping-link">Learn More</a>
+                      {% endif %}
+                      {% if section.settings.shipping_show_account_link %}
+                        <a href="/account" class="free-shipping-link">
+                          {% if customer %}
+                            My Account
+                          {% else %}
+                            Sign In
+                          {% endif %}
+                        </a>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+                </dd>
               </dl><!-- .free-shipping--accordion -->
               <hr class="product-hr">
             {% endif %}
@@ -232,7 +245,7 @@
   <div class="clear"></div>
 
   {% comment %} :: REVIEWS :: {% endcomment %}
-  <div class="row">
+  <div class="row product-details--reviews">
     <dl class="accordion accordion--product-review js-accordion">
       <dt class="accordion__header js-accordion-toggle">
         <h3>Ratings &amp; Reviews</h3><span class="opener">{% include 'svg-icon-caret-down' %}</span>
@@ -313,11 +326,6 @@
     .product-description {
       border-right: 1px solid {{ settings.dotted_color }};
       padding-right: 20px;
-    }
-  {% endif %}
-  {% if section.settings.show_sku == false %}
-    .variant-sku {
-      display: none;
     }
   {% endif %}
   {% if section.settings.product_variants == 'swatches' %}
@@ -510,6 +518,20 @@
         "type": "richtext",
         "id": "shipping_text",
         "label": "Shipping Text"
+      },
+      {
+        "type": "url",
+        "id": "shipping_learn_more_link",
+        "label": "Learn more link"
+      },
+      {
+        "type": "checkbox",
+        "id": "shipping_show_account_link",
+        "label": "Show account link"
+      },
+      {
+        "type": "header",
+        "content": "Social share"
       },
       {
         "type": "checkbox",
