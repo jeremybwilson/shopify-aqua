@@ -75,7 +75,7 @@
       *display:inline;
       position: relative;
       min-width: {{ width }};
-      height: {{ height }};
+      min-height: {{ height }};
       // margin: 0 5px 5px 0;
       padding:0;
       border: solid 1px $color--general-grey;
@@ -116,6 +116,7 @@
       width: 20px;
       height: 20px;
       min-width: 0;
+      min-height: auto;
       border: solid 2px $color--white;
       border-radius: 50%;
       background-color: $color--light-gray; // shows a default color until we get swatch images up

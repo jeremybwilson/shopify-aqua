@@ -58,9 +58,9 @@
   </div>
   <div class="clear"></div>
 
-  {% if current_variant.sku != blank %}
+  {% if section.settings.show_sku %}
     <div class="product-number">
-      Item# <span class="product-sku">{{ current_variant.sku }}</span>
+      Item# <span class="product-sku">{{ current_variant.sku | split: '-' | first }}</span>
     </div>
   {% endif %}
 
@@ -163,11 +163,13 @@
 
   <div class="clear"></div>
 
+  {% comment %}
   {% if section.settings.show_sku %}
     <div class="sku">
       <label style="line-height: 1.6em;">{{ 'customer.order.details.sku' | t }}:</label> <span class="variant_sku">{{ current_variant.sku }}</span>
     </div><div class="clear"></div>
   {% endif %}
+  {% endcomment %}
 
   {% if product.available %}
     <div id="product-add">

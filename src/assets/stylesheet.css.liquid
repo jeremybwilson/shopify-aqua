@@ -295,7 +295,7 @@ select {
   width: 100%;
   max-width: 100%;
   display: block;
-  border-radius: 3px;
+  border-radius: 0;
   margin-bottom: 10px;
   background: transparent;
   height: 40px;
@@ -1866,6 +1866,7 @@ ul#popups li.last {
 #quantity {
   -webkit-appearance: none;
   -moz-appearance: none;
+  -ms-appearance: none;
   appearance: none;
   text-indent: 0! important;
   text-align: center;
@@ -1880,6 +1881,10 @@ ul#popups li.last {
   border: 1px solid #9b9b9b;
   color: {{ settings.text_color }};
   background-image: url('{{ "ico-select.svg" | asset_url }}');
+}
+
+#quantity::-ms-expand {
+  display: none;
 }
 
 .quanity-select {
