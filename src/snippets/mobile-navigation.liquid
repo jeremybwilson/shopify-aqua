@@ -80,6 +80,10 @@
     {% assign footerItemCount = footerItemCount | plus: 1 %}
   {% endif %}
 
+  {% if settings.borderfree_enabled %}
+    {% assign footerItemCount = footerItemCount | plus: 1 %}
+  {% endif %}
+
   {% if shop.customer_accounts_enabled %}
     {% assign footerItemCount = footerItemCount | plus: 1 %}
   {% endif %}
@@ -88,6 +92,7 @@
     {% assign footerItemCount = footerItemCount | plus: 1 %}
   {% endif %}
 
+
   {% comment %} :: FOOTER - Mobile Nav Menu :: {% endcomment %}
   <div id="nav-menu-mobile-footer" data-child-count="{{ footerItemCount }}">
 
@@ -95,6 +100,13 @@
     {% if section.settings.show_site_picker %}
       <div id="nav-sites-picker-mobile" class="nav-footer-item-mobile">
         {% include 'sites-picker', showFullName: false, showFlagIcon: false %}
+      </div>
+    {% endif %}
+
+    {% comment %} ..:: BORDER-FREE ::.. {% endcomment %}
+    {% if settings.borderfree_enabled %}
+      <div id="nav-border-free-mobile" class="nav-footer-item-mobile">
+        {% comment %} This makes a space, can only generate one borderfree button so uses desktop {% endcomment %}
       </div>
     {% endif %}
 

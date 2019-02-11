@@ -1010,6 +1010,8 @@ theme.Header = (function() {
     const ui = {
       arrows: $( '#promo-arrow-left, #promo-arrow-right' ),
       body: $( 'body' ),
+      borderFreeLink: $( '#nav-item-borderfree' ),
+      borderFreeClose: $( '#nav-modal-borderfree-close' ),
       desktopNavWrap: $( '#nav-bar-wrapper' ),
       desktopNavItem: $( '.nav-primary-link' ),
       html: $( 'html' ),
@@ -1025,6 +1027,18 @@ theme.Header = (function() {
       swapRate: $container.attr( 'data-swap-rate' )
     }
     const self = this;
+
+
+    // BORDER-FREE : Extra toggle event so we can also tell when the borderfree panel is open on nav
+    if ( ui.borderFreeLink.length > -1 ) {
+      ui.borderFreeLink.on( 'click', () => {
+        ui.desktopNavWrap.toggleClass( 'borderfree-open' );
+      });
+
+      ui.borderFreeClose.on( 'click', () => {
+        ui.desktopNavWrap.toggleClass( 'borderfree-open' );
+      })
+    }
 
     // MOBILE NAV : Attach menu toggle event
     if ( ui.mobileNavButton && ui.mobileNavMenu ) {
@@ -1146,6 +1160,20 @@ theme.Header = (function() {
 
 theme.Newsletter = (function() {
   function Newsletter(container) {
+
+    // $('#subscribe--popup').fancybox({
+    //   hideContentOnClick: true
+    // });
+
+    // $('.js-newsletter-modal').on('click', function () {
+    //   $(this).parent().fadeOut();
+    // });
+
+    // $('.js-newsletter-modal-close').on('click', function (e) {
+    //   e.preventDefault();
+    //   $(this).parent().fadeOut();
+    // });
+
     const $container = this.$container = $(container);
     const ui = {
            formId: $( '#footer-newsletter' ),
@@ -1181,23 +1209,43 @@ theme.Newsletter = (function() {
         } else {
 
           // success state
-          zaius.subscribe({
-              list_id: 'newsletter',
-              email: ui.textbox.val()
+          Sailthru.integration("userSignUp",
+          {
+            "email" : ui.textbox.val(),
+            "lists" : {
+              "Master List" : 1 // list to add user to (must exist in Sailthru account)
+              // "Anonymous" : 0 // list to remove user from (must exist in Sailthru account)
             },
-
-            // success state
-            function() {
+            "source" : "web",
+            "onSuccess" : function() {
               ui.formId.fadeOut( () => {
                 ui.successMsg.fadeIn();
               });
             },
-
-            // fail state
-            function(error) {
+            "onError" : function(error) {
+              console.log(`We encountered an issue signing you up. Please try again`);
               console.log(error);
             }
-          );
+          });
+
+          // // success state
+          // zaius.subscribe({
+          //     list_id: 'newsletter',
+          //     email: ui.textbox.val()
+          //   },
+
+          //   // success state
+          //   function() {
+          //     ui.formId.fadeOut( () => {
+          //       ui.successMsg.fadeIn();
+          //     });
+          //   },
+
+          //   // fail state
+          //   function(error) {
+          //     console.log(error);
+          //   }
+          // );
         }
       });
     }
@@ -1979,71 +2027,86 @@ $(document).ready(function() {
 
     // the newsletter is set to popup again after 7 days. though the cookie banner has already been read,
 
-    if(check_popup_cookie == null && check_banner_cookie != null){
-      setTimeout(function(){
+    // if(check_popup_cookie == null && check_banner_cookie != null){
+    //   setTimeout(function(){
+    //     email_popup_load();
+    //   }, 5000);
+    // }
+
+    // here we are not checking for the delay popup cookie, we will load the modal anytime the email input (footer) is clicked
+    if(check_banner_cookie != null){
+      $('.js-newsletter-modal').on('click', function(){
         email_popup_load();
-      }, 5000);
+      });
     }
 
     const ui = {
-         formId: $( '#subscribe--popup--form' ),
-        textbox: $( '#email-popup' ),
-         submit: $( '#subscribe--popup--button' ),
-       errorMsg: $( '#subscribe--popup--error-response' ),
-     successMsg: $( '#subscribe--popup--success-response' ),
-   fadeOutGroup: $( '#subscribe--popup--form, #subscribe--popup .fine-print')
+            formId: $( '#subscribe--popup--form' ),
+           textbox: $( '#email-popup' ),
+    genderButtonId: $( '#gender' ),
+       birthDateId: $( '#birth-date' ),
+            submit: $( '#subscribe--popup--button' ),
+    errorContainer: $( '#subscribe--popup--form-response' ),
+          errorMsg: $( '#subscribe--popup--error-response' ),
+        successMsg: $( '#subscribe--popup--success-response' ),
+      fadeOutGroup: $( '#subscribe--popup--form' )
+      // fadeOutGroup: $( '#subscribe--popup--form, #subscribe--popup')
     };
 
+    // EMAIL : Regex to check for a valid email
     const regexEmail = new RegExp(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i);
 
     if ( ui.formId ) {
-
+      // ERROR STATE : Reset error state
       ui.textbox.on('focus', () => {
 
         // remove any pre-existing error class
-
         ui.formId.removeClass('has-error');
+        ui.errorContainer.removeClass('has-error');
         ui.errorMsg.fadeOut();
 
       });
 
       // submit form
-
       ui.formId.submit( (e) => {
         e.preventDefault();
 
         // validation code
-
         let validEmail = regexEmail.test(ui.textbox.val());
-
         if(!validEmail) {
 
           // error state
 
           ui.formId.addClass('has-error');
+          ui.errorContainer.addClass('has-error');
           ui.errorMsg.fadeIn();
 
         } else {
 
           // success state
-
-          zaius.subscribe({
-              list_id: 'newsletter',
-              email: ui.textbox.val()
+          Sailthru.integration("userSignUp",
+          {
+            "email" : ui.textbox.val(),
+            "lists" : {
+              "Master List" : 1 // list to add user to (must exist in Sailthru account)
+              // "Anonymous" : 0 // list to remove user from (must exist in Sailthru account)
             },
-
-            // success state
-            function() {
+            "source" : "web",
+            "vars" : {
+             "gender" : ui.genderButtonId.val(),
+             "birth_date" : ui.birthDateId.val(),  // date format needs to be "YYYY-MM-DD"
+            },
+            "onSuccess" : function() {
               ui.fadeOutGroup.fadeOut( () => {
                 ui.successMsg.fadeIn();
               });
-            },
-
-            // fail state
-            function(error) {
+             },
+            "onError" : function(error) {
+              console.log(`We encountered an issue signing you up. Please try again`);
               console.log(error);
-            }
-          );
+             }
+          });
+
         }
       });
     }
@@ -2058,12 +2121,23 @@ $(document).ready(function() {
       return false;
     }
 
+    // setting the cookie to delay the popup again for 7 days
+    // popup delay will not be implemented with onclick event for footer newsletter input (email) field
     $.cookie('mailing_list_delay_popup', 'expires_seven_days', { expires: 7 });
+
+    const fancybox_markup = `
+    <div class="fancybox-wrap" tabIndex="-1" id="subscribe--popup-wrapper">
+      <div class="fancybox-skin">
+        <div class="fancybox-outer">
+          <div class="fancybox-inner"></div>
+        </div>
+      </div>
+    </div>`;
 
     $.fancybox({
       href: "#subscribe--popup",
       tpl: {
-        wrap : '<div class="fancybox-wrap" tabIndex="-1" id="subscribe--popup-wrapper"><div class="fancybox-skin"><div class="fancybox-outer"><div class="fancybox-inner"></div></div></div></div>',
+        wrap : fancybox_markup,
       },
       helpers: {
         overlay: null
@@ -2981,15 +3055,20 @@ theme.Collection = (function() {
     // EVENTS : Bind DOM events when ready
     $(document).ready( () => {
 
-      // FILTER MENU : OPEN / CLOSE : Indicator for the whole filter menu
-      ui.mobileFilterBtn.click( () => {
+      // FILTER MENU : STATE : Open state indicator for filters
+      const toggleFilterOpen = () => {
         ui.collectionWrap.toggleClass( 'filter-open' );
+      };
+
+      // FILTER MENU : EVENT BINDING : Attach open/close handles
+      ui.mobileFilterBtn.click( () => {
+        toggleFilterOpen();
       });
       ui.desktopFilterBtn.click( () => {
-        ui.collectionWrap.toggleClass( 'filter-open' );
+        toggleFilterOpen();
       });
       ui.backingShadow.click( () => {
-        ui.collectionWrap.removeClass( 'filter-open' );
+        toggleFilterOpen();
       });
 
 
@@ -2998,7 +3077,7 @@ theme.Collection = (function() {
 
         // APPLY : Close Panel
         ui.collectionWrap.removeClass( 'filter-open' );
-        
+
         // APPLY : If selectiosn have changed, wait for panel close then apply new filters
         if ( location && location.search !== queryParams ) {
 
@@ -3007,7 +3086,7 @@ theme.Collection = (function() {
 
           // APPLY : Filter application via query params
           setTimeout( () => {
-            location.search = queryParams; // Triggers repaint!
+            location.search = queryParams; // Triggers reload
           }, 250 ); // 0.25s is close animation time
         }
       }
@@ -3035,7 +3114,7 @@ theme.Collection = (function() {
 
           // APPLY : Apply the new selections via the url query params
           closeAndApply( queryParams );
-          
+
 
         // SELECTIONS EMPTY : Trigger closeAndApply(), if user emptied selections manually will trigger update
         } else {
@@ -3058,7 +3137,7 @@ theme.Collection = (function() {
             $(this).removeClass( 'seo-open' ).dequeue();
           });
         }
-      })
+      });
     });
   }
 
@@ -3068,7 +3147,7 @@ theme.Collection = (function() {
   // BADGES : BUILD : Method to build react-badges component on collection updates (rebuilt in JS)
   const buildBadges = require('./react-components/badges/BadgeParent.js');
 
-  // WISHLISTH : BUILD : Attach click handlers to all rendered wishlist buttons (rebuilt in JS from bc-sf-filter.js template)
+  // WISHLIST : BUILD : Attach click handlers to all rendered wishlist buttons (rebuilt in JS from bc-sf-filter.js template)
   const buildWishlistButtons = require('./third-party-apps/wishlist-king/WishlistParent.js');
 
 
