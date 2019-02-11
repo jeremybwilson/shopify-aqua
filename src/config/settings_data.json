@@ -600,7 +600,7 @@
         "type": "featured-collection",
         "settings": {
           "heading": "Recommended For You",
-          "homepage_collection": "do-not-delete-this-collection",
+          "homepage_collection": "recommended-for-you",
           "homepage_product_display": "carousel",
           "show_swatches": true,
           "cta_symbol_placement": "left",

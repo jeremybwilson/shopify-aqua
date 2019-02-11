@@ -145,6 +145,10 @@
   .product-car {
     margin: 0;
 
+    .prod-container {
+      padding-bottom: 20px;
+    }
+
     .icn { 
       display: none; 
     }
@@ -179,6 +183,7 @@
         right: 0;
         top: 0;
         margin: 0;
+        border: none;
         padding-top: 2px;
 
         .wk-icon {
@@ -207,9 +212,11 @@
       }
     }
 
+    // QUICKVIEW BUTTON
     .product-modal {
       @include h7;
-      @include fontSize( 16px );
+      @include fontDim( 14px, 14px, 2px );
+      font-weight: $font-weight--medium;
       background: $color--accent-1;
       color: $color--white;
       opacity: 0;
@@ -217,6 +224,11 @@
       transition: opacity .25s ease-in-out;
       pointer-events: none;
       display: none;
+      padding: 8px 10px 6px;
+      width: 140px;
+      top: auto; //Unset the default values
+      margin-left: 0;
+      transform: translateX( -50% );
 
       @include mq( 'lap-and-up' ) {
         display: block; // so we can fade in, but keep mobile from losing the hover region when over the button
