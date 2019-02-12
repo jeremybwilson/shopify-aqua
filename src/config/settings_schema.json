@@ -1315,6 +1315,12 @@
         "default": "Please enter a valid e-mail address"
       },
       {
+        "type": "text",
+        "id": "email_popup_error_birthdate",
+        "label": "Error Text",
+        "default": "Please enter a valid birthdate"
+      },
+      {
         "type": "richtext",
         "id": "email_popup_success",
         "label": "Success Text",

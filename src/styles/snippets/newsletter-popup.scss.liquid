@@ -70,6 +70,9 @@
   h3, p {
     color: $color--primary-1;
     text-align: center;
+    width: 80%;
+    padding: 10px 0;
+    margin: 0 auto;
 
     @include mq( 'tablet-and-up' ) {
       max-width: 300px;
@@ -138,9 +141,11 @@
     }
 
   }
+
   form.has-error {
     border: solid 1px 1px 0 1px $color--error;
   }
+
   input[type="email"] {
     box-sizing: border-box;
     position: relative;
@@ -152,7 +157,7 @@
     border: none;
     border-radius: 0;
     background-color: $color--white;
-    color: $color--gray-2;
+    color: $color--primary-1;
     @include fontSize(14px);
     letter-spacing: .025em;
     // text-align: center;
@@ -166,11 +171,20 @@
     }
 
     &:focus {
-      color: $color--white;
+      color: $color--primary-1;
+    }
+
+    input[type="radio"] {
+      width: auto;
     }
   }
+
   form.has-error input[type="email"] {
     color: $color--error;
+  }
+
+  label {
+    @include fontSize(16px);
   }
 
   .gender, .birth_date, .email, .subscribe--popup-submit {
@@ -179,7 +193,6 @@
     @include align-items(center);
     width: 80%;
     margin: 0 auto;
-
   }
 
   .gender {
@@ -189,19 +202,21 @@
     label {
       color: $color--white;
     }
-
-    input[type="radio"] {
-
-    }
   }
 
   .birth_date {
-    @include flexbox;
-    @include flex-direction(row);
+    @include flex-wrap(wrap);
     @include justify-content(center);
 
     label {
       padding: 0px 15px;
+      color: $color--white;
+
+      &.full-width-block {
+        width:  100%;
+        padding: 10px 0;
+        text-align: center;
+      }
 
       select {
         background-color: $color--white;
@@ -237,7 +252,6 @@
     @include align-items(center);
     width: auto;
     margin: 0 auto;
-    // height: 47px;
     cursor: pointer;
 
     @include mq('tablet-and-up') {
@@ -245,12 +259,18 @@
     }
 
     svg {
-      width: 9px;
-      height: 9px;
+      color: $color--white;
+      fill: $color--white;
+      margin-right: 10px;
+      width: 12px;
+      height: 12px;
 
-      @include mq('tablet-and-up') {
-        width: 12px;
-        height: 12px;
+      g {
+        fill: $color--white;
+
+        path {
+          stroke: $color--white;
+        }
       }
     }
 
@@ -263,6 +283,15 @@
   input[type="submit"] {
     // display: none;
     background: $color--primary-1;
+    @include fontSize(16px);
+    height: auto;
+    line-height: normal;
+    padding: 0;
+    margin: 0;
+
+    &:hover {
+      color: $color--gray-1;
+    }
   }
 
   // response messages
@@ -275,13 +304,13 @@
 
     &.has-error {
 
-      div#subscribe--popup--error-response {
+      div#subscribe--popup--error-response, div#subscribe--popup--error-response-birthdate {
         color: #F00;
       }
 
     }
 
-    #subscribe--popup--error-response {
+    #subscribe--popup--error-response, #subscribe--popup--error-response-birthdate {
       @include h7;
       margin-bottom: 12px;
     }

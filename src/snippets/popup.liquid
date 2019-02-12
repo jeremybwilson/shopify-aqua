@@ -39,8 +39,11 @@
           </label>
         </div>
         <div class="birth_date">
+          <label class="full-width-block" for="birth_date">
+            Enter Birthday
+          </label>
           <label for="month">
-            <select id="month" name="month">
+            <select id="month" name="BirthMonth">
                 <option value="">MM</option>
                 <option value="01">January</option>
                 <option value="02">February</option>
@@ -57,7 +60,7 @@
             </select>
           </label>
           <label for="day">
-            <select id="day" name="day">
+            <select id="day" name="BirthDay">
                 <option value="">DD</option>
                 <option value="01">1</option>
                 <option value="02">2</option>
@@ -93,7 +96,7 @@
             </select>
           </label>
           <label for="year">
-            <select id="year" name="year">
+            <select id="year" name="BirthYear">
                 <option value="">YYYY</option>
                 <option value="1940">1940</option>
                 <option value="1941">1941</option>
@@ -177,21 +180,32 @@
                 <option value="2019">2019</option>
             </select>
           </label>
-          <label for="birth_date">
-            {% comment %} <input class="form-control" type="date" id="birth-date" name="birth_date"> {% endcomment %}
-          </label>
           <input type="hidden" id="birth-date" name="birth_date" value=""/>
         </div>
+
+        {% comment %} :: CTA BUTTONS :: {% endcomment %}
+        {% if settings.button_text != blank %}
+          <div class="buttons-row">
+
+            {% comment %} :: BUTTON #1 :: {% endcomment %}
+            {% include 'cta-with-symbols',
+              cta_text: settings.button_text,
+              symbol_placement: settings.button_symbol_placement %}
+
+          </div>
+        {% endif %}
+
+
         <div class="subscribe--popup-submit">
           <label id="subscribe--popup--button" for="subscribe--popup--submit">
-            <input id="subscribe--popup--submit" type="submit" value="Submit">
-            {% comment %} {% include 'svg-icon-caret-right-submit' %} {% endcomment %}
+            {% include 'svg-icon-button-symbol', side: 'left' %} <input id="subscribe--popup--submit" type="submit" value="Submit">
           </label>
         </div>
 
       </form>
       <div id="subscribe--popup--form-response">
         <div id="subscribe--popup--error-response" style="display:none;">{{ settings.email_popup_error }}</div>
+        <div id="subscribe--popup--error-response-birthdate" style="display:none;">{{ settings.email_popup_error_birthdate }}</div>
         <div id="subscribe--popup--success-response" style="display:none;">
         {{ settings.email_popup_success }}</div>
       </div>

@@ -167,6 +167,7 @@
     "email_popup_bottom_text": "*Offer valid on orders of $150 or more.",
     "email_popup_input_placeholder": "Enter Your Email Address",
     "email_popup_error": "Please enter a valid e-mail address",
+    "email_popup_error_birthdate": "Please enter a valid birthdate",
     "email_popup_success": "<p>You have successfully joined our newsletter<\/p>",
     "newsletter_subscription_api_url": "https:\/\/api.sailthru.com",
     "newsletter_email_service_provider_cid": "ad4b11c18c08f631a75f9702c24575ed",
