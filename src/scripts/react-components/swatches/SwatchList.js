@@ -31,7 +31,8 @@ class SwatchList extends React.Component {
     this.state = {
       activeSwatchId: null,
       activeImgUrl: productImgUrl,
-      productId: productId
+      productId: productId,
+      userMadeSelection: false
     };
 
     // Image Sizes for Src Set Generation, when encountered
@@ -79,7 +80,8 @@ class SwatchList extends React.Component {
     if ( !isHover ) {
       this.setState({ 
         activeSwatchId: swatchId,
-        activeImgUrl: variantImgUrl.length > 10 ? variantImgUrl : activeImgUrl //fallback in case of invalid urls
+        activeImgUrl: variantImgUrl.length > 10 ? variantImgUrl : activeImgUrl, //fallback in case of invalid urls
+        userMadeSelection: true
       });
     }
   }
@@ -103,13 +105,13 @@ class SwatchList extends React.Component {
 
   render() {
     const { swatchData } = this.props; // Destructuring = verbosity saver
-    const { activeSwatchId } = this.state; // Destructuring = verbosity saver
+    const { activeSwatchId, userMadeSelection } = this.state; // Destructuring = verbosity saver
     let swatches = null;
 
     if (swatchData.length > 0) {
       let usedColors = [];
 
-      swatches = swatchData.map( (swatchObj) => {
+      swatches = swatchData.map( (swatchObj, index) => {
         const { 
           colorValueName, 
           swatchId,
@@ -118,13 +120,19 @@ class SwatchList extends React.Component {
         } = swatchObj;
 
         const isAlreadyDisplayed = usedColors.find( color => color === colorValueName ); //colorValueName = this-is-my-color-name
+        let isActive = swatchId === activeSwatchId;
+
+        // INITIAL STATE : User hasn't interacted with yet, so select first swatch by default
+        if ( !userMadeSelection && index === 0 ) {
+          isActive = true;
+        }
 
         // UNUSED - Lets add to list and render swatch
         if ( !isAlreadyDisplayed ) {
           usedColors.push( colorValueName ); //Add color to list of used colors
           return ( 
             <SwatchItem
-              active={ swatchId === activeSwatchId }
+              active={ isActive }
               colorValueName={ colorValueName }
               key={ swatchId }
               resetProductImg={ this.resetProductImg }

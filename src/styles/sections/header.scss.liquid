@@ -756,9 +756,11 @@ body.js-drawer-open {
      * ---------------------------------------------- */
     // REVEAL : Show/Hide bar on clicking the search icon
     &.show-search-bar #nav-search-bar-wrapper {
-        opacity: 1;
-        z-index: 50;
-        pointer-events: all;
+        @include mq( 'lap-and-up' ) {
+            opacity: 1;
+            z-index: 5;
+            pointer-events: all;
+        }
     }
 
     // REVEAL : MOBILE SPECIFIC : had to cover extra case not in variables 
@@ -783,9 +785,14 @@ body.js-drawer-open {
         transition: all 0.25s ease-in-out;
         background: {{ settings.header_background }};
 
+        @include mq( 'lap-and-up' ) {
+            top: -1px;
+            box-shadow: 0px 1px 9px #8d8d8d;
+        }
+
         &.show-search-bar {
             opacity: 1;
-            z-index: 50;
+            z-index: 5;
             pointer-events: all;
         }
 
@@ -853,6 +860,7 @@ body.js-drawer-open {
             font-weight: 400;
             cursor: pointer;
             display: none;
+            transform: rotate( 90deg );
 
             @include mq( 'lap-and-up' ) {
                 display: block;
@@ -1093,14 +1101,14 @@ body.js-drawer-open {
                     .mega-image {
                         @include inline-flex;
                         position: relative;
-                        width: 310px;
+                        width: 340px;
 
                         &:not(.mega-image-with-titles) {
                             @include align-items( center );
                         }
 
                         @include mq( 'wide-and-up' ) {
-                            width: 320px;
+                            width: 360px;
                         }
 
                         // IMAGE : NO TITLES : Fullsize image in pane
@@ -1115,36 +1123,44 @@ body.js-drawer-open {
                         }
 
                         // IMAGE : TITLES : Give it a max height and set close to top of pane
-                        $imageWithTitleHeight: 170px;
+                        $imageWithTitleHeight: 190px;
                         &.mega-image-with-titles {
                             .mega-image-asset {
-                                width: 284px;
+                                width: 305px;
                                 max-height: $imageWithTitleHeight;
                                 background-size: contain;
                                 top: 26px;
                                 left: 0;
+
+                                @include mq( 'desk-and-up' ) {
+                                    width: 313px;
+                                }
                             }
 
                             .mega-image-title,
                             .mega-image-sub-title {
                                 position: absolute;
-                                top: calc( #{$imageWithTitleHeight} + 35px );
-                                left: -10px;
+                                top: calc( #{$imageWithTitleHeight} + 15px );
+                                left: 0;
                                 text-transform: uppercase;
                                 font-weight: $font-weight--book;
                                 letter-spacing: 3px;
 
-                                @include mq( 'wide-and-up' ) {
-                                    left: 0;
+                                @include mq( 'desk-and-up' ) {
+                                    top: calc( #{$imageWithTitleHeight} + 20px );
                                 }
                             }
 
                             .mega-image-sub-title {
-                                top: calc( #{$imageWithTitleHeight} + 65px );
+                                top: calc( #{$imageWithTitleHeight} + 45px );
                                 letter-spacing: 0px;
                                 text-decoration: underline;
                                 text-transform: capitalize;
                                 color: $color--gray-2;
+
+                                @include mq( 'desk-and-up' ) {
+                                    top: calc( #{$imageWithTitleHeight} + 50px );
+                                }
                             }
                         }
                     }
