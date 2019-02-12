@@ -70,18 +70,18 @@
     & > label { // actual visible swatch
       display:-moz-inline-stack;
       display:inline-block;
+      vertical-align: middle;
       cursor: pointer;
       zoom:1;
       *display:inline;
       position: relative;
       min-width: {{ width }};
-      min-height: {{ height }};
-      // margin: 0 5px 5px 0;
+      height: {{ height }};
       padding:0;
       border: solid 1px $color--general-grey;
       color: $color--primary-1;
-      @include fontDim(16px,16px,.025em);
-      font-weight: $font-weight--bold;
+      @include fontDim(13px,13px,.025em);
+      font-weight: $font-weight--medium;
       line-height: {{ height }};
       text-align: center;
       text-transform: uppercase;
@@ -93,7 +93,6 @@
       border-color: $color--primary-1;
       color: $color--white;
     }
-
   }
 
   // soldout 
@@ -286,10 +285,10 @@
   }
 }
 
-.swatch.color {
-  // 20px for swatch spacing; 14px for margin bottom
-  margin-bottom: (14px - 20px);
-}
+// .swatch.color {
+//   // 20px for swatch spacing; 14px for margin bottom
+//   margin-bottom: (14px - 20px);
+// }
 
 #product-add {
   margin-top: 0;
