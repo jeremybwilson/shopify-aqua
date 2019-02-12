@@ -2171,9 +2171,6 @@ $(document).ready(function() {
       tpl: {
         wrap : fancybox_markup,
       },
-      helpers: {
-        overlay: null
-      },
       openEffect: 'elastic',
       closeEffect: 'fade'
     });
