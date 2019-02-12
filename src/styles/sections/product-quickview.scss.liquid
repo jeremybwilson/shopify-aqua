@@ -24,8 +24,14 @@
 	}
 
 	.fancybox-close {
-		top: 10px;
-		right: 10px;
+		top: 25px;
+		right: 40px;
+		transform: rotate( 90deg );
+
+		&:before {
+			font-family: $sans;
+			font-weight: $font-weight--book;
+		}
 	}
 
 
@@ -49,15 +55,16 @@
 		margin-top: 0;
 
 		.product-details--top {
+			position: relative;
 			width: 100%;
 			margin: 0;
-			padding: 20px 0 40px;
+			padding: 20px 0 10px;
 		}
 
 
 		// IMAGES : LEFT SIDE : Left side of UI modal that holds image viewer
 		#product-photos {
-			max-height: 470px;
+			max-height: 100%;
 			width: 500px;
 
 			.react-badge {
@@ -84,6 +91,9 @@
 			}
 
 			#thumbnail-gallery {
+				margin: -30px 0 0;
+				width: 82px;
+
 				.bx-viewport {
 					height: 311px !important; // fancybox is an inline style nazi...
 				}
@@ -111,10 +121,10 @@
 				h1 {
 					@include h6;
 					@include fontSize( 26px );
-					font-weight: $font-weight--black;
+					font-weight: $font-weight--medium;
 					color: $color--primary-1;
 				    text-transform: uppercase;
-					letter-spacing: 0.2em; //Matches mock, seems big but what they approved lol
+					letter-spacing: 12px; //Matches mock, seems big but what they approved lol
 				}
 
 				.desc {
@@ -144,12 +154,22 @@
 							width: 97px; //So half sizes = whole size boxes
 						}
 					}
+
+					// BUTTON : Add to Cart
+					.AddtoCart {
+						@include fontSize( 16px );
+					    font-weight: $font-weight--medium;
+					    line-height: 44px;
+					    outline: none;
+					    height: 44px;
+					}
 				}
 
 				// "View Full Details" Link
 				a.full-click {
 					@include h7;
-					@include fontSize( 16px );
+					@include fontDim( 14px, 14px, 2px );
+					font-weight: $font-weight--medium;
 					color: $color--primary-1;
 					text-decoration: underline;
 					transition: color 0.25s ease-in-out;
@@ -165,13 +185,18 @@
 				.product-desc {
 				    display: none;
 				}
+
+				.current-option {
+					text-transform: capitalize;
+				}
 			}
 		}
 
 		// 
 
 		// REVIEWS : Hide the reviews on quickview
-		.accordion--product-review {
+		.accordion--product-review,
+		.product-details--reviews {
 			display: none;
 		}
 	}
