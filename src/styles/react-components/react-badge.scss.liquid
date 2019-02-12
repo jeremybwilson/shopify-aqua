@@ -70,11 +70,11 @@ $badgeSizeDesktop: 72px;
     	color: $textColor;
 
         &.tiny { // (A.) 11+ chars -- (B.) Longest word 7+ chars
-            @include fontSize( 8px ); 
+            @include fontSize( 10px ); 
             line-height: 0.75rem; // rem so font-sizing wont affect spacing
         }
         &.small { // (A.) 7-10 Chars -- (B.) Longest less than 7 chars
-            @include fontSize( 9px );
+            @include fontSize( 10px );
             line-height: 0.85rem; 
         }
         &.medium { // 4-6 Letters
@@ -87,11 +87,11 @@ $badgeSizeDesktop: 72px;
 
         @include mq( 'lap-and-up' ) {
             &.tiny { // (A.) 11+ chars -- (B.) Longest word 7+ chars
-                @include fontSize( 11px ); 
+                @include fontSize( 12px ); 
                 line-height: 0.9rem;
             }
             &.small { // (A.) 7-10 Chars -- (B.) Longest less than 7 chars
-                @include fontSize( 12px );
+                @include fontSize( 13px );
                 line-height: 0.95rem; 
             }
             &.medium { // 4-6 Letters

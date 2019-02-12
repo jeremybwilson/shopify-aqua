@@ -102,7 +102,7 @@
 
   <!-- Favicons
 ================================================== -->
-  {% if settings.favicon %}
+  {% if settings.favicon != blank %}
     <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x' }}">
   {% endif %}
 

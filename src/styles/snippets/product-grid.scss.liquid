@@ -101,12 +101,29 @@ $loadMoreBgHover: {{ settings.collection_load_more_bg_hover }};
 
         // PRODUCT BADGES : React-Badges component rendering badges based on product tags
         .react-badge {
+
+            // ICON type badges (like waterproof logo)
+            .item-badge-icon {
+                width: 55px;
+                right: 5px;
+                top: 5px;
+
+                @include mq( 'tablet-and-up' ) {
+                    top: 20px;
+                }
+
+                @include mq( 'lap-and-up' ) {
+                    top: 30px;
+                    width: 84px;
+                }
+            }
+
             .item-badge {
                 top: 10px; //Adjustments for collection grid
                 right: 20px;
 
                 &.diamond {
-                    top: 30px;
+                    top: 20px;
                 }
 
                 // TABLET : Portrait
