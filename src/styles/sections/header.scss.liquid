@@ -756,9 +756,11 @@ body.js-drawer-open {
      * ---------------------------------------------- */
     // REVEAL : Show/Hide bar on clicking the search icon
     &.show-search-bar #nav-search-bar-wrapper {
-        opacity: 1;
-        z-index: 50;
-        pointer-events: all;
+        @include mq( 'lap-and-up' ) {
+            opacity: 1;
+            z-index: 5;
+            pointer-events: all;
+        }
     }
 
     // REVEAL : MOBILE SPECIFIC : had to cover extra case not in variables 
@@ -783,9 +785,14 @@ body.js-drawer-open {
         transition: all 0.25s ease-in-out;
         background: {{ settings.header_background }};
 
+        @include mq( 'lap-and-up' ) {
+            top: -1px;
+            box-shadow: 0px 1px 9px #8d8d8d;
+        }
+
         &.show-search-bar {
             opacity: 1;
-            z-index: 50;
+            z-index: 5;
             pointer-events: all;
         }
 
