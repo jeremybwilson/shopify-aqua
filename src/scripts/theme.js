@@ -2409,7 +2409,7 @@ theme.ProductForm = function (context, events) {
     }
 
     events.on("variantchange", function (variant) {
-      var variant_sku = variant.sku;
+      var variant_sku = variant.sku.split('-')[0];
       element.innerHTML = variant_sku;
     });
     events.on("variantunavailable", function (variant) {
