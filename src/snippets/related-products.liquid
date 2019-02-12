@@ -15,8 +15,21 @@
 {% endfor %}
 {% endif %}
 
+{% assign prod_limit = 3 %}
+{% assign show_money = true %}
+{% assign show_swatches = true %}
+
 {% if collection %}
-<h4 style="text-align: center;"><a href="{{ collection.url }}">{{ 'products.general.related' | t }}</a></h4>
+<div class="section-header">
+  <div class="section-heading">
+    <a href="{{ collection.url }}">{{ 'products.general.related' | t }}</a>
+  </div>
+</div>
+{% comment %} <h4><a href="{{ collection.url }}">{{ 'products.general.related' | t }}</a></h4> {% endcomment %}
+<div class="clear"></div>
+{% include 'product-carousel' with collection %}
+
+{% comment %}
 <ul class="related-products desktop-12">
   {% assign current_product_found = false %}
   {% for prod in collection.products limit: 5 %}
@@ -35,4 +48,5 @@
   {% endif %}
   {% endfor %}
 </ul>
+{% endcomment %}
 {% endif %}

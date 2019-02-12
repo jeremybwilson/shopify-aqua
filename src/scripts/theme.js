@@ -3010,6 +3010,9 @@ theme.Product = (function () {
       }
     });
 
+    // Related Products
+    this.initRelatedProducts()
+
     /* REACT - EXAMPLE #2
      *
      * PAGE-SPECIFIC COMPONENT :
@@ -3032,7 +3035,34 @@ theme.Product = (function () {
 
   }
 
-  Product.prototype = _.assignIn({}, Product.prototype, {});
+  Product.prototype = _.assignIn({}, Product.prototype, {
+    initRelatedProducts: function () {
+      if (!$('#related').length) {
+        return
+      }
+
+      var initHomepageCarousel = function(productCarousel) {
+        productCarousel.owlCarousel({
+          responsive: {
+            0 : {
+              items: 1
+            },
+            767 : {
+              items: 3
+            }
+          },
+          dots: true,
+          // nav: false,
+          // navText: [ $('.product-carousel--prev'), $('.product-carousel--next') ],
+          lazyLoad : true
+        });
+      };
+
+      initHomepageCarousel( $('.product-collection-carousel') );
+      const buildSwatches = require('./react-components/swatches/SwatchParent.js');
+      buildSwatches();
+    }
+  });
 
   return Product;
 })();

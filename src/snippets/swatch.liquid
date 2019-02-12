@@ -12,11 +12,9 @@
     {% comment %} Currently Selected Option {% endcomment %}
     <h6 class="current-option">{{ current_variant[current_option] }}</h6>
 
-    {% comment %}
-    {% if option_name contains 'size' and template != 'product.quick' %}
+    {% if option_name contains 'size' and template != 'product.quick' and section.settings.size_chart_show %}
       <a href="#size-chart--popup" class="fancybox size-chart--trigger">Size Chart</a>
     {% endif %}
-    {% endcomment %}
 
   </div><!-- .swatch-header-->
 
