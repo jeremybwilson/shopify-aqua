@@ -1199,7 +1199,7 @@ theme.Newsletter = (function() {
           {
             "email" : ui.textbox.val(),
             "lists" : {
-              "Master List" : 1 // list to add user to (must exist in Sailthru account)
+              "AQUA_Master_List" : 1 // list to add user to (must exist in Sailthru account)
               // "Anonymous" : 0 // list to remove user from (must exist in Sailthru account)
             },
             "source" : "web",
@@ -2031,11 +2031,16 @@ $(document).ready(function() {
            textbox: $( '#email-popup' ),
     genderButtonId: $( '#gender' ),
        birthDateId: $( '#birth-date' ),
+            daybox: $( '#day' ),
+          monthbox: $( '#month' ),
+           yearbox: $( '#year' ),
+           datebox: $( '#day, #month, #year' ),
             submit: $( '#subscribe--popup--button' ),
     errorContainer: $( '#subscribe--popup--form-response' ),
           errorMsg: $( '#subscribe--popup--error-response' ),
+       errorMsgTwo: $( '#subscribe--popup--error-response-birthdate' ),
         successMsg: $( '#subscribe--popup--success-response' ),
-      fadeOutGroup: $( '#subscribe--popup--form' )
+      fadeOutGroup: $( '#subscribe--popup--form, #subscribe--popup--error-response-birthdate' )
       // fadeOutGroup: $( '#subscribe--popup--form, #subscribe--popup')
     };
 
@@ -2050,7 +2055,19 @@ $(document).ready(function() {
         ui.formId.removeClass('has-error');
         ui.errorContainer.removeClass('has-error');
         ui.errorMsg.fadeOut();
+        ui.errorMsgTwo.fadeOut();
 
+      });
+
+      ui.textbox.on('click', (e) => {
+        e.preventDefault();
+      });
+
+      ui.datebox.on('change', () => {
+        // remove any pre-existing error class
+        ui.formId.removeClass('has-error');
+        ui.errorContainer.removeClass('has-error');
+        ui.errorMsgTwo.fadeOut();
       });
 
       // submit form
@@ -2059,28 +2076,44 @@ $(document).ready(function() {
 
         // validation code
         let validEmail = regexEmail.test(ui.textbox.val());
+        let selectedDay = ui.daybox.val();
+        let selectedMonth = ui.monthbox.val();
+        let selectedYear = ui.yearbox.val();
+
+        // assign value of to variable to check against any empty birthdate form fields
+        let validBirthDate = (selectedDay.length <= 0 || selectedMonth.length <= 0 || selectedYear.length <= 0) ? false : true;
+
         if(!validEmail) {
 
           // error state
-
           ui.formId.addClass('has-error');
           ui.errorContainer.addClass('has-error');
           ui.errorMsg.fadeIn();
+
+        } else if(!validBirthDate) {
+
+          // error state
+          // ui.formId.addClass('has-error');
+          ui.errorContainer.addClass('has-error');
+          ui.errorMsgTwo.fadeIn();
 
         } else {
 
           // success state
           Sailthru.integration("userSignUp",
           {
-            "email" : ui.textbox.val(),
+            "email" : ui.textbox.val(),  // pulls in the value of the email text input
             "lists" : {
-              "Master List" : 1 // list to add user to (must exist in Sailthru account)
+              "AQUA_Master_List" : 1 // list to add user to (must exist in Sailthru account)
               // "Anonymous" : 0 // list to remove user from (must exist in Sailthru account)
             },
             "source" : "web",
             "vars" : {
-             "gender" : ui.genderButtonId.val(),
-             "birth_date" : ui.birthDateId.val(),  // date format needs to be "YYYY-MM-DD"
+             "gender" : ui.genderButtonId.val(),    // pulls in the value of the gender radio button input
+             "BirthDay" : ui.daybox.val(),          // pulls in the value of the day dropdown input
+             "BirthMonth" : ui.monthbox.val(),      // pulls in the value of the month dropdown input
+             "BirthYear" : ui.yearbox.val()        // pulls in the value of the year dropdown input
+             // "birth_date" : ui.birthDateId.val()    // date format needs to be "YYYY-MM-DD"
             },
             "onSuccess" : function() {
               ui.fadeOutGroup.fadeOut( () => {
@@ -2100,7 +2133,6 @@ $(document).ready(function() {
   })();
 
   function email_popup_load() {
-
     var $popup = $('#subscribe--popup');
 
     if ( !$popup.length > 0 ) {
