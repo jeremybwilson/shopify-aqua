@@ -58,7 +58,7 @@
   </div>
   <div class="clear"></div>
 
-  {% if section.settings.show_sku %}
+  {% if section.settings.show_sku and product.url != '/products/gift-card' %}
     <div class="product-number">
       Item# <span class="product-sku">{{ current_variant.sku | split: '-' | first }}</span>
     </div>
