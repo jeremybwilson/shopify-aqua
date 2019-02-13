@@ -7,20 +7,17 @@
   {% else %}
   <script type="text/javascript">
     function remove_item( line_item ) {
-      console.log( 'calling remove_item' );
       
       function successCallback( cart ) {
-
         // REMOVE : Line item we removed via api
         $( '#cart-line-item-' + line_item ).remove();
         
         // UPDATE : Price now currently in the cart
         var cartTotal = calcCartTotal( cart.total_price );
         $( '#cart-page-price' ).html( cartTotal );
-        console.log( 'Just set priceEl inner html as ' + cartTotal );
       }
 
-     function calcCartTotal( total_price ) {
+      function calcCartTotal( total_price ) {
         // CONVERT : Change cart value to a whole dollar (or other currency) amount
         var dollar, cents, cartTotal, total = JSON.stringify( total_price );
         
@@ -71,6 +68,12 @@
                 <div class="cart-title">
                   {% if settings.vendor %}<p>{{ item.vendor }}</p>{% endif %}
                   {{ item.title }}
+                  <br/>
+
+                  {% comment %} :: Shoprunner Eligibility Badge :: {% endcomment %}
+                  {% if settings.shoprunner_enabled %}
+                    {% include 'shoprunner-cart-icon' %}
+                  {% endif %}
                 </div>
               {% assign property_size = item.properties | size %}
               {% if property_size > 0 %}
@@ -113,8 +116,7 @@
       </tbody>
     </table>
     
-    {% include 'borderfree-cart-paylod' %}
-
+    {% include 'borderfree-cart-payload' %}
 
     <div id="basket-right" class="desktop-4 tablet-6 mobile-3">
       <h4>
@@ -126,16 +128,16 @@
       <input type="submit" name="checkout" id="checkout" value="{{ 'cart.general.checkout' | t }}" class="button" />
       <div class="clear"></div>
       {% if additional_checkout_buttons %}
-      {{ content_for_additional_checkout_buttons }}
+        {{ content_for_additional_checkout_buttons }}
       {% endif %}
       <div class="clear"></div>
     </div>
 
     {% if settings.cart_notes_enable %}
-    <div id="cart-notes" class="desktop-12 mobile-3">
-      <label for="note"><strong>{{ 'cart.general.note' | t }}</strong></label>
-      <textarea name="note" id="note" rows="5" cols="60">{{cart.note}}</textarea>
-    </div>
+      <div id="cart-notes" class="desktop-12 mobile-3">
+        <label for="note"><strong>{{ 'cart.general.note' | t }}</strong></label>
+        <textarea name="note" id="note" rows="5" cols="60">{{cart.note}}</textarea>
+      </div>
     {% endif %}
 
   </form>

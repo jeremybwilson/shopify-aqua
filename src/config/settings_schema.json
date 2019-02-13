@@ -1598,5 +1598,38 @@
         "default": "4"
       }
     ]
+  },
+  {
+    "name": "ShopRunner",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "shoprunner_enabled",
+        "label": "Enable ShopRunner",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "shoprunner_retailer_id",
+        "label": "Retailer ID",
+        "info": "Can be found in the Shoprunner Integration app or via Shoprunner Customer Support"
+      },
+      {
+        "type": "select",
+        "id": "shoprunner_env",
+        "label": "Shoprunner Environment",
+        "options": [
+          {
+            "value": "dev",
+            "label": "Development / Staging"
+          },
+          {
+            "value": "prod",
+            "label": "Production"
+          }
+        ],
+        "default": "dev"
+      }
+    ]
   }
 ]

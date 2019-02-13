@@ -6,6 +6,7 @@
   handlebar.js template tags as available hooks.
 
 {% endcomment %}
+
 <script id="CartTemplate" type="text/template">
   {% raw %}
     <form action="/cart" method="post" novalidate class="cart ajaxcart">
@@ -67,6 +68,9 @@
                         </button>
                       </div>
                       <a class="ajaxcart__remove" data-line="{{line}}">Remove</a>
+
+                      {{!-- Shoprunner Badge Indicator --}}
+                      <div name="sr_cartProductDiv" class="sr-eligibility-badge"></div>
                     </div>
                   </div>
                 {{/if}}

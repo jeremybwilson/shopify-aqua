@@ -1,0 +1,109 @@
+  <!--ShopRunner Pixel-->
+{% for shipping_method in order.shipping_methods %}
+  {% assign shippingMethod = shipping_method.title %}
+{% endfor %}
+
+<script type="text/javascript">
+  function read_cookie(key){
+      var result;
+      return (result = new RegExp('(?:^|; )' + encodeURIComponent(key) + '=([^;]*)').exec(document.cookie)) ? (result[1]) : null;
+  }
+  var tokenId =  read_cookie('sr_token');
+
+  function _srOrderSubmit() {
+    if (Shopify.Checkout.hasOwnProperty('OrderStatus')) {
+
+      // Setup Subtotal
+      _shoprunner_com.cart = new Object();
+      
+      // Money in cents
+      _shoprunner_com.cart.srSubTotal = {{ checkout.subtotal_price | money_without_currency | remove: "," }};
+      _shoprunner_com.orderID = "{{ checkout.order.name }}";
+      _shoprunner_com.tokenID = sr_$.cookie.get('token');
+      _shoprunner_com.totalOrderAmount = {{ checkout.total_price | money_without_currency | remove: "," }}; // Don't send commas
+      _shoprunner_com.billingSubTotal = {{ checkout.subtotal_price | money_without_currency | remove: "," }}; // Don't send commas
+      _shoprunner_com.tenderType = "";
+      
+
+      {% for transaction in checkout.transactions %}
+        {% if transaction.kind == "authorization" or transaction.kind == "sale" %}
+          _shoprunner_com.tenderType += _shoprunner_com.tenderType ? ',' : '';
+          
+          {% if transaction.payment_details.credit_card_company == 'Visa' %}
+            _shoprunner_com.tenderType += "VI"
+          
+          {% elsif transaction.payment_details.credit_card_company == 'Mastercard' %}
+            _shoprunner_com.tenderType += "MC"
+          
+          {% elsif transaction.payment_details.credit_card_company == 'American Express' %}
+            _shoprunner_com.tenderType += "AX"
+          
+          {% elsif transaction.payment_details.credit_card_company == 'Discover' %}
+            _shoprunner_com.tenderType += "DI"
+          
+          {% elsif transaction.payment_details.credit_card_company == 'Diners Club' %}
+            _shoprunner_com.tenderType += "DC"
+          
+          {% else %}
+            _shoprunner_com.tenderType += "OT"
+          {% endif %}
+        {% endif %}
+        
+        {% if forloop.last %};{% endif %}
+      {% endfor %}
+
+      _shoprunner_com.confirmedProducts= "";
+      {% if checkout.shipping_method.handle contains 'ShopRunner' %}
+        _shoprunner_com.isMOVSatisfied = true;
+      
+      {% else %}
+        _shoprunner_com.isMOVSatisfied = false;
+      {% endif %}
+
+
+      // console.log("Shoprunner cart subtotal: " + _shoprunner_com.cart.srSubTotal);
+      // console.log("Shoprunner order submit");
+
+      {%- if checkout.shipping_method.handle == 'ShopRunner Carrier Service-shoprunner-0.00' -%}
+        {% assign mixed = 0 %}
+        {% for li in checkout.line_items -%}
+          {% unless li.product.tags contains 'shoprunner' %}//Unless{%assign mixed = 1%}{% endunless %}
+        {%- endfor %}
+
+        {% if mixed == 0 %}
+          {% assign method ='SR 2Day' %}
+        {% else %}
+          {% assign method = 'Ground' %}
+        {% endif %}
+      {% elsif checkout.shipping_method.handle contains '2nd' %}
+        {% assign method ='2Day' %}
+      {% elsif checkout.shipping_method.title contains 'Next Day' %}
+        {% assign method = 'Next Day' %}
+      {% else %}
+        {% assign method ='Other' %}
+      {%- endif -%}
+
+      {% for item in checkout.line_items %}
+        // SKU~Quantity~UnitPrice~ShipMethod~SREligibility~ItemAvailability
+        _shoprunner_com.confirmedProducts += '|{{ item.sku }}~{{ item.quantity }}~{{ item.price | money_without_currency | remove: "," }}~{{ method }}~{% if item.product.tags contains 'shoprunner' %}true{% else %}false{% endif %}~UNK';
+      {% endfor %}
+      _shoprunner_com.submitConfirmationData();
+
+    }
+  }
+  (function() {
+    var interval, count = 0;
+    // once the SR code has loaded, submit the order data.
+    function srTryToSubmit() {
+      if (typeof(_shoprunner_com) != 'undefined' && typeof(_shoprunner_com.submitConfirmationData) == 'function') {
+      clearInterval(interval);
+      _srOrderSubmit();
+      }
+      count += 1;
+      if(count > 10) // Retry for 5 seconds
+      clearInterval(interval);
+    }
+    // try to submit the order data every 500ms.
+    interval = setInterval(srTryToSubmit, 500);
+  })();
+</script>
