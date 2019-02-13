@@ -63,9 +63,7 @@
 
   <!-- JS
 ================================================== -->
-  {% comment %}
-    NOTE : Remove the .min on react to get better error messaging
-  {% endcomment %}
+  {% comment %} NOTE : Remove the .min on react to get better error messaging {% endcomment %}
   {{ 'react.min.js' | asset_url | script_tag }}
   {{ 'react-dom.min.js' | asset_url | script_tag }}
   {{ 'jquery-2.2.4.min.js' | asset_url | script_tag }}
@@ -86,7 +84,8 @@
   {%- if settings.show_multiple_currencies -%}
     {% include 'currencies' %}
   {%- endif -%}
-
+  
+  {% comment %} :: Instagram Feed :: {% endcomment %}
   {% if template contains 'index' %}
     {{ 'instafeed.js' | asset_url | script_tag }}
 	{% endif %}
@@ -96,7 +95,13 @@
     {% include 'appmate-wishlist-king' %}
   {% endif %}
 
+  {% comment %} :: Product Reviews :: {% endcomment %}
   {% include 'pr-review-master-script' %}
+
+  {% comment %} :: Shop Runner :: {% endcomment %}
+  {% if settings.shoprunner_enabled %}
+    {% include 'shoprunner-init-script' %}
+  {% endif %}
 
 
 

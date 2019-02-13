@@ -1,0 +1,161 @@
+{% comment %} 
+
+:: Shoprunner Initalization Script ::
+    - Load in the core theme 
+    - Supply retalier ID and environment info via settings_data.json
+
+{% endcomment %}
+
+
+<script id="shoprunner-init-script" type="text/javascript">
+    window._shoprunner_com = {};
+
+    /* =======================================================================
+    ======== Custom Diff Code to enable Shoprunner for Shopify Stores ========
+    ========================================================================*/
+    window._shoprunner_dom_loaded_callbacks = window._shoprunner_dom_loaded_callbacks || [];
+    window._shoprunner_script_loaded_callbacks = window._shoprunner_script_loaded_callbacks || [];
+    window._shoprunner_script_loaded = function () {
+        window._shoprunner_script_loaded_callbacks.forEach(function (callback) {
+            callback.apply(this);
+        }, this);
+    };
+
+
+    /* =======================================================================
+    ==== End of Custom Diff Code to enable Shoprunner for Shopify Stores =====
+    ========================================================================*/
+    (function () {
+        var _sr_cookie = {
+            get: function getCookie(name) {
+                var nameEq = name + '=';
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i];
+                    while (cookie.charAt(0) === ' ') {
+                        cookie = cookie.substring(1, cookie.length);
+                    }
+                    if (cookie.indexOf(nameEq) === 0) {
+                        return cookie.substring(nameEq.length, cookie.length);
+                    }
+                }
+                return null;
+            },
+            set: function setCookie(name, value, options) {
+                var expires = '';
+                if (options && typeof options.expirationMinutes === 'number') {
+                    var date = new Date();
+                    date.setTime(date.getTime() + (options.expirationMinutes * 60 * 1000));
+                    expires += '; expires=' + date.toUTCString();
+                }
+                document.cookie = name + '=' + value + expires + '; path=/';
+            },
+            clear: function clearCookie(name) {
+                this.set(name, '', { expirationMinutes: -1 })
+            }
+        };
+
+        window._sr_token = {
+            get: function getSrToken() {
+                return _sr_cookie.get('sr_token');
+            },
+            set: function setSrToken(value, expirationMinutes) {
+                _sr_cookie.set('sr_token', value, { expirationMinutes: expirationMinutes });
+            },
+            clear: function clearSrToken() {
+                _sr_cookie.clear('sr_token');
+            }
+        };
+
+        /* -----------------------------------------
+         * SR Configuration
+         * ----------------------------------------*/
+        {% assign retailer_id = settings.shoprunner_retailer_id %}
+        {% if retailer_id == blank %}
+            console.log( '[shoprunner_init] : Retailer ID was blank, please add one or disable shoprunner in settings.' );
+            {% assign retailer_id = 'retailer_id_missing' %}
+        {% endif %}
+
+        // Config Data
+        _shoprunner_com.version = 2.0;
+        _shoprunner_com.enabled = true;
+        _shoprunner_com.retailerID = "{{ retailer_id }}";
+        
+
+        // Application Proxy URL
+        _shoprunner_com.loginValidationURL = function(token, successCallback, failureCallback) {
+            $.ajax({
+                url: '/apps/shoprunner/validate?srtoken=' + token,
+                success: function (passedToken) {
+                    if (passedToken === ' ' || passedToken === '') {
+                        _sr_token.clear();
+                    } else if (passedToken) {
+                        _sr_token.set(passedToken, 20);
+                    } else {
+                        _sr_token.set(data);
+                    }
+                    successCallback();
+                },
+                error: function () {
+                    _sr_token.clear();
+                    failureCallback();
+                }
+            });
+        };
+
+        /*
+         * @const (Integer field)
+         * 1 - Development/Staging
+         * 2 - Production
+         *
+         * (Default = development)
+         */
+        {% assign env_id = 1 %}
+        {% if settings.shoprunner_env == "prod" %}
+            {% assign env_id = 2 %}
+        {% endif %}
+
+        _shoprunner_com.environmentID = {{ env_id }};
+
+
+        /* ----------------------------------------
+         * ShopRunner Express Checkout Configuration
+         * Change these values only if your site is Express Checkout enabled.
+         * If you are not sure, leave them as they are.
+         * ----------------------------------------
+         */
+        _shoprunner_com.checkout = {};
+        _shoprunner_com.checkout.enabled = false;
+        _shoprunner_com.checkout.partnerAPIEndPoint = '/api';
+
+
+        /* -------------------------------------- */
+        /* DO NOT MODIFY ANYTHING BELOW THIS LINE */
+        /* -------------------------------------- */
+
+        if (_shoprunner_com.enabled) {
+            _shoprunner_com.prefix = window.parent.document.location.protocol + "//";
+            _shoprunner_com.sr_jsContentURL = _shoprunner_com.prefix + "staging-content.shoprunner.com";
+
+            if (_shoprunner_com.environmentID == 2) {
+                _shoprunner_com.sr_jsContentURL = _shoprunner_com.prefix + "content.shoprunner.com";
+            }
+
+            var sr_CSS_URL = _shoprunner_com.sr_jsContentURL + "/" + _shoprunner_com.retailerID + ".css";
+            var sr_js_content_el_URL = _shoprunner_com.sr_jsContentURL + "/" + _shoprunner_com.retailerID + ".js";
+
+            setTimeout(function () {
+                var a = document.createElement("link");
+                a.href = sr_CSS_URL;
+                a.type = "text/css";
+                a.rel = "stylesheet";
+                document.getElementsByTagName("head")[0].appendChild(a);
+                var b = document.createElement("script");
+                b.onload = window._shoprunner_script_loaded;
+                b.src = sr_js_content_el_URL;
+                b.type = "text/javascript";
+                document.getElementsByTagName("head")[0].appendChild(b)
+            }, 1);
+        }
+    }());
+</script>
