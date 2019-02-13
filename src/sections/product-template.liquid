@@ -133,35 +133,41 @@
 
               FREE SHIPPING & RETURNS
               -----------------------------  
-
             {% endcomment %}
 
-            {% if section.settings.shipping_text != blank %}
+            {% if section.settings.shipping_text != blank or settings.shoprunner_enabled %}
               <hr class="product-hr">
               <dl id="free-shipping--accordion">
+                {% comment %} :: SHIPPING - Header :: {% endcomment %}
                 <dt id="free-shipping--accordion-header"><h3>{{ section.settings.shipping_header_text }}</h3><span class="opener">{% include 'svg-icon-caret-down' %}</span></dt>
+                
+                {% comment %} :: SHIPPING - Content :: {% endcomment %}
                 <dd id="free-shipping--accordion-content">
-                  <div>
-                    {{ section.settings.shipping_text }}
-                  </div>
+                  {% if settings.shoprunner_enabled %}
+                    {% include 'shoprunner-pdp' %}
 
-                  {% if section.settings.shipping_learn_more_link != blank or section.settings.shipping_show_account_link %}
-                    <div class="free-shipping-links">
-                      {% if section.settings.shipping_learn_more_link != blank %}
-                        <a href="{{ section.settings.shipping_learn_more_link }}" class="free-shipping-link">Learn More</a>
-                      {% endif %}
-                      {% if section.settings.shipping_show_account_link %}
-                        <a href="/account" class="free-shipping-link">
-                          {% if customer %}
-                            My Account
-                          {% else %}
-                            Sign In
-                          {% endif %}
-                        </a>
-                      {% endif %}
-                    </div>
+                  {% else %}
+                    <div class="shipping-text">{{ section.settings.shipping_text }}</div>
+
+                    {% if section.settings.shipping_learn_more_link != blank or section.settings.shipping_show_account_link %}
+                      <div class="free-shipping-links">
+                        {% if section.settings.shipping_learn_more_link != blank %}
+                          <a href="{{ section.settings.shipping_learn_more_link }}" class="free-shipping-link">Learn More</a>
+                        {% endif %}
+                        {% if section.settings.shipping_show_account_link %}
+                          <a href="/account" class="free-shipping-link">
+                            {% if customer %}
+                              My Account
+                            {% else %}
+                              Sign In
+                            {% endif %}
+                          </a>
+                        {% endif %}
+                      </div>
+                    {% endif %}
                   {% endif %}
                 </dd>
+
               </dl><!-- .free-shipping--accordion -->
               <hr class="product-hr">
             {% endif %}
@@ -509,7 +515,7 @@
       {
         "type": "header",
         "content": "Shipping Accordion"
-      },      
+      },
       {
         "type": "text",
         "id": "shipping_header_text",
