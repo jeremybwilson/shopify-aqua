@@ -377,6 +377,7 @@ body {
       text-transform: uppercase;
     }
   }
+
   .image-box {
     width: 100%;
 
@@ -389,20 +390,6 @@ body {
       width: 100%;
       max-width: none;
       height: auto;
-    }
-  }
-
-  [class*='--image_left '] {
-    .text-box {
-      @include justify-content(center);
-
-      h2, p {
-        text-align: left;
-      }
-
-      .banner-divider {
-        margin-left: 0;
-      }
     }
   }
 
@@ -422,10 +409,12 @@ body {
       }
     }
   }
+
   &.layout-desk--image_overlap_left, &.layout-desk--image_overlap_right {
 
     @include mq( 'tablet-and-up' ){
       width: 85%;
+      margin: 0 auto;
     }
     .text-box {
       z-index: 10;
@@ -440,6 +429,7 @@ body {
       }
     }
   }
+
   &.layout-desk--image_overlap_left {
 
     @include mq('lap-and-up'){
@@ -460,6 +450,79 @@ body {
         h2, p {
           text-align: right;
         }
+      }
+    }
+  }
+
+  &.layout-desk--image_overlap_left {
+    .image-box {
+      order: 1;
+    }
+    .text-box {
+      order: 2;
+    }
+  }
+  &.layout-desk--image_overlap_right {
+    .image-box {
+      order: 2;
+    }
+    .text-box {
+      order: 1;
+    }
+  }
+
+  &.layout-mob--image_top {
+    .image-box, .banner-image-box {
+      order: 1;
+    }
+    .text-box, .banner-text-box {
+      order: 2;
+    }
+  }
+
+  &.layout-mob--image_bottom {
+    .image-box, .banner-image-box {
+      order: 2;
+    }
+    .text-box, .banner-text-box {
+      order: 1;
+    }
+  }
+
+  @include mq( 'tablet-and-up' ) {
+    &.layout-desk--image_right {
+      .image-box, .banner-image-box {
+        order: 2;
+      }
+      .text-box, .banner-text-box {
+        order: 1;
+      }
+    }
+
+    &.layout-desk--image_left {
+      .image-box, .banner-image-box {
+        order: 1;
+      }
+      .text-box, .banner-text-box {
+        order: 2;
+      }
+    }
+
+    &.layout-desk--image_overlap_right {
+      .image-box, .banner-image-box {
+        order: 2;
+      }
+      .text-box, .banner-text-box {
+        order: 1;
+      }
+    }
+
+    &.layout-desk--image_overlap_left {
+      .image-box, .banner-image-box {
+        order: 1;
+      }
+      .text-box, .banner-text-box {
+        order: 2;
       }
     }
   }
@@ -500,94 +563,6 @@ body {
     }
     strong {
       color: $color--white;
-    }
-  }
-}
-
-/* Not sure what this was being used for - is currently blowing up reskinned About page .image-box class */
-// .content-module:first-child {
-//   .image-box {
-//     margin-top: -50px;
-//     padding-left: 15px;
-//     padding-right: 15px;
-
-//     @include mq('tablet-and-up') {
-//       margin-top: -70px;
-//       padding-left: 0;
-//       padding-right: 0;
-//     }
-//     @include mq('lap-and-up') {
-//       margin-top: -110px;
-//     }
-//   }
-// }
-
-.layout-desk--image_overlap_left {
-  .image-box {
-    order: 1;
-  }
-  .text-box {
-    order: 2;
-  }
-}
-.layout-desk--image_overlap_right {
-  .image-box {
-    order: 2;
-  }
-  .text-box {
-    order: 1;
-  }
-}
-
-.layout-mob--image_top {
-  .image-box, .banner-image-box {
-    order: 1;
-  }
-  .text-box, .banner-text-box {
-    order: 2;
-  }
-}
-.layout-mob--image_bottom {
-  .image-box, .banner-image-box {
-    order: 2;
-  }
-  .text-box, .banner-text-box {
-    order: 1;
-  }
-}
-
-@include mq('tablet-and-up') {
-  .layout-desk--image_right {
-    .image-box, .banner-image-box {
-      order: 2;
-    }
-    .text-box, .banner-text-box {
-      order: 1;
-    }
-  }
-  .layout-desk--image_left {
-    .image-box, .banner-image-box {
-      order: 1;
-    }
-    .text-box, .banner-text-box {
-      order: 2;
-    }
-  }
-
-  .layout-desk--image_overlap_right {
-    .image-box, .banner-image-box {
-      order: 2;
-    }
-    .text-box, .banner-text-box {
-      order: 1;
-    }
-  }
-  .layout-desk--image_overlap_left {
-    .image-box, .banner-image-box {
-      order: 1;
-    }
-    .text-box, .banner-text-box {
-      order: 2;
     }
   }
 }
