@@ -1,28 +1,53 @@
 {%- assign product_limit = 36 -%}   
 
-<div id="search-template" class="desktop-12 tablet-6 mobile-3" data-section-id="{{ section.id }}" data-section-type="search-template">
+<div id="search-template" class="" data-section-id="{{ section.id }}" data-section-type="search-template">
 
-  <h2 class="search-title">{{ 'general.search.title' | t }}: <span>"{{ search.terms }}"</span></h2>
-  <p class="bc-sf-search-result-number"></p>
+  <div class="grid-max-width">
+    <h2 class="search-title">{{ 'general.search.title' | t }}: <span>"{{ search.terms }}"</span></h2>
+    <p class="bc-sf-search-result-number"></p>
+  </div>
 
+  {% comment %}
   <div id="search-bar" class="desktop-12 mobile-3">
     <form action="/search" method="get">
       <input type="text" name="q" id="q" placeholder="{{ 'general.search.placeholder' | t }}" />
       {% include 'svg-icon-search' %}
     </form>
   </div>
+  {% endcomment %}
   
       
   {% comment %} :: FILTER + SORT - Desktop Component :: {% endcomment %}
   <div id="full-width-filter" class="filter-wrap-desktop">
-    <h4 class="filter-label">FILTER</h4>
-    <div id="bc-sf-filter-tree-h" class="filter-list-desktop"></div>
-    
-    <ul id="sortme" class="sort-options animate25">
-      <li id="bc-sf-filter-top-sorting" class="clearfix filter"></li>
-    </ul>
+
+    {% comment %} :: FILTER TOGGLE + HEADER :: Constrain wrap keeps it following max widths of grid row {% endcomment %}
+    <div class="constrain-container grid-max-width">
+
+      {% comment %} :: FILTER + SORT TOGGLE WRAP :: {% endcomment %}
+      <div class="filter-toggle-wrap">
+
+        {% comment %} :: TOGGLE : Filters :: {% endcomment %}
+        <h4 id="filter-button-desktop" class="filter-label">Filter By</h4>
+
+        {% comment %} :: TOGGLE : Sort List :: {% endcomment %}
+        <ul id="sortme" class="sort-options animate25">
+          <li id="bc-sf-filter-top-sorting" class="clearfix filter"></li>
+        </ul>
+      </div>
+
+      {% comment %} :: FILTER CONTAINER HEADER :: (Header on open filter panel) {% endcomment %}
+      <div id="filter-header-desktop">Filter By</div>
+    </div>
+
+    {% comment %} :: FILTER SETS - JS Overwrites .filter-list-desktop div content :: {% endcomment %}
+    <div class="filter-list-desktop-wrap">
+      <div id="bc-sf-filter-tree-h" class="filter-list-desktop grid-max-width"></div>
+      <button id="filter-apply-button-desktop">Apply</button>
+      <div id="filter-clear-button-desktop" onClick="clearAllFilterOptions(event)">Clear Filters</div>
+    </div>
+
   </div>
-  
+
 
   {% comment %} :: FILTER - Mobile Component :: {% endcomment %}
   <div id="filter-list-mobile-wrap">
@@ -31,7 +56,6 @@
       {% comment %} FILTER BUTTON {% endcomment %}
       <div id="filter-button-mobile">
         <div id="bc-sf-filter-tree-mobile"></div>
-        <div id="filter-button-arrow"></div>
       </div>
     </div>
 
@@ -42,26 +66,17 @@
 
 
   {% comment %} :: PRODUCT LIST :: {% endcomment %}
-  <div id="product-loop" data-bc-sort="{{ collection.default_sort_by }}">
-    {% assign products-per-row = section.settings.products-per-row %}
-    {% if collection.image %}
-      <div class="product-index {{ grid_item_width }}" data-alpha="{{ collection.title }}">     
-          {{ collection.image.src | collection_img_url: 'grande' | img_tag: collection_title }}     
-      </div>  
-    {% endif %}
-
-    {% for product in collection.products %}
-      <div class="product-index {{ grid_item_width }}" data-alpha="{{ product.title }}" data-price="{{ product.price }}">     
-        {% include 'product-listing' %}
-      </div>
-    {% endfor %}
+  <div class="grid-max-width">
+    <div id="product-loop" data-bc-sort="{{ collection.default_sort_by }}"></div>
   </div>
 
 
   {% comment %} :: PAGINATION :: {% endcomment %}
-  <div id="pagination" class="desktop-12 tablet-6 mobile-3">
-    <div id="bc-sf-filter-bottom-pagination"></div>
-    <div id="bc-sf-filter-load-more"></div>
+  <div class="grid-max-width">
+    <div id="pagination" class="desktop-12 tablet-6 mobile-3">
+      <div id="bc-sf-filter-bottom-pagination"></div>
+      <div id="bc-sf-filter-load-more"></div>
+    </div>
   </div>
 
 </div>
