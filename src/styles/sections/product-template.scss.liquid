@@ -630,3 +630,20 @@
   color: $color--general-grey;
   margin-bottom: 5px;
 }
+
+/* Related Products
+* ---------------------------------------------- */
+#related {
+  .section-heading {
+    @include fontSize(22px);
+    margin: 0;
+    width: 100%;
+    text-align: left;
+    color: $color--primary-1;
+    font-weight: $font-weight--medium;
+
+    @include mq('tablet-and-up') {
+      @include fontSize(25px);
+    }
+  }
+}

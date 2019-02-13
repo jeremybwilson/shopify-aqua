@@ -290,7 +290,9 @@
 </div>
 
 {% comment %} :: SIZE CHART MODAL :: {% endcomment %}
-{% include 'product-size-chart' %}
+{% if section.settings.size_chart_show %}
+  {% include 'product-size-chart' %}
+{% endif %}
 
 <style>
   {% if section.settings.thumbnails == 'right' %}
@@ -550,6 +552,12 @@
       {
         "type": "header",
         "content": "Size Chart"
+      },
+      {
+        "type": "checkbox",
+        "id": "size_chart_show",
+        "label": "Show size chart",
+        "default": false
       },
       {
         "type": "text",

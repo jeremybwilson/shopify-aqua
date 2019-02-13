@@ -7,16 +7,18 @@
   <div class="swatch-header">
     
     {% comment %} Option Name {% endcomment %}
+    {% if product.url == '/products/gift-card' %}
+    <h5>Amount</h5>
+    {% else %}
     <h5>{{ option.name }}</h5>
+    {% endif %}
     
     {% comment %} Currently Selected Option {% endcomment %}
     <h6 class="current-option">{{ current_variant[current_option] }}</h6>
 
-    {% comment %}
-    {% if option_name contains 'size' and template != 'product.quick' %}
+    {% if option_name contains 'size' and template != 'product.quick' and section.settings.size_chart_show %}
       <a href="#size-chart--popup" class="fancybox size-chart--trigger">Size Chart</a>
     {% endif %}
-    {% endcomment %}
 
   </div><!-- .swatch-header-->
 
@@ -25,6 +27,16 @@
   CYCLE 2 - Cycle through the available values (ie: Color->Black, Color-> Red) {% endcomment %}
 
   <div class="swatch-elements clearfix{% if color_swatch_options contains option_name %} color{% endif %}">
+    {% comment %} :: Take longest size class to align all swatches :: {% endcomment %}
+    {% assign sizeClass = 'short-label' %}
+    {% for value in option.values %}
+      {% assign sizeValueLength = value | size %}
+      {% if sizeValueLength > 4 %}
+        {% assign sizeClass = 'long-label' %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+
     {% for value in option.values %}
       {% unless value contains 'Gift Item' or value contains 'Free Gift' %}
         
@@ -83,6 +95,7 @@
 
 
         {% capture regular_swatch %}
+          {% comment %}
           {% assign sizeValueLength = value | size %}
           {% if sizeValueLength > 4 %}
             {% assign sizeClass = 'long-label' %}
@@ -91,6 +104,7 @@
             {% assign sizeClass = 'short-label' %}
 
           {% endif %}
+          {% endcomment %}
           <div class="swatch-element {{ sizeClass }} {% unless available %}soldout{% endunless %}">
             {{ radio_button }}
 

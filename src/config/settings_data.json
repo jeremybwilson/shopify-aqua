@@ -153,6 +153,10 @@
     "ajax_cart_method": "drawer",
     "ajax_cart_remove_text": "This will remove the item from your cart. Continue?",
     "ajax_cart_low_stock_text": "This item does not have enough stock to add to your cart.",
+    "share_facebook": true,
+    "share_twitter": true,
+    "share_pinterest": true,
+    "share_email": true,
     "twittername": "",
     "facebook_url": "\/\/www.facebook.com\/Aquatalia",
     "pinterest_url": "\/\/www.pinterest.com\/aquatalia",
@@ -160,6 +164,8 @@
     "youtube_url": "",
     "googleplus_url": "",
     "instagram_id": "aquatalia",
+    "newsletter_subscription_api_url": "https:\/\/api.sailthru.com",
+    "newsletter_email_service_provider_cid": "ad4b11c18c08f631a75f9702c24575ed",
     "popup": true,
     "email_image": "",
     "email_popup_title": "FRONT ROW &amp; CENTER",
@@ -169,8 +175,6 @@
     "email_popup_error": "Please enter a valid e-mail address",
     "email_popup_error_birthdate": "Please enter a valid birthdate",
     "email_popup_success": "<p>You have successfully joined our newsletter<\/p>",
-    "newsletter_subscription_api_url": "https:\/\/api.sailthru.com",
-    "newsletter_email_service_provider_cid": "ad4b11c18c08f631a75f9702c24575ed",
     "cookie_banner_mobile_text": "<p>This site uses cookies to simplify and improve your experience of this website. Further usage of the website implies acceptance of this usage.<\/p>",
     "cookie_banner_mobile_button": "http:\/\/www.aquatalia.com\/privacy-policy",
     "cookie_banner_mobile_button_text": "Learn More",
@@ -197,11 +201,9 @@
     "app_wk_col_bg_shape": "square",
     "app_wk_share_position": "top",
     "app_wk_products_per_row": "4",
-
     "shoprunner_enabled": true,
     "shoprunner_retailer_id": "sraqua",
     "shoprunner_env": "dev",
-
     "checkout_header_image": "",
     "checkout_logo_image": "shopify:\/\/shop_images\/checkout-logo.png",
     "checkout_logo_position": "left",
@@ -309,6 +311,7 @@
           "logo_weight": "bold",
           "account_icon": "text",
           "account_icon_text_value": "Sign In",
+          "account_show_user_name": false,
           "cart_icon": "text",
           "cart_icon_text_value": "Cart",
           "show_site_picker": false,
@@ -356,7 +359,7 @@
               "textbox_vertical": "center",
               "textbox_vertical_nudge": -40,
               "textbox_text_align": "center",
-              "textbox_color_text": "#FFFFFF",
+              "textbox_color_text": "#ffffff",
               "textbox_color_divider": "#969696",
               "textbox_color_bg": "#000000",
               "textbox_opacity": "1"
@@ -628,6 +631,7 @@
           "button_symbol_placement": "left",
           "image_side": "left",
           "image_width": 64,
+          "text_vertical": "center",
           "text_align": "center"
         }
       },
@@ -688,25 +692,25 @@
               "about_html_block": "<p>Established in 1994, Aquatalia offers the finest combination of fashion, quality and comfort in luxury footwear and is the first to mix distinctive Italian design with innovative weatherproof and stain-resistant technology. Bridging the gap between style and function, Aquatalia sets a new standard in fine footwear and accessories. Taking the brand to the next level, Aquatalia will continue to introduce category expansions, establish a retail presence and expand the brand globally.<\/p>"
             }
           },
-          "1539644589684": {
-            "type": "text_block",
-            "settings": {
-              "module_image": "shopify:\/\/shop_images\/mobile_banner_test.jpg",
-              "module_html_h2": "Versatile Style",
-              "module_html_p": "We've earned the <strong>Respect, Loyalty and trust<\/strong> of people who can't afford to take trust lightly.  Aquatalia transcends trend. \n Mixing sophistication, fasion, and versatility into Women's and Men's shoese and accessories.  Aquatalia designs are contemporary yet classic, elegant yet everyday.",
-              "module_image_color_scheme": "light",
-              "module_image_position_desktop": "image_right",
-              "module_image_position_mobile": "image_top"
-            }
-          },
           "1548737684033": {
             "type": "text_block",
             "settings": {
-              "module_image": "shopify:\/\/shop_images\/home-twin_promo--desktop-right.jpg",
+              "module_image": "shopify:\/\/shop_images\/pages-about_content_module_no_text_00.jpg",
               "module_html_h2": "Functional Luxury",
               "module_html_p": "Crafted in Italy, Aquatalia footwear adheres to the tradition of meticulous Italian shoemaking. \n Using fine leathers and sueses, Aquatalia transforms their texture and finish through an exclusive process that adds exceptional softness and the ultimate luxury of weatherproofing and stain-resistance.",
               "module_image_color_scheme": "light",
               "module_image_position_desktop": "image_overlap_left",
+              "module_image_position_mobile": "image_top"
+            }
+          },
+          "1539644589684": {
+            "type": "text_block",
+            "settings": {
+              "module_image": "shopify:\/\/shop_images\/pages-about_content_module_no_text_01.jpg",
+              "module_html_h2": "Versatile Style",
+              "module_html_p": "We've earned the <strong>Respect, Loyalty and trust<\/strong> of people who can't afford to take trust lightly.  Aquatalia transcends trend. \n Mixing sophistication, fasion, and versatility into Women's and Men's shoese and accessories.  Aquatalia designs are contemporary yet classic, elegant yet everyday.",
+              "module_image_color_scheme": "light",
+              "module_image_position_desktop": "image_right",
               "module_image_position_mobile": "image_top"
             }
           }
@@ -737,8 +741,8 @@
           "1537562942330": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/about-banner-transparent-nav-desk.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/about-banner-transparent-nav-mob.jpg",
+              "image": "shopify:\/\/shop_images\/about-banner-transparent-nav-desk_df2fc76c-0b2c-40ae-9f33-d42ded22b896.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/about-banner-transparent-nav-mob_dcc525c3-a59e-4c5e-93ed-8fc59ecf5192.jpg",
               "image_link": "",
               "heading": "About",
               "subheading": "",
@@ -1022,6 +1026,16 @@
           "live_chat_enabled": false,
           "live_chat_text": "Live chat",
           "live_chat_color_scheme": "light"
+        }
+      },
+      "page-landing-template": {
+        "type": "page-landing-template",
+        "settings": {
+          "page_title_h1": "",
+          "left_nav_enabled": true,
+          "interior_page_left_nav": "side-menu",
+          "live_chat_enabled": false,
+          "live_chat_text": "Live chat"
         }
       }
     },
