@@ -30,9 +30,17 @@
             fill: $transparentLandingFontColor !important;
             transition: all 0.25s ease-in-out;
         }
-        .nav-wishlist svg path {
-            stroke: $transparentLandingFontColor !important;
+        .nav-wishlist {
+            svg path {
+                stroke: $transparentLandingFontColor !important;
+            }
+
+            .wk-filled svg path {
+                fill: $transparentLandingFontColor !important;
+                fill-opacity: 1;
+            }
         }
+
         .icon-nav-mobile-menu .bar {
             background: $transparentLandingFontColor !important;
         }
@@ -71,9 +79,17 @@
                 fill: $navHeaderColor !important;
             }
 
-            .nav-wishlist svg path {
-                stroke: $navHeaderColor !important;
+            .nav-wishlist {
+                svg path {
+                    stroke: $navHeaderColor !important;
+                }
+
+                .wk-filled svg path {
+                    fill: $navHeaderColor !important;
+                    fill-opacity: 1;
+                }
             }
+                
 
             .icon-nav-mobile-menu .bar {
                 background: $navHeaderColor !important;
