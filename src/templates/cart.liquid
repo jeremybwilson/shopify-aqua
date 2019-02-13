@@ -113,8 +113,7 @@
       </tbody>
     </table>
     
-    {% include 'borderfree-cart-paylod' %}
-
+    {% include 'borderfree-cart-payload' %}
 
     <div id="basket-right" class="desktop-4 tablet-6 mobile-3">
       <h4>
@@ -126,16 +125,16 @@
       <input type="submit" name="checkout" id="checkout" value="{{ 'cart.general.checkout' | t }}" class="button" />
       <div class="clear"></div>
       {% if additional_checkout_buttons %}
-      {{ content_for_additional_checkout_buttons }}
+        {{ content_for_additional_checkout_buttons }}
       {% endif %}
       <div class="clear"></div>
     </div>
 
     {% if settings.cart_notes_enable %}
-    <div id="cart-notes" class="desktop-12 mobile-3">
-      <label for="note"><strong>{{ 'cart.general.note' | t }}</strong></label>
-      <textarea name="note" id="note" rows="5" cols="60">{{cart.note}}</textarea>
-    </div>
+      <div id="cart-notes" class="desktop-12 mobile-3">
+        <label for="note"><strong>{{ 'cart.general.note' | t }}</strong></label>
+        <textarea name="note" id="note" rows="5" cols="60">{{cart.note}}</textarea>
+      </div>
     {% endif %}
 
   </form>
