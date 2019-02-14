@@ -257,6 +257,7 @@
         <h3>Ratings &amp; Reviews</h3><span class="opener">{% include 'svg-icon-caret-down' %}</span>
       </dt>
       <dd class="accordion__content js-accordion-content">
+        <hr class="product-hr product-hr--large product-pr-hr">
         {% include 'pr-review-summary' %}
       </dd>
     </dl>
@@ -266,8 +267,9 @@
     {% comment %} BOTTOM CONTENT {% endcomment %}
 
     {% if section.settings.related_products == 'bottom' %}
-      <div class="row">
+      <div class="row related-products">
         <div id="related" class="bottom-related">
+          <hr class="product-hr product-hr--large">
           {% include 'related-products' %}
         </div>
       </div>
