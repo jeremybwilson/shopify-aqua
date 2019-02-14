@@ -40,8 +40,13 @@ body {
         }
 
         h2.slide-title {
-          display: none;
           @include fontDim(30px,40px,.05em);
+
+          @include mq('phone') {
+            position: relative;
+            top: 48vw;
+            color: #000;  
+          }
 
           @include mq('tablet-and-up') {
             display: block;
@@ -603,6 +608,10 @@ body {
   @include mq('lap-and-up') {
     padding: 110px 50px;
     width: 60%;
+  }
+
+  @include mq('phone') {
+    margin-top: 10vw;
   }
 
   h2 {
