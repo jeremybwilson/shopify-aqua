@@ -104,8 +104,13 @@
   @include mq('tablet-and-up') {
     width: 1350 / 1440 * 100%;
     max-width: 1350px;
-    // margin: 0 auto 72px;
+    margin-left: auto;
+    margin-right: auto;
   }
+}
+
+.row.related-products {
+  margin-bottom: 72px;
 }
 
 .product {
@@ -558,7 +563,7 @@
   }
 
   &.product-hr--large {
-    @include mq('lap-and-up') {
+    @include mq('tablet-and-up') {
       margin: 60px 0;
     }
   }
