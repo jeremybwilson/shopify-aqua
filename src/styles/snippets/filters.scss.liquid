@@ -88,6 +88,7 @@ $filterBarBorder: {{ settings.filter_bar_border_width }}px solid {{ settings.fil
                 margin-top: -5px;
                 content: ' ';
                 background: transparent;
+                cursor: pointer;
                 pointer-events: none; // so it doesn't become an unclickable area
                 z-index: 25; // sit on top of select arrow thats native
             }
@@ -132,6 +133,7 @@ $filterBarBorder: {{ settings.filter_bar_border_width }}px solid {{ settings.fil
                 .sort-label,
                 .styled-select {
                     margin: 0;
+                    cursor: pointer;
                 }
 
                 // SORT : Side Label
@@ -273,6 +275,7 @@ $filterBarBorder: {{ settings.filter_bar_border_width }}px solid {{ settings.fil
 
         @include mq( 'lap-and-up' ) {
             position: relative;
+            margin-left: 0;
             @include flexbox;
             @include justify-content( space-between );
             @include align-items( flex-start );
@@ -857,6 +860,16 @@ $filterBarBorder: {{ settings.filter_bar_border_width }}px solid {{ settings.fil
     }
 }
 
+// EMPTY LIST MESSAGES
+#bc-sf-filter-message {
+    margin: 0 auto;
+
+    #bc-sf-empty-results-reset,
+    #bc-sf-empty-results-back {
+        cursor: pointer;
+    }
+}
+
 // FILTER COUNT : # that goes next to the filter header
 .bc-sf-filter-block-title span {
 
@@ -867,6 +880,16 @@ $filterBarBorder: {{ settings.filter_bar_border_width }}px solid {{ settings.fil
             content: " (" attr(data-selected-filter-count) ") "; //Read data attr and display in after element content
             transition: opacity 0.25s ease-in-out;
             font-weight: $font-weight--medium;
+        }
+    }
+}
+
+
+// FILTER : CATEGORY : Special layout adjustments for better visual spacing
+#full-width-filter {
+    .bc-sf-filter-option-block-category {
+        @include mq( 'lap-and-up' ) {
+            margin-right: -20px; // Improve flexbox visual alignment a bit
         }
     }
 }
@@ -1007,6 +1030,10 @@ $filterBarBorder: {{ settings.filter_bar_border_width }}px solid {{ settings.fil
 #filter-list-mobile-wrap #bc-sf-filter-tree {
     .bc-sf-filter-option-block-color {
         padding-bottom: 30px; // makes room for "clear" button on mobile
+
+        @include mq( 'lap-and-up' ) {
+            margin-right: -20px; // So flexbox spacing looks more visually even
+        }
 
         // LIST : Filter set of swatch items
         ul {

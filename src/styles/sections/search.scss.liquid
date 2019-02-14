@@ -29,6 +29,7 @@ body.search {
 #search-template {
     position: relative;
     width: 100%;
+    min-height: 600px; // Prevent empty results pages from causing weird layout issues
     margin: 20px 0 0;
     float: none;
 
@@ -46,7 +47,12 @@ body.search {
     .search-title, 
     .bc-sf-search-result-number {
         @include h6;
+        padding-left: 15px;
         color: $color--primary-1;
+
+        @include mq( 'lap-and-up' ) {
+            padding-left: 0;
+        }
     }
 
     .search-title {
