@@ -666,6 +666,12 @@
 /* Related Products
 * ---------------------------------------------- */
 #related {
+  .section-header {
+    position: relative;
+    z-index: 2;
+    margin-bottom: -30px;
+  }
+
   .section-heading {
     @include fontSize(22px);
     margin: 0;
@@ -677,5 +683,11 @@
     @include mq('tablet-and-up') {
       @include fontSize(25px);
     }
+  }
+
+  .product-collection-carousel {
+    width: 100%;
+    margin-left: 0;
+    margin-bottom: 0;
   }
 }
