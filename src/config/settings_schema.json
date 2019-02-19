@@ -1274,6 +1274,12 @@
         "default": "ad4b11c18c08f631a75f9702c24575ed"
       },
       {
+        "type": "text",
+        "id": "newsletter_template_list_name",
+        "label": "Triggered Email (default) template",
+        "default": "Please enter the default triggered message to send on userSignUp"
+      },
+      {
         "type": "checkbox",
         "id": "popup",
         "label": "Show Join Mailing List Popup"

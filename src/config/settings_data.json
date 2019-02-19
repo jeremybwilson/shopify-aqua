@@ -166,6 +166,7 @@
     "instagram_id": "aquatalia",
     "newsletter_subscription_api_url": "https:\/\/api.sailthru.com",
     "newsletter_email_service_provider_cid": "ad4b11c18c08f631a75f9702c24575ed",
+    "newsletter_template_list_name": "",
     "popup": true,
     "email_image": "",
     "email_popup_title": "FRONT ROW &amp; CENTER",
