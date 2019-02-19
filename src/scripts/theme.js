@@ -965,7 +965,7 @@ theme.scripts.filterUtils = (function() {
         // SEARCH : APPEND : If any params match the keep regex, grab and append them to our built url (order wont matter)
         if ( currentParams.search( keepRgx ) > -1 ) {
           const params = currentParams.split( '&' );
-          const paramsToKeep = params.forEach( function (param) { 
+          const paramsToKeep = params.forEach( function (param) {
              if ( param.search( keepRgx ) > -1 ) {
                 queryParams += `&${param}`;
              }
@@ -1291,7 +1291,7 @@ theme.Newsletter = (function() {
     const $container = this.$container = $(container);
     const ui = {
            formId: $( '#footer-newsletter' ),
-          textbox: $( '#email' ),
+          textbox: $( '#email-footer' ),
            submit: $( '#button-footer-newsletter-submit' ),
          errorMsg: $( '#newsletter-error-response'),
        successMsg: $( '#newsletter-success-response')
@@ -1342,30 +1342,64 @@ theme.Newsletter = (function() {
             }
           });
 
-          // // success state
-          // zaius.subscribe({
-          //     list_id: 'newsletter',
-          //     email: ui.textbox.val()
-          //   },
-
-          //   // success state
-          //   function() {
-          //     ui.formId.fadeOut( () => {
-          //       ui.successMsg.fadeIn();
-          //     });
-          //   },
-
-          //   // fail state
-          //   function(error) {
-          //     console.log(error);
-          //   }
-          // );
         }
       });
     }
   }
   Newsletter.prototype = _.assignIn({}, Newsletter.prototype, {});
   return Newsletter;
+})();
+
+
+/*============================================================================
+  Account Registration (/account/login) page email capture
+==============================================================================*/
+
+theme.RegistrationEmailSignUp = (function() {
+  function RegistrationEmailSignUp(container) {
+
+    const $container = this.$container = $(container);
+    const ui = {
+        formId: $( '#create_customer' ),
+       textbox: $( '#email' ),
+        submit: $( '#account-registration-submit' )
+    };
+
+    console.log('We are inside the RegistrationEmailSignUp() function which means we found the right container!')
+
+    if ( ui.formId ) {
+
+      console.log('we are inside the form with an id value of \'create_customer\'!');
+
+      // SUBMIT : submit form event
+      ui.formId.submit( () => {
+        console.log('form submission triggered');
+
+        // relying on Shopify account registration page field validation
+        Sailthru.integration("userSignUp",
+        {
+          "email" : ui.textbox.val(),  // pulls in the value of the email text input
+          "lists" : {
+            "AQUA_Master_List" : 1 // list to add user to (must exist in Sailthru account)
+            // "Anonymous" : 0 // list to remove user from (must exist in Sailthru account)
+          },
+          "source" : "web",
+          "onSuccess" : function() {
+            console.log(`Successfully added new user to Sailthru list!`);
+          },
+          "onError" : function(error) {
+            console.log(`We encountered an issue signing you up. Please try again`);
+            console.log(error);
+          }
+        });
+
+      });
+
+    }
+  }
+
+  RegistrationEmailSignUp.prototype = _.assignIn({}, RegistrationEmailSignUp.prototype, {});
+  return RegistrationEmailSignUp;
 })();
 
 
@@ -3312,6 +3346,7 @@ $(document).ready(function() {
   var sections = new theme.Sections();
   sections.register('header-section', theme.Header);
   sections.register('newsletter-simple', theme.Newsletter);
+  sections.register('create-customer', theme.RegistrationEmailSignUp);
   sections.register('instagram', theme.Instagram);
   sections.register('tabbed-collections', theme.TabbedCollections);
   sections.register('featured-collection', theme.FeaturedCollection);
