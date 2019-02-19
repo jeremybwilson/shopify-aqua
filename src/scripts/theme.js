@@ -1373,6 +1373,8 @@ theme.RegistrationEmailSignUp = (function() {
 
       // SUBMIT : submit form event
       ui.formId.submit( () => {
+        debugger;
+
         console.log('form submission triggered');
 
         // relying on Shopify account registration page field validation
