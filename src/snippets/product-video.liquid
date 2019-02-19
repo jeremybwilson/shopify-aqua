@@ -92,8 +92,9 @@
   {% capture product_video_thumbnail %}
 
     <div class="product-thumbnail product-video-thumbnail active" data-image-id="video_thumbnail_id">
-      <span class="play-overlay">Play</span>
-      <span class="play-overlay-box"></span>
+      <span class="play-icon">
+        {% include 'svg-icon-play-arrow' %}
+      </span>
       <img class="{% if product_vid_type == 'vimeo' %} vimeo-thumbnail {% else %} lazyload lazyload-fade {% endif %} {% if product_vid_type == 'youtube' %} youtube-thumbnail {% endif %}"
         data-src="{{ product_video_thumbnail }}" />
     </div>
