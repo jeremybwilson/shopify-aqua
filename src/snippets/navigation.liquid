@@ -13,7 +13,9 @@
             
             {% comment %} :: MEGA-MENU - WRAPPER :: {% endcomment %}
             {% capture megalink %}
-              <li class="nav-primary-link nav-mega-menu {{ link.title | replace: ' ', '-' | downcase }} dropdown has_sub_menu" aria-haspopup="true" aria-expanded="false">
+              <li class="nav-primary-link nav-mega-menu {{ link.title | replace: ' ', '-' | downcase }} dropdown has_sub_menu" 
+                aria-haspopup="true" 
+                aria-expanded="false">
 
 
                 {% comment %} :: CATEGORY HEADER :: {% endcomment %}
@@ -22,7 +24,8 @@
 
                 {% comment %} :: MEGA-MENU - LIST :: {% endcomment %}
                 <ul class="megamenu">
-                  <div class="mega-container">
+                  <div class="mega-container" 
+                    data-has-mega-image="{% if block.settings.nav_image != blank %}true{% else %}false{% endif %}">
 
 
                     {% comment %} :: MEGA-MENU - LINKS :: {% endcomment %}
