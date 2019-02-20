@@ -261,25 +261,17 @@
           "nav-item-1": {
             "type": "mega_menu",
             "settings": {
-              "menu_item": "Women",
-              "nav_image": "shopify:\/\/shop_images\/nav-megamenu-1.jpg",
-              "nav_image_link": "shopify:\/\/collections\/women",
-              "nav_image_title": "New Arrivals",
-              "nav_image_sub_title": "Shop Now"
+              "menu_item": "Women"
             }
           },
           "nav-item-2": {
             "type": "mega_menu",
             "settings": {
-              "menu_item": "Men",
-              "nav_image": "shopify:\/\/shop_images\/nav-megamenu-2.jpg",
-              "nav_image_link": "shopify:\/\/collections\/men",
-              "nav_image_title": "New Arrivals",
-              "nav_image_sub_title": "Shop Now"
+              "menu_item": "Men"
             }
           },
           "nav-item-3": {
-            "type": "simple_menu",
+            "type": "mega_menu",
             "settings": {
               "menu_item": "Accessories"
             }
@@ -345,31 +337,8 @@
       },
       "collection-template": {
         "type": "collection-template",
-        "blocks": {
-          "Women": {
-            "type": "collection_banner",
-            "settings": {
-              "collection_handle": "women",
-              "banner_image_desktop": "shopify:\/\/shop_images\/collection_header_test.jpg",
-              "banner_image_mobile": "shopify:\/\/shop_images\/mobile_banner_test.jpg",
-              "banner_text_header": "BOOTIES",
-              "banner_text_body": "Sed ut predciptalis unde omnis iste natus sit voluptatem accusatium dolorem.",
-              "banner_text_divider": true,
-              "textbox_horizontal": "left",
-              "textbox_horizontal_nudge": 78,
-              "textbox_vertical": "center",
-              "textbox_vertical_nudge": -40,
-              "textbox_text_align": "center",
-              "textbox_color_text": "#ffffff",
-              "textbox_color_divider": "#969696",
-              "textbox_color_bg": "#000000",
-              "textbox_opacity": "1"
-            }
-          }
-        },
-        "block_order": [
-          "Women"
-        ],
+        "blocks": {},
+        "block_order": [],
         "settings": {
           "grid": 3,
           "rows": 8,
