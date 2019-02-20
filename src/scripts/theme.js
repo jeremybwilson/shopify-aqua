@@ -1360,9 +1360,11 @@ theme.RegistrationEmailSignUp = (function() {
 
     const $container = this.$container = $(container);
     const ui = {
-        formId: $( '#create_customer' ),
-       textbox: $( '#email' ),
-        submit: $( '#account-registration-submit' )
+            formId: $( '#create_customer' ),
+      firstnamebox: $( '#first_name' ),
+       lastnamebox: $( '#last_name' ),
+           textbox: $( '#email' ),
+            submit: $( '#account-registration-submit' )
     };
 
     console.log('We are inside the RegistrationEmailSignUp() function which means we found the right container!')
@@ -1371,11 +1373,44 @@ theme.RegistrationEmailSignUp = (function() {
 
       console.log('we are inside the form with an id value of \'create_customer\'!');
 
+      //var apiKey = '8ce644caeb555d4f271743e4c8caf0f2',
+      //  apiSecret = '79eca4de22ed3944996153dc77c3abdc',
+      // sailthru = require('sailthru-client').createSailthruClient(apiKey, apiSecret);
+      // console.log(`sailthru variable contains: ${sailthru}`);
+
+      // var version = require('sailthru-client').VERSION;
+      // console.log(`Here is the sailthru-client version: ${version}`);
+
       // SUBMIT : submit form event
       ui.formId.submit( () => {
-        debugger;
 
+        debugger;
         console.log('form submission triggered');
+
+        const first_name = ui.firstnamebox.val();
+        const last_name = ui.lastnamebox.val();
+        const email = ui.textbox.val();
+
+        if(first_name.length <= 0){
+          console.log('first_name field length was 0')
+        } else {
+          console.log(first_name);
+          console.log(`User first name is: ${first_name}`);
+        }
+
+        if(last_name.length <= 0){
+          console.log('last_name field length was 0')
+        } else {
+          console.log(last_name);
+          console.log(`User last name is: ${last_name}`);
+        }
+
+        if(email.length <= 0){
+          console.log('email field length was 0')
+        } else {
+          console.log(email);
+          console.log(`User email is: ${email}`);
+        }
 
         // relying on Shopify account registration page field validation
         Sailthru.integration("userSignUp",
@@ -1384,6 +1419,10 @@ theme.RegistrationEmailSignUp = (function() {
           "lists" : {
             "AQUA_Master_List" : 1 // list to add user to (must exist in Sailthru account)
             // "Anonymous" : 0 // list to remove user from (must exist in Sailthru account)
+          },
+          "vars" : {
+            "first_name" : ui.firstnamebox.val(),        // pulls in the value of the first_name field
+            "last_name" : ui.lastnamebox.val()          // pulls in the value of the last_name field
           },
           "source" : "web",
           "onSuccess" : function() {
@@ -1394,6 +1433,37 @@ theme.RegistrationEmailSignUp = (function() {
             console.log(error);
           }
         });
+
+        // var baseUrl = 'https://api.sailthru.com/user';
+        // console.log(`Here is the POST'ed form data`, ui.formId.serialize());
+        // var formData = ui.formId.serialize();
+        // formData.replace('thx=', "thx='" + window.location.href + "'");
+        // formData = formData.replace( 'thx=', `thx='${window.location.href}'` );
+        // formData = formData.replace( 'err=', `err='${window.location.href}'` );
+        // formData = formData.replace( 'usub=', `usub='${window.location.href}'` );
+        // const fetch = require( 'isomorphic-fetch' );
+
+        // Ajax to submit (post) to Sailthru (user) API
+        // fetch( baseUrl , {
+        //   method: 'POST',
+        //   body: formData,
+        //   headers: {
+        //     'Content-Type': 'application/x-www-form-urlencoded'
+        //   }
+        // })
+        // .then( res => {
+        //   if ( res.status >= 400 ) {
+        //       throw new Error( "Bad res from server" );
+        //   }
+        //   return res.json();
+        // })
+        // .then( productJson => {
+        //   return productJson;
+        // })
+        //   .catch( error => {
+        //     const theError = error && error.message ? error.message : error || 'Request failed for an unknown reason with no error object returned..';
+        //     console.log( `[ new user registration -- subscribe() ] : Failed request :\n${ theError }` );
+        // });
 
       });
 
