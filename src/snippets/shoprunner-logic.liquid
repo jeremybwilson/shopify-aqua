@@ -1,0 +1,275 @@
+<!-- THIS FILE IS "sr_logic.liquid" but didn't follow name convention so renamed it, just fyi -->
+
+{{ 'shoprunner.scss.css' | asset_url | stylesheet_tag }}
+{% include 'shoprunner-init-script' %}
+
+<div id="shy">&shy;</div>
+<div id="sr_form" style="display:none!important;"></div>
+
+<script>
+    if (!Array.prototype.includes) {
+        Object.defineProperty(Array.prototype, 'includes', {
+            value: function(searchElement, fromIndex) {
+                if (this == null) {
+                    throw new TypeError('"this" is null or not defined');
+                }
+
+                var o = Object(this);
+                var len = o.length >>> 0;
+                if (len === 0) {
+                    return false;
+                }
+                var n = fromIndex | 0;
+                var k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
+                while (k < len) {
+                    if (o[k] === searchElement) {
+                        return true;
+                    }
+                    k++;
+                }
+                return false;
+            }
+        });
+    }
+    if (!Array.prototype.find) {
+        Object.defineProperty(Array.prototype, 'find', {
+            value: function(predicate) {
+                if (this == null) {
+                    throw new TypeError('"this" is null or not defined');
+                }
+                var o = Object(this);
+                var len = o.length >>> 0;
+                if (typeof predicate !== 'function') {
+                    throw new TypeError('predicate must be a function');
+                }
+                var thisArg = arguments[1];
+                var k = 0;
+                while (k < len) {
+                    var kValue = o[k];
+                    if (predicate.call(thisArg, kValue, k, o)) {
+                        return kValue;
+                    }
+                    k++;
+                }
+                return undefined;
+            }
+        });
+    }
+    var _sr_cart;
+    $(function(){
+        _shoprunner_script_loaded_callbacks.push(function(){
+            _setup_shoprunner_properties();
+            _srOrderSubmit();
+        })
+
+    });
+    var no_shipping_methods =
+        '<noscript><meta http-equiv="refresh" content="1; url=?step=shipping_method"></noscript>'+
+        '<div class="content-box blank-slate" data-poll-refresh="[data-step=shipping_method]" data-poll-target="' + window.location.pathname + '/shipping_rates?step=shipping_method">' +
+            '<svg class="blank-slate__icon icon icon--spinner" width="32" height="32" xmlns="http://www.w3.org/2000/svg"><path d="M32 16c0 8.837-7.163 16-16 16S0 24.837 0 16 7.163 0 16 0v2C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14h2z" /></svg>' +
+            '<p>Please wait while we fetch available shipping rates…</p>' +
+        '</div>';
+
+    function _get_shipping_form(callback){
+        $.ajax({
+            callback: callback,
+            url: location.origin + location.pathname + "?step=contact_information",
+            dataType: 'html',
+            success: function(html){
+                var start = html.indexOf('<div class="main__content">');
+                var end = html.indexOf('<div class="main__footer">') - 1;
+                var string = html.substr(start, end);
+                var form = $(string).find('.step[data-step=contact_information] form');
+                this.callback.apply(this, form);
+            },
+            error: function(xhr, status){
+                debugger;
+            }
+        })
+    }
+    function _update_shipping_address(callback){
+        var form_data;
+        var old_address;
+        _get_shipping_form(function(form) {
+            $('#sr_form').html(form.outerHTML);
+            old_address = $('#sr_form').find('#checkout_shipping_address_address1').val();
+            $('#sr_form').find('#checkout_shipping_address_address1').val(old_address + $('#shy').text());
+            $.post(form.action, $('#sr_form form').serialize(), function(e){
+                PollingRefresh.init();
+            })
+        })
+    }
+
+    function _process_sr_data(cart){
+        _sr_cart = cart;
+        var cookie_sr_token = sr_$.cookie.get('token');
+        var li_with_existing_sr_token = _sr_cart.items.find(function(li){
+            if (!li.properties || !li.properties._sr_token || li.properties._sr_token == '') return false;
+            return true;
+        });
+        var existing_sr_token = null;
+        if (li_with_existing_sr_token) existing_sr_token = li_with_existing_sr_token.properties._sr_token;
+        if (existing_sr_token && !cookie_sr_token){
+            var changing_item = li_with_existing_sr_token;
+            var new_props = jQuery.extend(true, {}, changing_item.properties);
+            if (!new_props) new_props = {};
+            new_props._sr_token = "null"
+            // Remove it
+            $.ajax({
+                url: '/cart/change.js',
+                type: 'post',
+                data: {
+                    id: changing_item.key,
+                    quantity: changing_item.quantity,
+                    properties: new_props,
+                },
+                dataType: 'json',
+                success: function(cart){
+                    $('.section.section--shipping-method .section__content').html(no_shipping_methods);
+                    _update_shipping_address();
+                },
+                error: function(xhr, message){
+                    debugger;
+                },
+            });
+        }
+        else if (existing_sr_token != cookie_sr_token){
+            var changing_item = li_with_existing_sr_token;
+            if (!changing_item) changing_item = _sr_cart.items[0];
+            if (!li_with_existing_sr_token)
+            // Set it
+            var new_props = jQuery.extend(true, {}, changing_item.properties);
+            if (!new_props) new_props = {};
+            new_props._sr_token = cookie_sr_token;
+            $.ajax({
+                url: '/cart/change.js',
+                type: 'post',
+                data: {
+                    id: changing_item.key,
+                    quantity: changing_item.quantity,
+                    properties: new_props,
+                },
+                dataType: 'json',
+                success: function(cart){
+                    $('.section.section--shipping-method .section__content').html(no_shipping_methods);
+                    _update_shipping_address();
+                },
+                error: function(xhr, message){
+                    debugger;
+                },
+            });
+        }
+    }
+    function _setup_shoprunner_properties(){
+        $.get('/cart.json', function(cart){
+            _process_sr_data(cart);
+        });
+    }
+    function _srOrderSubmit() {
+        var checkout_step = ((Shopify || {}).Checkout || {}).step
+        if (checkout_step != 'thank_you') return;
+        {% if checkout and checkout.shipping_method %}
+            // Setup Subtotal
+            _shoprunner_com.cart = new Object();
+            // Money in cents
+            _shoprunner_com.cart.srSubTotal = {{ checkout.subtotal_price | money_without_currency | remove: "," }};
+            _shoprunner_com.orderID = "{{ checkout.order.name }}";
+            _shoprunner_com.tokenID = sr_$.cookie.get('token');
+            _shoprunner_com.totalOrderAmount = {{ checkout.total_price | money_without_currency | remove: "," }}; // Don't send commas
+            _shoprunner_com.billingSubTotal = {{ checkout.subtotal_price | money_without_currency | remove: "," }}; // Don't send commas
+            _shoprunner_com.tenderType = "";
+
+            {% for transaction in checkout.transactions %}
+                {% if transaction.kind == "authorization" or transaction.kind == "sale" %}
+                    _shoprunner_com.tenderType += _shoprunner_com.tenderType ? ',' : '';
+                    {% if transaction.payment_details.credit_card_company == 'Visa' %}
+                        _shoprunner_com.tenderType += "VI"
+                    {% elsif transaction.payment_details.credit_card_company == 'Mastercard' %}
+                        _shoprunner_com.tenderType += "MC"
+                    {% elsif transaction.payment_details.credit_card_company == 'American Express' %}
+                        _shoprunner_com.tenderType += "AX"
+                    {% elsif transaction.payment_details.credit_card_company == 'Discover' %}
+                        _shoprunner_com.tenderType += "DI"
+                    {% elsif transaction.payment_details.credit_card_company == 'Diners Club' %}
+                        _shoprunner_com.tenderType += "DC"
+                    {% else %}
+                        _shoprunner_com.tenderType += "OT"
+                    {% endif %}
+                {% endif %}
+                {% if forloop.last %};{% endif %}
+            {% endfor %}
+
+            _shoprunner_com.confirmedProducts = "";
+            {% comment %}
+            {% if checkout.shipping_method.handle contains 'ShopRunner' %}
+            _shoprunner_com.isMOVSatisfied = true;
+            {% else %}
+            _shoprunner_com.isMOVSatisfied = false;
+            {% endif %}
+            {% endcomment %}
+
+            {%- if checkout.shipping_method.handle == 'ShopRunner Carrier Service-shoprunner-0.00' -%}
+                {% assign mixed = 0 %}
+                {% for li in checkout.line_items -%}
+                    {% unless li.product.tags contains 'shoprunner' %}//Unless{%assign mixed = 1%}{% endunless %}
+                {%- endfor %}
+
+                {% if mixed == 0 %}
+                    {% assign method ='SR 2Day' %}
+                {% else %}
+                    {% assign method = 'Ground' %}
+                {% endif %}
+            {% elsif checkout.shipping_method.handle contains '2nd' %}
+                {% assign method ='2Day' %}
+            {% elsif checkout.shipping_method.title contains 'Next Day' %}
+                {% assign method = 'Next Day' %}
+            {% else %}
+                {% assign method ='Other' %}
+            {%- endif -%}
+
+            {% for item in checkout.line_items %}
+                // SKU~Quantity~UnitPrice~ShipMethod~SREligibility~ItemAvailability
+                _shoprunner_com.confirmedProducts += '|{{ item.sku }}~{{ item.quantity }}~{{ item.price | money_without_currency | remove: "," }}~{{ method }}~{% if item.product.tags contains 'shoprunner' %}true{% else %}false{% endif %}~UNK';
+            {% endfor %}
+            _shoprunner_com.submitConfirmationData();
+        {% endif %}
+    }
+    var products = {
+        {% for li in checkout.line_items -%}
+        {{ li.product_id }}: {{ li.product.tags | json }},
+        {%- endfor %}
+    };
+    function addShoprunnerDivs(){
+        if ($('.order-summary__section__content [name="sr_headerDiv"]').length == 0){
+            $('.order-summary__section__content').append('<div style="margin-bottom: 20px;" name="sr_headerDiv"></div>');
+        }
+        $.each(products, function(key, val) {
+            if ($.inArray('shoprunner', val) >= 0){
+                if ($('[data-order-summary-section="line-items"] .product[data-product-id="'+key+'"] .product__description [name=sr_cartProductDiv]').length == 0){
+                    $('[data-order-summary-section="line-items"] .product[data-product-id="'+key+'"] .product__description').append('<div name="sr_cartProductDiv"></div>')
+                }
+            }
+        });
+        var span = $('[data-shipping-method*="shoprunner"] label span').first();
+        if (span) {
+            span.html('<div name="sr_shippingOptionDiv"></div>');
+        }
+        if (typeof sr_$ !== "undefined") {
+            sr_$.renderDivs();
+        }
+    }
+    if (window.Behaviour){
+        var _old_Behaviour_prototype_updatePage = Behaviour.prototype.updatePage;
+        Behaviour.prototype.updatePage = function(){
+            _old_Behaviour_prototype_updatePage.apply(this, arguments);
+            addShoprunnerDivs();
+        }
+        addShoprunnerDivs();
+        $(document.body).on('sr_sign_in', function(data){
+            _setup_shoprunner_properties();
+        });
+        $(document.body).on('sr_sign_out', function(data){
+            _setup_shoprunner_properties();
+        });
+    }
+</script>
