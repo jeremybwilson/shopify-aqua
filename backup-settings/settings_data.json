@@ -165,6 +165,7 @@
     "instagram_id": "aquatalia",
     "newsletter_subscription_api_url": "https://api.sailthru.com",
     "newsletter_email_service_provider_cid": "ad4b11c18c08f631a75f9702c24575ed",
+    "newsletter_template_list_name": "",
     "popup": true,
     "email_image": "",
     "email_popup_title": "FRONT ROW &amp; CENTER",
@@ -871,7 +872,7 @@
             "settings": {
               "heading_only": false,
               "title": "What is weatherproofing (fall/winter collection)?",
-              "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas quam risus, accumsan vel venenatis in, molestie a justo. Sed ac congue mi. Fusce nec rutrum.</p>",
+              "answer": "<p>The weatherproofing process, which was developed exclusively for Aquatalia provides a protection for the supple leather and suede used in our Fall-Winter collections.</p>\n<p>During the tanning process, the leather and suede skins are bathed in a special sealant within a uniquely designed drum. This sealant penetrates through the fibers, resulting in soft and natural looking leather and suede that prevent the absorption of moisture and also provide salt and stain resistance. Each seam made during the stitching stage of production is filled with a liquid sealant to prevent water penetration. This unique and complex process allows the materials to resist moisture while maintaining breathability, keeping your feet comfortable and dry. Please note: fastenings and zippers cannot be protected against water penetration. Our weatherproof fall/winter collection is designed to be worn in all types of weather: sun, rain, sleet or snow. The functionality and comfort of Aquatalia are built-in features that bring added value to your footwear investment.</p>",
               "anchor": ""
             }
           },
@@ -880,7 +881,7 @@
             "settings": {
               "heading_only": false,
               "title": "What type of insoles are used in Aquatalia footwear?",
-              "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas quam risus, accumsan vel venenatis in, molestie a justo. Sed ac congue mi. Fusce nec rutrum.</p>",
+              "answer": "<p>A padded, insulating footbed is used underneath the sock lining. This footbed is made with long term memory foam, designed to conform to your foot shape and maintain the comfort you initially feel in our footwear. This unique feature will keep your feet comfortable year round, indoors or outdoors, regardless of the weather. During cold weather, the special insulator will activate to keep your feet warm. In warmer weather, the breathable microfiber lining will keep your feet cool and dry.</p>",
               "anchor": ""
             }
           },
@@ -910,6 +911,15 @@
               "answer": "<p>No. The upper calf and topline areas are made of soft, flexible NEOPRENE and will stretch. With the flexible upper, the pant leg can be worn over or inside the boot. The collar material can be turned down to allow hands-free removal and vent humidity in warmer working conditions.</p>",
               "anchor": ""
             }
+          },
+          "1550614207981": {
+            "type": "html",
+            "settings": {
+              "heading_only": false,
+              "title": "What types of outer soles are used in Aquatalia footwear?",
+              "answer": "<p>The outer soles are fabricated using a special rubber compound that retains its flexibility, even in cold weather conditions. They are specially designed to be slip resistant, providing maximum stability.</p>",
+              "anchor": ""
+            }
           }
         },
         "block_order": [
@@ -919,6 +929,7 @@
           "1542219298126",
           "1542220082322",
           "1542220259294",
+          "1550614207981",
           "1548794634222",
           "1542220342731",
           "1542220365959"
