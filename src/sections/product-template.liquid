@@ -93,15 +93,24 @@
 
           {% include 'product-form' %}
 
-          {% comment %} :: Social sharing :: {% endcomment %}
-          {% if section.settings.show_social %}
-            <div class="share-me">
-              <span class="share-me__label">Share</span>
-              <div class="share-me__social-sharing">
-                {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+          <div class="product-actions">
+            {% comment %} :: Social sharing :: {% endcomment %}
+            {% if section.settings.show_social %}
+              <div class="share-me product-action product-action--share">
+                <span class="share-me__label">Share</span>
+                <div class="share-me__social-sharing">
+                  {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+                </div>
               </div>
-            </div>
-          {% endif %}
+            {% endif %}
+
+            {% comment %} :: Sizing chart :: {% endcomment %}
+            {% if template != 'product.quick' and section.settings.size_chart_show %}
+              <div class="product-action product-action--sizing-chart">
+                <a href="#size-chart--popup" class="fancybox size-chart--trigger">Size Chart</a>
+              </div>
+            {% endif %}
+          </div>
 
           {% comment %} :: Product description :: {% endcomment %}
           {% if product.description != blank %}

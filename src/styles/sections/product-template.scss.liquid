@@ -537,6 +537,26 @@
   }  
 }
 
+/* Product actions
+ * Share links & sizing chart
+ * ---------------------------------------------- */
+.product-actions {
+  @include flexbox();
+  @include flex-flow(row wrap);
+  @include align-items(flex-end);
+  float: left;
+  width: 100%;
+}
+
+.product-action {
+  margin: 5px 0;
+}
+
+.product-action--share {
+  margin-right: auto;
+  padding-right: 15px;
+}
+
 /* Social sharing
  * Rest is in ./social-sharing.scss.liquid
  * ---------------------------------------------- */
@@ -544,8 +564,6 @@
   @include flexbox;
   @include flex-wrap(wrap);
   @include align-items(center);
-  float: left;
-  width: 100%;
 }
 
 .share-me__label {
