@@ -658,13 +658,17 @@ body.js-drawer-open {
                 }
 
                 .bf-modal-title {
-                    @include fontDim( 20px, 24px, 2px );
+                    @include fontDim( 16px, 20px, 2px );
                     font-weight: $font-weight--bold;
                     margin-bottom: 12px;
+
+                    @include mq( 'desk-and-up' ) {
+                        @include fontDim( 18px, 22px, 2px );
+                    }
                 }
 
                 .bf-modal-body {
-                    @include fontSize( 16px );
+                    @include fontSize( 14px );
                     font-weight: $font-weight--medium;
                     color: $color--gray-2;
                 }
@@ -697,10 +701,12 @@ body.js-drawer-open {
                 }
 
                 select {
+                    @include fontSize( 14px );
+                    font-family: $font-stack--default;
                     outline: none !important; //added via js annoyingly lol
                     margin-bottom: 0;
                     border-radius: 0;
-                    padding-right: 20px;
+                    padding: 0 20px 0 5px;
                     border: 1px solid #000;
                     -moz-appearance: none;
                     -webkit-appearance: none;
