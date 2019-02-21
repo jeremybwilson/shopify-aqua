@@ -1,9 +1,22 @@
 @charset "UTF-8";
 
+// HOMEPAGE : Spacing Overrides
+.page-wrap .index-sections .index-section.instagram-feed {
+  margin-bottom: 0;
+
+  @include mq( 'tablet-and-up' ){
+    margin-bottom: 20px;
+  }
+
+  @include mq( 'desk-and-up' ) {
+    margin-bottom: 20px;
+  }
+}
+
 .instagram-feed {
   margin-bottom: 0;
-  padding-top: 50px;
-  padding-bottom: 15px;
+  padding-top: 30px;
+  padding-bottom: 0;
   // background-image: url({{ 'bg-home-instagram-mobile.jpg' | asset_url }});
   background-repeat: no-repeat;
   background-position: center center;
@@ -11,14 +24,20 @@
   text-align: center;
 
   @include mq('tablet-and-up') {
-    padding-bottom: 60px;
     // background-image: url({{ 'bg-home-instagram.jpg' | asset_url }});
   }
 
   @include mq( 'lap-and-up' ) {
-    padding-top: 15px;
+    padding-top: 30px;
     padding-bottom: 0;
   }
+
+  @include mq( 'desk-and-up' ) {
+    padding-top: 0;
+    margin-bottom: 0;
+  }
+
+
 
 
   .row {
@@ -34,7 +53,7 @@
     margin: 0 0 25px;
 
     @include mq( 'tablet-and-up' ) {
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       height: 25px;
     }
 

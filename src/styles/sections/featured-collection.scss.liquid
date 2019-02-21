@@ -7,14 +7,10 @@
 /* WRAPPER : Outermost wrapper on this component
  * ----------------------------------------------------------------------- */
 .page-wrap .index-sections .index-section.featured-collection {
-  margin-bottom: 40px; // override standard spacing defaults
+  margin-bottom: 20px; // override standard spacing defaults
 
   @include mq( 'tablet-and-up' ) {
-    margin-bottom: 60px;
-  }
-
-  @include mq( 'lap-and-up' ) {
-    margin-bottom: 100px;
+    margin-bottom: 25px;
   }
 }
 
@@ -37,13 +33,13 @@
     @include inline-flex;
     @include align-items( center );
     @include flex-wrap( wrap );
-    margin-top: 35px;
+    margin-top: 20px;
 
     @include mq( 'tablet-and-up' ) {
       @include flex-wrap( nowrap );
     }
 
-    @include mq( 'lap-and-up' ) {
+    @include mq( 'desk-and-up' ) {
       margin-top: 0;
     }
 
@@ -53,7 +49,7 @@
       text-align: left;
       color: $color--primary-1;
       font-weight: $font-weight--medium;
-      @include fontDim( 26px, 28px, 0 );
+      @include fontDim( 25px, 28px, 0 );
 
       @include mq('tablet-and-up') {
         @include fontDim( 27px, 32px, 0 );

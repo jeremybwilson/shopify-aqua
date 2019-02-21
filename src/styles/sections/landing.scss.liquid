@@ -2,15 +2,18 @@
 
 // HOME : Spacing between content blocks
 .page-wrap .index-sections .index-section {
-  margin-bottom: 10px;
+  margin-bottom: 0;
 
-  @include mq( 'lap-and-up' ) {
-    margin-bottom: 110px;
+  @include mq( 'tablet-and-up' ){
+    margin-bottom: 10px;
+  }
+
+  @include mq( 'desk-and-up' ) {
+    margin-bottom: 45px;
   }
 }
 
 
-// DELETE THIS
 
 #subpage {
   @include flexbox;

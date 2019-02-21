@@ -1,6 +1,10 @@
 @charset "UTF-8";
 .twin-promos {
 
+  @include mq( 'lap' ) {
+    margin-top: 10px; // Extra spacing
+  }
+
   // Double layer of "homepage-section" wrapping this one, undo inner foot padding
   .homepage-section {
     margin-bottom: 0;
@@ -28,13 +32,14 @@
 
     .single-promo {
       text-align: center;
-      margin: 0 0 30px;
+      margin: 0 0 10px;
       width: 100%;
       float: none;
 
       // LAYOUT : Side-by-Side promos, mobile text layout still
       @include mq('tablet-and-up') {
         width: 50%;
+        margin-bottom: 0;
 
         &:first-of-type { // Left Side
           padding-left: 20px;
