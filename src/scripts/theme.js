@@ -1378,7 +1378,7 @@ theme.RegistrationEmailSignUp = (function() {
 
       // SUBMIT : submit form event
       ui.formId.submit(function(e) {
-        e.preventDefault();
+        e.preventDefault();  // prevent form submission until Sailthru API returns success or error response
 
         // relying on Shopify account registration page field validation
         Sailthru.integration("userSignUp",
@@ -1389,8 +1389,8 @@ theme.RegistrationEmailSignUp = (function() {
             // "Anonymous" : 0 // list to remove user from (must exist in Sailthru account)
           },
           "vars" : {
-            "first_name" : ui.firstNameBox.val(),        // pulls in the value of the first_name field
-            "last_name" : ui.lastNameBox.val()          // pulls in the value of the last_name field
+            "first_name" : ui.firstNameBox.val(),   // pulls in the value of the first_name input field
+            "last_name" : ui.lastNameBox.val()      // pulls in the value of the last_name input field
           },
           "source" : "new_user_registration",
           "onSuccess" : function() {
