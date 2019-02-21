@@ -117,7 +117,16 @@
               {% if product_description[1] != blank %}
                 <div id="read-more" class="product-desc__more">
                   <div class="rte">
-                    {{ product_description[1] }}
+                    {% comment %}{- We will build our own list -}{% endcomment %}
+                    {% assign product_specs = product_description[1] | remove: '<ul>' | remove: '</ul>' | remove: '<li>' | remove: '</li>' | split: '•' %}
+                    <ul>
+                      {% for spec in product_specs %}
+                        {% if spec != blank %}
+                          {% comment %}{- Remove nonbreaking space -}{% endcomment %}
+                          <li>{{ spec | remove_first: ' ' }}</li>
+                        {% endif %}
+                      {% endfor %}
+                    </ul>
                   </div>
                 </div>
                 <div class="product-desc__read-wrapper">
