@@ -965,7 +965,7 @@ theme.scripts.filterUtils = (function() {
         // SEARCH : APPEND : If any params match the keep regex, grab and append them to our built url (order wont matter)
         if ( currentParams.search( keepRgx ) > -1 ) {
           const params = currentParams.split( '&' );
-          const paramsToKeep = params.forEach( function (param) { 
+          const paramsToKeep = params.forEach( function (param) {
              if ( param.search( keepRgx ) > -1 ) {
                 queryParams += `&${param}`;
              }
@@ -1291,7 +1291,7 @@ theme.Newsletter = (function() {
     const $container = this.$container = $(container);
     const ui = {
            formId: $( '#footer-newsletter' ),
-          textbox: $( '#email' ),
+          textbox: $( '#email-footer' ),
            submit: $( '#button-footer-newsletter-submit' ),
          errorMsg: $( '#newsletter-error-response'),
        successMsg: $( '#newsletter-success-response')
@@ -1342,30 +1342,77 @@ theme.Newsletter = (function() {
             }
           });
 
-          // // success state
-          // zaius.subscribe({
-          //     list_id: 'newsletter',
-          //     email: ui.textbox.val()
-          //   },
-
-          //   // success state
-          //   function() {
-          //     ui.formId.fadeOut( () => {
-          //       ui.successMsg.fadeIn();
-          //     });
-          //   },
-
-          //   // fail state
-          //   function(error) {
-          //     console.log(error);
-          //   }
-          // );
         }
       });
     }
   }
   Newsletter.prototype = _.assignIn({}, Newsletter.prototype, {});
   return Newsletter;
+})();
+
+
+/*============================================================================
+  Account Registration (/account/login) page email capture
+==============================================================================*/
+
+theme.RegistrationEmailSignUp = (function() {
+  function RegistrationEmailSignUp(container) {
+
+    const $container = this.$container = $(container);
+    const ui = {
+      formId:       $( '#create_customer' ),
+      errorMsg:     $( '#register-error-response' ),  // passing the API error response to the DOM
+      textbox:      $( '#email_input' ),
+      firstNameBox: $( '#first_name_input' ),
+      lastNameBox:  $( '#last_name_input' ),
+      submit:       $( '#account-registration-submit' )
+    };
+
+    if ( ui.formId ) {
+
+      ui.textbox.on('focus', () => {
+        // ERROR STATE : Reset error state
+        ui.formId.removeClass('has-error');
+        ui.errorMsg.fadeOut();
+      });
+
+      // SUBMIT : submit form event
+      ui.formId.submit(function(e) {
+        e.preventDefault();  // prevent form submission until Sailthru API returns success or error response
+
+        // relying on Shopify account registration page field validation
+        Sailthru.integration("userSignUp",
+        {
+          "email" : ui.textbox.val(),  // pulls in the value of the email text input
+          "lists" : {
+            "AQUA_Master_List" : 1 // list to add user to (must exist in Sailthru account)
+            // "Anonymous" : 0 // list to remove user from (must exist in Sailthru account)
+          },
+          "vars" : {
+            "first_name" : ui.firstNameBox.val(),   // pulls in the value of the first_name input field
+            "last_name" : ui.lastNameBox.val()      // pulls in the value of the last_name input field
+          },
+          "source" : "new_user_registration",
+          "onSuccess" : function() {
+            console.log(`Successfully added new user to Sailthru list!`);
+            e.target.submit();
+
+          },
+          "onError" : function(error) {  // error state
+            console.log(`We encountered an issue signing you up. Please try again`);
+            console.log(error);
+            ui.formId.addClass('has-error');
+            ui.errorMsg.fadeIn(error);
+          }
+        });
+
+      });
+
+    }
+  }
+
+  RegistrationEmailSignUp.prototype = _.assignIn({}, RegistrationEmailSignUp.prototype, {});
+  return RegistrationEmailSignUp;
 })();
 
 
@@ -3312,6 +3359,7 @@ $(document).ready(function() {
   var sections = new theme.Sections();
   sections.register('header-section', theme.Header);
   sections.register('newsletter-simple', theme.Newsletter);
+  sections.register('create-customer', theme.RegistrationEmailSignUp);
   sections.register('instagram', theme.Instagram);
   sections.register('tabbed-collections', theme.TabbedCollections);
   sections.register('featured-collection', theme.FeaturedCollection);
