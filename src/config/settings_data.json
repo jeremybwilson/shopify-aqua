@@ -659,7 +659,7 @@
           "1549421101615": {
             "type": "html",
             "settings": {
-              "about_html_block": "<p>Established in 1994, Aquatalia offers the finest combination of fashion, quality and comfort in luxury footwear and is the first to mix distinctive Italian design with innovative weatherproof and stain-resistant technology. Bridging the gap between style and function, Aquatalia sets a new standard in fine footwear and accessories. Taking the brand to the next level, Aquatalia will continue to introduce category expansions, establish a retail presence and expand the brand globally.<\/p>"
+              "about_html_block": "<p>Established in 1994, Aquatalia offers the finest combination of fashion, quality and comfort in luxury footwear and is the first to mix distinctive Italian design with innovative weatherproof and stain-resistant technology. Bridging the gap between style and function, Aquatalia sets a new standard in fine footwear and accessories. Taking the brand to the next level, Aquatalia will continue to introduce category expansions, grow our retail presence and expand the brand globally.<\/p>"
             }
           },
           "1548737684033": {
@@ -667,7 +667,7 @@
             "settings": {
               "module_image": "shopify:\/\/shop_images\/pages-about_content_module_no_text_00.jpg",
               "module_html_h2": "Functional Luxury",
-              "module_html_p": "Crafted in Italy, Aquatalia footwear adheres to the tradition of meticulous Italian shoemaking. \n Using fine leathers and sueses, Aquatalia transforms their texture and finish through an exclusive process that adds exceptional softness and the ultimate luxury of weatherproofing and stain-resistance.",
+              "module_html_p": "Crafted in Italy, Aquatalia footwear adheres to the tradition of meticulous Italian shoemaking. Using fine leathers and suedes, Aquatalia transforms their texture and finish through an exclusive process that adds exceptional softness and the ultimate luxury of weatherproofing and stain-resistance.",
               "module_image_color_scheme": "light",
               "module_image_position_desktop": "image_overlap_left",
               "module_image_position_mobile": "image_top"
@@ -678,7 +678,7 @@
             "settings": {
               "module_image": "shopify:\/\/shop_images\/pages-about_content_module_no_text_01.jpg",
               "module_html_h2": "Versatile Style",
-              "module_html_p": "We've earned the <strong>Respect, Loyalty and trust<\/strong> of people who can't afford to take trust lightly.  Aquatalia transcends trend. \n Mixing sophistication, fasion, and versatility into Women's and Men's shoese and accessories.  Aquatalia designs are contemporary yet classic, elegant yet everyday.",
+              "module_html_p": "Aquatalia transcends trend. Mixing sophistication, fashion, and versatility into Women’s and Men’s shoes and accessories, Aquatalia designs are contemporary yet classic, elegant yet everyday, high quality yet low maintenance — the true foundation of a timeless wardrobe.",
               "module_image_color_scheme": "light",
               "module_image_position_desktop": "image_right",
               "module_image_position_mobile": "image_top"
@@ -1016,6 +1016,141 @@
           "interior_page_left_nav": "side-menu",
           "live_chat_enabled": false,
           "live_chat_text": "Live chat"
+        }
+      },
+      "page-international-template": {
+        "type": "page-international-template",
+        "blocks": {
+          "1550857183257": {
+            "type": "html",
+            "settings": {
+              "heading_only": true,
+              "title": "GENERAL",
+              "answer": "",
+              "anchor": ""
+            }
+          },
+          "1550857216011": {
+            "type": "html",
+            "settings": {
+              "heading_only": false,
+              "title": "Can my order be delivered internationally?",
+              "answer": "<p>Yes. We are pleased toprovide an enhanced international shopping experience. International shoppers now get the benefit of seeing product prices in their local currency, guaranteed order totals, cost-effective international shipping, and much more.<\/p>",
+              "anchor": ""
+            }
+          },
+          "1550858311916": {
+            "type": "html",
+            "settings": {
+              "heading_only": false,
+              "title": "How will I know how much my order will cost?",
+              "answer": "<p>Just add items to your basket and click select to check out. Your order total will be presented in your preferred currency, including all shipping costs, as well as any applicable duties and taxes imposed by the customs and revenue authorities in the destination country.<\/p>",
+              "anchor": ""
+            }
+          },
+          "1550858322332": {
+            "type": "html",
+            "settings": {
+              "heading_only": false,
+              "title": "Who should I contact if I have questions relating to my order after I have made a purchase?",
+              "answer": "<p>Please contact us at customerservice@shop.aquatalia.com and Aquatalia will gladly assist you with any questions relating to your international order.<\/p>",
+              "anchor": ""
+            }
+          },
+          "1550858336537": {
+            "type": "html",
+            "settings": {
+              "heading_only": false,
+              "title": "What is your return policy for international orders?",
+              "answer": "<p>If for any reason you are not satisfied with your purchase, please contact us at <a href=\"mailto:customerservice@shop.aquatalia.com\">customerservice@shop.aquatalia.com<\/a> and we will provide you with further instructions on where returns should be shipped and the amount you will be refunded. Refund amounts for returned items will be credited to you in the same currency and using the same exchange rate as your original order.<\/p>",
+              "anchor": ""
+            }
+          },
+          "1550858416204": {
+            "type": "html",
+            "settings": {
+              "heading_only": true,
+              "title": "PAYMENT",
+              "answer": "",
+              "anchor": ""
+            }
+          },
+          "1550858426850": {
+            "type": "html",
+            "settings": {
+              "heading_only": false,
+              "title": "What will my credit card statement say?",
+              "answer": "<p>Your credit card will be billed by Aquatalia’s international partner, Borderfree. You’re your credit card statement will read “BF*Aquatalia” where “BF” denotes the Borderfree network.<\/p>",
+              "anchor": ""
+            }
+          },
+          "1550858452223": {
+            "type": "html",
+            "settings": {
+              "heading_only": true,
+              "title": "SHIPPING",
+              "answer": "",
+              "anchor": ""
+            }
+          },
+          "1550858461159": {
+            "type": "html",
+            "settings": {
+              "heading_only": false,
+              "title": "Are there any items that cannot ship to my country because they are restricted?",
+              "answer": "<p>If for some reason there are any items that cannot be exported from the United States or imported into your destination country selection, you will be notified during the checkout process.<\/p>",
+              "anchor": ""
+            }
+          },
+          "1550858473788": {
+            "type": "html",
+            "settings": {
+              "heading_only": false,
+              "title": "Do you ship to US military addresses (APO\/FPO)?",
+              "answer": "<p>For security reasons, we do not currently ship APO\/FPO addresses.<\/p>",
+              "anchor": ""
+            }
+          },
+          "1550858482107": {
+            "type": "html",
+            "settings": {
+              "heading_only": false,
+              "title": "How can I track my international order?",
+              "answer": "<p>Click <a href=\"https:\/\/www.borderfree.com\/#\/track\" target=\"_blank\" title=\"Track International packages\">here<\/a> to track the progress of your international package(s).<\/p>",
+              "anchor": ""
+            }
+          },
+          "1550858498232": {
+            "type": "html",
+            "settings": {
+              "heading_only": false,
+              "title": "What are my international shipping options?",
+              "answer": "<p>The following is a summary of delivery estimates for our international orders. You will be quoted a specific delivery promise at the time of checkout that is based on your selected destination country and the shipping methods available for the items in your shopping cart. International shipments are typically delivered within 7-20 business days<\/p>\n<p><\/p>\n<p>** Important Note: Please note that Aquatalia will also need 3-7 business days after the order is processed to ship your order from our U.S. warehouse to the Borderfree facility. Orders places after 2 pm EST (11 am PST) will not be shipped until the following business day. Orders placed on weekends or holidays will not be shipped until the following business day.<\/p>",
+              "anchor": ""
+            }
+          }
+        },
+        "block_order": [
+          "1550857183257",
+          "1550857216011",
+          "1550858311916",
+          "1550858322332",
+          "1550858336537",
+          "1550858416204",
+          "1550858426850",
+          "1550858452223",
+          "1550858461159",
+          "1550858473788",
+          "1550858482107",
+          "1550858498232"
+        ],
+        "settings": {
+          "anchor_top_offset": -100,
+          "page_title_h1": "",
+          "before_content": "",
+          "after_content": "",
+          "left_nav_enabled": true,
+          "interior_page_left_nav": "side-menu"
         }
       }
     },
