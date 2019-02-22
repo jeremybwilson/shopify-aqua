@@ -95,7 +95,13 @@
       <span class="play-icon">
         {% include 'svg-icon-play-arrow' %}
       </span>
-      <img class="{% if product_vid_type == 'vimeo' %} vimeo-thumbnail {% else %} lazyload lazyload-fade {% endif %} {% if product_vid_type == 'youtube' %} youtube-thumbnail {% endif %}"
+      {% comment %}{- Ensure proper spacing with hidden image -}{% endcomment %}
+      {% if product.featured_image %}
+        <img src="{{ product.featured_image | img_url: '50x' }}" 
+             alt="{{ product.featured_image.alt }}"
+             class="product-video-thumbnail__image-sizer">
+      {% endif %}
+      <img class="product-video-thumbnail__image{% if product_vid_type == 'vimeo' %} vimeo-thumbnail {% else %} lazyload lazyload-fade {% endif %} {% if product_vid_type == 'youtube' %} youtube-thumbnail {% endif %}"
         data-src="{{ product_video_thumbnail }}" />
     </div>
         

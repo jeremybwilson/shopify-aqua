@@ -1,3 +1,16 @@
+.template-account #content {
+  @include make-container();
+}
+
+.template-page #page {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.template-account #breadcrumb {
+  position: static;
+}
+
 .account-header {
   position: relative;
 
@@ -83,6 +96,7 @@
     }
   }
 
+
   form.has-error {
     border: 1px solid $color--error;
   }
@@ -93,5 +107,6 @@
     color: $color--error;
     // border-bottom: solid 1px $color--error; //Looked a bit odd
   }
+
 
 }

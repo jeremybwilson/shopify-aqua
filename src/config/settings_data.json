@@ -368,8 +368,9 @@
           "shipping_learn_more_link": "shopify:\/\/pages\/faq",
           "shipping_show_account_link": true,
           "show_social": true,
+          "size_chart_show": true,
           "size_chart_header_text": "Size Chart",
-          "size_chart_page": ""
+          "size_chart_page": "sizing-chart"
         }
       },
       "blog-template": {

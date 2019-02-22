@@ -124,11 +124,15 @@
         <span id="cart-page-price" class="money">{{ cart.total_price | money }}</span>
       </h4>
 
-      <input type="submit" name="update" id="update-cart" value="{{ 'cart.general.update' | t }}" class="button" />
-      <input type="submit" name="checkout" id="checkout" value="{{ 'cart.general.checkout' | t }}" class="button" />
+      <div class="cart__checkout-wrapper">
+        <input type="submit" name="update" id="update-cart" value="{{ 'cart.general.update' | t }}" class="button cart__checkout-btn" />
+        <input type="submit" name="checkout" id="checkout" value="{{ 'cart.general.checkout' | t }}" class="button cart__checkout-btn" />
+      </div>
       <div class="clear"></div>
       {% if additional_checkout_buttons %}
-        {{ content_for_additional_checkout_buttons }}
+        <div class="cart__additional-checkout">
+          {{ content_for_additional_checkout_buttons }}
+        </div>
       {% endif %}
       <div class="clear"></div>
     </div>
