@@ -3,9 +3,9 @@
 </div>
 
 
-<div id="customer-wrapper" class="">
+<div id="customer-wrapper">
 
-  <div id="customer_sidebar" class="">
+  <div id="customer_sidebar">
     <div id="customer_detail" class="group">
       <h5 class="name">{{ customer.name }}</h5>
       <p class="email note">{{ customer.email }}</p>
@@ -25,7 +25,7 @@
     </div>
   </div>
 
-  <div id="customer_orders" class="">
+  <div id="customer_orders">
     <h5 class="name">{{ 'customer.orders.title' | t }}</h5>
     {% if customer.orders.size != 0 %}
     <table>
