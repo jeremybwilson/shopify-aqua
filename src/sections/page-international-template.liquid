@@ -1,0 +1,163 @@
+<div id="faq">
+  <div id="subpage" {% if section.settings.left_nav_enabled == false %}class="no-left-nav"{% endif %}>
+
+  {% comment %} {% assign template_name_suffix = template.suffix %} {% endcomment %}
+  {%- if section.settings.left_nav_enabled and template.suffix == 'faq' -%}
+    {% include 'sidenav' %}
+  {%- endif -%}
+
+    <div class="page-content-field">
+      {% comment %} CONTENT :: Page Title - removing from Pre Questions field {% endcomment %}
+      {% if section.settings.page_title_h1 != blank %}
+          <h1 class="faq-title">{{ section.settings.page_title_h1 }}</h1>
+      {% else %}
+        <h1 class="faq-title">{{ page.title }}</h1>
+      {% endif %}
+
+      {{ page.content }}
+
+      {% comment %} CONTENT :: Before Questions {% endcomment %}
+      {% if section.settings.before_content != blank %}
+        {{ section.settings.before_content }}
+      {% endif %}
+
+      {% comment %} FAQ :: Block loop {% endcomment %}
+
+      {% for block in section.blocks %}
+
+        {% if block.settings.heading_only != false %}
+
+          <h2 class="heading">{{ block.settings.title }}</h2>
+
+          {% else %}
+          <div class="toggle">
+            <div class="toggle-title">
+              <h4>{{ block.settings.title }}</h4>
+              <span class="opener">{% include 'svg-icon-caret-down' %}
+              </span>
+            </div>
+            <div class="toggle-inner">
+              {% if block.settings.anchor != blank %}
+              <a id="{{ block.settings.anchor | escape }}" style="display: block; position: relative; top: {{ section.settings.anchor_top_offset }}px; visibility: hidden;"></a>
+              {% endif %}
+
+              {{ block.settings.answer }}
+            </div>
+          </div>
+        {% endif %}
+
+      {% endfor %}
+
+      {% comment %} CONTENT :: After Questions {% endcomment %}
+      {% if section.settings.after_content != blank %}
+          {{ section.settings.after_content }}
+      {% endif %}
+
+    </div><!-- .page-content-field -->
+  </div><!-- /#subpage -->
+</div><!-- /#faq -->
+<script>
+$( document).ready(function() {
+	// Expand section if url contains a direct anchor reference
+	var targetSection = window.location.href.split( '#' )[1]; // undefined if not present, aka false
+	if ( targetSection ) {
+		$( '#' + targetSection ).parent('.toggle-title').addClass( 'active' );
+	}
+
+	if( $(".toggle .toggle-title").hasClass('active') ){
+      $(".toggle .toggle-title.active").closest('.toggle').find('.toggle-inner').show();
+    }
+
+    $(".toggle .toggle-title").click(function(){
+      if( $(this).hasClass('active') ){
+        $(this).removeClass("active").closest('.toggle').find('.toggle-inner').slideUp(200);
+      }
+      else{
+        $(this).addClass("active").closest('.toggle').find('.toggle-inner').slideDown(200);
+      }
+    });
+});
+</script>
+
+{% schema %}
+  {
+    "name": "International FAQ page",
+    "settings": [
+      {
+        "type": "header",
+        "content": "DEFAULT PAGE OPTIONS"
+      },
+      {
+        "type": "range",
+        "id": "anchor_top_offset",
+        "min": -300,
+        "max": 300,
+        "step": 10,
+        "unit": "px",
+        "label": "Anchor - Top offset",
+        "default": -100
+      },
+      {
+        "type": "text",
+        "id": "page_title_h1",
+        "label": "Page (section) title override (Optional)"
+      },
+      {
+        "type": "html",
+        "id": "before_content",
+        "label": "Pre-questions content (HTML)"
+      },
+      {
+        "type": "html",
+        "id": "after_content",
+        "label": "Post-questions content (HTML)"
+      },
+      {
+        "type": "header",
+        "content": "LEFT NAV (OPTIONAL)"
+      },
+      {
+        "type": "checkbox",
+        "id": "left_nav_enabled",
+        "label": "Enable Left Nav",
+        "info": "Checking this box will enable Left (sidebar) Nav on this template.",
+        "default": false
+      },
+      {
+        "type": "link_list",
+        "id": "interior_page_left_nav",
+        "label": "FAQ Page Navigation Left Nav"
+      }
+    ],
+    "blocks": [
+    {
+      "type": "html",
+      "name": "FAQ Question",
+      "settings":[
+        {
+          "type": "checkbox",
+          "id": "heading_only",
+          "label": "Check the box to enable section heading (optional)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Question"
+        },
+        {
+          "type": "html",
+          "id": "answer",
+          "label": "Answer"
+        },
+        {
+          "type": "text",
+          "id": "anchor",
+          "label": "Anchor ID"
+        }
+      ]
+    }
+    ]
+  }
+
+{% endschema %}
+
