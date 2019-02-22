@@ -20,11 +20,12 @@
 }
 
 table.size-chart {
+  white-space: nowrap;
+
   td, th {
     padding: 8px;
     text-align: center;
     font-weight: $font-weight--medium;
-    // color: $color--gray-1;
 
     @include mq('lap-and-up') {
       padding: 16px;
@@ -32,8 +33,14 @@ table.size-chart {
   }
 
   thead tr {
+    @include fontSize(14px);
+    letter-spacing: 0.025em;
     vertical-align: bottom;
     line-height: 1.2;
+
+    @include mq('lap-and-up') {
+      font-size: 1rem;
+    }
   }
 
   tbody {
@@ -64,11 +71,16 @@ table.size-chart {
 .product {
   .size-chart--wrapper {
     margin-bottom: 0;
+    padding: 15px;
+
+    @media (min-width: 740px) {
+      padding: 30px;
+    }
   }
 
   .fancybox-skin {
     background-color: $color--white;
-    padding-top: 30px !important;
+    padding-top: 55px !important;
   }
 
   .fancybox-close {
