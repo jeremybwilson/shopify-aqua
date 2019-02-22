@@ -185,7 +185,7 @@
     "currency_format": "money_with_currency_format",
     "supported_currencies": "INR GBP CAD USD AUD EUR JPY",
     "default_currency": "USD",
-    
+
     "borderfree_enabled": true,
     "borderfree_js_url_dev": "https:\/\/bfx-objects.stage.borderfree.com\/v1\/dist\/bfx.js",
     "borderfree_js_config_dev": "bfx({key:'bca2f6b0-0273-11e6-8da6-4920e7373927', env:'STAGE', mode:'default', brand:'default'});",
@@ -830,7 +830,7 @@
             "settings": {
               "heading_only": false,
               "title": "Do you ship to PO boxes?",
-              "answer": "<p>Yes, we do currently ship to PO boxes.<\/p>",
+              "answer": "<p>For security reasons, we do not currently ship to P.O. boxes.<\/p>",
               "anchor": ""
             }
           },
@@ -848,7 +848,7 @@
             "settings": {
               "heading_only": false,
               "title": "What is weatherproofing (fall\/winter collection)?",
-              "answer": "<p>The weatherproofing process, which was developed exclusively for Aquatalia provides a protection for the supple leather and suede used in our Fall-Winter collections.<\/p>\n<p>During the tanning process, the leather and suede skins are bathed in a special sealant within a uniquely designed drum. This sealant penetrates through the fibers, resulting in soft and natural looking leather and suede that prevent the absorption of moisture and also provide salt and stain resistance. Each seam made during the stitching stage of production is filled with a liquid sealant to prevent water penetration. This unique and complex process allows the materials to resist moisture while maintaining breathability, keeping your feet comfortable and dry. Please note: fastenings and zippers cannot be protected against water penetration. Our weatherproof fall\/winter collection is designed to be worn in all types of weather: sun, rain, sleet or snow. The functionality and comfort of Aquatalia are built-in features that bring added value to your footwear investment.<\/p>",
+              "answer": "<p>The weatherproofing process, which was developed exclusively for Aquatalia provides a protection for the supple leather and suede used in our Fall-Winter collections.\n<\/p>\n<p><\/p>\n<p>\nDuring the tanning process, the leather and suede skins are bathed in a special sealant within a uniquely designed drum. This sealant penetrates through the fibers, resulting in soft and natural looking leather and suede that prevent the absorption of moisture and also provide salt and stain resistance. Each seam made during the stitching stage of production is filled with a liquid sealant to prevent water penetration. This unique and complex process allows the materials to resist moisture while maintaining breathability, keeping your feet comfortable and dry. Please note: fastenings and zippers cannot be protected against water penetration. Our weatherproof fall\/winter collection is designed to be worn in all types of weather: sun, rain, sleet or snow. The functionality and comfort of Aquatalia are built-in features that bring added value to your footwear investment.<\/p>",
               "anchor": ""
             }
           },
@@ -874,8 +874,8 @@
             "type": "html",
             "settings": {
               "heading_only": false,
-              "title": "Do the boots fit wide widths?",
-              "answer": "<p>Yes. Our boots are made to standard widths, but the materials will stretch to fit widths up to a EEE. For narrow feet, we suggest wearing a thicker sock or putting in an additional sock liner to take up room.<\/p>",
+              "title": "What types of outer soles are used in Aquatalia footwear?",
+              "answer": "<p>The following is a general guideline to care for your Aquatalia product.<\/p>\n<p><\/p>\n<p>Aquatalia footwear in our Fall-Winter collection provides you with beautiful soft leathers and materials which are both weatherproof and stain resistant. Stains can be classified and treated as follows: Watery stains including coffee, milk, cola, wine and alcoholic beverages can be wiped off using a soft cloth moistened with water. With more tenacious stains, we recommend that you wipe off with a soft cloth moistened in a solution of water and neutral soap or a solution of 5% ammonia in water. If the outer surface of your footwear gets wet, do not place on or near any direct heat. This will negatively affect the weatherproof sealant of your product. It is important to allow your footwear to dry naturally. To restore original texture and beauty of the materials, use the following methods: For suede, brush gently with a soft suede brush. For leather, polish with a quality wax and buff using a cloth or brush. Store your Aquatalia footwear in a cool, dry environment, away from direct heat.<\/p>",
               "anchor": ""
             }
           },
@@ -883,12 +883,12 @@
             "type": "html",
             "settings": {
               "heading_only": false,
-              "title": "Are the collar and calf stiff?",
-              "answer": "<p>No. The upper calf and topline areas are made of soft, flexible NEOPRENE and will stretch. With the flexible upper, the pant leg can be worn over or inside the boot. The collar material can be turned down to allow hands-free removal and vent humidity in warmer working conditions.<\/p>",
+              "title": "How do I care for my Pony Hair Calf shoes\/boots?",
+              "answer": "<p>Aquatalia’s pony hair is made from the finest quality Italian calf leathers. In order to maintain the leather’s luxurious texture and sheen, they do not undergo Aquatalia’s fall\/winter weatherproofing process. Our pony hair calf styles are naturally water-resistant, but should not be considered weatherproof. To keep the pony hair looking its best, lightly brush the hair in its natural direction with a soft shoe brush.<\/p>",
               "anchor": ""
             }
           },
-          "1550614207981": {
+          "1550791129889": {
             "type": "html",
             "settings": {
               "heading_only": false,
@@ -905,7 +905,7 @@
           "1542219298126",
           "1542220082322",
           "1542220259294",
-          "1550614207981",
+          "1550791129889",
           "1548794634222",
           "1542220342731",
           "1542220365959"
