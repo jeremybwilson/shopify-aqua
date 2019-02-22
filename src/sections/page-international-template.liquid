@@ -2,7 +2,7 @@
   <div id="subpage" {% if section.settings.left_nav_enabled == false %}class="no-left-nav"{% endif %}>
 
   {% comment %} {% assign template_name_suffix = template.suffix %} {% endcomment %}
-  {%- if section.settings.left_nav_enabled and template.suffix == 'faq' -%}
+  {%- if section.settings.left_nav_enabled and template.suffix == 'international' -%}
     {% include 'sidenav' %}
   {%- endif -%}
 
@@ -147,7 +147,7 @@ $( document).ready(function() {
         {
           "type": "html",
           "id": "answer",
-          "label": "Answer"
+          "label": "Answer (format with <p> tags for indented styling"
         },
         {
           "type": "text",
