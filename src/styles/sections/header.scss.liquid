@@ -494,6 +494,11 @@ body.js-drawer-open {
                     .wk-count {
                         display: none;
                     }
+
+                    &.wk-filled svg path {
+                        fill-opacity: 1;
+                        fill: $navHeaderColor;
+                    }
                 }
             }
 
@@ -575,6 +580,7 @@ body.js-drawer-open {
 
         @include mq( 'lap-and-up' ) {
             top: 40px;
+            padding: 30px 20px 0;
         }
 
         // BF Wrapper (needs a few important tags to override its jquery animation that is glitchy)
@@ -924,7 +930,7 @@ body.js-drawer-open {
                 transform: translateY( -50% ) 
             }
             &.three { 
-                width: 70%;
+                width: 100%; //Modify this to shorten a leg on the 3 lines
                 top: 100%; 
                 transform: translateY( -50% ) 
             }
@@ -979,7 +985,7 @@ body.js-drawer-open {
                 padding: 0 730px 0 230px;
             }
 
-            // For when they inevitably add a 5th menu item.. Default setup is for 4 or less
+            // Clean spacing for 5 items
             &[data-link-count*='5'] {
                 padding: 0 305px 0 180px; 
 
@@ -989,6 +995,20 @@ body.js-drawer-open {
 
                 @include mq( 'wide-and-up' ) {
                     padding: 0 610px 0 230px;
+                }
+            }
+
+            // Clean spacing for 6 items
+            &[data-link-count*='6'],
+            &[data-link-count*='7'] {
+                padding: 0 265px 0 180px; 
+
+                @include mq( 'desk-and-up' ) {
+                    padding: 0 300px 0 205px;
+                }
+
+                @include mq( 'wide-and-up' ) {
+                    padding: 0 460px 0 230px;
                 }
             }
 
@@ -1087,10 +1107,10 @@ body.js-drawer-open {
                     // MEGA MENU IMAGE : Not Present
                     &[data-has-mega-image='false'] {
                         min-height: auto;
-                        padding-left: 135px;
+                        padding-left: 123px;
 
                         @include mq( 'desk-and-up' ) {
-                            padding-left: 50px;
+                            padding-left: 10px;
                         }
 
                         @include mq( 'wide-and-up' ) {
@@ -1099,6 +1119,10 @@ body.js-drawer-open {
 
                         .mega-column-content {
                             margin: 25px auto 10px; // Centrally align and space the nav menu items
+
+                            @include mq( 'wide-and-up' ) {
+                                transform: translateX( -10px ); //Using margin to center, this adjusts it to perfect alignment
+                            }
                         }
                     }
 
@@ -1360,7 +1384,6 @@ body.js-drawer-open {
                 padding: 0;
                 font-weight: $font-weight--bold;
                 color: $color--text-1;
-                text-transform: uppercase;
                 letter-spacing: 4px;
                 padding-left: 35px;
 
@@ -1607,6 +1630,10 @@ body.js-drawer-open {
 
                     .wk-icon {
                         margin-top: 2px;
+                    }
+
+                    .wk-count {
+                        display: none;
                     }
                 }
                     
