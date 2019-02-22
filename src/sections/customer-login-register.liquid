@@ -1,0 +1,162 @@
+<div id="customer-wrapper" 
+  class="desktop-12 mobile-3"
+  data-section-id="{{ section.id }}" 
+  data-section-type="customer-login-register">
+
+  <div id="account-msg">
+    <h3>Sign in to your account</h3>
+    <p>Our brand new site is live. Please create a new account to explore this experience.</p>
+    <hr />
+  </div>
+
+
+  <div id="panel-wrapper">
+
+    <!-- PANEL : LEFT : Login -->
+    <div id="panel-login" class="account-panel">
+
+      <!-- Guest Checkout login -->
+      {% if shop.checkout.guest_login %}
+        <div id="login-guest">
+          <div class="template_header">
+            <h2>{{ 'customer.login.guest_title' | t }}</h2>
+
+            {% form 'guest_login', id: 'form-login' %}
+              <input class="secondary button" type="submit" value="{{ 'customer.login.guest_continue' | t }}" />
+            {% endform %}
+
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="clear"></div>
+      <!-- End Guest Checkout login -->
+
+
+      <!-- Customer Login -->
+      <div id="login-customer">
+        <div class="template_header">
+          <h2>{{ 'customer.login.title' | t }}</h2>
+        </div>
+
+        {% form 'customer_login' %}
+
+          {% comment %} 
+            Multi-forms on same page will spit out errors for ALL FORMS into BOTH in liquid, 
+            Have to validate using the actual error msg.
+          {% endcomment %}
+          {% if form.errors %}
+            {% assign form_errors = form.errors | default_errors %}
+            {% for error in form_errors %}
+              {% if error contains 'login' %}
+                {{ error }}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+
+          <div id="login_email" class="clearfix large_form">
+            <label for="customer_email" class="login">{{ 'customer.login.email' | t }}</label>
+            <input type="email" value="" name="customer[email]" id="customer_email" class="large" size="30" />
+          </div>
+
+          {% if form.password_needed %}
+            <div id="login_password" class="clearfix large_form">
+              <label for="customer_password" class="login">{{ 'customer.login.password' | t }}</label>
+              <input type="password" value="" name="customer[password]" id="customer_password" class="large password" size="16" />
+              <div id="forgot_password" class="toggle-button" aria-label="forgot-password-button" >{{ 'customer.login.forgot_password' | t }}</div>
+            </div>
+          {% endif %}
+
+          <div class="action_bottom">
+            <input class="secondary button" type="submit" value="{{ 'customer.login.sign_in' | t }}" />
+          </div>
+
+        {% endform %}
+      </div>
+      <!-- End Customer Login -->
+
+
+      <!-- Password Recovery -->
+      <div id="recover-password">
+        <div class="template_header">
+          <h2>{{ 'customer.recover_password.title' | t }}</h2>
+          <p class="note">{{ 'customer.recover_password.subtext' | t }}</p>
+        </div>
+
+        {% form 'recover_customer_password', id: 'form-recover' %}
+
+          <div id="recover_email" class="clearfix large_form">
+            <label for="email" class="large">{{ 'customer.recover_password.email' | t }}</label>
+            <input type="email" value="" size="30" name="email" id="recover-email" class="large" />
+          </div>
+
+          <div class="action_bottom">
+            <input class="secondary button" type="submit" value="{{ 'customer.recover_password.submit' | t }}" />
+            <div id="return_to_login" class="toggle-button" aria-label="return-to-login">{{ 'customer.recover_password.cancel' | t }}</div>
+          </div>
+
+        {% endform %}
+      </div>
+      <!-- End Password Recovery -->
+
+    </div>
+    <!-- END : LEFT : Login / Recovery -->
+
+
+    <!-- PANEL : RIGHT : Register -->
+    <div id="panel-register" class="account-panel" data-section-type="create-customer">
+      <div class="template_header">
+        <h2 class="title">{{ 'customer.register.title' | t }}</h2>
+      </div>
+
+      {% form 'create_customer' %}
+          {% comment %} 
+            Multi-forms on same page will spit out errors for ALL FORMS into BOTH crazy enough, 
+            this bug affects all shopify sites currently. Must check error object to only show
+            it on the proper form when it occurs... much strange.
+          {% endcomment %}
+          {% if form.errors %}
+            {% assign form_errors = form.errors | default_errors %}
+            {% for error in form_errors %}
+              {% unless error contains 'login' %}
+                {{ error }}
+              {% endunless %}
+            {% endfor %}
+          {% endif %}
+
+        <div id="first_name" class="clearfix large_form">
+          <label for="first_name" class="login">{{ 'customer.register.first_name' | t }}</label>
+          <input type="text" name="customer[first_name]" id="first_name_input" class="large" size="30" />
+        </div>
+
+        <div id="last_name" class="clearfix large_form">
+          <label for="last_name" class="login">{{ 'customer.register.last_name' | t }}</label>
+          <input type="text" name="customer[last_name]" id="last_name_input" class="large" size="30" />
+        </div>
+
+        <div id="email" class="clearfix large_form">
+          <label for="email" class="login">{{ 'customer.register.email' | t }}</label>
+          <input type="email" name="customer[email]" id="email_input" class="large" size="30" />
+        </div>
+
+        <div id="password" class="clearfix large_form">
+          <label for="password" class="login">{{ 'customer.register.password' | t }}</label>
+          <input type="password" name="customer[password]" id="password_input" class="large password" size="30" />
+        </div>
+
+        <div class="action_bottom">
+          <input class="secondary button" id="account-registration-submit" type="submit" value="{{ 'customer.register.submit' | t }}"/>
+        </div>
+
+        {% comment %} :: SUCCESS / ERROR HANDLER :: {% endcomment %}
+        <div id="register-form-response">
+          <span id="register-error-response" style="display:none;"></span>
+        </div>
+
+      {% endform %}
+    </div>
+    <!-- END : Right : Register -->
+
+  </div>
+
+</div>
