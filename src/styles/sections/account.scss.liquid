@@ -1,3 +1,16 @@
+.template-account #content {
+  @include make-container();
+}
+
+.template-page #page {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.template-account #breadcrumb {
+  position: static;
+}
+
 .account-header {
   position: relative;
 
@@ -15,7 +28,7 @@
     @include h5;
     line-height: 1.6875em;
     letter-spacing: .025em;
-    color: $color--primary-1;    
+    color: $color--primary-1;
     font-weight: 700;
   }
   label {
@@ -34,7 +47,7 @@
 
   #sign_out {
     @include h6;
-    @include fontSize( 13px );  
+    @include fontSize( 13px );
     position: relative;
     padding: 13px 16px;
     top: 20px;
@@ -82,4 +95,18 @@
        margin: 25px 0;
     }
   }
+
+
+  form.has-error {
+    border: 1px solid $color--error;
+  }
+
+  /* RESPONSE MESSAGES
+  * ----------------------------------------------------------------------- */
+  #register-form-response {
+    color: $color--error;
+    // border-bottom: solid 1px $color--error; //Looked a bit odd
+  }
+
+
 }

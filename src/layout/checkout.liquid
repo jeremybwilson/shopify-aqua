@@ -8,6 +8,9 @@
     <meta name="referrer" content="origin">
 
     <title>{{ page_title }}</title>
+
+    {% comment %} :: LOAD SCRIPTS :: {% endcomment %}
+    {{ 'jquery-2.2.4.min.js' | asset_url | script_tag }}
   </head>
   
   <body>
