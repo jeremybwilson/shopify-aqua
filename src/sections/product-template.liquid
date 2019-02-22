@@ -1,3 +1,11 @@
+{% assign has_audience = false %}
+{% for tag in product.tags %}
+  {% if tag contains 'audience_' %}
+    {% assign has_audience = true %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
 {% assign current_variant = product.selected_or_first_available_variant %}
 
 <div itemscope itemtype="http://schema.org/Product"
@@ -105,7 +113,7 @@
             {% endif %}
 
             {% comment %} :: Sizing chart :: {% endcomment %}
-            {% if template != 'product.quick' and section.settings.size_chart_show %}
+            {% if template != 'product.quick' and section.settings.size_chart_show and has_audience %}
               <div class="product-action product-action--sizing-chart">
                 <a href="#size-chart--popup" class="fancybox size-chart--trigger">Size Chart</a>
               </div>
@@ -310,7 +318,7 @@
 </div>
 
 {% comment %} :: SIZE CHART MODAL :: {% endcomment %}
-{% if section.settings.size_chart_show %}
+{% if section.settings.size_chart_show and has_audience %}
   {% include 'product-size-chart' %}
 {% endif %}
 
