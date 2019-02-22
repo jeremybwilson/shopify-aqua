@@ -1140,8 +1140,10 @@ theme.Header = (function() {
       searchClose: $( '.nav-search-bar-close' ),
       swapRate: $container.attr( 'data-swap-rate' )
     }
-    const self = this;
 
+    this.initStickyNav()
+
+    const self = this;
 
     // BORDER-FREE : Extra toggle event so we can also tell when the borderfree panel is open on nav
     if ( ui.borderFreeLink.length > -1 ) {
@@ -1260,10 +1262,92 @@ theme.Header = (function() {
       // START : Begin auto-toggle until user interaction
       start();
     }
-
-
   }
-  Header.prototype = _.assignIn({}, Header.prototype, {});
+
+  Header.prototype = _.assignIn({}, Header.prototype, {
+    initStickyNav: function () {
+      this.navState = {
+        offsetY: 0,
+        height: 0,
+        shouldPhantom: false,
+        isSticky: false,
+      }
+
+      this.cache = this.cache || {}
+      this.cache.$topBar = $('#top-bar')
+      this.cache.$navContainer = $('#header-section')
+      this.cache.$nav = $('#nav-bar-wrapper')
+      this.cache.$window = $(window)
+
+      this.initNavState()
+      this.handleNavResize()
+      this.handleNavScroll()
+      this.bindNavEvents()
+    },
+
+    initNavState: function () {
+      const initPosition = this.cache.$nav.css('position')
+      this.navState.shouldPhantom = initPosition !== 'fixed' && initPosition !== 'absolute'
+      this.navState.offsetY = this.cache.$topBar.outerHeight()
+    },
+
+    setNavSticky: function () {
+      this.cache.$nav
+        .addClass('isStuck')
+        .css({ position: 'fixed', top: '0' })
+      this.navState.isSticky = true
+    },
+
+    phantomNav: function () {
+      this.cache.$navContainer.css({
+        paddingBottom: this.navState.height + 'px'
+      })
+      this.setNavSticky()
+    },
+
+    unphantomNav: function () {
+      this.cache.$navContainer.removeAttr('style')
+      this.cache.$nav
+        .removeAttr('style')
+        .removeClass('isStuck')
+      this.navState.isSticky = false
+    },
+
+    handleNavResize: function () {
+      const nextHeight = this.cache.$nav.outerHeight()
+      const nextOffsetY = this.cache.$topBar.outerHeight()
+
+      if (this.navState.height !== nextHeight) {
+        this.navState.height = nextHeight
+      }
+
+      if (this.navState.offsetY !== nextOffsetY) {
+        this.navState.offsetY = nextOffsetY
+      }
+    },
+
+    handleNavScroll: function () {
+      const windowY = this.cache.$window.scrollTop()
+      const isBelow = windowY > this.navState.offsetY && !this.navState.isSticky
+      const isAbove = windowY <= this.navState.offsetY && this.navState.isSticky
+      if (isBelow) {
+        if (this.navState.shouldPhantom) {
+          this.phantomNav()
+        } else {
+          this.setNavSticky()
+        }
+      } else if (isAbove) {
+        this.unphantomNav()
+      }
+    },
+
+    bindNavEvents: function () {
+      this.cache.$window
+        .on('resize', $.proxy(this.handleNavResize, this))
+        .on('scroll touchmove', $.proxy(this.handleNavScroll, this))
+    },
+  });
+
   return Header;
 })();
 
@@ -2132,9 +2216,9 @@ $(document).ready(function() {
   /*============================================================================
    Sticky Navigation
   ==============================================================================*/
-    $(document).ready( function() {
-      $('#nav-bar-wrapper').stickUp();
-    });
+    // $(document).ready( function() {
+    //   $('#nav-bar-wrapper').stickUp();
+    // });
 
   /*============================================================================
    Cookie Banner
@@ -3350,7 +3434,12 @@ theme.Search = (function() {
   return Search;
 })();
 
-
+/*============================================================================
+  Init
+==============================================================================*/
+theme.init = function () {
+  theme.scripts.init();
+};
 
 /*============================================================================
   Registering Sections
@@ -3372,13 +3461,9 @@ $(document).ready(function() {
   sections.register('mobile-navigation', theme.mobileNav);
   sections.register('product-section', theme.Product);
   sections.register('search-template', theme.Search);
+
+  theme.init()
 });
-
-theme.init = function () {
-  theme.scripts.init();
-};
-
-$(theme.init);
 
 /*============================================================================
   Debounce for window resizing
