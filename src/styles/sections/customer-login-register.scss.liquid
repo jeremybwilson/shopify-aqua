@@ -1,0 +1,121 @@
+// CUSTOMER-LOGIN-REGISTER.SCSS.LIQUID
+// -- sections/customer-login-register.liquid
+// -- templates/customer/login.liquid
+// -- templates/customer/register.liquid
+
+// NOTE: Login / Reg were identical files, merged so single editing can serve for both since both show up on single page.
+
+
+/*  LOGIN / REGISTER : Main Styling
+ * ---------------------------------------------- */
+body.template-login,
+body.template-register {
+	
+	// URL BREADCRUMB
+	#breadcrumb {
+		top: 10px;
+	}
+
+	// CONTENT-WRAP : Encapsulates page content
+	#customer-wrapper {
+		float: none;
+		width: 100%;
+		max-width: 500px;
+		display: block;
+		margin: 0 auto;
+		padding: 0 15px;
+
+		@include mq( 'lap-and-up' ) {
+			max-width: 100%;
+		}
+
+		// PANEL-WRAP : Encapsules the two forms
+		#panel-wrapper {
+			display: block;
+			width: 100%;
+
+			@include mq( 'tablet-and-up' ) {
+				padding-bottom: 50px;
+			}
+
+			@include mq( 'lap-and-up' ) {
+				@include inline-flex;
+				@include justify-content( center );
+				@include align-items( flex-start );
+			}
+
+			&.show-recovery {
+
+				// RECOVER PASSWORD
+				#panel-login {
+
+					#login-customer,
+					#login-guest {
+						display: none;
+					}
+
+					#recover-password {
+						display: block;
+					}
+				}
+			}
+			
+			// LEFT : Login / Recovery Forms
+			#panel-login {
+				margin-bottom: 50px;
+
+				@include mq( 'lap-and-up' ) {
+					margin-right: 20px;
+				}
+
+
+				// RECOVER PASSWORD
+				#recover-password {
+					display: none;
+				}
+			}
+
+
+			// RIGHT : Register Form
+			#panel-register {
+				@include mq( 'lap-and-up' ) {
+					margin-left: 20px;
+				}
+			}
+		}
+
+
+		// GLOBAL : Apply to all items in login view
+		.account-panel {
+			width: 100%;
+			display: block;
+
+			@include mq( 'lap-and-up' ) {
+				max-width: 360px;
+			}
+
+			// Forgot PW Buttons
+			.toggle-button {
+				cursor: pointer;
+			}
+
+			// Submit Buttons
+			.action_bottom input {
+				width: 100%;
+				outline: none;
+				cursor: pointer;
+			}
+		}
+
+		input[type="text"],
+		input[type="email"],
+		input[type="password"] {
+			@include fontSize( 16px );
+			font-weight: $font-weight--medium;
+		}
+
+		.errors ul {
+			list-style: none !important;
+		}
+	}
+}

@@ -1501,6 +1501,48 @@ theme.RegistrationEmailSignUp = (function() {
 
 
 /*============================================================================
+  Account Login / Registration
+==============================================================================*/
+theme.LoginRegister = (function() {
+  function LoginRegister(container) {
+    const $container = this.$container = $(container);
+    const ui = {
+      panelWrapper: $( '#panel-wrapper' ),
+      recoverButton: $( '#forgot_password'),
+      cancelButton: $( '#return_to_login' )
+    };
+
+    // TOGGLE : Recover Password Pane
+    const toggleRecoverPw = () => {
+      ui.panelWrapper.toggleClass( 'show-recovery' );
+    }
+
+    // EVENTS : Bind click events and handle load state when ready
+    $(document).ready( function() {
+
+      // ROUTE CHECK : Are we on the recover url?
+      if (window.location.hash == '#recover') { 
+        toggleRecoverPw();
+      }
+
+      // BIND : Setup click handlers
+      ui.recoverButton.click( () => {
+        toggleRecoverPw();
+      });    
+
+      ui.cancelButton.click( () => {
+        toggleRecoverPw();
+      });
+    });
+
+  }
+
+  LoginRegister.prototype = _.assignIn({}, LoginRegister.prototype, {});
+  return LoginRegister;
+})();
+
+
+/*============================================================================
   Instagram on index
 ==============================================================================*/
 theme.Instagram = (function() {
@@ -3449,6 +3491,7 @@ $(document).ready(function() {
   sections.register('header-section', theme.Header);
   sections.register('newsletter-simple', theme.Newsletter);
   sections.register('create-customer', theme.RegistrationEmailSignUp);
+  sections.register('customer-login-register', theme.LoginRegister);
   sections.register('instagram', theme.Instagram);
   sections.register('tabbed-collections', theme.TabbedCollections);
   sections.register('featured-collection', theme.FeaturedCollection);
