@@ -28,8 +28,8 @@
     "sale_color": "#bc0000",
     "dotted_color": "#e5e5e5",
     "error_text": "#cb0000",
-    "button_bg": "#e41c39",
-    "button_bg_hover": "#a6041c",
+    "button_bg": "#000000",
+    "button_bg_hover": "#333333",
     "button_text": "#ffffff",
     "button_text_hover": "#ffffff",
     "button_border_color": "rgba(0,0,0,0)",
@@ -665,7 +665,7 @@
           "cta_link": "http:\/\/www.instagram.com\/aquatalia",
           "cta_text": "FOLLOW US",
           "cta_symbol_placement": "left",
-          "instagram_access_token": "324973178.5ea0515.593a03d541c143998399b8204d258599"
+          "instagram_access_token": "324973178.5ea0515.ffffb3515672474fbe262ddb8aac60e0"
         }
       },
       "page-about-template": {
