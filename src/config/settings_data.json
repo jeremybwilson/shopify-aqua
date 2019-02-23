@@ -668,6 +668,14 @@
           "instagram_access_token": "324973178.5ea0515.ffffb3515672474fbe262ddb8aac60e0"
         }
       },
+      "home-video_weatherproof": {
+        "type": "video",
+        "settings": {
+          "heading": "",
+          "full_width": true,
+          "video_url": "https:\/\/vimeo.com\/319130430"
+        }
+      },
       "page-about-template": {
         "type": "page-about-template",
         "blocks": {
@@ -1174,7 +1182,7 @@
       "home-twin_promos",
       "home-featured_collection_slideshow",
       "home-featured_products_list",
-      "home-feature_highlight_slideshow",
+      "home-video_weatherproof",
       "home-instagram_feed",
       "home-about_image_with_text"
     ]
