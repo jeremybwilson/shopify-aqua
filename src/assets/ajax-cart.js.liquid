@@ -349,8 +349,28 @@ var ajaxCart = (function(module, $) {
 
     if (!!data.message) {
       if (data.status == 422) {
-        $formContainer.after('<div class="errors qty-error">'+ data.description +'</div>');
-        $('.mobile-header--top').after('<div class="errors qty-error">'+ data.description +'</div>');
+        var lowStockMsg = "Sorry, not enough stock available to add that many to the cart.";
+        
+        // CHECK : Try to parse the actual available number
+        if ( data.description && data.description.length > 0 ) {
+
+          // Extract first num present in sentence
+          var firstNum = data.description.match( /[0-9]+/ );
+          var numAvailable = null;
+
+          // Safety, cant use ES6 shortand >< 
+          if ( firstNum && firstNum[0] ) {
+            numAvailable = parseInt( firstNum[0], 10 );
+          } 
+          
+          // SHOW COUNT : If we were able to parse, update msg to include actual count available
+          if ( typeof numAvailable === "number" ) {
+            lowStockMsg = "Sorry, we only have " + numAvailable + " left in stock.";
+          }
+        }
+
+        $formContainer.after('<div class="errors qty-error">' + lowStockMsg + '</div>');
+        $('.mobile-header--top').after('<div class="errors qty-error">'+ lowStockMsg +'</div>');
       }
     }
   };

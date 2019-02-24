@@ -277,6 +277,18 @@
             }
           },
           "nav-item-4": {
+            "type": "mega_menu",
+            "settings": {
+              "menu_item": "Sale"
+            }
+          },
+          "nav-item-5": {
+            "type": "simple_menu",
+            "settings": {
+              "menu_item": "Rewards"
+            }
+          },
+          "nav-item-6": {
             "type": "simple_menu",
             "settings": {
               "menu_item": "Weatherproof"
@@ -287,13 +299,15 @@
           "nav-item-1",
           "nav-item-2",
           "nav-item-3",
-          "nav-item-4"
+          "nav-item-4",
+          "nav-item-5",
+          "nav-item-6"
         ],
         "settings": {
           "full_width_header": false,
           "show_announcement_text": true,
           "num_of_promo_banners": "1",
-          "announcement_text_one": "Sign Up & Recieve $50 Off Purchases Of $150 Or More",
+          "announcement_text_one": "Sign Up & Receive $50 Off Purchases Of $150 Or More",
           "announcement_link_one": "\/account",
           "announcement_text_two": "Second banner text here",
           "announcement_link_two": "http:\/\/google.com",
@@ -598,7 +612,7 @@
           "heading_text": "Visit Us in NYC",
           "body_text": "<p>965 Madison Ave at 75th Street<\/p>",
           "button_text": "LEARN MORE",
-          "button_link": "\/pages\/about-us",
+          "button_link": "\/pages\/stores",
           "button_symbol_placement": "left",
           "image_side": "left",
           "image_width": 64,
@@ -652,6 +666,14 @@
           "cta_text": "FOLLOW US",
           "cta_symbol_placement": "left",
           "instagram_access_token": "324973178.5ea0515.ffffb3515672474fbe262ddb8aac60e0"
+        }
+      },
+      "home-video_weatherproof": {
+        "type": "video",
+        "settings": {
+          "heading": "",
+          "full_width": true,
+          "video_url": "https:\/\/vimeo.com\/319130430"
         }
       },
       "page-about-template": {
@@ -1160,7 +1182,7 @@
       "home-twin_promos",
       "home-featured_collection_slideshow",
       "home-featured_products_list",
-      "home-feature_highlight_slideshow",
+      "home-video_weatherproof",
       "home-instagram_feed",
       "home-about_image_with_text"
     ]
