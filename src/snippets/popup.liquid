@@ -4,10 +4,10 @@
   <div style="display:none">
     <div id="subscribe--popup">
 
-      <a id="subscribe--close">
-        {% include 'svg-icon-x' %}
-      </a>
-
+      {% comment %} SVG :: Close icon - Hiding as it is unnecessary with fancybox {% endcomment %}
+      {% comment %} <a id="subscribe--close"> {% endcomment %}
+        {% comment %} {% include 'svg-icon-x' %} {% endcomment %}
+      {% comment %} </a> {% endcomment %}
 
       {% if settings.email_image != blank %}
       {%- assign image_size = '600x' -%}
@@ -30,8 +30,8 @@
 
       <form id="subscribe--popup--form">
         <div class="gender">
-          <input class="form-control" type="radio" name="gender" id="gender" value="male"> <label for="gender">Male:</label>
-          <input class="form-control" type="radio" name="gender" id="gender" value="female"> <label for="gender">Female:</label>
+          <input class="form-control" type="radio" name="gender" id="gender" value="male"> <label for="gender">Male</label>
+          <input class="form-control" type="radio" name="gender" id="gender" value="female"> <label for="gender">Female</label>
         </div>
         <div class="email">
           <label for="email">

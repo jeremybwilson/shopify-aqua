@@ -1276,8 +1276,7 @@
       {
         "type": "text",
         "id": "newsletter_template_list_name",
-        "label": "Triggered Email (default) template",
-        "default": "Please enter the default triggered message to send on userSignUp"
+        "label": "Triggered Email (default) template"
       },
       {
         "type": "checkbox",
