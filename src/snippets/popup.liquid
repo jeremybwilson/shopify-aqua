@@ -4,11 +4,6 @@
   <div style="display:none">
     <div id="subscribe--popup">
 
-      {% comment %} SVG :: Close icon - Hiding as it is unnecessary with fancybox {% endcomment %}
-      {% comment %} <a id="subscribe--close"> {% endcomment %}
-        {% comment %} {% include 'svg-icon-x' %} {% endcomment %}
-      {% comment %} </a> {% endcomment %}
-
       {% if settings.email_image != blank %}
       {%- assign image_size = '600x' -%}
       <p><img src="{{ settings.email_image | img_url: image_size }}"></p>
