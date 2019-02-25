@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 // note: use @include fontSize(__px) to indicate all font sizes.
-html { 
+html {
   font-size: 16px;
   padding-bottom: 0 !important; // Cart drawer adds weird padding...
 }
@@ -10,7 +10,7 @@ html, body {
   height: 100%;
 }
 
-body { 
+body {
 	font-family: $font-stack--default;
   color: {{ settings.text_color }};
   background: {{ settings.background }};
@@ -43,7 +43,7 @@ body > .page-wrap {
   @include mq('phone') {
     width: 100%;
     padding-left: 24px;
-    padding-right: 24px;    
+    padding-right: 24px;
   }
 }
 
@@ -79,7 +79,7 @@ body > .page-wrap {
   }
 }
 
-// Breadcrumbs 
+// Breadcrumbs
 #breadcrumb {
   @include h8;
   @include fontSize( 16px );
@@ -148,8 +148,8 @@ body.cart {
 
 
 /* GENERAL BUTTONS
- *  Most of this is coiped from stylesheet.css,
- *  so don't be nervous removing stuff no longer 
+ *  Most of this is copied from stylesheet.css,
+ *  so don't be nervous removing stuff no longer
  *  needed here.
 ================================================== */
 .button,
