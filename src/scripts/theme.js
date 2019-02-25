@@ -1345,6 +1345,7 @@ theme.Header = (function() {
       this.cache.$window
         .on('resize', $.proxy(this.handleNavResize, this))
         .on('scroll touchmove', $.proxy(this.handleNavScroll, this))
+        .on('modal-close', $.proxy(this.handleNavScroll, this))
     },
   });
 
@@ -1358,19 +1359,6 @@ theme.Header = (function() {
 
 theme.Newsletter = (function() {
   function Newsletter(container) {
-
-    // $('#subscribe--popup').fancybox({
-    //   hideContentOnClick: true
-    // });
-
-    // $('.js-newsletter-modal').on('click', function () {
-    //   $(this).parent().fadeOut();
-    // });
-
-    // $('.js-newsletter-modal-close').on('click', function (e) {
-    //   e.preventDefault();
-    //   $(this).parent().fadeOut();
-    // });
 
     const $container = this.$container = $(container);
     const ui = {
@@ -2299,19 +2287,17 @@ $(document).ready(function() {
 
   })();
 
+
   /*============================================================================
    Email Popup
   ==============================================================================*/
-
   (function email_popup() {
 
     // check cookies (including GDPR)
-
     var check_popup_cookie = $.cookie('mailing_list_delay_popup');
     var check_banner_cookie = $.cookie('gdpr_banner_read');
 
     // by default, the cookie banner will popup first. once the user hits "accept", then load the newsletter.
-
     // the newsletter is set to popup again after 7 days. though the cookie banner has already been read,
 
     // if(check_popup_cookie == null && check_banner_cookie != null){
@@ -2433,6 +2419,7 @@ $(document).ready(function() {
 
   })();
 
+  // EMAIL : FANCYBOX MODAL
   function email_popup_load() {
     var $popup = $('#subscribe--popup');
 
@@ -2440,10 +2427,11 @@ $(document).ready(function() {
       return false;
     }
 
-    // setting the cookie to delay the popup again for 7 days
-    // popup delay will not be implemented with onclick event for footer newsletter input (email) field
+    // COOKIE : Slide Up Modal Only : Hide for 7 days after use close
+    // (Not used by footer email modal, but if slide up enabled this will be used)
     $.cookie('mailing_list_delay_popup', 'expires_seven_days', { expires: 7 });
 
+    // TEMPLATE : Wrapping template that will encase the modal
     const fancybox_markup = `
     <div class="fancybox-wrap" tabIndex="-1" id="subscribe--popup-wrapper">
       <div class="fancybox-skin">
@@ -2453,17 +2441,23 @@ $(document).ready(function() {
       </div>
     </div>`;
 
+    // CLOSE : Emit Event : Inform navbar to update as Fancybox modal doesn't trigger scroll/size updates on FF / IE
+    const closeCallback = function() {
+      $.event.trigger({
+        type: "modal-close",
+        time: new Date()
+      });
+    }
+
+    // INIT : Create fancybox modal setup
     $.fancybox({
       href: "#subscribe--popup",
       tpl: {
         wrap : fancybox_markup,
       },
       openEffect: 'elastic',
-      closeEffect: 'fade'
-    });
-
-    $('#subscribe--close').click(function() {
-      parent.$.fancybox.close();
+      closeEffect: 'fade',
+      afterClose: closeCallback
     });
   };
 
