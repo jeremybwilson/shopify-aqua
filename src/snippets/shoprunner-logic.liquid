@@ -87,6 +87,7 @@
             }
         })
     }
+
     function _update_shipping_address(callback){
         var form_data;
         var old_address;
@@ -99,6 +100,8 @@
             })
         })
     }
+
+    {% include 'shoprunner-email-harvest' %}
 
     function _process_sr_data(cart){
         _sr_cart = cart;
@@ -127,6 +130,7 @@
                 success: function(cart){
                     $('.section.section--shipping-method .section__content').html(no_shipping_methods);
                     _update_shipping_address();
+                    _harvest_email_signup_info(); // POST'ing checkout form data to Sailthru User API, does not replace Shoprunner functions
                 },
                 error: function(xhr, message){
                     debugger;
@@ -153,11 +157,13 @@
                 success: function(cart){
                     $('.section.section--shipping-method .section__content').html(no_shipping_methods);
                     _update_shipping_address();
+                    _harvest_email_signup_info(); // POST'ing checkout form data to Sailthru User API, does not replace Shoprunner functions
                 },
                 error: function(xhr, message){
                     debugger;
                 },
             });
+
         }
     }
     function _setup_shoprunner_properties(){
