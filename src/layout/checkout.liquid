@@ -9,7 +9,7 @@
 
     <title>{{ page_title }}</title>
 
-    {% comment %} :: LOAD SCRIPTS :: {% endcomment %}
+    {% comment %} :: LIBRARY SCRIPTS :: {% endcomment %}
     {{ 'jquery-2.2.4.min.js' | asset_url | script_tag }}
   </head>
   
@@ -60,5 +60,7 @@
 
     {{ tracking_code }}
   
+    {% comment %} :: BOL - Checkout Customizations :: {% endcomment %}
+    {{ 'checkout.js' | asset_url | script_tag }}
   </body>
 </html>
