@@ -668,12 +668,19 @@
           "instagram_access_token": "324973178.5ea0515.ffffb3515672474fbe262ddb8aac60e0"
         }
       },
-      "home-video_weatherproof": {
-        "type": "video",
+      "home-video_with_text_weatherproof": {
+        "type": "video-with-text",
         "settings": {
-          "heading": "",
-          "full_width": true,
-          "video_url": "https:\/\/vimeo.com\/319130430"
+          "video_url": "https:\/\/vimeo.com\/319130430",
+          "heading_text": "Weatherproof",
+          "body_text": "<p>Please provide the copy you'd like with this video.<\/p>",
+          "button_text": "LEARN MORE",
+          "button_link": "\/pages\/weatherproof",
+          "button_symbol_placement": "left",
+          "video_side": "left",
+          "video_width": 64,
+          "text_vertical": "center",
+          "text_align": "center"
         }
       },
       "page-about-template": {
@@ -1182,7 +1189,7 @@
       "home-twin_promos",
       "home-featured_collection_slideshow",
       "home-featured_products_list",
-      "home-video_weatherproof",
+      "home-video_with_text_weatherproof",
       "home-instagram_feed",
       "home-about_image_with_text"
     ]
