@@ -3,11 +3,12 @@
   "current": {
     "favicon": "shopify://shop_images/favicon.png",
     "google_tag_manager_id": "NONE",
+    "color_grey": "#9b9b9b",
     "announcement_text_color": "#ffffff",
     "announcement_bg_one": "#000000",
     "announcement_bg_two": "#757575",
     "nav_transparent_landing": true,
-    "nav_transparent_landing_color": "#FFFFFF",
+    "nav_transparent_landing_color": "#ffffff",
     "header_background": "#ffffff",
     "logo_color": "#000000",
     "nav_links": "#000000",
@@ -54,7 +55,7 @@
     "filter_button_alt_text": "#000000",
     "filter_bar_border_color": "#e8e8e8",
     "quickview_button_bg": "#000000",
-    "quickview_button_text": "#FEFFFE",
+    "quickview_button_text": "#fefffe",
     "catalog_item_text_color": "#000000",
     "catalog_item_price_color": "#525252",
     "catalog_item_accent_color": "#e61533",
@@ -67,7 +68,7 @@
     "product_badge_circle_bg": "#000000",
     "product_badge_diamond_bg": "#000000",
     "product_badge_text_color": "#fefffe",
-    "react_swatch_outline_color": "#BABABA",
+    "react_swatch_outline_color": "#bababa",
     "fancybox_overlay_bg": "0,0,0,0.8",
     "fancybox_close_color": "#5b5b5b",
     "fancybox_close_hover_color": "#000000",
@@ -258,22 +259,50 @@
           "nav-item-1": {
             "type": "mega_menu",
             "settings": {
-              "menu_item": "Women"
+              "menu_item": "Women",
+              "nav_image": "",
+              "nav_image_link": "",
+              "nav_image_title": "",
+              "nav_image_sub_title": ""
             }
           },
           "nav-item-2": {
             "type": "mega_menu",
             "settings": {
-              "menu_item": "Men"
+              "menu_item": "Men",
+              "nav_image": "",
+              "nav_image_link": "",
+              "nav_image_title": "",
+              "nav_image_sub_title": ""
             }
           },
           "nav-item-3": {
             "type": "mega_menu",
             "settings": {
-              "menu_item": "Accessories"
+              "menu_item": "Accessories",
+              "nav_image": "",
+              "nav_image_link": "",
+              "nav_image_title": "",
+              "nav_image_sub_title": ""
             }
           },
           "nav-item-4": {
+            "type": "mega_menu",
+            "settings": {
+              "menu_item": "Sale",
+              "nav_image": "",
+              "nav_image_link": "",
+              "nav_image_title": "",
+              "nav_image_sub_title": ""
+            }
+          },
+          "nav-item-5": {
+            "type": "simple_menu",
+            "settings": {
+              "menu_item": "Rewards"
+            }
+          },
+          "nav-item-6": {
             "type": "simple_menu",
             "settings": {
               "menu_item": "Weatherproof"
@@ -284,13 +313,15 @@
           "nav-item-1",
           "nav-item-2",
           "nav-item-3",
-          "nav-item-4"
+          "nav-item-4",
+          "nav-item-5",
+          "nav-item-6"
         ],
         "settings": {
           "full_width_header": false,
           "show_announcement_text": true,
           "num_of_promo_banners": "1",
-          "announcement_text_one": "Sign Up & Recieve $50 Off Purchases Of $150 Or More",
+          "announcement_text_one": "Sign Up & Receive $50 Off Purchases Of $150 Or More",
           "announcement_link_one": "/account",
           "announcement_text_two": "Second banner text here",
           "announcement_link_two": "http://google.com",
@@ -362,8 +393,9 @@
           "shipping_learn_more_link": "shopify://pages/faq",
           "shipping_show_account_link": true,
           "show_social": true,
+          "size_chart_show": true,
           "size_chart_header_text": "Size Chart",
-          "size_chart_page": ""
+          "size_chart_page": "sizing-chart"
         }
       },
       "blog-template": {
@@ -590,49 +622,12 @@
           "heading_text": "Visit Us in NYC",
           "body_text": "<p>965 Madison Ave at 75th Street</p>",
           "button_text": "LEARN MORE",
-          "button_link": "/pages/about",
+          "button_link": "shopify://pages/stores",
           "button_symbol_placement": "left",
           "image_side": "left",
           "image_width": 64,
           "text_vertical": "center",
           "text_align": "center"
-        }
-      },
-      "home-feature_highlight_slideshow": {
-        "type": "slideshow",
-        "blocks": {
-          "home-feature_highlight_slideshow--slide-1": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/home-feature_highlight_slideshow--desktop-1.jpg",
-              "mobile_image": "shopify://shop_images/home-feature_highlight_slideshow--mobile-1.jpg",
-              "image_link": "/collections/legacy/audience_men",
-              "heading": "",
-              "subheading": "When you see this symbol the shoe is engineered to be weatherproof & stain resistant",
-              "caption_text_align": "center",
-              "cta_one_link": "/collections/legacy/audience_men",
-              "cta_one_button_text": "LEARN MORE",
-              "cta_one_line": "left",
-              "cta_two_link": "",
-              "cta_two_button_text": "",
-              "cta_two_line": "none",
-              "caption_color_scheme": "light",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "center",
-              "caption_vertical": 75,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.2"
-            }
-          }
-        },
-        "block_order": [
-          "home-feature_highlight_slideshow--slide-1"
-        ],
-        "settings": {
-          "full_width": true,
-          "show_nav_pagination": false,
-          "slider_speed": 8
         }
       },
       "home-instagram_feed": {
@@ -643,7 +638,15 @@
           "cta_link": "http://www.instagram.com/aquatalia",
           "cta_text": "FOLLOW US",
           "cta_symbol_placement": "left",
-          "instagram_access_token": "324973178.5ea0515.593a03d541c143998399b8204d258599"
+          "instagram_access_token": "324973178.5ea0515.ffffb3515672474fbe262ddb8aac60e0"
+        }
+      },
+      "home-video_weatherproof": {
+        "type": "video",
+        "settings": {
+          "heading": "",
+          "full_width": true,
+          "video_url": "https://vimeo.com/319130430"
         }
       },
       "page-about-template": {
@@ -652,7 +655,7 @@
           "1549421101615": {
             "type": "html",
             "settings": {
-              "about_html_block": "<p>Established in 1994, Aquatalia offers the finest combination of fashion, quality and comfort in luxury footwear and is the first to mix distinctive Italian design with innovative weatherproof and stain-resistant technology. Bridging the gap between style and function, Aquatalia sets a new standard in fine footwear and accessories. Taking the brand to the next level, Aquatalia will continue to introduce category expansions, establish a retail presence and expand the brand globally.</p>"
+              "about_html_block": "<p>Established in 1994, Aquatalia offers the finest combination of fashion, quality and comfort in luxury footwear and is the first to mix distinctive Italian design with innovative weatherproof and stain-resistant technology. Bridging the gap between style and function, Aquatalia sets a new standard in fine footwear and accessories. Taking the brand to the next level, Aquatalia will continue to introduce category expansions, grow our retail presence and expand the brand globally.</p>"
             }
           },
           "1548737684033": {
@@ -660,7 +663,7 @@
             "settings": {
               "module_image": "shopify://shop_images/pages-about_content_module_no_text_00.jpg",
               "module_html_h2": "Functional Luxury",
-              "module_html_p": "Crafted in Italy, Aquatalia footwear adheres to the tradition of meticulous Italian shoemaking. \n Using fine leathers and sueses, Aquatalia transforms their texture and finish through an exclusive process that adds exceptional softness and the ultimate luxury of weatherproofing and stain-resistance.",
+              "module_html_p": "Crafted in Italy, Aquatalia footwear adheres to the tradition of meticulous Italian shoemaking. Using fine leathers and suedes, Aquatalia transforms their texture and finish through an exclusive process that adds exceptional softness and the ultimate luxury of weatherproofing and stain-resistance.",
               "module_image_color_scheme": "light",
               "module_image_position_desktop": "image_overlap_left",
               "module_image_position_mobile": "image_top"
@@ -671,7 +674,7 @@
             "settings": {
               "module_image": "shopify://shop_images/pages-about_content_module_no_text_01.jpg",
               "module_html_h2": "Versatile Style",
-              "module_html_p": "We've earned the <strong>Respect, Loyalty and trust</strong> of people who can't afford to take trust lightly.  Aquatalia transcends trend. \n Mixing sophistication, fasion, and versatility into Women's and Men's shoese and accessories.  Aquatalia designs are contemporary yet classic, elegant yet everyday.",
+              "module_html_p": "Aquatalia transcends trend. Mixing sophistication, fashion, and versatility into Women’s and Men’s shoes and accessories, Aquatalia designs are contemporary yet classic, elegant yet everyday, high quality yet low maintenance — the true foundation of a timeless wardrobe.",
               "module_image_color_scheme": "light",
               "module_image_position_desktop": "image_right",
               "module_image_position_mobile": "image_top"
@@ -821,7 +824,7 @@
             "settings": {
               "heading_only": false,
               "title": "Do you ship to PO boxes?",
-              "answer": "<p>Yes, we do currently ship to PO boxes.</p>",
+              "answer": "<p>For security reasons, we do not currently ship to P.O. boxes.</p>",
               "anchor": ""
             }
           },
@@ -839,7 +842,7 @@
             "settings": {
               "heading_only": false,
               "title": "What is weatherproofing (fall/winter collection)?",
-              "answer": "<p>The weatherproofing process, which was developed exclusively for Aquatalia provides a protection for the supple leather and suede used in our Fall-Winter collections.</p>\n<p>During the tanning process, the leather and suede skins are bathed in a special sealant within a uniquely designed drum. This sealant penetrates through the fibers, resulting in soft and natural looking leather and suede that prevent the absorption of moisture and also provide salt and stain resistance. Each seam made during the stitching stage of production is filled with a liquid sealant to prevent water penetration. This unique and complex process allows the materials to resist moisture while maintaining breathability, keeping your feet comfortable and dry. Please note: fastenings and zippers cannot be protected against water penetration. Our weatherproof fall/winter collection is designed to be worn in all types of weather: sun, rain, sleet or snow. The functionality and comfort of Aquatalia are built-in features that bring added value to your footwear investment.</p>",
+              "answer": "<p>The weatherproofing process, which was developed exclusively for Aquatalia provides a protection for the supple leather and suede used in our Fall-Winter collections.\n</p>\n<p></p>\n<p>\nDuring the tanning process, the leather and suede skins are bathed in a special sealant within a uniquely designed drum. This sealant penetrates through the fibers, resulting in soft and natural looking leather and suede that prevent the absorption of moisture and also provide salt and stain resistance. Each seam made during the stitching stage of production is filled with a liquid sealant to prevent water penetration. This unique and complex process allows the materials to resist moisture while maintaining breathability, keeping your feet comfortable and dry. Please note: fastenings and zippers cannot be protected against water penetration. Our weatherproof fall/winter collection is designed to be worn in all types of weather: sun, rain, sleet or snow. The functionality and comfort of Aquatalia are built-in features that bring added value to your footwear investment.</p>",
               "anchor": ""
             }
           },
@@ -849,6 +852,15 @@
               "heading_only": false,
               "title": "What type of insoles are used in Aquatalia footwear?",
               "answer": "<p>A padded, insulating footbed is used underneath the sock lining. This footbed is made with long term memory foam, designed to conform to your foot shape and maintain the comfort you initially feel in our footwear. This unique feature will keep your feet comfortable year round, indoors or outdoors, regardless of the weather. During cold weather, the special insulator will activate to keep your feet warm. In warmer weather, the breathable microfiber lining will keep your feet cool and dry.</p>",
+              "anchor": ""
+            }
+          },
+          "1550791129889": {
+            "type": "html",
+            "settings": {
+              "heading_only": false,
+              "title": "What types of outer soles are used in Aquatalia footwear?",
+              "answer": "<p>The outer soles are fabricated using a special rubber compound that retains its flexibility, even in cold weather conditions. They are specially designed to be slip resistant, providing maximum stability.</p>",
               "anchor": ""
             }
           },
@@ -865,8 +877,8 @@
             "type": "html",
             "settings": {
               "heading_only": false,
-              "title": "Do the boots fit wide widths?",
-              "answer": "<p>Yes. Our boots are made to standard widths, but the materials will stretch to fit widths up to a EEE. For narrow feet, we suggest wearing a thicker sock or putting in an additional sock liner to take up room.</p>",
+              "title": "What types of outer soles are used in Aquatalia footwear?",
+              "answer": "<p>The following is a general guideline to care for your Aquatalia product.</p>\n<p></p>\n<p>Aquatalia footwear in our Fall-Winter collection provides you with beautiful soft leathers and materials which are both weatherproof and stain resistant. Stains can be classified and treated as follows: Watery stains including coffee, milk, cola, wine and alcoholic beverages can be wiped off using a soft cloth moistened with water. With more tenacious stains, we recommend that you wipe off with a soft cloth moistened in a solution of water and neutral soap or a solution of 5% ammonia in water. If the outer surface of your footwear gets wet, do not place on or near any direct heat. This will negatively affect the weatherproof sealant of your product. It is important to allow your footwear to dry naturally. To restore original texture and beauty of the materials, use the following methods: For suede, brush gently with a soft suede brush. For leather, polish with a quality wax and buff using a cloth or brush. Store your Aquatalia footwear in a cool, dry environment, away from direct heat.</p>",
               "anchor": ""
             }
           },
@@ -874,17 +886,8 @@
             "type": "html",
             "settings": {
               "heading_only": false,
-              "title": "Are the collar and calf stiff?",
-              "answer": "<p>No. The upper calf and topline areas are made of soft, flexible NEOPRENE and will stretch. With the flexible upper, the pant leg can be worn over or inside the boot. The collar material can be turned down to allow hands-free removal and vent humidity in warmer working conditions.</p>",
-              "anchor": ""
-            }
-          },
-          "1550614207981": {
-            "type": "html",
-            "settings": {
-              "heading_only": false,
-              "title": "What types of outer soles are used in Aquatalia footwear?",
-              "answer": "<p>The outer soles are fabricated using a special rubber compound that retains its flexibility, even in cold weather conditions. They are specially designed to be slip resistant, providing maximum stability.</p>",
+              "title": "How do I care for my Pony Hair Calf shoes/boots?",
+              "answer": "<p>Aquatalia’s pony hair is made from the finest quality Italian calf leathers. In order to maintain the leather’s luxurious texture and sheen, they do not undergo Aquatalia’s fall/winter weatherproofing process. Our pony hair calf styles are naturally water-resistant, but should not be considered weatherproof. To keep the pony hair looking its best, lightly brush the hair in its natural direction with a soft shoe brush.</p>",
               "anchor": ""
             }
           }
@@ -896,7 +899,7 @@
           "1542219298126",
           "1542220082322",
           "1542220259294",
-          "1550614207981",
+          "1550791129889",
           "1548794634222",
           "1542220342731",
           "1542220365959"
@@ -1009,6 +1012,141 @@
           "live_chat_enabled": false,
           "live_chat_text": "Live chat"
         }
+      },
+      "page-international-template": {
+        "type": "page-international-template",
+        "blocks": {
+          "1550857183257": {
+            "type": "html",
+            "settings": {
+              "heading_only": true,
+              "title": "GENERAL",
+              "answer": "",
+              "anchor": ""
+            }
+          },
+          "1550857216011": {
+            "type": "html",
+            "settings": {
+              "heading_only": false,
+              "title": "Can my order be delivered internationally?",
+              "answer": "<p>Yes. We are pleased toprovide an enhanced international shopping experience. International shoppers now get the benefit of seeing product prices in their local currency, guaranteed order totals, cost-effective international shipping, and much more.</p>",
+              "anchor": ""
+            }
+          },
+          "1550858311916": {
+            "type": "html",
+            "settings": {
+              "heading_only": false,
+              "title": "How will I know how much my order will cost?",
+              "answer": "<p>Just add items to your basket and click select to check out. Your order total will be presented in your preferred currency, including all shipping costs, as well as any applicable duties and taxes imposed by the customs and revenue authorities in the destination country.</p>",
+              "anchor": ""
+            }
+          },
+          "1550858322332": {
+            "type": "html",
+            "settings": {
+              "heading_only": false,
+              "title": "Who should I contact if I have questions relating to my order after I have made a purchase?",
+              "answer": "<p>Please contact us at customerservice@shop.aquatalia.com and Aquatalia will gladly assist you with any questions relating to your international order.</p>",
+              "anchor": ""
+            }
+          },
+          "1550858336537": {
+            "type": "html",
+            "settings": {
+              "heading_only": false,
+              "title": "What is your return policy for international orders?",
+              "answer": "<p>If for any reason you are not satisfied with your purchase, please contact us at <a href=\"mailto:customerservice@shop.aquatalia.com\">customerservice@shop.aquatalia.com</a> and we will provide you with further instructions on where returns should be shipped and the amount you will be refunded. Refund amounts for returned items will be credited to you in the same currency and using the same exchange rate as your original order.</p>",
+              "anchor": ""
+            }
+          },
+          "1550858416204": {
+            "type": "html",
+            "settings": {
+              "heading_only": true,
+              "title": "PAYMENT",
+              "answer": "",
+              "anchor": ""
+            }
+          },
+          "1550858426850": {
+            "type": "html",
+            "settings": {
+              "heading_only": false,
+              "title": "What will my credit card statement say?",
+              "answer": "<p>Your credit card will be billed by Aquatalia’s international partner, Borderfree. You’re your credit card statement will read “BF*Aquatalia” where “BF” denotes the Borderfree network.</p>",
+              "anchor": ""
+            }
+          },
+          "1550858452223": {
+            "type": "html",
+            "settings": {
+              "heading_only": true,
+              "title": "SHIPPING",
+              "answer": "",
+              "anchor": ""
+            }
+          },
+          "1550858461159": {
+            "type": "html",
+            "settings": {
+              "heading_only": false,
+              "title": "Are there any items that cannot ship to my country because they are restricted?",
+              "answer": "<p>If for some reason there are any items that cannot be exported from the United States or imported into your destination country selection, you will be notified during the checkout process.</p>",
+              "anchor": ""
+            }
+          },
+          "1550858473788": {
+            "type": "html",
+            "settings": {
+              "heading_only": false,
+              "title": "Do you ship to US military addresses (APO/FPO)?",
+              "answer": "<p>For security reasons, we do not currently ship APO/FPO addresses.</p>",
+              "anchor": ""
+            }
+          },
+          "1550858482107": {
+            "type": "html",
+            "settings": {
+              "heading_only": false,
+              "title": "How can I track my international order?",
+              "answer": "<p>Click <a href=\"https://www.borderfree.com/#/track\" target=\"_blank\" title=\"Track International packages\">here</a> to track the progress of your international package(s).</p>",
+              "anchor": ""
+            }
+          },
+          "1550858498232": {
+            "type": "html",
+            "settings": {
+              "heading_only": false,
+              "title": "What are my international shipping options?",
+              "answer": "<p>The following is a summary of delivery estimates for our international orders. You will be quoted a specific delivery promise at the time of checkout that is based on your selected destination country and the shipping methods available for the items in your shopping cart. International shipments are typically delivered within 7-20 business days</p>\n<p></p>\n<p>** Important Note: Please note that Aquatalia will also need 3-7 business days after the order is processed to ship your order from our U.S. warehouse to the Borderfree facility. Orders places after 2 pm EST (11 am PST) will not be shipped until the following business day. Orders placed on weekends or holidays will not be shipped until the following business day.</p>",
+              "anchor": ""
+            }
+          }
+        },
+        "block_order": [
+          "1550857183257",
+          "1550857216011",
+          "1550858311916",
+          "1550858322332",
+          "1550858336537",
+          "1550858416204",
+          "1550858426850",
+          "1550858452223",
+          "1550858461159",
+          "1550858473788",
+          "1550858482107",
+          "1550858498232"
+        ],
+        "settings": {
+          "anchor_top_offset": -100,
+          "page_title_h1": "",
+          "before_content": "",
+          "after_content": "",
+          "left_nav_enabled": true,
+          "interior_page_left_nav": "side-menu"
+        }
       }
     },
     "content_for_index": [
@@ -1016,7 +1154,7 @@
       "home-twin_promos",
       "home-featured_collection_slideshow",
       "home-featured_products_list",
-      "home-feature_highlight_slideshow",
+      "home-video_weatherproof",
       "home-instagram_feed",
       "home-about_image_with_text"
     ]

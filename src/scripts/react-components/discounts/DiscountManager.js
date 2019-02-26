@@ -203,7 +203,7 @@ class DiscountManager extends React.Component {
 		    .then( productJson => {
 		        return productJson;
 			})
-			.catch( err => {
+			.catch( error => {
 				const theError = error && error.message ? error.message : error || 'Request failed for an unknown reason with no error object returned..';
 				console.log( `[ DiscountManager -- fetchProduct() ] : Failed request :\n${ theError }` );
 				throw new Error( theError );

@@ -1,3 +1,11 @@
+{% assign has_audience = false %}
+{% for tag in product.tags %}
+  {% if tag contains 'audience_' %}
+    {% assign has_audience = true %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
 {% assign current_variant = product.selected_or_first_available_variant %}
 
 <div itemscope itemtype="http://schema.org/Product"
@@ -93,15 +101,24 @@
 
           {% include 'product-form' %}
 
-          {% comment %} :: Social sharing :: {% endcomment %}
-          {% if section.settings.show_social %}
-            <div class="share-me">
-              <span class="share-me__label">Share</span>
-              <div class="share-me__social-sharing">
-                {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+          <div class="product-actions">
+            {% comment %} :: Social sharing :: {% endcomment %}
+            {% if section.settings.show_social %}
+              <div class="share-me product-action product-action--share">
+                <span class="share-me__label">Share</span>
+                <div class="share-me__social-sharing">
+                  {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+                </div>
               </div>
-            </div>
-          {% endif %}
+            {% endif %}
+
+            {% comment %} :: Sizing chart :: {% endcomment %}
+            {% if template != 'product.quick' and section.settings.size_chart_show and has_audience %}
+              <div class="product-action product-action--sizing-chart">
+                <a href="#size-chart--popup" class="fancybox size-chart--trigger">Size Chart</a>
+              </div>
+            {% endif %}
+          </div>
 
           {% comment %} :: Product description :: {% endcomment %}
           {% if product.description != blank %}
@@ -117,7 +134,16 @@
               {% if product_description[1] != blank %}
                 <div id="read-more" class="product-desc__more">
                   <div class="rte">
-                    {{ product_description[1] }}
+                    {% comment %}{- We will build our own list -}{% endcomment %}
+                    {% assign product_specs = product_description[1] | remove: '<ul>' | remove: '</ul>' | remove: '<li>' | remove: '</li>' | split: '•' %}
+                    <ul>
+                      {% for spec in product_specs %}
+                        {% if spec != blank %}
+                          {% comment %}{- Remove nonbreaking space -}{% endcomment %}
+                          <li>{{ spec | remove_first: ' ' }}</li>
+                        {% endif %}
+                      {% endfor %}
+                    </ul>
                   </div>
                 </div>
                 <div class="product-desc__read-wrapper">
@@ -292,7 +318,7 @@
 </div>
 
 {% comment %} :: SIZE CHART MODAL :: {% endcomment %}
-{% if section.settings.size_chart_show %}
+{% if section.settings.size_chart_show and has_audience %}
   {% include 'product-size-chart' %}
 {% endif %}
 
@@ -331,12 +357,6 @@
   {% if section.settings.thumbnails == 'left' %}
     .product-main-images {
       float: right !important;
-    }
-    .product-thumbnail {
-      margin-bottom: 5px;
-    }
-    .product-thumbnail:last-child {
-      margin-bottom: 0;
     }
   {% endif %}
   {% if section.settings.related_products == 'right' %}

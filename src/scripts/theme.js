@@ -965,7 +965,7 @@ theme.scripts.filterUtils = (function() {
         // SEARCH : APPEND : If any params match the keep regex, grab and append them to our built url (order wont matter)
         if ( currentParams.search( keepRgx ) > -1 ) {
           const params = currentParams.split( '&' );
-          const paramsToKeep = params.forEach( function (param) { 
+          const paramsToKeep = params.forEach( function (param) {
              if ( param.search( keepRgx ) > -1 ) {
                 queryParams += `&${param}`;
              }
@@ -1140,8 +1140,10 @@ theme.Header = (function() {
       searchClose: $( '.nav-search-bar-close' ),
       swapRate: $container.attr( 'data-swap-rate' )
     }
-    const self = this;
 
+    this.initStickyNav()
+
+    const self = this;
 
     // BORDER-FREE : Extra toggle event so we can also tell when the borderfree panel is open on nav
     if ( ui.borderFreeLink.length > -1 ) {
@@ -1260,10 +1262,93 @@ theme.Header = (function() {
       // START : Begin auto-toggle until user interaction
       start();
     }
-
-
   }
-  Header.prototype = _.assignIn({}, Header.prototype, {});
+
+  Header.prototype = _.assignIn({}, Header.prototype, {
+    initStickyNav: function () {
+      this.navState = {
+        offsetY: 0,
+        height: 0,
+        shouldPhantom: false,
+        isSticky: false,
+      }
+
+      this.cache = this.cache || {}
+      this.cache.$topBar = $('#top-bar')
+      this.cache.$navContainer = $('#header-section')
+      this.cache.$nav = $('#nav-bar-wrapper')
+      this.cache.$window = $(window)
+
+      this.initNavState()
+      this.handleNavResize()
+      this.handleNavScroll()
+      this.bindNavEvents()
+    },
+
+    initNavState: function () {
+      const initPosition = this.cache.$nav.css('position')
+      this.navState.shouldPhantom = initPosition !== 'fixed' && initPosition !== 'absolute'
+      this.navState.offsetY = this.cache.$topBar.outerHeight()
+    },
+
+    setNavSticky: function () {
+      this.cache.$nav
+        .addClass('isStuck')
+        .css({ position: 'fixed', top: '0' })
+      this.navState.isSticky = true
+    },
+
+    phantomNav: function () {
+      this.cache.$navContainer.css({
+        paddingBottom: this.navState.height + 'px'
+      })
+      this.setNavSticky()
+    },
+
+    unphantomNav: function () {
+      this.cache.$navContainer.removeAttr('style')
+      this.cache.$nav
+        .removeAttr('style')
+        .removeClass('isStuck')
+      this.navState.isSticky = false
+    },
+
+    handleNavResize: function () {
+      const nextHeight = this.cache.$nav.outerHeight()
+      const nextOffsetY = this.cache.$topBar.outerHeight()
+
+      if (this.navState.height !== nextHeight) {
+        this.navState.height = nextHeight
+      }
+
+      if (this.navState.offsetY !== nextOffsetY) {
+        this.navState.offsetY = nextOffsetY
+      }
+    },
+
+    handleNavScroll: function () {
+      const windowY = this.cache.$window.scrollTop()
+      const isBelow = windowY > this.navState.offsetY && !this.navState.isSticky
+      const isAbove = windowY <= this.navState.offsetY && this.navState.isSticky
+      if (isBelow) {
+        if (this.navState.shouldPhantom) {
+          this.phantomNav()
+        } else {
+          this.setNavSticky()
+        }
+      } else if (isAbove) {
+        this.unphantomNav()
+      }
+    },
+
+    bindNavEvents: function () {
+      this.cache.$window
+        .on('resize', $.proxy(this.handleNavResize, this))
+        .on('scroll touchmove', $.proxy(this.handleNavScroll, this))
+        .on('modal-close', $.proxy(this.handleNavScroll, this))
+    },
+  });
+
   return Header;
 })();
 
@@ -1275,23 +1360,10 @@ theme.Header = (function() {
 theme.Newsletter = (function() {
   function Newsletter(container) {
 
-    // $('#subscribe--popup').fancybox({
-    //   hideContentOnClick: true
-    // });
-
-    // $('.js-newsletter-modal').on('click', function () {
-    //   $(this).parent().fadeOut();
-    // });
-
-    // $('.js-newsletter-modal-close').on('click', function (e) {
-    //   e.preventDefault();
-    //   $(this).parent().fadeOut();
-    // });
-
     const $container = this.$container = $(container);
     const ui = {
            formId: $( '#footer-newsletter' ),
-          textbox: $( '#email' ),
+          textbox: $( '#email-footer' ),
            submit: $( '#button-footer-newsletter-submit' ),
          errorMsg: $( '#newsletter-error-response'),
        successMsg: $( '#newsletter-success-response')
@@ -1342,30 +1414,119 @@ theme.Newsletter = (function() {
             }
           });
 
-          // // success state
-          // zaius.subscribe({
-          //     list_id: 'newsletter',
-          //     email: ui.textbox.val()
-          //   },
-
-          //   // success state
-          //   function() {
-          //     ui.formId.fadeOut( () => {
-          //       ui.successMsg.fadeIn();
-          //     });
-          //   },
-
-          //   // fail state
-          //   function(error) {
-          //     console.log(error);
-          //   }
-          // );
         }
       });
     }
   }
   Newsletter.prototype = _.assignIn({}, Newsletter.prototype, {});
   return Newsletter;
+})();
+
+
+/*============================================================================
+  Account Registration (/account/login) page email capture
+==============================================================================*/
+
+theme.RegistrationEmailSignUp = (function() {
+  function RegistrationEmailSignUp(container) {
+
+    const $container = this.$container = $(container);
+    const ui = {
+      formId:       $( '#create_customer' ),
+      errorMsg:     $( '#register-error-response' ),  // passing the API error response to the DOM
+      textbox:      $( '#email_input' ),
+      firstNameBox: $( '#first_name_input' ),
+      lastNameBox:  $( '#last_name_input' ),
+      submit:       $( '#account-registration-submit' )
+    };
+
+    if ( ui.formId ) {
+
+      ui.textbox.on('focus', () => {
+        // ERROR STATE : Reset error state
+        ui.formId.removeClass('has-error');
+        ui.errorMsg.fadeOut();
+      });
+
+      // SUBMIT : submit form event
+      ui.formId.submit(function(e) {
+        e.preventDefault();  // prevent form submission until Sailthru API returns success or error response
+
+        // relying on Shopify account registration page field validation
+        Sailthru.integration("userSignUp",
+        {
+          "email" : ui.textbox.val(),  // pulls in the value of the email text input
+          "lists" : {
+            "AQUA_Master_List" : 1 // list to add user to (must exist in Sailthru account)
+            // "Anonymous" : 0 // list to remove user from (must exist in Sailthru account)
+          },
+          "vars" : {
+            "first_name" : ui.firstNameBox.val(),   // pulls in the value of the first_name input field
+            "last_name" : ui.lastNameBox.val()      // pulls in the value of the last_name input field
+          },
+          "source" : "new_user_registration",
+          "onSuccess" : function() {
+            console.log(`Successfully added new user to Sailthru list!`);
+            e.target.submit();
+
+          },
+          "onError" : function(error) {  // error state
+            console.log(`We encountered an issue signing you up. Please try again`);
+            console.log(error);
+            ui.formId.addClass('has-error');
+            ui.errorMsg.fadeIn(error);
+          }
+        });
+
+      });
+
+    }
+  }
+
+  RegistrationEmailSignUp.prototype = _.assignIn({}, RegistrationEmailSignUp.prototype, {});
+  return RegistrationEmailSignUp;
+})();
+
+
+/*============================================================================
+  Account Login / Registration
+==============================================================================*/
+theme.LoginRegister = (function() {
+  function LoginRegister(container) {
+    const $container = this.$container = $(container);
+    const ui = {
+      panelWrapper: $( '#panel-wrapper' ),
+      recoverButton: $( '#forgot_password'),
+      cancelButton: $( '#return_to_login' )
+    };
+
+    // TOGGLE : Recover Password Pane
+    const toggleRecoverPw = () => {
+      ui.panelWrapper.toggleClass( 'show-recovery' );
+    }
+
+    // EVENTS : Bind click events and handle load state when ready
+    $(document).ready( function() {
+
+      // ROUTE CHECK : Are we on the recover url?
+      if (window.location.hash == '#recover') { 
+        toggleRecoverPw();
+      }
+
+      // BIND : Setup click handlers
+      ui.recoverButton.click( () => {
+        toggleRecoverPw();
+      });    
+
+      ui.cancelButton.click( () => {
+        toggleRecoverPw();
+      });
+    });
+
+  }
+
+  LoginRegister.prototype = _.assignIn({}, LoginRegister.prototype, {});
+  return LoginRegister;
 })();
 
 
@@ -2085,9 +2246,9 @@ $(document).ready(function() {
   /*============================================================================
    Sticky Navigation
   ==============================================================================*/
-    $(document).ready( function() {
-      $('#nav-bar-wrapper').stickUp();
-    });
+    // $(document).ready( function() {
+    //   $('#nav-bar-wrapper').stickUp();
+    // });
 
   /*============================================================================
    Cookie Banner
@@ -2126,19 +2287,17 @@ $(document).ready(function() {
 
   })();
 
+
   /*============================================================================
    Email Popup
   ==============================================================================*/
-
   (function email_popup() {
 
     // check cookies (including GDPR)
-
     var check_popup_cookie = $.cookie('mailing_list_delay_popup');
     var check_banner_cookie = $.cookie('gdpr_banner_read');
 
     // by default, the cookie banner will popup first. once the user hits "accept", then load the newsletter.
-
     // the newsletter is set to popup again after 7 days. though the cookie banner has already been read,
 
     // if(check_popup_cookie == null && check_banner_cookie != null){
@@ -2260,6 +2419,7 @@ $(document).ready(function() {
 
   })();
 
+  // EMAIL : FANCYBOX MODAL
   function email_popup_load() {
     var $popup = $('#subscribe--popup');
 
@@ -2267,10 +2427,11 @@ $(document).ready(function() {
       return false;
     }
 
-    // setting the cookie to delay the popup again for 7 days
-    // popup delay will not be implemented with onclick event for footer newsletter input (email) field
+    // COOKIE : Slide Up Modal Only : Hide for 7 days after use close
+    // (Not used by footer email modal, but if slide up enabled this will be used)
     $.cookie('mailing_list_delay_popup', 'expires_seven_days', { expires: 7 });
 
+    // TEMPLATE : Wrapping template that will encase the modal
     const fancybox_markup = `
     <div class="fancybox-wrap" tabIndex="-1" id="subscribe--popup-wrapper">
       <div class="fancybox-skin">
@@ -2280,17 +2441,23 @@ $(document).ready(function() {
       </div>
     </div>`;
 
+    // CLOSE : Emit Event : Inform navbar to update as Fancybox modal doesn't trigger scroll/size updates on FF / IE
+    const closeCallback = function() {
+      $.event.trigger({
+        type: "modal-close",
+        time: new Date()
+      });
+    }
+
+    // INIT : Create fancybox modal setup
     $.fancybox({
       href: "#subscribe--popup",
       tpl: {
         wrap : fancybox_markup,
       },
       openEffect: 'elastic',
-      closeEffect: 'fade'
-    });
-
-    $('#subscribe--close').click(function() {
-      parent.$.fancybox.close();
+      closeEffect: 'fade',
+      afterClose: closeCallback
     });
   };
 
@@ -3303,7 +3470,12 @@ theme.Search = (function() {
   return Search;
 })();
 
-
+/*============================================================================
+  Init
+==============================================================================*/
+theme.init = function () {
+  theme.scripts.init();
+};
 
 /*============================================================================
   Registering Sections
@@ -3312,6 +3484,8 @@ $(document).ready(function() {
   var sections = new theme.Sections();
   sections.register('header-section', theme.Header);
   sections.register('newsletter-simple', theme.Newsletter);
+  sections.register('create-customer', theme.RegistrationEmailSignUp);
+  sections.register('customer-login-register', theme.LoginRegister);
   sections.register('instagram', theme.Instagram);
   sections.register('tabbed-collections', theme.TabbedCollections);
   sections.register('featured-collection', theme.FeaturedCollection);
@@ -3324,13 +3498,9 @@ $(document).ready(function() {
   sections.register('mobile-navigation', theme.mobileNav);
   sections.register('product-section', theme.Product);
   sections.register('search-template', theme.Search);
+
+  theme.init()
 });
-
-theme.init = function () {
-  theme.scripts.init();
-};
-
-$(theme.init);
 
 /*============================================================================
   Debounce for window resizing

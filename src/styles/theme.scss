@@ -18,9 +18,16 @@
 @import url('./vendor/slick.scss.liquid');
 
 
+/*================ Templates ================*/
+@import url('./templates/404.scss.liquid');
+@import url('./templates/cart.scss.liquid');
+@import url('./templates/page.scss.liquid');
+
+
 /*================ Sections ================*/
 // please refer to global for any notes re:styling
 @import url('./sections/about.scss.liquid');
+@import url('./sections/customer-login-register.scss.liquid');
 @import url('./sections/header.scss.liquid');
 @import url('./sections/newsletter.scss.liquid');
 @import url('./sections/footer.scss.liquid');
@@ -33,7 +40,6 @@
 @import url('./sections/featured-collection.scss.liquid');
 @import url('./sections/product-template.scss.liquid');
 @import url('./sections/product-quickview.scss.liquid');
-@import url('./sections/cart.scss.liquid');
 @import url('./sections/account.scss.liquid');
 @import url('./sections/landing.scss.liquid');
 @import url('./sections/faq.scss.liquid');
@@ -42,6 +48,7 @@
 @import url('./sections/contact.scss.liquid');
 @import url('./sections/search.scss.liquid');
 @import url('./sections/image-with-text.scss.liquid');
+@import url('./sections/video.scss.liquid');
 
 
 /*================ Snippets ================*/

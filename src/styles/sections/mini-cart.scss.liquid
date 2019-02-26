@@ -17,10 +17,12 @@
   }
 }
 .drawer__close {
+  position: relative;
   margin-left: auto;
   margin-right: 8px;
   color: $color--gray-1;
-  transform: rotate( 90deg );
+  width: 25px;
+  height: 25px;
 
   span {
     display: none;
@@ -29,11 +31,20 @@
   &:hover {
     color: $color--accent-1;
   }
-  &:before {
-    @include h7;
-    @include fontSize(28px);
-    content: 'X';
-    font-weight: $font-weight--book;
+
+  // Draw an X cuz their font looks elongated
+  .bar {
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      top: 50%;
+      left: 50%;
+      background: $color--text-1;
+      transform: translateX( -50% ) rotate( 45deg );
+
+      &.two {
+          transform: translateX( -50% ) rotate( -45deg );
+      }
   }
 }
 
@@ -124,5 +135,12 @@ button.cart__checkout {
 
   &:hover {
     background: $color--primary-1;
+  }
+}
+
+#CartContainer {
+  .additional-checkout-button {
+    margin-left: 0;
+    width: 100%;
   }
 }

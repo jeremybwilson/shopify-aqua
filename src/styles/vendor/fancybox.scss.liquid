@@ -135,29 +135,37 @@ $closeHoverColor: {{ settings.fancybox_close_hover_color }};
 
 /* NOTE : Font for X is in product-quickview for now since it needs scss help */
 .fancybox-close {
+    display: block;
     position: absolute;
     top: 0;
     right: 0;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
+    width: 25px;
+    height: 25px;
     cursor: pointer;
     z-index: 8040;
     text-align: center;
     transition: all .25s ease-in-out;
     color: $closeColor;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      top: 50%;
+      left: 50%;
+      background: $closeColor;
+      transform: translateX(-50%) rotate(45deg);
+    }
+
+    &::after {
+      transform: translateX(-50%) rotate(-45deg);
+    }
 }
 
 .fancybox-close:hover {
   color: $closeHoverColor;
-}
-
-.fancybox-close:before {
-  @include h7;
-  @include fontSize( 28px );
-  content: "X";
-  font-weight: $font-weight--book;
-  line-height: 40px;
 }
 
 .fancybox-nav span {

@@ -496,8 +496,8 @@ body.js-drawer-open {
                     }
 
                     &.wk-filled svg path {
-                        fill: $navHeaderColor;
                         fill-opacity: 1;
+                        fill: $navHeaderColor;
                     }
                 }
             }
@@ -580,6 +580,7 @@ body.js-drawer-open {
 
         @include mq( 'lap-and-up' ) {
             top: 40px;
+            padding: 30px 20px 0;
         }
 
         // BF Wrapper (needs a few important tags to override its jquery animation that is glitchy)
@@ -663,13 +664,17 @@ body.js-drawer-open {
                 }
 
                 .bf-modal-title {
-                    @include fontDim( 20px, 24px, 2px );
+                    @include fontDim( 16px, 20px, 2px );
                     font-weight: $font-weight--bold;
                     margin-bottom: 12px;
+
+                    @include mq( 'desk-and-up' ) {
+                        @include fontDim( 18px, 22px, 2px );
+                    }
                 }
 
                 .bf-modal-body {
-                    @include fontSize( 16px );
+                    @include fontSize( 14px );
                     font-weight: $font-weight--medium;
                     color: $color--gray-2;
                 }
@@ -702,10 +707,12 @@ body.js-drawer-open {
                 }
 
                 select {
+                    @include fontSize( 14px );
+                    font-family: $font-stack--default;
                     outline: none !important; //added via js annoyingly lol
                     margin-bottom: 0;
                     border-radius: 0;
-                    padding-right: 20px;
+                    padding: 0 20px 0 5px;
                     border: 1px solid #000;
                     -moz-appearance: none;
                     -webkit-appearance: none;
@@ -867,15 +874,27 @@ body.js-drawer-open {
             position: absolute;
             right: -30px;
             top: 7px;
-            @include fontSize( 20px );
-            font-family: $sans;
-            font-weight: 400;
+            width: 20px;
+            height: 20px;
             cursor: pointer;
             display: none;
-            transform: rotate( 90deg );
 
             @include mq( 'lap-and-up' ) {
                 display: block;
+            }
+
+            .bar {
+                position: absolute;
+                width: 100%;
+                height: 1px;
+                top: 50%;
+                left: 50%;
+                background: $color--text-1;
+                transform: translateX( -50% ) rotate( 45deg );
+
+                &.two {
+                    transform: translateX( -50% ) rotate( -45deg );
+                }
             }
         }
     }
@@ -911,7 +930,7 @@ body.js-drawer-open {
                 transform: translateY( -50% ) 
             }
             &.three { 
-                width: 70%;
+                width: 100%; //Modify this to shorten a leg on the 3 lines
                 top: 100%; 
                 transform: translateY( -50% ) 
             }
@@ -966,7 +985,7 @@ body.js-drawer-open {
                 padding: 0 730px 0 230px;
             }
 
-            // For when they inevitably add a 5th menu item.. Default setup is for 4 or less
+            // Clean spacing for 5 items
             &[data-link-count*='5'] {
                 padding: 0 305px 0 180px; 
 
@@ -976,6 +995,20 @@ body.js-drawer-open {
 
                 @include mq( 'wide-and-up' ) {
                     padding: 0 610px 0 230px;
+                }
+            }
+
+            // Clean spacing for 6 items
+            &[data-link-count*='6'],
+            &[data-link-count*='7'] {
+                padding: 0 265px 0 180px; 
+
+                @include mq( 'desk-and-up' ) {
+                    padding: 0 300px 0 205px;
+                }
+
+                @include mq( 'wide-and-up' ) {
+                    padding: 0 460px 0 230px;
                 }
             }
 
@@ -1074,10 +1107,10 @@ body.js-drawer-open {
                     // MEGA MENU IMAGE : Not Present
                     &[data-has-mega-image='false'] {
                         min-height: auto;
-                        padding-left: 135px;
+                        padding-left: 123px;
 
                         @include mq( 'desk-and-up' ) {
-                            padding-left: 50px;
+                            padding-left: 10px;
                         }
 
                         @include mq( 'wide-and-up' ) {
@@ -1086,6 +1119,10 @@ body.js-drawer-open {
 
                         .mega-column-content {
                             margin: 25px auto 10px; // Centrally align and space the nav menu items
+
+                            @include mq( 'wide-and-up' ) {
+                                transform: translateX( -10px ); //Using margin to center, this adjusts it to perfect alignment
+                            }
                         }
                     }
 
@@ -1347,7 +1384,6 @@ body.js-drawer-open {
                 padding: 0;
                 font-weight: $font-weight--bold;
                 color: $color--text-1;
-                text-transform: uppercase;
                 letter-spacing: 4px;
                 padding-left: 35px;
 
@@ -1596,12 +1632,15 @@ body.js-drawer-open {
                         margin-top: 2px;
                     }
 
+                    .wk-count {
+                        display: none;
+                    }
+
                     &.wk-filled svg path {
                             fill: $navHeaderColor;
                             fill-opacity: 1;
                     }
-                }       
-                    
+                }
             }
         }
     }

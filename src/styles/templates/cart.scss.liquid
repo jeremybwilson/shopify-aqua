@@ -4,6 +4,7 @@ body.cart {
     padding-top: 80px;
     padding-left: 15px;
     padding-right: 15px;
+    padding-bottom: 80px;
 
     @include mq('tablet-and-up') {
       padding-top: 100px;
@@ -246,5 +247,37 @@ th.cart--remove {
 
   &:hover {
     background-color: $color--primary-1;
+  }
+}
+
+.cart__checkout-wrapper {
+  @media (min-width: 741px) {
+    @include flexbox();
+    @include justify-content(flex-end);
+    @include flex-flow(row wrap);
+  }
+}
+
+.cart__checkout-btn {
+  min-width: 150px;
+  display: block;
+
+  + .cart__checkout-btn {
+    @media (min-width: 741px) {
+      margin-left: 10px;
+    }
+  }
+}
+
+.cart__additional-checkout .additional-checkout-button {
+  @media (max-width: 740px) {
+    margin-left: 0 !important;
+    margin-bottom: 10px;
+    display: block;
+    width: 100%;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
