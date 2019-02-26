@@ -127,7 +127,6 @@
                 success: function(cart){
                     $('.section.section--shipping-method .section__content').html(no_shipping_methods);
                     _update_shipping_address();
-                    _collect_email_signup_info();  // POST'ing user email signup data to Sailthru API, not replacing Shoprunner
                 },
                 error: function(xhr, message){
                     debugger;
@@ -154,7 +153,6 @@
                 success: function(cart){
                     $('.section.section--shipping-method .section__content').html(no_shipping_methods);
                     _update_shipping_address();
-                    _collect_email_signup_info();  // POST'ing user email signup data to Sailthru API, not replacing Shoprunner
                 },
                 error: function(xhr, message){
                     debugger;
