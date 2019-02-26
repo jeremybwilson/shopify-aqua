@@ -1,0 +1,271 @@
+{% comment %}
+
+  SECTION : VIDEO-WITH-TEXT
+    - Video version of "video-with-text"
+    - Youtube / Vimeo support
+    - Granular text placement control
+    - Video vs Text spatial allotment control 
+
+{% endcomment %}
+{% assign video_url = section.settings.video_url %}
+
+
+{% comment %} :: PANEL - VIDEO :: (See bottom portion for layout placement usage) {% endcomment %}
+{% capture video_panel %}
+  <div class="featured-video-wrap">
+
+    {% comment %} :: VIDEO ELEMENT :: {% endcomment %}
+    <div class="featured-video">
+
+      {% comment %} :: DEFAULT :: (Can't define default in video_url type block) {% endcomment %}
+      {% if video_url == blank %}
+          <iframe src="//www.youtube.com/embed/_9VUPq3SxOc?rel=0&showinfo=0&vq=720&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      {% else %}
+
+        {% comment %} :: YOUTUBE :: {% endcomment %}
+        {% if video_url.type == "youtube" %}
+          <iframe src="//www.youtube.com/embed/{{ section.settings.video_url.id }}?rel=0&showinfo=0&vq=720&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        {% endif %}
+
+        
+        {% comment %} :: VIMEO :: {% endcomment %}
+        {% if video_url.type == "vimeo" %}
+          <iframe src="//player.vimeo.com/video/{{ section.settings.video_url.id }}?byline=0&portrait=0&badge=0&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        {% endif %}
+
+      {% endif %}
+
+    </div>
+  </div>
+{% endcapture %}
+
+<style>
+.embed-container { 
+  position: relative; 
+  padding-bottom: 56.25%; 
+  height: 0; 
+  overflow: hidden; 
+  max-width: 100%; 
+  height: auto;
+} 
+.embed-container iframe, 
+.embed-container object, 
+.embed-container embed { 
+  position: absolute;
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+}
+</style>
+
+
+
+{% comment %} :: PANEL - TEXT :: (See bottom portion for layout placement usage) {% endcomment %}
+{% capture text_panel %}
+  <div class="featured-text-wrap" 
+    data-text-align="{{ section.settings.text_align }}"
+    data-text-vertical="{{ section.settings.text_vertical }}">
+    <div class="featured-text-inner">
+
+      {% comment %} :: HEADER :: {% endcomment %}
+      {% if section.settings.heading_text != blank %}
+        <div class="heading-text">{{ section.settings.heading_text }}</div>
+      {% endif %}
+
+
+      {% comment %} :: BODY :: {% endcomment %}
+      {% if section.settings.body_text != blank %}
+        <div class="body-text">{{ section.settings.body_text }}</div>
+      {% endif %}
+
+
+      {% comment %} :: CTA BUTTON :: {% endcomment %}
+      {% if section.settings.button_text != blank and section.settings.button_link != blank %}
+        <a href="{{ section.settings.button_link }}" class="featured-button" data-symbol-placement="{{ section.settings.button_symbol_placement }}">
+          {% include 'svg-icon-button-symbol', side: 'left' %}
+          <span>{{ section.settings.button_text | escape }}</span>
+          {% include 'svg-icon-button-symbol', side: 'right' %}
+        </a>
+      {% endif %}
+
+    </div>
+  </div>
+{% endcapture %}
+
+
+
+{% comment %} :: LAYOUT :: {% endcomment %}
+<div id="video-with-text-{{ section.id }}" class="homepage-section video-with-text-section no-fouc index-section" data-section-id="{{ section.id }}">
+  {% if section.settings.video_side == 'left' %}
+    {{ video_panel }}
+    {{ text_panel }}
+
+  {% else %}
+    {{ text_panel }}
+    {{ video_panel }}
+  {% endif %}
+</div>
+
+
+
+<style>
+  /* NOTE : If your style is not directly related to a section setting, it belongs in video-with-text.scss.liquid! */
+  @media only screen and ( min-width: 768px ) {
+    #video-with-text-{{ section.id }} .featured-text-wrap {
+      width: calc( 100% - {{ section.settings.video_width }}% );
+    }
+    #video-with-text-{{ section.id }} .featured-video-wrap {
+      width: {{ section.settings.video_width }}%;
+    }
+  }
+</style>
+
+
+{% schema %}
+  {
+    "name": "Featured Video w/ Text",
+    "class": "index-section",
+    "settings": [
+      {
+        "type": "header",
+        "content": "-- CONTENT --"
+      },
+      {
+        "type": "video_url",
+        "id": "video_url",
+        "label": "YouTube or Vimeo link",
+        "accept": ["youtube", "vimeo"]
+      },
+      {
+        "type": "text",
+        "id": "heading_text",
+        "label": "Heading Text",
+        "default": "Video With Text"
+      },
+      {
+        "type": "richtext",
+        "id": "body_text",
+        "label": "Body Text",
+        "default": "<p>Pair text with a video to give info about your content.</p>"
+      },
+      {
+        "type": "text",
+        "id": "button_text",
+        "label": "Button text"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      },
+      {
+        "type": "select",
+        "id": "button_symbol_placement",
+        "label": "Button Symbol Location",
+        "info": "(Line / caret next to button text)",
+        "default": "none",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          },
+          {
+            "value": "both",
+            "label": "Both"
+          }
+        ]
+      },
+
+
+      {
+        "type": "header",
+        "content": "-- LAYOUT --"
+      },
+      {
+        "type": "select",
+        "id": "video_side",
+        "label": "Video Placement",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Video on left (Mobile: Top)"
+          },
+          {
+            "value": "right",
+            "label": "Video on right (Mobile: Bottom)"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "video_width",
+        "min": 20,
+        "max": 80,
+        "step": 1,
+        "label": "Video Width (in %)",
+        "info": "Applies 768px and up (mobile sizes will stack vertically)",
+        "default": 50
+      },
+      {
+        "type": "select",
+        "id": "text_vertical",
+        "label": "Text Placement - Vertical",
+        "info": "(Tablet and greater)",
+        "default": "center",
+        "options": [
+          {
+            "value": "top",
+            "label": "Top"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "bottom",
+            "label": "Bottom"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "text_align",
+        "label": "Text Alignment",
+        "default": "center",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      }
+    ],
+
+
+    "presets": [
+      {
+        "name": "Video with text",
+        "category": "Video"
+      }
+    ]
+
+  }
+{% endschema %}
