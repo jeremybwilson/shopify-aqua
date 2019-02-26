@@ -1,257 +1,259 @@
-<div class="homepage-section slideshow-section no-fouc index-section" data-section-id="{{ section.id }}" data-section-type="slideshow-section">
+{% if section.settings.show %}
+  <div class="homepage-section slideshow-section no-fouc index-section" data-section-id="{{ section.id }}" data-section-type="slideshow-section">
 
-  {% comment %} If full width isn't selected, include these grid containers {% endcomment %}
-  {% unless section.settings.full_width %}
-  <div class="row">
-    <div class="desktop-12 tablet-6 mobile-3">
-      {% endunless %}
-      {% assign slider_speed = section.settings.slider_speed | times: 1000 %}
+    {% comment %} If full width isn't selected, include these grid containers {% endcomment %}
+    {% unless section.settings.full_width %}
+    <div class="row">
+      <div class="desktop-12 tablet-6 mobile-3">
+        {% endunless %}
+        {% assign slider_speed = section.settings.slider_speed | times: 1000 %}
 
-      {% if section.blocks.size > 0 %}
+        {% if section.blocks.size > 0 %}
 
-        {% comment %} Add a class for sliders with solo images {% endcomment %}      
-        {% if section.blocks.size == 1 %}
-          {% assign solo_class = 'one-image-only' %}
-        {% else %}
-          {% assign solo_class = '' %}
-        {% endif %}
+          {% comment %} Add a class for sliders with solo images {% endcomment %}      
+          {% if section.blocks.size == 1 %}
+            {% assign solo_class = 'one-image-only' %}
+          {% else %}
+            {% assign solo_class = '' %}
+          {% endif %}
 
-        <div class="flexslider index_Slider {{ solo_class }}" id="Slideshow-{{ section.id }}" data-speed="{{ slider_speed }}">
-          <ul class="slides">
-            {% for block in section.blocks %}
+          <div class="flexslider index_Slider {{ solo_class }}" id="Slideshow-{{ section.id }}" data-speed="{{ slider_speed }}">
+            <ul class="slides">
+              {% for block in section.blocks %}
 
-              <li id="slide--{{ block.id }}"
-                data-block-id="{{ block.id }}"
-                class="slide--{{ block.id }} slide_image align-text--{{ block.settings.caption_text_align }}"
-                data-flexslider-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
-      
-                {% comment %} :: IMAGES - MOBILE AND DESKTOP :: {% endcomment %}
-                {% if block.settings.image != blank %}
+                <li id="slide--{{ block.id }}"
+                  data-block-id="{{ block.id }}"
+                  class="slide--{{ block.id }} slide_image align-text--{{ block.settings.caption_text_align }}"
+                  data-flexslider-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
 
-                  {% comment %} :: IMAGE LINK :: Wrap in an anchor tag if link is supplied {% endcomment %}
-                  {% if block.settings.image_link != blank %}
-                    <a href="{{ block.settings.image_link }}">
-                  {% endif %}
+                  {% comment %} :: IMAGES - MOBILE AND DESKTOP :: {% endcomment %}
+                  {% if block.settings.image != blank %}
 
-                  <div class="box-ratio">
-                    <picture>
-                      
-                      {% comment %} :: MOBILE IMAGE :: {% endcomment %}
-                      {% if block.settings.mobile_image != blank %}
-                        {% assign mobile_img_url = block.settings.mobile_image | img_url: '767x' %}
-                        <source srcset="{{ mobile_img_url }}" media="(max-width: 767px)">
-                      {% endif %}
-
-                      {% assign desktop_img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
-                      <img class="slideshow__image slideshow__image__{{ block.id }} lazyload lazyload-fade" 
-                        data-src="{{ desktop_img_url }}" 
-                        data-sizes="auto"
-                        data-parent-fit="cover"
-                        alt="{{ block.settings.image.alt | escape }}">
-                    </picture>
-
-                    <noscript>
-                      <img src="{{ block.settings.image | img_url: '1024x' }}" alt="{{ block.settings.image.alt | escape }}" class="slideshow__image slideshow__image--{{ block.id }}">
-                    </noscript>
-                  </div>
-                  <!-- End of .box-ratio -->
-
-                  {% if block.settings.image_link != blank %}
-                    </a>
-                  {% endif %}
-
-                  {% comment %} Styling to accommodate the box ratio for lazy-loaded images {% endcomment %}
-                  <style>
-                    {% assign image_box_ratio = block.settings.image.height | append: ".0" | times: 1 | divided_by: block.settings.image.width | times: 100 | append: "%" %}
-
-                    {% if block.settings.mobile_image != blank %}
-                      {% assign mobile_image_box_ratio = block.settings.mobile_image.height | append: ".0" | times: 1 | divided_by: block.settings.mobile_image.width | times: 100 | append: "%" %}
-
-                      /* Mobile */
-                      #slide--{{ block.id }} .box-ratio {
-                        padding-bottom: {{ mobile_image_box_ratio }};
-                      }
-
-                    {% else %}
-                      #slide--{{ block.id }} .box-ratio {
-                        padding-bottom: {{ image_box_ratio }};
-                      }
-
+                    {% comment %} :: IMAGE LINK :: Wrap in an anchor tag if link is supplied {% endcomment %}
+                    {% if block.settings.image_link != blank %}
+                      <a href="{{ block.settings.image_link }}">
                     {% endif %}
 
-                    {% if block.settings.image != blank and block.settings.mobile_image != blank %}
-                      /* Tablet and up */
-                      @media screen and (min-width: 768px) {
+                    <div class="box-ratio">
+                      <picture>
+
+                        {% comment %} :: MOBILE IMAGE :: {% endcomment %}
+                        {% if block.settings.mobile_image != blank %}
+                          {% assign mobile_img_url = block.settings.mobile_image | img_url: '767x' %}
+                          <source srcset="{{ mobile_img_url }}" media="(max-width: 767px)">
+                        {% endif %}
+
+                        {% assign desktop_img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+                        <img class="slideshow__image slideshow__image__{{ block.id }} lazyload lazyload-fade" 
+                          data-src="{{ desktop_img_url }}" 
+                          data-sizes="auto"
+                          data-parent-fit="cover"
+                          alt="{{ block.settings.image.alt | escape }}">
+                      </picture>
+
+                      <noscript>
+                        <img src="{{ block.settings.image | img_url: '1024x' }}" alt="{{ block.settings.image.alt | escape }}" class="slideshow__image slideshow__image--{{ block.id }}">
+                      </noscript>
+                    </div>
+                    <!-- End of .box-ratio -->
+
+                    {% if block.settings.image_link != blank %}
+                      </a>
+                    {% endif %}
+
+                    {% comment %} Styling to accommodate the box ratio for lazy-loaded images {% endcomment %}
+                    <style>
+                      {% assign image_box_ratio = block.settings.image.height | append: ".0" | times: 1 | divided_by: block.settings.image.width | times: 100 | append: "%" %}
+
+                      {% if block.settings.mobile_image != blank %}
+                        {% assign mobile_image_box_ratio = block.settings.mobile_image.height | append: ".0" | times: 1 | divided_by: block.settings.mobile_image.width | times: 100 | append: "%" %}
+
+                        /* Mobile */
+                        #slide--{{ block.id }} .box-ratio {
+                          padding-bottom: {{ mobile_image_box_ratio }};
+                        }
+
+                      {% else %}
                         #slide--{{ block.id }} .box-ratio {
                           padding-bottom: {{ image_box_ratio }};
                         }
-                      }
-                    {% endif %}
-                  </style>
 
-                {% endif %}
+                      {% endif %}
 
-                {% comment %} :: NO IMAGE - PLACEHOLDER :: {% endcomment %}
-                {% if block.settings.image == blank %}
-                  {% capture current %}{% cycle 1, 2 %}{% endcapture %}
-                  {%- assign placeholder = 'lifestyle-' | append: current -%}
-                  {{ placeholder | placeholder_svg_tag: 'placeholder-svg' }}
-                {% endif %}
+                      {% if block.settings.image != blank and block.settings.mobile_image != blank %}
+                        /* Tablet and up */
+                        @media screen and (min-width: 768px) {
+                          #slide--{{ block.id }} .box-ratio {
+                            padding-bottom: {{ image_box_ratio }};
+                          }
+                        }
+                      {% endif %}
+                    </style>
 
-                {% comment %} :: CAPTION BLOCK :: {% endcomment %}
-                <div class="flex-caption slide-{{ block.id }} 
-                  caption-box-align-{{ block.settings.caption_horizontal }} 
-                  caption-text-align-{{ block.settings.caption_text_align }}
-                  caption-theme-{{ block.settings.caption_color_scheme }}">
-
-                  <div class="caption-inners">
-                    {% if block.settings.heading != blank %}
-                      <h2 class="slide-title">{{ block.settings.heading }}</h2>
-                    {% endif %}
-                    
-                    {% if block.settings.subheading != blank %}
-                      <p class="caption">{{ block.settings.subheading }}</p>
-                    {% endif %}
-
-                    {% comment %} :: CTA BUTTONS :: {% endcomment %}
-                    {% if block.settings.cta_one_button_text != blank %}
-                      <div class="buttons-row">
-
-                        {% comment %} :: BUTTON #1 :: {% endcomment %}
-                        {% include 'cta-with-symbols', 
-                          cta_text: block.settings.cta_one_button_text,
-                          cta_link: block.settings.cta_one_link,
-                          symbol_placement: block.settings.cta_one_line %}
-
-
-                        {% comment %} CTA TWO - Only show if link exists. Duplicate this and the necessary schema code if client asks for more buttons. {% endcomment %}
-                        {% if block.settings.cta_two_button_text != blank %}
-
-                          {% comment %} :: BUTTON #2 :: {% endcomment %}
-                          {% include 'cta-with-symbols', 
-                            cta_text: block.settings.cta_two_button_text,
-                            cta_link: block.settings.cta_two_link,
-                            symbol_placement: block.settings.cta_two_line %}
-                        {% endif %}
-
-                      </div>
-                    {% endif %}
-                  </div>
-                </div>
-              </li>
-
-
-              <style>
-                .flex-caption.slide-{{ block.id }} {
-                  top: {{ block.settings.caption_vertical }}%;
-                }
-
-                .flex-caption.slide-{{ block.id }} .caption-inners {
-                  {% assign bg_color = block.settings.caption_background %}
-                  {% assign caption_opacity = block.settings.caption_opacity | plus: 0 %}
-                  
-                  {% if block.settings.caption_background == 'rgba(0,0,0,0)' %}
-                    background: transparent;
-                  {% else %}
-                    background: {{ bg_color | color_modify: 'alpha', caption_opacity }};
                   {% endif %}
-                }
+
+                  {% comment %} :: NO IMAGE - PLACEHOLDER :: {% endcomment %}
+                  {% if block.settings.image == blank %}
+                    {% capture current %}{% cycle 1, 2 %}{% endcapture %}
+                    {%- assign placeholder = 'lifestyle-' | append: current -%}
+                    {{ placeholder | placeholder_svg_tag: 'placeholder-svg' }}
+                  {% endif %}
+
+                  {% comment %} :: CAPTION BLOCK :: {% endcomment %}
+                  <div class="flex-caption slide-{{ block.id }} 
+                    caption-box-align-{{ block.settings.caption_horizontal }} 
+                    caption-text-align-{{ block.settings.caption_text_align }}
+                    caption-theme-{{ block.settings.caption_color_scheme }}">
+
+                    <div class="caption-inners">
+                      {% if block.settings.heading != blank %}
+                        <h2 class="slide-title">{{ block.settings.heading }}</h2>
+                      {% endif %}
+
+                      {% if block.settings.subheading != blank %}
+                        <p class="caption">{{ block.settings.subheading }}</p>
+                      {% endif %}
+
+                      {% comment %} :: CTA BUTTONS :: {% endcomment %}
+                      {% if block.settings.cta_one_button_text != blank %}
+                        <div class="buttons-row">
+
+                          {% comment %} :: BUTTON #1 :: {% endcomment %}
+                          {% include 'cta-with-symbols', 
+                            cta_text: block.settings.cta_one_button_text,
+                            cta_link: block.settings.cta_one_link,
+                            symbol_placement: block.settings.cta_one_line %}
 
 
-                {% comment %} :: COLOR SCHEME STYLING :: {% endcomment %}
-                {% assign color_scheme = block.settings.caption_color_scheme %}
-                {% assign buttons_right_align = '0' %}
+                          {% comment %} CTA TWO - Only show if link exists. Duplicate this and the necessary schema code if client asks for more buttons. {% endcomment %}
+                          {% if block.settings.cta_two_button_text != blank %}
 
-                {% if color_scheme == 'light' or color_scheme == 'white' %}
-                  {% assign slide_text_color = '#ffffff' %}
-                  {% assign cta_bg_color = 'transparent' %}
-                  {% assign cta_bg_hover_color = 'transparent' %}
-                  {% assign cta_padding_mobile = '0' %}
-                  {% assign cta_padding_desktop = '0' %}
+                            {% comment %} :: BUTTON #2 :: {% endcomment %}
+                            {% include 'cta-with-symbols', 
+                              cta_text: block.settings.cta_two_button_text,
+                              cta_link: block.settings.cta_two_link,
+                              symbol_placement: block.settings.cta_two_line %}
+                          {% endif %}
 
-                {% elsif color_scheme == 'dark' %}
-                  {% assign slide_text_color = '#000000' %}
-                  {% assign cta_bg_color = 'transparent' %}
-                  {% assign cta_bg_hover_color = 'transparent' %}
-                  {% assign cta_padding_mobile = '0' %}
-                  {% assign cta_padding_desktop = '0' %}
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                </li>
 
-                {% else %}
-                  {% assign slide_text_color = block.settings.custom_slide_main_color %}
-                  {% assign cta_bg_color = block.settings.custom_slide_alt_color %}
-                  {% assign cta_bg_hover_color = block.settings.custom_slide_alt_color %}
-                  {% assign cta_padding_mobile = '10px' %}
-                  {% assign cta_padding_desktop = '15px 24px' %}
-                {% endif %}
 
-                .flex-caption.slide-{{ block.id }} h2.slide-title {
-                  color: {{ slide_text_color }};
-                  text-align: {{ block.settings.caption_text_align }};
-                }
-
-                .flex-caption.slide-{{ block.id }} .caption {
-                  color: {{ slide_text_color }};
-                  text-align: {{ block.settings.caption_text_align }};
-                }
-
-                .flex-caption.slide-{{ block.id }} .cta-with-symbols a {
-                  color: {{ slide_text_color }};
-                  padding: {{ cta_padding_mobile }};
-                  background-color: {{ cta_bg_color }};
-                }
-
-                @media only screen and ( min-width: 768px ) {
-                  .flex-caption.slide-{{ block.id }} .cta-with-symbols a {
-                    padding: {{ cta_padding_desktop }};
+                <style>
+                  .flex-caption.slide-{{ block.id }} {
+                    top: {{ block.settings.caption_vertical }}%;
                   }
-                }
 
-                .flex-caption.slide-{{ block.id }} .cta-with-symbols a span {
-                  color: {{ slide_text_color }};
-                }
+                  .flex-caption.slide-{{ block.id }} .caption-inners {
+                    {% assign bg_color = block.settings.caption_background %}
+                    {% assign caption_opacity = block.settings.caption_opacity | plus: 0 %}
 
-                .flex-caption.slide-{{ block.id }} .cta-with-symbols a:hover {
-                  background-color: {{ cta_bg_hover_color }};
-                }
+                    {% if block.settings.caption_background == 'rgba(0,0,0,0)' %}
+                      background: transparent;
+                    {% else %}
+                      background: {{ bg_color | color_modify: 'alpha', caption_opacity }};
+                    {% endif %}
+                  }
 
-                .flex-caption.slide-{{ block.id }} .cta-with-symbols svg * {
-                  stroke: {{ slide_text_color }};
-                }
 
-              </style>
-            {% endfor %}
-          </ul>
-        </div><!-- .flexslider -->
+                  {% comment %} :: COLOR SCHEME STYLING :: {% endcomment %}
+                  {% assign color_scheme = block.settings.caption_color_scheme %}
+                  {% assign buttons_right_align = '0' %}
 
-        {% comment %} New navigation {% endcomment %}
-        {% if section.blocks.size > 1 %}
-          <div class="slider--nav {% if section.settings.show_nav_pagination == false %} hide-nav {% endif %}">
-            <a href="#" class="flex-prev">
-              {% include 'svg-icon-arrow-left' %}
-            </a>
-            <div class="pagination">
-              <span class="flexslider--current-slide"></span>
-              <span class="slash">/</span>
-              <span class="flexslider--total-slides"></span>
-            </div>
-            <a href="#" class="flex-next">
-              {% include 'svg-icon-arrow-right' %}
-            </a>
-          </div><!-- .slider--nav -->
+                  {% if color_scheme == 'light' or color_scheme == 'white' %}
+                    {% assign slide_text_color = '#ffffff' %}
+                    {% assign cta_bg_color = 'transparent' %}
+                    {% assign cta_bg_hover_color = 'transparent' %}
+                    {% assign cta_padding_mobile = '0' %}
+                    {% assign cta_padding_desktop = '0' %}
+
+                  {% elsif color_scheme == 'dark' %}
+                    {% assign slide_text_color = '#000000' %}
+                    {% assign cta_bg_color = 'transparent' %}
+                    {% assign cta_bg_hover_color = 'transparent' %}
+                    {% assign cta_padding_mobile = '0' %}
+                    {% assign cta_padding_desktop = '0' %}
+
+                  {% else %}
+                    {% assign slide_text_color = block.settings.custom_slide_main_color %}
+                    {% assign cta_bg_color = block.settings.custom_slide_alt_color %}
+                    {% assign cta_bg_hover_color = block.settings.custom_slide_alt_color %}
+                    {% assign cta_padding_mobile = '10px' %}
+                    {% assign cta_padding_desktop = '15px 24px' %}
+                  {% endif %}
+
+                  .flex-caption.slide-{{ block.id }} h2.slide-title {
+                    color: {{ slide_text_color }};
+                    text-align: {{ block.settings.caption_text_align }};
+                  }
+
+                  .flex-caption.slide-{{ block.id }} .caption {
+                    color: {{ slide_text_color }};
+                    text-align: {{ block.settings.caption_text_align }};
+                  }
+
+                  .flex-caption.slide-{{ block.id }} .cta-with-symbols a {
+                    color: {{ slide_text_color }};
+                    padding: {{ cta_padding_mobile }};
+                    background-color: {{ cta_bg_color }};
+                  }
+
+                  @media only screen and ( min-width: 768px ) {
+                    .flex-caption.slide-{{ block.id }} .cta-with-symbols a {
+                      padding: {{ cta_padding_desktop }};
+                    }
+                  }
+
+                  .flex-caption.slide-{{ block.id }} .cta-with-symbols a span {
+                    color: {{ slide_text_color }};
+                  }
+
+                  .flex-caption.slide-{{ block.id }} .cta-with-symbols a:hover {
+                    background-color: {{ cta_bg_hover_color }};
+                  }
+
+                  .flex-caption.slide-{{ block.id }} .cta-with-symbols svg * {
+                    stroke: {{ slide_text_color }};
+                  }
+
+                </style>
+              {% endfor %}
+            </ul>
+          </div><!-- .flexslider -->
+
+          {% comment %} New navigation {% endcomment %}
+          {% if section.blocks.size > 1 %}
+            <div class="slider--nav {% if section.settings.show_nav_pagination == false %} hide-nav {% endif %}">
+              <a href="#" class="flex-prev">
+                {% include 'svg-icon-arrow-left' %}
+              </a>
+              <div class="pagination">
+                <span class="flexslider--current-slide"></span>
+                <span class="slash">/</span>
+                <span class="flexslider--total-slides"></span>
+              </div>
+              <a href="#" class="flex-next">
+                {% include 'svg-icon-arrow-right' %}
+              </a>
+            </div><!-- .slider--nav -->
+          {% endif %}
+
         {% endif %}
 
-      {% endif %}
+        {% if section.blocks.size == 0 %}
+          {% include 'no-blocks' %}
+        {% endif %}
 
-      {% if section.blocks.size == 0 %}
-        {% include 'no-blocks' %}
-      {% endif %}
-
-      {% unless section.settings.full_width %}
+        {% unless section.settings.full_width %}
+      </div>
     </div>
+    {% endunless %}
   </div>
-  {% endunless %}
-</div>
-<div class="clear"></div>
+  <div class="clear"></div>
+{% endif %}
 
 {% schema %}
 {
@@ -543,6 +545,12 @@
 
 
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show",
+      "label": "Show section",
+      "default": true
+    },
     {
       "type": "checkbox",
       "id": "full_width",
