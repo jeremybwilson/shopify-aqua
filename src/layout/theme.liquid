@@ -7,7 +7,7 @@
 
   {% when 'collection' %}
     {% assign has_breadcrumb = false %}
-  
+
   {% when 'page.rewards' %}
     {% assign has_breadcrumb = false %}
 {% endcase %}
@@ -83,7 +83,7 @@
   {%- if settings.show_multiple_currencies -%}
     {% include 'currencies' %}
   {%- endif -%}
-  
+
   {% comment %} :: Instagram Feed :: {% endcomment %}
   {% if template contains 'index' %}
     {{ 'instafeed.js' | asset_url | script_tag }}
@@ -114,6 +114,15 @@
   {% if settings.favicon != blank %}
     <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x' }}">
   {% endif %}
+
+  <!-- User login status check
+================================================== -->
+  {% if customer %}
+  <script>
+    // set global variable for Shopify sign in status to pass to theme.js
+    const shopifyUserSignInStatus = true;
+  </script>
+{% endif %}
 
   {{ content_for_header }}
 </head>
@@ -209,7 +218,7 @@
   {% comment %} CURRENTLY UNUSED - Was making invisible scroll-to-top click regions
     <a href="#" class="scrollup"><i class="icon-chevron-up icon-2x"></i></a>
   {% endcomment %}
-  
+
 
 
 
