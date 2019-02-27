@@ -1,7 +1,7 @@
 /* CHECKOUT CUSTOMIZATIONS : BOL
 	  PURPOSE : To make customizations to the checkout experience
 
-	  REQUIREMENTS : 
+	  REQUIREMENTS :
 	  	- Jquery added to layout/checkout.liquid (shoprunner needs, so prob already there)
 */
 
@@ -21,7 +21,7 @@ bolCheckout.SailThruCheckout = (function() {
   function SailThruCheckout() {
     const regexEmail = new RegExp(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i);
 		const sailthruApiEndpoint = 'https://api.sailthru.com/user';
-    
+
     // UI : Elements for the UI interaction
     const ui = {
 			formId:       $( '.edit_checkout' ),
@@ -39,7 +39,7 @@ bolCheckout.SailThruCheckout = (function() {
 			  e.preventDefault();  // prevent form submission until Sailthru API returns success or error response
 
 			  $.ajax({
-			    callback: callback,
+			    // callback: callback,
 			    url: sailthruApiEndpoint,
 			    type: 'POST',
 			    data: {
@@ -77,7 +77,7 @@ bolCheckout.SailThruCheckout = (function() {
 
 
 /*============================================================================
-  INITALIZER : Add all initalizers here 
+  INITALIZER : Add all initalizers here
 ==============================================================================*/
 bolCheckout.init = function() {
 	// console.log( '::: DEBUG : [ bolCheckout.init() ] -- BOL Checkout Customization Initalized!' );
