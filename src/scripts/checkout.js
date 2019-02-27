@@ -57,11 +57,17 @@ bolCheckout.SailThruCheckout = (function() {
               },
               "vars" : {
                 "first_name" : ui.firstNameBox.val(),   // pulls in the value of the first_name input field
-                "last_name" : ui.lastNameBox.val()      // pulls in the value of the last_name input field
+                "last_name" : ui.lastNameBox.val(),      // pulls in the value of the last_name input field
+                "address_1" : ui.addressLine1.val(),
+                "address_2" : ui.addressLine2.val(),
+                "city" : ui.city.val(),
+                "country" : ui.country.val(),
+                "state" : ui.state.val(),
+                "xip" : ui.postalCode.val(),
               },
               "source" : "checkout_flow",
               "onSuccess" : function() {
-                console.log(`Successfully added new user to Sailthru list!`);
+                // console.log(`Successfully added new user to Sailthru list!`);
                 e.target.submit();
 
               },
