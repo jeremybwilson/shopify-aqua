@@ -22,6 +22,9 @@
 {% comment %} :: BORDER-FREE : JS Snippets :: {% endcomment %}
 {% if settings.borderfree_enabled == true %}
 
+  {% comment %} :: LIBRARY SCRIPT :: This script needs to wait for dom load. {% endcomment %}
+  {{ 'borderfree.js' | asset_url | script_tag }} 
+
 
   {% comment %} :: MAIN SCRIPT :: {% endcomment %}
   <script id="bfx-snippet">
@@ -77,9 +80,13 @@
   {% comment %} :: INIT CALL :: {% endcomment %}
   <script>
     var isProd = {{ isProd | json }};
-    (function() {
-      Borderfree.init( isProd );
-    }());
+
+    // Borderfree must wait for DOM ready because it tries to access things before it is ready. 
+    $(document).ready( function(){
+      (function() {
+        Borderfree.init( isProd );
+      }());
+    });
   </script>
 
 {% endif %}

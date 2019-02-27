@@ -219,8 +219,8 @@ var PAYPAL_DEV_URL = "https://stagecheckout.borderfree.com/htmlcheckout/views/pr
   };
 
   var bindUIActions = function bindUIActions() {
+    
     // Override BC SF Search filter method to provide localized prices for AJAX search
-
     BCSfFilter.prototype.buildSuggestionProductPrice = function (a) {
       var b = a.compare_at_price_min > a.price_min,
           c = this.formatMoney(100 * a.price_min),
