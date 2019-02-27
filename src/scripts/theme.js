@@ -2297,6 +2297,11 @@ $(document).ready(function() {
     var check_popup_cookie = $.cookie('mailing_list_delay_popup');
     var check_banner_cookie = $.cookie('gdpr_banner_read');
 
+    // Set mailing_list_delay_popup cookie to 180 days if user is signed into Shopify account
+    if(shopifyUserSignInStatus){
+      $.cookie('mailing_list_delay_popup', 'expires_180_days', { expires: 180 });
+    }
+
     // by default, the cookie banner will popup first. once the user hits "accept", then load the newsletter.
     // the newsletter is set to popup again after 7 days. though the cookie banner has already been read,
 
@@ -2429,11 +2434,8 @@ $(document).ready(function() {
 
     // COOKIE : Slide Up Modal Only : Hide for 7 days after use close
     // If user is signed in, the cookie will be extended to 180 days
-    if(shopifyUserSignInStatus === true) {
-      $.cookie('mailing_list_delay_popup', 'expires_180_days', { expires: 180 });
-    } else {
-      $.cookie('mailing_list_delay_popup', 'expires_seven_days', { expires: 7 });
-    }
+    $.cookie('mailing_list_delay_popup', 'expires_seven_days', { expires: 7 });
+
 
     // TEMPLATE : Wrapping template that will encase the modal
     const fancybox_markup = `
