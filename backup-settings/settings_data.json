@@ -455,35 +455,36 @@
       "home-hero_slideshow": {
         "type": "slideshow",
         "blocks": {
-          "home-hero_slideshow--slide-1": {
+          "1551216982423": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/brenna-desktop_551697bb-6c5c-4e2e-bf96-7114a8bc823c.jpg",
-              "mobile_image": "shopify://shop_images/brenna-mobile_a48931c8-fe2d-48e8-a48a-3cbc97197d6d.jpg",
-              "image_link": "shopify://collections/women-new-arrivals",
-              "heading": "ABSTRACT EXPRESSIONS",
-              "subheading": "<em>Statement sandals in spring suede</em>",
+              "image": "shopify://shop_images/Revy_Hero_Banner_1920X1014_88517f61-47a9-4654-9552-66e063a04a41.jpg",
+              "mobile_image": "shopify://shop_images/Feb_18th_Mobile_Hero_Banner_768X1032_07359110-59d9-4cfb-aac5-69481d09e7fb.jpg",
+              "image_link": "shopify://collections/women-flats",
+              "heading": "",
+              "subheading": "",
               "caption_text_align": "left",
-              "cta_one_link": "shopify://collections/women-new-arrivals",
-              "cta_one_button_text": "SHOP NOW",
-              "cta_one_line": "left",
+              "cta_one_link": "",
+              "cta_one_button_text": "",
+              "cta_one_line": "none",
               "cta_two_link": "",
               "cta_two_button_text": "",
               "cta_two_line": "none",
               "caption_color_scheme": "light",
               "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#164732",
+              "custom_slide_alt_color": "#e41c39",
               "caption_horizontal": "left",
-              "caption_vertical": 80,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.2"
+              "caption_vertical": 50,
+              "caption_background": "transparent",
+              "caption_opacity": "0.1"
             }
           }
         },
         "block_order": [
-          "home-hero_slideshow--slide-1"
+          "1551216982423"
         ],
         "settings": {
+          "show": true,
           "full_width": true,
           "show_nav_pagination": false,
           "slider_speed": 3
@@ -495,14 +496,14 @@
           "promo-left": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/marianna_f19f4fb0-f355-4b33-8462-f18875d6e6cc.jpg",
-              "mobile_image": "shopify://shop_images/marianna_e5d120a8-793e-4396-b779-39fccc44c19c.jpg",
-              "link": "shopify://collections/women-aq24-7",
-              "heading_text": "NEW DIRECTIONS",
-              "body_text": "<p>Redefining the Pump</p>",
+              "image": "shopify://shop_images/2_Revy_Promo_Block_930X8404_4d78faf9-54b0-4cbd-87f8-44ae941fe891.jpg",
+              "mobile_image": "shopify://shop_images/Mobile_Promo_Block_2_768X6382_49625c48-3407-40c7-8609-4e0c49847fa9.jpg",
+              "link": "shopify://collections/women-flats",
+              "heading_text": "WHITE NOW",
+              "body_text": "<p>The Spring-Ready Flat</p>",
               "text_align": "left",
               "cta_type": "text",
-              "cta_text": "SHOP AQ24/7",
+              "cta_text": "SHOP NOW",
               "cta_color_text": "#000000",
               "cta_color_bg": "rgba(0,0,0,0)",
               "cta_color_text_hover": "#616365",
@@ -514,7 +515,7 @@
             "type": "text_block",
             "settings": {
               "image": "shopify://shop_images/adrian_48b5122c-191b-49c0-ae50-543d89731f8d.jpg",
-              "mobile_image": "shopify://shop_images/adrian_42ce9526-ab90-4167-82db-2b9be5b4eb8c.jpg",
+              "mobile_image": "shopify://shop_images/Mobile_Promo_Block_1_768X6382_33185974-e1c1-4895-8ff8-fa7cefa27079.jpg",
               "link": "shopify://collections/men-new-arrivals",
               "heading_text": "CLASSIC MODE",
               "body_text": "<p>The&nbsp;Luxury Chelsea</p>",
@@ -540,35 +541,36 @@
       "home-featured_collection_slideshow": {
         "type": "slideshow",
         "blocks": {
-          "home-featured_collection_slideshow--slide-1": {
+          "1551217570857": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/vienna-new_fcb8c80e-0161-4758-8bd1-793f56bca356.jpg",
-              "mobile_image": "shopify://shop_images/vienna-mobile_c3c81150-7355-446b-9152-6ecb073bbe71.jpg",
+              "image": "shopify://shop_images/Cierra_Banner_2_1920X915_21f9f5d2-82e2-4fd8-a280-0aeabb5ba535.jpg",
+              "mobile_image": "",
               "image_link": "shopify://collections/women-new-arrivals",
-              "heading": "THE ESPADRILLE,<br>REIMAGINED",
-              "subheading": "<em>Metallic mules that capture</em> the spirit of spring",
+              "heading": "",
+              "subheading": "",
               "caption_text_align": "left",
-              "cta_one_link": "shopify://collections/women-new-arrivals",
-              "cta_one_button_text": "SHOP NOW",
-              "cta_one_line": "left",
+              "cta_one_link": "",
+              "cta_one_button_text": "",
+              "cta_one_line": "none",
               "cta_two_link": "",
               "cta_two_button_text": "",
               "cta_two_line": "none",
               "caption_color_scheme": "light",
               "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#164732",
+              "custom_slide_alt_color": "#e41c39",
               "caption_horizontal": "left",
-              "caption_vertical": 70,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.2"
+              "caption_vertical": 50,
+              "caption_background": "transparent",
+              "caption_opacity": "0.1"
             }
           }
         },
         "block_order": [
-          "home-featured_collection_slideshow--slide-1"
+          "1551217570857"
         ],
         "settings": {
+          "show": true,
           "full_width": true,
           "show_nav_pagination": false,
           "slider_speed": 10
@@ -616,54 +618,71 @@
           "instagram_access_token": "324973178.5ea0515.ffffb3515672474fbe262ddb8aac60e0"
         }
       },
-      "home-video_weatherproof": {
-        "type": "video",
+      "home-video_with_text_weatherproof": {
+        "type": "video-with-text",
         "settings": {
-          "heading": "",
-          "full_width": true,
-          "video_url": "https://vimeo.com/319130430"
+          "video_url": "https://vimeo.com/319130430",
+          "heading_text": "Weatherproof",
+          "body_text": "<p>Please provide the copy you'd like with this video.</p>",
+          "button_text": "LEARN MORE",
+          "button_link": "/pages/weatherproof",
+          "button_symbol_placement": "left",
+          "video_side": "left",
+          "video_width": 64,
+          "text_vertical": "center",
+          "text_align": "center"
         }
       },
       "page-about-template": {
         "type": "page-about-template",
         "blocks": {
-          "1549421101615": {
-            "type": "html",
+          "1551222350622": {
+            "type": "image_block",
             "settings": {
-              "about_html_block": "<p>Established in 1994, Aquatalia offers the finest combination of fashion, quality and comfort in luxury footwear and is the first to mix distinctive Italian design with innovative weatherproof and stain-resistant technology. Bridging the gap between style and function, Aquatalia sets a new standard in fine footwear and accessories. Taking the brand to the next level, Aquatalia will continue to introduce category expansions, grow our retail presence and expand the brand globally.</p>"
+              "image": "shopify://shop_images/dd_aquasp02_2019_lesley_053_v3_cmyk_gracol.jpg",
+              "link": "shopify://collections/women-sandals"
             }
           },
-          "1548737684033": {
-            "type": "text_block",
+          "1551222871985": {
+            "type": "paragraph_block",
             "settings": {
-              "module_image": "shopify://shop_images/pages-about_content_module_no_text_00.jpg",
-              "module_html_h2": "Functional Luxury",
-              "module_html_p": "Crafted in Italy, Aquatalia footwear adheres to the tradition of meticulous Italian shoemaking. Using fine leathers and suedes, Aquatalia transforms their texture and finish through an exclusive process that adds exceptional softness and the ultimate luxury of weatherproofing and stain-resistance.",
-              "module_image_color_scheme": "light",
-              "module_image_position_desktop": "image_overlap_left",
-              "module_image_position_mobile": "image_top"
+              "title": "",
+              "content": "Established in 1994, Aquatalia offers the finest combination of fashion, quality and comfort in luxury footwear and is the first to mix distinctive Italian design with innovative weatherproof and stain-resistant technology. Bridging the gap between style and function, Aquatalia sets a new standard in fine footwear and accessories. Taking the brand to the next level, Aquatalia will continue to introduce category expansions, grow our retail presence and expand the brand globally."
             }
           },
-          "1539644589684": {
-            "type": "text_block",
+          "1551221511425": {
+            "type": "paragraph_block",
             "settings": {
-              "module_image": "shopify://shop_images/pages-about_content_module_no_text_01.jpg",
-              "module_html_h2": "Versatile Style",
-              "module_html_p": "Aquatalia transcends trend. Mixing sophistication, fashion, and versatility into Women’s and Men’s shoes and accessories, Aquatalia designs are contemporary yet classic, elegant yet everyday, high quality yet low maintenance — the true foundation of a timeless wardrobe.",
-              "module_image_color_scheme": "light",
-              "module_image_position_desktop": "image_right",
-              "module_image_position_mobile": "image_top"
+              "title": "Functional Luxury",
+              "content": "Crafted in Italy, Aquatalia footwear adheres to the tradition of meticulous Italian shoemaking. Using fine leathers and suedes, Aquatalia transforms their texture and finish through an exclusive process that adds exceptional softness and the ultimate luxury of weatherproofing and stain-resistance."
+            }
+          },
+          "1551221526330": {
+            "type": "paragraph_block",
+            "settings": {
+              "title": "Versatile Style",
+              "content": "Aquatalia transcends trend. Mixing sophistication, fashion, and versatility into Women’s and Men’s shoes and accessories, Aquatalia designs are contemporary yet classic, elegant yet everyday, high quality yet low maintenance — the true foundation of a timeless wardrobe."
+            }
+          },
+          "1551221541957": {
+            "type": "paragraph_block",
+            "settings": {
+              "title": "Beautiful Wearability",
+              "content": "Stepping out in any weather. Waving off the taxi and walking. Wearing suede in the rain. Aquatalia footwear is inspired by women and men who make bold moves and don’t want to compromise fashion for comfort. Aquatalia offers luxury, style, and effortless ease every step of the way."
             }
           }
         },
         "block_order": [
-          "1549421101615",
-          "1548737684033",
-          "1539644589684"
+          "1551222350622",
+          "1551222871985",
+          "1551221511425",
+          "1551221526330",
+          "1551221541957"
         ],
         "settings": {
-          "nav_transparent_landing": true,
-          "about_bottom_banner_enabled": true,
+          "nav_transparent_landing": false,
+          "title": "ABOUT",
+          "about_bottom_banner_enabled": false,
           "banner_text_box_position_desktop": "right",
           "image_desktop": "shopify://shop_images/pages-about_bottom_banner_no_text.jpg",
           "image_mobile": "",
@@ -684,15 +703,15 @@
             "settings": {
               "image": "shopify://shop_images/about-banner-transparent-nav-desk_df2fc76c-0b2c-40ae-9f33-d42ded22b896.jpg",
               "mobile_image": "shopify://shop_images/about-banner-transparent-nav-mob_dcc525c3-a59e-4c5e-93ed-8fc59ecf5192.jpg",
-              "image_link": "",
+              "image_link": "shopify://collections/women-sandals",
               "heading": "About",
               "subheading": "",
               "caption_text_align": "center",
               "cta_one_link": "",
-              "cta_one_button_text": "Add a button",
+              "cta_one_button_text": "",
               "cta_one_line": "none",
               "cta_two_link": "",
-              "cta_two_button_text": "Add a button",
+              "cta_two_button_text": "",
               "cta_two_line": "none",
               "caption_color_scheme": "white",
               "custom_slide_main_color": "#ffffff",
@@ -708,6 +727,7 @@
           "1537562942330"
         ],
         "settings": {
+          "show": false,
           "full_width": true,
           "show_nav_pagination": true,
           "slider_speed": 5
@@ -894,7 +914,7 @@
           "1549339064751": {
             "type": "text_block",
             "settings": {
-              "image_desktop": "shopify://shop_images/cierra_e0ed5852-f65b-425e-a9a4-de130a035df1.jpg",
+              "image_desktop": "shopify://shop_images/03_AQUASP02_2019_AVERY_GOLD_101_v2_cmyk_Gracol.jpg",
               "image_mobile": "shopify://shop_images/cierra_6260d85d-b5dc-44a8-8f8a-8fa88fc16520.jpg",
               "module_html_h2": "How to Care for Leather Shoes",
               "module_html_p": "Properly caring for Italian leather is key in extending the life of your shoes and boots and keeping them looking newer longer.<br><br>\n\nTo remove liquid stains such as coffee, soda, and wine, gently wipe your shoes with a soft cloth that’s been moistened with water. For harder stains, gently wipe your shoe with a soft cloth that has been moistened with a water and neutral soap solution or use a mixture of water and 5% ammonia.<br><br>\n\nIf the outer surface of your footwear gets wet, we recommend that you air dry your leather footwear in a cool, dry environment and away from direct heat. To restore your leather shoes or boots back to their original shine, polish them with a quality wax and buff off using a soft cloth or brush.",
@@ -1129,7 +1149,7 @@
       "home-twin_promos",
       "home-featured_collection_slideshow",
       "home-featured_products_list",
-      "home-video_weatherproof",
+      "home-video_with_text_weatherproof",
       "home-instagram_feed",
       "home-about_image_with_text"
     ]

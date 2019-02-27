@@ -16,6 +16,7 @@
     "es6-object-assign": "^1.1.0",
     "html-entities": "^1.2.1",
     "isomorphic-fetch": "^2.2.1",
+    "lodash.assignin": "^4.2.0",
     "prop-types": "~15.6.2",
     "react": "~16.4.2",
     "react-dom": "~16.4.2",
