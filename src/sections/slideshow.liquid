@@ -105,39 +105,46 @@
                     caption-text-align-{{ block.settings.caption_text_align }}
                     caption-theme-{{ block.settings.caption_color_scheme }}">
 
-                    <div class="caption-inners">
-                      {% if block.settings.heading != blank %}
-                        <h2 class="slide-title">{{ block.settings.heading }}</h2>
-                      {% endif %}
+                    {% if
+                      block.settings.heading != blank
+                      or block.settings.subheading != blank
+                      or block.settings.cta_one_button_text != blank
+                      or block.settings.cta_two_button_text != blank
+                    %}
+                      <div class="caption-inners">
+                        {% if block.settings.heading != blank %}
+                          <h2 class="slide-title">{{ block.settings.heading }}</h2>
+                        {% endif %}
 
-                      {% if block.settings.subheading != blank %}
-                        <p class="caption">{{ block.settings.subheading }}</p>
-                      {% endif %}
+                        {% if block.settings.subheading != blank %}
+                          <p class="caption">{{ block.settings.subheading }}</p>
+                        {% endif %}
 
-                      {% comment %} :: CTA BUTTONS :: {% endcomment %}
-                      {% if block.settings.cta_one_button_text != blank %}
-                        <div class="buttons-row">
+                        {% comment %} :: CTA BUTTONS :: {% endcomment %}
+                        {% if block.settings.cta_one_button_text != blank %}
+                          <div class="buttons-row">
 
-                          {% comment %} :: BUTTON #1 :: {% endcomment %}
-                          {% include 'cta-with-symbols', 
-                            cta_text: block.settings.cta_one_button_text,
-                            cta_link: block.settings.cta_one_link,
-                            symbol_placement: block.settings.cta_one_line %}
-
-
-                          {% comment %} CTA TWO - Only show if link exists. Duplicate this and the necessary schema code if client asks for more buttons. {% endcomment %}
-                          {% if block.settings.cta_two_button_text != blank %}
-
-                            {% comment %} :: BUTTON #2 :: {% endcomment %}
+                            {% comment %} :: BUTTON #1 :: {% endcomment %}
                             {% include 'cta-with-symbols', 
-                              cta_text: block.settings.cta_two_button_text,
-                              cta_link: block.settings.cta_two_link,
-                              symbol_placement: block.settings.cta_two_line %}
-                          {% endif %}
+                              cta_text: block.settings.cta_one_button_text,
+                              cta_link: block.settings.cta_one_link,
+                              symbol_placement: block.settings.cta_one_line %}
 
-                        </div>
-                      {% endif %}
-                    </div>
+
+                            {% comment %} CTA TWO - Only show if link exists. Duplicate this and the necessary schema code if client asks for more buttons. {% endcomment %}
+                            {% if block.settings.cta_two_button_text != blank %}
+
+                              {% comment %} :: BUTTON #2 :: {% endcomment %}
+                              {% include 'cta-with-symbols', 
+                                cta_text: block.settings.cta_two_button_text,
+                                cta_link: block.settings.cta_two_link,
+                                symbol_placement: block.settings.cta_two_line %}
+                            {% endif %}
+
+                          </div>
+                        {% endif %}
+                      </div>
+                    {% endif %}
                   </div>
                 </li>
 
