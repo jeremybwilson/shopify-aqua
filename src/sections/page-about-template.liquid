@@ -1,5 +1,13 @@
 <div class="about-container">
 
+  {% if section.settings.title %}
+    <div id="subpage">
+      <div class="page-content-field">
+        <h1 class="landing-title">{{ section.settings.title }}</h1>
+      </div>
+    </div>
+  {% endif %}
+
   {% for block in section.blocks %}
 
     {% if block.type == 'html' %}
@@ -17,17 +25,33 @@
       <div class="content-module layout-desk--{{ block.settings.module_image_position_desktop }} layout-mob--{{ block.settings.module_image_position_mobile }} color-scheme--{{ block.settings.module_image_color_scheme }}">
         <div class="text-box">
 
-        {% if block.settings.module_html_h2 %}<h2>{{ block.settings.module_html_h2 }}</h2>{% endif %}
-        <div class="banner-divider"></div>
-        {% if block.settings.module_html_p %}
-          <p>{{ block.settings.module_html_p }}</p>
+          {% if block.settings.module_html_h2 %}<h2>{{ block.settings.module_html_h2 }}</h2>{% endif %}
+          <div class="banner-divider"></div>
+          {% if block.settings.module_html_p %}
+            <p>{{ block.settings.module_html_p }}</p>
+          {% endif %}
+        </div>
+
+        <div class="image-box">
+          <img src="{{ block.settings.module_image | img_url: '800x' }}" alt="{{ block.settings.module_image.alt }}" />
+        </div>
+      </div><!-- .content-module -->
+
+    {% elsif block.type == 'paragraph_block' %}
+      <div class="about-row text-box">
+        {% if block.settings.title != blank %}
+          <h2>{{ block.settings.title }}</h2>
+        {% endif %}
+
+        {% if block.settings.content != blank %}
+          <p>{{ block.settings.content }}</p>
         {% endif %}
       </div>
 
-      <div class="image-box">
-        <img src="{{ block.settings.module_image | img_url: '800x' }}" />
+    {% elsif block.type == 'image_block' and block.settings.image != blank %}
+      <div class="about-row">
+        <img src="{{ block.settings.image | img_url: '800x' }}" alt="{{ block.settings.image.alt }}">
       </div>
-    </div><!-- .content-module -->
 
     {% endif %}
   {% endfor %}
@@ -98,6 +122,15 @@
         "label": "Enable Transparent Nav Landing",
         "info": "When banner images are present, set the nav bar to be transparent bg mode.",
         "default": false
+      },
+      {
+        "type": "header",
+        "content": "Page"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Page Title"
       },
       {
         "type": "header",
@@ -302,6 +335,38 @@
           ]
         }
       ]
+      },
+      {
+        "type": "paragraph_block",
+        "name": "Paragraph Block",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "HTML Content - <h2> text"
+          },
+          {
+            "type": "html",
+            "id": "content",
+            "label": "HTML Content - <p> text"
+          }
+        ]
+      },
+      {
+        "type": "image_block",
+        "name": "Image block",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id":  "image",
+            "label": "Image"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          }
+        ]
       }
     ]
   }

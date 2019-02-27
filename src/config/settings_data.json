@@ -4,11 +4,12 @@
   "current": {
     "favicon": "shopify:\/\/shop_images\/favicon.png",
     "google_tag_manager_id": "GTM-P97GPFG",
+    "color_grey": "#9b9b9b",
     "announcement_text_color": "#ffffff",
     "announcement_bg_one": "#000000",
     "announcement_bg_two": "#757575",
     "nav_transparent_landing": true,
-    "nav_transparent_landing_color": "#FFFFFF",
+    "nav_transparent_landing_color": "#ffffff",
     "header_background": "#ffffff",
     "logo_color": "#000000",
     "nav_links": "#000000",
@@ -55,7 +56,7 @@
     "filter_button_alt_text": "#000000",
     "filter_bar_border_color": "#e8e8e8",
     "quickview_button_bg": "#000000",
-    "quickview_button_text": "#FEFFFE",
+    "quickview_button_text": "#fefffe",
     "catalog_item_text_color": "#000000",
     "catalog_item_price_color": "#525252",
     "catalog_item_accent_color": "#e61533",
@@ -68,7 +69,7 @@
     "product_badge_circle_bg": "#000000",
     "product_badge_diamond_bg": "#000000",
     "product_badge_text_color": "#fefffe",
-    "react_swatch_outline_color": "#BABABA",
+    "react_swatch_outline_color": "#bababa",
     "fancybox_overlay_bg": "0,0,0,0.8",
     "fancybox_close_color": "#5b5b5b",
     "fancybox_close_hover_color": "#000000",
@@ -170,7 +171,7 @@
     "popup": true,
     "email_image": "",
     "email_popup_title": "FRONT ROW &amp; CENTER",
-    "email_popup_text": "Be the first to know about new styles &amp; ultra-exclusive offers plus <strong>ENJOY $50 OFF*</strong> your first purchase.",
+    "email_popup_text": "Be the first to know about new styles & ultra-exclusive offers plus <strong>ENJOY $50 OFF*<\/strong> your first purchase.",
     "email_popup_bottom_text": "*Offer valid on orders of $150 or more.",
     "email_popup_input_placeholder": "Enter Your Email Address",
     "email_popup_error": "Please enter a valid e-mail address",
@@ -185,7 +186,6 @@
     "currency_format": "money_with_currency_format",
     "supported_currencies": "INR GBP CAD USD AUD EUR JPY",
     "default_currency": "USD",
-
     "borderfree_enabled": true,
     "borderfree_js_url_dev": "https:\/\/bfx-objects.stage.borderfree.com\/v1\/dist\/bfx.js",
     "borderfree_js_config_dev": "bfx({key:'bca2f6b0-0273-11e6-8da6-4920e7373927', env:'STAGE', mode:'default', brand:'default'});",
@@ -193,7 +193,6 @@
     "borderfree_js_url_prod": "https:\/\/bfx-objects.stage.borderfree.com\/v1\/dist\/bfx.js",
     "borderfree_js_config_prod": "bfx({key:'bca2f6b0-0273-11e6-8da6-4920e7373927', env:'STAGE', mode:'default', brand:'default'});",
     "borderfree_merchant_url_prod": "https:\/\/stagecheckout.borderfree.com\/htmlcheckout\/resources\/js\/merchant.js",
-
     "app_wk_enabled": true,
     "app_wk_login_required": false,
     "app_wk_icon": "heart",
@@ -261,25 +260,41 @@
           "nav-item-1": {
             "type": "mega_menu",
             "settings": {
-              "menu_item": "Women"
+              "menu_item": "Women",
+              "nav_image": "",
+              "nav_image_link": "",
+              "nav_image_title": "",
+              "nav_image_sub_title": ""
             }
           },
           "nav-item-2": {
             "type": "mega_menu",
             "settings": {
-              "menu_item": "Men"
+              "menu_item": "Men",
+              "nav_image": "",
+              "nav_image_link": "",
+              "nav_image_title": "",
+              "nav_image_sub_title": ""
             }
           },
           "nav-item-3": {
             "type": "mega_menu",
             "settings": {
-              "menu_item": "Accessories"
+              "menu_item": "Accessories",
+              "nav_image": "",
+              "nav_image_link": "",
+              "nav_image_title": "",
+              "nav_image_sub_title": ""
             }
           },
           "nav-item-4": {
             "type": "mega_menu",
             "settings": {
-              "menu_item": "Sale"
+              "menu_item": "Sale",
+              "nav_image": "",
+              "nav_image_link": "",
+              "nav_image_title": "",
+              "nav_image_sub_title": ""
             }
           },
           "nav-item-5": {
@@ -351,8 +366,6 @@
       },
       "collection-template": {
         "type": "collection-template",
-        "blocks": {},
-        "block_order": [],
         "settings": {
           "grid": 3,
           "rows": 8,
@@ -445,60 +458,36 @@
       "home-hero_slideshow": {
         "type": "slideshow",
         "blocks": {
-          "home-hero_slideshow--slide-1": {
+          "1551216982423": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/home-hero-desktop-slide-1.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/home-hero-mobile-slide-1.jpg",
-              "image_link": "\/collections\/legacy\/audience_men",
-              "heading": "FROM ITALY WITH LOVE",
-              "subheading": "From kitten heels to over-the-knee boots.",
+              "image": "shopify:\/\/shop_images\/Revy_Hero_Banner_1920X1014_88517f61-47a9-4654-9552-66e063a04a41.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/Feb_18th_Mobile_Hero_Banner_768X1032_07359110-59d9-4cfb-aac5-69481d09e7fb.jpg",
+              "image_link": "shopify:\/\/collections\/women-flats",
+              "heading": "",
+              "subheading": "",
               "caption_text_align": "left",
-              "cta_one_link": "\/collections\/legacy\/audience_men",
-              "cta_one_button_text": "SHOP NOW",
-              "cta_one_line": "left",
+              "cta_one_link": "",
+              "cta_one_button_text": "",
+              "cta_one_line": "none",
               "cta_two_link": "",
               "cta_two_button_text": "",
               "cta_two_line": "none",
               "caption_color_scheme": "light",
               "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#164732",
+              "custom_slide_alt_color": "#e41c39",
               "caption_horizontal": "left",
-              "caption_vertical": 80,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.2"
-            }
-          },
-          "home-hero_slideshow--slide-2": {
-            "type": "image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/home-hero-desktop-slide-2.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/home-hero-mobile-slide-2.jpg",
-              "image_link": "\/collections\/legacy\/audience_men",
-              "heading": "FROM ITALIA WITH LOVE",
-              "subheading": "From over-the-knee boots to kitten heels.",
-              "caption_text_align": "right",
-              "cta_one_link": "\/collections\/legacy\/audience_men",
-              "cta_one_button_text": "Button #1",
-              "cta_one_line": "none",
-              "cta_two_link": "\/collections\/legacy\/audience_men",
-              "cta_two_button_text": "Button #2",
-              "cta_two_line": "right",
-              "caption_color_scheme": "light",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "right",
-              "caption_vertical": 70,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.2"
+              "caption_vertical": 50,
+              "caption_background": "transparent",
+              "caption_opacity": "0.1"
             }
           }
         },
         "block_order": [
-          "home-hero_slideshow--slide-1",
-          "home-hero_slideshow--slide-2"
+          "1551216982423"
         ],
         "settings": {
+          "show": true,
           "full_width": true,
           "show_nav_pagination": false,
           "slider_speed": 3
@@ -510,14 +499,14 @@
           "promo-left": {
             "type": "text_block",
             "settings": {
-              "image": "shopify:\/\/shop_images\/home-twin_promo--desktop-left.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/home-twin_promo--desktop-left.jpg",
-              "link": "\/collections\/mid-tall-boots\/audience_women",
-              "heading_text": "URBAN EXPLORER",
-              "body_text": "<p>The Modern Chelsea<\/p>",
+              "image": "shopify:\/\/shop_images\/2_Revy_Promo_Block_930X8404_4d78faf9-54b0-4cbd-87f8-44ae941fe891.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/Mobile_Promo_Block_2_768X6382_49625c48-3407-40c7-8609-4e0c49847fa9.jpg",
+              "link": "shopify:\/\/collections\/women-flats",
+              "heading_text": "WHITE NOW",
+              "body_text": "<p>The Spring-Ready Flat<\/p>",
               "text_align": "left",
               "cta_type": "text",
-              "cta_text": "SHOP BOOTS",
+              "cta_text": "SHOP NOW",
               "cta_color_text": "#000000",
               "cta_color_bg": "rgba(0,0,0,0)",
               "cta_color_text_hover": "#616365",
@@ -528,14 +517,14 @@
           "promo-right": {
             "type": "text_block",
             "settings": {
-              "image": "shopify:\/\/shop_images\/home-twin_promo--desktop-right.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/home-twin_promo--desktop-right.jpg",
-              "link": "shopify:\/\/collections\/kids",
-              "heading_text": "WELL ZIPPED",
-              "body_text": "<p>The Updated Bootie<\/p>",
+              "image": "shopify:\/\/shop_images\/adrian_48b5122c-191b-49c0-ae50-543d89731f8d.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/Mobile_Promo_Block_1_768X6382_33185974-e1c1-4895-8ff8-fa7cefa27079.jpg",
+              "link": "shopify:\/\/collections\/men-new-arrivals",
+              "heading_text": "CLASSIC MODE",
+              "body_text": "<p>The&nbsp;Luxury Chelsea<\/p>",
               "text_align": "left",
               "cta_type": "text",
-              "cta_text": "SHOP BOOTIES",
+              "cta_text": "SHOP MEN'S",
               "cta_color_text": "#000000",
               "cta_color_bg": "rgba(0,0,0,0)",
               "cta_color_text_hover": "#616365",
@@ -555,35 +544,36 @@
       "home-featured_collection_slideshow": {
         "type": "slideshow",
         "blocks": {
-          "home-featured_collection_slideshow--slide-1": {
+          "1551217570857": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/home-featured_collection_slideshow--desktop-1.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/home-featured_collection_slideshow--mobile-1.jpg",
-              "image_link": "\/collections\/legacy\/audience_men",
-              "heading": "FRESH FOR FALL",
-              "subheading": "From kitten heels to over-the-knee boots.",
-              "caption_text_align": "center",
-              "cta_one_link": "\/collections\/legacy\/audience_men",
-              "cta_one_button_text": "SHOP NOW",
-              "cta_one_line": "left",
+              "image": "shopify:\/\/shop_images\/Cierra_Banner_2_1920X915_21f9f5d2-82e2-4fd8-a280-0aeabb5ba535.jpg",
+              "mobile_image": "",
+              "image_link": "shopify:\/\/collections\/women-new-arrivals",
+              "heading": "",
+              "subheading": "",
+              "caption_text_align": "left",
+              "cta_one_link": "",
+              "cta_one_button_text": "",
+              "cta_one_line": "none",
               "cta_two_link": "",
               "cta_two_button_text": "",
               "cta_two_line": "none",
               "caption_color_scheme": "light",
               "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "right",
+              "custom_slide_alt_color": "#e41c39",
+              "caption_horizontal": "left",
               "caption_vertical": 50,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.2"
+              "caption_background": "transparent",
+              "caption_opacity": "0.1"
             }
           }
         },
         "block_order": [
-          "home-featured_collection_slideshow--slide-1"
+          "1551217570857"
         ],
         "settings": {
+          "show": true,
           "full_width": true,
           "show_nav_pagination": false,
           "slider_speed": 10
@@ -620,43 +610,6 @@
           "text_align": "center"
         }
       },
-      "home-feature_highlight_slideshow": {
-        "type": "slideshow",
-        "blocks": {
-          "home-feature_highlight_slideshow--slide-1": {
-            "type": "image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/home-feature_highlight_slideshow--desktop-1.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/home-feature_highlight_slideshow--mobile-1.jpg",
-              "image_link": "shopify:\/\/pages\/stores",
-              "heading": "",
-              "subheading": "When you see this symbol the shoe is engineered to be weatherproof & stain resistant",
-              "caption_text_align": "center",
-              "cta_one_link": "shopify:\/\/pages\/stores",
-              "cta_one_button_text": "LEARN MORE",
-              "cta_one_line": "left",
-              "cta_two_link": "",
-              "cta_two_button_text": "",
-              "cta_two_line": "none",
-              "caption_color_scheme": "light",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "center",
-              "caption_vertical": 75,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.2"
-            }
-          }
-        },
-        "block_order": [
-          "home-feature_highlight_slideshow--slide-1"
-        ],
-        "settings": {
-          "full_width": true,
-          "show_nav_pagination": false,
-          "slider_speed": 8
-        }
-      },
       "home-instagram_feed": {
         "type": "instagram",
         "settings": {
@@ -686,43 +639,53 @@
       "page-about-template": {
         "type": "page-about-template",
         "blocks": {
-          "1549421101615": {
-            "type": "html",
+          "1551222350622": {
+            "type": "image_block",
             "settings": {
-              "about_html_block": "<p>Established in 1994, Aquatalia offers the finest combination of fashion, quality and comfort in luxury footwear and is the first to mix distinctive Italian design with innovative weatherproof and stain-resistant technology. Bridging the gap between style and function, Aquatalia sets a new standard in fine footwear and accessories. Taking the brand to the next level, Aquatalia will continue to introduce category expansions, grow our retail presence and expand the brand globally.<\/p>"
+              "image": "shopify:\/\/shop_images\/22_AQUASP02_2019_LONI_029_v2_cmyk_Gracol.jpg",
+              "link": "shopify:\/\/collections\/women-sandals"
             }
           },
-          "1548737684033": {
-            "type": "text_block",
+          "1551222871985": {
+            "type": "paragraph_block",
             "settings": {
-              "module_image": "shopify:\/\/shop_images\/pages-about_content_module_no_text_00.jpg",
-              "module_html_h2": "Functional Luxury",
-              "module_html_p": "Crafted in Italy, Aquatalia footwear adheres to the tradition of meticulous Italian shoemaking. Using fine leathers and suedes, Aquatalia transforms their texture and finish through an exclusive process that adds exceptional softness and the ultimate luxury of weatherproofing and stain-resistance.",
-              "module_image_color_scheme": "light",
-              "module_image_position_desktop": "image_overlap_left",
-              "module_image_position_mobile": "image_top"
+              "title": "",
+              "content": "Established in 1994, Aquatalia offers the finest combination of fashion, quality and comfort in luxury footwear and is the first to mix distinctive Italian design with innovative weatherproof and stain-resistant technology. Bridging the gap between style and function, Aquatalia sets a new standard in fine footwear and accessories. Taking the brand to the next level, Aquatalia will continue to introduce category expansions, grow our retail presence and expand the brand globally."
             }
           },
-          "1539644589684": {
-            "type": "text_block",
+          "1551221511425": {
+            "type": "paragraph_block",
             "settings": {
-              "module_image": "shopify:\/\/shop_images\/pages-about_content_module_no_text_01.jpg",
-              "module_html_h2": "Versatile Style",
-              "module_html_p": "Aquatalia transcends trend. Mixing sophistication, fashion, and versatility into Women’s and Men’s shoes and accessories, Aquatalia designs are contemporary yet classic, elegant yet everyday, high quality yet low maintenance — the true foundation of a timeless wardrobe.",
-              "module_image_color_scheme": "light",
-              "module_image_position_desktop": "image_right",
-              "module_image_position_mobile": "image_top"
+              "title": "Functional Luxury",
+              "content": "Crafted in Italy, Aquatalia footwear adheres to the tradition of meticulous Italian shoemaking. Using fine leathers and suedes, Aquatalia transforms their texture and finish through an exclusive process that adds exceptional softness and the ultimate luxury of weatherproofing and stain-resistance."
+            }
+          },
+          "1551221526330": {
+            "type": "paragraph_block",
+            "settings": {
+              "title": "Versatile Style",
+              "content": "Aquatalia transcends trend. Mixing sophistication, fashion, and versatility into Women’s and Men’s shoes and accessories, Aquatalia designs are contemporary yet classic, elegant yet everyday, high quality yet low maintenance — the true foundation of a timeless wardrobe."
+            }
+          },
+          "1551221541957": {
+            "type": "paragraph_block",
+            "settings": {
+              "title": "Beautiful Wearability",
+              "content": "Stepping out in any weather. Waving off the taxi and walking. Wearing suede in the rain. Aquatalia footwear is inspired by women and men who make bold moves and don’t want to compromise fashion for comfort. Aquatalia offers luxury, style, and effortless ease every step of the way."
             }
           }
         },
         "block_order": [
-          "1549421101615",
-          "1548737684033",
-          "1539644589684"
+          "1551222350622",
+          "1551222871985",
+          "1551221511425",
+          "1551221526330",
+          "1551221541957"
         ],
         "settings": {
-          "nav_transparent_landing": true,
-          "about_bottom_banner_enabled": true,
+          "nav_transparent_landing": false,
+          "title": "ABOUT",
+          "about_bottom_banner_enabled": false,
           "banner_text_box_position_desktop": "right",
           "image_desktop": "shopify:\/\/shop_images\/pages-about_bottom_banner_no_text.jpg",
           "image_mobile": "",
@@ -743,15 +706,15 @@
             "settings": {
               "image": "shopify:\/\/shop_images\/about-banner-transparent-nav-desk_df2fc76c-0b2c-40ae-9f33-d42ded22b896.jpg",
               "mobile_image": "shopify:\/\/shop_images\/about-banner-transparent-nav-mob_dcc525c3-a59e-4c5e-93ed-8fc59ecf5192.jpg",
-              "image_link": "",
+              "image_link": "shopify:\/\/collections\/women-sandals",
               "heading": "About",
               "subheading": "",
               "caption_text_align": "center",
               "cta_one_link": "",
-              "cta_one_button_text": "Add a button",
+              "cta_one_button_text": "",
               "cta_one_line": "none",
               "cta_two_link": "",
-              "cta_two_button_text": "Add a button",
+              "cta_two_button_text": "",
               "cta_two_line": "none",
               "caption_color_scheme": "white",
               "custom_slide_main_color": "#ffffff",
@@ -767,6 +730,7 @@
           "1537562942330"
         ],
         "settings": {
+          "show": false,
           "full_width": true,
           "show_nav_pagination": true,
           "slider_speed": 5
@@ -890,6 +854,15 @@
               "anchor": ""
             }
           },
+          "1550791129889": {
+            "type": "html",
+            "settings": {
+              "heading_only": false,
+              "title": "What types of outer soles are used in Aquatalia footwear?",
+              "answer": "<p>The outer soles are fabricated using a special rubber compound that retains its flexibility, even in cold weather conditions. They are specially designed to be slip resistant, providing maximum stability.<\/p>",
+              "anchor": ""
+            }
+          },
           "1548794634222": {
             "type": "html",
             "settings": {
@@ -914,15 +887,6 @@
               "heading_only": false,
               "title": "How do I care for my Pony Hair Calf shoes\/boots?",
               "answer": "<p>Aquatalia’s pony hair is made from the finest quality Italian calf leathers. In order to maintain the leather’s luxurious texture and sheen, they do not undergo Aquatalia’s fall\/winter weatherproofing process. Our pony hair calf styles are naturally water-resistant, but should not be considered weatherproof. To keep the pony hair looking its best, lightly brush the hair in its natural direction with a soft shoe brush.<\/p>",
-              "anchor": ""
-            }
-          },
-          "1550791129889": {
-            "type": "html",
-            "settings": {
-              "heading_only": false,
-              "title": "What types of outer soles are used in Aquatalia footwear?",
-              "answer": "<p>The outer soles are fabricated using a special rubber compound that retains its flexibility, even in cold weather conditions. They are specially designed to be slip resistant, providing maximum stability.<\/p>",
               "anchor": ""
             }
           }
@@ -954,8 +918,8 @@
           "1549339064751": {
             "type": "text_block",
             "settings": {
-              "image_desktop": "shopify:\/\/shop_images\/Shoe_Guide_banner-00.jpg",
-              "image_mobile": "shopify:\/\/shop_images\/shoe_guide_banner-00-mob.jpg",
+              "image_desktop": "shopify:\/\/shop_images\/03_AQUASP02_2019_AVERY_GOLD_101_v2_cmyk_Gracol.jpg",
+              "image_mobile": "shopify:\/\/shop_images\/cierra_6260d85d-b5dc-44a8-8f8a-8fa88fc16520.jpg",
               "module_html_h2": "How to Care for Leather Shoes",
               "module_html_p": "Properly caring for Italian leather is key in extending the life of your shoes and boots and keeping them looking newer longer.<br><br>\n\nTo remove liquid stains such as coffee, soda, and wine, gently wipe your shoes with a soft cloth that’s been moistened with water. For harder stains, gently wipe your shoe with a soft cloth that has been moistened with a water and neutral soap solution or use a mixture of water and 5% ammonia.<br><br>\n\nIf the outer surface of your footwear gets wet, we recommend that you air dry your leather footwear in a cool, dry environment and away from direct heat. To restore your leather shoes or boots back to their original shine, polish them with a quality wax and buff off using a soft cloth or brush.",
               "button_text": "Shop Women’s Shoes",
@@ -969,8 +933,8 @@
           "1549333580067": {
             "type": "text_block",
             "settings": {
-              "image_desktop": "shopify:\/\/shop_images\/Shoe_Guide_banner-01.jpg",
-              "image_mobile": "shopify:\/\/shop_images\/shoe_guide_banner-01-mob.jpg",
+              "image_desktop": "shopify:\/\/shop_images\/duke_af806db4-25f0-4f4a-a555-46dc2ceba687.jpg",
+              "image_mobile": "shopify:\/\/shop_images\/duke_0b499b03-ed71-47be-9c6a-bc69fe5911dd.jpg",
               "module_html_h2": "How to Care for Suede Shoes",
               "module_html_p": "With a little time and the proper tool, cleaning and protecting suede shoes and boots is easy. <br><br>\n\nEvery pair of suede shoes is packaged with its very own suede sponge. This is an essential tool made for the best suede care and protecting your footwear from dirt and\/or liquid stains. Using the soft rectangular sponge to gently brush off your suede footwear will also help in restoring the suedes’ original texture and enhance its appearance without damaging the material.<br><br> \n\nTo retain the original beauty and texture of your suede shoes and boots, store them in a cool, dry environment and away from direct heat.",
               "button_text": "Shop Women's",
@@ -984,8 +948,8 @@
           "1549333978219": {
             "type": "text_block",
             "settings": {
-              "image_desktop": "shopify:\/\/shop_images\/Shoe_Guide_banner-02.jpg",
-              "image_mobile": "shopify:\/\/shop_images\/shoe_guide_banner-02-mob.jpg",
+              "image_desktop": "shopify:\/\/shop_images\/brenna_3cb82a34-a993-4eb6-b2d5-7e6f4eddae73.jpg",
+              "image_mobile": "shopify:\/\/shop_images\/brenna_907be294-d00c-4b7c-a62e-69244702731e.jpg",
               "module_html_h2": "How to Care for Weatherproof Shoes",
               "module_html_p": "Aquatalia’s weatherproofing technology protects your shoes in wet weather conditions, keeping your feet dry and comfortable.<br><br> \n\nWeatherproof shoes require the same care as all leather and suede footwear. Please refer to the above care instructions to keep your shoes in good condition. Any stain that sits on your shoes for an extended period of time can become permanent. We recommend using a soft, lightly moistened cloth to remove stains immediately. Always store your weatherproof shoes in a cool, dry environment and away from direct heat and\/or sunlight.",
               "button_text": "Shop Men's Shoes",
