@@ -1509,14 +1509,14 @@ theme.LoginRegister = (function() {
     $(document).ready( function() {
 
       // ROUTE CHECK : Are we on the recover url?
-      if (window.location.hash == '#recover') { 
+      if (window.location.hash == '#recover') {
         toggleRecoverPw();
       }
 
       // BIND : Setup click handlers
       ui.recoverButton.click( () => {
         toggleRecoverPw();
-      });    
+      });
 
       ui.cancelButton.click( () => {
         toggleRecoverPw();
@@ -2300,18 +2300,18 @@ $(document).ready(function() {
     // by default, the cookie banner will popup first. once the user hits "accept", then load the newsletter.
     // the newsletter is set to popup again after 7 days. though the cookie banner has already been read,
 
-    // if(check_popup_cookie == null && check_banner_cookie != null){
-    //   setTimeout(function(){
-    //     email_popup_load();
-    //   }, 5000);
-    // }
+    if(check_popup_cookie == null && check_banner_cookie != null){
+      setTimeout(function(){
+        email_popup_load();
+      }, 3000);
+    }
 
     // here we are not checking for the delay popup cookie, we will load the modal anytime the email input (footer) is clicked
-    if(check_banner_cookie != null){
-      $('.js-newsletter-modal').on('click', function(){
-        email_popup_load();
-      });
-    }
+    // if(check_banner_cookie != null){
+      // $('.js-newsletter-modal').on('click', function(){
+      //   email_popup_load();
+      // });
+    // }
 
     const ui = {
             formId: $( '#subscribe--popup--form' ),
