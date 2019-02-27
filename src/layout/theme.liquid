@@ -120,11 +120,11 @@
   {% if customer %}
   <script>
     // set global variable for Shopify sign-in status to pass to theme.js
-    const shopifyUserSignInStatus = true;
+    var shopifyUserSignInStatus = true;
   </script>
   {% else %}
   <script>
-    const shopifyUserSignInStatus = false;
+    var shopifyUserSignInStatus = false;
   </script>
   {% endif %}
 
