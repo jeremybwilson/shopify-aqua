@@ -63,7 +63,7 @@ bolCheckout.SailThruCheckout = (function() {
                 "city" : ui.city.val(),
                 "country" : ui.country.val(),
                 "state" : ui.state.val(),
-                "xip" : ui.postalCode.val(),
+                "zip" : ui.postalCode.val()
               },
               "source" : "checkout_flow",
               "onSuccess" : function() {
