@@ -54,11 +54,6 @@
   {% include 'google-fonts' %}
 
 
-  <!-- Borderfree
-================================================== -->
-  {% include 'borderfree-script' %}
-
-
   <!-- Sailthru
 ================================================== -->
   {% include 'sailthru-script' %}
@@ -106,6 +101,11 @@
   {% if settings.shoprunner_enabled %}
     {% include 'shoprunner-init-script' %}
   {% endif %}
+
+
+    <!-- Borderfree
+================================================== -->
+  {% include 'borderfree-script' %}
 
 
 
@@ -285,13 +285,5 @@
 
   <!-- FILTER APP (PLP) -->
   {% include 'bc-sf-filter' %}
-
-
-  <script>
-    const isProd = {{ isProd | json }};
-    (function() {
-      Borderfree.init( isProd );
-    }());
-  </script>
 </body>
 </html>

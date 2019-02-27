@@ -73,6 +73,15 @@
   {% comment %} :: MERCHANT SCRIPT :: {% endcomment %}
   <script src="{{ borderfree_merchant_url }}"></script>
 
+
+  {% comment %} :: INIT CALL :: {% endcomment %}
+  <script>
+    var isProd = {{ isProd | json }};
+    (function() {
+      Borderfree.init( isProd );
+    }());
+  </script>
+
 {% endif %}
 
 
