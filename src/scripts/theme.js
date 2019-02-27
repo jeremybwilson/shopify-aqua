@@ -2300,7 +2300,7 @@ $(document).ready(function() {
     // by default, the cookie banner will popup first. once the user hits "accept", then load the newsletter.
     // the newsletter is set to popup again after 7 days. though the cookie banner has already been read,
 
-    if(check_popup_cookie == null && check_banner_cookie != null){
+    if(check_popup_cookie == null && check_banner_cookie != null && shopifyUserSignInStatus != true){
       setTimeout(function(){
         email_popup_load();
       }, 3000);
@@ -2428,8 +2428,12 @@ $(document).ready(function() {
     }
 
     // COOKIE : Slide Up Modal Only : Hide for 7 days after use close
-    // (Not used by footer email modal, but if slide up enabled this will be used)
-    $.cookie('mailing_list_delay_popup', 'expires_seven_days', { expires: 7 });
+    // If user is signed in, the cookie will be extended to 180 days
+    if(shopifyUserSignInStatus == true) {
+      $.cookie('mailing_list_delay_popup', 'expires_180_days', { expires: 180 });
+    } else {
+      $.cookie('mailing_list_delay_popup', 'expires_seven_days', { expires: 7 });
+    }
 
     // TEMPLATE : Wrapping template that will encase the modal
     const fancybox_markup = `

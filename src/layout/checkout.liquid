@@ -12,8 +12,9 @@
     {% comment %} :: LIBRARY SCRIPTS :: {% endcomment %}
     {{ 'jquery-2.2.4.min.js' | asset_url | script_tag }}
 
-    <script src="https://ak.sail-horizon.com/spm/spm.v1.min.js"></script>
-    <script>Sailthru.init({ customerId: 'ad4b11c18c08f631a75f9702c24575ed' });</script>
+    <!-- Sailthru
+  ================================================== -->
+    {% include 'sailthru-script' %}
 
   </head>
 
