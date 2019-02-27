@@ -54,11 +54,6 @@
   {% include 'google-fonts' %}
 
 
-  <!-- Borderfree
-================================================== -->
-  {% include 'borderfree-script' %}
-
-
   <!-- Sailthru
 ================================================== -->
   {% include 'sailthru-script' %}
@@ -75,6 +70,7 @@
   {{ 'theme.js' | asset_url | script_tag }}
   {{ 'option_selection.js' | shopify_asset_url | script_tag }}
   {{ 'jquery.fs.shifter.js' | asset_url | script_tag }}
+  {{ 'borderfree.js' | asset_url | script_tag }}
   {% include 'script-yotpo' %}
   {% include 'script-zendesk' %}
   {% include 'script-google-tag-head' %}
@@ -107,6 +103,11 @@
   {% endif %}
 
 
+    <!-- Borderfree
+================================================== -->
+  {% include 'borderfree-script' %}
+
+
 
   <!-- Favicons
 ================================================== -->
@@ -117,7 +118,7 @@
   {{ content_for_header }}
 </head>
 
-<body class="template-{{ template.name }} gridlock shifter {% if template contains 'product' %}product{% elsif template contains 'collection' %}collection{% else %}{{ template | handleize }}{% endif %}">
+<body class="bfx-price-container bfx-remove-element-container template-{{ template.name }} gridlock shifter {% if template contains 'product' %}product{% elsif template contains 'collection' %}collection{% else %}{{ template }}{% endif %}">
   {% include 'script-google-tag-body' %}
   {% include 'timber-cart' %}
 
