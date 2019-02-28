@@ -219,16 +219,19 @@ var PAYPAL_DEV_URL = "https://stagecheckout.borderfree.com/htmlcheckout/views/pr
   };
 
   var bindUIActions = function bindUIActions() {
+    var BCSfFilter = BCSfFilter || null;
     
     // Override BC SF Search filter method to provide localized prices for AJAX search
-    BCSfFilter.prototype.buildSuggestionProductPrice = function (a) {
-      var b = a.compare_at_price_min > a.price_min,
-          c = this.formatMoney(100 * a.price_min),
-          d = this.formatMoney(100 * a.compare_at_price_min);
-      this.getSettingValue("search.removePriceDecimal") && (c = this.removeDecimal(c), d = this.removeDecimal(d));
-      var e = "";
-      return this.getSettingValue("search.showSuggestionProductPrice") && (e += '<div class="' + this.class.searchSuggestion + '-product-price">', b && this.getSettingValue("search.showSuggestionProductSalePrice") ? (e += "<s>" + d + "</s>  ", e += '<span class="bc-sf-product-sale-price bfx-price">' + c + "</span>") : e += '<span class="bc-sf-product-regular-price bfx-price">' + c + "</span>", e += "</div>"), e;
-    };
+    if ( BCSfFilter ) {
+      BCSfFilter.prototype.buildSuggestionProductPrice = function (a) {
+        var b = a.compare_at_price_min > a.price_min,
+            c = this.formatMoney(100 * a.price_min),
+            d = this.formatMoney(100 * a.compare_at_price_min);
+        this.getSettingValue("search.removePriceDecimal") && (c = this.removeDecimal(c), d = this.removeDecimal(d));
+        var e = "";
+        return this.getSettingValue("search.showSuggestionProductPrice") && (e += '<div class="' + this.class.searchSuggestion + '-product-price">', b && this.getSettingValue("search.showSuggestionProductSalePrice") ? (e += "<s>" + d + "</s>  ", e += '<span class="bc-sf-product-sale-price bfx-price">' + c + "</span>") : e += '<span class="bc-sf-product-regular-price bfx-price">' + c + "</span>", e += "</div>"), e;
+      };
+    }
 
     setTimeout(function () {
       $(".bfx-checkout").removeAttr("disabled");
