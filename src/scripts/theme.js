@@ -2274,7 +2274,7 @@ $(document).ready(function() {
 
       // CLOSE BUTTON
       $('#cookie-banner--popup .button-close').click(function() {
-        $.cookie('gdpr_banner_read','true', { expires: 180 }); // make the cookie, expires in 180 days
+        $.cookie('gdpr_banner_read','true', { expires: 180, path: '/' }); // make the cookie, expires in 180 days
         parent.$.fancybox.close();
 
         //  UNCOMMENT BELOW TO ENABLE EMAIL SIGN UP POPUP
@@ -2299,7 +2299,7 @@ $(document).ready(function() {
 
     // Set mailing_list_delay_popup cookie to 180 days if user is signed into Shopify account
     if(shopifyUserSignInStatus){
-      $.cookie('mailing_list_delay_popup', 'expires_180_days', { expires: 180 });
+      $.cookie('mailing_list_delay_popup', 'expires_180_days', { expires: 180, path: '/' });
     }
 
     // by default, the cookie banner will popup first. once the user hits "accept", then load the newsletter.
@@ -2434,7 +2434,7 @@ $(document).ready(function() {
 
     // COOKIE : Slide Up Modal Only : Hide for 7 days after use close
     // If user is signed in, the cookie will be extended to 180 days
-    $.cookie('mailing_list_delay_popup', 'expires_seven_days', { expires: 7 });
+    $.cookie('mailing_list_delay_popup', 'expires_seven_days', { expires: 7, path: '/' });
 
 
     // TEMPLATE : Wrapping template that will encase the modal
