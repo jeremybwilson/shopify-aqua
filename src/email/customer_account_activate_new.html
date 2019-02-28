@@ -1,6 +1,7 @@
 {% capture email_title %}Activate your account{% endcapture %}
 {% capture email_body %}
   <p>You've created a new customer account at <a href="{{ shop.url }}?utm_source=tran&utm_medium=email&utm_campaign=customer_account_activate">aquatalia.com</a>. All you have to do is activate it.</p>
+  <p><a href="{{ customer.account_activation_url }}?utm_source=tran&utm_medium=email&utm_campaign=customer_account_activate">Click here to activate your account.</a></p>
 {% endcapture %}
 
 <!DOCTYPE html>
