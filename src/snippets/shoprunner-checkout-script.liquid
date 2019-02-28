@@ -4,6 +4,7 @@
 {% endfor %}
 
 <script type="text/javascript">
+  // console.log( '::: DEBUG : Shoprunner-Checkout-Script Initalized!' );
   function read_cookie(key){
       var result;
       return (result = new RegExp('(?:^|; )' + encodeURIComponent(key) + '=([^;]*)').exec(document.cookie)) ? (result[1]) : null;
@@ -65,6 +66,7 @@
       // console.log("Shoprunner order submit");
 
       {%- if checkout.shipping_method.handle == 'ShopRunner Carrier Service-shoprunner-0.00' -%}
+
         {% assign mixed = 0 %}
         {% for li in checkout.line_items -%}
           {% unless li.product.tags contains 'shoprunner' %}//Unless{%assign mixed = 1%}{% endunless %}
