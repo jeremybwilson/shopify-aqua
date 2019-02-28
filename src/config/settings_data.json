@@ -204,6 +204,11 @@
     "shoprunner_enabled": true,
     "shoprunner_retailer_id": "ATALIA",
     "shoprunner_env": "dev",
+
+    "loyalty_lion_enabled": true,
+    "loyalty_lion_token": "2eefd33ba2b59632b59771fdb7314fd5",
+    "loyalty_lion_secret": "4655c46066feedbd9bd03f35a0ffc59c",
+
     "checkout_header_image": "",
     "checkout_logo_image": "shopify:\/\/shop_images\/checkout-logo.png",
     "checkout_logo_position": "center",

@@ -1373,7 +1373,7 @@
     ]
   },
   {
-    "name": "Gift with Purchase (React-Discounts)",
+    "name": "Gift with Purchase (BOL)",
     "settings": [
       {
         "type": "header",
@@ -1497,7 +1497,7 @@
     ]
   },
   {
-    "name": "Wishlist App",
+    "name": "Wishlists",
     "settings": [
       {
         "type": "header",
@@ -1651,6 +1651,30 @@
           }
         ],
         "default": "dev"
+      }
+    ]
+  },
+  {
+    "name": "Rewards (Loyalty Lion)",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "loyalty_lion_enabled",
+        "label": "Enable Rewards",
+        "info": "(Loyalty Lion)",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "loyalty_lion_token",
+        "label": "Loyalty Lion Token",
+        "info": "Can be found in the Loyalty Lion app in the 'Manage' Tab under 'Configuration > Settings'."
+      },
+      {
+        "type": "text",
+        "id": "loyalty_lion_secret",
+        "label": "Loyalty Lion Secret",
+        "info": "Can be found in the Loyalty Lion app in the 'Manage' Tab under 'Configuration > Settings'."
       }
     ]
   }
