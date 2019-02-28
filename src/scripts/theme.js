@@ -1509,14 +1509,14 @@ theme.LoginRegister = (function() {
     $(document).ready( function() {
 
       // ROUTE CHECK : Are we on the recover url?
-      if (window.location.hash == '#recover') { 
+      if (window.location.hash == '#recover') {
         toggleRecoverPw();
       }
 
       // BIND : Setup click handlers
       ui.recoverButton.click( () => {
         toggleRecoverPw();
-      });    
+      });
 
       ui.cancelButton.click( () => {
         toggleRecoverPw();
@@ -2297,21 +2297,26 @@ $(document).ready(function() {
     var check_popup_cookie = $.cookie('mailing_list_delay_popup');
     var check_banner_cookie = $.cookie('gdpr_banner_read');
 
+    // Set mailing_list_delay_popup cookie to 180 days if user is signed into Shopify account
+    if(shopifyUserSignInStatus){
+      $.cookie('mailing_list_delay_popup', 'expires_180_days', { expires: 180 });
+    }
+
     // by default, the cookie banner will popup first. once the user hits "accept", then load the newsletter.
     // the newsletter is set to popup again after 7 days. though the cookie banner has already been read,
 
-    // if(check_popup_cookie == null && check_banner_cookie != null){
-    //   setTimeout(function(){
-    //     email_popup_load();
-    //   }, 5000);
-    // }
+    if(!check_popup_cookie && check_banner_cookie && shopifyUserSignInStatus !== true){
+      setTimeout(function(){
+        email_popup_load();
+      }, 3000);
+    }
 
     // here we are not checking for the delay popup cookie, we will load the modal anytime the email input (footer) is clicked
-    if(check_banner_cookie != null){
-      $('.js-newsletter-modal').on('click', function(){
-        email_popup_load();
-      });
-    }
+    // if(check_banner_cookie != null){
+      // $('.js-newsletter-modal').on('click', function(){
+      //   email_popup_load();
+      // });
+    // }
 
     const ui = {
             formId: $( '#subscribe--popup--form' ),
@@ -2428,8 +2433,9 @@ $(document).ready(function() {
     }
 
     // COOKIE : Slide Up Modal Only : Hide for 7 days after use close
-    // (Not used by footer email modal, but if slide up enabled this will be used)
+    // If user is signed in, the cookie will be extended to 180 days
     $.cookie('mailing_list_delay_popup', 'expires_seven_days', { expires: 7 });
+
 
     // TEMPLATE : Wrapping template that will encase the modal
     const fancybox_markup = `
