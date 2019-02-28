@@ -89,7 +89,7 @@
   {% comment %} :: Instagram Feed :: {% endcomment %}
   {% if template contains 'index' %}
     {{ 'instafeed.js' | asset_url | script_tag }}
-	{% endif %}
+  {% endif %}
 
   {% comment %} :: Wishlist King App :: {% endcomment %}
   {% if settings.app_wk_enabled %}
@@ -101,7 +101,7 @@
 
   {% comment %} :: Shop Runner :: {% endcomment %}
   {% if settings.shoprunner_enabled %}
-    {% include 'shoprunner-init-script' %}
+    {% include 'shoprunner-logic', isCheckout: false %}
   {% endif %}
 
   {% comment %} :: Borderfree :: {% endcomment %}
