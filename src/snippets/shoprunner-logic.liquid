@@ -273,3 +273,8 @@
         });
     }
 </script>
+
+{% comment %} :: CHECKOUT SPECIFIC SCRIPT :: {% endcomment %}
+{% if isCheckout == true %}
+    {% include 'shoprunner-checkout-script' %}
+{% endif %}
