@@ -47,7 +47,10 @@
   {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
   {{ 'bc-sf-filter.scss.css' | asset_url | stylesheet_tag }} {% comment %} Filter App Styling {% endcomment %}
 
+  <!-- Data Layer for GTM
+================================================== -->
 
+  {% include 'script-data-layer' %}
 
   <!-- Typography
 ================================================== -->

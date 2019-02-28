@@ -27,6 +27,13 @@
         "label": "Google Tag Manger ID",
         "info": "(Ex: GTM-PM9T3KW)",
         "default": "GTM-NONE"
+      },
+      {
+        "type": "checkbox",
+        "id": "data_layer_debugging",
+        "label": "Enable Data Layer Debugging",
+        "info": "You'll see debugging information via console.log",
+        "default": false
       }
     ]
   },

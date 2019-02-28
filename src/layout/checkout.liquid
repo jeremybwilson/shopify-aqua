@@ -12,6 +12,10 @@
     {% comment %} :: LIBRARY SCRIPTS :: {% endcomment %}
     {{ 'jquery-2.2.4.min.js' | asset_url | script_tag }}
 
+  <!-- Data Layer for GTM
+  ================================================== -->
+    {% include 'script-data-layer' %}
+
     <!-- Sailthru
   ================================================== -->
     {% include 'sailthru-script' %}
