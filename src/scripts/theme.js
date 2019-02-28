@@ -3288,29 +3288,8 @@ theme.Product = (function () {
       }
     });
 
-    // Related Products
-    this.initRelatedProducts()
-
-    /* REACT - EXAMPLE #2
-     *
-     * PAGE-SPECIFIC COMPONENT :
-     *     Swatch-Picker react component that appears only on the product template
-     *     if given the proper DOM Nodes to render into ( see 'SwatchParent.js' for
-     *     the node name being rendered into)
-     *
-     * RELATED FILES :
-     *    / scripts / react-components / swatches / SwatchParent.js <-- Parent, renders React component root into DOM Node
-     *    / scripts / react-components / swatches / SwatchList.js <---- List Container for Swatch Circles
-     *    / scripts / react-components / swatches / SwatchItem.js <---- Actual swatch circle single template
-     *    / snippets / react-swatches.liquid <-- DOM Node 'include'-able snippet
-     *    / sections / product-template.liquid <---------- Template we include snippet into
-     *
-     *  Here, we require in the parent component for our "React-Swatches" feature.
-     *  React components will always have a single root parent built via invoking
-     *  ReactDOM.render() into a DOM Node. Open 'SwatchParent.js' to learn more.
-     *****************************************************************************/
-    // require('./react-components/swatches/SwatchParent.js');
-
+    // THIS IS BROKEN - COMMENTING OUT FOR NOW : Related Products
+    // this.initRelatedProducts()
   }
 
   Product.prototype = _.assignIn({}, Product.prototype, {
