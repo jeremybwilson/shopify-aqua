@@ -49,6 +49,6 @@ $(document).ready( function(){
   
   // SAFETY : No DOM Node : Report node is missing, but script was invoked still
   } else {
-    console.log('React-Discounts is being invoked, but was unable to locate the "react-discounts" DOM Node..');
+    // console.log('React-Discounts is being invoked, but was unable to locate the "react-discounts" DOM Node..');
   }
 });
