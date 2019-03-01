@@ -11,8 +11,6 @@
   @include mq('tablet-and-up') {
     width: 100%;
     max-width: 490px;
-    // left: auto !important;
-    // right: 0 !important;
   }
 
   .fancybox-inner {
@@ -20,17 +18,15 @@
     overflow: hidden !important;
   }
 
-  // .fancybox-close {
-  //   display: none;
-  // }
-
   .fancybox-skin {
     background-color: $color--transparent;
+    padding-top: 0 !important; // undo what someone set in product .fancybox-skin
   }
 
   /* Rotates 'X' closure icon 90 deg specifically for the footer email sign up modal */
   .fancybox-close {
     right: 5px;
+    top: 8px;
     transform: rotate(90deg);
   }
 }
@@ -40,6 +36,8 @@
   position: relative;
   background-color: $color--white;
   border: 1px dotted #FFF;
+  overflow-y: auto;
+  height: 100%;
 
   h3, p {
     color: $color--primary-1;
@@ -60,12 +58,6 @@
     @include fontDim(22px,28px, .2em);
     font-weight: $font-weight--black;
     text-transform: uppercase;
-
-    @include mq( 'tablet-and-up' ) {
-    //  max-width: 300px;
-    //  margin-left: auto;
-    //  margin-right: auto;
-    }
   }
 
   p {
@@ -76,7 +68,6 @@
     text-align: center;
 
     &.fine-print {
-      // display:none;
       background-color: $color--white;
       color: $color--gray-1;
 
@@ -165,7 +156,7 @@
     @include fontSize(16px);
   }
 
-  .gender, .birth_date, .email, .subscribe--popup-submit {
+  #gender-options, .birth_date, .email, .subscribe--popup-submit {
     @include flexbox;
     @include flex-direction(row);
     @include align-items(center);
@@ -173,17 +164,34 @@
     margin: 0 auto;
   }
 
-  .gender {
-    @include justify-content(space-evenly);
-    width: 55%;
-    margin: 0 auto;
+  #gender-options {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+    border: none;
+    width: 165px;
+    left: 50%;
+    transform: translateX( -50% );
+    margin: 0 0 0 10px; // cheat centerline slightly for visual 
 
-    label {
-      color: $color--white;
-    }
+    .gender-option {
+      @include inline-flex;
+      @include align-items( center );
+      width: 80px;
 
-    input {
-      min-width: unset;
+      label {
+        color: $color--white;
+
+        &#gender-label-male {
+          margin-right: 25px;
+        }
+      }
+
+      input {
+        min-width: unset;
+        width: auto;
+        margin-right: 5px;
+      }
     }
   }
 
@@ -192,8 +200,12 @@
     @include justify-content(center);
 
     label {
-      padding: 0px 15px;
+      padding: 0 5px;
       color: $color--white;
+
+      @include mq( 'tablet-and-up' ) {
+        padding: 0 15px;
+      }
 
       &.full-width-block {
         width:  100%;
@@ -202,13 +214,19 @@
       }
 
       select {
-        background-color: $color--white;
         @include fontSize(12px);
+        width: 65px;
+        padding-left: 18px; 
+        background-color: $color--white;
+        font-family: $font-stack--default;
 
         @include mq( 'tablet-and-up' ){
           @include fontSize(13px);
         }
 
+        &#year {
+          padding-left: 12px;
+        }
       }
     }
   }
@@ -253,8 +271,8 @@
     svg {
       color: $color--white;
       fill: $color--white;
-      margin-right: 10px;
-      width: 12px;
+      margin: 7px 10px 0 0;
+      width: 22px;
       height: 12px;
 
       g {
@@ -276,10 +294,11 @@
     // display: none;
     background: $color--primary-1;
     @include fontSize(16px);
-    height: auto;
     line-height: normal;
+    outline: none;
+    height: auto;
     padding: 0;
-    margin: 0;
+    margin: 10px 0 0;
 
     &:hover {
       color: $color--gray-1;
@@ -287,7 +306,6 @@
   }
 
   // response messages
-
   #subscribe--popup--form-response {
     color: $color--white;
     background-color: $color--primary-1;
