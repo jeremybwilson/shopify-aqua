@@ -24,48 +24,61 @@
       </div><!-- #subscribe--popup--header -->
 
       <form id="subscribe--popup--form">
-        <div class="gender">
-          <input class="form-control" type="radio" name="gender" id="gender" value="male"> <label for="gender">Male</label>
-          <input class="form-control" type="radio" name="gender" id="gender" value="female"> <label for="gender">Female</label>
-        </div>
+
+        {% comment %} :: GENDER :: {% endcomment %}
+        <fieldset id="gender-options">
+          <div class="gender-option">
+            <input id="gender-input-male" class="form-control gender-input" type="radio" name="gender"  value="male" />
+            <label id="gender-label-male" for="gender-input-male">Male</label>
+          </div>
+
+          <div class="gender-option">
+            <input id="gender-input-female" class="form-control gender-input" type="radio" name="gender"  value="female" />
+            <label id="gender-label-female" for="gender-input-female">Female</label>
+          </div>
+        </fieldset>
+
+        {% comment %} :: EMAIL :: {% endcomment %}
         <div class="email">
           <label for="email">
           <input class="form-control" type="email" id="email-popup" name="email" {%- if settings.email_popup_input_placeholder != blank -%}placeholder="{{ settings.email_popup_input_placeholder }}"{%- endif -%}>
           </label>
         </div>
+
+        {% comment %} :: BIRTHDAY :: {% endcomment %}
         <div class="birth_date">
           <label class="full-width-block" for="birth_date">
             Enter Birthday
           </label>
           <label for="month">
             <select id="month" name="BirthMonth">
-                <option value="">MM</option>
-                <option value="01">January</option>
-                <option value="02">February</option>
-                <option value="03">March</option>
-                <option value="04">April</option>
-                <option value="05">May</option>
-                <option value="06">June</option>
-                <option value="07">July</option>
-                <option value="08">August</option>
-                <option value="09">September</option>
-                <option value="10">October</option>
-                <option value="11">November</option>
-                <option value="12">December</option>
+                <option value="" disabled selected>MM</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
             </select>
           </label>
           <label for="day">
             <select id="day" name="BirthDay">
-                <option value="">DD</option>
-                <option value="01">1</option>
-                <option value="02">2</option>
-                <option value="03">3</option>
-                <option value="04">4</option>
-                <option value="05">5</option>
-                <option value="06">6</option>
-                <option value="07">7</option>
-                <option value="08">8</option>
-                <option value="09">9</option>
+                <option value="" disabled selected>DD</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
                 <option value="10">10</option>
                 <option value="11">11</option>
                 <option value="12">12</option>
@@ -92,7 +105,7 @@
           </label>
           <label for="year">
             <select id="year" name="BirthYear">
-              <option value="">YYYY</option>
+              <option value="" disabled selected>YYYY</option>
               <option value="2019">2019</option>
               <option value="2018">2018</option>
               <option value="2017">2017</option>
