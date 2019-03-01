@@ -5,14 +5,14 @@
 
 <div class="swatch clearfix {{ option.name | downcase }}" data-option-index="{{ option.position }}" data-other-options='{{ other_options | json }}'>
   <div class="swatch-header">
-    
+
     {% comment %} Option Name {% endcomment %}
     {% if product.url == '/products/gift-card' %}
     <h5>Amount</h5>
     {% else %}
     <h5>{{ option.name }}</h5>
     {% endif %}
-    
+
     {% comment %} Currently Selected Option {% endcomment %}
     <h6 class="current-option">{{ current_variant[current_option] }}</h6>
 
@@ -35,10 +35,10 @@
 
     {% for value in option.values %}
       {% unless value contains 'Gift Item' or value contains 'Free Gift' %}
-        
+
 
         {% comment %} :: SWATCH : SWATCH IMAGE URL ::  Swatch name format is one from Photo Studio. Adjust as needed. {% endcomment %}
-        {% assign sku_parts = current_variant.sku | split: '-' %} 
+        {% assign sku_parts = current_variant.sku | split: '-' %}
         {% assign sku_base = sku_parts | first | downcase %}
         {% assign clean_color_name = value | escape | replace: ' ', '_' | replace: '/', '_' | replace: '__', '_' | downcase %}
         {% capture swatch_file_name %}{{ sku_base }}_{{ clean_color_name }}_sw.gif{% endcapture %}

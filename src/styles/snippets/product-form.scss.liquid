@@ -13,7 +13,7 @@
     margin-bottom: 14px;
   }
 
-  h5, 
+  h5,
   .current-option {
     display: inline;
     @include fontDim(16px,16px,1.23px);
@@ -25,12 +25,12 @@
   }
 
   // swatch main label
-  h5 { 
+  h5 {
     color: $color--primary-1;
   }
 
-  // swatch current option 
-  .current-option { 
+  // swatch current option
+  .current-option {
     margin-left: .5em;
     color: $color--general-grey;
   }
@@ -95,15 +95,15 @@
     }
   }
 
-  // soldout 
+  // soldout
 
   .swatch-element.soldout {
     label,
     label:hover,
     input:checked + label {
-      background-color: $color--white;
-      border-color: $color--light-gray;
-      color: $color--gray-3;
+      background-color: $color--light-gray;
+      opacity: 0.45;
+      pointer-events: none;
     }
   }
 
@@ -174,12 +174,13 @@
     height: 100%;
     left: 0;
     top: 0;
-  }  
-  .swatch-element.soldout .crossed-out {
-    display: block;
   }
 
-  // error state 
+  // .swatch-element.soldout .crossed-out {
+  //   display: block;
+  // }
+
+  // error state
 
   &.error {
     background-color: #E8D2D2 !important;
@@ -198,7 +199,7 @@
     }
     code {
       font-family: monospace;
-    }    
+    }
   }
 
   // Tooltip
@@ -254,7 +255,7 @@
       left: 0;
       position: absolute;
       width: 100%;
-    }    
+    }
     &:after {
       border-left: solid transparent 10px;
       border-right: solid transparent 10px;
