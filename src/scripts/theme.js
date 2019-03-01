@@ -2304,24 +2304,16 @@ $(document).ready(function() {
 
     // by default, the cookie banner will popup first. once the user hits "accept", then load the newsletter.
     // the newsletter is set to popup again after 7 days. though the cookie banner has already been read,
-
-    if(!check_popup_cookie && check_banner_cookie && shopifyUserSignInStatus !== true){
+    if( !check_popup_cookie && check_banner_cookie && !shopifyUserSignInStatus ){
       setTimeout(function(){
         email_popup_load();
       }, 3000);
     }
 
-    // here we are not checking for the delay popup cookie, we will load the modal anytime the email input (footer) is clicked
-    // if(check_banner_cookie != null){
-      // $('.js-newsletter-modal').on('click', function(){
-      //   email_popup_load();
-      // });
-    // }
-
     const ui = {
             formId: $( '#subscribe--popup--form' ),
            textbox: $( '#email-popup' ),
-    genderButtonId: $( '#gender' ),
+    genderFieldset: '#gender-options', //Can't grab checked until user submits
        birthDateId: $( '#birth-date' ),
             daybox: $( '#day' ),
           monthbox: $( '#month' ),
@@ -2333,7 +2325,6 @@ $(document).ready(function() {
        errorMsgTwo: $( '#subscribe--popup--error-response-birthdate' ),
         successMsg: $( '#subscribe--popup--success-response' ),
       fadeOutGroup: $( '#subscribe--popup--form, #subscribe--popup--error-response-birthdate' )
-      // fadeOutGroup: $( '#subscribe--popup--form, #subscribe--popup')
     };
 
     // EMAIL : Regex to check for a valid email
@@ -2390,6 +2381,7 @@ $(document).ready(function() {
           ui.errorMsgTwo.fadeIn();
 
         } else {
+          const selectedGender = $( `${ui.genderFieldset} input:checked` ).val() || 'no_selection'; // wait for submit to gather selection
 
           // success state
           Sailthru.integration("userSignUp",
@@ -2401,7 +2393,7 @@ $(document).ready(function() {
             },
             "source" : "web",
             "vars" : {
-             "gender" : ui.genderButtonId.val(),    // pulls in the value of the gender radio button input
+             "gender" : selectedGender,    // pulls in the value of the gender radio button input
              "BirthDay" : ui.daybox.val(),          // pulls in the value of the day dropdown input
              "BirthMonth" : ui.monthbox.val(),      // pulls in the value of the month dropdown input
              "BirthYear" : ui.yearbox.val()        // pulls in the value of the year dropdown input
@@ -2439,7 +2431,7 @@ $(document).ready(function() {
 
     // TEMPLATE : Wrapping template that will encase the modal
     const fancybox_markup = `
-    <div class="fancybox-wrap" tabIndex="-1" id="subscribe--popup-wrapper">
+    <div id="subscribe--popup-wrapper" class="fancybox-wrap" tabIndex="-1">
       <div class="fancybox-skin">
         <div class="fancybox-outer">
           <div class="fancybox-inner"></div>
@@ -3236,6 +3228,7 @@ theme.Product = (function () {
     const buildBadges = require('./react-components/badges/BadgeParent.js');
 
     $(document).ready( () => {
+
       // BADGES : Generate badge in div slot if present
       buildBadges();
 
@@ -3248,7 +3241,6 @@ theme.Product = (function () {
       })
 
       // FREE SHIPPING : Accordion
-
       if ( ui.freeShippingAccordionContent.length > 0 ) {
         ui.freeShippingAccordionHeader.click( () => {
           ui.freeShippingAccordionHeader.toggleClass( 'open' );
@@ -3257,7 +3249,6 @@ theme.Product = (function () {
       }
 
       // DESCRIPTION : Accordion
-
       if ( ui.descriptionMobileContent.length > 0 ) {
         ui.descriptionMobileTrigger.click( () => {
           ui.descriptionMobileTrigger.toggleClass( 'open' );
@@ -3265,9 +3256,7 @@ theme.Product = (function () {
         });
       }
 
-
       // CAMPAIGN VIDEO
-
       if ( ui.campaignVideoTrigger.length > 0 ) {
         ui.campaignVideoTrigger.fancybox({
           width: 900,
