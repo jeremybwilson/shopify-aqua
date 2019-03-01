@@ -260,6 +260,11 @@
     {{ 'ajax-cart.js' | asset_url | script_tag }}
 
     <script>
+      Handlebars.registerHelper('unless_contains', function (l, r, opts) {
+        return l.indexOf(r) === -1
+          ? opts.fn(this)
+          : null
+      });
       jQuery(function($) {
         ajaxCart.init({
           formSelector: '.product_form',

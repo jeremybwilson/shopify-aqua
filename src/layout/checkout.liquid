@@ -14,6 +14,7 @@
 
   <!-- Data Layer for GTM
   ================================================== -->
+    {% include 'script-google-tag-head' %}
     {% include 'script-data-layer' %}
 
     <!-- Sailthru
@@ -23,6 +24,8 @@
   </head>
 
   <body>
+    {% include 'script-google-tag-body' %}
+
     <p>
       {{ content_for_header }}
       {{ checkout_stylesheets }}

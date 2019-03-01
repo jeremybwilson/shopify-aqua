@@ -33,7 +33,9 @@
                       {{#if this}}
                         {{#if_not_eq @key 'discountItem'}}
                           {{#if_not_eq @key '_sr_token'}}
-                            <span class="ajaxcart__product-meta">{{@key}}: {{this}}</span>
+                            {{#unless_contains @key '_private'}}
+                              <span class="ajaxcart__product-meta">{{@key}}: {{this}}</span>
+                            {{/unless_contains}}
                           {{/if_not_eq}}
                         {{/if_not_eq}}
                       {{/if}}
@@ -46,7 +48,7 @@
 
                 <p><strong class="bfx-price">{{{price}}}</strong></p>
 
-                {{!-- 
+                {{!--
                   :: QUANTITY SELECTORS ::
                     - If discountItem, hide quantity selectors (re: A free gift item from react-discounts)
                 --}}
@@ -65,7 +67,7 @@
                           <span>&minus;</span>
                         </button>
                         <input type="text" name="updates[]" class="ajaxcart__qty-num" value="{{itemQty}}" min="0" data-id="{{id}}" data-line="{{line}}" aria-label="quantity" pattern="[0-9]*">
-                        <button type="button" class="ajaxcart__qty-adjust ajaxcart__qty--plus quantity-increment" data-id="{{id}}" data-line="{{line}}" data-qty="{{itemAdd}}">                        
+                        <button type="button" class="ajaxcart__qty-adjust ajaxcart__qty--plus quantity-increment" data-id="{{id}}" data-line="{{line}}" data-qty="{{itemAdd}}">
                           <span>+</span>
                         </button>
                       </div>

@@ -8,12 +8,12 @@
     <script type="text/javascript">
       function remove_item( line_item ) {
         console.log( 'calling remove_item' );
-        
+
         function successCallback( cart ) {
 
           // REMOVE : Line item we removed via api
           $( '#cart-line-item-' + line_item ).remove();
-          
+
           // UPDATE : Price now currently in the cart
           var cartTotal = calcCartTotal( cart.total_price );
           $( '#cart-page-price' ).html( cartTotal );
@@ -23,7 +23,7 @@
        function calcCartTotal( total_price ) {
           // CONVERT : Change cart value to a whole dollar (or other currency) amount
           var dollar, cents, cartTotal, total = JSON.stringify( total_price );
-          
+
           if ( total.length < 3 ) {
             dollar = 0;
             cents = total.length < 2 ? '0' + total : total; // So "9" becomes "0.09" at the end
@@ -54,7 +54,7 @@
           </tr>
         </thead>
         <tbody>
-          
+
           {% comment %} LINE_ITEM COUNT (For Removal Function) {% endcomment %}
           {% assign line_item = 0 %}
 
@@ -78,7 +78,7 @@
                 {% assign property_size = item.properties | size %}
                 {% if property_size > 0 %}
                   {% for p in item.properties %}
-                    {% unless p.first == 'discountItem' or p.first contains 'sr_token' or p.last == blank %}
+                    {% unless p.first == 'discountItem' or p.first contains 'sr_token' or p.first contains '_private' or p.last == blank %}
                       {{ p.first }}:
 
                       {% comment %}
@@ -97,7 +97,7 @@
 
               <td class="cart-remove">
                 <a href="#" onclick="remove_item( {{ line_item }} ); return false;"><i class="fa fa-times"></i><span class="remove-text">{{ 'cart.general.remove' | t }}</span></a>
-              </td>          
+              </td>
               <td class="cart-price">
                 <span class="money bfx-product-price">{{ item.price | money }}</span>{% if item.variant.compare_at_price > item.price %}&nbsp;<del><span class="money">{{ item.variant.compare_at_price | money }}</span></del>{% endif %}
               </td>
@@ -115,7 +115,7 @@
           {% endfor %}
         </tbody>
       </table>
-    
+
 
       <div id="basket-right" class="desktop-4 tablet-6 mobile-3">
         <h4>
