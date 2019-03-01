@@ -1,8 +1,9 @@
 {
   "presets": {},
   "current": {
-    "favicon": "shopify://shop_images/favicon.png",
+    "favicon": "shopify://shop_images/favicon_4f8cf2b0-05d5-4524-bda3-8b4ca13bac5f.png",
     "google_tag_manager_id": "GTM-5M2TJC4",
+    "data_layer_debugging": false,
     "color_grey": "#9b9b9b",
     "announcement_text_color": "#ffffff",
     "announcement_bg_one": "#000000",
@@ -176,7 +177,7 @@
     "currency_format": "money_with_currency_format",
     "supported_currencies": "INR GBP CAD USD AUD EUR JPY",
     "default_currency": "USD",
-    "discount_modal_enable": true,
+    "discount_modal_enable": false,
     "discount_modal_config": "eyJjb29raWVFeHBpcmVJbkRheXMiOiA2MCwidGhyZXNob2xkRGlzY291bnRzIjogW3siZGlzY291bnRJZCI6IDEsImRpc3BsYXlOYW1lIjogIldpZ3dhbSBIYXQgKEJsYWNrKSIsImdpZnRJZCI6IDE1NDU5OTY0MDkyNTEwLCJncmFudFR5cGUiOiAicGljayIsImludmVudG9yeUlkIjogMTU0MDIyMTI5ODI4NzgsIm1pblNwZW5kIjogMjAwLCJwcm9kdWN0SGFuZGxlIjogIndpZ3dhbS13aW50ZXItaGF0In0seyJkaXNjb3VudElkIjogMiwiZGlzcGxheU5hbWUiOiAiV2lnd2FtIEhhdCAoR3JheSkiLCJnaWZ0SWQiOiAxNTQ1OTk2NTM3MDQ2MiwiZ3JhbnRUeXBlIjogInBpY2siLCJpbnZlbnRvcnlJZCI6IDE1NDAyMjEzMDE1NjQ2LCJtaW5TcGVuZCI6IDIwMCwicHJvZHVjdEhhbmRsZSI6ICJ3aWd3YW0td2ludGVyLWhhdCJ9LHsiZGlzY291bnRJZCI6IDMsImRpc3BsYXlOYW1lIjogIldpZ3dhbSBIYXQgKE5hdHVyYWwpIiwiZ2lmdElkIjogMTU0NTk5NjU1MDE1MzQsImdyYW50VHlwZSI6ICJwaWNrIiwiaW52ZW50b3J5SWQiOiAxNTQwMjIxMzA0ODQxNCwibWluU3BlbmQiOiAyMDAsInByb2R1Y3RIYW5kbGUiOiAid2lnd2FtLXdpbnRlci1oYXQifV19",
     "discount_modal_bg": "#fefffe",
     "discount_modal_text": "#000000",
@@ -202,7 +203,7 @@
     "app_wk_products_per_row": "4",
     "shoprunner_enabled": true,
     "shoprunner_retailer_id": "ATALIA",
-    "shoprunner_env": "dev",
+    "shoprunner_env": "prod",
     "checkout_header_image": "",
     "checkout_logo_image": "shopify://shop_images/checkout-logo.png",
     "checkout_logo_position": "center",
@@ -217,6 +218,8 @@
     "checkout_accent_color": "#000000",
     "checkout_button_color": "#000000",
     "checkout_error_color": "#dc2828",
+    "loyalty_lion_enabled": true,
+    "loyalty_lion_token": "2eefd33ba2b59632b59771fdb7314fd5",
     "international_store_version": "US",
     "cart_links": "#000000",
     "cart_links_hover": "#000000",
@@ -364,6 +367,32 @@
       },
       "collection-template": {
         "type": "collection-template",
+        "blocks": {
+          "1551418571178": {
+            "type": "collection_banner",
+            "settings": {
+              "collection_handle": "women-aq24-7",
+              "banner_image_desktop": "shopify://shop_images/introducing-aqua-24-7-flexible-sole.jpg",
+              "banner_image_mobile": "shopify://shop_images/introducing-aqua-24-7-flexible-sole_a52852c2-4068-4c8b-8cd2-26dcded056da.jpg",
+              "banner_text_header": "",
+              "banner_text_body": "",
+              "banner_text_divider": true,
+              "textbox_constrain": false,
+              "textbox_horizontal": "center",
+              "textbox_horizontal_nudge": 0,
+              "textbox_vertical": "center",
+              "textbox_vertical_nudge": 0,
+              "textbox_text_align": "left",
+              "textbox_color_text": "#ffffff",
+              "textbox_color_divider": "#ffffff",
+              "textbox_color_bg": "#000000",
+              "textbox_opacity": "0.1"
+            }
+          }
+        },
+        "block_order": [
+          "1551418571178"
+        ],
         "settings": {
           "grid": 3,
           "rows": 8,
@@ -514,8 +543,8 @@
           "promo-right": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/adrian_48b5122c-191b-49c0-ae50-543d89731f8d.jpg",
-              "mobile_image": "shopify://shop_images/Mobile_Promo_Block_1_768X6382_33185974-e1c1-4895-8ff8-fa7cefa27079.jpg",
+              "image": "shopify://shop_images/adrian_708c427a-35d0-4495-87da-ddb78a6980a2.jpg",
+              "mobile_image": "shopify://shop_images/adrian_70a6a455-d6e0-439b-a0f3-95a5fc34da64.jpg",
               "link": "shopify://collections/men-new-arrivals",
               "heading_text": "CLASSIC MODE",
               "body_text": "<p>The&nbsp;Luxury Chelsea</p>",
