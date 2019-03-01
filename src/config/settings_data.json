@@ -190,9 +190,10 @@
     "borderfree_js_url_dev": "https:\/\/bfx-objects.stage.borderfree.com\/v1\/dist\/bfx.js",
     "borderfree_js_config_dev": "{key:'bca2f6b0-0273-11e6-8da6-4920e7373927', env:'STAGE', mode:'default', brand:'default'}",
     "borderfree_merchant_url_dev": "https:\/\/stagecheckout.borderfree.com\/htmlcheckout\/resources\/js\/merchant.js",
-    "borderfree_js_url_prod": "https:\/\/bfx-objects.stage.borderfree.com\/v1\/dist\/bfx.js",
-    "borderfree_js_config_prod": "{key:'bca2f6b0-0273-11e6-8da6-4920e7373927', env:'STAGE', mode:'default', brand:'default'}",
-    "borderfree_merchant_url_prod": "https:\/\/stagecheckout.borderfree.com\/htmlcheckout\/resources\/js\/merchant.js",
+    "borderfree_js_url_prod": "https://bfx-objects.borderfree.com/v1/dist/bfx.js",
+    "borderfree_js_config_prod": "{key:'43e5ebb0-3ef5-11e6-afde-794dbc41b64c', env:'PROD', mode:'default', brand:'default'}",
+    "borderfree_merchant_url_prod": "https:\/\/checkout.borderfree.com\/htmlcheckout\/resources\/js\/merchant.js",
+
     "app_wk_enabled": true,
     "app_wk_login_required": false,
     "app_wk_icon": "heart",
