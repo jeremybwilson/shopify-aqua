@@ -323,6 +323,7 @@ applyBindings(defaultBindings, __bva__);
     };
     var collections = {
       'productList' : "{{collection.title}}",
+      'handle'      : {{ collection.handle | json }},
       'pageType'    : 'Collection',
       'event'       : 'Collection'
     };
@@ -776,6 +777,7 @@ applyBindings(defaultBindings, __bva__);
               'category'  : line_item.properties && line_item.properties._collection_private,
             }
 
+            {% comment %}
             if (!options) {
               return $.ajax({
                 url: line_item.url.split('?')[0] + '?view=data',
@@ -787,6 +789,7 @@ applyBindings(defaultBindings, __bva__);
                 }
               })
             }
+            {% endcomment %}
 
             return ret
           })
@@ -850,6 +853,7 @@ applyBindings(defaultBindings, __bva__);
                   'category'  : line_item.properties && line_item.properties._collection_private,
                 }
 
+                {% comment %}
                 if (!options) {
                   return $.ajax({
                     url: line_item.url.split('?')[0] + '?view=data',
@@ -861,10 +865,12 @@ applyBindings(defaultBindings, __bva__);
                     }
                   })
                 }
+                {% endcomment %}
 
                 return ret
               })
             }
+
             __bva__.cart = cart;
             for (var i = __bva__.cart.products.length - 1; i >= 0; i--) {
               var x = parseFloat(__bva__.cart.products[i].variant);
