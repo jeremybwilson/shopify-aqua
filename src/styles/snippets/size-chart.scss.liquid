@@ -80,7 +80,6 @@ table.size-chart {
 
   .fancybox-skin {
     background-color: $color--white;
-    padding-top: 55px !important;
   }
 
   .fancybox-close {
@@ -98,13 +97,22 @@ table.size-chart {
 
 #size-chart--popup {
   max-height: 80vh;
+  height: 80vh;
+  overflow: hidden;
+  position: relative;
+  padding-top: 50px;
 
   @include mq('lap-and-up') {
     max-width: 720px;
     width: 100%;
     padding-left: 50px;
     padding-right: 50px;
-    overflow-y: scroll;
+  }
+
+  .size-chart--wrapper {
+    position: relative;
+    height: 100%;
+    overflow-x: auto;
   }
 }
 
