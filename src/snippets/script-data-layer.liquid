@@ -970,11 +970,10 @@ applyBindings(defaultBindings, __bva__);
         }
       }
 
-      $(document).on('click', __bva__.cartTriggers, function() {
+      $(document).on('submit', __bva__.cartTriggers, function() {
         __bva__addtocart();
       });
 
-    var _template = {{ template.name | json }};
     if(typeof ShopifyAPI != 'undefined'){
       if( typeof ShopifyAPI.addItemFromForm != 'undefined'){
           var originalMethod = ShopifyAPI.addItemFromForm;
@@ -992,7 +991,7 @@ applyBindings(defaultBindings, __bva__);
                   }]
                   };
 
-                  dataLayer.push(products, {
+                  dataLayer.push({ products: product }, products, {
                       'pageType' : 'Add to Cart',
                       'event'    : 'Add to Cart'
                   });
