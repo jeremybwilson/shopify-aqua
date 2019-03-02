@@ -974,7 +974,8 @@ applyBindings(defaultBindings, __bva__);
         __bva__addtocart();
       });
 
-    if(typeof ShopifyAPI != 'undefined'){
+    var _template = {{ template.name | json }};
+    if(typeof ShopifyAPI != 'undefined' && template !== 'collection'){
       if( typeof ShopifyAPI.addItemFromForm != 'undefined'){
           var originalMethod = ShopifyAPI.addItemFromForm;
           ShopifyAPI.addItemFromForm = function () {
