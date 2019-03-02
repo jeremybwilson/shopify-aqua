@@ -980,21 +980,15 @@ applyBindings(defaultBindings, __bva__);
           ShopifyAPI.addItemFromForm = function () {
               var originalCallback = arguments[1];
               arguments[1] = function(product){
-                  var products = {"products":
-                  [{
-                    'id': product.id,
-                    'sku': product.sku,
-                    'variant': product.variant_id,
-                    'name': product.title,
-                    'price': (product.price/100),
-                    'quantity': product.quantity
-                  }]
-                  };
+                  {% if template.name == 'collection' %}
+                    dataLayer.push({ products: product})
+                  {% endif %}
+                  dataLayer.push({ products: [product]})
+                  dataLayer.push({
+                    'pageType' : 'Add to Cart',
+                    'event'    : 'Add to Cart',
+                  })
 
-                  dataLayer.push({ products: product }, products, {
-                      'pageType' : 'Add to Cart',
-                      'event'    : 'Add to Cart'
-                  });
                   if (__bva__.debug) {
                     console.log("Add to Cart"+" :"+JSON.stringify(products, null, " "));
                   }
