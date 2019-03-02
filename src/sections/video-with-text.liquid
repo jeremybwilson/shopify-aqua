@@ -8,6 +8,8 @@
 
 {% endcomment %}
 {% assign video_url = section.settings.video_url %}
+{% assign heading_image = section.settings.heading_image %}
+{% assign heading_image_placement = section.settings.heading_image_placement %}
 
 
 {% comment %} :: PANEL - VIDEO :: (See bottom portion for layout placement usage) {% endcomment %}
@@ -24,13 +26,13 @@
 
         {% comment %} :: YOUTUBE :: {% endcomment %}
         {% if video_url.type == "youtube" %}
-          <iframe src="//www.youtube.com/embed/{{ section.settings.video_url.id }}?rel=0&showinfo=0&vq=720&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          <iframe src="//www.youtube.com/embed/{{ video_url.id }}?rel=0&showinfo=0&vq=720&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         {% endif %}
 
         
         {% comment %} :: VIMEO :: {% endcomment %}
         {% if video_url.type == "vimeo" %}
-          <iframe src="//player.vimeo.com/video/{{ section.settings.video_url.id }}?byline=0&portrait=0&badge=0&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          <iframe src="//player.vimeo.com/video/{{ video_url.id }}?byline=0&portrait=0&badge=0&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         {% endif %}
 
       {% endif %}
@@ -39,25 +41,15 @@
   </div>
 {% endcapture %}
 
-<style>
-.embed-container { 
-  position: relative; 
-  padding-bottom: 56.25%; 
-  height: 0; 
-  overflow: hidden; 
-  max-width: 100%; 
-  height: auto;
-} 
-.embed-container iframe, 
-.embed-container object, 
-.embed-container embed { 
-  position: absolute;
-  top: 0; 
-  left: 0; 
-  width: 100%; 
-  height: 100%; 
-}
-</style>
+
+
+{% comment %} :: PANEL - TEXT HEADING IMAGE :: {% endcomment %}
+{% capture text_panel_image %}
+  <div class="heading-image"
+    data-placement="{{ heading_image_placement }}" 
+    style="background-image: url( '{{ heading_image | img_url: '500x' }}' );">
+  </div>
+{% endcapture %}
 
 
 
@@ -67,6 +59,11 @@
     data-text-align="{{ section.settings.text_align }}"
     data-text-vertical="{{ section.settings.text_vertical }}">
     <div class="featured-text-inner">
+
+      {% comment %} :: IMAGE (Optional) :: {% endcomment %}
+      {% if heading_image != blank and heading_image_placement == 'top' %}
+        {{ text_panel_image }}
+      {% endif %}
 
       {% comment %} :: HEADER :: {% endcomment %}
       {% if section.settings.heading_text != blank %}
@@ -89,9 +86,15 @@
         </a>
       {% endif %}
 
+      {% comment %} :: IMAGE (Optional) :: {% endcomment %}
+      {% if heading_image != blank and heading_image_placement == 'bottom' %}
+        {{ text_panel_image }}
+      {% endif %}
+
     </div>
   </div>
 {% endcapture %}
+
 
 
 
@@ -136,6 +139,12 @@
         "id": "video_url",
         "label": "YouTube or Vimeo link",
         "accept": ["youtube", "vimeo"]
+      },
+      {
+        "type": "image_picker",
+        "id": "heading_image",
+        "label": "Heading Image (Optional)",
+        "info": "Size: about ~400-600px wide, ~50-125kb for fast loads"
       },
       {
         "type": "text",
@@ -254,6 +263,23 @@
           {
             "value": "right",
             "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "heading_image_placement",
+        "label": "Heading Image Placement",
+        "info": "(Only applies if one provided)",
+        "default": "top",
+        "options": [
+          {
+            "value": "top",
+            "label": "Top"
+          },
+          {
+            "value": "bottom",
+            "label": "Bottom"
           }
         ]
       }
