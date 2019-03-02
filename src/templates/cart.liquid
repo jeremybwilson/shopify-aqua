@@ -99,7 +99,7 @@
                 <a href="#" onclick="remove_item( {{ line_item }} ); return false;"><i class="fa fa-times"></i><span class="remove-text">{{ 'cart.general.remove' | t }}</span></a>
               </td>          
               <td class="cart-price">
-                <span class="money bfx-product-price">{{ item.price | money }}</span>{% if item.variant.compare_at_price > item.price %}&nbsp;<del><span class="money">{{ item.variant.compare_at_price | money }}</span></del>{% endif %}
+                <span class="money bfx-list-price">{{ item.price | money }}</span>{% if item.variant.compare_at_price > item.price %}&nbsp;<del><span class="money">{{ item.variant.compare_at_price | money }}</span></del>{% endif %}
               </td>
               <td class="cart-quantity">
                 {% if item.title contains "Free Gift" or item.title contains "Gift Item" %}
@@ -109,7 +109,7 @@
                 {% endif %}
               </td>
               <td class="cart--total-price">
-                <span class="money bfx-price bfx-list-price">{{ item.line_price | money }}</span>
+                <span class="money bfx-product-subtotal">{{ item.line_price | money }}</span>
               </td>
             </tr>
           {% endfor %}

@@ -1451,6 +1451,13 @@
         "default": true
       },
       {
+        "type": "checkbox",
+        "id": "borderfree_production",
+        "label": "On Production",
+        "info": "(Is this the production theme?)",
+        "default": false
+      },
+      {
         "type": "header",
         "content": "Dev Scripts"
       },
