@@ -46,7 +46,7 @@
       <span class="money bfx-price">{{ price }}</span>
     </span>
   </div>
-  
+
   {% endif %}
 
   {% comment %} REVIEWS - STAR RATING {% endcomment %}
@@ -68,7 +68,7 @@
 
   {% comment %}
 
-  SWATCHES 
+  SWATCHES
   -------------------
 
   CONDITION #1 - If there are more than one set of product options (Color AND Size). This condition also renders the different variants under said options (Red S, Blue L).
@@ -88,7 +88,7 @@
     </div><!-- .select -->
     {% if section.settings.product_variants == 'swatches' %}
 
-      {% comment %} Option Loop 
+      {% comment %} Option Loop
 
       This is the first of 3 sets of loops that determine the render of the product swatches. See 'swatch.liquid' for the other two.
 
@@ -120,7 +120,7 @@
     </div><!-- .select -->
     {% if section.settings.product_variants == 'swatches' %}
 
-      {% comment %} Option Loop 
+      {% comment %} Option Loop
 
       This is the first of 3 sets of loops that determine the render of the product swatches. See 'swatch.liquid' for the other two.
 
@@ -196,5 +196,10 @@
     </div>
     <p class="add-to-cart-msg"></p>
   {% endif %}
+  <input
+    readonly
+    type="hidden"
+    name="properties[_collection_private]"
+    value="{{ collection.title }}">
   <div class="clear"></div>
 {% endform %}
