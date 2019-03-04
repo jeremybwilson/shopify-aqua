@@ -257,6 +257,8 @@ $loadMoreBgHover: {{ settings.collection_load_more_bg_hover }};
 
         // PRICE : Wrapper around price block
         .product-price-wrap {
+            @include flexbox;
+            @include align-items( center );
             @include fontSize( 16px );
             font-weight: $font-weight--book;
             color: $catalogItemPriceColor;
@@ -267,15 +269,30 @@ $loadMoreBgHover: {{ settings.collection_load_more_bg_hover }};
                 display: inline-block;
             }
 
-            .was {
+            .was,
+            .range-was-price {
                 font-weight: $font-weight--bold;
                 color: $catalogItemPriceColor;
+                text-decoration: line-through;
             }
 
             .onsale {
                 margin-right: 5px;
                 color: $catalogItemAccentColor;
                 font-weight: $font-weight--medium;
+            }
+
+            // RANGE : Price ranges
+            .range-min-price,
+            .range-max-price {
+                font-weight: $font-weight--bold;
+                color: $catalogItemPriceColor;
+            }
+            .range-min-price {
+                margin-right: 5px;
+            }
+            .range-max-price {
+                margin-left: 5px;
             }
         }
 
