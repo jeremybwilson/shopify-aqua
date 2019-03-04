@@ -156,13 +156,13 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
     itemHtml = itemHtml.replace(/{{wishlistButton}}/g, bcSfFilterTemplate.wishlistBtnHtml);
 
 
-    // PRICE : Add price and original price if discounted
+    // PRICE : CONFIG : Add price and original price if discounted
     var itemPriceHtml = '';
-    var showRange = false;  // RANGE : Show "from $10 - $1,000" type displays for range pricing
+    var showRange = true;  // RANGE : Show "from $10 - $1,000" type displays for range pricing
     var showCents = false;  // CENTS : show the ".00" on a price
     var showSales = true;   // SALE : Show red strike through and discount price 
 
-    // FORMAT : Remove cents if setting if showCents false
+    // FORMAT : CENTS : Remove cents if `showCents` === false
     var formatPrice = function( price ) {
         if ( showCents ) {
             return price;
@@ -171,26 +171,45 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
         }  
     }
 
-    // PRICE VALUE : Store min value for reusable reference
-    var minPrice = formatPrice( this.formatMoney(data.price_min, this.moneyFormat) );
-
-    // PRICE : BUILD TEMPLATE
-    if (onSale) {
-        var compareAtPrice = formatPrice( this.formatMoney(data.compare_at_price_min, this.moneyFormat) );
-        itemPriceHtml += '<div class="onsale">' + minPrice + '</div>';
-        itemPriceHtml += '<div class="was">' + compareAtPrice + '</div>';
-        
-    } else {
-        itemPriceHtml += '<div class="prod-price">';
-
-        if ( priceVaries && showRange ) {
-            var maxPrice = formatPrice( this.formatMoney(data.price_max, this.moneyFormat ) );
-            itemPriceHtml += bcSfFilterConfig.label.from_price + ' ' + minPrice + ' - ' + maxPrice;
-        
-        } else {
-            itemPriceHtml += minPrice;
+    // FORMAT : RANGE : Builds a range of price for min / max passed in
+    var formatRange = function( minPrice, maxPrice, isSale ) {
+        var fromPriceLabel = bcSfFilterConfig.label.from_price; //Not used but left for if they change mind
+        var minClasses = "range-min-price";
+        if ( isSale ) {
+            minClasses += " onsale";
         }
-        itemPriceHtml += '</div>';
+        return '<div class="' + minClasses + '">' + minPrice + '</div> <div class="range-was-price">' + compareAtPrice + '</div> - <div class="range-max-price">' + maxPrice + '</div>';
+    };
+
+
+    // PRICE : VALUES : Store min value for reusable reference
+    var minPrice = formatPrice( this.formatMoney(data.price_min, this.moneyFormat) );
+    var maxPrice = formatPrice( this.formatMoney(data.price_max, this.moneyFormat) );
+
+    // PRICE : SALE : Build sale priced item template
+    if ( onSale ) {
+        var compareAtPrice = formatPrice( this.formatMoney(data.compare_at_price_min, this.moneyFormat) );
+
+        // RANGE : Multiple price points on this product
+        if ( priceVaries && showRange ) {
+            itemPriceHtml += formatRange( minPrice, maxPrice, true );
+
+        // SINGLE : Sale Price is only price
+        } else {
+            itemPriceHtml += '<div class="onsale">' + minPrice + '</div><div class="was">' + compareAtPrice + '</div>';
+        }
+        
+    // PRICE : FULL : Build regularly priced item template
+    } else {
+
+        // RANGE : Prices vary and show range is enabled
+        if ( priceVaries && showRange ) {
+            itemPriceHtml += formatRange( minPrice, maxPrice, false );
+        
+        // SINGLE : Show single price point
+        } else {
+            itemPriceHtml += '<div class="prod-price">' + minPrice + '</div>';
+        }
     }
     itemHtml = itemHtml.replace(/{{itemPrice}}/g, itemPriceHtml);
 
