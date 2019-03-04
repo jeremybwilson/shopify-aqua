@@ -3284,7 +3284,7 @@ theme.Product = (function () {
     });
 
     // THIS IS BROKEN - COMMENTING OUT FOR NOW : Related Products
-    // this.initRelatedProducts()
+    this.initRelatedProducts()
   }
 
   Product.prototype = _.assignIn({}, Product.prototype, {
@@ -3320,7 +3320,7 @@ theme.Product = (function () {
 })();
 
 Events.on("quickview:load", function (container) {
-  theme.Product(container);
+  new theme.Product(container)
 });
 
 // CURRENCY CONVERSION NOT UTILIZED
