@@ -632,6 +632,7 @@
         "type": "video-with-text",
         "settings": {
           "video_url": "https:\/\/vimeo.com\/319130430",
+          "heading_image": "shopify:\/\/shop_images\/Weatherproof-logo.jpg",
           "heading_text": "Weatherproof",
           "body_text": "<p>Please provide the copy you'd like with this video.<\/p>",
           "button_text": "LEARN MORE",
@@ -640,7 +641,8 @@
           "video_side": "left",
           "video_width": 64,
           "text_vertical": "center",
-          "text_align": "center"
+          "text_align": "center",
+          "heading_image_placement": "top"
         }
       },
       "page-about-template": {

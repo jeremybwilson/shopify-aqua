@@ -83,6 +83,36 @@
  			@include align-items( flex-end );
  		}
 
+ 		// HEADING IMAGE
+ 		.heading-image {
+		    width: 110px;
+		    height: 110px;
+		    margin: 0 auto 10px;
+		    background-repeat: no-repeat;
+		    background-size: contain;
+		    background-position: center center;
+
+		    @include mq( 'lap-and-up' ) {
+		    	width: 130px;
+		    	height: 130px;
+		    }
+
+		    @include mq( 'desk-and-up' ) {
+		    	width: 150px;
+		    	height: 150px;
+		    }
+
+		    @include mq( 'wide-and-up' ) {
+		    	width: 176px;
+		    	height: 176px;
+		    }
+
+		    // PLACEMENT - Bottom (adjust margin to match its location)
+		    &[data-placement="bottom"] {
+		    	margin: 10px auto 0;
+		    }
+		}
+
 
 	 	// HEADER 
 	 	.heading-text {
