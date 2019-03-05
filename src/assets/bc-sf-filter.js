@@ -178,7 +178,7 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
         if ( isSale ) {
             minClasses += " onsale";
         }
-        return '<div class="' + minClasses + '">' + minPrice + '</div> <div class="range-was-price">' + compareAtPrice + '</div> - <div class="range-max-price">' + maxPrice + '</div>';
+        return '<div class="' + minClasses + '">' + minPrice + '</div> - <div class="range-max-price">' + maxPrice + '</div>';
     };
 
 
@@ -192,7 +192,7 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
 
         // RANGE : Multiple price points on this product
         if ( priceVaries && showRange ) {
-            itemPriceHtml += formatRange( minPrice, maxPrice, true );
+            itemPriceHtml += formatRange( minPrice, maxPrice, false ); // Aqua doesn't want red sale price on ranges, set to false
 
         // SINGLE : Sale Price is only price
         } else {
