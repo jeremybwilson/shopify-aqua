@@ -75,9 +75,9 @@
       {% comment %} :: CTA BUTTON :: {% endcomment %}
       {% if section.settings.button_text != blank and section.settings.button_link != blank %}
         <a href="{{ section.settings.button_link }}" class="featured-button" data-symbol-placement="{{ section.settings.button_symbol_placement }}">
-          {% include 'svg-icon-button-symbol', side: 'left' %}
+          {% include 'svg-icon-button-symbol', side: 'left', symbol_id_num: 3 %}
           <span>{{ section.settings.button_text | escape }}</span>
-          {% include 'svg-icon-button-symbol', side: 'right' %}
+          {% include 'svg-icon-button-symbol', side: 'right', symbol_id_num: 4 %}
         </a>
       {% endif %}
 
