@@ -500,7 +500,7 @@ applyBindings(defaultBindings, __bva__);
       })
 
       if (__bva__.debug) {
-        console.log("Add to Cart"+" :"+JSON.stringify(products, null, " "));
+        console.log("Add to Cart"+" :"+JSON.stringify(p, null, " "));
       }
     }
 
@@ -713,6 +713,19 @@ applyBindings(defaultBindings, __bva__);
                 if(__bva__.debug == true){
                   console.log("Shipping - Transaction Data"+" :"+JSON.stringify(transactionData, null, " "));
                 }
+
+              setTimeout(function () {
+                $('fieldset[data-shipping-methods] input').on('change', function () {
+                  var value = $(this).val()
+                  var data = {
+                    shippingInfo: {
+                      method: value
+                    }
+                  }
+                  console.log('change', value)
+                  dataLayer.push(data, { event:'Shipping Information' })
+                })
+              }, 2000)
             }else if( Shopify.Checkout.step === "payment_method" ){
               dataLayer.push(transactionData,{
                 'event'    :'Add Payment Info',
@@ -1179,7 +1192,7 @@ applyBindings(defaultBindings, __bva__);
       })
 
       if (__bva__.debug) {
-        console.log("Add to Cart"+" :"+JSON.stringify(products, null, " "));
+        console.log("Add to Cart"+" :"+JSON.stringify(p, null, " "));
       }
     }
 
@@ -1205,7 +1218,18 @@ applyBindings(defaultBindings, __bva__);
           arguments[2] = function (cart) {
             if (quantity > 0) {
               var product = cart.items[line - 1]
-              handleAddToCart(product)
+              var variantId = product.variant_id.toString()
+              var initialQuantity = __bva__.cart.reduce(function (acc, cur) {
+                return cur.variant === variantId
+                  ? { quantity: parseInt(cur.quantity, 10) }
+                  : acc
+              }, { quantity: 0 })
+
+              if (initialQuantity < product.quantity) {
+                handleAddToCart(product)
+              } else if (initialQuantity > product.quantity) {
+                // Handle remove from cart?
+              }
             } else if (!cart.items.length) {
               handleCartEmpty()
             }
