@@ -652,6 +652,7 @@
         "type": "video-with-text",
         "settings": {
           "video_url": "https://vimeo.com/319130430",
+          "heading_image": "shopify://shop_images/Weatherproof-logo.jpg",
           "heading_text": "WHATEVER THE WEATHER",
           "body_text": "<p>Exclusive weatherproofing for<br>the discerning man and woman<br>who want to look their best,<br>rain or shine</p>",
           "button_text": "LEARN MORE",
@@ -660,7 +661,8 @@
           "video_side": "left",
           "video_width": 64,
           "text_vertical": "center",
-          "text_align": "center"
+          "text_align": "center",
+          "heading_image_placement": "top"
         }
       },
       "page-about-template": {
