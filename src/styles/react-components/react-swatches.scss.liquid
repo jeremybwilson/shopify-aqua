@@ -55,6 +55,15 @@ $swatchOutlineColor: {{ settings.react_swatch_outline_color }};
             background-size: contain;
             background-repeat: no-repeat;
 
+            // WHITE : Add border to white color swatches. 
+            //   (Add more if brand has other names for "white" swatches)
+            &[data-color*="bone"],
+            &[data-color*="ivory"],
+            &[data-color*="snow"],
+            &[data-color*="white"] {
+                border: 1px solid $swatchOutlineColor;
+            }
+
             // STUBS, Don't use this fully
             &.red       { background-color: #e80076; }
             &.orange    { background-color: #e88000; }

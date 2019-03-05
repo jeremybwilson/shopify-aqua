@@ -41,6 +41,7 @@ class SwatchItem extends React.Component {
     } = this.props; // Destructuring = verbosity save
 
     const isActive = active ? 'active' : '';
+    const lowercaseColor = colorValueName.toLowerCase();
     const swatchColorStyle = {
       backgroundColor: colorValueName,
       backgroundImage: `url( ${swatchImgUrl} )` //May or may not have swatch img
@@ -54,7 +55,7 @@ class SwatchItem extends React.Component {
         onClick={ this.callSelectSwatch }>
         
         <div className="swatch-highlight"></div>
-        <div style={ swatchColorStyle } className={ 'swatch-item ' + colorValueName }></div>
+        <div style={ swatchColorStyle } className={ 'swatch-item ' + colorValueName } data-color={ lowercaseColor }></div>
       </div>
     );
   }
