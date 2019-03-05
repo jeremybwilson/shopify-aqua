@@ -1,6 +1,6 @@
 {% assign width = '44px' %}
 {% assign height = '37px' %}
-
+$swatchOutlineColor: {{ settings.react_swatch_outline_color }};
 
 .swatch {
   @include flexbox;
@@ -96,7 +96,6 @@
   }
 
   // soldout
-
   .swatch-element.soldout {
     label,
     label:hover,
@@ -108,7 +107,6 @@
   }
 
   // Color Swatches
-
   .swatch-element.color {
     & > label {
       position: relative;
@@ -125,6 +123,7 @@
       background-position: center;
       background-repeat: no-repeat;
 
+      // SELECTION HIGHLIGHTER
       &:after {
         content: '';
         display: block;
@@ -136,6 +135,15 @@
         top: -3px;
         border: solid 1px transparent;
       }
+
+      // WHITE : Add border to white color swatches. 
+      //   (Add more if brand has other names for "white" swatches)
+      &.swatch-image[data-color*="bone"],
+      &.swatch-image[data-color*="ivory"],
+      &.swatch-image[data-color*="snow"],
+      &.swatch-image[data-color*="white"] {
+          border-color: $swatchOutlineColor;
+      }
     }
     label:hover {
       border-color: $color--white;
@@ -143,30 +151,22 @@
       box-shadow: none;
 
       &:after {
-        // border-color: $color--primary-1;
-        border-color: #c6c6c6;
+        border-color: $swatchOutlineColor;
       }
     }
+
     input:checked + label {
       border-color: $color--white;
       background-color: none;
       box-shadow: none;
 
       &:after {
-        // border-color: $color--primary-1;
-        border-color: #c6c6c6;
+        border-color: $swatchOutlineColor;
       }
-    }
-  }
-  .swatch-element.color[data-swatch-value="White"],
-  .swatch-element.color[data-swatch-value="white"] {
-    label {
-      border-color: $color--border-gray;
     }
   }
 
   // image with cross
-
   .crossed-out {
     display: none;
     position: absolute;
@@ -181,7 +181,6 @@
   // }
 
   // error state
-
   &.error {
     background-color: #E8D2D2 !important;
     color: #333 !important;
@@ -203,7 +202,6 @@
   }
 
   // Tooltip
-
   .tooltip {
     display:block;
     position:absolute;
@@ -286,10 +284,6 @@
   }
 }
 
-// .swatch.color {
-//   // 20px for swatch spacing; 14px for margin bottom
-//   margin-bottom: (14px - 20px);
-// }
 
 #product-add {
   margin-top: 0;
