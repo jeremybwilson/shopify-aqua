@@ -35,7 +35,7 @@
       
 
     // ATTACH - UTIL : Appends hidden UI elements and class tagging to DOM
-    var appendUiElements = function( interval ) {
+    var appendUiElements = function() {
 
       // PRICE : Add Price Tagging
       $('span.money').each(function(){ $(this).addClass('bfx-price'); });   
@@ -61,6 +61,8 @@
 
 
     // ATTACH - TRIGGER TIMER : Scan DOM for 6 seconds & run UI append function each pass
+    //  NOTE : Interval not cleared in appendUiElements intentionally - various UI parts are asynchronous.
+    //         Not ideal, but just how borderfree works.
     var startTime = new Date().getTime();
     var interval = setInterval( function(){
 
@@ -71,8 +73,7 @@
       }
 
       // APPEND : Attempt to attach all ui elements once page is ready
-      appendUiElements( interval );
-      
+      appendUiElements();
     }, 500);
 
 
