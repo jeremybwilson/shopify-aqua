@@ -11,7 +11,8 @@
   <div id="search-bar" class="desktop-12 mobile-3">
     <form action="/search" method="get">
       <input type="text" name="q" id="q" placeholder="{{ 'general.search.placeholder' | t }}" />
-      {% include 'svg-icon-search' %}
+      {% assign search_id_num = 3 %}
+      {% include 'svg-icon-search' with search_id_num %}
     </form>
   </div>
   {% endcomment %}

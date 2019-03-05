@@ -58,8 +58,9 @@
 
           {% comment %} ..:: SEARCH ::.. {% endcomment %}
           {% if section.settings.show_search %}
+            {% assign search_id_num = 0 %}
             <li class="nav-item nav-search">
-              {% include 'svg-icon-search' %}
+              {% include 'svg-icon-search' with search_id_num %}
             </li>
           {% endif %}
 

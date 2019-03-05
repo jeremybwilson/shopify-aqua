@@ -1,12 +1,17 @@
 <form action="/search" method="get">
-  <input class="nav-search-input" type="text" name="q" id="q" placeholder="{{ 'general.search.placeholder' | t }}" />
+  <input class="nav-search-input"
+         type="text" name="q" id="q"
+         placeholder="{{ 'general.search.placeholder' | t }}"
+         aria-label="{{ 'general.search.placeholder' | t }}"
+  />
   <input type="hidden" name="type" value="product" />
   <div class="nav-search-icon-wrap">
     <input class="nav-search-submit"
            type="submit"
            name="nav-search-button"
            value="" />
-    {% include 'svg-icon-search' %}
+    {% assign search_id_num = 1 %}
+    {% include 'svg-icon-search' with search_id_num %}
   </div>
 
   <div class="nav-search-bar-close">

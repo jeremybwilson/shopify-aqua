@@ -21,18 +21,24 @@
 
       {% comment %} :: DEFAULT :: (Can't define default in video_url type block) {% endcomment %}
       {% if video_url == blank %}
-          <iframe src="//www.youtube.com/embed/_9VUPq3SxOc?rel=0&showinfo=0&vq=720&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          <iframe src="//www.youtube.com/embed/_9VUPq3SxOc?rel=0&showinfo=0&vq=720&byline=0&portrait=0"
+                  name="iframe_default" title="Share your brand story by adding a video to your store"
+                  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
       {% else %}
 
         {% comment %} :: YOUTUBE :: {% endcomment %}
         {% if video_url.type == "youtube" %}
-          <iframe src="//www.youtube.com/embed/{{ video_url.id }}?rel=0&showinfo=0&vq=720&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          <iframe src="//www.youtube.com/embed/{{ video_url.id }}?rel=0&showinfo=0&vq=720&byline=0&portrait=0"
+                  name="iframe_youtube" title="{{section.settings.video_url_description}}"
+                  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         {% endif %}
 
         
         {% comment %} :: VIMEO :: {% endcomment %}
         {% if video_url.type == "vimeo" %}
-          <iframe src="//player.vimeo.com/video/{{ video_url.id }}?byline=0&portrait=0&badge=0&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          <iframe src="//player.vimeo.com/video/{{ video_url.id }}?byline=0&portrait=0&badge=0&byline=0&portrait=0"
+                  name="iframe_vimeo" title="{{section.settings.video_url_description}}"
+                  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         {% endif %}
 
       {% endif %}
@@ -139,6 +145,12 @@
         "id": "video_url",
         "label": "YouTube or Vimeo link",
         "accept": ["youtube", "vimeo"]
+      },
+      {
+        "type": "text",
+        "id": "video_url_description",
+        "label": "Describe this link briefly",
+        "default": "This video introduces our new products."
       },
       {
         "type": "image_picker",
