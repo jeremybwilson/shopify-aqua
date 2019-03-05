@@ -123,15 +123,6 @@ $swatchOutlineColor: {{ settings.react_swatch_outline_color }};
       background-position: center;
       background-repeat: no-repeat;
 
-      // WHITE : Add border to white color swatches. 
-      //   (Add more if brand has other names for "white" swatches)
-      &[data-color*="bone"],
-      &[data-color*="ivory"],
-      &[data-color*="snow"],
-      &[data-color*="white"] {
-          border-color: $swatchOutlineColor;
-      }
-
       // SELECTION HIGHLIGHTER
       &:after {
         content: '';
@@ -144,6 +135,15 @@ $swatchOutlineColor: {{ settings.react_swatch_outline_color }};
         top: -3px;
         border: solid 1px transparent;
       }
+
+      // WHITE : Add border to white color swatches. 
+      //   (Add more if brand has other names for "white" swatches)
+      &.swatch-image[data-color*="bone"],
+      &.swatch-image[data-color*="ivory"],
+      &.swatch-image[data-color*="snow"],
+      &.swatch-image[data-color*="white"] {
+          border-color: $swatchOutlineColor;
+      }
     }
     label:hover {
       border-color: $color--white;
@@ -154,6 +154,7 @@ $swatchOutlineColor: {{ settings.react_swatch_outline_color }};
         border-color: $swatchOutlineColor;
       }
     }
+
     input:checked + label {
       border-color: $color--white;
       background-color: none;

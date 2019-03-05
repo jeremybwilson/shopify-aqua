@@ -121,6 +121,7 @@
             {{ radio_button }}
 
             <label for="{{ id }}"
+              class="swatch-image"
               data-color="{{ value | downcase }}"
               style="background-color: {{ css_color }}; {% if settings.use_swatch_images or section.settings.use_swatch_images %}background-image: url({{ swatch_img_url }}){% endif %}">
               {{ sold_out_image }}
