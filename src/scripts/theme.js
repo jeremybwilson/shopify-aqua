@@ -3444,6 +3444,36 @@ theme.Search = (function() {
   return Search;
 })();
 
+
+
+/*============================================================================
+  SECTION : Video-with-text Component
+==============================================================================*/
+theme.VideoWithText = (function() {
+  function VideoWithText(container) {
+    var inView = require( 'in-view' );
+
+    const ui = {
+      vidElement: '.vwt--video'
+    };
+
+    // EVENTS : Bind DOM events when ready
+    $(document).ready( () => {
+      inView( ui.vidElement )
+        .on('enter', el => {
+          console.log( '::: DEBUG : Video -- VISIBLE' );
+        })
+        .on('exit', el => {
+            console.log( '::: DEBUG : Video -- HIDDEN' );
+            // el.style.opacity = 0.5;
+        });
+    });
+  }
+
+  VideoWithText.prototype = _.assignIn({}, VideoWithText.prototype, {});
+  return VideoWithText;
+})();
+
 /*============================================================================
   Init
 ==============================================================================*/
@@ -3472,6 +3502,7 @@ $(document).ready(function() {
   sections.register('mobile-navigation', theme.mobileNav);
   sections.register('product-section', theme.Product);
   sections.register('search-template', theme.Search);
+  sections.register('video-with-text', theme.VideoWithText);
 
   theme.init()
 });
