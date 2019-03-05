@@ -31,7 +31,7 @@
 
                     {% comment %} :: IMAGE LINK :: Wrap in an anchor tag if link is supplied {% endcomment %}
                     {% if block.settings.image_link != blank %}
-                      <a href="{{ block.settings.image_link }}">
+                      <a href="{{ block.settings.image_link }}" title="Go to homepage">
                     {% endif %}
 
                     <div class="box-ratio">
@@ -234,7 +234,7 @@
           {% comment %} New navigation {% endcomment %}
           {% if section.blocks.size > 1 %}
             <div class="slider--nav {% if section.settings.show_nav_pagination == false %} hide-nav {% endif %}">
-              <a href="#" class="flex-prev">
+              <a href="#" class="flex-prev" title="Go to previous image">
                 {% include 'svg-icon-arrow-left' %}
               </a>
               <div class="pagination">
@@ -242,7 +242,7 @@
                 <span class="slash">/</span>
                 <span class="flexslider--total-slides"></span>
               </div>
-              <a href="#" class="flex-next">
+              <a href="#" class="flex-next" title="Go to next image">
                 {% include 'svg-icon-arrow-right' %}
               </a>
             </div><!-- .slider--nav -->
