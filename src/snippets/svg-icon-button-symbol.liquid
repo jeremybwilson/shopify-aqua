@@ -2,6 +2,12 @@
 	{% assign side = 'none' %}
 {% endif %}
 
+{% comment %} generate random numbers between 11 and 9999999 {% endcomment %}
+{% assign button_symbol_min = 11 %}
+{% assign button_symbol_max = 9999999 %}
+{% assign button_symbol_diff = button_symbol_max | minus: button_symbol_min %}
+{% assign symbol_id_num = "now" | date: "%N" | modulo: button_symbol_diff | plus: button_symbol_min %}
+
 <svg class="icon icon-button-symbol icon-button-symbol-{{ side }}" viewBox="0 0 30 1" xmlns="http://www.w3.org/2000/svg">
     <title>Symbol Next to Button Text</title>
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">

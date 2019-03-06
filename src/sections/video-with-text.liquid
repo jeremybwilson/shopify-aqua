@@ -86,9 +86,9 @@
       {% comment %} :: CTA BUTTON :: {% endcomment %}
       {% if section.settings.button_text != blank and section.settings.button_link != blank %}
         <a href="{{ section.settings.button_link }}" class="featured-button" data-symbol-placement="{{ section.settings.button_symbol_placement }}">
-          {% include 'svg-icon-button-symbol', side: 'left', symbol_id_num: 1 %}
+          {% include 'svg-icon-button-symbol', side: 'left' %}
           <span>{{ section.settings.button_text | escape }}</span>
-          {% include 'svg-icon-button-symbol', side: 'right', symbol_id_num: 2 %}
+          {% include 'svg-icon-button-symbol', side: 'right' %}
         </a>
       {% endif %}
 
