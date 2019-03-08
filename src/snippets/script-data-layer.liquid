@@ -25,7 +25,7 @@ __bva__ = {
   debug: {{settings.data_layer_debugging}}, // if true, console messages will be displayed
   cart: null,
   wishlist: null,
-  removeCart: null
+  removeCart: ['.cart-remove a']
 };
 
 customBindings = {
@@ -42,6 +42,7 @@ customBindings = {
   wishlistSelector: [],
   removeWishlist: [],
   wishlistPage: [],
+  marketingOpIn: ['#footer-newsletter'],
   searchTermQuery: [getURLParams('q')], // replace var with correct query
 };
 
@@ -54,7 +55,7 @@ defaultBindings = {
   promoSubscriptionsSelectors: [],
   promoSuccess: [],
   ctaSelectors: [],
-  newsletterSelectors: ['input.contact_email'],
+  newsletterSelectors: ['input.contact_email, input[name="contact[email]"], input[type="email"]'],
   newsletterSuccess: ['.success_message'],
   searchPage: ['search'],
   wishlistSelector: [],
@@ -247,6 +248,7 @@ applyBindings(defaultBindings, __bva__);
       },
       'checkoutEmail' : '{{checkout.email}}',
       'currency'      : '{{shop.currency}}',
+      'acceptsMarketing' : '{{checkout.buyer_accepts_marketing}}',
       'pageType'      : 'Log State',
       'event'         : 'Log State'
     }
@@ -269,6 +271,38 @@ applyBindings(defaultBindings, __bva__);
         console.log("Homepage"+" :"+JSON.stringify(homepage, null, " "));
       }
     }
+
+    /* DATALAYER: CUSTOMERS
+    ---------------------------
+    Fire on Customer Pages */
+
+    {% if template contains 'customer' %}
+      $('form[action="/account/login"]').on('submit', function (e) {
+        e.preventDefault()
+
+        var email = $(this).find('input[name="customer[email]"]').val()
+        if (email) {
+          dataLayer.push({ email: email, emailType: 'account' }, {
+            'event': 'On Email',
+          })
+        }
+
+        $(this).unbind('submit').trigger('submit')
+      })
+
+      $('form[action="/account/login"]').on('submit', function (e) {
+        e.preventDefault()
+
+        var email = $(this).find('input[name="customer[email]"]').val()
+        if (email) {
+          dataLayer.push({ email: email, emailType: 'account' }, {
+            'event': 'On Email',
+          })
+        }
+
+        $(this).unbind('submit').trigger('submit')
+      })
+    {% endif %}
 
     /* DATALAYER: Blog Articles
     ---------------------------
@@ -447,6 +481,73 @@ applyBindings(defaultBindings, __bva__);
     }
 
     __bva__.cart = cart.products;
+
+    function handleAddToCart(product) {
+      var p = {
+        'id': product.id,
+        'sku': product.sku,
+        'variant': product.variant_id,
+        'name': product.title,
+        'price': (product.price.replace('.', '') / 100),
+        'quantity': product.quantity,
+      }
+
+      dataLayer.push({ products: p})
+      dataLayer.push({ products: [p]})
+      dataLayer.push({
+        'pageType' : 'Add to Cart',
+        'event'    : 'Add to Cart',
+      })
+
+      if (__bva__.debug) {
+        console.log("Add to Cart"+" :"+JSON.stringify(p, null, " "));
+      }
+    }
+
+    function handleCartEmpty() {
+      dataLayer.push({
+        pageType: 'On Cart Empty',
+        event: 'On Cart Empty',
+      })
+
+      if (__bva__.debug) {
+        console.log('On Cart Empty');
+      }
+    }
+
+    function checkProducts() {
+      var allQty = []
+      $('.cart-qty').each(function () {
+        allQty.push(parseInt($(this).val(), 10))
+      })
+
+      var isEmpty = true
+      allQty.forEach(function (qty) {
+        if (!!qty) {
+          isEmpty = false
+        }
+      })
+
+      if (isEmpty) {
+        handleCartEmpty()
+        return null
+      }
+
+      allQty.forEach(function (qty, i) {
+        var product = cart.products[i]
+        var initialQuantity = parseInt(product.quantity, 10)
+        if (initialQuantity < qty) {
+          handleAddToCart(product)
+        }
+      })
+    }
+
+    $('#update-cart, #checkout').on('click', function (e) {
+      e.preventDefault()
+      checkProducts()
+      $(this).unbind('click').trigger('click')
+    })
+
     $(__bva__.removeCartTrigger).on('click', function (event) {
 
     setTimeout(function(){
@@ -560,6 +661,47 @@ applyBindings(defaultBindings, __bva__);
                   console.log("Customer Information - Transaction Data"+" :"+JSON.stringify(transactionData, null, " "));
                 }
 
+                // Track promo codes
+                $('[data-trekkie-id="apply_discount_button"]').closest('form').on('submit', function (e) {
+                  var $field = $('#checkout_reduction_code')
+                  var value = $field.val()
+                  var id = $field.attr('id')
+                  // TMP: gift cards have 16 characters
+                  if (value.length === 16) {
+                    dataLayer.push({ id: id, event: 'onGift' }, {
+                      event: 'On Gift',
+                      pageType: 'On Gift',
+                    })
+                  } else {
+                    dataLayer.push({ code: value, id: id, event: 'onPromo' }, {
+                      event: 'On Promo',
+                      pageType: 'On Promo',
+                    })
+                  }
+                })
+
+                $(['#checkout_email_or_phone', '#checkout_email']).on('blur', function () {
+                  var value = $(this).val()
+                  if (value.indexOf('@') !== -1) {
+                    dataLayer.push({ email: value, emailType: 'transact' })
+                    dataLayer.push({ event: 'On Email' })
+                  }
+                })
+
+                $('input[data-trekkie-id="buyer_accepts_marketing_field"]').on('change', function () {
+                  var isChecked = $(this).prop('checked')
+                  var email = $('#checkout_email_or_phone').val()
+
+                  if (!email) {
+                    email = $('#checkout_email').val()
+                  }
+
+                  if (isChecked && email && email.indexOf('@') !== -1) {
+                    dataLayer.push({ email: email, emailType: 'marketing' }, {
+                      event: 'On Email',
+                    })
+                  }
+                })
                 // Should watch for out of focus on #checkout_email_or_phone
                 // Send this as the identifier
 
@@ -571,6 +713,19 @@ applyBindings(defaultBindings, __bva__);
                 if(__bva__.debug == true){
                   console.log("Shipping - Transaction Data"+" :"+JSON.stringify(transactionData, null, " "));
                 }
+
+              setTimeout(function () {
+                $('fieldset[data-shipping-methods] input').on('change', function () {
+                  var value = $(this).val()
+                  var data = {
+                    shippingInfo: {
+                      method: value
+                    }
+                  }
+                  console.log('change', value)
+                  dataLayer.push(data, { event:'Shipping Information' })
+                })
+              }, 2000)
             }else if( Shopify.Checkout.step === "payment_method" ){
               dataLayer.push(transactionData,{
                 'event'    :'Add Payment Info',
@@ -682,6 +837,48 @@ applyBindings(defaultBindings, __bva__);
         // IF DYNAMIC CART IS TRUE
         if (__bva__.dynamicCart) {
         // ---------------------------------- if dynamic cart is true
+
+        // TRIGGER CART VIEW EVENT
+        var cart = {
+          'products':[{% for line_item in cart.items %}{
+            'id'       : '{{line_item.product_id}}',
+            'sku'      : '{{line_item.sku}}',
+            'variant'  : '{{line_item.variant_id}}',
+            'name'     : '{{line_item.title}}',
+            'price'    : '{{line_item.price | money_without_currency}}',
+            'quantity' : '{{line_item.quantity}}',
+            'brand'    : {{ line_item.vendor | default: shop.name | json }},
+            'options'  : [
+              {% for variant in line_item.product.variants %}
+                {% if variant.id == line_item.variant_id %}
+                  {% for option in line_item.product.options %}
+                    {
+                      'option': {{ option | json }},
+                      'value': {{ variant.options[forloop.index0] | json }},
+                    },
+                  {% endfor %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+            ],
+          },{% endfor %}],
+          'cartTotal': {{ cart.total_price | money_without_currency | json }},
+          'itemsCount': {{ cart.item_count | downcase | json }},
+          'discountAmounts': {{ cart.total_discount | money_without_currency | json }},
+          'pageType' : 'Cart',
+          'event'    : 'Cart',
+
+          // Unless we add a field for coupon code in the cart page, this is not possible
+          // 'couponCode': null,
+        };
+
+        dataLayer.push(cart);
+        if(__bva__.debug){
+          console.log("Cart"+" :"+JSON.stringify(cart, null, " "));
+        }
+
+        __bva__.cart = cart.products;
+
         cartCheck = setInterval(function () {
         // -------------------------------------- begin check interval
           if ($(__bva__.cartVisableSelector).length > 0) {
@@ -970,38 +1167,85 @@ applyBindings(defaultBindings, __bva__);
         }
       }
 
-      $(document).on('submit', __bva__.cartTriggers, function() {
-        __bva__addtocart();
-      });
+    $(document).on('submit', __bva__.cartTriggers, function() {
+      __bva__addtocart();
+    });
+
+    function handleAddToCart(product) {
+      var p = {
+        'id': product.id,
+        'sku': product.sku,
+        'variant': product.variant_id,
+        'name': product.title,
+        'price': (product.price/100),
+        'quantity': product.quantity,
+      }
+
+      {% if template.name == 'collection' %}
+        dataLayer.push({ products: p})
+      {% endif %}
+
+      dataLayer.push({ products: [p]})
+      dataLayer.push({
+        'pageType' : 'Add to Cart',
+        'event'    : 'Add to Cart',
+      })
+
+      if (__bva__.debug) {
+        console.log("Add to Cart"+" :"+JSON.stringify(p, null, " "));
+      }
+    }
+
+    function handleCartEmpty() {
+      dataLayer.push({
+        pageType: 'On Cart Empty',
+        event: 'On Cart Empty',
+      })
+
+      if (__bva__.debug) {
+        console.log('On Cart Empty');
+      }
+    }
 
     if(typeof ShopifyAPI != 'undefined'){
+      if (typeof ShopifyAPI.changeItem !== 'undefined') {
+        var changeItemMethod = ShopifyAPI.changeItem
+        ShopifyAPI.changeItem = function () {
+          var line = arguments[0]
+          var quantity = arguments[1]
+          var callback = arguments[2]
+
+          arguments[2] = function (cart) {
+            if (quantity > 0) {
+              var product = cart.items[line - 1]
+              var variantId = product.variant_id.toString()
+              var initialQuantity = __bva__.cart.reduce(function (acc, cur) {
+                return cur.variant === variantId
+                  ? { quantity: parseInt(cur.quantity, 10) }
+                  : acc
+              }, { quantity: 0 })
+
+              if (initialQuantity < product.quantity) {
+                handleAddToCart(product)
+              } else if (initialQuantity > product.quantity) {
+                // Handle remove from cart?
+              }
+            } else if (!cart.items.length) {
+              handleCartEmpty()
+            }
+
+            callback.call(this, arguments)
+          }
+          changeItemMethod.apply(ShopifyAPI, arguments)
+        }
+      }
+
       if( typeof ShopifyAPI.addItemFromForm != 'undefined'){
           var originalMethod = ShopifyAPI.addItemFromForm;
           ShopifyAPI.addItemFromForm = function () {
               var originalCallback = arguments[1];
               arguments[1] = function(product){
-                  var p = {
-                    'id': product.id,
-                    'sku': product.sku,
-                    'variant': product.variant_id,
-                    'name': product.title,
-                    'price': (product.price/100),
-                    'quantity': product.quantity,
-                  }
-
-                  {% if template.name == 'collection' %}
-                    dataLayer.push({ products: p })
-                  {% endif %}
-
-                  dataLayer.push({ products: [p] })
-                  dataLayer.push({
-                    'pageType' : 'Add to Cart',
-                    'event'    : 'Add to Cart',
-                  })
-
-                  if (__bva__.debug) {
-                    console.log("Add to Cart"+" :"+JSON.stringify(products, null, " "));
-                  }
+                  handleAddToCart(product)
                   originalCallback.call(this, product);
               }
               originalMethod.apply(ShopifyAPI, arguments);
@@ -1014,14 +1258,17 @@ applyBindings(defaultBindings, __bva__);
       ------------------------------------- */
       __bva__newsletter_fire = 0;
       $(document).on('click', __bva__.newsletterSelectors, function () {
+        var $this = $(this)
         if(__bva__newsletter_fire !== 1){
         __bva__newsletter_fire = 1;
         var newsletterCheck = setInterval(function () {
+          var value = $this.val()
         // -------------------------------------- begin check interval
           if ($(__bva__.newsletterSuccess).length > 0) {
           // ------------------------------------------------------------------ check visible selectors
             clearInterval(newsletterCheck);
-            dataLayer.push({'event': 'Newsletter Subscription'});
+            dataLayer.push({ email: value, emailType: 'marketing' })
+            dataLayer.push({'event': 'On Email'});
           // ------------------------------------------------------------------ check visible selectors
           }
         // -------------------------------------- begin check interval
@@ -1136,7 +1383,9 @@ applyBindings(defaultBindings, __bva__);
       console.log("#" + i + "===> " + JSON.stringify(dataLayer[i]));
     }
   }
-  }
+
+
+  } // End window.jQuery
 // --------------------------------------------- wait for jQuery to load
 }, 500);
 

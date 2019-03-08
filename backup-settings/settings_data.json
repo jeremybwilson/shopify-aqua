@@ -187,6 +187,7 @@
     "discount_modal_button_alt_bg": "#ab5232",
     "discount_modal_button_alt_text": "#fefffe",
     "borderfree_enabled": false,
+    "borderfree_production": false,
     "borderfree_js_url_dev": "https://bfx-objects.stage.borderfree.com/v1/dist/bfx.js",
     "borderfree_js_config_dev": "{key:'bca2f6b0-0273-11e6-8da6-4920e7373927', env:'STAGE', mode:'default', brand:'default'}",
     "borderfree_merchant_url_dev": "https://stagecheckout.borderfree.com/htmlcheckout/resources/js/merchant.js",
@@ -368,32 +369,6 @@
       },
       "collection-template": {
         "type": "collection-template",
-        "blocks": {
-          "1551418571178": {
-            "type": "collection_banner",
-            "settings": {
-              "collection_handle": "women-aq24-7",
-              "banner_image_desktop": "shopify://shop_images/introducing-aqua-24-7-flexible-sole.jpg",
-              "banner_image_mobile": "shopify://shop_images/introducing-aqua-24-7-flexible-sole_a52852c2-4068-4c8b-8cd2-26dcded056da.jpg",
-              "banner_text_header": "",
-              "banner_text_body": "",
-              "banner_text_divider": true,
-              "textbox_constrain": false,
-              "textbox_horizontal": "center",
-              "textbox_horizontal_nudge": 0,
-              "textbox_vertical": "center",
-              "textbox_vertical_nudge": 0,
-              "textbox_text_align": "left",
-              "textbox_color_text": "#ffffff",
-              "textbox_color_divider": "#ffffff",
-              "textbox_color_bg": "#000000",
-              "textbox_opacity": "0.1"
-            }
-          }
-        },
-        "block_order": [
-          "1551418571178"
-        ],
         "settings": {
           "grid": 3,
           "rows": 8,
@@ -652,6 +627,7 @@
         "type": "video-with-text",
         "settings": {
           "video_url": "https://vimeo.com/319130430",
+          "heading_image": "shopify://shop_images/Weatherproof-logo.jpg",
           "heading_text": "WHATEVER THE WEATHER",
           "body_text": "<p>Exclusive weatherproofing for<br>the discerning man and woman<br>who want to look their best,<br>rain or shine</p>",
           "button_text": "LEARN MORE",
@@ -660,7 +636,8 @@
           "video_side": "left",
           "video_width": 64,
           "text_vertical": "center",
-          "text_align": "center"
+          "text_align": "center",
+          "heading_image_placement": "top"
         }
       },
       "page-about-template": {
