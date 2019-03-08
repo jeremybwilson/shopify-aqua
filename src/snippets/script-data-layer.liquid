@@ -295,19 +295,33 @@ __bva__.helpers = (function () {
     var self = this
     var $marketingField = $('input[data-trekkie-id="buyer_accepts_marketing_field"]')
 
-    $marketingField.on('change', function () {
-      var isChecked = $(this).prop('checked')
+    function firePixel() {
+      var isChecked = $marketingField.prop('checked')
       var email = $('#checkout_email_or_phone, #checkout_email').val()
       var payload = {
         email: email,
         emailType: 'marketing',
         interaction: 'On Email'
       }
+
       if (isChecked && email && email.indexOf('@') !== -1) {
         dataLayer.push(payload)
         dataLayer.push({ event: 'On Email' })
         self.log('On Email', payload)
       }
+    }
+
+    $(document.body).on('submit', 'form[data-customer-information-form]', function (e) {
+      e.preventDefault()
+      firePixel()
+      $(document.body).unbind('submit')
+      $('form[data-customer-information-form]')[0].submit()
+    })
+
+    $('button[data-trekkie-id="continue_to_shipping_method_button"]').on('click', function (e) {
+      e.preventDefault()
+      firePixel()
+      $(this).unbind('click')[0].click()
     })
   }
 
@@ -713,6 +727,7 @@ __bva__.helpers = (function () {
     --------------------------- */
     __bva__.helpers.watchEmailMarketingBySubmit('#footer-newsletter', 'input[type="email"]')
     __bva__.helpers.watchEmailMarketingBySubmit('#subscribe--popup--form', 'input[type="email"]')
+    __bva__.helpers.watchEmailMarketingByClick('#sr_email_sign_up', '#sr_lm_email', '#sr_cart_runner')
 
     /*DATALAYER: Homepage
     --------------------------- */
