@@ -632,6 +632,8 @@
         "type": "video-with-text",
         "settings": {
           "video_url": "https:\/\/vimeo.com\/319130430",
+          "video_autoplay": true,
+          "video_mute": true,
           "heading_image": "shopify:\/\/shop_images\/Weatherproof-logo.jpg",
           "heading_text": "Weatherproof",
           "body_text": "<p>Please provide the copy you'd like with this video.<\/p>",

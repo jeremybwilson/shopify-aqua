@@ -3444,6 +3444,36 @@ theme.Search = (function() {
   return Search;
 })();
 
+
+
+/*============================================================================
+  SECTION : Video-with-text Component
+==============================================================================*/
+theme.VideoWithText = (function() {
+  function VideoWithText(container) {
+    var videoPlayer = require( './theme-components/video/videoPlayer.js' );
+
+    // UI : Define ui elements
+    const ui = {
+      videoWrap: $( '.featured-video-wrap', container )
+    };
+
+    // CONFIG : Parse config from videoWrap DOM node
+    const videoConfig = {
+      autoplay: ui.videoWrap.attr( 'data-video-autoplay' ),
+      id: ui.videoWrap.attr( 'data-video-id' ),
+      mute: ui.videoWrap.attr( 'data-video-mute' ),
+      type: ui.videoWrap.attr( 'data-video-type' )
+    };
+
+    // VIDEO : Create a video element with config data
+    videoPlayer( videoConfig );
+  }
+
+  VideoWithText.prototype = _.assignIn({}, VideoWithText.prototype, {});
+  return VideoWithText;
+})();
+
 /*============================================================================
   Init
 ==============================================================================*/
@@ -3472,6 +3502,7 @@ $(document).ready(function() {
   sections.register('mobile-navigation', theme.mobileNav);
   sections.register('product-section', theme.Product);
   sections.register('search-template', theme.Search);
+  sections.register('video-with-text', theme.VideoWithText);
 
   theme.init()
 });
