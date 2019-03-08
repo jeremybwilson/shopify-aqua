@@ -3451,23 +3451,23 @@ theme.Search = (function() {
 ==============================================================================*/
 theme.VideoWithText = (function() {
   function VideoWithText(container) {
-    var inView = require( 'in-view' );
+    var videoPlayer = require( './theme-components/video/videoPlayer.js' );
 
+    // UI : Define ui elements
     const ui = {
-      vidElement: '.vwt--video'
+      videoWrap: $( '.featured-video-wrap', container )
     };
 
-    // EVENTS : Bind DOM events when ready
-    $(document).ready( () => {
-      inView( ui.vidElement )
-        .on('enter', el => {
-          console.log( '::: DEBUG : Video -- VISIBLE' );
-        })
-        .on('exit', el => {
-            console.log( '::: DEBUG : Video -- HIDDEN' );
-            // el.style.opacity = 0.5;
-        });
-    });
+    // CONFIG : Parse config from videoWrap DOM node
+    const videoConfig = {
+      autoplay: ui.videoWrap.attr( 'data-video-autoplay' ),
+      id: ui.videoWrap.attr( 'data-video-id' ),
+      mute: ui.videoWrap.attr( 'data-video-mute' ),
+      type: ui.videoWrap.attr( 'data-video-type' )
+    };
+
+    // VIDEO : Create a video element with config data
+    videoPlayer( videoConfig );
   }
 
   VideoWithText.prototype = _.assignIn({}, VideoWithText.prototype, {});
