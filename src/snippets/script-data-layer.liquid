@@ -19,19 +19,36 @@ getURLParams = function(name, url){
 /* =====================
 | DYNAMIC DEPENDENCIES |
 --------------------- */
+/**
+ * Enum cart trigger actions.
+ * @readonly
+ * @enum {string}
+ */
+var cartTriggerEvents = {
+  CLICK: 'CLICK',
+  SUBMIt: 'SUBMIT',
+}
 
+/**
+* @namespace
+* @property {cartTriggerEvents}  cartTriggerAction - Event type to listen for
+*/
 __bva__ = {
   dynamicCart: true,  // if cart is dynamic (meaning no refresh on cart add) set to true
   debug: {{settings.data_layer_debugging}}, // if true, console messages will be displayed
   cart: null,
   wishlist: null,
-  removeCart: ['.cart-remove a']
+  removeCart: null,
+  cartTriggerEvent: cartTriggerEvents.SUBMIT,
 };
 
 customBindings = {
   cartTriggers: [],
+  cartTriggerButtons: ['.add-to-cart, .cart-btn, .product-form__cart-submit'],
+  updateCartTrigger: ['#update-cart, #checkout'],
+  cartQty: ['.cart-qty'],
   viewCart: [],
-  removeCartTrigger: [],
+  removeCartTrigger: ['.cart-remove a'],
   cartVisableSelector: [],
   promoSubscriptionsSelectors: [],
   promoSuccess: [],
@@ -48,7 +65,7 @@ customBindings = {
 
 /* DO NOT EDIT */
 defaultBindings = {
-  cartTriggers: ['form[action="/cart/add"] [type="submit"],.add-to-cart,.cart-btn'],
+  cartTriggers: ['form[action="/cart/add"] [type="submit"]'],
   viewCart: ['form[action="/cart"],.my-cart,.trigger-cart,#mobileCart'],
   removeCartTrigger: ['[href*="/cart/change"]'],
   cartVisableSelector: ['.inlinecart.is-active,.inline-cart.is-active'],
@@ -84,8 +101,441 @@ applyBindings = function(objectArray, outputObject){
   }
 };
 
-applyBindings(customBindings, __bva__);
 applyBindings(defaultBindings, __bva__);
+applyBindings(customBindings, __bva__);
+
+__bva__.helpers = (function () {
+  var Helpers = function (template) {
+    this.template = template
+  }
+
+  Helpers.prototype.log = function (event, message, force) {
+    if (__bva__.debug) {
+      var msg = message ? ': ' + JSON.stringify(message, null, 2) : ''
+      console.log(event, msg)
+    }
+  }
+
+  Helpers.prototype.handleAddToCart = function(product) {
+    var payload = {
+      'id': product.id,
+      'sku': product.sku,
+      'variant': product.variant_id,
+      'name': product.title,
+      'price': parseFloat(product.price.toString().replace('.', ''), 10) / 100,
+      'quantity': product.quantity,
+    }
+
+    if (this.template.indexOf('collection') !== -1) {
+      dataLayer.push({ products: payload })
+    }
+
+    dataLayer.push({ products: [payload] })
+    dataLayer.push({
+      'pageType' : 'Add to Cart',
+      'event'    : 'Add to Cart',
+    })
+
+    this.log('Add to Cart', payload)
+  }
+
+  Helpers.prototype.handleCartEmpty = function () {
+    dataLayer.push({
+      pageType: 'On Cart Empty',
+      event: 'On Cart Empty',
+    })
+
+    this.log('On Cart Empty')
+  }
+
+  Helpers.prototype.monkeyPatchShopifyAPI = function () {
+    if (typeof ShopifyAPI === 'undefined') {
+      return null
+    }
+
+    var self = this
+
+    if (typeof ShopifyAPI.changeItem !== 'undefined') {
+      var changeItemMethod = ShopifyAPI.changeItem
+      ShopifyAPI.changeItem = function () {
+        var initialLineItems = {{ cart.items | json }}
+        var line = arguments[0]
+        var quantity = arguments[1]
+        var callback = arguments[2]
+
+        arguments[2] = function (cart) {
+          if (quantity > 0) {
+            var product = cart.items[line - 1]
+            var initialProduct = initialLineItems[line - 1]
+            if (!initialProduct || product.quantity > initialProduct.quantity) {
+              self.handleAddToCart(product)
+            }
+          } else if (!cart.items.length) {
+            self.handleCartEmpty()
+          }
+
+          callback.apply(this, arguments)
+        }
+        changeItemMethod.apply(ShopifyAPI, arguments)
+      }
+    }
+
+    if (typeof ShopifyAPI.addItemFromForm !== 'undefined') {
+      var originalMethod = ShopifyAPI.addItemFromForm;
+      ShopifyAPI.addItemFromForm = function () {
+        var originalCallback = arguments[1];
+        arguments[1] = function (product) {
+          self.handleAddToCart(product);
+          originalCallback.call(this, product);
+        }
+
+        originalMethod.apply(ShopifyAPI, arguments);
+      };
+    }
+  }
+
+  Helpers.prototype.watchCheckoutDiscountField = function () {
+    if (!window.MutationObserver) {
+      return null
+    }
+
+    var EVENTS = {
+      GIFT: 'On Gift',
+      PROMO: 'On Promo',
+    }
+
+    var REDUCTION_TYPES = {
+      '#tags-filled': 'discount',
+      '#gift-filled': 'gift',
+    }
+
+    var state = {
+      promoList: [],
+      giftList: [],
+    }
+
+    function getReductionTypeFromNode(node) {
+      var attributes = node.querySelector('use').attributes
+      for (var i = 0; i < attributes.length; i++) {
+        var nodeValue = attributes[i].nodeValue
+        if (REDUCTION_TYPES[nodeValue]) {
+          return REDUCTION_TYPES[nodeValue]
+        }
+      }
+    }
+
+    function mutationRoutine(mutation) {
+      var payload = {
+        id: '#checkout_reduction_code'
+      }
+
+      mutation.addedNodes.forEach(function (node) {
+        if (node.nodeType !== Node.ELEMENT_NODE) {
+          return null
+        }
+
+        var tags = node.querySelectorAll('.tag .reduction-code')
+
+        ;[].slice.call(tags).forEach(function (tag) {
+          var reductionType = getReductionTypeFromNode(tag)
+          var code = tag.innerText.trim()
+
+          if (reductionType === 'discount' && state.promoList.indexOf(code) === -1) {
+            payload.code = code
+            payload.interaction = EVENTS.PROMO
+            dataLayer.push(payload, { event: EVENTS.PROMO })
+            state.promoList.push(code)
+            this.log(EVENTS.PROMO, payload)
+          } else if (reductionType === 'gift' && state.giftList.indexOf(code) === -1) {
+            payload.interaction = EVENTS.GIFT
+            dataLayer.push(payload, { event: EVENTS.GIFT })
+            state.giftList.push(code)
+            this.log(EVENTS.GIFT, payload)
+          }
+        }, __bva__.helpers)
+      }, __bva__.helpers)
+    }
+
+    var observer = new MutationObserver(function (mutations) {
+      mutations.forEach(mutationRoutine)
+    })
+
+    var element = document.querySelector('#order-summary')
+    observer.observe(element, { childList: true, subtree: true })
+  }
+
+  Helpers.prototype.watchCheckoutEmailOrPhoneField = function () {
+    var self = this
+    var state = { email: '' }
+    var $field = $('#checkout_email_or_phone, #checkout_email')
+
+    function firePixel(email) {
+      if (email && email.indexOf('@') !== -1 && state.email !== email) {
+        state.email = email
+        var payload = {
+          email: email,
+          emailType: 'transact',
+          interaction: 'On Email'
+        }
+
+        dataLayer.push(payload)
+        dataLayer.push({ event: 'On Email' })
+        self.log('On Email', payload)
+      }
+    }
+
+    $field.on('blur', function () {
+      firePixel($(this).val())
+    })
+
+    firePixel($field.val())
+  }
+
+  Helpers.prototype.watchCheckoutMarketingField = function () {
+    var self = this
+    var $marketingField = $('input[data-trekkie-id="buyer_accepts_marketing_field"]')
+
+    $marketingField.on('change', function () {
+      var isChecked = $(this).prop('checked')
+      var email = $('#checkout_email_or_phone, #checkout_email').val()
+      var payload = {
+        email: email,
+        emailType: 'marketing',
+        interaction: 'On Email'
+      }
+      if (isChecked && email && email.indexOf('@') !== -1) {
+        dataLayer.push(payload)
+        dataLayer.push({ event: 'On Email' })
+        self.log('On Email', payload)
+      }
+    })
+  }
+
+  Helpers.prototype.watchCheckoutShippingField = function () {
+    var self = this
+    var state = { method: '' }
+    var shippingRateSelector = '[id^="checkout_shipping_rate"]'
+
+    function firePixel(value) {
+      if (state.method !== value) {
+        state.method = value
+        var data = {
+          interaction: 'On Ship',
+          shippingInfo: {
+            method: value,
+          }
+        }
+
+        dataLayer.push(data, {
+          event:'Shipping Information',
+          pageType :'Shipping Information',
+        })
+
+        self.log('Shipping - Transaction Data', data)
+      }
+    }
+
+    $(document.body).on('change', shippingRateSelector, function (e) {
+      firePixel($(this).val())
+    })
+
+    var initialValue = $(shippingRateSelector).filter(function () {
+      return $(this).prop('checked')
+    }).val()
+
+    firePixel(initialValue)
+  }
+
+  Helpers.prototype.watchCheckoutPaymentFields = function () {
+    var self = this
+    var event = { event: 'On Payment' }
+    var state = { paymentType: '' }
+
+    var PAYMENT_TYPES = {
+      CREDIT_CARD: 'cc',
+      PAYPAL: 'pp',
+      OTHER: 'other',
+    }
+
+    var INTERACTIONS = {
+      CARD_NUMBER: 'cn',
+      MM: 'em',
+      YY: 'ey',
+      CVV: 'cvv',
+    }
+
+    function getPaymentType(paymentType) {
+      return PAYMENT_TYPES[paymentType] || PAYMENT_TYPES.OTHER
+    }
+
+    function getInteractionType(interactionType) {
+      return INTERACTIONS[interactionType]
+    }
+
+    function paymentTypeRoutine($el) {
+      if ($el.currentTarget) {
+        $el = $($el.currentTarget)
+      }
+
+      var label = $el
+        .closest('[data-gateway-group]')
+        .find('label')
+        .text()
+        .trim()
+        .toUpperCase()
+        .replace(/\s/g, '_')
+
+      var paymentType = getPaymentType(label)
+      var payload = { paymentType: paymentType, interaction: 'On Payment' }
+      state.paymentType = paymentType
+      dataLayer.push(payload, event)
+      self.log('On Payment', payload)
+    }
+
+    function setInitialPaymentType() {
+      var $selectedRadio = $('form.edit_checkout')
+        .find('[id^="checkout_payment_gateway"]')
+        .filter(function () {
+          return $(this).prop('checked')
+        })
+
+      paymentTypeRoutine($selectedRadio)
+    }
+
+    function bindUIEvents() {
+      $('form.edit_checkout')
+        .on('change', '[id^="checkout_payment_gateway"]', paymentTypeRoutine)
+    }
+
+    function watchPaymentField(interactionTypes, el) {
+      var observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
+          var classList = mutation.target.classList
+          var isActive = classList.contains('field--active')
+          var hasValue = classList.contains('field--show-floating-label')
+          if (isActive && hasValue) {
+            interactionTypes.forEach(function (interactionType) {
+              var payload = {
+                paymentType: state.paymentType,
+                interactionType: interactionType,
+              }
+              dataLayer.push(payload, event)
+              this.log('On Payment', payload)
+            }, __bva__.helperes)
+          }
+        }, __bva__.helperes)
+      })
+
+      observer.observe(el, { attributes: true, attributeFilter: ['class'] })
+    }
+
+    function initializeObservers() {
+      if (!window.MutationObserver) {
+        return null
+      }
+
+      var fields = document.querySelectorAll('[data-credit-card-fields] field')
+      ;[].slice.call(fields).forEach(function (field) {
+        var interactionKeys = field.outerText
+          .toUpperCase()
+          .replace(/\s+/g, '_')
+          .split('_/_')
+          .map(getInteractionType)
+          .filter(Boolean)
+
+        watchPaymentField(interactionKeys, field)
+      })
+    }
+
+    ;(function init() {
+      setInitialPaymentType()
+      bindUIEvents()
+      initializeObservers()
+    })()
+  }
+
+  Helpers.prototype.watchCustomerAccountForm = function () {
+    var self = this
+    $('#create_customer, #customer_login').on('submit', function (e) {
+      e.preventDefault()
+
+      var email = $(this).find('input[name="customer[email]"]').val()
+      var payload = {
+        email: email,
+        emailType: 'account',
+        interaction: 'On Email'
+      }
+
+      if (email) {
+        dataLayer.push(payload)
+        dataLayer.push({ event: 'On Email' })
+        self.log('On Email', payload)
+      }
+
+      $(this).unbind('submit')[0].submit()
+    })
+  }
+
+  Helpers.prototype.watchEmailMarketingBySubmit = function (formSelector, inputSelector) {
+    var self = this
+    var state = { email: '' }
+
+    var handler = function (e) {
+      e.preventDefault()
+      e.stopPropagation()
+
+      var email = $(formSelector).find(inputSelector).val()
+      var payload = {
+        email: email,
+        emailType: 'marketing',
+        interaction: 'On Email'
+      }
+
+      if (email && email !== state.email) {
+        state.email = email
+        dataLayer.push(payload)
+        dataLayer.push({ event: 'On Email' })
+        self.log('On Email', payload)
+      }
+
+      $(document.body).unbind('submit', handler)
+      $(formSelector)[0].submit()
+    }
+
+    $(document.body).on('submit', formSelector, handler)
+  }
+
+  Helpers.prototype.watchEmailMarketingByClick = function (buttonSelector, inputSelector, parentSelector) {
+    var self = this
+    var state = { email: '' }
+
+    var handler = function (e) {
+      e.preventDefault()
+      e.stopPropagation()
+
+      var email = $(parentSelector).find(inputSelector).val()
+      var payload = {
+        email: email,
+        emailType: 'marketing',
+        interaction: 'On Email'
+      }
+
+      if (email && email !== state.email) {
+        state.email = email
+        dataLayer.push(payload)
+        dataLayer.push({ event: 'On Email' })
+        self.log('On Email', payload)
+      }
+
+      $(document.body).unbind('click', handler)
+      $(buttonSelector)[0].click()
+    }
+
+    $(document.body).on('click', buttonSelector, handler)
+  }
+
+  return new Helpers({{ template | json }})
+})();
 
 /* =======================
 | PREREQUISITE LIBRARIES |
@@ -258,6 +708,12 @@ applyBindings(defaultBindings, __bva__);
       console.log("Log State"+" :"+JSON.stringify(logState, null, " "));
     }
 
+
+    /*DATALAYER: Global
+    --------------------------- */
+    __bva__.helpers.watchEmailMarketingBySubmit('#footer-newsletter', 'input[type="email"]')
+    __bva__.helpers.watchEmailMarketingBySubmit('#subscribe--popup--form', 'input[type="email"]')
+
     /*DATALAYER: Homepage
     --------------------------- */
 
@@ -277,31 +733,7 @@ applyBindings(defaultBindings, __bva__);
     Fire on Customer Pages */
 
     {% if template contains 'customer' %}
-      $('form[action="/account/login"]').on('submit', function (e) {
-        e.preventDefault()
-
-        var email = $(this).find('input[name="customer[email]"]').val()
-        if (email) {
-          dataLayer.push({ email: email, emailType: 'account' }, {
-            'event': 'On Email',
-          })
-        }
-
-        $(this).unbind('submit').trigger('submit')
-      })
-
-      $('form[action="/account/login"]').on('submit', function (e) {
-        e.preventDefault()
-
-        var email = $(this).find('input[name="customer[email]"]').val()
-        if (email) {
-          dataLayer.push({ email: email, emailType: 'account' }, {
-            'event': 'On Email',
-          })
-        }
-
-        $(this).unbind('submit').trigger('submit')
-      })
+      __bva__.helpers.watchCustomerAccountForm()
     {% endif %}
 
     /* DATALAYER: Blog Articles
@@ -367,6 +799,23 @@ applyBindings(defaultBindings, __bva__);
       console.log("Collections"+" :"+JSON.stringify(product, null, " "));
       console.log("Collections"+" :"+JSON.stringify(collections, null, " "));
     }
+    {% endif %}
+
+    /*DATALAYER: Custom collection
+    --------------------------- */
+    {% if template contains 'page' and template contains '-landing' %}
+      var collections = {
+        productList: {{ page.title | json }},
+        handle: {{ page.handle | json }},
+        pageType: 'Collection',
+        event: 'Collection',
+      }
+      dataLayer.push({ products: [null] })
+      dataLayer.push(collections)
+      if(__bva__.debug){
+        console.log("Collections"+" :"+JSON.stringify(product, null, " "));
+        console.log("Collections"+" :"+JSON.stringify(collections, null, " "));
+      }
     {% endif %}
 
     /* DATALAYER: Product Page
@@ -442,6 +891,7 @@ applyBindings(defaultBindings, __bva__);
     1. Fire anytime a user views their cart (non-dynamic) */
 
     {% if template contains 'cart' %}
+    var _cart = {{ cart | json }}
     var cart = {
       'products':[{% for line_item in cart.items %}{
         'id'       : '{{line_item.product_id}}',
@@ -468,11 +918,9 @@ applyBindings(defaultBindings, __bva__);
       'cartTotal': {{ cart.total_price | money_without_currency | json }},
       'itemsCount': {{ cart.item_count | downcase | json }},
       'discountAmounts': {{ cart.total_discount | money_without_currency | json }},
+      'cartId': _cart.token,
       'pageType' : 'Cart',
       'event'    : 'Cart',
-
-      // Unless we add a field for coupon code in the cart page, this is not possible
-      // 'couponCode': null,
     };
 
     dataLayer.push(cart);
@@ -482,80 +930,44 @@ applyBindings(defaultBindings, __bva__);
 
     __bva__.cart = cart.products;
 
-    function handleAddToCart(product) {
-      var p = {
-        'id': product.id,
-        'sku': product.sku,
-        'variant': product.variant_id,
-        'name': product.title,
-        'price': (product.price.replace('.', '') / 100),
-        'quantity': product.quantity,
-      }
-
-      dataLayer.push({ products: p})
-      dataLayer.push({ products: [p]})
-      dataLayer.push({
-        'pageType' : 'Add to Cart',
-        'event'    : 'Add to Cart',
-      })
-
-      if (__bva__.debug) {
-        console.log("Add to Cart"+" :"+JSON.stringify(p, null, " "));
-      }
-    }
-
-    function handleCartEmpty() {
-      dataLayer.push({
-        pageType: 'On Cart Empty',
-        event: 'On Cart Empty',
-      })
-
-      if (__bva__.debug) {
-        console.log('On Cart Empty');
-      }
-    }
-
     function checkProducts() {
       var allQty = []
-      $('.cart-qty').each(function () {
-        allQty.push(parseInt($(this).val(), 10))
-      })
-
       var isEmpty = true
-      allQty.forEach(function (qty) {
-        if (!!qty) {
+      $(__bva__.cartQty).each(function () {
+        var qty = parseInt($(this).val(), 10)
+        allQty.push(qty)
+        if (qty) {
           isEmpty = false
         }
       })
 
       if (isEmpty) {
-        handleCartEmpty()
-        return null
+        console.log('empty')
+        __bva__.helpers.handleCartEmpty()
+      } else {
+        allQty.forEach(function (qty, i) {
+          var product = __bva__.cart.products[i]
+          var initialQuantity = parseInt(product.quantity, 10)
+          if (initialQuantity < qty) {
+            console.log('add to cart')
+            __bva__.helpers.handleAddToCart(product)
+          }
+        })
       }
-
-      allQty.forEach(function (qty, i) {
-        var product = cart.products[i]
-        var initialQuantity = parseInt(product.quantity, 10)
-        if (initialQuantity < qty) {
-          handleAddToCart(product)
-        }
-      })
     }
 
-    $('#update-cart, #checkout').on('click', function (e) {
+    $(__bva__.updateCartTrigger).on('click', function (e) {
       e.preventDefault()
       checkProducts()
-      $(this).unbind('click').trigger('click')
+      $(e.currentTarget).unbind('click')[0].click()
     })
 
     $(__bva__.removeCartTrigger).on('click', function (event) {
-
-    setTimeout(function(){
-    // ------------------------------------------------------------------- remove from cart
-
-      jQuery.getJSON("/cart", function (response) {
+      event.preventDefault()
+      var url = $(this).attr('href')
+      // ------------------------------------------------------------------- remove from cart
+      return jQuery.getJSON("/cart", function (response) {
       // --------------------------------------------- get Json response
-
         __bva__.removeCart = response;
         var removeFromCart = {
           'products': __bva__.removeCart.items.map(function (line_item) {
@@ -584,12 +996,16 @@ applyBindings(defaultBindings, __bva__);
           console.log("Cart"+" :"+JSON.stringify(removeCart, null, " "));
         }
 
+        if (response.items.length === 1) {
+          __bva__.helpers.handleCartEmpty()
+        }
+
+        if (url) {
+          window.location.href = url
+        }
       // --------------------------------------------- get Json response
       });
-
-    // ------------------------------------------------------------------- remove from cart
-    }, 2000);
-
+      // ------------------------------------------------------------------- remove from cart
     });
 
     {% endif %}
@@ -657,82 +1073,36 @@ applyBindings(defaultBindings, __bva__);
                 'event'    :'Customer Information',
                 'pageType' :'Customer Information'});
 
-                if(__bva__.debug == true){
-                  console.log("Customer Information - Transaction Data"+" :"+JSON.stringify(transactionData, null, " "));
-                }
+              if(__bva__.debug == true){
+                console.log("Customer Information - Transaction Data"+" :"+JSON.stringify(transactionData, null, " "));
+              }
 
-                // Track promo codes
-                $('[data-trekkie-id="apply_discount_button"]').closest('form').on('submit', function (e) {
-                  var $field = $('#checkout_reduction_code')
-                  var value = $field.val()
-                  var id = $field.attr('id')
-                  // TMP: gift cards have 16 characters
-                  if (value.length === 16) {
-                    dataLayer.push({ id: id, event: 'onGift' }, {
-                      event: 'On Gift',
-                      pageType: 'On Gift',
-                    })
-                  } else {
-                    dataLayer.push({ code: value, id: id, event: 'onPromo' }, {
-                      event: 'On Promo',
-                      pageType: 'On Promo',
-                    })
-                  }
-                })
+              __bva__.helpers.watchCheckoutDiscountField()
+              __bva__.helpers.watchCheckoutEmailOrPhoneField()
+              __bva__.helpers.watchCheckoutMarketingField()
 
-                $(['#checkout_email_or_phone', '#checkout_email']).on('blur', function () {
-                  var value = $(this).val()
-                  if (value.indexOf('@') !== -1) {
-                    dataLayer.push({ email: value, emailType: 'transact' })
-                    dataLayer.push({ event: 'On Email' })
-                  }
-                })
-
-                $('input[data-trekkie-id="buyer_accepts_marketing_field"]').on('change', function () {
-                  var isChecked = $(this).prop('checked')
-                  var email = $('#checkout_email_or_phone').val()
-
-                  if (!email) {
-                    email = $('#checkout_email').val()
-                  }
-
-                  if (isChecked && email && email.indexOf('@') !== -1) {
-                    dataLayer.push({ email: email, emailType: 'marketing' }, {
-                      event: 'On Email',
-                    })
-                  }
-                })
-                // Should watch for out of focus on #checkout_email_or_phone
-                // Send this as the identifier
-
-                //#checkout_buyer_accepts_marketing send this too
             }else if (Shopify.Checkout.step === 'shipping_method'){
               dataLayer.push(transactionData,{
                 'event'    :'Shipping Information',
-                'pageType' :'Shipping Information'});
-                if(__bva__.debug == true){
-                  console.log("Shipping - Transaction Data"+" :"+JSON.stringify(transactionData, null, " "));
-                }
+                'pageType' :'Shipping Information',
+              });
+              if(__bva__.debug == true){
+                console.log("Shipping - Transaction Data"+" :"+JSON.stringify(transactionData, null, " "));
+              }
 
-              setTimeout(function () {
-                $('fieldset[data-shipping-methods] input').on('change', function () {
-                  var value = $(this).val()
-                  var data = {
-                    shippingInfo: {
-                      method: value
-                    }
-                  }
-                  console.log('change', value)
-                  dataLayer.push(data, { event:'Shipping Information' })
-                })
-              }, 2000)
+              __bva__.helpers.watchCheckoutShippingField()
+              __bva__.helpers.watchCheckoutDiscountField()
+
             }else if( Shopify.Checkout.step === "payment_method" ){
               dataLayer.push(transactionData,{
                 'event'    :'Add Payment Info',
                 'pageType' :'Add Payment Info'});
-                if(__bva__.debug == true){
-                  console.log("Payment - Transaction Data"+" :"+JSON.stringify(transactionData, null, " "));
-                }
+              if(__bva__.debug == true){
+                console.log("Payment - Transaction Data"+" :"+JSON.stringify(transactionData, null, " "));
+              }
+
+              __bva__.helpers.watchCheckoutDiscountField()
+              __bva__.helpers.watchCheckoutPaymentFields()
             }
           }
 
@@ -839,6 +1209,7 @@ applyBindings(defaultBindings, __bva__);
         // ---------------------------------- if dynamic cart is true
 
         // TRIGGER CART VIEW EVENT
+        var _cart = {{ cart | json }}
         var cart = {
           'products':[{% for line_item in cart.items %}{
             'id'       : '{{line_item.product_id}}',
@@ -865,6 +1236,7 @@ applyBindings(defaultBindings, __bva__);
           'cartTotal': {{ cart.total_price | money_without_currency | json }},
           'itemsCount': {{ cart.item_count | downcase | json }},
           'discountAmounts': {{ cart.total_discount | money_without_currency | json }},
+          'cartId': _cart.token,
           'pageType' : 'Cart',
           'event'    : 'Cart',
 
@@ -926,7 +1298,7 @@ applyBindings(defaultBindings, __bva__);
 
       $('body').on('ajaxCart.afterCartLoad', calculateDynamicCart);
 
-      $(__bva__.viewCart).on('click', calculateDynamicCart);
+      // $(__bva__.viewCart).on('click', calculateDynamicCart);
 
       /* ADD TO CART */
       jQuery.getJSON('/cart.js', function (response) {
@@ -1167,92 +1539,72 @@ applyBindings(defaultBindings, __bva__);
         }
       }
 
-    $(document).on('submit', __bva__.cartTriggers, function() {
-      __bva__addtocart();
-    });
-
-    function handleAddToCart(product) {
-      var p = {
-        'id': product.id,
-        'sku': product.sku,
-        'variant': product.variant_id,
-        'name': product.title,
-        'price': (product.price/100),
-        'quantity': product.quantity,
+    var addToCartStrategy = (function () {
+      function listenToCartSubmit() {
+        $(document).on('submit', __bva__.cartTriggers, __bva__addtocart)
       }
 
-      {% if template.name == 'collection' %}
-        dataLayer.push({ products: p})
-      {% endif %}
+      function listenToCartClick() {
+        if (typeof ShopifyAPI !== 'undefined' && typeof ShopifyAPI.addItemFromForm !== 'undefined') {
+          return null
+        }
 
-      dataLayer.push({ products: [p]})
-      dataLayer.push({
-        'pageType' : 'Add to Cart',
-        'event'    : 'Add to Cart',
-      })
-
-      if (__bva__.debug) {
-        console.log("Add to Cart"+" :"+JSON.stringify(p, null, " "));
-      }
-    }
-
-    function handleCartEmpty() {
-      dataLayer.push({
-        pageType: 'On Cart Empty',
-        event: 'On Cart Empty',
-      })
-
-      if (__bva__.debug) {
-        console.log('On Cart Empty');
-      }
-    }
-
-    if(typeof ShopifyAPI != 'undefined'){
-      if (typeof ShopifyAPI.changeItem !== 'undefined') {
-        var changeItemMethod = ShopifyAPI.changeItem
-        ShopifyAPI.changeItem = function () {
-          var line = arguments[0]
-          var quantity = arguments[1]
-          var callback = arguments[2]
-
-          arguments[2] = function (cart) {
-            if (quantity > 0) {
-              var product = cart.items[line - 1]
-              var variantId = product.variant_id.toString()
-              var initialQuantity = __bva__.cart.reduce(function (acc, cur) {
-                return cur.variant === variantId
-                  ? { quantity: parseInt(cur.quantity, 10) }
-                  : acc
-              }, { quantity: 0 })
-
-              if (initialQuantity < product.quantity) {
-                handleAddToCart(product)
-              } else if (initialQuantity > product.quantity) {
-                // Handle remove from cart?
-              }
-            } else if (!cart.items.length) {
-              handleCartEmpty()
+        var product = {{ product | json }}
+        $(document).on('click', __bva__.cartTriggerButtons, function() {
+          var data = $('form[action="/cart/add"]').serializeArray()
+          var productFromForm = data.reduce(function (acc, cur) {
+            if (cur.name === 'id') {
+              acc.variant = cur.value
             }
 
-            callback.call(this, arguments)
+            if (cur.name === 'quantity') {
+              acc.quantity = cur.value
+            }
+
+            return acc
+          }, { variant: '', quantity: '1' })
+
+          var sku = ''
+          for (var i = 0; i < product.variants.length; i++) {
+            if (product.variants[i].id.toString() === productFromForm.variant) {
+              sku = product.variants[i].sku
+              break
+            }
           }
-          changeItemMethod.apply(ShopifyAPI, arguments)
+
+          var p = {
+            id: {{ product.id | downcase | json }},
+            sku: sku,
+            name: {{ product.title | json }},
+            price: {{ product.price | money_without_currency | json }},
+            variant: productFromForm.variant,
+            quantity: productFromForm.quantity,
+          }
+
+          dataLayer.push({ products: [p] })
+          dataLayer.push({ pageType: 'Add to Cart', event: 'Add to Cart' })
+
+          if (__bva__.debug) {
+            console.log("Add to Cart"+" :"+JSON.stringify(p, null, " "));
+          }
+        })
+      }
+
+      function init(eventType) {
+        var fn = {
+          [cartTriggerEvents.SUBMIT]: listenToCartSubmit,
+          [cartTriggerEvents.CLICK]: listenToCartClick,
+          nullType: function () {},
         }
+
+        return fn[eventType] ? fn[eventType]() : fn.nullType()
       }
 
-      if( typeof ShopifyAPI.addItemFromForm != 'undefined'){
-          var originalMethod = ShopifyAPI.addItemFromForm;
-          ShopifyAPI.addItemFromForm = function () {
-              var originalCallback = arguments[1];
-              arguments[1] = function(product){
-                  handleAddToCart(product)
-                  originalCallback.call(this, product);
-              }
-              originalMethod.apply(ShopifyAPI, arguments);
-          };
-      }
-    }
+      return { init: init }
+    })()
 
+    addToCartStrategy.init(__bva__.cartTriggerEvent)
+    __bva__.helpers.monkeyPatchShopifyAPI()
 
       /* DATALAYER: Newsletter Subscription
       ------------------------------------- */
