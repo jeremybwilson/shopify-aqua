@@ -571,17 +571,17 @@ __bva__.helpers = (function () {
     var self = this
     var event = event || 'product.quick'
 
-    $(document.body).on(event, function (e, product) {
+    $(document.body).on(event, function (e, product, extras) {
       if (!product) {
         console.log('Missing product object')
         return null
       }
 
-      product.selected = product.selected || {}
-      var sku = product.selected.sku || product.sku
-      var barcode = product.selected.barcode || product.barcode
-      var variantId = product.selected.variant_id || product.variant_id
-      var collection = product.selected.collection || ''
+      var extras = extras || {}
+      var sku = extras.sku || product.sku
+      var barcode = extras.barcode || product.barcode
+      var variantId = extras.variant_id || product.variant_id
+      var collection = extras.collection || ''
 
       var payload = {
         products: [{
@@ -598,7 +598,7 @@ __bva__.helpers = (function () {
           productURL: self.shop.url + product.url,
           brand: product.vendor || self.shop.name,
           comparePrice: product.compare_at_price_max,
-          categories: product.collections,
+          categories: product.collections || [],
           currentCategory: collection,
         }],
       }
@@ -608,7 +608,10 @@ __bva__.helpers = (function () {
     })
   }
 
-  return new Helpers({ name: {{ shop.name | json }}, url: {{ shop.secure_url | json }} }, {{ template | json }}, {{ cart | json }})
+  return new Helpers({
+    name: {{ shop.name | json }},
+    url: {{ shop.secure_url | json }},
+  }, {{ template | json }}, {{ cart | json }})
 })();
 
 /* =======================
