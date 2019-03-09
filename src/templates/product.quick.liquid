@@ -28,6 +28,16 @@
         } 
       });
     {% endif %}
+    var product = {{ product | json }};
+    product.description = {{product.description | strip_newlines | strip_html | escape | json }};
+    product.featured_image.src = {{ product.featured_image.src | img_url: 'grande' }};
+    product.collections = {{ product.collections | map: 'title' | json }};
+    product.selected = {};
+    product.selected.sku = {{ product.selected_or_first_available_variant.sku | json }};
+    product.selected.barcode = {{ product.selected_or_first_available_variant.barcode | json }};
+    product.selected.variant_id = {{ product.selected_or_first_available_variant.id | json }};
+    product.selected.collection = {{ collection.title | json }};
+    jQuery(document.body).trigger('product.quick', product);
   </script>
 {% endif %}
 

@@ -45,7 +45,9 @@ __bva__ = {
 customBindings = {
   cartTriggers: [],
   cartTriggerButtons: ['.add-to-cart, .cart-btn, .product-form__cart-submit'],
+  // Update buttons on cart page
   updateCartTrigger: ['#update-cart, #checkout'],
+  // Qty inputs on cart page
   cartQty: ['.cart-qty'],
   viewCart: [],
   removeCartTrigger: ['.cart-remove a'],
@@ -105,8 +107,11 @@ applyBindings(defaultBindings, __bva__);
 applyBindings(customBindings, __bva__);
 
 __bva__.helpers = (function () {
-  var Helpers = function (template) {
+  var Helpers = function (shop, template, cart) {
+    this.shop = shop
     this.template = template
+    this.cart = cart
+    this.state = {}
   }
 
   Helpers.prototype.log = function (event, message, force) {
@@ -116,14 +121,31 @@ __bva__.helpers = (function () {
     }
   }
 
-  Helpers.prototype.handleAddToCart = function(product) {
+  // Fire whatever is is supplied as argument
+  Helpers.prototype.firePixel = function (payload) {
+    dataLayer.push(payload)
+    if (payload.event || payload.pageType) {
+      this.log(payload.event || payload.pageType, payload)
+    }
+  }
+
+  Helpers.prototype.fireAddToCartPixel = function (product) {
+    if (!product) {
+      throw new Error('Missing product object')
+    }
+
+    var variant = product.variant || product.variant_id
+    var quantity = product.quantity || product.qty
+    var brand = product.vendor || product.brand
+
     var payload = {
-      'id': product.id,
+      'id': product.id.toString(),
       'sku': product.sku,
-      'variant': product.variant_id,
+      'variant': variant.toString(),
       'name': product.title,
       'price': parseFloat(product.price.toString().replace('.', ''), 10) / 100,
-      'quantity': product.quantity,
+      'quantity': quantity,
+      'brand': brand,
     }
 
     if (this.template.indexOf('collection') !== -1) {
@@ -139,13 +161,36 @@ __bva__.helpers = (function () {
     this.log('Add to Cart', payload)
   }
 
-  Helpers.prototype.handleCartEmpty = function () {
+  Helpers.prototype.fireEmptyCartPixel = function () {
     dataLayer.push({
       pageType: 'On Cart Empty',
       event: 'On Cart Empty',
     })
 
     this.log('On Cart Empty')
+  }
+
+  Helpers.prototype.fireEmailPixel = function (data) {
+    var payload = $.extend({}, data, { interaction: 'On Email' })
+
+    if (!payload.email) {
+      throw new Error('Email missing')
+    }
+
+    if (!payload.emailType) {
+      throw new Error('Email type missing')
+    }
+
+    dataLayer.push(payload)
+    dataLayer.push({ event: 'On Email' })
+    this.log('On Email', payload)
+  }
+
+  Helpers.prototype.fireCartPixel = function (data) {
+    var payload = data
+    dataLayer.push(payload)
+    dataLayer.push({ event: 'Cart', pageType: 'Cart' })
+    this.log('Cart', payload)
   }
 
   Helpers.prototype.monkeyPatchShopifyAPI = function () {
@@ -158,20 +203,16 @@ __bva__.helpers = (function () {
     if (typeof ShopifyAPI.changeItem !== 'undefined') {
       var changeItemMethod = ShopifyAPI.changeItem
       ShopifyAPI.changeItem = function () {
-        var initialLineItems = {{ cart.items | json }}
         var line = arguments[0]
-        var quantity = arguments[1]
+        var quantityChange = arguments[1]
         var callback = arguments[2]
+        var initialItem = self.cart.items[line - 1]
 
         arguments[2] = function (cart) {
-          if (quantity > 0) {
-            var product = cart.items[line - 1]
-            var initialProduct = initialLineItems[line - 1]
-            if (!initialProduct || product.quantity > initialProduct.quantity) {
-              self.handleAddToCart(product)
-            }
-          } else if (!cart.items.length) {
-            self.handleCartEmpty()
+          self.cart = cart
+          var product = cart.items[line - 1]
+          if (initialItem.quantity < product.quantity) {
+            self.fireAddToCartPixel(product)
           }
 
           callback.apply(this, arguments)
@@ -185,13 +226,26 @@ __bva__.helpers = (function () {
       ShopifyAPI.addItemFromForm = function () {
         var originalCallback = arguments[1];
         arguments[1] = function (product) {
-          self.handleAddToCart(product);
+          self.fireAddToCartPixel(product)
           originalCallback.call(this, product);
         }
 
         originalMethod.apply(ShopifyAPI, arguments);
       };
     }
+  }
+
+  if (typeof ShopifyAPI.getCart !== 'undefined') {
+    var originalMethod = ShopifyAPI.getCart
+    ShopifyAPI.getCart = function () {
+      var originalCallback = arguments[0]
+      arguments[0] = function (cart) {
+        originalCallback.apply(this, arguments)
+        $(document.body).trigger('ajaxCart.afterGetCart', cart)
+      }
+    }
+
+    originalMethod.apply(ShopifyAPI, arguments)
   }
 
   Helpers.prototype.watchCheckoutDiscountField = function () {
@@ -272,15 +326,12 @@ __bva__.helpers = (function () {
     function firePixel(email) {
       if (email && email.indexOf('@') !== -1 && state.email !== email) {
         state.email = email
-        var payload = {
-          email: email,
-          emailType: 'transact',
-          interaction: 'On Email'
-        }
+        self.fireEmailPixel({ email: email, emailType: 'transact' })
 
-        dataLayer.push(payload)
-        dataLayer.push({ event: 'On Email' })
-        self.log('On Email', payload)
+        if (self.state.initialBuyerAcceptsMarketing) {
+          self.fireEmailPixel({ email: email, emailType: 'marketing' })
+          self.state.initialBuyerAcceptsMarketing = false
+        }
       }
     }
 
@@ -295,34 +346,22 @@ __bva__.helpers = (function () {
     var self = this
     var $marketingField = $('input[data-trekkie-id="buyer_accepts_marketing_field"]')
 
-    function firePixel() {
-      var isChecked = $marketingField.prop('checked')
+    $marketingField.on('change', function () {
+      var isChecked = $(this).prop('checked')
       var email = $('#checkout_email_or_phone, #checkout_email').val()
-      var payload = {
-        email: email,
-        emailType: 'marketing',
-        interaction: 'On Email'
-      }
-
       if (isChecked && email && email.indexOf('@') !== -1) {
-        dataLayer.push(payload)
-        dataLayer.push({ event: 'On Email' })
-        self.log('On Email', payload)
+        self.fireEmailPixel({ email: 'email', emailType: 'marketing' })
+      }
+    })
+
+    var email = $('#checkout_email_or_phone, #checkout_email').val()
+    if ($marketingField.prop('checked')) {
+      if (email && email.indexOf('@') !== -1) {
+        this.fireEmailPixel({ email: email, emailType: 'marketing' })
+      } else {
+        this.state.initialBuyerAcceptsMarketing = true
       }
     }
-
-    $(document.body).on('submit', 'form[data-customer-information-form]', function (e) {
-      e.preventDefault()
-      firePixel()
-      $(document.body).unbind('submit')
-      $('form[data-customer-information-form]')[0].submit()
-    })
-
-    $('button[data-trekkie-id="continue_to_shipping_method_button"]').on('click', function (e) {
-      e.preventDefault()
-      firePixel()
-      $(this).unbind('click')[0].click()
-    })
   }
 
   Helpers.prototype.watchCheckoutShippingField = function () {
@@ -417,7 +456,7 @@ __bva__.helpers = (function () {
     }
 
     function bindUIEvents() {
-      $('form.edit_checkout')
+      $(document.body)
         .on('change', '[id^="checkout_payment_gateway"]', paymentTypeRoutine)
     }
 
@@ -472,18 +511,10 @@ __bva__.helpers = (function () {
     var self = this
     $('#create_customer, #customer_login').on('submit', function (e) {
       e.preventDefault()
-
       var email = $(this).find('input[name="customer[email]"]').val()
-      var payload = {
-        email: email,
-        emailType: 'account',
-        interaction: 'On Email'
-      }
 
       if (email) {
-        dataLayer.push(payload)
-        dataLayer.push({ event: 'On Email' })
-        self.log('On Email', payload)
+        self.fireEmailPixel({ email: email, emailType: 'account' })
       }
 
       $(this).unbind('submit')[0].submit()
@@ -499,21 +530,15 @@ __bva__.helpers = (function () {
       e.stopPropagation()
 
       var email = $(formSelector).find(inputSelector).val()
-      var payload = {
-        email: email,
-        emailType: 'marketing',
-        interaction: 'On Email'
-      }
-
-      if (email && email !== state.email) {
+      if (email && email !== state.email && email.indexOf('@') !== -1) {
         state.email = email
-        dataLayer.push(payload)
-        dataLayer.push({ event: 'On Email' })
-        self.log('On Email', payload)
+        self.fireEmailPixel({ email: email, emailType: 'marketing' })
       }
 
       $(document.body).unbind('submit', handler)
-      $(formSelector)[0].submit()
+      if ($(formSelector).length) {
+        $(formSelector)[0].submit()
+      }
     }
 
     $(document.body).on('submit', formSelector, handler)
@@ -528,27 +553,62 @@ __bva__.helpers = (function () {
       e.stopPropagation()
 
       var email = $(parentSelector).find(inputSelector).val()
-      var payload = {
-        email: email,
-        emailType: 'marketing',
-        interaction: 'On Email'
-      }
-
-      if (email && email !== state.email) {
-        state.email = email
-        dataLayer.push(payload)
-        dataLayer.push({ event: 'On Email' })
-        self.log('On Email', payload)
+      if (email && email !== state.email && email.indexOf('@') !== -1) {
+        self.fireEmailPixel({ email: email, emailType: 'marketing' })
       }
 
       $(document.body).unbind('click', handler)
-      $(buttonSelector)[0].click()
+
+      if ($(buttonSelector).length) {
+        $(buttonSelector)[0].click()
+      }
     }
 
     $(document.body).on('click', buttonSelector, handler)
   }
 
-  return new Helpers({{ template | json }})
+  Helpers.prototype.watchQuickView = function (event) {
+    var self = this
+    var event = event || 'product.quick'
+
+    $(document.body).on(event, function (e, product) {
+      if (!product) {
+        console.log('Missing product object')
+        return null
+      }
+
+      product.selected = product.selected || {}
+      var sku = product.selected.sku || product.sku
+      var barcode = product.selected.barcode || product.barcode
+      var variantId = product.selected.variant_id || product.variant_id
+      var collection = product.selected.collection || ''
+
+      var payload = {
+        products: [{
+          id: product.id.toString(),
+          sku: sku,
+          barcode: barcode,
+          variant: variantId.toString(),
+          variantId: variantId.toString(),
+          productType: product.type,
+          name: product.title,
+          price: product.price,
+          description: product.description,
+          imageURL: 'https:' + product.featured_image_src,
+          productURL: self.shop.url + product.url,
+          brand: product.vendor || self.shop.name,
+          comparePrice: product.compare_at_price_max,
+          categories: product.collections,
+          currentCategory: collection,
+        }],
+      }
+
+      self.firePixel(payload)
+      self.firePixel({ pageType: 'Product', event: 'Product' })
+    })
+  }
+
+  return new Helpers({ name: {{ shop.name | json }}, url: {{ shop.secure_url | json }} }, {{ template | json }}, {{ cart | json }})
 })();
 
 /* =======================
@@ -728,6 +788,7 @@ __bva__.helpers = (function () {
     __bva__.helpers.watchEmailMarketingBySubmit('#footer-newsletter', 'input[type="email"]')
     __bva__.helpers.watchEmailMarketingBySubmit('#subscribe--popup--form', 'input[type="email"]')
     __bva__.helpers.watchEmailMarketingByClick('#sr_email_sign_up', '#sr_lm_email', '#sr_cart_runner')
+    __bva__.helpers.watchQuickView('product.quick')
 
     /*DATALAYER: Homepage
     --------------------------- */
@@ -849,7 +910,7 @@ __bva__.helpers = (function () {
       {% if product.selected_variant == nil %}
       sku = sku.split("-", 1);
       barcode = '';
-      variantId = '';
+      // variantId = '';
       {% endif %}
 
       var product = {
@@ -857,7 +918,7 @@ __bva__.helpers = (function () {
           'id'              : '{{product.id}}',
           'sku'             : sku,
           'barcode'         : barcode,
-          'variantId'       : variantId,
+          'variant'         : variantId,
           'productType'     : "{{product.type | escape }}",
           'name'            : "{{product.title | escape }}",
           'price'           : '{{product.price | money_without_currency | remove: ","}}',
@@ -945,6 +1006,10 @@ __bva__.helpers = (function () {
 
     __bva__.cart = cart.products;
 
+    if (!cart.products.length) {
+      __bva__.helpers.fireEmptyCartPixel()
+    }
+
     function checkProducts() {
       var allQty = []
       var isEmpty = true
@@ -957,14 +1022,12 @@ __bva__.helpers = (function () {
       })
 
       if (isEmpty) {
-        console.log('empty')
         __bva__.helpers.handleCartEmpty()
       } else {
         allQty.forEach(function (qty, i) {
           var product = __bva__.cart.products[i]
           var initialQuantity = parseInt(product.quantity, 10)
           if (initialQuantity < qty) {
-            console.log('add to cart')
             __bva__.helpers.handleAddToCart(product)
           }
         })
@@ -1216,102 +1279,49 @@ __bva__.helpers = (function () {
 
       /* VIEW CART */
 
-      let calculateDynamicCart = (event) => {
-        // ------------------------------------------------------------------------- view cart
-        viewcartfire = 1;
-        // IF DYNAMIC CART IS TRUE
-        if (__bva__.dynamicCart) {
-        // ---------------------------------- if dynamic cart is true
+      // $('body').on('ajaxCart.afterCartLoad', calculateDynamicCart);
+      function calculateDynamicCart(dbCart) {
+        if (typeof dbCart === 'undefined') {
+          throw new TypeError('Missing cart object')
+        }
 
-        // TRIGGER CART VIEW EVENT
-        var _cart = {{ cart | json }}
+        if (!dbCart.items.length) {
+          __bva__.helpers.fireEmptyCartPixel()
+          return null
+        }
+
+        var products = dbCart.items.map(function (lineItem) {
+          return {
+            id: lineItem.id,
+            sku: lineItem.sku,
+            variant: lineItem.variant_id,
+            name: lineItem.title,
+            price: lineItem.price,
+            quantity: lineItem.quantity,
+            brand: lineItem.vendor,
+            options: [], //TODO
+          }
+        })
+
         var cart = {
-          'products':[{% for line_item in cart.items %}{
-            'id'       : '{{line_item.product_id}}',
-            'sku'      : '{{line_item.sku}}',
-            'variant'  : '{{line_item.variant_id}}',
-            'name'     : '{{line_item.title}}',
-            'price'    : '{{line_item.price | money_without_currency}}',
-            'quantity' : '{{line_item.quantity}}',
-            'brand'    : {{ line_item.vendor | default: shop.name | json }},
-            'options'  : [
-              {% for variant in line_item.product.variants %}
-                {% if variant.id == line_item.variant_id %}
-                  {% for option in line_item.product.options %}
-                    {
-                      'option': {{ option | json }},
-                      'value': {{ variant.options[forloop.index0] | json }},
-                    },
-                  {% endfor %}
-                  {% break %}
-                {% endif %}
-              {% endfor %}
-            ],
-          },{% endfor %}],
-          'cartTotal': {{ cart.total_price | money_without_currency | json }},
-          'itemsCount': {{ cart.item_count | downcase | json }},
-          'discountAmounts': {{ cart.total_discount | money_without_currency | json }},
-          'cartId': _cart.token,
-          'pageType' : 'Cart',
-          'event'    : 'Cart',
-
-          // Unless we add a field for coupon code in the cart page, this is not possible
-          // 'couponCode': null,
-        };
-
-        dataLayer.push(cart);
-        if(__bva__.debug){
-          console.log("Cart"+" :"+JSON.stringify(cart, null, " "));
+          cartTotal: dbCart.total_price,
+          itemsCount: dbCart.item_count,
+          discountAmounts: dbCart.total_discount,
+          cartId: dbCart.token,
+          products: products,
+          pageType: 'Cart',
+          event: 'Cart'
         }
 
-        __bva__.cart = cart.products;
+        __bva__.helpers.firePixel(cart)
+      }
 
-        cartCheck = setInterval(function () {
-        // -------------------------------------- begin check interval
-          if ($(__bva__.cartVisableSelector).length > 0) {
-          // ------------------------------------------------------------------ check visible selectors
-            clearInterval(cartCheck);
-            mapJSONcartData();
-            // ------------------------------------------------------------------ check visible selectors
-            $(__bva__.removeCartTrigger).on('click', function (event) {
-            // ------------------------------------------------------------------- remove from cart
-              var link = $(this).attr("href");
-              jQuery.getJSON(link, function (response) {
-              // --------------------------------------------- get Json response
-                __bva__.removeCart = response;
-                var removeFromCart = {
-                  'products': __bva__.removeCart.items.map(function (line_item) {
-                    return {
-                      'id'       : line_item.id,
-                      'sku'      : line_item.sku,
-                      'variant'  : line_item.variant_id,
-                      'name'     : line_item.title,
-                      'price'    : (line_item.price/100),
-                      'quantity' : line_item.quantity
-                    }
-                  }),
-                    'pageType' : 'Remove from Cart',
-                    'event'    : 'Remove from Cart'
-                  };
-                dataLayer.push(removeFromCart);
-                if (__bva__.debug) {
-                  console.log("Cart"+" :"+JSON.stringify(removeFromCart, null, " "));
-                }
-              // --------------------------------------------- get Json response
-              });
-            // ------------------------------------------------------------------- remove from cart
-            });
-            }
-          // -------------------------------------- begin check interval
-          }, 500);
-        // ---------------------------------- if dynamic cart is true
-        }
-
-      // ------------------------------------------------------------------------- view cart
-
-      };
-
-      $('body').on('ajaxCart.afterCartLoad', calculateDynamicCart);
+      if (__bva__.dynamicCart){
+        // Fires when ever we call ShopifyAPI.getCart (which is everytime we view / update the Ajax Cart)
+        $(document.body).on('ajaxCart.afterGetCart', function (e, dbCart) {
+          calculateDynamicCart(dbCart)
+        })
+      }
 
       // $(__bva__.viewCart).on('click', calculateDynamicCart);
 
@@ -1360,20 +1370,6 @@ __bva__.helpers = (function () {
               'options'   : options,
               'category'  : line_item.properties && line_item.properties._collection_private,
             }
-
-            {% comment %}
-            if (!options) {
-              return $.ajax({
-                url: line_item.url.split('?')[0] + '?view=data',
-                success: function (data) {
-                  var dataOptions = JSON.parse(data)
-                  ret.options = dataOptions.optionsByVariantId[line_item.variant_id.toString()]
-                  ret.category = dataOptions.collection
-                  return ret
-                }
-              })
-            }
-            {% endcomment %}
 
             return ret
           })
@@ -1594,6 +1590,7 @@ __bva__.helpers = (function () {
             price: {{ product.price | money_without_currency | json }},
             variant: productFromForm.variant,
             quantity: productFromForm.quantity,
+            brand: {{ product.vendor | json }},
           }
 
           dataLayer.push({ products: [p] })
