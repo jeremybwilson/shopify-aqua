@@ -80,7 +80,11 @@
     <div class="select" {% if product.variants.size == 1 or section.settings.product_variants == 'swatches' %}style="display: none;"{% endif %}>
       <select id="product-select-{{ product.id }}" name='id'>
         {% for variant in product.variants %}
-          <option value="{{ variant.id }}" {% if variant == current_variant %}selected="selected"{% endif %}>
+          {%- assign disable_auto_select = false -%}
+          {%- if section.settings.disable_auto_select  and forloop.first == false -%}
+            {%- assign disable_auto_select = true -%}
+          {%- endif -%}
+          <option value="{{ variant.id }}" {% if variant == current_variant and disable_auto_select %}selected="selected"{% endif %}>
             {{ variant.title }} - {{ variant.price | money }}
           </option>
         {% endfor %}
@@ -95,7 +99,12 @@
       CYCLE #1 - Cycle through the available options {% endcomment %}
 
       {% for option in product.options_with_values %}
-        {% include "swatch" %}
+        {%- assign disable_auto_select = false -%}
+        {%- if section.settings.disable_auto_select and forloop.first == false -%}
+          {%- assign disable_auto_select = true -%}
+        {%- endif -%}
+
+        {% include "swatch", disable_auto_select: disable_auto_select %}
       {% endfor %}
 
     {% endif %}
