@@ -2482,7 +2482,7 @@ theme.ProductForm = function (context, events) {
     onVariantSelected: function(variant, selector) {
 
       if ( !variant ) {
-        events.trigger("variantunavailable");
+        events.trigger("variantunavailable", selector.product && selector.product.variants[0]);
         return;
       }
 
@@ -2689,7 +2689,10 @@ theme.ProductForm = function (context, events) {
       element.innerHTML = variant_sku;
     });
     events.on("variantunavailable", function (variant) {
-      var variant_sku = config.unavailable;
+      var variant_sku = variant && variant.sku
+      ? variant.sku.split('-')[0]
+      : config.unavailable;
+
       element.innerHTML = variant_sku;
     });
 
@@ -3283,11 +3286,58 @@ theme.Product = (function () {
       }
     });
 
-    // THIS IS BROKEN - COMMENTING OUT FOR NOW : Related Products
+    this.container = container
+    this.event = events
+    this.product = this.parse($(container).find('.product-json').html())
+    this.settings = this.parse(container.getAttribute('data-section-settings'))
+    this.initPickAnOption()
     this.initRelatedProducts()
   }
 
   Product.prototype = _.assignIn({}, Product.prototype, {
+    parse: function (str) {
+      try {
+        return JSON.parse(str)
+      } catch (error) {
+        console.error(error)
+        return {}
+      }
+    },
+
+    initPickAnOption: function () {
+      if (!this.settings.disableAutoSelect || !this.product.options) {
+        return null
+      }
+
+      // Skip first option
+      let needSelection = false
+      for (let i = 1; i < this.product.options.length; i++) {
+        let option = this.product.options[i]
+        let $optionSelector = $('.single-option-selector').eq(i).filter(function () {
+          return $(this).find('option').length > 1
+        })
+
+        if ($optionSelector.length) {
+          $optionSelector
+            .prepend('<option value="">Pick a ' + option + '</option>')
+            .val('')
+            .trigger('change')
+
+          $(this.container)
+            .find('.swatch')
+            .eq(i)
+            .find('.current-option')
+            .text(this.settings.selectionTitle)
+
+          needSelection = true
+        }
+      }
+
+      if (needSelection) {
+        this.event.emit('variantunavailable', this.product.variants[0])
+      }
+    },
+
     initRelatedProducts: function () {
       if (!$('#related').length) {
         return
@@ -3296,16 +3346,10 @@ theme.Product = (function () {
       var initHomepageCarousel = function(productCarousel) {
         productCarousel.owlCarousel({
           responsive: {
-            0 : {
-              items: 1
-            },
-            767 : {
-              items: 3
-            }
+            0 : { items: 1 },
+            767 : { items: 3 },
           },
           dots: true,
-          // nav: false,
-          // navText: [ $('.product-carousel--prev'), $('.product-carousel--next') ],
           lazyLoad : true
         });
       };

@@ -2,7 +2,6 @@
 {% assign color_swatch_options = "color, colour" | split: ", " %}
 {% assign current_option = "option" | append: option.position %}
 {% assign other_options = "option1 option2 option3" | remove: current_option | strip | split: " " %}
-
 <div class="swatch clearfix {{ option.name | downcase }}" data-option-index="{{ option.position }}" data-other-options='{{ other_options | json }}'>
   <div class="swatch-header">
 
@@ -76,9 +75,10 @@
 
         {% comment %} Initializing snippets for the render {% endcomment %}
         {% assign checked = "" %}
-
         {% if current_variant[current_option] == value %}
-          {% assign checked = 'checked="checked"' %}
+          {%- unless disable_auto_select == true -%}
+            {% assign checked = 'checked="checked"' %}
+          {%- endunless -%}
         {% endif %}
 
         {% capture radio_button %}
