@@ -2690,8 +2690,8 @@ theme.ProductForm = function (context, events) {
     });
     events.on("variantunavailable", function (variant) {
       var variant_sku = variant && variant.sku
-      ? variant.sku.split('-')[0]
-      : config.unavailable;
+        ? variant.sku.split('-')[0]
+        : config.unavailable;
 
       element.innerHTML = variant_sku;
     });
