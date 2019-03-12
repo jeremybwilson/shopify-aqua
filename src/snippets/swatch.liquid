@@ -76,7 +76,7 @@
         {% comment %} Initializing snippets for the render {% endcomment %}
         {% assign checked = "" %}
         {% if current_variant[current_option] == value %}
-          {%- unless disable_auto_select == true -%}
+          {%- unless disable_auto_select -%}
             {% assign checked = 'checked="checked"' %}
           {%- endunless -%}
         {% endif %}
