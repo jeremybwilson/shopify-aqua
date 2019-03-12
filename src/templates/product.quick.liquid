@@ -28,18 +28,21 @@
         } 
       });
     {% endif %}
-    var product = {{ product | json }};
-    product.description = {{product.description | strip_newlines | strip_html | escape | json }};
-    product.featured_image.src = {{ product.featured_image.src | img_url: 'grande' }};
-    product.collections = {{ product.collections | map: 'title' | json }};
-    var selected = {};
-    selected.sku = {{ product.selected_or_first_available_variant.sku | json }};
-    selected.barcode = {{ product.selected_or_first_available_variant.barcode | json }};
-    selected.variant_id = {{ product.selected_or_first_available_variant.id | json }};
-    selected.collection = {{ collection.title | json }};
-    jQuery(document.body).trigger('product.quick', [product, selected]);
   </script>
 {% endif %}
+
+<script>
+  var product = {{ product | json }};
+  product.description = {{product.description | strip_newlines | strip_html | escape | json }};
+  product.featured_image.src = {{ product.featured_image.src | img_url: 'grande' }};
+  product.collections = {{ product.collections | map: 'title' | json }};
+  var selected = {};
+  selected.sku = {{ product.selected_or_first_available_variant.sku | json }};
+  selected.barcode = {{ product.selected_or_first_available_variant.barcode | json }};
+  selected.variant_id = {{ product.selected_or_first_available_variant.id | json }};
+  selected.collection = {{ collection.title | json }};
+  jQuery(document.body).trigger('product.quick', [product, selected]);
+</script>
 
 {% if section.settings.show_payment_button %}
   <script>

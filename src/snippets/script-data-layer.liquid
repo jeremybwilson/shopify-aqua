@@ -107,6 +107,7 @@ applyBindings(defaultBindings, __bva__);
 applyBindings(customBindings, __bva__);
 
 __bva__.helpers = (function () {
+  'use strict'
   var Helpers = function (shop, template, cart) {
     this.shop = shop
     this.template = template
@@ -211,11 +212,11 @@ __bva__.helpers = (function () {
         arguments[2] = function (cart) {
           self.cart = cart
           var product = cart.items[line - 1]
-          if (initialItem.quantity < product.quantity) {
+          if (product && initialItem.quantity < product.quantity) {
             self.fireAddToCartPixel(product)
           }
 
-          callback.apply(this, arguments)
+          return callback.apply(this, arguments)
         }
         changeItemMethod.apply(ShopifyAPI, arguments)
       }
@@ -227,25 +228,25 @@ __bva__.helpers = (function () {
         var originalCallback = arguments[1];
         arguments[1] = function (product) {
           self.fireAddToCartPixel(product)
-          originalCallback.call(this, product);
+          return originalCallback.call(this, product);
         }
 
         originalMethod.apply(ShopifyAPI, arguments);
       };
     }
-  }
 
-  if (typeof ShopifyAPI.getCart !== 'undefined') {
-    var originalMethod = ShopifyAPI.getCart
-    ShopifyAPI.getCart = function () {
-      var originalCallback = arguments[0]
-      arguments[0] = function (cart) {
-        originalCallback.apply(this, arguments)
-        $(document.body).trigger('ajaxCart.afterGetCart', cart)
+    if (typeof ShopifyAPI.getCart !== 'undefined') {
+      var getCartMethod = ShopifyAPI.getCart
+      ShopifyAPI.getCart = function () {
+        var getCartCallback = arguments[0]
+        arguments[0] = function (cart) {
+          $(document.body).trigger('ajaxCart.afterGetCart', cart)
+          getCartCallback.apply(this, arguments)
+        }
+
+        getCartMethod.apply(ShopifyAPI, arguments)
       }
     }
-
-    originalMethod.apply(ShopifyAPI, arguments)
   }
 
   Helpers.prototype.watchCheckoutDiscountField = function () {
@@ -345,23 +346,33 @@ __bva__.helpers = (function () {
   Helpers.prototype.watchCheckoutMarketingField = function () {
     var self = this
     var $marketingField = $('input[data-trekkie-id="buyer_accepts_marketing_field"]')
-
-    $marketingField.on('change', function () {
-      var isChecked = $(this).prop('checked')
+    function firePixel() {
+      var isChecked = $marketingField.prop('checked')
       var email = $('#checkout_email_or_phone, #checkout_email').val()
-      if (isChecked && email && email.indexOf('@') !== -1) {
-        self.fireEmailPixel({ email: 'email', emailType: 'marketing' })
+      var payload = {
+        email: email,
+        emailType: 'marketing',
+        interaction: 'On Email'
       }
-    })
-
-    var email = $('#checkout_email_or_phone, #checkout_email').val()
-    if ($marketingField.prop('checked')) {
-      if (email && email.indexOf('@') !== -1) {
-        this.fireEmailPixel({ email: email, emailType: 'marketing' })
-      } else {
-        this.state.initialBuyerAcceptsMarketing = true
+      if (isChecked && email && email.indexOf('@') !== -1) {
+        dataLayer.push(payload)
+        dataLayer.push({ event: 'On Email' })
+        self.log('On Email', payload)
       }
     }
+
+    $(document.body).on('submit', 'form[data-customer-information-form]', function (e) {
+      e.preventDefault()
+      firePixel()
+      $(document.body).unbind('submit')
+      $('form[data-customer-information-form]')[0].submit()
+    })
+
+    $('button[data-trekkie-id="continue_to_shipping_method_button"]').on('click', function (e) {
+      e.preventDefault()
+      firePixel()
+      $(this).unbind('click')[0].click()
+    })
   }
 
   Helpers.prototype.watchCheckoutShippingField = function () {
@@ -388,15 +399,51 @@ __bva__.helpers = (function () {
       }
     }
 
+    function initObserver() {
+      if (typeof window.MutationObser === 'undefined') {
+        return null
+      }
+
+      var observer = new MutationObserver(function (mutations) {
+        var self = this
+        mutations.forEach(function (mutation) {
+          var $selectedInput = $(mutation.target).find(shippingRateSelector).filter(function () {
+            return $(this).prop('checked')
+          })
+
+          if ($selectedInput.length) {
+            var radioVal = $selectedInput.val()
+            var $label = $('.radio__label[for="' + $selectedInput.attr('id') + '"]')
+            var labelVal = $label.find('[data-shipping-method-label-title]').attr('data-shipping-method-label-title')
+            firePixel(radioVal + '-' + labelVal)
+            self.disconnect()
+          }
+        })
+      })
+
+      var element = document.querySelector('.main')
+      observer.observe(element, { childList: true, subtree: true })
+    }
+
     $(document.body).on('change', shippingRateSelector, function (e) {
-      firePixel($(this).val())
+      var radioVal = $(this).val()
+      var $label = $('.radio__label[for="' + $(this).attr('id') + '"]')
+      var labelVal = $label.find('[data-shipping-method-label-title]').attr('data-shipping-method-label-title')
+      firePixel(radioVal + '-' + labelVal)
     })
 
-    var initialValue = $(shippingRateSelector).filter(function () {
+    var $initialCheckedRadio = $(shippingRateSelector).filter(function () {
       return $(this).prop('checked')
-    }).val()
+    })
 
-    firePixel(initialValue)
+    if ($initialCheckedRadio.length) {
+      var initialRadioVal = $initialCheckedRadio.val()
+      var $initialLabel = $('.radio__label[for="' + $initialCheckedRadio.attr('id') + '"]')
+      var initialLabelVal = $initialLabel.find('[data-shipping-method-label-title]').attr('data-shipping-method-label-title')
+      firePixel(initialRadioVal + '-' + initialLabelVal)
+    } else {
+      initObserver()
+    }
   }
 
   Helpers.prototype.watchCheckoutPaymentFields = function () {
@@ -471,6 +518,7 @@ __bva__.helpers = (function () {
               var payload = {
                 paymentType: state.paymentType,
                 interactionType: interactionType,
+                interaction: 'On Payment',
               }
               dataLayer.push(payload, event)
               this.log('On Payment', payload)
@@ -487,10 +535,11 @@ __bva__.helpers = (function () {
         return null
       }
 
-      var fields = document.querySelectorAll('[data-credit-card-fields] field')
+      var fields = document.querySelectorAll('[data-credit-card-fields] .field')
       ;[].slice.call(fields).forEach(function (field) {
-        var interactionKeys = field.outerText
+        var interactionKeys = field.querySelector('.field__label').outerText
           .toUpperCase()
+          .trim()
           .replace(/\s+/g, '_')
           .split('_/_')
           .map(getInteractionType)
@@ -569,7 +618,7 @@ __bva__.helpers = (function () {
 
   Helpers.prototype.watchQuickView = function (event) {
     var self = this
-    var event = event || 'product.quick'
+    event = event || 'product.quick'
 
     $(document.body).on(event, function (e, product, extras) {
       if (!product) {
@@ -577,7 +626,7 @@ __bva__.helpers = (function () {
         return null
       }
 
-      var extras = extras || {}
+      extras = extras || {}
       var sku = extras.sku || product.sku
       var barcode = extras.barcode || product.barcode
       var variantId = extras.variant_id || product.variant_id
@@ -1002,16 +1051,16 @@ __bva__.helpers = (function () {
       'event'    : 'Cart',
     };
 
-    dataLayer.push(cart);
-    if(__bva__.debug){
-      console.log("Cart"+" :"+JSON.stringify(cart, null, " "));
+    if (cart.products.length) {
+      dataLayer.push(cart);
+      if(__bva__.debug){
+        console.log("Cart"+" :"+JSON.stringify(cart, null, " "));
+      }
+    } else {
+      __bva__.helpers.fireEmptyCartPixel()
     }
 
     __bva__.cart = cart.products;
-
-    if (!cart.products.length) {
-      __bva__.helpers.fireEmptyCartPixel()
-    }
 
     function checkProducts() {
       var allQty = []
@@ -1025,13 +1074,13 @@ __bva__.helpers = (function () {
       })
 
       if (isEmpty) {
-        __bva__.helpers.handleCartEmpty()
+        __bva__.helpers.fireEmptyCartPixel()
       } else {
         allQty.forEach(function (qty, i) {
           var product = __bva__.cart.products[i]
           var initialQuantity = parseInt(product.quantity, 10)
           if (initialQuantity < qty) {
-            __bva__.helpers.handleAddToCart(product)
+            __bva__.helpers.fireAddToCartPixel(product)
           }
         })
       }
@@ -1078,7 +1127,7 @@ __bva__.helpers = (function () {
         }
 
         if (response.items.length === 1) {
-          __bva__.helpers.handleCartEmpty()
+          __bva__.helpers.fireEmptyCartPixel()
         }
 
         if (url) {
@@ -1281,10 +1330,8 @@ __bva__.helpers = (function () {
       viewcartfire = 0;
 
       /* VIEW CART */
-
-      // $('body').on('ajaxCart.afterCartLoad', calculateDynamicCart);
       function calculateDynamicCart(dbCart) {
-        if (typeof dbCart === 'undefined') {
+        if (typeof dbCart === 'undefined' || !dbCart.items) {
           throw new TypeError('Missing cart object')
         }
 
@@ -1321,12 +1368,10 @@ __bva__.helpers = (function () {
 
       if (__bva__.dynamicCart){
         // Fires when ever we call ShopifyAPI.getCart (which is everytime we view / update the Ajax Cart)
-        $(document.body).on('ajaxCart.afterGetCart', function (e, dbCart) {
-          calculateDynamicCart(dbCart)
+        $(document.body).on('ajaxCart.afterGetCart', function (e, cart) {
+          calculateDynamicCart(cart)
         })
       }
-
-      // $(__bva__.viewCart).on('click', calculateDynamicCart);
 
       /* ADD TO CART */
       jQuery.getJSON('/cart.js', function (response) {
