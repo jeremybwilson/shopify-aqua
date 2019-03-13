@@ -2,20 +2,11 @@
 
 <div id="search-template" class="" data-section-id="{{ section.id }}" data-section-type="search-template">
 
+  {%- if search.search_results > 1 -%}
   <div class="grid-max-width">
     <h2 class="search-title">{{ 'general.search.title' | t }}: <span>"{{ search.terms }}"</span></h2>
     <p class="bc-sf-search-result-number"></p>
   </div>
-
-  {% comment %}
-  <div id="search-bar" class="desktop-12 mobile-3">
-    <form action="/search" method="get">
-      <input type="text" name="q" id="q" placeholder="{{ 'general.search.placeholder' | t }}" />
-      {% include 'svg-icon-search' %}
-    </form>
-  </div>
-  {% endcomment %}
-  
       
   {% comment %} :: FILTER + SORT - Desktop Component :: {% endcomment %}
   <div id="full-width-filter" class="filter-wrap-desktop">
@@ -78,6 +69,12 @@
       <div id="bc-sf-filter-load-more"></div>
     </div>
   </div>
+  {%- else -%}
+    <div class="grid-max-width">
+      <h2 class="search-title">{{ 'general.search.title' | t }}: <span>"{{ search.terms }}"</span></h2>
+      <div id="recommendify-top-sellers" shop="{{ shop.domain }}"></div>
+    </div>
+  {%- endif -%}
 
 </div>
 
