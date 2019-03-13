@@ -350,12 +350,6 @@
   {% include 'product-size-chart' %}
 {% endif %}
 
-{%- unless product == empty -%}
-  <script type="application/json" id="ProductJson-{{ section.id }}">
-    {{ product | json }}
-  </script>
-{%- endunless -%}
-
 <style>
   {% if section.settings.thumbnails == 'right' %}
     .thumbnail-gallery {
