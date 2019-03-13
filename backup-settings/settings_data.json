@@ -388,6 +388,8 @@
           "use_swatch_images": true,
           "swatch_shape": "circles",
           "show_payment_button": false,
+          "disable_auto_select": true,
+          "selection_label": "Pick a size",
           "show_controls": false,
           "show_zoom": true,
           "thumbnails": "left",
