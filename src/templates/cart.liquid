@@ -104,7 +104,10 @@
                 {% if item.title contains "Free Gift" or item.title contains "Gift Item" %}
                   <div id="updates_{{ item.variant.id }}" class="cart-qty gift-item-cart-qty">{{ item.quantity }}</div>
                 {% else %}
-                  <input type="text" class="cart-qty bfx-product-qty" size="4" name="updates[{{ item.id }}]" id="updates_{{ item.variant.id }}" value="{{ item.quantity }}" onfocus="this.select();"/>
+                  <input type="text" class="cart-qty bfx-product-qty" size="4" name="updates[{{ item.id }}]"
+                         id="updates_{{ item.variant.id }}" value="{{ item.quantity }}" onfocus="this.select();"
+                         aria-label="variant quantity"
+                  />
                 {% endif %}
               </td>
               <td class="cart--total-price">
