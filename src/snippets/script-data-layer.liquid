@@ -639,7 +639,6 @@ __bva__.helpers = (function () {
     var self = this
 
     $(parentSelector).on('change', inputSelector, function (e) {
-      console.log('change', $(this).val())
       var email = $(this).val()
       if (email.indexOf('@') !== -1) {
         self.fireEmailPixel({ email: email, emailType: 'marketing' })
