@@ -1263,6 +1263,12 @@
       },
       {
         "type": "text",
+        "id": "email_popup_error_gender",
+        "label": "Error Text",
+        "default": "Please select your gender"
+      },
+      {
+        "type": "text",
         "id": "email_popup_error",
         "label": "Error Text",
         "default": "Please enter a valid e-mail address"

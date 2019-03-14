@@ -2294,7 +2294,7 @@ $(document).ready(function() {
   (function email_popup() {
 
     // check cookies (including GDPR)
-    var check_popup_cookie = $.cookie('mailing_list_delay_popup');
+    // var check_popup_cookie = $.cookie('mailing_list_delay_popup');
     var check_banner_cookie = $.cookie('gdpr_banner_read');
 
     // Set mailing_list_delay_popup cookie to 180 days if user is signed into Shopify account
@@ -2304,7 +2304,8 @@ $(document).ready(function() {
 
     // by default, the cookie banner will popup first. once the user hits "accept", then load the newsletter.
     // the newsletter is set to popup again after 7 days. though the cookie banner has already been read,
-    if( !check_popup_cookie && check_banner_cookie && !shopifyUserSignInStatus ){
+    // if( !check_popup_cookie && check_banner_cookie && !shopifyUserSignInStatus ){
+    if( check_banner_cookie && !shopifyUserSignInStatus ){
       setTimeout(function(){
         email_popup_load();
       }, 3000);
@@ -2313,7 +2314,7 @@ $(document).ready(function() {
     const ui = {
             formId: $( '#subscribe--popup--form' ),
            textbox: $( '#email-popup' ),
-    genderFieldset: '#gender-options', //Can't grab checked until user submits
+    genderFieldset: '#gender-options', // Can't grab checked until user submits
        birthDateId: $( '#birth-date' ),
             daybox: $( '#day' ),
           monthbox: $( '#month' ),
@@ -2323,6 +2324,7 @@ $(document).ready(function() {
     errorContainer: $( '#subscribe--popup--form-response' ),
           errorMsg: $( '#subscribe--popup--error-response' ),
        errorMsgTwo: $( '#subscribe--popup--error-response-birthdate' ),
+     errorMsgThree: $( '#subscribe--popup--error-response-gender' ),
         successMsg: $( '#subscribe--popup--success-response' ),
       fadeOutGroup: $( '#subscribe--popup--form, #subscribe--popup--error-response-birthdate' )
     };
@@ -2339,6 +2341,7 @@ $(document).ready(function() {
         ui.errorContainer.removeClass('has-error');
         ui.errorMsg.fadeOut();
         ui.errorMsgTwo.fadeOut();
+        ui.errorMsgThree.fadeOut();
 
       });
 
@@ -2353,18 +2356,39 @@ $(document).ready(function() {
         ui.errorMsgTwo.fadeOut();
       });
 
+      // ui.genderFieldset.on('change', () => {
+      //   // remove any pre-existing error class
+      //   ui.formId.removeClass('has-error');
+      //   ui.errorContainer.removeClass('has-error');
+      //   ui.errorMsgThree.fadeOut();
+      // });
+
       // submit form
       ui.formId.submit( (e) => {
         e.preventDefault();
 
         // validation code
         let validEmail = regexEmail.test(ui.textbox.val());
-        let selectedDay = ui.daybox.val();
-        let selectedMonth = ui.monthbox.val();
-        let selectedYear = ui.yearbox.val();
+        // let selectedDay = ui.daybox.val();
+        // let selectedMonth = ui.monthbox.val();
+        // let selectedYear = ui.yearbox.val();
+        let selectedDay = document.getElementById('day').value;
+        let selectedMonth = document.getElementById('month').value;
+        let selectedYear = document.getElementById('year').value;
 
         // assign value of to variable to check against any empty birthdate form fields
         let validBirthDate = (selectedDay.length <= 0 || selectedMonth.length <= 0 || selectedYear.length <= 0) ? false : true;
+
+        const selectedGenderTest = $( `${ui.genderFieldset} input:checked` ).val() || 'no_selection'; // wait for submit to gather selection
+        let validGenderGrab1 = document.getElementById('gender-options').value;
+        // let validGenderGrab2 = document.querySelector('input[name=gender]:checked').value;
+
+        console.log('VALUE of selectedGenderTest is:', selectedGenderTest);
+        console.log('VALUE of validGenderGrab1 is: ', validGenderGrab1);
+        // console.log('VALUE of validGenderGrab2 is: ', validGenderGrab2);
+
+        let validGenderTest = (selectedGenderTest !== 'no_selection') ? true : false;
+        console.log('VALUE of validGenderTest is: ', validGenderTest);
 
         if(!validEmail) {
 
@@ -2380,6 +2404,10 @@ $(document).ready(function() {
           ui.errorContainer.addClass('has-error');
           ui.errorMsgTwo.fadeIn();
 
+        } else if(!validGenderTest) {
+          // error state for gender
+          console.log('no gender was selected')
+
         } else {
           const selectedGender = $( `${ui.genderFieldset} input:checked` ).val() || 'no_selection'; // wait for submit to gather selection
 
@@ -2391,7 +2419,7 @@ $(document).ready(function() {
               "AQUA_Master_List" : 1 // list to add user to (must exist in Sailthru account)
               // "Anonymous" : 0 // list to remove user from (must exist in Sailthru account)
             },
-            "source" : "web",
+            "source" : "modal",
             "vars" : {
              "gender" : selectedGender,    // pulls in the value of the gender radio button input
              "BirthDay" : ui.daybox.val(),          // pulls in the value of the day dropdown input

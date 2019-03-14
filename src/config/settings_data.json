@@ -175,6 +175,7 @@
     "email_popup_bottom_text": "*Offer valid on orders of $150 or more.",
     "email_popup_input_placeholder": "Enter Your Email Address",
     "email_popup_error": "Please enter a valid e-mail address",
+    "email_popup_error_gender": "Please select your gender",
     "email_popup_error_birthdate": "Please enter a valid birthdate",
     "email_popup_success": "<p>You have successfully joined our newsletter<\/p>",
     "cookie_banner_mobile_text": "<p>This site uses cookies to simplify and improve your experience of this website. Further usage of the website implies acceptance of this usage.<\/p>",
