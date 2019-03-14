@@ -280,10 +280,6 @@ __bva__.helpers = (function () {
     }
 
     function mutationRoutine(mutation) {
-      var payload = {
-        id: '#checkout_reduction_code'
-      }
-
       mutation.addedNodes.forEach(function (node) {
         if (node.nodeType !== Node.ELEMENT_NODE) {
           return null
@@ -294,6 +290,7 @@ __bva__.helpers = (function () {
         ;[].slice.call(tags).forEach(function (tag) {
           var reductionType = getReductionTypeFromNode(tag)
           var code = tag.innerText.trim()
+          var payload = { id: '#checkout_reduction_code' }
 
           if (reductionType === 'discount' && state.promoList.indexOf(code) === -1) {
             payload.code = code
@@ -322,7 +319,7 @@ __bva__.helpers = (function () {
   Helpers.prototype.watchCheckoutEmailOrPhoneField = function () {
     var self = this
     var state = { email: '' }
-    var $field = $('#checkout_email_or_phone, #checkout_email')
+    var fieldSelector = '#checkout_email_or_phone, #checkout_email'
 
     function firePixel(email) {
       if (email && email.indexOf('@') !== -1 && state.email !== email) {
@@ -336,11 +333,11 @@ __bva__.helpers = (function () {
       }
     }
 
-    $field.on('blur', function () {
+    $(document.body).on('blur', fieldSelector, function () {
       firePixel($(this).val())
     })
 
-    firePixel($field.val())
+    firePixel($(fieldSelector).val())
   }
 
   Helpers.prototype.watchCheckoutMarketingField = function () {
@@ -355,8 +352,7 @@ __bva__.helpers = (function () {
         interaction: 'On Email'
       }
       if (isChecked && email && email.indexOf('@') !== -1) {
-        dataLayer.push(payload)
-        dataLayer.push({ event: 'On Email' })
+        self.fireEmailPixel(payload)
         self.log('On Email', payload)
       }
     }
@@ -464,12 +460,14 @@ __bva__.helpers = (function () {
       CVV: 'cvv',
     }
 
+    // Skip index 1, sicne we don't need it
+    var FIELD_ORDERS = {}
+    FIELD_ORDERS[0] = [INTERACTIONS.CARD_NUMBER]
+    FIELD_ORDERS[2] = [INTERACTIONS.MM, INTERACTIONS.YY]
+    FIELD_ORDERS[3] = [INTERACTIONS.CVV]
+
     function getPaymentType(paymentType) {
       return PAYMENT_TYPES[paymentType] || PAYMENT_TYPES.OTHER
-    }
-
-    function getInteractionType(interactionType) {
-      return INTERACTIONS[interactionType]
     }
 
     function paymentTypeRoutine($el) {
@@ -508,6 +506,10 @@ __bva__.helpers = (function () {
     }
 
     function watchPaymentField(interactionTypes, el) {
+      if (!interactionTypes || !interactionTypes.length) {
+        return null
+      }
+
       var observer = new MutationObserver(function (mutations) {
         mutations.forEach(function (mutation) {
           var classList = mutation.target.classList
@@ -530,30 +532,36 @@ __bva__.helpers = (function () {
       observer.observe(el, { attributes: true, attributeFilter: ['class'] })
     }
 
+    function setAndWatchFields(fields) {
+      ;[].slice.call(fields).forEach(function (field, i) {
+        var interactionKeys = FIELD_ORDERS[i]
+
+        if (interactionKeys) {
+          watchPaymentField(interactionKeys, field)
+        }
+      })
+    }
+
     function initializeObservers() {
       if (!window.MutationObserver) {
         return null
       }
 
-      var fields = document.querySelectorAll('[data-credit-card-fields] .field')
-      ;[].slice.call(fields).forEach(function (field) {
-        var interactionKeys = field.querySelector('.field__label').outerText
-          .toUpperCase()
-          .trim()
-          .replace(/\s+/g, '_')
-          .split('_/_')
-          .map(getInteractionType)
-          .filter(Boolean)
-
-        watchPaymentField(interactionKeys, field)
-      })
+      var interval
+      interval = setInterval((function (cb) {
+        return function () {
+          var fields = document.querySelectorAll('[data-credit-card-fields] .field')
+          if (fields.length) {
+            clearInterval(interval)
+            cb(fields)
+          }
+        }
+      })(setAndWatchFields), 1000)
     }
 
-    ;(function init() {
-      setInitialPaymentType()
-      bindUIEvents()
-      initializeObservers()
-    })()
+    setInitialPaymentType()
+    bindUIEvents()
+    initializeObservers()
   }
 
   Helpers.prototype.watchCustomerAccountForm = function () {
@@ -567,6 +575,16 @@ __bva__.helpers = (function () {
       }
 
       $(this).unbind('submit')[0].submit()
+    })
+  }
+
+  Helpers.prototype.watchCustomerAccountEmail = function () {
+    var self = this
+    $('#create_customer, #customer_login').on('blur', 'input[name="customer[email]"]', function (e) {
+      var email = $(this).val()
+      if (email.indexOf('@') !== -1) {
+        self.fireEmailPixel({ email: email, emailType: 'account' })
+      }
     })
   }
 
@@ -606,14 +624,27 @@ __bva__.helpers = (function () {
         self.fireEmailPixel({ email: email, emailType: 'marketing' })
       }
 
-      $(document.body).unbind('click', handler)
+      $(parentSelector).unbind('click', handler)
 
       if ($(buttonSelector).length) {
         $(buttonSelector)[0].click()
       }
     }
 
-    $(document.body).on('click', buttonSelector, handler)
+    $(parentSelector).on('click', buttonSelector, handler)
+  }
+
+  Helpers.prototype.watchEmailMarketingByChange = function (parentSelector, inputSelector) {
+    parentSelector = parentSelector || document.body
+    var self = this
+
+    $(parentSelector).on('change', inputSelector, function (e) {
+      console.log('change', $(this).val())
+      var email = $(this).val()
+      if (email.indexOf('@') !== -1) {
+        self.fireEmailPixel({ email: email, emailType: 'marketing' })
+      }
+    })
   }
 
   Helpers.prototype.watchQuickView = function (event) {
@@ -861,7 +892,8 @@ __bva__.helpers = (function () {
     Fire on Customer Pages */
 
     {% if template contains 'customer' %}
-      __bva__.helpers.watchCustomerAccountForm()
+      // __bva__.helpers.watchCustomerAccountForm()
+      __bva__.helpers.watchCustomerAccountEmail()
     {% endif %}
 
     /* DATALAYER: Blog Articles
@@ -1026,7 +1058,7 @@ __bva__.helpers = (function () {
         'sku'      : '{{line_item.sku}}',
         'variant'  : '{{line_item.variant_id}}',
         'name'     : '{{line_item.title}}',
-        'price'    : '{{line_item.price | money_without_currency}}',
+        'price'    : '{{line_item.price | money_without_currency | remove: ',' }}',
         'quantity' : '{{line_item.quantity}}',
         'brand'    : {{ line_item.vendor | default: shop.name | json }},
         'options'  : [
@@ -1043,9 +1075,9 @@ __bva__.helpers = (function () {
           {% endfor %}
         ],
       },{% endfor %}],
-      'cartTotal': {{ cart.total_price | money_without_currency | json }},
+      'cartTotal': {{ cart.total_price | money_without_currency | remove: ',' | json }},
       'itemsCount': {{ cart.item_count | downcase | json }},
-      'discountAmounts': {{ cart.total_discount | money_without_currency | json }},
+      'discountAmounts': {{ cart.total_discount | money_without_currency | remove: ',' | json }},
       'cartId': _cart.token,
       'pageType' : 'Cart',
       'event'    : 'Cart',
@@ -1094,7 +1126,7 @@ __bva__.helpers = (function () {
 
     $(__bva__.removeCartTrigger).on('click', function (event) {
       event.preventDefault()
-      var url = $(this).attr('href')
+      var $this = $(this)
       // ------------------------------------------------------------------- remove from cart
       return jQuery.getJSON("/cart", function (response) {
       // --------------------------------------------- get Json response
@@ -1126,13 +1158,7 @@ __bva__.helpers = (function () {
           console.log("Cart"+" :"+JSON.stringify(removeCart, null, " "));
         }
 
-        if (response.items.length === 1) {
-          __bva__.helpers.fireEmptyCartPixel()
-        }
-
-        if (url) {
-          window.location.href = url
-        }
+        $this.unbind('click')[0].click()
       // --------------------------------------------- get Json response
       });
       // ------------------------------------------------------------------- remove from cart
