@@ -3305,7 +3305,7 @@ theme.Product = (function () {
     },
 
     initPickAnOption: function () {
-      if (!this.settings.disableAutoSelect || !this.product.options) {
+      if (!this.settings || !this.settings.disableAutoSelect || !this.product || !this.product.options) {
         return null
       }
 
