@@ -2323,8 +2323,6 @@ $(document).ready(function() {
             submit: $( '#subscribe--popup--button' ),
     errorContainer: $( '#subscribe--popup--form-response' ),
           errorMsg: $( '#subscribe--popup--error-response' ),
-       errorMsgTwo: $( '#subscribe--popup--error-response-birthdate' ),
-     errorMsgThree: $( '#subscribe--popup--error-response-gender' ),
         successMsg: $( '#subscribe--popup--success-response' ),
       fadeOutGroup: $( '#subscribe--popup--form, #subscribe--popup--error-response-birthdate' )
     };
@@ -2340,8 +2338,6 @@ $(document).ready(function() {
         ui.formId.removeClass('has-error');
         ui.errorContainer.removeClass('has-error');
         ui.errorMsg.fadeOut();
-        ui.errorMsgTwo.fadeOut();
-        ui.errorMsgThree.fadeOut();
 
       });
 
@@ -2349,29 +2345,13 @@ $(document).ready(function() {
         e.preventDefault();
       });
 
-      ui.datebox.on('change', () => {
-        // remove any pre-existing error class
-        ui.formId.removeClass('has-error');
-        ui.errorContainer.removeClass('has-error');
-        ui.errorMsgTwo.fadeOut();
-      });
-
-      // ui.genderFieldset.on('change', () => {
-      //   // remove any pre-existing error class
-      //   ui.formId.removeClass('has-error');
-      //   ui.errorContainer.removeClass('has-error');
-      //   ui.errorMsgThree.fadeOut();
-      // });
-
       // submit form
       ui.formId.submit( (e) => {
         e.preventDefault();
 
         // validation code
         let validEmail = regexEmail.test(ui.textbox.val());
-        // let selectedDay = ui.daybox.val();
-        // let selectedMonth = ui.monthbox.val();
-        // let selectedYear = ui.yearbox.val();
+
         let selectedDay = document.getElementById('day').value;
         let selectedMonth = document.getElementById('month').value;
         let selectedYear = document.getElementById('year').value;
@@ -2379,37 +2359,40 @@ $(document).ready(function() {
         // assign value of to variable to check against any empty birthdate form fields
         let validBirthDate = (selectedDay.length <= 0 || selectedMonth.length <= 0 || selectedYear.length <= 0) ? false : true;
 
-        const selectedGenderTest = $( `${ui.genderFieldset} input:checked` ).val() || 'no_selection'; // wait for submit to gather selection
-        let validGenderGrab1 = document.getElementById('gender-options').value;
-        // let validGenderGrab2 = document.querySelector('input[name=gender]:checked').value;
-
-        console.log('VALUE of selectedGenderTest is:', selectedGenderTest);
-        console.log('VALUE of validGenderGrab1 is: ', validGenderGrab1);
-        // console.log('VALUE of validGenderGrab2 is: ', validGenderGrab2);
-
-        let validGenderTest = (selectedGenderTest !== 'no_selection') ? true : false;
-        console.log('VALUE of validGenderTest is: ', validGenderTest);
+        const selectedGender = $( `${ui.genderFieldset} input:checked` ).val() || 'no_selection'; // wait for submit to gather selection
+        let validGender1 = document.getElementById('gender-options').value;
+        // let validGender2 = document.querySelector('input[name=gender]:checked').value;
+        let validGender = (selectedGender !== 'no_selection') ? true : false;
 
         if(!validEmail) {
-
           // error state
           ui.formId.addClass('has-error');
           ui.errorContainer.addClass('has-error');
           ui.errorMsg.fadeIn();
 
-        } else if(!validBirthDate) {
-
-          // error state
-          // ui.formId.addClass('has-error');
-          ui.errorContainer.addClass('has-error');
-          ui.errorMsgTwo.fadeIn();
-
-        } else if(!validGenderTest) {
-          // error state for gender
-          console.log('no gender was selected')
-
         } else {
           const selectedGender = $( `${ui.genderFieldset} input:checked` ).val() || 'no_selection'; // wait for submit to gather selection
+
+          let vars = {};
+          const signup_method = 'modal';
+
+          if(validGender){
+
+            // Update vars object to include gender form field values
+            Object.assign(vars, {
+              "gender" : selectedGender
+            });
+          }
+
+          if(validBirthDate){
+
+            // Update vars object to include birthdate form field values
+            Object.assign(vars, {
+              "BirthDay" : selectedDay,
+              "BirthMonth" : selectedMonth,
+              "BirthYear" : selectedYear
+            });
+          }
 
           // success state
           Sailthru.integration("userSignUp",
@@ -2419,14 +2402,11 @@ $(document).ready(function() {
               "AQUA_Master_List" : 1 // list to add user to (must exist in Sailthru account)
               // "Anonymous" : 0 // list to remove user from (must exist in Sailthru account)
             },
-            "source" : "modal",
-            "vars" : {
-             "gender" : selectedGender,    // pulls in the value of the gender radio button input
-             "BirthDay" : ui.daybox.val(),          // pulls in the value of the day dropdown input
-             "BirthMonth" : ui.monthbox.val(),      // pulls in the value of the month dropdown input
-             "BirthYear" : ui.yearbox.val()        // pulls in the value of the year dropdown input
-             // "birth_date" : ui.birthDateId.val()    // date format needs to be "YYYY-MM-DD"
-            },
+            "source" : signup_method,
+            // This is the original vars nested object that we only want
+            // to pass through if these values are populated via the form
+            // Gender and Birthdate are NOT required elements to submit the form
+            vars,
             "onSuccess" : function() {
               ui.fadeOutGroup.fadeOut( () => {
                 ui.successMsg.fadeIn();
