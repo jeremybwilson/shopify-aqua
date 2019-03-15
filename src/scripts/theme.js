@@ -2380,15 +2380,34 @@ $(document).ready(function() {
             });
           }
 
-          if(validBirthDate){
-
+          if(selectedDay.length){
             // Update vars object to include birthdate form field values
             Object.assign(vars, {
               "BirthDay" : selectedDay,
+            });
+          }
+
+          if(selectedMonth.length){
+            // Update vars object to include birthdate form field values
+            Object.assign(vars, {
               "BirthMonth" : selectedMonth,
+            });
+          }
+
+          if(selectedYear.length){
+            // Update vars object to include birthdate form field values
+            Object.assign(vars, {
               "BirthYear" : selectedYear
             });
           }
+
+          // Update vars object to include birthdate form field values
+          // Object.assign(vars, {
+          //   "BirthDay" : selectedDay,
+          //   "BirthMonth" : selectedMonth,
+          //   "BirthYear" : selectedYear
+          // });
+
 
           // success state
           Sailthru.integration("userSignUp",
@@ -2399,9 +2418,6 @@ $(document).ready(function() {
               // "Anonymous" : 0 // list to remove user from (must exist in Sailthru account)
             },
             "source" : signup_method,
-            // This is the original vars nested object that we only want
-            // to pass through if these values are populated via the form
-            // Gender and Birthdate are NOT required elements to submit the form
             vars,
             "onSuccess" : function() {
               ui.fadeOutGroup.fadeOut( () => {
