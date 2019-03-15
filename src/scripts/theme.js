@@ -2294,7 +2294,7 @@ $(document).ready(function() {
   (function email_popup() {
 
     // check cookies (including GDPR)
-    // var check_popup_cookie = $.cookie('mailing_list_delay_popup');
+    var check_popup_cookie = $.cookie('mailing_list_delay_popup');
     var check_banner_cookie = $.cookie('gdpr_banner_read');
 
     // Set mailing_list_delay_popup cookie to 180 days if user is signed into Shopify account
@@ -2379,7 +2379,7 @@ $(document).ready(function() {
 
             // Update vars object to include gender form field values
             Object.assign(vars, {
-              "gender" : selectedGender
+              gender: selectedGender
             });
           }
 
