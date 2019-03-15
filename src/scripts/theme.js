@@ -2357,11 +2357,8 @@ $(document).ready(function() {
 
         // assign value of to variable to check against any empty birthdate form fields
         let validBirthDate = (selectedDay.length <= 0 || selectedMonth.length <= 0 || selectedYear.length <= 0) ? false : true;
-
-        const selectedGender = $( `${ui.genderFieldset} input:checked` ).val() || 'no_selection'; // wait for submit to gather selection
-        let validGender1 = document.getElementById('gender-options').value;
-        // let validGender2 = document.querySelector('input[name=gender]:checked').value;
         let validGender = (selectedGender !== 'no_selection') ? true : false;
+        const selectedGender = $( `${ui.genderFieldset} input:checked` ).val() || 'no_selection'; // wait for submit to gather selection
 
         if(!validEmail) {
           // error state
