@@ -2304,8 +2304,7 @@ $(document).ready(function() {
 
     // by default, the cookie banner will popup first. once the user hits "accept", then load the newsletter.
     // the newsletter is set to popup again after 7 days. though the cookie banner has already been read,
-    // if( !check_popup_cookie && check_banner_cookie && !shopifyUserSignInStatus ){
-    if( check_banner_cookie && !shopifyUserSignInStatus ){
+    if( !check_popup_cookie && check_banner_cookie && !shopifyUserSignInStatus ){
       setTimeout(function(){
         email_popup_load();
       }, 3000);
