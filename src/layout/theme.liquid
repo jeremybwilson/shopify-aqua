@@ -48,6 +48,12 @@
   {{ 'bc-sf-filter.scss.css' | asset_url | stylesheet_tag }} {% comment %} Filter App Styling {% endcomment %}
 
 
+  <!-- GTM
+================================================== -->
+  {% include 'script-google-tag-head' %}
+  {% include 'script-data-layer' %}
+
+
   <!-- Typography
 ================================================== -->
   {% include 'google-fonts' %}
@@ -71,8 +77,6 @@
   {{ 'jquery.fs.shifter.js' | asset_url | script_tag }}
   {% include 'script-yotpo' %}
   {% include 'script-zendesk' %}
-  {% include 'script-google-tag-head' %}
-  {% include 'script-data-layer' %}
 
 
   {% if template contains 'customers' %}

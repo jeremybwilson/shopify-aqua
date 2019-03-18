@@ -1404,6 +1404,12 @@ theme.Newsletter = (function() {
             },
             "source" : "web",
             "onSuccess" : function() {
+              var payload = { email: ui.textbox.val(), emailType: 'marketing', interaction: 'On Email' }
+              if (typeof window.__bva__ !== 'undefined' && typeof window.__bva__.helpers !== 'undefined') {
+                window.__bva__.helpers.fireEmailPixel(payload)
+              } else if (typeof dataLayer !== 'undefined') {
+                dataLayer.push(payload, { event: 'On Email' })
+              }
               ui.formId.fadeOut( () => {
                 ui.successMsg.fadeIn();
               });
@@ -2400,6 +2406,12 @@ $(document).ready(function() {
              // "birth_date" : ui.birthDateId.val()    // date format needs to be "YYYY-MM-DD"
             },
             "onSuccess" : function() {
+              var payload = { email: ui.textbox.val(), emailType: 'marketing', interaction: 'On Email' }
+              if (typeof window.__bva__ !== 'undefined' && typeof window.__bva__.helpers !== 'undefined') {
+                window.__bva__.helpers.fireEmailPixel(payload)
+              } else if (typeof dataLayer !== 'undefined') {
+                dataLayer.push(payload, { event: 'On Email' })
+              }
               ui.fadeOutGroup.fadeOut( () => {
                 ui.successMsg.fadeIn();
               });
@@ -2482,7 +2494,26 @@ theme.ProductForm = function (context, events) {
     onVariantSelected: function(variant, selector) {
 
       if ( !variant ) {
-        events.trigger("variantunavailable", selector.product && selector.product.variants[0]);
+        var mainOption = $(selector.selectors[0].element).val()
+        var option = $(selector.variantIdField).find('option').filter(function () {
+          return $(this).text().indexOf(mainOption) !== -1
+        })[0]
+
+        if (option) {
+          var $option = $(option)
+          var optionValue = $option.val()
+          var correspondingVariant = selector.product.variants.filter(function (variant) {
+            return variant.id.toString() === optionValue.toString()
+          })[0]
+
+          events.trigger("variantunavailable", correspondingVariant);
+
+          if (correspondingVariant.featured_image) {
+            events.trigger('variantchange:image', correspondingVariant.featured_image.id);
+          }
+        } else {
+          events.trigger("variantunavailable");
+        }
         return;
       }
 

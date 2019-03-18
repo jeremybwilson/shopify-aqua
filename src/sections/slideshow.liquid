@@ -237,11 +237,15 @@
               <a href="#" class="flex-prev">
                 {% include 'svg-icon-arrow-left' %}
               </a>
-              <div class="pagination">
-                <span class="flexslider--current-slide"></span>
-                <span class="slash">/</span>
-                <span class="flexslider--total-slides"></span>
-              </div>
+
+              {% if section.settings.show_nav_pagination_count %}
+                <div class="pagination">
+                  <span class="flexslider--current-slide"></span>
+                  <span class="slash">/</span>
+                  <span class="flexslider--total-slides"></span>
+                </div>
+              {% endif %}
+
               <a href="#" class="flex-next">
                 {% include 'svg-icon-arrow-right' %}
               </a>
@@ -568,6 +572,12 @@
       "id": "show_nav_pagination",
       "label": "Show Nav Pagination",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_nav_pagination_count",
+      "label": "Show Nav Slide count",
+      "default": false
     },
     {
       "type": "range",
