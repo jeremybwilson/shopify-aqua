@@ -2319,7 +2319,7 @@ $(document).ready(function() {
     const ui = {
             formId: $( '#subscribe--popup--form' ),
            textbox: $( '#email-popup' ),
-    genderFieldset: '#gender-options', //Can't grab checked until user submits
+    genderFieldset: '#gender-options', // Can't grab checked until user submits
        birthDateId: $( '#birth-date' ),
             daybox: $( '#day' ),
           monthbox: $( '#month' ),
@@ -2328,7 +2328,6 @@ $(document).ready(function() {
             submit: $( '#subscribe--popup--button' ),
     errorContainer: $( '#subscribe--popup--form-response' ),
           errorMsg: $( '#subscribe--popup--error-response' ),
-       errorMsgTwo: $( '#subscribe--popup--error-response-birthdate' ),
         successMsg: $( '#subscribe--popup--success-response' ),
       fadeOutGroup: $( '#subscribe--popup--form, #subscribe--popup--error-response-birthdate' )
     };
@@ -2344,19 +2343,11 @@ $(document).ready(function() {
         ui.formId.removeClass('has-error');
         ui.errorContainer.removeClass('has-error');
         ui.errorMsg.fadeOut();
-        ui.errorMsgTwo.fadeOut();
 
       });
 
       ui.textbox.on('click', (e) => {
         e.preventDefault();
-      });
-
-      ui.datebox.on('change', () => {
-        // remove any pre-existing error class
-        ui.formId.removeClass('has-error');
-        ui.errorContainer.removeClass('has-error');
-        ui.errorMsgTwo.fadeOut();
       });
 
       // submit form
@@ -2365,29 +2356,64 @@ $(document).ready(function() {
 
         // validation code
         let validEmail = regexEmail.test(ui.textbox.val());
-        let selectedDay = ui.daybox.val();
-        let selectedMonth = ui.monthbox.val();
-        let selectedYear = ui.yearbox.val();
+
+        let selectedDay = document.getElementById('day').value;
+        let selectedMonth = document.getElementById('month').value;
+        let selectedYear = document.getElementById('year').value;
 
         // assign value of to variable to check against any empty birthdate form fields
         let validBirthDate = (selectedDay.length <= 0 || selectedMonth.length <= 0 || selectedYear.length <= 0) ? false : true;
+        let validGender = (selectedGender !== 'no_selection') ? true : false;
+        const selectedGender = $( `${ui.genderFieldset} input:checked` ).val() || 'no_selection'; // wait for submit to gather selection
 
         if(!validEmail) {
-
           // error state
           ui.formId.addClass('has-error');
           ui.errorContainer.addClass('has-error');
           ui.errorMsg.fadeIn();
 
-        } else if(!validBirthDate) {
-
-          // error state
-          // ui.formId.addClass('has-error');
-          ui.errorContainer.addClass('has-error');
-          ui.errorMsgTwo.fadeIn();
-
         } else {
           const selectedGender = $( `${ui.genderFieldset} input:checked` ).val() || 'no_selection'; // wait for submit to gather selection
+
+          let vars = {};
+          const signup_method = 'modal';
+
+          if(validGender){
+
+            // Update vars object to include gender form field values
+            Object.assign(vars, {
+              gender: selectedGender
+            });
+          }
+
+          if(selectedDay.length){
+            // Update vars object to include birthdate form field values
+            Object.assign(vars, {
+              "BirthDay" : selectedDay,
+            });
+          }
+
+          if(selectedMonth.length){
+            // Update vars object to include birthdate form field values
+            Object.assign(vars, {
+              "BirthMonth" : selectedMonth,
+            });
+          }
+
+          if(selectedYear.length){
+            // Update vars object to include birthdate form field values
+            Object.assign(vars, {
+              "BirthYear" : selectedYear
+            });
+          }
+
+          // Update vars object to include birthdate form field values
+          // Object.assign(vars, {
+          //   "BirthDay" : selectedDay,
+          //   "BirthMonth" : selectedMonth,
+          //   "BirthYear" : selectedYear
+          // });
+
 
           // success state
           Sailthru.integration("userSignUp",
@@ -2397,14 +2423,8 @@ $(document).ready(function() {
               "AQUA_Master_List" : 1 // list to add user to (must exist in Sailthru account)
               // "Anonymous" : 0 // list to remove user from (must exist in Sailthru account)
             },
-            "source" : "web",
-            "vars" : {
-             "gender" : selectedGender,    // pulls in the value of the gender radio button input
-             "BirthDay" : ui.daybox.val(),          // pulls in the value of the day dropdown input
-             "BirthMonth" : ui.monthbox.val(),      // pulls in the value of the month dropdown input
-             "BirthYear" : ui.yearbox.val()        // pulls in the value of the year dropdown input
-             // "birth_date" : ui.birthDateId.val()    // date format needs to be "YYYY-MM-DD"
-            },
+            "source" : signup_method,
+            vars,
             "onSuccess" : function() {
               var payload = { email: ui.textbox.val(), emailType: 'marketing', interaction: 'On Email' }
               if (typeof window.__bva__ !== 'undefined' && typeof window.__bva__.helpers !== 'undefined') {
