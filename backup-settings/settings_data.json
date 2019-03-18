@@ -462,30 +462,6 @@
       "home-hero_slideshow": {
         "type": "slideshow",
         "blocks": {
-          "1552546922053": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/in-luck-strike-gold-on-st-patricks-day-code-inluck_ba1ff4ba-3d70-4ef5-a899-2b687067d061.jpg",
-              "mobile_image": "shopify://shop_images/in-luck-strike-gold-on-st-patricks-day-code-inluck-mobile-2.jpg",
-              "image_link": "shopify://collections/women-sale",
-              "heading": "",
-              "subheading": "",
-              "caption_text_align": "left",
-              "cta_one_link": "",
-              "cta_one_button_text": "",
-              "cta_one_line": "none",
-              "cta_two_link": "",
-              "cta_two_button_text": "Add a button",
-              "cta_two_line": "none",
-              "caption_color_scheme": "light",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#e41c39",
-              "caption_horizontal": "left",
-              "caption_vertical": 50,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.1"
-            }
-          },
           "1551216982423": {
             "type": "image",
             "settings": {
@@ -512,7 +488,6 @@
           }
         },
         "block_order": [
-          "1552546922053",
           "1551216982423"
         ],
         "settings": {
