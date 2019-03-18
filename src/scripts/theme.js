@@ -2494,7 +2494,26 @@ theme.ProductForm = function (context, events) {
     onVariantSelected: function(variant, selector) {
 
       if ( !variant ) {
-        events.trigger("variantunavailable", selector.product && selector.product.variants[0]);
+        var mainOption = $(selector.selectors[0].element).val()
+        var option = $(selector.variantIdField).find('option').filter(function () {
+          return $(this).text().indexOf(mainOption) !== -1
+        })[0]
+
+        if (option) {
+          var $option = $(option)
+          var optionValue = $option.val()
+          var correspondingVariant = selector.product.variants.filter(function (variant) {
+            return variant.id.toString() === optionValue.toString()
+          })[0]
+
+          events.trigger("variantunavailable", correspondingVariant);
+
+          if (correspondingVariant.featured_image) {
+            events.trigger('variantchange:image', correspondingVariant.featured_image.id);
+          }
+        } else {
+          events.trigger("variantunavailable");
+        }
         return;
       }
 
