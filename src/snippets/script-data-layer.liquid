@@ -273,9 +273,7 @@ __bva__.helpers = (function () {
       var attributes = node.querySelector('use').attributes
       for (var i = 0; i < attributes.length; i++) {
         var nodeValue = attributes[i].nodeValue
-        if (REDUCTION_TYPES[nodeValue]) {
-          return REDUCTION_TYPES[nodeValue]
-        }
+        return REDUCTION_TYPES[nodeValue] || undefined
       }
     }
 
@@ -291,6 +289,10 @@ __bva__.helpers = (function () {
           var reductionType = getReductionTypeFromNode(tag)
           var code = tag.innerText.trim()
           var payload = { id: '#checkout_reduction_code' }
+
+          if (tag.querySelector('.reduction-code__text').length) {
+            code = tag.querySelector('.reduction-code__text').innerText.trim()
+          }
 
           if (reductionType === 'discount' && state.promoList.indexOf(code) === -1) {
             payload.code = code
