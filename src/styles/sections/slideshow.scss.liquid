@@ -138,10 +138,27 @@
     position: relative;
     @include inline-flex;
     margin-top: 5px;
-    width: 100%;
+    margin-left: -15px;
+    margin-right: -15px;
 
     > .cta-with-symbols {
       margin: 0;
+      padding-left: 15px;
+      padding-right: 15px;
+
+      &.cta-type-link a {
+        font-weight: $font-weight--bold;
+        text-decoration: underline;
+        text-transform: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+
+        span {
+          font-weight: inherit;
+        }
+      }
 
       a {
         @include inline-flex;
