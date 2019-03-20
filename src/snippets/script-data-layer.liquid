@@ -699,7 +699,7 @@ __bva__.helpers = (function () {
           imageURL: 'https:' + product.featured_image_src,
           productURL: self.shop.url + product.url,
           brand: product.vendor || self.shop.name,
-          comparePrice: product.compare_at_price_max,
+          comparePrice: parseFloat(product.compare_at_price_max, 10) / 100,
           categories: product.collections || [],
           currentCategory: collection,
         }],
