@@ -1030,7 +1030,7 @@ __bva__.helpers = (function () {
           'imageURL'        : "https:{{product.featured_image.src|img_url:'grande'}}",
           'productURL'      : '{{shop.secure_url}}{{product.url}}',
           'brand'           : '{{product.vendor | default: shop.name}}',
-          'comparePrice'    : '{{product.compare_at_price_max|money_without_currency}}',
+          'comparePrice'    : '{{product.compare_at_price_max|money_without_currency | divided_by: 100.0 }}',
           'categories'      : {{product.collections|map:"title"|json}},
           'currentCategory' : "{{collection.title}}"
           {% if product.selected_variant != nil %}
@@ -1210,13 +1210,13 @@ __bva__.helpers = (function () {
       'transactionNumber'      : '{{checkout.order_id}}',
       'transactionId'          : '{{checkout.order_number}}',
       'transactionAffiliation' : '{{shop.name}}',
-      'transactionTotal'       : '{{checkout.total_price |  money_without_currency| remove: ","}}',
-      'transactionTax'         : '{{checkout.tax_price |  money_without_currency| remove: ","}}',
-      'transactionShipping'    : '{{checkout.shipping_price |  money_without_currency| remove: ","}}',
-      'transactionSubtotal'    : '{{checkout.subtotal_price |  money_without_currency| remove: ","}}',
+      'transactionTotal'       : '{{checkout.total_price |  money_without_currency| remove: "," | divided_by: 100.0 }}',
+      'transactionTax'         : '{{checkout.tax_price |  money_without_currency| remove: "," | divided_by: 100.0 }}',
+      'transactionShipping'    : '{{checkout.shipping_price |  money_without_currency| remove: "," | divided_by: 100.0 }}',
+      'transactionSubtotal'    : '{{checkout.subtotal_price |  money_without_currency| remove: "," | divided_by: 100.0 }}',
       {% for discount in checkout.discounts %}
       'promoCode' : '{{discount.code}}',
-      'discount'  : '{{discount.amount | money_without_currency}}',
+      'discount'  : '{{discount.amount | money_without_currency | divided_by: 100.0 }}',
       {% endfor %}
 
       'products': __bva__products
