@@ -489,37 +489,9 @@
               "caption_background": "transparent",
               "caption_opacity": "0.1"
             }
-          },
-          "1553052741533": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/spring-is-on-30-off-desktop_cc393b75-12ae-4a37-abdd-6bc69db4c33c.jpg",
-              "mobile_image": "shopify://shop_images/spring-is-on-30-off-mobile_095ac3f0-94ac-4c9d-8a2c-6d4f33e3bfda.jpg",
-              "image_link": "",
-              "heading": "<br>",
-              "subheading": "",
-              "caption_text_align": "left",
-              "cta_type": "button",
-              "cta_one_link": "shopify://collections/spring-sale-men",
-              "cta_one_button_text": "Shop Men",
-              "cta_one_line": "none",
-              "cta_two_link": "shopify://collections/select-spring",
-              "cta_two_button_text": "Shop Women",
-              "cta_two_line": "none",
-              "caption_color_scheme": "dark",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#e41c39",
-              "caption_horizontal": "left",
-              "caption_horizontal_offset": 25.5,
-              "caption_vertical": 67,
-              "caption_vertical_mobile": 80,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.1"
-            }
           }
         },
         "block_order": [
-          "1553052741533",
           "1551216982423"
         ],
         "settings": {
