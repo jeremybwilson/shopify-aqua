@@ -2534,6 +2534,8 @@ theme.ProductForm = function (context, events) {
         } else {
           events.trigger("variantunavailable");
         }
+
+        events.trigger("variantchange", correspondingVariant);
         return;
       }
 
