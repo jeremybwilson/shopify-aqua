@@ -1,8 +1,8 @@
-<div id="header-section" 
-  data-section-id="{{ section.id }}" 
-  data-section-type="header-section" 
+<div id="header-section"
+  data-section-id="{{ section.id }}"
+  data-section-type="header-section"
   data-swap-rate="{{ section.settings.announcement_swap_rate }}">
-  
+
   {% comment %} ..:: PROMO BANNER PORTION ("Announcements") ::.. {% endcomment %}
   {%- if section.settings.show_announcement_text -%}
     {% include 'header-announcement-bar' %}
@@ -24,7 +24,7 @@
 
       {% comment %} ..:: NAV : BRAND LOGO ::.. {% endcomment %}
       <div id="nav-logo">
-          <a href="/" aria-label="Go to homepage">
+          <a href="/" aria-label="{{ shop.name }}" title="{{ shop.name }}">
             {% include 'svg-icon-header-logo' %}
           </a>
       </div>
@@ -33,7 +33,7 @@
 
       {% comment %} ..:: NAV : ACCOUNT + CART + SEARCH (Right Elements) ::.. {% endcomment %}
       <div id="nav-user">
-        <ul id="nav-user-list"> 
+        <ul id="nav-user-list">
 
           {% comment %} ..:: SITE PICKER : (US, UK, EU, CAN) ::.. {% endcomment %}
           {% if section.settings.show_site_picker %}
@@ -87,13 +87,13 @@
           {% comment %} ..:: CART ::.. {% endcomment %}
           <li class="nav-item nav-cart">
             <a href="/cart" {% if settings.ajax_cart_method == 'drawer' %} class="site-header__cart-toggle js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false" {% endif %}>
-              
+
               {% if section.settings.cart_icon == 'cart' %}
                 {% include 'svg-icon-cart' %}
-              
+
               {% elsif section.settings.cart_icon == 'bag' %}
                 {% include 'svg-icon-shopping-bag' %}
-              
+
               {% elsif section.settings.cart_icon == 'text' %}
                 <div class="icon icon-cart-text">{{ section.settings.cart_icon_text_value }}</div>
               {% endif %}
@@ -135,7 +135,7 @@
     {% if section.settings.full_width_header %}</div>{% endif %}
   </header>
 
-  
+
 
 
 
@@ -177,8 +177,8 @@
     /* MOBILE MENU : Height Setup
         Notes :
           - announcement_height default is 60px, and can be set to min of 40px
-          - actual navigation bar is 50px tall, and since scrolling hides promo, we have a "isStuck" condition which is 
-              basically an indicator for the user is scrolled down the page. 
+          - actual navigation bar is 50px tall, and since scrolling hides promo, we have a "isStuck" condition which is
+              basically an indicator for the user is scrolled down the page.
           - Why? Because we need users to be able to scroll the mobile menu, but not scroll backing content on page.
     */
     #nav-bar-wrapper #nav-menu-mobile {

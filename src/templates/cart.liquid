@@ -17,6 +17,7 @@
           var cartTotal = calcCartTotal( cart.total_price );
           $( '#cart-page-price' ).html( cartTotal );
           console.log( 'Just set priceEl inner html as ' + cartTotal );
+          $(document.body).trigger('ajaxCart.afterGetCart', cart)
         }
 
        function calcCartTotal( total_price ) {

@@ -165,6 +165,7 @@
     "email_popup_text": "Be the first to know about new styles & ultra-exclusive offers plus <strong>ENJOY $50 OFF*</strong> your first purchase.",
     "email_popup_bottom_text": "*Offer valid on orders of $150 or more.",
     "email_popup_input_placeholder": "Enter Your Email Address",
+    "email_popup_error_gender": "Please select your gender",
     "email_popup_error": "Please enter a valid e-mail address",
     "email_popup_error_birthdate": "Please enter a valid birthdate",
     "email_popup_success": "<p>You have successfully joined our newsletter</p>",
@@ -186,7 +187,8 @@
     "discount_modal_button_text": "#fefffe",
     "discount_modal_button_alt_bg": "#ab5232",
     "discount_modal_button_alt_text": "#fefffe",
-    "borderfree_enabled": false,
+    "borderfree_enabled": true,
+    "borderfree_production": true,
     "borderfree_js_url_dev": "https://bfx-objects.stage.borderfree.com/v1/dist/bfx.js",
     "borderfree_js_config_dev": "{key:'bca2f6b0-0273-11e6-8da6-4920e7373927', env:'STAGE', mode:'default', brand:'default'}",
     "borderfree_merchant_url_dev": "https://stagecheckout.borderfree.com/htmlcheckout/resources/js/merchant.js",
@@ -368,32 +370,6 @@
       },
       "collection-template": {
         "type": "collection-template",
-        "blocks": {
-          "1551418571178": {
-            "type": "collection_banner",
-            "settings": {
-              "collection_handle": "women-aq24-7",
-              "banner_image_desktop": "shopify://shop_images/introducing-aqua-24-7-flexible-sole.jpg",
-              "banner_image_mobile": "shopify://shop_images/introducing-aqua-24-7-flexible-sole_a52852c2-4068-4c8b-8cd2-26dcded056da.jpg",
-              "banner_text_header": "",
-              "banner_text_body": "",
-              "banner_text_divider": true,
-              "textbox_constrain": false,
-              "textbox_horizontal": "center",
-              "textbox_horizontal_nudge": 0,
-              "textbox_vertical": "center",
-              "textbox_vertical_nudge": 0,
-              "textbox_text_align": "left",
-              "textbox_color_text": "#ffffff",
-              "textbox_color_divider": "#ffffff",
-              "textbox_color_bg": "#000000",
-              "textbox_opacity": "0.1"
-            }
-          }
-        },
-        "block_order": [
-          "1551418571178"
-        ],
         "settings": {
           "grid": 3,
           "rows": 8,
@@ -413,6 +389,8 @@
           "use_swatch_images": true,
           "swatch_shape": "circles",
           "show_payment_button": false,
+          "disable_auto_select": true,
+          "selection_label": "Pick a size",
           "show_controls": false,
           "show_zoom": true,
           "thumbnails": "left",
@@ -488,12 +466,13 @@
           "1551216982423": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/Revy_Hero_Banner_1920X1014_88517f61-47a9-4654-9552-66e063a04a41.jpg",
-              "mobile_image": "shopify://shop_images/Feb_18th_Mobile_Hero_Banner_768X1032_07359110-59d9-4cfb-aac5-69481d09e7fb.jpg",
-              "image_link": "shopify://collections/women-flats",
+              "image": "shopify://shop_images/1._Hero_Banner_1920X1014_a9c0aaee-fb30-4025-bc20-807d822c470e.jpg",
+              "mobile_image": "shopify://shop_images/1._Mobile_Mar_4th_Hero_Banner_768X1032_0032d1b5-1979-41a7-a58b-5f2d5adacd1b.jpg",
+              "image_link": "shopify://collections/women-sandals",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
+              "cta_type": "button",
               "cta_one_link": "",
               "cta_one_button_text": "",
               "cta_one_line": "none",
@@ -504,7 +483,9 @@
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#e41c39",
               "caption_horizontal": "left",
+              "caption_horizontal_offset": 0,
               "caption_vertical": 50,
+              "caption_vertical_mobile": 50,
               "caption_background": "transparent",
               "caption_opacity": "0.1"
             }
@@ -516,7 +497,8 @@
         "settings": {
           "show": true,
           "full_width": true,
-          "show_nav_pagination": false,
+          "show_nav_pagination": true,
+          "show_nav_pagination_count": false,
           "slider_speed": 3
         }
       },
@@ -574,12 +556,13 @@
           "1551217570857": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/Cierra_Banner_2_1920X915_21f9f5d2-82e2-4fd8-a280-0aeabb5ba535.jpg",
-              "mobile_image": "shopify://shop_images/feb_18th_mobile_banner_2_768x1048_2_720.jpg",
+              "image": "shopify://shop_images/Lesley_Web_Banner.jpg",
+              "mobile_image": "shopify://shop_images/Lesley_Mobile_Banner.jpg",
               "image_link": "shopify://collections/women-new-arrivals",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
+              "cta_type": "button",
               "cta_one_link": "",
               "cta_one_button_text": "",
               "cta_one_line": "none",
@@ -590,7 +573,9 @@
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#e41c39",
               "caption_horizontal": "left",
+              "caption_horizontal_offset": 0,
               "caption_vertical": 50,
+              "caption_vertical_mobile": 50,
               "caption_background": "transparent",
               "caption_opacity": "0.1"
             }
@@ -603,6 +588,7 @@
           "show": true,
           "full_width": true,
           "show_nav_pagination": false,
+          "show_nav_pagination_count": false,
           "slider_speed": 10
         }
       },
@@ -652,6 +638,9 @@
         "type": "video-with-text",
         "settings": {
           "video_url": "https://vimeo.com/319130430",
+          "video_autoplay": true,
+          "video_mute": true,
+          "heading_image": "shopify://shop_images/Weatherproof-logo.jpg",
           "heading_text": "WHATEVER THE WEATHER",
           "body_text": "<p>Exclusive weatherproofing for<br>the discerning man and woman<br>who want to look their best,<br>rain or shine</p>",
           "button_text": "LEARN MORE",
@@ -660,7 +649,8 @@
           "video_side": "left",
           "video_width": 64,
           "text_vertical": "center",
-          "text_align": "center"
+          "text_align": "center",
+          "heading_image_placement": "top"
         }
       },
       "page-about-template": {
@@ -737,6 +727,7 @@
               "heading": "About",
               "subheading": "",
               "caption_text_align": "center",
+              "cta_type": "button",
               "cta_one_link": "",
               "cta_one_button_text": "",
               "cta_one_line": "none",
@@ -747,7 +738,9 @@
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
               "caption_horizontal": "center",
+              "caption_horizontal_offset": 0,
               "caption_vertical": 45,
+              "caption_vertical_mobile": 50,
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
             }
@@ -760,6 +753,7 @@
           "show": false,
           "full_width": true,
           "show_nav_pagination": true,
+          "show_nav_pagination_count": false,
           "slider_speed": 5
         }
       },
@@ -945,7 +939,7 @@
             "type": "text_block",
             "settings": {
               "image_desktop": "shopify://shop_images/03_AQUASP02_2019_AVERY_GOLD_101_v2_cmyk_Gracol.jpg",
-              "image_mobile": "shopify://shop_images/cierra_6260d85d-b5dc-44a8-8f8a-8fa88fc16520.jpg",
+              "image_mobile": "shopify://shop_images/03_AQUASP02_2019_AVERY_GOLD_101_v2_cmyk_Gracol_720x_2500bfd9-d4f1-44ae-9779-5bc8f6c5307e.jpg",
               "module_html_h2": "How to Care for Leather Shoes",
               "module_html_p": "Properly caring for Italian leather is key in extending the life of your shoes and boots and keeping them looking newer longer.<br><br>\n\nTo remove liquid stains such as coffee, soda, and wine, gently wipe your shoes with a soft cloth that’s been moistened with water. For harder stains, gently wipe your shoe with a soft cloth that has been moistened with a water and neutral soap solution or use a mixture of water and 5% ammonia.<br><br>\n\nIf the outer surface of your footwear gets wet, we recommend that you air dry your leather footwear in a cool, dry environment and away from direct heat. To restore your leather shoes or boots back to their original shine, polish them with a quality wax and buff off using a soft cloth or brush.",
               "button_text": "Shop Women’s Shoes",
@@ -963,8 +957,8 @@
               "image_mobile": "shopify://shop_images/duke_0b499b03-ed71-47be-9c6a-bc69fe5911dd.jpg",
               "module_html_h2": "How to Care for Suede Shoes",
               "module_html_p": "With a little time and the proper tool, cleaning and protecting suede shoes and boots is easy. <br><br>\n\nEvery pair of suede shoes is packaged with its very own suede sponge. This is an essential tool made for the best suede care and protecting your footwear from dirt and/or liquid stains. Using the soft rectangular sponge to gently brush off your suede footwear will also help in restoring the suedes’ original texture and enhance its appearance without damaging the material.<br><br> \n\nTo retain the original beauty and texture of your suede shoes and boots, store them in a cool, dry environment and away from direct heat.",
-              "button_text": "Shop Women's",
-              "button_link": "shopify://collections/women",
+              "button_text": "Shop Men's Shoes",
+              "button_link": "shopify://collections/men-new-arrivals",
               "button_symbol_placement": "left",
               "module_image_position_desktop": "image_right",
               "module_image_position_mobile": "image_top",
@@ -978,8 +972,8 @@
               "image_mobile": "shopify://shop_images/brenna_907be294-d00c-4b7c-a62e-69244702731e.jpg",
               "module_html_h2": "How to Care for Weatherproof Shoes",
               "module_html_p": "Aquatalia’s weatherproofing technology protects your shoes in wet weather conditions, keeping your feet dry and comfortable.<br><br> \n\nWeatherproof shoes require the same care as all leather and suede footwear. Please refer to the above care instructions to keep your shoes in good condition. Any stain that sits on your shoes for an extended period of time can become permanent. We recommend using a soft, lightly moistened cloth to remove stains immediately. Always store your weatherproof shoes in a cool, dry environment and away from direct heat and/or sunlight.",
-              "button_text": "Shop Men's Shoes",
-              "button_link": "shopify://collections/men-shoes",
+              "button_text": "Shop Women's Shoes",
+              "button_link": "shopify://collections/women-new-arrivals",
               "button_symbol_placement": "left",
               "module_image_position_desktop": "image_left",
               "module_image_position_mobile": "image_top",

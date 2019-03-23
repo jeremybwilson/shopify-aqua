@@ -14,36 +14,25 @@
 
 {% comment %} :: PANEL - VIDEO :: (See bottom portion for layout placement usage) {% endcomment %}
 {% capture video_panel %}
-  <div class="featured-video-wrap">
+  <div class="featured-video-wrap"
+    data-video-url="{{ video_url }}"
+    data-video-id="{{ video_url.id }}"
+    data-video-type="{{ video_url.type }}"
+    data-video-mute="{{ section.settings.video_mute }}"
+    data-video-autoplay="{{ section.settings.video_autoplay }}">
 
-    {% comment %} :: VIDEO ELEMENT :: {% endcomment %}
-    <div class="featured-video">
+    {% comment %}
+      :: VIDEO ELEMENT ::
+        NOTE: Youtube eats the given element, vimeo renders iframe inside it.. {% endcomment %}
+    {% if video_url.type == 'vimeo' %}
+      <div id="video-{{ video_url.id }}" class="featured-video"></div>
 
-      {% comment %} :: DEFAULT :: (Can't define default in video_url type block) {% endcomment %}
-      {% if video_url == blank %}
-          <iframe src="//www.youtube.com/embed/_9VUPq3SxOc?rel=0&showinfo=0&vq=720&byline=0&portrait=0"
-                  name="iframe_default" title="Share your brand story by adding a video to your store"
-                  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-      {% else %}
+    {% else %}
+      <div class="featured-video">
+        <div id="video-{{ video_url.id }}"></div>
+      </div>
+    {% endif %}
 
-        {% comment %} :: YOUTUBE :: {% endcomment %}
-        {% if video_url.type == "youtube" %}
-          <iframe src="//www.youtube.com/embed/{{ video_url.id }}?rel=0&showinfo=0&vq=720&byline=0&portrait=0"
-                  name="iframe_youtube" title="{{section.settings.video_url_description}}"
-                  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        {% endif %}
-
-        
-        {% comment %} :: VIMEO :: {% endcomment %}
-        {% if video_url.type == "vimeo" %}
-          <iframe src="//player.vimeo.com/video/{{ video_url.id }}?byline=0&portrait=0&badge=0&byline=0&portrait=0"
-                  name="iframe_vimeo" title="{{section.settings.video_url_description}}"
-                  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        {% endif %}
-
-      {% endif %}
-
-    </div>
   </div>
 {% endcapture %}
 
@@ -105,7 +94,10 @@
 
 
 {% comment %} :: LAYOUT :: {% endcomment %}
-<div id="video-with-text-{{ section.id }}" class="homepage-section video-with-text-section no-fouc index-section" data-section-id="{{ section.id }}">
+<div id="video-with-text-{{ section.id }}"
+  class="homepage-section video-with-text-section no-fouc index-section"
+  data-section-type="video-with-text"
+  data-section-id="{{ section.id }}">
   {% if section.settings.video_side == 'left' %}
     {{ video_panel }}
     {{ text_panel }}
@@ -147,10 +139,18 @@
         "accept": ["youtube", "vimeo"]
       },
       {
-        "type": "text",
-        "id": "video_url_description",
-        "label": "Describe this link briefly",
-        "default": "This video introduces our new products."
+        "type": "checkbox",
+        "id": "video_autoplay",
+        "label": "Autoplay Video",
+        "info": "(Plays when in view, pauses when not -- Mobile devices must initiate 1st playback before this can control itß)",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "video_mute",
+        "label": "Mute Video Initially",
+        "info": "(Video auto-muted until user changes volume)",
+        "default": true
       },
       {
         "type": "image_picker",

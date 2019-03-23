@@ -54,7 +54,7 @@
   <div class="product-star-rating">
     {% include 'pr-review-snippet' %}
     {% comment %}{- Copied from Review Snapshot -}{% endcomment %}
-    <a href="/pages/reviews?&amp;pr_merchant_id=683283&amp;pr_api_key=ecee97b3-ae68-483f-ae4b-756350853c06&amp;pr_merchant_group_id=79437&amp;pr_page_id=123456789" class="product-star-rating__write-review">Write a Review</a>
+    <a href="/pages/reviews?&amp;pr_merchant_id=450247&amp;pr_api_key=e4e06efc-e430-40a3-8203-97a9f625df88&amp;pr_merchant_group_id=77397&amp;pr_page_id={{ product.id }}" class="product-star-rating__write-review">Write a Review</a>
   </div>
   <div class="clear"></div>
 
@@ -80,7 +80,11 @@
     <div class="select" {% if product.variants.size == 1 or section.settings.product_variants == 'swatches' %}style="display: none;"{% endif %}>
       <select id="product-select-{{ product.id }}" name='id'>
         {% for variant in product.variants %}
-          <option value="{{ variant.id }}" {% if variant == current_variant %}selected="selected"{% endif %}>
+          {%- assign disable_auto_select = false -%}
+          {%- if section.settings.disable_auto_select  and forloop.first == false -%}
+            {%- assign disable_auto_select = true -%}
+          {%- endif -%}
+          <option value="{{ variant.id }}" {% if variant == current_variant and disable_auto_select %}selected="selected"{% endif %}>
             {{ variant.title }} - {{ variant.price | money }}
           </option>
         {% endfor %}
@@ -95,7 +99,12 @@
       CYCLE #1 - Cycle through the available options {% endcomment %}
 
       {% for option in product.options_with_values %}
-        {% include "swatch" %}
+        {%- assign disable_auto_select = false -%}
+        {%- if section.settings.disable_auto_select and forloop.first == false -%}
+          {%- assign disable_auto_select = true -%}
+        {%- endif -%}
+
+        {% include "swatch", disable_auto_select: disable_auto_select %}
       {% endfor %}
 
     {% endif %}

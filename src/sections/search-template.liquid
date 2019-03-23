@@ -1,7 +1,7 @@
 {%- assign product_limit = 36 -%}   
 
 <div id="search-template" class="" data-section-id="{{ section.id }}" data-section-type="search-template">
-
+  {%- if search.results_count > 1 -%}
   <div class="grid-max-width">
     <h2 class="search-title">{{ 'general.search.title' | t }}: <span>"{{ search.terms }}"</span></h2>
     <p class="bc-sf-search-result-number"></p>
@@ -79,6 +79,12 @@
       <div id="bc-sf-filter-load-more"></div>
     </div>
   </div>
+  {%- else -%}
+    <div class="grid-max-width">
+      <h2 class="search-title">{{ 'general.search.title' | t }}: <span>"{{ search.terms }}"</span></h2>
+      <div id="recommendify-top-sellers" shop="{{ shop.domain }}"></div>
+    </div>
+  {%- endif -%}
 
 </div>
 

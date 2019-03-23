@@ -1,0 +1,111 @@
+
+{% comment %}
+
+	========================================
+	Code by Jason @ Freakdesign
+	Relates to a blog post:
+	https://freakdesign.myshopify.com/admin/blogs/4018421/articles/105830151
+	========================================
+
+{% endcomment %}
+
+
+{% comment %}
+	Add in all the variants from the current product.
+{% endcomment %}
+{% assign productVariants = product.variants %}
+
+{% comment %}
+	Grab the option names of the current product
+{% endcomment %}
+{% assign productOptionNames = product.options | json %}
+
+{% comment %}
+	First add all the handles of the other products that need to be bundled in.
+	The strip is just added for safety, in case you add a space after that comma in error.
+	Notice that there is no check to see if the options match. You should do that...
+{% endcomment %}
+
+{% assign productList = 'additional-product-1,additional-product-2' | replace:' ' | split:',' %}
+{% for productListHandle in productList %}
+
+	{% comment %}
+		Grab a product
+	{% endcomment %}
+	{% assign productListItem = all_products[productListHandle] %}
+
+	{% comment %}
+		Grab the option names of the additional product
+	{% endcomment %}	
+	{% assign productListOption = productListItem.options | json %}
+
+	{% comment %}
+		Do nothing more if the option names don't match
+	{% endcomment %}
+	{% unless productListOption == productOptionNames %}{% continue %}{% endunless %}
+
+	{% comment %}
+		Update our master variant list with the additional variants
+	{% endcomment %}
+	{% assign productVariants = productVariants | concat:productListItem.variants %}
+{% endfor %}
+
+{% comment %}
+	We should now have a pretty big list of variants so let's push all of them out into a standard <select> element, ready for the option selector code to kick in.
+{% endcomment %}
+<select name="id" id="ProductSelect">
+	{% for variant in productVariants %}
+		<option value="{{ variant.id }}">{{ variant.title }} ({{ variant.id }})</option>
+	{% endfor %}
+</select>
+
+{% comment %}
+	You might already have this script in your theme so keep / remove as needed
+{% endcomment %}
+{% comment %}
+{{ 'option_selection.js' | shopify_asset_url | script_tag }}
+{% endcomment %}
+<script>
+	/* 
+		build a new product json output for the option selectors to use.
+		Since the product json can be used by other apps and scripts let's just recreate the whole thing from scratch, using out new variant list instead of the default ones.
+	*/
+	var productJson = {
+		id: {{ product.id | json }},
+		title: {{ product.title | json }},
+		handle: {{ product.handle | json }},
+		description: {{ product.description | json }},
+		vendor: {{ product.vendor | json }},
+		type: {{ product.type | json }},
+		tags: {{ product.tags | json }},
+		price: {{ product.price | json }},
+		price_min: {{ product.price_min | json }},
+		price_max: {{ product.price_max | json }},
+		available: {{ product.available | json }},
+		price_varies: {{ product.price_varies | json }},
+		compare_at_price: {{ product.compare_at_price | json }},
+		compare_at_price_min: {{ product.compare_at_price_min | json }},
+		compare_at_price_max: {{ product.compare_at_price_max | json }},
+		compare_at_price_varies: {{ product.compare_at_price_varies | json }},
+		variants: {{ productVariants | json }}, /* this is our new master list - assuming it works! */ 
+		images: {{ product.images | json }},
+		featured_image: {{ product.featured_image | json }},
+		options: {{ product.options | json }},
+		url: {{ product.url | json }}
+	};
+	/* 
+	This should really be your selectCallback function but I've thrown this in just for testing only...
+	*/
+	var selectCallback = function(variant, selector) {
+		// console.log(variant, selector);
+		return;
+	};
+	/* assuming your theme has jQuery in place, let's fire the option selector scripts */
+	$(function() {
+		new Shopify.OptionSelectors('ProductSelect', {
+			product: productJson,
+			onVariantSelected: selectCallback,
+			enableHistoryState: true
+		});
+	});
+</script>

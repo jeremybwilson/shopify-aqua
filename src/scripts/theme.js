@@ -1404,6 +1404,12 @@ theme.Newsletter = (function() {
             },
             "source" : "web",
             "onSuccess" : function() {
+              var payload = { email: ui.textbox.val(), emailType: 'marketing', interaction: 'On Email' }
+              if (typeof window.__bva__ !== 'undefined' && typeof window.__bva__.helpers !== 'undefined') {
+                window.__bva__.helpers.fireEmailPixel(payload)
+              } else if (typeof dataLayer !== 'undefined') {
+                dataLayer.push(payload, { event: 'On Email' })
+              }
               ui.formId.fadeOut( () => {
                 ui.successMsg.fadeIn();
               });
@@ -2313,7 +2319,7 @@ $(document).ready(function() {
     const ui = {
             formId: $( '#subscribe--popup--form' ),
            textbox: $( '#email-popup' ),
-    genderFieldset: '#gender-options', //Can't grab checked until user submits
+    genderFieldset: '#gender-options', // Can't grab checked until user submits
        birthDateId: $( '#birth-date' ),
             daybox: $( '#day' ),
           monthbox: $( '#month' ),
@@ -2322,7 +2328,6 @@ $(document).ready(function() {
             submit: $( '#subscribe--popup--button' ),
     errorContainer: $( '#subscribe--popup--form-response' ),
           errorMsg: $( '#subscribe--popup--error-response' ),
-       errorMsgTwo: $( '#subscribe--popup--error-response-birthdate' ),
         successMsg: $( '#subscribe--popup--success-response' ),
       fadeOutGroup: $( '#subscribe--popup--form, #subscribe--popup--error-response-birthdate' )
     };
@@ -2338,19 +2343,11 @@ $(document).ready(function() {
         ui.formId.removeClass('has-error');
         ui.errorContainer.removeClass('has-error');
         ui.errorMsg.fadeOut();
-        ui.errorMsgTwo.fadeOut();
 
       });
 
       ui.textbox.on('click', (e) => {
         e.preventDefault();
-      });
-
-      ui.datebox.on('change', () => {
-        // remove any pre-existing error class
-        ui.formId.removeClass('has-error');
-        ui.errorContainer.removeClass('has-error');
-        ui.errorMsgTwo.fadeOut();
       });
 
       // submit form
@@ -2359,29 +2356,64 @@ $(document).ready(function() {
 
         // validation code
         let validEmail = regexEmail.test(ui.textbox.val());
-        let selectedDay = ui.daybox.val();
-        let selectedMonth = ui.monthbox.val();
-        let selectedYear = ui.yearbox.val();
+
+        let selectedDay = document.getElementById('day').value;
+        let selectedMonth = document.getElementById('month').value;
+        let selectedYear = document.getElementById('year').value;
 
         // assign value of to variable to check against any empty birthdate form fields
         let validBirthDate = (selectedDay.length <= 0 || selectedMonth.length <= 0 || selectedYear.length <= 0) ? false : true;
+        let validGender = (selectedGender !== 'no_selection') ? true : false;
+        const selectedGender = $( `${ui.genderFieldset} input:checked` ).val() || 'no_selection'; // wait for submit to gather selection
 
         if(!validEmail) {
-
           // error state
           ui.formId.addClass('has-error');
           ui.errorContainer.addClass('has-error');
           ui.errorMsg.fadeIn();
 
-        } else if(!validBirthDate) {
-
-          // error state
-          // ui.formId.addClass('has-error');
-          ui.errorContainer.addClass('has-error');
-          ui.errorMsgTwo.fadeIn();
-
         } else {
           const selectedGender = $( `${ui.genderFieldset} input:checked` ).val() || 'no_selection'; // wait for submit to gather selection
+
+          let vars = {};
+          const signup_method = 'modal';
+
+          if(validGender){
+
+            // Update vars object to include gender form field values
+            Object.assign(vars, {
+              gender: selectedGender
+            });
+          }
+
+          if(selectedDay.length){
+            // Update vars object to include birthdate form field values
+            Object.assign(vars, {
+              "BirthDay" : selectedDay,
+            });
+          }
+
+          if(selectedMonth.length){
+            // Update vars object to include birthdate form field values
+            Object.assign(vars, {
+              "BirthMonth" : selectedMonth,
+            });
+          }
+
+          if(selectedYear.length){
+            // Update vars object to include birthdate form field values
+            Object.assign(vars, {
+              "BirthYear" : selectedYear
+            });
+          }
+
+          // Update vars object to include birthdate form field values
+          // Object.assign(vars, {
+          //   "BirthDay" : selectedDay,
+          //   "BirthMonth" : selectedMonth,
+          //   "BirthYear" : selectedYear
+          // });
+
 
           // success state
           Sailthru.integration("userSignUp",
@@ -2391,15 +2423,15 @@ $(document).ready(function() {
               "AQUA_Master_List" : 1 // list to add user to (must exist in Sailthru account)
               // "Anonymous" : 0 // list to remove user from (must exist in Sailthru account)
             },
-            "source" : "web",
-            "vars" : {
-             "gender" : selectedGender,    // pulls in the value of the gender radio button input
-             "BirthDay" : ui.daybox.val(),          // pulls in the value of the day dropdown input
-             "BirthMonth" : ui.monthbox.val(),      // pulls in the value of the month dropdown input
-             "BirthYear" : ui.yearbox.val()        // pulls in the value of the year dropdown input
-             // "birth_date" : ui.birthDateId.val()    // date format needs to be "YYYY-MM-DD"
-            },
+            "source" : signup_method,
+            vars,
             "onSuccess" : function() {
+              var payload = { email: ui.textbox.val(), emailType: 'marketing', interaction: 'On Email' }
+              if (typeof window.__bva__ !== 'undefined' && typeof window.__bva__.helpers !== 'undefined') {
+                window.__bva__.helpers.fireEmailPixel(payload)
+              } else if (typeof dataLayer !== 'undefined') {
+                dataLayer.push(payload, { event: 'On Email' })
+              }
               ui.fadeOutGroup.fadeOut( () => {
                 ui.successMsg.fadeIn();
               });
@@ -2482,7 +2514,28 @@ theme.ProductForm = function (context, events) {
     onVariantSelected: function(variant, selector) {
 
       if ( !variant ) {
-        events.trigger("variantunavailable");
+        var mainOption = $(selector.selectors[0].element).val()
+        var option = $(selector.variantIdField).find('option').filter(function () {
+          return $(this).text().indexOf(mainOption) !== -1
+        })[0]
+
+        if (option) {
+          var $option = $(option)
+          var optionValue = $option.val()
+          var correspondingVariant = selector.product.variants.filter(function (variant) {
+            return variant.id.toString() === optionValue.toString()
+          })[0]
+
+          events.trigger("variantunavailable", correspondingVariant);
+
+          if (correspondingVariant.featured_image) {
+            events.trigger('variantchange:image', correspondingVariant.featured_image.id);
+          }
+        } else {
+          events.trigger("variantunavailable");
+        }
+
+        events.trigger("variantchange", correspondingVariant);
         return;
       }
 
@@ -2689,7 +2742,10 @@ theme.ProductForm = function (context, events) {
       element.innerHTML = variant_sku;
     });
     events.on("variantunavailable", function (variant) {
-      var variant_sku = config.unavailable;
+      var variant_sku = variant && variant.sku
+        ? variant.sku.split('-')[0]
+        : config.unavailable;
+
       element.innerHTML = variant_sku;
     });
 
@@ -3283,11 +3339,58 @@ theme.Product = (function () {
       }
     });
 
-    // THIS IS BROKEN - COMMENTING OUT FOR NOW : Related Products
+    this.container = container
+    this.event = events
+    this.product = this.parse($(container).find('.product-json').html())
+    this.settings = this.parse(container.getAttribute('data-section-settings'))
+    this.initPickAnOption()
     this.initRelatedProducts()
   }
 
   Product.prototype = _.assignIn({}, Product.prototype, {
+    parse: function (str) {
+      try {
+        return JSON.parse(str)
+      } catch (error) {
+        console.error(error)
+        return {}
+      }
+    },
+
+    initPickAnOption: function () {
+      if (!this.settings || !this.settings.disableAutoSelect || !this.product || !this.product.options) {
+        return null
+      }
+
+      // Skip first option
+      let needSelection = false
+      for (let i = 1; i < this.product.options.length; i++) {
+        let option = this.product.options[i]
+        let $optionSelector = $('.single-option-selector').eq(i).filter(function () {
+          return $(this).find('option').length > 1
+        })
+
+        if ($optionSelector.length) {
+          $optionSelector
+            .prepend('<option value="">Pick a ' + option + '</option>')
+            .val('')
+            .trigger('change')
+
+          $(this.container)
+            .find('.swatch')
+            .eq(i)
+            .find('.current-option')
+            .text(this.settings.selectionTitle)
+
+          needSelection = true
+        }
+      }
+
+      if (needSelection) {
+        this.event.emit('variantunavailable', this.product.variants[0])
+      }
+    },
+
     initRelatedProducts: function () {
       if (!$('#related').length) {
         return
@@ -3296,16 +3399,10 @@ theme.Product = (function () {
       var initHomepageCarousel = function(productCarousel) {
         productCarousel.owlCarousel({
           responsive: {
-            0 : {
-              items: 1
-            },
-            767 : {
-              items: 3
-            }
+            0 : { items: 1 },
+            767 : { items: 3 },
           },
           dots: true,
-          // nav: false,
-          // navText: [ $('.product-carousel--prev'), $('.product-carousel--next') ],
           lazyLoad : true
         });
       };
@@ -3444,6 +3541,36 @@ theme.Search = (function() {
   return Search;
 })();
 
+
+
+/*============================================================================
+  SECTION : Video-with-text Component
+==============================================================================*/
+theme.VideoWithText = (function() {
+  function VideoWithText(container) {
+    var videoPlayer = require( './theme-components/video/videoPlayer.js' );
+
+    // UI : Define ui elements
+    const ui = {
+      videoWrap: $( '.featured-video-wrap', container )
+    };
+
+    // CONFIG : Parse config from videoWrap DOM node
+    const videoConfig = {
+      autoplay: ui.videoWrap.attr( 'data-video-autoplay' ),
+      id: ui.videoWrap.attr( 'data-video-id' ),
+      mute: ui.videoWrap.attr( 'data-video-mute' ),
+      type: ui.videoWrap.attr( 'data-video-type' )
+    };
+
+    // VIDEO : Create a video element with config data
+    videoPlayer( videoConfig );
+  }
+
+  VideoWithText.prototype = _.assignIn({}, VideoWithText.prototype, {});
+  return VideoWithText;
+})();
+
 /*============================================================================
   Init
 ==============================================================================*/
@@ -3472,6 +3599,7 @@ $(document).ready(function() {
   sections.register('mobile-navigation', theme.mobileNav);
   sections.register('product-section', theme.Product);
   sections.register('search-template', theme.Search);
+  sections.register('video-with-text', theme.VideoWithText);
 
   theme.init()
 });
