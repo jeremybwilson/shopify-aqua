@@ -489,9 +489,37 @@
               "caption_background": "transparent",
               "caption_opacity": "0.1"
             }
+          },
+          "1553399958457": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/style-on-demnd-free-shipping-desktop-2_07075a64-8c4e-47fd-85b9-e75cb201499d.jpg",
+              "mobile_image": "shopify://shop_images/style-on-demnd-free-shipping-mobile_bc217594-9046-41d7-8632-4ce3b17d5a27.jpg",
+              "image_link": "shopify://collections/women-new-arrivals",
+              "heading": "",
+              "subheading": "",
+              "caption_text_align": "left",
+              "cta_type": "button",
+              "cta_one_link": "",
+              "cta_one_button_text": "",
+              "cta_one_line": "none",
+              "cta_two_link": "",
+              "cta_two_button_text": "",
+              "cta_two_line": "none",
+              "caption_color_scheme": "light",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#e41c39",
+              "caption_horizontal": "left",
+              "caption_horizontal_offset": 0,
+              "caption_vertical": 50,
+              "caption_vertical_mobile": 50,
+              "caption_background": "rgba(0,0,0,0)",
+              "caption_opacity": "0.1"
+            }
           }
         },
         "block_order": [
+          "1553399958457",
           "1551216982423"
         ],
         "settings": {
