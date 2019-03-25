@@ -31,21 +31,18 @@
         .lion-loyalty-splash__footer {
             border-top-color: #f1f1f1;
             background-color: #f1f1f1;
-            font-family: "Futura-BT", sans-serif;
-            font-weight: 500;
-            font-size: 12px;
-            line-height: 18px;
-            color: #616365;
+            font-family: $font-stack--default;
+            font-weight: $font-weight--medium;
+            @include fontDim( 12px, 18px, 0 );
+            color: $color--gray-1;
             margin-top: 5px;
         } 
 
         .lion-loyalty-splash__footer>div>a {
-            font-family: "Futura-BT", sans-serif;
-            font-weight: 500;
-            font-size: 11px;
-            line-height: 18px;
+            font-family: $font-stack--default;
+            font-weight: $font-weight--medium;
+            @include fontDim( 11px, 18px, 1px );
             text-transform: uppercase;
-            letter-spacing: 1px;
             padding: 10px 50px;
             border-radius: 0px !important;
             margin: 0px 15px;
@@ -66,7 +63,7 @@
 #loyaltylion {
     .lion-notification__close-button {
         top: 0;
-        font-size: 26px;
+        @include fontSize( 26px );
     }
 
     .lion-loyalty-widget {
