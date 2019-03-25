@@ -117,50 +117,54 @@
             new_props._sr_token = "null"
             
             // Remove it
-            $.ajax({
-                url: '/cart/change.js',
-                type: 'post',
-                data: {
-                    id: changing_item.key,
-                    quantity: changing_item.quantity,
-                    properties: new_props,
-                },
-                dataType: 'json',
-                success: function(cart){
-                    $('.section.section--shipping-method .section__content').html(no_shipping_methods);
-                    _update_shipping_address();
-                },
-                error: function(xhr, message){
-                    debugger;
-                },
-            });
+            if ( changing_item && changing_item.key ) {
+                $.ajax({
+                    url: '/cart/change.js',
+                    type: 'post',
+                    data: {
+                        id: changing_item.key,
+                        quantity: changing_item.quantity,
+                        properties: new_props,
+                    },
+                    dataType: 'json',
+                    success: function(cart){
+                        $('.section.section--shipping-method .section__content').html(no_shipping_methods);
+                        _update_shipping_address();
+                    },
+                    error: function(xhr, message){
+                        debugger;
+                    },
+                });
+            }
+            
         }
         else if (existing_sr_token != cookie_sr_token){
             var changing_item = li_with_existing_sr_token;
             if (!changing_item) changing_item = _sr_cart.items[0];
-            if (!li_with_existing_sr_token)
 
             // Set it
             var new_props = {};
             if (changing_item && changing_item.properties) new_props = jQuery.extend(true, {}, changing_item.properties);
             new_props._sr_token = cookie_sr_token;
-            $.ajax({
-                url: '/cart/change.js',
-                type: 'post',
-                data: {
-                    id: changing_item.key,
-                    quantity: changing_item.quantity,
-                    properties: new_props,
-                },
-                dataType: 'json',
-                success: function(cart){
-                    $('.section.section--shipping-method .section__content').html(no_shipping_methods);
-                    _update_shipping_address();
-                },
-                error: function(xhr, message){
-                    debugger;
-                },
-            });
+            if ( changing_item && changing_item.key ) {
+                $.ajax({
+                    url: '/cart/change.js',
+                    type: 'post',
+                    data: {
+                        id: changing_item.key,
+                        quantity: changing_item.quantity,
+                        properties: new_props,
+                    },
+                    dataType: 'json',
+                    success: function(cart){
+                        $('.section.section--shipping-method .section__content').html(no_shipping_methods);
+                        _update_shipping_address();
+                    },
+                    error: function(xhr, message){
+                        debugger;
+                    },
+                });
+            }
         }
     }
     function _setup_shoprunner_properties(){
