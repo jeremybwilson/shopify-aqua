@@ -55,7 +55,8 @@ body.search {
         }
     }
 
-    .search-title {
+    .search-title,
+    .recommendify_panel_heading {
         @include fontSize( 20px );
     }
 
@@ -107,7 +108,8 @@ body.search {
      * ------------------------------------------------- */
     .filter-wrap-desktop {
         @include mq( 'lap-and-up' ) {
-            margin-top: 5px;
+            margin: 0;
+            padding: 44px 0 0;
         }
 
         .filter-toggle-wrap {
@@ -164,6 +166,18 @@ body.search {
         // TOTAL PAGE COUNT
         .count {
             display: none;
+        }
+    }
+
+
+    /* RECOMMENDIFY : Suggested product row
+     * ------------------------------------------------- */
+    #recommendify-top-sellers {
+        margin-top: 50px;
+        padding: 0 20px;
+
+        @include mq( 'lap-and-up' ) {
+            padding: 0;
         }
     }
 }
