@@ -22,6 +22,8 @@
 			{% comment %} :: LOGGED IN USER :: {% endcomment %}
 			{% if customer != nil %}
 			  {% assign now = 'now' | date: "%Y-%m-%dT%H:%M:%S%z" %}
+			  {% assign auth_token = customer.id | append: now | append: customer.email | append: secret | sha1 %}
+			  
 			  loyaltylion.init({
 			    token: '{{ token }}',
 			    customer: {
@@ -32,9 +34,8 @@
 			    },
 			    auth: {
 			      date: "{{ now }}",
-			      token: "{{ customer.id | append: now | append: customer.email | append: '{{ secret }}' | sha1 }}"
-			      // token: "{{ customer.id | append: now | append: customer.email | append: '45ebfda8d7924173c050296fcd4a8ba1' | sha1 }}"
-			    },
+			      token: "{{ auth_token }}"
+			    }
 			  });
 
 			{% comment %} :: GUEST USER :: {% endcomment %}
