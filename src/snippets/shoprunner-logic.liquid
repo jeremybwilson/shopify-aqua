@@ -109,11 +109,13 @@
         });
         var existing_sr_token = null;
         if (li_with_existing_sr_token) existing_sr_token = li_with_existing_sr_token.properties._sr_token;
+
         if (existing_sr_token && !cookie_sr_token){
             var changing_item = li_with_existing_sr_token;
-            var new_props = jQuery.extend(true, {}, changing_item.properties);
-            if (!new_props) new_props = {};
+            var new_props = {};
+            if (changing_item && changing_item.properties) new_props = jQuery.extend(true, {}, changing_item.properties);
             new_props._sr_token = "null"
+            
             // Remove it
             $.ajax({
                 url: '/cart/change.js',
@@ -137,9 +139,10 @@
             var changing_item = li_with_existing_sr_token;
             if (!changing_item) changing_item = _sr_cart.items[0];
             if (!li_with_existing_sr_token)
+
             // Set it
-            var new_props = jQuery.extend(true, {}, changing_item.properties);
-            if (!new_props) new_props = {};
+            var new_props = {};
+            if (changing_item && changing_item.properties) new_props = jQuery.extend(true, {}, changing_item.properties);
             new_props._sr_token = cookie_sr_token;
             $.ajax({
                 url: '/cart/change.js',

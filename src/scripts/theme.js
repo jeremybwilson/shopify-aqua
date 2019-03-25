@@ -906,7 +906,6 @@ theme.scripts.filterUtils = (function() {
     buildSwatches();
     buildBadges();
     buildWishlistButtons();
-    console.log( 'update triggered' );
   }
 
 
@@ -985,7 +984,6 @@ theme.scripts.filterUtils = (function() {
 
   // INITALIZER : Attaches events and subscribes the component collections to updates via the filter app
   const init = function( wrapperId ) {
-    console.log( 'init called' );
 
     // ATTACH : Bind event handlers for "Apply All" button in desktop filter sets
     attachApplyAll( wrapperId );
