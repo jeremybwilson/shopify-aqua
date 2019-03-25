@@ -4,17 +4,16 @@
       liquid search object to return the correct count of search results using the
       "search.results_count" setup. 
 
-    - EX : Search Aqua for "Elena" and notice the data attribute on the
-          "search-template" wrapper shows 1, but BCSF has returned two due to the 
-          closeness of the naming match. 
+    - EX : add data-attribute 'data-search-results="{{search.results_count}}"' to the wrapper div
+          and then search "Elena" on aquatalia. Notice how it shows 1, but BCSF has returned two 
+          due to the closeness of the naming match. 
 {% endcomment %}
 
 {%- assign product_limit = 36 -%}   
 
 <div id="search-template" 
   data-section-id="{{ section.id }}" 
-  data-section-type="search-template" 
-  data-results-count="{{ search.results_count }}">
+  data-section-type="search-template">
 
 
   {% comment %} :: TITLES - Results count & search term display :: {% endcomment %}
