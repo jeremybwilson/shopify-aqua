@@ -3,66 +3,163 @@
  *
  *  LOYALTY LION : Core Styles
  * ---------------------------------------------- */
-#lion-loyalty-panel-custom-css>div>div.lion-loyalty-splash__heading {
-    display: none !important;
+
+// Custom Panel CSS
+#lion-loyalty-panel-custom-css {
+
+    // Top-Level Inner Wrapper (Note: Any strangeness is from Porting the page styles that were all pure css)
+    > div {
+        display: inline-flex !important;
+        min-height: auto !important;
+
+        .lion-loyalty-splash__heading {
+            display: none !important;
+        }
+
+        .lion-loyalty-splash__content {
+            display: none !important;
+        }
+
+        .lion-loyalty-panel-content.lion-loyalty-panel-content--rewards>div.lion-loyalty-panel-content__overflow-container>div>div.lion-loyalty-panel-page-rewards__rewards-list>div {
+            width: 100% !important;
+        }
+
+        .lion-loyalty-panel-sidebar > header > div.lion-loyalty-panel-sidebar__points {
+            text-align: left !important;
+        } 
+
+        .lion-loyalty-splash__footer {
+            border-top-color: #f1f1f1;
+            background-color: #f1f1f1;
+            font-family: "Futura-BT", sans-serif;
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 18px;
+            color: #616365;
+            margin-top: 5px;
+        } 
+
+        .lion-loyalty-splash__footer>div>a {
+            font-family: "Futura-BT", sans-serif;
+            font-weight: 500;
+            font-size: 11px;
+            line-height: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 10px 50px;
+            border-radius: 0px !important;
+            margin: 0px 15px;
+        } 
+
+        .lion-loyalty-splash__footer>div>span {
+            display: none;
+        }
+    }
+
+    .lion-loyalty-panel-sidebar {
+        padding-left: 10px;
+    }
 }
 
-#lion-loyalty-panel-custom-css>div {
-    display: block !important;
+
+// Widget Customziations?
+#loyaltylion {
+    .lion-notification__close-button {
+        top: 0;
+        font-size: 26px;
+    }
+
+    .lion-loyalty-widget {
+        z-index: 40;
+    }
 }
 
-#lion-loyalty-panel-custom-css>div>div.lion-loyalty-splash__content {
-    display: none !important;
+
+// Rewards Page specific customizations 
+.rewards-body-cont #loyaltylion {
+
+    @include mq( 'phone' ) {
+
+        .lion-loyalty-panel-sidebar {
+            width: 120px;
+            min-height: 240px;
+
+            // Library has a breakpoint to account for at 600px
+            @media only screen and ( min-width: 600px ) {
+                width: 160px;
+            }
+
+            // REWARDS PAGE : Menu Toggle : Hide menu button on mobile, makes no sense in the UI Layout
+            .lion-loyalty-panel-sidebar__mobile-menu-toggle-button {
+                display: none;
+            }
+
+            // REWARDS PAGE : Point Display : Adjust the current point count display
+            .lion-loyalty-panel-sidebar__points-value {
+                @include fontSize( 20px );
+                padding: 12px 5px 10px 0;
+                text-align: left;
+            }
+
+            // REWARDS PAGE : Menu Items : Show the menu items since it doesn't make sense to hide here
+            .lion-loyalty-panel-sidebar__menu {
+                display: block; // Mobile menu makes no sense here
+                z-index: 10; //Was overlapping the main nav
+
+                // Library has a breakpoint to account for at 600px
+                @media only screen and ( min-width: 600px ) {
+                    padding-left: 10px;
+                }
+
+                .lion-loyalty-panel-sidebar__menu-item {
+                    position: relative;
+                    padding: 12px 5px 12px 0px;
+                    right: auto; // Undo their default styling
+                    left: -4px;
+                }
+            }
+        }
+
+    }
+    
 }
 
-#lion-loyalty-panel-custom-css>div>div.lion-loyalty-panel-content.lion-loyalty-panel-content--rewards>div.lion-loyalty-panel-content__overflow-container>div>div.lion-loyalty-panel-page-rewards__rewards-list>div {
-    width: 100% !important;
-}
 
-#lion-loyalty-panel-custom-css>div {
-    display: inline-flex !important;
-}
 
-#lion-loyalty-panel-custom-css>div>div.lion-loyalty-panel-sidebar>header>div.lion-loyalty-panel-sidebar__points {
-    text-align: left !important;
-}
 
-#lion-loyalty-panel-custom-css>div {
-    min-height: auto !important;
-}
 
-#lion-loyalty-panel-custom-css>div>div.lion-loyalty-splash__footer {
-    border-top-color: #f1f1f1;
-    background-color: #f1f1f1;
-    font-family: "Futura-BT", sans-serif;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 18px;
-    color: #616365;
-    margin-top: 5px;
-}
 
-#lion-loyalty-panel-custom-css>div>div.lion-loyalty-splash__footer>div>a {
-    font-family: "Futura-BT", sans-serif;
-    font-weight: 500;
-    font-size: 11px;
-    line-height: 18px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 10px 50px;
-    border-radius: 0px !important;
-    margin: 0px 15px;
-}
 
-#lion-loyalty-panel-custom-css>div>div.lion-loyalty-splash__footer>div>span {
-    display: none;
-}
 
-#loyaltylion .lion-notification__close-button {
-    top: 0;
-    font-size: 26px;
-}
 
-#loyaltylion .lion-loyalty-widget {
-    z-index: 40;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
