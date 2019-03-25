@@ -1,12 +1,29 @@
+{% comment %}
+  SEARCH : Notes
+    - BCSF Search is overriding this page, so you cannot rely on the 
+      liquid search object to return the correct count of search results using the
+      "search.results_count" setup. 
+
+    - EX : Search Aqua for "Elena" and notice the data attribute on the
+          "search-template" wrapper shows 1, but BCSF has returned two due to the 
+          closeness of the naming match. 
+{% endcomment %}
+
 {%- assign product_limit = 36 -%}   
 
-<div id="search-template" class="" data-section-id="{{ section.id }}" data-section-type="search-template">
-  {%- if search.results_count > 1 -%}
+<div id="search-template" 
+  data-section-id="{{ section.id }}" 
+  data-section-type="search-template" 
+  data-results-count="{{ search.results_count }}">
+
+
+  {% comment %} :: TITLES - Results count & search term display :: {% endcomment %}
   <div class="grid-max-width">
     <h2 class="search-title">{{ 'general.search.title' | t }}: <span>"{{ search.terms }}"</span></h2>
     <p class="bc-sf-search-result-number"></p>
   </div>
       
+
   {% comment %} :: FILTER + SORT - Desktop Component :: {% endcomment %}
   <div id="full-width-filter" class="filter-wrap-desktop">
 
@@ -68,12 +85,12 @@
       <div id="bc-sf-filter-load-more"></div>
     </div>
   </div>
-  {%- else -%}
-    <div class="grid-max-width">
-      <h2 class="search-title">{{ 'general.search.title' | t }}: <span>"{{ search.terms }}"</span></h2>
-      <div id="recommendify-top-sellers" shop="{{ shop.domain }}"></div>
-    </div>
-  {%- endif -%}
+
+
+  {% comment %} :: RECCOMMENDIFY APP :: {% endcomment %}
+  <div class="grid-max-width">
+    <div id="recommendify-top-sellers" shop="{{ shop.domain }}"></div>
+  </div>
 
 </div>
 
