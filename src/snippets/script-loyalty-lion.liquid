@@ -17,11 +17,13 @@
 		{% assign token = settings.loyalty_lion_token %}
 		{% assign secret = settings.loyalty_lion_secret %}
 		
-		{% if token and secret %}
+		{% if token != blank and secret != blank %}
 
 			{% comment %} :: LOGGED IN USER :: {% endcomment %}
 			{% if customer != nil %}
 			  {% assign now = 'now' | date: "%Y-%m-%dT%H:%M:%S%z" %}
+			  {% assign auth_token = customer.id | append: now | append: customer.email | append: secret | sha1 %}
+			  
 			  loyaltylion.init({
 			    token: '{{ token }}',
 			    customer: {
@@ -32,9 +34,8 @@
 			    },
 			    auth: {
 			      date: "{{ now }}",
-			      token: "{{ customer.id | append: now | append: customer.email | append: '{{ secret }}' | sha1 }}"
-			      // token: "{{ customer.id | append: now | append: customer.email | append: '45ebfda8d7924173c050296fcd4a8ba1' | sha1 }}"
-			    },
+			      token: "{{ auth_token }}"
+			    }
 			  });
 
 			{% comment %} :: GUEST USER :: {% endcomment %}
@@ -43,7 +44,12 @@
 			{% endif %}
 
 		{% else %}
-			console.log( 'Loyalty Lion was enabled, but the token or secret key was not provided. Please check the customizer theme settings for the rewards setup token.' );
+			{% assign missingItem = 'Token' %}
+			{% if token != blank %}
+				{% assign missingItem = 'Secret Key' %}
+			{% endif %}
+
+			console.log( 'Loyalty Lion was enabled, but the {{ missingItem }} was not provided. Please check the customizer theme settings for the rewards key info inputs.' );
 		{% endif %}
 	</script>
 
