@@ -208,7 +208,7 @@
     "shoprunner_env": "prod",
     "loyalty_lion_enabled": true,
     "loyalty_lion_token": "2eefd33ba2b59632b59771fdb7314fd5",
-    "loyalty_lion_secret": "",
+    "loyalty_lion_secret": "4655c46066feedbd9bd03f35a0ffc59c",
     "checkout_header_image": "",
     "checkout_logo_image": "shopify://shop_images/checkout-logo.png",
     "checkout_logo_position": "center",
@@ -463,33 +463,6 @@
       "home-hero_slideshow": {
         "type": "slideshow",
         "blocks": {
-          "1551216982423": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/1._Hero_Banner_1920X1014_a9c0aaee-fb30-4025-bc20-807d822c470e.jpg",
-              "mobile_image": "shopify://shop_images/1._Mobile_Mar_4th_Hero_Banner_768X1032_0032d1b5-1979-41a7-a58b-5f2d5adacd1b.jpg",
-              "image_link": "shopify://collections/women-sandals",
-              "heading": "",
-              "subheading": "",
-              "caption_text_align": "left",
-              "cta_type": "button",
-              "cta_one_link": "",
-              "cta_one_button_text": "",
-              "cta_one_line": "none",
-              "cta_two_link": "",
-              "cta_two_button_text": "",
-              "cta_two_line": "none",
-              "caption_color_scheme": "light",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#e41c39",
-              "caption_horizontal": "left",
-              "caption_horizontal_offset": 0,
-              "caption_vertical": 50,
-              "caption_vertical_mobile": 50,
-              "caption_background": "transparent",
-              "caption_opacity": "0.1"
-            }
-          },
           "1553399958457": {
             "type": "image",
             "settings": {
@@ -516,9 +489,64 @@
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
             }
+          },
+          "1551216982423": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/1._Hero_Banner_1920X1014_e96d4325-e6b2-4e1c-b9a8-daf204494436.jpg",
+              "mobile_image": "shopify://shop_images/1._Mobile_Hero_Banner_768X1032_c1e8a577-911f-4903-8134-67a92c9a659c.jpg",
+              "image_link": "shopify://collections/women-sneakers",
+              "heading": "",
+              "subheading": "",
+              "caption_text_align": "left",
+              "cta_type": "button",
+              "cta_one_link": "",
+              "cta_one_button_text": "",
+              "cta_one_line": "none",
+              "cta_two_link": "",
+              "cta_two_button_text": "",
+              "cta_two_line": "none",
+              "caption_color_scheme": "light",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#e41c39",
+              "caption_horizontal": "left",
+              "caption_horizontal_offset": 0,
+              "caption_vertical": 50,
+              "caption_vertical_mobile": 50,
+              "caption_background": "transparent",
+              "caption_opacity": "0.1"
+            }
+          },
+          "1553572746396": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/hp-today-only-60-off-desktop_ff1d8d76-2edb-416e-ab8a-930c77356e51.jpg",
+              "mobile_image": "shopify://shop_images/hp-today-only-60-off-mobile-3_2ead52f3-0de4-4bed-b6aa-9da0e3fd8f1d.jpg",
+              "image_link": "shopify://collections/women-falco",
+              "heading": "",
+              "subheading": "",
+              "caption_text_align": "left",
+              "cta_type": "button",
+              "cta_one_link": "",
+              "cta_one_button_text": "",
+              "cta_one_line": "none",
+              "cta_two_link": "",
+              "cta_two_button_text": "",
+              "cta_two_line": "none",
+              "caption_color_scheme": "light",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#e41c39",
+              "caption_horizontal": "left",
+              "caption_horizontal_offset": 0,
+              "caption_vertical": 50,
+              "caption_vertical_mobile": 50,
+              "caption_background": "rgba(0,0,0,0)",
+              "caption_opacity": "0.1"
+            }
           }
         },
         "block_order": [
+          "1553572746396",
           "1553399958457",
           "1551216982423"
         ],
@@ -536,11 +564,11 @@
           "promo-left": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/2_Revy_Promo_Block_930X8404_4d78faf9-54b0-4cbd-87f8-44ae941fe891.jpg",
-              "mobile_image": "shopify://shop_images/Mobile_Promo_Block_2_768X6382_49625c48-3407-40c7-8609-4e0c49847fa9.jpg",
-              "link": "shopify://collections/women-flats",
-              "heading_text": "WHITE NOW",
-              "body_text": "<p>The Spring-Ready Flat</p>",
+              "image": "shopify://shop_images/2._Promo_Block_930X840_55582249-33f3-4c92-8986-9e8526e5f356.jpg",
+              "mobile_image": "shopify://shop_images/2._Mobile_Promo_Blocks_768X638_b9ba60aa-a45f-4ced-a512-cc8d33a4f726.jpg",
+              "link": "shopify://collections/women-sandals",
+              "heading_text": "STYLE LINK",
+              "body_text": "<p>The Embossed Sandal&nbsp;</p>",
               "text_align": "left",
               "cta_type": "text",
               "cta_text": "SHOP NOW",
@@ -554,14 +582,14 @@
           "promo-right": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/adrian_708c427a-35d0-4495-87da-ddb78a6980a2.jpg",
+              "image": "shopify://shop_images/3._Promo_Block_930X8402_5de349aa-49ca-49a7-a8d8-d2e07b93b5c4.jpg",
               "mobile_image": "shopify://shop_images/adrian_70a6a455-d6e0-439b-a0f3-95a5fc34da64.jpg",
-              "link": "shopify://collections/men-new-arrivals",
-              "heading_text": "CLASSIC MODE",
-              "body_text": "<p>The&nbsp;Luxury Chelsea</p>",
+              "link": "shopify://collections/women-sandals",
+              "heading_text": "CROSS OVER",
+              "body_text": "<p>The Suede Sandal&nbsp;</p>",
               "text_align": "left",
               "cta_type": "text",
-              "cta_text": "SHOP MEN'S",
+              "cta_text": "SHOP SANDALS",
               "cta_color_text": "#000000",
               "cta_color_bg": "rgba(0,0,0,0)",
               "cta_color_text_hover": "#616365",
