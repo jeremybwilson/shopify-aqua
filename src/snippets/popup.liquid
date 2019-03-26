@@ -41,7 +41,8 @@
         {% comment %} :: EMAIL :: {% endcomment %}
         <div class="email">
           <label for="email">
-          <input class="form-control" type="email" id="email-popup" name="email" {%- if settings.email_popup_input_placeholder != blank -%}placeholder="{{ settings.email_popup_input_placeholder }}"{%- endif -%}>
+          <input class="form-control" type="email" id="email-popup" name="email" aria-label="input your email"
+                 {%- if settings.email_popup_input_placeholder != blank -%}placeholder="{{ settings.email_popup_input_placeholder }}"{%- endif -%}>
           </label>
         </div>
 

@@ -43,22 +43,22 @@ var bcSfFilterTemplate = {
     'itemBadgeHtml': '<div class="react-badge" data-badge=\'{{badgeTags}}\'></div>',
 
     // Wishlist Heart Template
-    'wishlistBtnHtml': '<button class="button-wishlist-product" data-on-wishlist="false" data-product-id="{{itemProductId}}" data-variant-id="{{itemVaraintId}}">' +
+    'wishlistBtnHtml': '<button class="button-wishlist-product" data-on-wishlist="false" data-product-id="{{itemProductId}}" data-variant-id="{{itemVaraintId}}" aria-label="Wishlist Button">' +
         '<svg version="1.1" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 64 60.833">' +
             '<path stroke="#000" stroke-width="5" stroke-miterlimit="10" d="M45.684,2.654c-6.057,0-11.27,4.927-13.684,10.073 c-2.417-5.145-7.63-10.073-13.687-10.073c-8.349,0-15.125,6.776-15.125,15.127c0,16.983,17.134,21.438,28.812,38.231 c11.038-16.688,28.811-21.787,28.811-38.231C60.811,9.431,54.033,2.654,45.684,2.654z"></path>' +
         '</svg>' +
     '</button>',
 
     // Pagination Template
-    'previousHtml': '<a href="{{itemUrl}}"><i class="fa fa-angle-left" aria-hidden="true"></i></a>',
-    'nextHtml': '<a href="{{itemUrl}}"><i class="fa fa-angle-right" aria-hidden="true"></i></a>',
-    'pageItemHtml': '<a href="{{itemUrl}}">{{itemTitle}}</a>',
+    'previousHtml': '<a href="{{itemUrl}}" aria-label="Previous Page"><i class="fa fa-angle-left" aria-hidden="true"></i></a>',
+    'nextHtml': '<a href="{{itemUrl}}" aria-label="Next Page"><i class="fa fa-angle-right" aria-hidden="true"></i></a>',
+    'pageItemHtml': '<a href="{{itemUrl}}" aria-label="{{itemTitle}}">{{itemTitle}}</a>',
     'pageItemSelectedHtml': '<span class="current">{{itemTitle}}</span>',
     'pageItemRemainHtml': '{{itemTitle}}',
     'paginateHtml': '<span class="count"></span>{{previous}}{{pageItems}}{{next}}',
   
     // Sorting Template
-    'sortingHtml': '<h4 class="sort-label">' + bcSfFilterConfig.label.sorting + '</h4><select class="styled-select">{{sortingItems}}</select>',
+    'sortingHtml': '<h4 class="sort-label">' + bcSfFilterConfig.label.sorting + '</h4><select class="styled-select" aria-label="Select Sort">{{sortingItems}}</select>',
 
     // Apply Btn Template (Mobile) : Filter constructor not exposed, so func binding close not available, hence this sad click..
     'mobileApplyBtnHtml': '<button class="mobile-apply-button" onClick="$(\'#bc-sf-filter-tree-mobile-button\').click()">Apply</button>'

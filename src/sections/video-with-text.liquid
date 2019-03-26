@@ -21,8 +21,8 @@
     data-video-mute="{{ section.settings.video_mute }}"
     data-video-autoplay="{{ section.settings.video_autoplay }}">
 
-    {% comment %} 
-      :: VIDEO ELEMENT ::  
+    {% comment %}
+      :: VIDEO ELEMENT ::
         NOTE: Youtube eats the given element, vimeo renders iframe inside it.. {% endcomment %}
     {% if video_url.type == 'vimeo' %}
       <div id="video-{{ video_url.id }}" class="featured-video"></div>

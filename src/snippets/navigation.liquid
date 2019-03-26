@@ -24,12 +24,12 @@
 
                 {% comment %} :: MEGA-MENU - LIST :: {% endcomment %}
                 <ul class="megamenu">
-                  <div class="mega-container"
+                  <li class="mega-container"
                     data-has-mega-image="{% if block.settings.nav_image != blank %}true{% else %}false{% endif %}">
 
 
                     {% comment %} :: MEGA-MENU - LINKS :: {% endcomment %}
-                    <span class="mega-column-content">
+                    <ul class="mega-column-content">
 
                       {% comment %} NOTE : Link, here, is the top-level nav item (EX: "Women") {% endcomment %}
                       {% case link.links.size %}
@@ -87,7 +87,7 @@
 
                         </li>
                       {% endfor %}
-                    </span>
+                    </ul>
 
 
                     {% comment %} :: MEGA-MENU - IMAGE :: {% endcomment %}
@@ -99,7 +99,7 @@
                         {% assign hasTitleOrSub = true %}
                       {% endif %}
 
-                      <span class="mega-image mm-image {% if hasTitleOrSub %} mega-image-with-titles {% endif %}">
+                      <ul class="mega-image mm-image {% if hasTitleOrSub %} mega-image-with-titles {% endif %}">
                         <a class="mega-image-asset" href="{{ block.settings.nav_image_link }}" style="background-image: url( '{{ block.settings.nav_image | img_url: '300x' }}' );" alt="block.settings.nav_image.alt"></a>
 
                         {% if block.settings.nav_image_title != blank %}
@@ -109,10 +109,10 @@
                         {% if block.settings.nav_image_sub_title != blank %}
                           <a class="mega-image-sub-title" href="{{ block.settings.nav_image_link }}">{{ block.settings.nav_image_sub_title }}</a>
                         {% endif %}
-                      </span>
+                      </ul>
                     {% endif %}
 
-                  </div>
+                  </li>
                 </ul>
               </li>
             {% endcapture %}

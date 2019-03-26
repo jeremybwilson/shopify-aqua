@@ -24,7 +24,7 @@
 
       {% comment %} ..:: NAV : BRAND LOGO ::.. {% endcomment %}
       <div id="nav-logo">
-          <a href="/" title="{{ shop.name }}">
+          <a href="/" aria-label="{{ shop.name }}" title="{{ shop.name }}">
             {% include 'svg-icon-header-logo' %}
           </a>
       </div>
@@ -58,8 +58,9 @@
 
           {% comment %} ..:: SEARCH ::.. {% endcomment %}
           {% if section.settings.show_search %}
+            {% assign search_id_num = 0 %}
             <li class="nav-item nav-search">
-              {% include 'svg-icon-search' %}
+              {% include 'svg-icon-search' with search_id_num %}
             </li>
           {% endif %}
 

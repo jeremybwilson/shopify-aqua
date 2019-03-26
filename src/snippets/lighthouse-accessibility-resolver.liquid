@@ -1,0 +1,40 @@
+
+<script>
+    $(document).ready(function () {
+
+        // generate random id to avoid duplicating IDs
+        function generateRandomId(origin) {
+            if (!origin) {
+                origin = 'id';
+            }
+            var newRandomId = Math.random().toString();
+            newRandomId = newRandomId.replace('.', '');
+            newRandomId = origin + '_' + newRandomId;
+            return newRandomId;
+        }
+
+        // add attributes to element
+        function addAttr(elements, attrName, attrValue) {
+            try {
+                if (elements && elements.length) {
+                    elements.each(function (key, element) {
+                        if (attrName === 'id') {
+                            attrValue = generateRandomId($(element).attr(attrName));
+                        }
+                        $(element).attr(attrName, attrValue);
+                    });
+                }
+            } catch(e) {
+                console.log('Error on adding Attribute.', e);
+            }
+        }
+
+        var imgLazyloadElements = $('.lazyload.lazyload-fade');
+        var slideShowPrevButtons = $('a.flex-prev.flex-disabled');
+        var slideShowNextButtons = $('a.flex-next.flex-disabled');
+
+        addAttr(imgLazyloadElements, 'id');
+        addAttr(slideShowPrevButtons, 'aria-label', 'Slideshow Preview Button');
+        addAttr(slideShowNextButtons, 'aria-label', 'Slideshow Next Button');
+    });
+</script>

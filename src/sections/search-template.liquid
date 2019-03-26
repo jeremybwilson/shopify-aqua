@@ -21,6 +21,17 @@
     <h2 class="search-title">{{ 'general.search.title' | t }}: <span>"{{ search.terms }}"</span></h2>
     <p class="bc-sf-search-result-number"></p>
   </div>
+
+  {% comment %}
+  <div id="search-bar" class="desktop-12 mobile-3">
+    <form action="/search" method="get">
+      <input type="text" name="q" id="q" placeholder="{{ 'general.search.placeholder' | t }}" />
+      {% assign search_id_num = 3 %}
+      {% include 'svg-icon-search' with search_id_num %}
+    </form>
+  </div>
+  {% endcomment %}
+  
       
 
   {% comment %} :: FILTER + SORT - Desktop Component :: {% endcomment %}
