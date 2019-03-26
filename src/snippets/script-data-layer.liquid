@@ -249,72 +249,11 @@ __bva__.helpers = (function () {
     }
   }
 
-
   Helpers.prototype.watchCheckoutDiscountField = function () {
-    // if (!window.MutationObserver) {
-    //   return null
-    // }
-
     var EVENTS = {
       GIFT: 'On Gift',
       PROMO: 'On Promo',
     }
-
-    // var REDUCTION_TYPES = {
-    //   '#tags-filled': 'discount',
-    //   '#gift-filled': 'gift',
-    // }
-
-    // var state = {
-    //   promoList: [],
-    //   giftList: [],
-    // }
-
-    // function getReductionTypeFromNode(node) {
-    //   var attributes = node.querySelector('use').attributes
-    //   for (var i = 0; i < attributes.length; i++) {
-    //     var nodeValue = attributes[i].nodeValue
-    //     if (REDUCTION_TYPES[nodeValue]) {
-    //       return REDUCTION_TYPES[nodeValue]
-    //     }
-    //   }
-    // }
-
-    // function mutationRoutine(mutation) {
-    //   mutation.addedNodes.forEach(function (node) {
-    //     if (node.nodeType !== Node.ELEMENT_NODE) {
-    //       return null
-    //     }
-
-    //     var tags = node.querySelectorAll('.tag .reduction-code')
-
-    //     ;[].slice.call(tags).forEach(function (tag) {
-    //       var reductionType = getReductionTypeFromNode(tag)
-    //       var code = tag.innerText.trim()
-    //       var payload = { id: '#checkout_reduction_code' }
-
-    //       if (reductionType === 'discount' && state.promoList.indexOf(code) === -1) {
-    //         payload.code = code
-    //         payload.interaction = EVENTS.PROMO
-    //         dataLayer.push(payload, { event: EVENTS.PROMO })
-    //         state.promoList.push(code)
-    //         this.log(EVENTS.PROMO, payload)
-    //       } else if (reductionType === 'gift' && state.giftList.indexOf(code) === -1) {
-    //         payload.interaction = EVENTS.GIFT
-    //         dataLayer.push(payload, { event: EVENTS.GIFT })
-    //         state.giftList.push(code)
-    //         this.log(EVENTS.GIFT, payload)
-    //       }
-    //     }, __bva__.helpers)
-    //   }, __bva__.helpers)
-    // }
-
-    // var observer = new MutationObserver(function (mutations) {
-    //   mutations.forEach(mutationRoutine)
-    // })
-
-    // var element = document.querySelector('#order-summary')
-    // observer.observe(element, { childList: true, subtree: true })
 
     var self = this
     $(document.body).on('blur', '#checkout_reduction_code', function (e) {
@@ -1078,7 +1017,7 @@ __bva__.helpers = (function () {
         'sku'      : '{{line_item.sku}}',
         'variant'  : '{{line_item.variant_id}}',
         'name'     : '{{line_item.title}}',
-        'price'    : '{{line_item.price | money_without_currency | remove: ',' | divided_by: 100.0 }}',
+        'price'    : '{{line_item.price | money_without_currency | remove: ',' }}',
         'quantity' : '{{line_item.quantity}}',
         'brand'    : {{ line_item.vendor | default: shop.name | json }},
         'options'  : [
@@ -1095,9 +1034,9 @@ __bva__.helpers = (function () {
           {% endfor %}
         ],
       },{% endfor %}],
-      'cartTotal': {{ cart.total_price | money_without_currency | remove: ',' | divided_by: 100.0 | json }},
+      'cartTotal': {{ cart.total_price | money_without_currency | remove: ',' | json }},
       'itemsCount': {{ cart.item_count | downcase | json }},
-      'discountAmounts': {{ cart.total_discount | money_without_currency | remove: ',' | divided_by: 100.0 | json }},
+      'discountAmounts': {{ cart.total_discount | money_without_currency | remove: ',' | json }},
       'cartId': _cart.token,
       'pageType' : 'Cart',
       'event'    : 'Cart',
@@ -1193,30 +1132,32 @@ __bva__.helpers = (function () {
     {% for line_item in checkout.line_items %}
 
     __bva__products.push({
-      'id'          : '{{line_item.product_id}}',
-      'sku'         : '{{line_item.sku}}',
-      'variantId'   : '{{line_item.variant_id}}',
-      'name'        : '{{line_item.title}}',
-      'productType' : "{{line_item.product.type}}",
-      'price'       : '{{line_item.price | money_without_currency| remove: "," | divided_by: 100.0 }}',
-      'quantity'    : '{{line_item.quantity}}',
-      'description' : '{{line_item.product.description | strip_newlines | strip_html | escape }}',
-      'imageURL'    : "https:{{line_item.product.featured_image.src|img_url:'grande'}}",
-      'productURL'  : '{{shop.secure_url}}{{line_item.product.url}}'
+      'id'          : {{ line_item.product_id | json }},
+      'sku'         : {{ line_item.sku | json }},
+      'variantId'   : {{ line_item.variant_id | json }},
+      'name'        : {{ line_item.title | json }},
+      'productType' : {{ line_item.product.type | json }},
+      'price'       : {{ line_item.price | money_without_currency| remove: "," | json }},
+      'quantity'    : {{ line_item.quantity | json }},
+      'description' : {{ line_item.product.description | strip_newlines | strip_html | escape | json }},
+      'imageURL'    : {{ line_item.product.featured_image.src|img_url:'grande' | prepend: 'https:' | json }},
+      'productURL'  : {{ shop.secure_url | append: line-item.product_url | json }},
     });
 
     {% endfor %}
     transactionData = {
-      'transactionNumber'      : '{{checkout.order_id}}',
-      'transactionId'          : '{{checkout.order_number}}',
-      'transactionAffiliation' : '{{shop.name}}',
-      'transactionTotal'       : '{{checkout.total_price |  money_without_currency| remove: "," | divided_by: 100.0 }}',
-      'transactionTax'         : '{{checkout.tax_price |  money_without_currency| remove: "," | divided_by: 100.0 }}',
-      'transactionShipping'    : '{{checkout.shipping_price |  money_without_currency| remove: "," | divided_by: 100.0 }}',
-      'transactionSubtotal'    : '{{checkout.subtotal_price |  money_without_currency| remove: "," | divided_by: 100.0 }}',
+      'interaction'            : 'Transaction Data',
+      'checkoutId'             : {{ checkout.id | json }},
+      'transactionNumber'      : {{ checkout.order_id | json }},
+      'transactionId'          : {{ checkout.order_number | json }},
+      'transactionAffiliation' : {{ shop.name | json }},
+      'transactionTotal'       : {{ checkout.total_price |  money_without_currency| remove: "," | json }},
+      'transactionTax'         : {{ checkout.tax_price |  money_without_currency| remove: "," | json }},
+      'transactionShipping'    : {{ checkout.shipping_price |  money_without_currency| remove: "," | json }},
+      'transactionSubtotal'    : {{ checkout.subtotal_price |  money_without_currency| remove: "," | json }},
       {% for discount in checkout.discounts %}
-      'promoCode' : '{{discount.code}}',
-      'discount'  : '{{discount.amount | money_without_currency | divided_by: 100.0 }}',
+      'promoCode' : {{ discount.code | json }},
+      'discount'  : {{ discount.amount | money_without_currency | json }},
       {% endfor %}
 
       'products': __bva__products
@@ -1284,7 +1225,7 @@ __bva__.helpers = (function () {
 
           /* DATALAYER: Transaction
           -------------------------- */
-          if(Shopify.Checkout.page == "thank_you"){
+          if(Shopify.Checkout.page == "thank_you" || Shopify.Checkout.isOrderStatusPage){
 
             dataLayer.push(transactionData,{
               'pageType' :'Transaction',
