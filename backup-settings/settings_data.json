@@ -510,7 +510,7 @@
             "settings": {
               "image": "shopify://shop_images/2._Promo_Block_930X840_55582249-33f3-4c92-8986-9e8526e5f356.jpg",
               "mobile_image": "shopify://shop_images/2._Mobile_Promo_Blocks_768X638_b9ba60aa-a45f-4ced-a512-cc8d33a4f726.jpg",
-              "link": "shopify://collections/women-sandals",
+              "link": "shopify://products/ioni-34l2500-92500",
               "heading_text": "STYLE LINK",
               "body_text": "<p>The Embossed Sandal&nbsp;</p>",
               "text_align": "left",
@@ -558,7 +558,7 @@
             "settings": {
               "image": "shopify://shop_images/Lesley_Web_Banner.jpg",
               "mobile_image": "shopify://shop_images/Lesley_Mobile_Banner.jpg",
-              "image_link": "shopify://collections/women-new-arrivals",
+              "image_link": "shopify://products/lesley-34l2525-92525",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
