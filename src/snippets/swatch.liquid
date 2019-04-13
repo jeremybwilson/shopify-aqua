@@ -82,7 +82,8 @@
         {% endif %}
 
         {% capture radio_button %}
-          <input type="radio" id="{{ id }}" name="{{ option_name }}" value="{{ value | escape }}" data-position="{{ option.position }}" {{ checked }} />
+          <!-- <input type="radio" id="{{ id }}" name="{{ option_name }}" value="{{ value | escape }}" data-position="{{ option.position }}" {{ checked }} /> -->
+          <input type="radio" id="{{ id }}" name="{{ option_name }}" value="{{ value | escape }}" data-position="{{ option.position }}" {{ checked }} {% if option_name == 'size' %} {% unless available %} disabled="" {% endunless %} {% endif %}/>
         {% endcapture %}
 
         {% capture sold_out_image %}

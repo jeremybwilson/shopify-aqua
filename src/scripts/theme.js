@@ -2164,6 +2164,7 @@ $(document).ready(function() {
     afterShow: function () {
       var context = document.querySelector("#product-quick-view");
       Events.trigger("quickview:load", context);
+
     },
     wrapCSS: 'fancybox-quickview',
     helpers: {
@@ -2575,10 +2576,22 @@ theme.ProductForm = function (context, events) {
     var elements = context.querySelectorAll("[type=radio]");
     var states = {
       sold_out: function (element) {
+        // PDM 479 START
         element.parentElement.classList.add("soldout");
+        var var_type = element.getAttribute('name');
+        if(var_type == "size"){
+          element.setAttribute('disabled',true);
+          element.parentElement.classList.add("soldout");
+        }
+        // PDM 479 END
       },
-
       available: function (element) {
+        // PDM 479 START
+        var var_type = element.getAttribute('name');
+        if(var_type == "size"){
+            element.removeAttribute('disabled');
+        } 
+        // PDM 479 END
         element.parentElement.classList.remove("soldout");
       }
     };
@@ -2653,6 +2666,7 @@ theme.ProductForm = function (context, events) {
       }
 
       function set_availability(current_variant) {
+
         var available = false;
 
         product.variants.forEach(function (variant) {
@@ -2756,7 +2770,7 @@ theme.ProductForm = function (context, events) {
     events.on("variantchange", function (variant) {
       var text = config.button;
       var disabled = false;
-
+      
       if ( !variant.available ) {
         text = config.sold_out;
         disabled = true;
@@ -3632,4 +3646,25 @@ function debounce(fn, wait, immediate) {
         fn.apply(context, args);
       }
     };
+}
+// PDM 479 START
+$(document).on('change','.swatch.color input',function(){
+  var var_type = $(this).attr('name');
+  var var_value = $(this).attr('value');
+  if(var_type == "color"){
+    var product = document.querySelector(".product-json").innerHTML,
+      product = JSON.parse(product || '{}');
+    var variants = product.variants;
+    $.each(variants, function(key,value) {
+      if(value.option1 == var_value && value.available){
+        $('#swatch-2-'+ value.option2.toLowerCase()).prop('checked', true);
+        $('[data-option="option2"').val(value.option2).trigger('change');
+        return false;
+      }
+    });
+    $('[data-position="2"]').prop('checked',false);
+    $('.add.AddtoCart').val('Pick a Size');
+    $('.add.AddtoCart').attr('disabled',true);
   }
+}); 
+// PDM 479 END
