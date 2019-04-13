@@ -2738,7 +2738,7 @@ theme.ProductForm = function (context, events) {
         price = "";
       }
 
-      element.innerHTML = '<span class="money">' + price + '</span>';
+      element.innerHTML = '<span class="money bfx-price">' + price + '</span>';
     });
   })();
 
@@ -2884,7 +2884,7 @@ theme.ProductForm = function (context, events) {
         price = "";
       }
 
-      element.innerHTML = '<span class="money">' + price + '</span>';
+      element.innerHTML = '<span class="money bfx-price">' + price + '</span>';
     });
   })();
 
