@@ -2582,10 +2582,6 @@ theme.ProductForm = function (context, events) {
         if(var_type == "size"){
           element.setAttribute('disabled',true);
           element.parentElement.classList.add("soldout");
-        }else{
-            if(element.parentElement.className.split(' ').indexOf('soldout') > -1){
-              $('.add.AddtoCart').val('Sold out');
-            }
         }
         // PDM 479 END
       },
@@ -3652,6 +3648,20 @@ function debounce(fn, wait, immediate) {
     };
 }
 // PDM 479 START
+$(document).ready(function() {
+    var cnt=0;
+    $('.swatch.color input').each(function(){
+       if($(this).parents('.swatch-element.color').hasClass('soldout') && cnt==0  && $(this).is(':checked')){
+          $('.add.AddtoCart').prop('disabled',false);
+          $('.add.AddtoCart').val('Sold out');
+          $('.swatch.size .swatch-header .current-option').html('Sold out');
+          $('#product-price .product-price .money').html('Sold Out');
+          $('.add.AddtoCart').prop('disabled',true);
+          cnt = cnt+ 1;
+      }    
+  })
+});
+
 $(document).on('change','.swatch.color input',function(){
   var var_type = $(this).attr('name');
   var var_value = $(this).attr('value');
@@ -3669,8 +3679,10 @@ $(document).on('change','.swatch.color input',function(){
     $('[data-position="2"]').prop('checked',false);
     if($(this).parents('.swatch-element.color').hasClass('soldout')){
       $('.add.AddtoCart').val('Sold out');
+       $('.swatch.size .swatch-header .current-option').html('Sold out');
     }else{
       $('.add.AddtoCart').val('Pick a Size');
+      $('.swatch.size .swatch-header .current-option').html('Pick a size');
     }
     $('.add.AddtoCart').attr('disabled',true);
     
