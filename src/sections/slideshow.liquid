@@ -31,7 +31,7 @@
 
                     {% comment %} :: IMAGE LINK :: Wrap in an anchor tag if link is supplied {% endcomment %}
                     {% if block.settings.image_link != blank %}
-                      <a href="{{ block.settings.image_link }}" title="Go to homepage">
+                      <a href="{{ block.settings.image_link }}" aria-label="Go to homepage" title="Go to homepage">
                     {% endif %}
 
                     <div class="box-ratio">
