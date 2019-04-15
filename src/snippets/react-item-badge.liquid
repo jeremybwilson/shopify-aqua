@@ -9,5 +9,5 @@
 {% endcomment %}
 {% capture badge_tags %}'[{% for tag in product.tags %}{% if tag contains 'item_badge_' %}"{{ tag }}",{% endif %}{% endfor %}]'{% endcapture %}
 {% if badge_tags != "'[]'" %} 
-<div class="react-badge" data-badge={{ badge_tags | replace: ',]', ']' }}></div>
+	<div class="react-badge" data-badge={{ badge_tags | replace: ',]', ']' }}></div>
 {% endif %}

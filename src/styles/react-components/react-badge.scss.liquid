@@ -59,6 +59,8 @@ $badgeSizeDesktop: 72px;
     right: 0;
     z-index: 20;
     background: $shapeSquareBg; //Fallback : If shape class is not recognized
+    color: $textColor;
+    border: none;
 
     @include mq( 'lap-and-up' ) {
         width: $badgeSizeDesktop;
@@ -68,7 +70,6 @@ $badgeSizeDesktop: 72px;
     .item-badge-text {
         @include h6;
         text-align: center;
-    	color: $textColor;
 
         &.tiny { // (A.) 11+ chars -- (B.) Longest word 7+ chars
             @include fontSize( 10px ); 

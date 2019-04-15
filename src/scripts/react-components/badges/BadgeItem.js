@@ -32,7 +32,7 @@ class BadgeItem extends React.Component {
 		// CUSTOM COLORS : Product supplied custom color / bg tags, apply style
 		if ( bg ) { style.background = bg }
 		if ( color ) { style.color = color }
-		if ( border ) { style.borderColor = border }
+		if ( border ) { style.border = `1px solid ${border}` }
 
 		// TEXT : Size text based on length
 		const spaceLess = text.replace( / /g, '' ); // Don't count spaces for length since they become <BR> in populateText
