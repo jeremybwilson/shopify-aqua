@@ -489,9 +489,37 @@
               "caption_background": "transparent",
               "caption_opacity": "0.1"
             }
+          },
+          "1555310551282": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/the-luxury-of-tax-desktop_3f66e409-60df-4852-b2ac-a83848b55843.jpg",
+              "mobile_image": "shopify://shop_images/the-luxury-of-tax-mobile_2020c1d9-9ee5-472a-a3f9-f3db2199be40.jpg",
+              "image_link": "shopify://collections/women-new-arrivals",
+              "heading": "",
+              "subheading": "",
+              "caption_text_align": "left",
+              "cta_type": "button",
+              "cta_one_link": "",
+              "cta_one_button_text": "",
+              "cta_one_line": "none",
+              "cta_two_link": "",
+              "cta_two_button_text": "",
+              "cta_two_line": "none",
+              "caption_color_scheme": "light",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#e41c39",
+              "caption_horizontal": "left",
+              "caption_horizontal_offset": 0,
+              "caption_vertical": 50,
+              "caption_vertical_mobile": 50,
+              "caption_background": "rgba(0,0,0,0)",
+              "caption_opacity": "0.1"
+            }
           }
         },
         "block_order": [
+          "1555310551282",
           "1551216982423"
         ],
         "settings": {
@@ -1067,7 +1095,7 @@
             "settings": {
               "heading_only": false,
               "title": "Who should I contact if I have questions relating to my order after I have made a purchase?",
-              "answer": "<p>Please contact us at customerservice@shop.aquatalia.com and Aquatalia will gladly assist you with any questions relating to your international order.</p>",
+              "answer": "<p>Please contact us at customerservice@aquatalia.com and Aquatalia will gladly assist you with any questions relating to your international order.</p>",
               "anchor": ""
             }
           },
@@ -1076,7 +1104,7 @@
             "settings": {
               "heading_only": false,
               "title": "What is your return policy for international orders?",
-              "answer": "<p>If for any reason you are not satisfied with your purchase, please contact us at <a href=\"mailto:customerservice@shop.aquatalia.com\">customerservice@shop.aquatalia.com</a> and we will provide you with further instructions on where returns should be shipped and the amount you will be refunded. Refund amounts for returned items will be credited to you in the same currency and using the same exchange rate as your original order.</p>",
+              "answer": "<p>If for any reason you are not satisfied with your purchase, please contact us at <a href=\"mailto:customerservice@aquatalia.com\">customerservice@aquatalia.com</a> and we will provide you with further instructions on where returns should be shipped and the amount you will be refunded. Refund amounts for returned items will be credited to you in the same currency and using the same exchange rate as your original order.</p>",
               "anchor": ""
             }
           },
