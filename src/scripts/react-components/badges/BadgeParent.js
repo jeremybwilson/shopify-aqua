@@ -10,9 +10,10 @@
  *  - Badge Data Sample:
  *      [ 
  *          "item_badge_shape_diamond",
- *          "item_badge_color_#0ff0ff",
+ *          "item_badge_color_#0FF0FF",
  *          "item_badge_text_BACK IN STOCK",
- *          "item_badge_bg_#000000"
+ *          "item_badge_bg_#999999",
+ *          "item_badge_border_#000000"
  *      ]
  *********************************************/
 const BadgeItem = require('./BadgeItem.js');
@@ -32,11 +33,12 @@ const findTag = (searchString) => {
 
 // HELPER : Builds Proper data object to pass to component
 const prepData = () => {
-  const badgeTextTag = findTag( 'item_badge_text_' );   // Required
-  const badgeShapeTag = findTag( 'item_badge_shape_' ); // Optional, default is square
-  const badgeColorTag = findTag( 'item_badge_color_' ); // Optional
-  const badgeBgTag = findTag( 'item_badge_bg_' );       // Optional
-  const badgeIconTag = findTag( 'item_badge_icon_' ); // Special badge: makes all other options obsolete
+  const badgeTextTag = findTag( 'item_badge_text_' );     // Required
+  const badgeShapeTag = findTag( 'item_badge_shape_' );   // Optional, default is square
+  const badgeColorTag = findTag( 'item_badge_color_' );   // Optional
+  const badgeBgTag = findTag( 'item_badge_bg_' );         // Optional
+  const badgeBorderTag = findTag( 'item_badge_border_' ); // Optional
+  const badgeIconTag = findTag( 'item_badge_icon_' );     // Special badge: Makes all other options obsolete
 
   if (badgeIconTag) {
     return {
@@ -50,10 +52,11 @@ const prepData = () => {
 
     // MAP : Parse + Build needed info
     return {
-      text  : badgeTextTag.split( 'item_badge_text_' )[1],
+      text : badgeTextTag.split( 'item_badge_text_' )[1],
       shape : badgeShapeTag ? badgeShapeTag.split( 'item_badge_shape_' )[1] : null,
       color : badgeColorTag ? badgeColorTag.split( 'item_badge_color_' )[1] : null,
-      bg    : badgeBgTag ? badgeBgTag.split( 'item_badge_bg_' )[1] : null,
+      bg : badgeBgTag ? badgeBgTag.split( 'item_badge_bg_' )[1] : null,
+      border: badgeBorderTag ? badgeBorderTag.split( 'item_badge_border_' )[1] : null,
       Component : BadgeItem,
     };
   
@@ -88,8 +91,8 @@ var buildBadges = function() {
 
           // BUILD : No errors, Render badge component
           if ( !preparedData.error ) {
-            const { bg, color, text, shape, icon, Component } = preparedData;
-            ReactDOM.render( <Component bg={bg} color={color} shape={shape} text={text} icon={icon} />, el );
+            const { bg, border, color, text, shape, icon, Component } = preparedData;
+            ReactDOM.render( <Component bg={bg} border={border} color={color} shape={shape} text={text} icon={icon} />, el );
           
           } else {
             console.log( preparedData.msg );
