@@ -466,9 +466,9 @@
           "1551216982423": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/1._Hero_Banner_1920X1014_e96d4325-e6b2-4e1c-b9a8-daf204494436.jpg",
-              "mobile_image": "shopify://shop_images/1._Mobile_Hero_Banner_768X1032_c1e8a577-911f-4903-8134-67a92c9a659c.jpg",
-              "image_link": "shopify://collections/women-sneakers",
+              "image": "shopify://shop_images/1._Hero_Banner_1920X1014_0e9a89c6-4d57-45e3-af90-ccaabca1b162.jpg",
+              "mobile_image": "shopify://shop_images/1._Mobile_Hero_Banner_768X1032_00716b8e-d354-4116-9e86-e86062498004.jpg",
+              "image_link": "shopify://collections/men-sneakers",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
@@ -489,37 +489,9 @@
               "caption_background": "transparent",
               "caption_opacity": "0.1"
             }
-          },
-          "1555310551282": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/the-luxury-of-tax-desktop_3f66e409-60df-4852-b2ac-a83848b55843.jpg",
-              "mobile_image": "shopify://shop_images/the-luxury-of-tax-mobile_2020c1d9-9ee5-472a-a3f9-f3db2199be40.jpg",
-              "image_link": "shopify://collections/women-new-arrivals",
-              "heading": "",
-              "subheading": "",
-              "caption_text_align": "left",
-              "cta_type": "button",
-              "cta_one_link": "",
-              "cta_one_button_text": "",
-              "cta_one_line": "none",
-              "cta_two_link": "",
-              "cta_two_button_text": "",
-              "cta_two_line": "none",
-              "caption_color_scheme": "light",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#e41c39",
-              "caption_horizontal": "left",
-              "caption_horizontal_offset": 0,
-              "caption_vertical": 50,
-              "caption_vertical_mobile": 50,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.1"
-            }
           }
         },
         "block_order": [
-          "1555310551282",
           "1551216982423"
         ],
         "settings": {
@@ -584,9 +556,9 @@
           "1551217570857": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/Lesley_Web_Banner.jpg",
-              "mobile_image": "shopify://shop_images/Lesley_Mobile_Banner.jpg",
-              "image_link": "shopify://products/lesley-34l2525-92525",
+              "image": "shopify://shop_images/4._Banner_2_1920X915_d9ad66cd-674d-451c-a2d0-2302eff96d8d.jpg",
+              "mobile_image": "shopify://shop_images/4._Mobile_Banner_2_768X1048_91543a50-58dc-48e7-972f-21ad563dc859.jpg",
+              "image_link": "shopify://collections/women-sandals",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
@@ -638,8 +610,8 @@
       "home-about_image_with_text": {
         "type": "image-with-text",
         "settings": {
-          "image_desktop": "shopify://shop_images/home-about_image_with_text--desktop.jpg",
-          "image_mobile": "shopify://shop_images/home-about_image_with_text--mobile.jpg",
+          "image_desktop": "shopify://shop_images/stores-lp-desktop_b1879b97-3ba5-475d-a334-db704df4b825.jpg",
+          "image_mobile": "shopify://shop_images/stores-lp-mobile_f213810f-b0a0-4007-b37d-1fcbcdfae3ea.jpg",
           "heading_text": "Visit Us in NYC",
           "body_text": "<p>965 Madison Ave at 75th Street</p>",
           "button_text": "LEARN MORE",
@@ -1027,8 +999,8 @@
           "1549482916445": {
             "type": "text_block",
             "settings": {
-              "image_desktop": "shopify://shop_images/home-about_image_no_text_769d20e2-48c4-4191-9e76-721bbbd4962e.jpg",
-              "image_mobile": "shopify://shop_images/home-about_image_no_text.jpg",
+              "image_desktop": "shopify://shop_images/stores-lp-desktop_39b1c14d-7df3-49c3-8b58-a328d9cf7a2d.jpg",
+              "image_mobile": "shopify://shop_images/stores-lp-mobile_bb532e96-32c0-4761-99ee-464faac977d0.jpg",
               "module_html_h2": "Shop With Us",
               "module_html_p": "From the latest arrivals to exclusive products\nand special services, discover a one-stop shop for style.\n<br><br>\nNEW YORK FLAGSHIP<br>\n965 Madison Avenue<br>\nBetween 75th and 76th Street<br>\nNew York, NY 10021\n<br><br>\nPhone 646-677-5555\n<br><br>\nStore Hours<br>\nMonday-Saturday: 10am-7pm<br>\nSunday: 12pm-5pm",
               "button_text": "",
