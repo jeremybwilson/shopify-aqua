@@ -489,10 +489,38 @@
               "caption_background": "transparent",
               "caption_opacity": "0.1"
             }
+          },
+          "1555473292766": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/visit-us-in-nyc-desktop_c9db605e-88bc-49f2-bd04-33866a7e0d61.jpg",
+              "mobile_image": "shopify://shop_images/visit-us-in-nyc-mobile_23bedb2b-efda-4f9a-86b6-ce3463f71977.jpg",
+              "image_link": "shopify://pages/stores",
+              "heading": "",
+              "subheading": "",
+              "caption_text_align": "left",
+              "cta_type": "button",
+              "cta_one_link": "",
+              "cta_one_button_text": "",
+              "cta_one_line": "none",
+              "cta_two_link": "",
+              "cta_two_button_text": "",
+              "cta_two_line": "none",
+              "caption_color_scheme": "light",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#e41c39",
+              "caption_horizontal": "left",
+              "caption_horizontal_offset": 0,
+              "caption_vertical": 50,
+              "caption_vertical_mobile": 50,
+              "caption_background": "transparent",
+              "caption_opacity": "0.1"
+            }
           }
         },
         "block_order": [
-          "1551216982423"
+          "1551216982423",
+          "1555473292766"
         ],
         "settings": {
           "show": true,
@@ -610,8 +638,8 @@
       "home-about_image_with_text": {
         "type": "image-with-text",
         "settings": {
-          "image_desktop": "shopify://shop_images/stores-lp-desktop_b1879b97-3ba5-475d-a334-db704df4b825.jpg",
-          "image_mobile": "shopify://shop_images/stores-lp-mobile_f213810f-b0a0-4007-b37d-1fcbcdfae3ea.jpg",
+          "image_desktop": "shopify://shop_images/banner-3-desktop-visit-us-in-nyc.jpg",
+          "image_mobile": "shopify://shop_images/banner-3-mobile-visit-us-in-nyc.jpg",
           "heading_text": "Visit Us in NYC",
           "body_text": "<p>965 Madison Ave at 75th Street</p>",
           "button_text": "LEARN MORE",
