@@ -1,0 +1,210 @@
+{% capture notification_template_name %}customer_account_welcome{% endcapture %}
+{% capture full_email_template_params %}?utm_source=tran&utm_medium=email&utm_campaign={{ notification_template_name }}{% endcapture %}
+{% capture email_title %}Welcome to aquatalia.com!{% endcapture %}
+{% capture email_body %}You've activated your customer account. Next time you shop with us, log in for faster checkout.{% endcapture %}
+
+{% capture email_body %}
+  <p>{{ email_body }}</p>
+{% endcapture %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <title>{{ email_title }}</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" type="text/css" href="/assets/notifications/styles.css">
+  {{ 'email-fonts.css' | asset_url | stylesheet_tag }}
+  <style>
+    body {
+      font-family: "Futura-BT", Futura, Century Gothic, sans-serif;
+      letter-spacing: 0;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    p, strong, a {
+      font-family: "Futura-BT", Futura, Century Gothic, sans-serif;
+      font-size: 16px;
+      line-height: 1.625em;
+    }
+
+    strong {
+      font-weight: 700;
+    }
+
+    a {
+      text-decoration: underline;
+      color: #9d6d31;
+    }
+
+    a:visited {
+      color: #9d6d31;
+    }
+
+    .body {
+      /* border: 1px solid #d3dbe2; */
+      border: 1px solid #FFF;
+      border-radius: 5px;
+    }
+
+    .disclaimer__subtext,
+    .disclaimer__subtext a {
+      font-size: 12px;
+    }
+
+    .disclaimer__subtext strong {
+      color: #FFF;
+    }
+
+    .row.footer {
+      background-color: #000;
+      color: #FFF;
+    }
+
+    .footer__cell {
+      padding: 35px 10%;
+    }
+
+    .footer__cell a {
+      color: #FFF;
+    }
+
+    table.container td {
+      padding: 0;
+      width: 25%;
+    }
+
+    table.container td,
+    table.container img.icon {
+      width: auto;
+    }
+
+    table.container img.icon {
+      height: 50%;
+      border: 0;
+      padding: 0 15px;
+    }
+
+    td.icon-container img,
+    td.icon-container a {
+      vertical-align: middle;
+    }
+
+  </style>
+</head>
+
+<body>
+  <table class="body">
+    <tr>
+      <td>
+
+        {% comment %}{- LOGO -}{% endcomment %}
+        <table class="row">
+          <tr>
+            <td class="header__cell">
+              <center>
+                <table class="container" style="text-align:center;">
+                  <tr>
+                    <td style="padding:35px 0">
+                      <table class="row">
+                        <tr>
+                          <td class="shop-name__cell">
+                            {%- if shop.email_logo_url %}
+                              <img src="{{shop.email_logo_url}}" alt="aquatalia.com" width="{{ shop.email_logo_width }}">
+                            {%- else %}
+                              <h1 class="shop-name__text">
+                                <a href="{{ shop.url }}{{ full_email_template_params }}">aquatalia.com</a>
+                              </h1>
+                            {%- endif %}
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </center>
+            </td>
+          </tr>
+        </table>{% comment %}{- END LOGO -}{% endcomment %}
+
+        {% comment %}{- BODY -}{% endcomment %}
+        <table class="row content" style="border-top: 1px solid #d3dbe2;">
+          <tr>
+            <td class="content__cell" style="padding-top:40px;">
+              <center>
+                <table class="container">
+                  <tr>
+                    <td>
+                      <p><strong>Hi {{ customer.name }},</strong></p>
+                      {% if custom_message != blank %}
+                        <p>{{ custom_message }}</p>
+                      {% else %}
+                        {{ email_body }}
+                      {% endif %}
+                      <p>
+                        Have a comment or question? Please get in touch with our customer service experts at:
+                      </p>
+                      <p>
+                        AQUATALIA ONLINE CUSTOMER SERVICE<br />
+                        3040 EAST ANA STREET<br />
+                        RANCHO DOMINGUEZ CA 90221<br />
+                        866.250.7655 (<a href="tel:866-250-7655">866-250-7655</a>)<br />
+                        <a href="mailto:{{ shop.email }}">{{ shop.email }}</a>
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </center>
+            </td>
+          </tr>
+        </table> {% comment %}{- END BODY -}{% endcomment %}
+
+        {% comment %}{- FOOTER -}{% endcomment %}
+        <table class="row footer">
+          <tr>
+            <td class="footer__cell">
+              <center>
+                <table class="container" style="text-align:center;margin-bottom:20px; padding-bottom:20px;">
+                  <tr>
+                    <td class="icon-container"><img class="icon store" src="{{ 'store.png' | file_url }}" alt="Find a Store icon"/><a href="{{ shop.url }}/pages/stores{{ full_email_template_params }}" title="Find a store link" style="color:#FFF;text-decoration:none;letter-spacing:1px;">FIND A STORE</a></td>
+                    <td class="icon-container"><img class="icon account" src="{{ 'account.png' | file_url }}" alt="My Account icon"/><a href="{{ shop.url }}/account{{ full_email_template_params }}" title="My Account link" style="color:#FFF;text-decoration:none;letter-spacing:1px;">MY ACCOUNT</a></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="height: 1px; width:100%; border-bottom: 1px solid #616365;">&nbsp;</td>
+                  </tr>
+                </table>
+              </center>
+              <center>
+                  <table class="container" style="text-align:center;">
+                    <tr>
+                      <td>
+                        <p class="disclaimer__subtext">
+                          Have a question? Call us at 866.250.7655 (<a href="tel:866-250-7655" title="Customer Service phone number">866.250.7655</a>).
+                        </p>
+                        <p class="disclaimer__subtext">
+                          To continue to receive <a href="{{ shop.url }}{{ full_email_template_params }}">aquatalia.com</a> email,
+                          please add <a href="mailto:{{ shop.email }}" title="Customer Service email">{{ shop.email }}</a>
+                          to your address book.
+                        </p>
+                        <p class="disclaimer__subtext">
+                            <strong style="color: #FFF;">NEW YORK FLAGSHIP</strong><br /> 965 Madison Avenue<br /> Between 75th and 76th Street<br />New York, NY 10021
+                        </p>
+                        <p class="disclaimer__subtext">
+                          Copyright &copy; {{ 'now' | date: "%Y" }} Aquatalia, Inc. All rights reserved.
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+                </center>
+            </td>
+          </tr>
+        </table> {% comment %}{- END FOOTER =}{% endcomment %}
+
+        <img src="{{ 'notifications/spacer.png' | shopify_asset_url }}" class="spacer" height="1" />
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>
