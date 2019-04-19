@@ -2706,15 +2706,15 @@ theme.ProductForm = function (context, events) {
 
     events.on("variantchange", function (variant) {
       var price = money(variant.price);
-
       if ( !variant.available ) {
         price = config.sold_out;
       }
 
+
       element.innerHTML = price;
 
       events.on("variantunavailable", function (variant) {
-        price = config.unavailable;
+        // price = config.unavailable; PDM-479
         element.innerHTML = price;
       });
     });
@@ -3683,7 +3683,7 @@ $(document).on('change','.swatch.color input',function(){
     }else{
       $('.add.AddtoCart').val('Pick a Size');
       $('.swatch.size .swatch-header .current-option').html('Pick a size');
-    }
+    } 
     $('.add.AddtoCart').attr('disabled',true);
     
   }
