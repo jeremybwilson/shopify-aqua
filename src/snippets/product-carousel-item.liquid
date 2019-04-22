@@ -77,7 +77,10 @@
   </div>
 
   {% if settings.quickview %}
-    <a class="fancybox.ajax product-modal product-quickview-button" rel="no-index nofollow" href="{{ product.url }}?view=quick">{{ 'products.general.quick_view' | t }}</a>
+    <a class="fancybox.ajax product-modal product-quickview-button" rel="no-index nofollow"
+       href="{{ product.url }}?view=quick" data-id="{{ product.id }}" data-product="{{ product | json | escape }}">
+      {{ 'products.general.quick_view' | t }}
+    </a>
   {% endif %}
 </div>
 

@@ -918,6 +918,47 @@ __bva__.helpers = (function () {
       console.log("Collections"+" :"+JSON.stringify(product, null, " "));
       console.log("Collections"+" :"+JSON.stringify(collections, null, " "));
     }
+
+    $(document).on('click', '.product-quickview', function () {
+      var viewedElementId = $(this).closest('.product-index').attr('id');
+      viewedElementId = viewedElementId.toString();
+      console.log('Quick View:', viewedElementId, dataLayer);
+
+      var addedQuickViewIdx;
+      var productList = [];
+      for (var dlIndex = 0; dlIndex < dataLayer.length; dlIndex++) {
+        if (dataLayer[dlIndex].event === 'Quick View' && dataLayer[dlIndex].pageType === 'Collection' ) {
+          addedQuickViewIdx = dlIndex;
+        } else if (dataLayer[dlIndex].products && dataLayer[dlIndex].products.length) {
+          productList = dataLayer[dlIndex].products;
+        }
+      }
+
+      var quickViewedProduct;
+      for (var pIdx = 0; pIdx < productList.length; pIdx++) {
+        if (productList[pIdx].id.toString() == viewedElementId ) {
+          quickViewedProduct = productList[pIdx];
+          break;
+        }
+      }
+
+      if (addedQuickViewIdx == undefined) {
+        dataLayer.push({
+          event: 'Quick View',
+          pageType: 'Collection',
+          collectionTitle: collections.productList,
+          collectionHandle: collections.handle,
+          quickViewedIds: viewedElementId,
+          quickViewedProducts: [quickViewedProduct]
+        });
+      } else {
+        if (dataLayer[addedQuickViewIdx].quickViewedIds.indexOf(viewedElementId) == -1) {
+          dataLayer[addedQuickViewIdx].quickViewedIds = dataLayer[addedQuickViewIdx].quickViewedIds + ', ' + viewedElementId;
+          dataLayer[addedQuickViewIdx].quickViewedProducts.push(quickViewedProduct);
+        }
+      }
+    });
+
     {% endif %}
 
     /*DATALAYER: Custom collection
@@ -1001,6 +1042,37 @@ __bva__.helpers = (function () {
         var skumatch = '{{product.selected_variant.sku}}';
         if(sku != skumatch){
           productView();
+        }
+      });
+
+      $(document).on('click', '.product-quickview-button', function () {
+        var viewedElementId = $(this).data('id');
+        var viewedProduct = $(this).data('product');
+        viewedElementId = viewedElementId.toString();
+        console.log('Quick View:', viewedElementId, dataLayer);
+
+        var addedQuickViewIdx;
+        for (var dlIndex = 0; dlIndex < dataLayer.length; dlIndex++) {
+          if (dataLayer[dlIndex].event === 'Quick View' && dataLayer[dlIndex].pageType === 'Product' ) {
+            addedQuickViewIdx = dlIndex;
+            break;
+          }
+        }
+
+        if (addedQuickViewIdx == undefined) {
+          dataLayer.push({
+            event: 'Quick View',
+            pageType: 'Product',
+            pageTitle: product.products[0].name,
+            pageURL: product.products[0].productURL,
+            quickViewedIds: viewedElementId,
+            quickViewedProducts: [viewedProduct]
+          });
+        } else {
+          if (dataLayer[addedQuickViewIdx].quickViewedIds.indexOf(viewedElementId) == -1) {
+            dataLayer[addedQuickViewIdx].quickViewedIds = dataLayer[addedQuickViewIdx].quickViewedIds + ', ' + viewedElementId;
+            dataLayer[addedQuickViewIdx].quickViewedProducts.push(viewedProduct);
+          }
         }
       });
     }
