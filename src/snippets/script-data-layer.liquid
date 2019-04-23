@@ -991,11 +991,13 @@ __bva__.helpers = (function () {
       var barcode = '{{product.selected_or_first_available_variant.barcode}}';
       var variantId = '{{product.selected_or_first_available_variant.id}}';
 
+      {% comment %}
       {% if product.selected_variant == nil %}
-      sku = sku.split("-", 1);
-      barcode = '';
+      // sku = sku.split("-", 1);
+      // barcode = '';
       // variantId = '';
       {% endif %}
+      {% endcomment %}
 
       var product = {
         'products': [{
