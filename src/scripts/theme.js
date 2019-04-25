@@ -2707,7 +2707,7 @@ theme.ProductForm = function (context, events) {
     events.on("variantchange", function (variant) {
       var price = money(variant.price);
       if ( !variant.available ) {
-        price = config.sold_out;
+        // price = config.sold_out; PDM-479
       }
 
 
@@ -3655,7 +3655,7 @@ $(document).ready(function() {
           $('.add.AddtoCart').prop('disabled',false);
           $('.add.AddtoCart').val('Sold out');
           $('.swatch.size .swatch-header .current-option').html('Sold out');
-          $('#product-price .product-price .money').html('Sold Out');
+          // $('#product-price .product-price .money').html('Sold Out');
           $('.add.AddtoCart').prop('disabled',true);
           cnt = cnt+ 1;
       }    
