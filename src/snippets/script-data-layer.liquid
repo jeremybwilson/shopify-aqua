@@ -1221,7 +1221,7 @@ __bva__.helpers = (function () {
     {% endfor %}
     transactionData = {
       'interaction'            : 'Transaction Data',
-      'checkoutId'             : {{ checkout.id | json }},
+      'checkoutId'             : {{ checkout.id | downcase | json }},
       'transactionNumber'      : {{ checkout.order_id | json }},
       'transactionId'          : {{ checkout.order_number | json }},
       'transactionAffiliation' : {{ shop.name | json }},
