@@ -466,9 +466,9 @@
           "1551216982423": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/1._Hero_Banner_1920X1014_0e9a89c6-4d57-45e3-af90-ccaabca1b162.jpg",
-              "mobile_image": "shopify://shop_images/1._Mobile_Hero_Banner_768X1032_00716b8e-d354-4116-9e86-e86062498004.jpg",
-              "image_link": "shopify://collections/men-sneakers",
+              "image": "shopify://shop_images/1._Hero_Banner_1920X1014_4ba9504a-8066-4484-8912-739571122e62.jpg",
+              "mobile_image": "shopify://shop_images/1._Mobile_Hero_Banner_768X1032_2a335788-f51c-4843-afe0-cd68ea898c49.jpg",
+              "image_link": "shopify://collections/women-sandals",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
@@ -508,11 +508,11 @@
           "promo-left": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/2._Promo_Block_930X840_55582249-33f3-4c92-8986-9e8526e5f356.jpg",
-              "mobile_image": "shopify://shop_images/2._Mobile_Promo_Blocks_768X638_b9ba60aa-a45f-4ced-a512-cc8d33a4f726.jpg",
-              "link": "shopify://products/ioni-34l2500-92500",
-              "heading_text": "STYLE LINK",
-              "body_text": "<p>The Embossed Sandal&nbsp;</p>",
+              "image": "shopify://shop_images/2._Promo_Block_930X840_d694b172-0a0b-4837-b1b4-3a163c2a7a85.jpg",
+              "mobile_image": "shopify://shop_images/2._Mobile_Promo_Blocks_768X638_42a8d775-b1c6-42b5-985d-adf725c768d2.jpg",
+              "link": "shopify://products/tilde-34l2644-92644",
+              "heading_text": "HAUTE HARDWARE",
+              "body_text": "",
               "text_align": "left",
               "cta_type": "text",
               "cta_text": "SHOP NOW",
@@ -526,14 +526,14 @@
           "promo-right": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/3._Promo_Block_930X8402_5de349aa-49ca-49a7-a8d8-d2e07b93b5c4.jpg",
-              "mobile_image": "shopify://shop_images/adrian_70a6a455-d6e0-439b-a0f3-95a5fc34da64.jpg",
-              "link": "shopify://collections/women-sandals",
-              "heading_text": "CROSS OVER",
-              "body_text": "<p>The Suede Sandal&nbsp;</p>",
+              "image": "shopify://shop_images/3._Promo_Block_930X8402_6343c498-923e-454c-be8c-1b4635a74cb4.jpg",
+              "mobile_image": "shopify://shop_images/3._Mobile_Promo_Blocks_768X6382_84d5f194-4663-4f83-bd07-8c86138c4106.jpg",
+              "link": "shopify://collections/men-shoes",
+              "heading_text": "MODERN TEXTURE",
+              "body_text": "",
               "text_align": "left",
               "cta_type": "text",
-              "cta_text": "SHOP SANDALS",
+              "cta_text": "SHOP MEN'S SHOES",
               "cta_color_text": "#000000",
               "cta_color_bg": "rgba(0,0,0,0)",
               "cta_color_text_hover": "#616365",
@@ -556,9 +556,9 @@
           "1551217570857": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/4._Banner_2_1920X915_d9ad66cd-674d-451c-a2d0-2302eff96d8d.jpg",
-              "mobile_image": "shopify://shop_images/4._Mobile_Banner_2_768X1048_91543a50-58dc-48e7-972f-21ad563dc859.jpg",
-              "image_link": "shopify://collections/women-sandals",
+              "image": "shopify://shop_images/4._Banner_2_1920X915_edeefc2f-0459-4003-af28-ea5ca14d05e7.jpg",
+              "mobile_image": "shopify://shop_images/4._Mobile_Banner_2_768X1048_50a73067-d881-4212-b6bf-be3b3b373704.jpg",
+              "image_link": "shopify://collections/women-flats",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
