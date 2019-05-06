@@ -489,37 +489,9 @@
               "caption_background": "transparent",
               "caption_opacity": "0.1"
             }
-          },
-          "1557028511975": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/flash-sale-30-off-desktop_2565ca3e-cd6e-449e-91f7-82a86dbe2651.jpg",
-              "mobile_image": "shopify://shop_images/flash-sale-30-off-mobile_e2530334-67e0-48e4-b93d-e1c9e207bb26.jpg",
-              "image_link": "shopify://collections/flash-sale",
-              "heading": "",
-              "subheading": "",
-              "caption_text_align": "left",
-              "cta_type": "button",
-              "cta_one_link": "",
-              "cta_one_button_text": "",
-              "cta_one_line": "none",
-              "cta_two_link": "",
-              "cta_two_button_text": "",
-              "cta_two_line": "none",
-              "caption_color_scheme": "light",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#e41c39",
-              "caption_horizontal": "left",
-              "caption_horizontal_offset": 0,
-              "caption_vertical": 50,
-              "caption_vertical_mobile": 50,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.1"
-            }
           }
         },
         "block_order": [
-          "1557028511975",
           "1551216982423"
         ],
         "settings": {
