@@ -195,9 +195,25 @@
 
       {% if section.settings.show_payment_button %}<div class="clear"></div>{% endif %}
 
-      
       <div class="atc-wrapper">
-        <input type="submit" name="button" class="add clearfix AddtoCart{% if section.settings.show_payment_button %} secondary-button{% endif %}" value="Pick a size" disabled/>
+
+        {% comment %} Single Variant items skip product-form js, have to enable button on init for those cases {% endcomment %}
+        {% assign atc_text = 'Pick a Size' %}
+        {% assign atc_disable = true %}
+
+        {% if product.variants.size == 1 %}
+          {% if product.variants[0].available %}
+            {% assign atc_text = 'Add to Cart' %}
+            {% assign atc_disable = false %}
+          {% else %}
+            {% assign atc_text = 'Sold Out' %}
+          {% endif %}
+        {% endif %}
+        <input class="add clearfix AddtoCart{% if section.settings.show_payment_button %} secondary-button{% endif %}"
+          type="submit" 
+          name="button"
+          value="{{ atc_text }}"
+          {% if atc_disable %} disabled {% endif %}/>
         <!-- include 'wishlist-link' -->
       </div>
       {% if section.settings.show_payment_button %}
