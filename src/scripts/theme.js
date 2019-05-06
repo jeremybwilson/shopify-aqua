@@ -2666,7 +2666,6 @@ theme.ProductForm = function (context, events) {
       }
 
       function set_availability(current_variant) {
-
         var available = false;
 
         product.variants.forEach(function (variant) {
