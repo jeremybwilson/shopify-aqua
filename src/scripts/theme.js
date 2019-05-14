@@ -2721,7 +2721,6 @@ theme.ProductForm = function (context, events) {
 
   (function compare_price() {
     var element = context.querySelector(".was");
-
     if ( !element ) {
       return false;
     }
@@ -2734,9 +2733,9 @@ theme.ProductForm = function (context, events) {
       }
 
       if ( !variant.available ) {
-        price = "";
+        // price = ""; PDM-551
       }
-
+      
       element.innerHTML = '<span class="money bfx-price">' + price + '</span>';
     });
   })();
@@ -2880,7 +2879,7 @@ theme.ProductForm = function (context, events) {
       }
 
       if ( !variant.available ) {
-        price = "";
+        // price = "";
       }
 
       element.innerHTML = '<span class="money bfx-price">' + price + '</span>';
