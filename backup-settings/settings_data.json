@@ -466,9 +466,9 @@
           "1551216982423": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/1._Hero_Banner_1920X1014_4ba9504a-8066-4484-8912-739571122e62.jpg",
-              "mobile_image": "shopify://shop_images/1._Mobile_Hero_Banner_768X1032_2a335788-f51c-4843-afe0-cd68ea898c49.jpg",
-              "image_link": "shopify://collections/women-sandals",
+              "image": "shopify://shop_images/1._Hero_Banner_1920X1014_6000b529-f071-4fcc-ae8c-88a4ec58ebf1.jpg",
+              "mobile_image": "shopify://shop_images/1._Mobile_Hero_Banner_768X1032_ee97de0e-ea57-411c-9e05-979accc6c175.jpg",
+              "image_link": "shopify://collections/women-flats",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
@@ -508,11 +508,11 @@
           "promo-left": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/2._Promo_Block_930X840_d694b172-0a0b-4837-b1b4-3a163c2a7a85.jpg",
-              "mobile_image": "shopify://shop_images/2._Mobile_Promo_Blocks_768X638_42a8d775-b1c6-42b5-985d-adf725c768d2.jpg",
-              "link": "shopify://products/tilde-34l2644-92644",
-              "heading_text": "HAUTE HARDWARE",
-              "body_text": "",
+              "image": "shopify://shop_images/2._Promo_Block_930X840_6da68b33-e448-4eea-9437-43ad9d3f868d.jpg",
+              "mobile_image": "shopify://shop_images/2._Mobile_Promo_Blocks_768X638_f35dac5c-a84f-417a-bc9e-9601ec06f85e.jpg",
+              "link": "shopify://products/isabelle-34l2502-92502",
+              "heading_text": "LAID-BACK LUXURY",
+              "body_text": "<p>The Leather Slide&nbsp;</p>",
               "text_align": "left",
               "cta_type": "text",
               "cta_text": "SHOP NOW",
@@ -526,14 +526,14 @@
           "promo-right": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/3._Promo_Block_930X8402_6343c498-923e-454c-be8c-1b4635a74cb4.jpg",
-              "mobile_image": "shopify://shop_images/3._Mobile_Promo_Blocks_768X6382_84d5f194-4663-4f83-bd07-8c86138c4106.jpg",
-              "link": "shopify://collections/men-shoes",
-              "heading_text": "MODERN TEXTURE",
+              "image": "shopify://shop_images/4._Promo_Block_930X8402_177e9be3-c78e-4b20-b83d-add1e36986fe.jpg",
+              "mobile_image": "shopify://shop_images/3._Mobile_Promo_Blocks_768X6382_24373e50-2a07-4bd9-a523-cf16d9f90fda.jpg",
+              "link": "shopify://products/giuliano-34m0694-80694",
+              "heading_text": "BALANCING ACT",
               "body_text": "",
               "text_align": "left",
               "cta_type": "text",
-              "cta_text": "SHOP MEN'S SHOES",
+              "cta_text": "SHOP NOW",
               "cta_color_text": "#000000",
               "cta_color_bg": "rgba(0,0,0,0)",
               "cta_color_text_hover": "#616365",
@@ -556,9 +556,9 @@
           "1551217570857": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/4._Banner_2_1920X915_edeefc2f-0459-4003-af28-ea5ca14d05e7.jpg",
-              "mobile_image": "shopify://shop_images/4._Mobile_Banner_2_768X1048_50a73067-d881-4212-b6bf-be3b3b373704.jpg",
-              "image_link": "shopify://collections/women-flats",
+              "image": "shopify://shop_images/3._Banner_2_1920X915_83dc1fb0-5c8c-43b9-8ca0-faf6e39dd87d.jpg",
+              "mobile_image": "shopify://shop_images/4._Mobile_Banner_2_768X1048_ca1f1465-e5c6-419f-866c-14dbd8c28134.jpg",
+              "image_link": "shopify://collections/women-sandals",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
