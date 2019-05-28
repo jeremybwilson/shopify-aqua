@@ -463,33 +463,6 @@
       "home-hero_slideshow": {
         "type": "slideshow",
         "blocks": {
-          "1558496590477": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/sale-extended-use-code-hellosummer-20-off-desktop_6268bc08-4510-42a4-aad3-b5c43ed622c4.jpg",
-              "mobile_image": "shopify://shop_images/sale-extended-use-code-hellosummer-20-off-mobile_a2376856-2b01-4274-9809-d92cc10e2cf5.jpg",
-              "image_link": "shopify://collections/women-new-arrivals",
-              "heading": "",
-              "subheading": "",
-              "caption_text_align": "left",
-              "cta_type": "button",
-              "cta_one_link": "",
-              "cta_one_button_text": "",
-              "cta_one_line": "none",
-              "cta_two_link": "",
-              "cta_two_button_text": "",
-              "cta_two_line": "none",
-              "caption_color_scheme": "light",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#e41c39",
-              "caption_horizontal": "left",
-              "caption_horizontal_offset": 0,
-              "caption_vertical": 50,
-              "caption_vertical_mobile": 50,
-              "caption_background": "transparent",
-              "caption_opacity": "0.1"
-            }
-          },
           "1551216982423": {
             "type": "image",
             "settings": {
@@ -519,7 +492,6 @@
           }
         },
         "block_order": [
-          "1558496590477",
           "1551216982423"
         ],
         "settings": {
