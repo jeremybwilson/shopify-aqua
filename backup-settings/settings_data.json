@@ -464,12 +464,12 @@
       "home-hero_slideshow": {
         "type": "slideshow",
         "blocks": {
-          "1551216982423": {
+          "1559793123369": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/1._Hero_Banner_1920X1014_6000b529-f071-4fcc-ae8c-88a4ec58ebf1.jpg",
-              "mobile_image": "shopify://shop_images/1._Mobile_Hero_Banner_768X1032_ee97de0e-ea57-411c-9e05-979accc6c175.jpg",
-              "image_link": "shopify://collections/women-flats",
+              "image": "shopify://shop_images/summer-essentials-sale-desktop-2_f6e844ff-111f-4d34-a200-a5cd68e98d62.jpg",
+              "mobile_image": "shopify://shop_images/summer-essentials-sale-mobile_61c1fe33-81e8-41d8-8342-44250699222f.jpg",
+              "image_link": "shopify://collections/spring-flash-sale",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
@@ -491,12 +491,12 @@
               "caption_opacity": "0.1"
             }
           },
-          "1559793123369": {
+          "1551216982423": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/summer-essentials-sale-desktop-2_f6e844ff-111f-4d34-a200-a5cd68e98d62.jpg",
-              "mobile_image": "shopify://shop_images/summer-essentials-sale-mobile_61c1fe33-81e8-41d8-8342-44250699222f.jpg",
-              "image_link": "shopify://collections/spring-flash-sale",
+              "image": "shopify://shop_images/1._Hero_Banner_1920X1014_114d50c7-fa0d-473b-8bb9-9da34805a287.jpg",
+              "mobile_image": "shopify://shop_images/1._Mobile_Hero_Banner_768X1032_ad506fb5-fa51-4a28-97f2-6663921db01d.jpg",
+              "image_link": "shopify://collections/women-sandals",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
@@ -537,11 +537,11 @@
           "promo-left": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/2._Promo_Block_930X840_6da68b33-e448-4eea-9437-43ad9d3f868d.jpg",
-              "mobile_image": "shopify://shop_images/2._Mobile_Promo_Blocks_768X638_f35dac5c-a84f-417a-bc9e-9601ec06f85e.jpg",
-              "link": "shopify://products/isabelle-34l2502-92502",
-              "heading_text": "LAID-BACK LUXURY",
-              "body_text": "<p>The Leather Slide&nbsp;</p>",
+              "image": "shopify://shop_images/2._Promo_Block_930X840_c5109c96-1a5e-41a1-8fc2-e073947fa71a.jpg",
+              "mobile_image": "shopify://shop_images/2._Mobile_Promo_Blocks_768X638_c13a110e-d474-4730-9c3d-66213570e5e9.jpg",
+              "link": "shopify://collections/women-sandals",
+              "heading_text": "UNCHARTED WATERS",
+              "body_text": "",
               "text_align": "left",
               "cta_type": "text",
               "cta_text": "SHOP NOW",
@@ -555,11 +555,11 @@
           "promo-right": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/4._Promo_Block_930X8402_177e9be3-c78e-4b20-b83d-add1e36986fe.jpg",
-              "mobile_image": "shopify://shop_images/3._Mobile_Promo_Blocks_768X6382_24373e50-2a07-4bd9-a523-cf16d9f90fda.jpg",
-              "link": "shopify://products/giuliano-34m0694-80694",
-              "heading_text": "BALANCING ACT",
-              "body_text": "<p>The Latest Loafer&nbsp;</p>",
+              "image": "shopify://shop_images/3._Promo_Block_930X840_0b608826-2771-4775-9b3d-1b429b9caf7c.jpg",
+              "mobile_image": "shopify://shop_images/3._Mobile_Promo_Blocks_768X638_3c799127-02f4-4fe4-a6d0-4d1364e50aed.jpg",
+              "link": "shopify://products/nikita-34m0719-80719",
+              "heading_text": "ENDLESS OPTIONS",
+              "body_text": "<p>The Versatile Loafer&nbsp;</p>",
               "text_align": "left",
               "cta_type": "text",
               "cta_text": "SHOP NOW",
@@ -585,8 +585,8 @@
           "1551217570857": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/3._Banner_2_1920X915_83dc1fb0-5c8c-43b9-8ca0-faf6e39dd87d.jpg",
-              "mobile_image": "shopify://shop_images/4._Mobile_Banner_2_768X1048_ca1f1465-e5c6-419f-866c-14dbd8c28134.jpg",
+              "image": "shopify://shop_images/4._Banner_2_1920X915_dc78e6e7-9a83-4910-8547-45134c4c1d6c.jpg",
+              "mobile_image": "shopify://shop_images/4._Mobile_Banner_2_768X1048_befeff08-811a-4575-ae23-28330b442d2e.jpg",
               "image_link": "shopify://collections/women-sandals",
               "heading": "",
               "subheading": "",
