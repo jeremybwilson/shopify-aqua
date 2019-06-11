@@ -517,10 +517,38 @@
               "caption_background": "transparent",
               "caption_opacity": "0.1"
             }
+          },
+          "1560226134172": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/markdown-moment-up-to-60-off-hp_6eaa91b7-127d-4c5f-b227-b4f2efeed401.jpg",
+              "mobile_image": "shopify://shop_images/markdown-moment-up-to-60-off-hp-mobile_3a7b9ad8-87fa-4d60-a4cc-4f270835f600.jpg",
+              "image_link": "shopify://collections/women-sale",
+              "heading": "",
+              "subheading": "",
+              "caption_text_align": "left",
+              "cta_type": "button",
+              "cta_one_link": "",
+              "cta_one_button_text": "",
+              "cta_one_line": "none",
+              "cta_two_link": "",
+              "cta_two_button_text": "",
+              "cta_two_line": "none",
+              "caption_color_scheme": "light",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#e41c39",
+              "caption_horizontal": "left",
+              "caption_horizontal_offset": 0,
+              "caption_vertical": 50,
+              "caption_vertical_mobile": 50,
+              "caption_background": "transparent",
+              "caption_opacity": "0.1"
+            }
           }
         },
         "block_order": [
           "1559793123369",
+          "1560226134172",
           "1551216982423"
         ],
         "settings": {
@@ -541,7 +569,7 @@
               "mobile_image": "shopify://shop_images/2._Mobile_Promo_Blocks_768X638_c13a110e-d474-4730-9c3d-66213570e5e9.jpg",
               "link": "shopify://collections/women-sandals",
               "heading_text": "UNCHARTED WATERS",
-              "body_text": "",
+              "body_text": "<p>The Asymmetrical Slide&nbsp;</p>",
               "text_align": "left",
               "cta_type": "text",
               "cta_text": "SHOP NOW",
