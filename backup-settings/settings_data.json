@@ -464,33 +464,6 @@
       "home-hero_slideshow": {
         "type": "slideshow",
         "blocks": {
-          "1559793123369": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/Website-Homepage.jpg",
-              "mobile_image": "shopify://shop_images/Mobile-Homepage.jpg",
-              "image_link": "shopify://collections/men-new-arrivals",
-              "heading": "",
-              "subheading": "",
-              "caption_text_align": "left",
-              "cta_type": "button",
-              "cta_one_link": "",
-              "cta_one_button_text": "",
-              "cta_one_line": "none",
-              "cta_two_link": "",
-              "cta_two_button_text": "",
-              "cta_two_line": "none",
-              "caption_color_scheme": "light",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#e41c39",
-              "caption_horizontal": "left",
-              "caption_horizontal_offset": 0,
-              "caption_vertical": 50,
-              "caption_vertical_mobile": 50,
-              "caption_background": "transparent",
-              "caption_opacity": "0.1"
-            }
-          },
           "1560226134172": {
             "type": "image",
             "settings": {
@@ -547,7 +520,6 @@
           }
         },
         "block_order": [
-          "1559793123369",
           "1560226134172",
           "1551216982423"
         ],
