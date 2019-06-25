@@ -1,18 +1,18 @@
 {%- if product.selected_variant == nil -%}
-      {% comment %}
-      This scenario covers when we view a parent product without selecting anything, essentially it is the main style.
-      {% endcomment %}
-        {% assign productId = product.id %}
-        {% assign skuParts = product.selected_or_first_available_variant.sku | split: "-" %}
-        {% assign sku = skuParts.first %}
-        {% assign variantId = "" %}
-        {% assign barcode = "" %}
-      {%- else -%}
-        {% assign productId = product.id%}
-        {% assign sku = product.selected_variant.sku %}
-        {% assign variantId = product.selected_variant.id %}
-        {% assign barcode = product.selected_variant.barcode %}
-      {%- endif -%}
+{% comment %}
+This scenario covers when we view a parent product without selecting anything, essentially it is the main style.
+{% endcomment %}
+  {% assign productId = product.id %}
+  {% assign skuParts = product.selected_or_first_available_variant.sku | split: "-" %}
+  {% assign sku = skuParts.first %}
+  {% assign variantId = "" %}
+  {% assign barcode = "" %}
+{%- else -%}
+  {% assign productId = product.id%}
+  {% assign sku = product.selected_variant.sku %}
+  {% assign variantId = product.selected_variant.id %}
+  {% assign barcode = product.selected_variant.barcode %}
+{%- endif -%}
 {
     "id"              : {{product.id | json}},
     "sku"             : {{sku | json}},
