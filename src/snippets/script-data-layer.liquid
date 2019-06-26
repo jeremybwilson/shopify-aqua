@@ -246,7 +246,7 @@ __bva__.helpers = (function () {
     }
 
     var self = this;
-    var getCartItemByVariantId = function (cartItems, vId) {
+    var getCartItem = function (cartItems, vId) {
       var cartItem;
       if (cartItems && cartItems.length) {
         for (var i = 0; i < cartItems.length; i++) {
@@ -259,32 +259,19 @@ __bva__.helpers = (function () {
       return cartItem;
     };
 
-    var getCartItemByLine = function (cartItems, line) {
-      return cartItems && cartItems.length
-        ? cartItems[line - 1]
-        : null
-    }
-
     if (typeof ShopifyAPI.changeItem !== 'undefined') {
       var changeItemMethod = ShopifyAPI.changeItem;
       ShopifyAPI.changeItem = function () {
 
-        // arguments[0] is actually line_number
         var vId = arguments[0];
         var quantityChange = arguments[1];
         var callback = arguments[2];
-
-        // Assume if vID is line number if it has less than 4 digits
-        var getCartItem = String(vId).length >= 4
-          ? getCartItemByVariantId
-          : getCartItemByLine;
-        
         var initialItem = getCartItem(self.cart.items, vId);
 
         arguments[2] = function (cart) {
-          self.cart = cart;
-          var product = getCartItemByVariantId(cart.items, initialItem.variant_id);
 
+          self.cart = cart;
+          var product = getCartItem(cart.items, vId);
           // Have to account for initialItem being 0 when GWP items are added to cart.
           // Product quantity increased
           if (product && initialItem && initialItem.quantity < product.quantity) {
@@ -1663,12 +1650,24 @@ ready(function () {
   // remove item from standard cart page
   // please confirm this function was removed from cart.liquid page
   function remove_item(id) {
+    var payload = {};
+    for (var dlIndex = dataLayer.length -1; dlIndex >= 0; dlIndex--) {
+      if (dataLayer[dlIndex].event === 'Cart Initialize' &&
+        dataLayer[dlIndex].cartItems && dataLayer[dlIndex].cartItems.length) {
+        for (var i = 0; i < dataLayer[dlIndex].cartItems.length; i++) {
+          if (dataLayer[dlIndex].cartItems[i].variantId == id) {
+            payload = dataLayer[dlIndex].cartItems[i];
+            break;
+          }
+        }
+        break;
+      }
+    }
+
     dataLayer.push({
       pageType: 'Remove from Cart',
       event: 'Remove from Cart',
-      detail: {
-        productID: id
-      }
+      products: [payload]
     });
 
     document.getElementById('updates_'+id).value = 0;
@@ -1706,42 +1705,64 @@ ready(function () {
       // PREP : Setup default values before checking cart items
       var isUpdated = false;
       var totalAmount = 0;
-      var updatedItems = [];
 
       // ITERATE : Check cart items against data layer for discrepancies and store them
-      for ( var i=0; i < dataLayer.length; i++ ) {
+      for ( var i = dataLayer.length -1; i >= 0; i-- ) {
 
         // CART CHECK : Ensure correct object being looked at, then iterate
-        if ( dataLayer[i] && dataLayer[i].pageType === 'Global Cart' && dataLayer[i].cartItems ) {
+        if ( dataLayer[i] && dataLayer[i].event === 'Cart Initialize' &&
+          dataLayer[i].cartItems && dataLayer[i].cartItems.length ) {
 
           // ITERATE : Cart Items from found data-layer object
           for ( var j=0; j < dataLayer[i].cartItems.length; j++ ) {
             var dataLayerItem = dataLayer[i].cartItems[j];
 
             // SAFETY : Intercepting cart submission is dangerous, ensure all values to prevent crashing.
-            if ( dataLayerItem && dataLayerItem.id ) {
-              var cId = dataLayerItem.id.toString();
+            if ( dataLayerItem && dataLayerItem.variantId ) {
+              var cId = dataLayerItem.variantId.toString();
 
-              if ( cartItemObj[cId] && cartItemObj[cId] != dataLayerItem.qty ) {
-                dataLayerItem.qty = cartItemObj[cId];
-                isUpdated = true;
+              if ( cartItemObj[cId] || cartItemObj[cId] === 0 ) {
+                if (dataLayerItem.quantity < cartItemObj[cId]) {
+
+                  // for Remove from Cart event, product's quantity
+                  dataLayerItem.quantity = cartItemObj[cId] - dataLayerItem.quantity;
+                  dataLayer.push({
+                    pageType: 'Remove from Cart',
+                    event: 'Remove from Cart',
+                    products: [JSON.parse(JSON.stringify(dataLayerItem))]
+                  });
+
+                  // for Update Cart event, product's quantity need to be changed again by latest quantity.
+                  dataLayerItem.quantity = cartItemObj[cId];
+                  isUpdated = true;
+                } else if (dataLayerItem.quantity > cartItemObj[cId]) {
+
+                  // for Add to Cart event, product's quantity
+                  dataLayerItem.quantity = dataLayerItem.quantity - cartItemObj[cId];
+                  dataLayer.push({
+                    pageType: 'Add to Cart',
+                    event: 'Add to Cart',
+                    products: [JSON.parse(JSON.stringify(dataLayerItem))]
+                  });
+
+                  // for Update Cart event, product's quantity need to be changed again by latest quantity.
+                  dataLayerItem.quantity = cartItemObj[cId];
+                  isUpdated = true;
+                }
               }
-              totalAmount += dataLayerItem.qty * dataLayerItem.itemPrice;
+
             }
           }
 
-          // UPDATE : Store updated items from iteration
-          updatedItems = dataLayer[i].cartItems;
+          break;
         }
       }
 
       if ( isUpdated ) {
-        {% comment %} dataLayer.push({
+        dataLayer.push({
           pageType: 'Update Cart',
-          event: 'Update Cart',
-          cartItems: updatedItems,
-          totalAmount: totalAmount
-        }); {% endcomment %}
+          event: 'Update Cart'
+        });
       }
     }
   }
@@ -1777,3 +1798,4 @@ ready(function () {
   });
 });
 </script>
+

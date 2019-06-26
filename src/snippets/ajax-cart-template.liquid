@@ -13,7 +13,7 @@
       <div class="ajaxcart__inner">
         {{#items}}
         <div class="ajaxcart__product">
-          <div class="ajaxcart row" data-line="{{line}}">
+          <div class="ajaxcart row" data-line="{{line}}" data-id="{{id}}">
 
               {{!-- :: PRODUCT IMAGE :: --}}
               <div class="grid__item desktop-4 tablet-2 mobile-1">
@@ -34,7 +34,9 @@
                         {{#if_not_eq @key 'discountItem'}}
                           {{#if_not_eq @key '_sr_token'}}
                             {{#if_not_eq @key '_collection_private'}}
-                              <span class="ajaxcart__product-meta">{{@key}}: {{this}}</span>
+                              {{#if_not_eq @key '_collection_handle_private'}}
+                                <span class="ajaxcart__product-meta">{{@key}}: {{this}}</span>
+                              {{/if_not_eq}}
                             {{/if_not_eq}}
                           {{/if_not_eq}}
                         {{/if_not_eq}}
@@ -155,5 +157,4 @@
     </div>
   {% endraw %}
 </script>
-
 
