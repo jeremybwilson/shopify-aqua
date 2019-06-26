@@ -296,6 +296,12 @@ var ajaxCart = (function(module, $) {
       }
     });
 
+    Handlebars.registerHelper('unless_contains', function (l, r, opts) {
+      return l.indexOf(r) === -1
+        ? opts.fn(this)
+        : null
+    });
+
     // Select DOM elements
     $formContainer     = $(settings.formSelector);
     $cartContainer     = $(settings.cartContainer);
