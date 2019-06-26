@@ -96,7 +96,7 @@
               </td>
 
               <td class="cart-remove">
-                <a href="#" onclick="remove_item( {{ line_item }} ); return false;"><i class="fa fa-times"></i><span class="remove-text">{{ 'cart.general.remove' | t }}</span></a>
+                <a href="#" class="remove-item" data-id="{{ item.variant.id }}"><i class="fa fa-times"></i><span class="remove-text">{{ 'cart.general.remove' | t }}</span></a>
               </td>
               <td class="cart-price">
                 <span class="money bfx-list-price">{{ item.price | money }}</span>{% if item.variant.compare_at_price > item.price %}&nbsp;<del><span class="money">{{ item.variant.compare_at_price | money }}</span></del>{% endif %}
@@ -127,7 +127,15 @@
         </h4>
 
         <input type="submit" name="update" id="update-cart" value="{{ 'cart.general.update' | t }}" class="button" />
-        <input type="submit" name="checkout" id="checkout" value="{{ 'cart.general.checkout' | t }}" class="button bfx-checkout" />
+
+        {% comment %} :: CHECKOUT :: (Hide actual submit, so we can intercept and ensure GTM tracking is accurate when hitting checkout button) {% endcomment %}
+        <div id="checkout" class="button bfx-checkout">{{ 'cart.general.checkout' | t }}</div>
+        <input type="submit"
+               id="hidden-checkout-button"
+               name="checkout"
+               value="{{ 'cart.general.checkout' | t }}"
+               class="button bfx-checkout hidden"
+               style="display: none;"/>
         <div class="clear"></div>
         {% if additional_checkout_buttons %}
           {{ content_for_additional_checkout_buttons }}
@@ -146,3 +154,4 @@
 
   {% endif %}
 </div>
+

@@ -13,7 +13,7 @@
       <div class="ajaxcart__inner">
         {{#items}}
         <div class="ajaxcart__product">
-          <div class="ajaxcart row" data-line="{{line}}">
+          <div class="ajaxcart row" data-line="{{line}}" data-id="{{id}}">
 
               {{!-- :: PRODUCT IMAGE :: --}}
               <div class="grid__item desktop-4 tablet-2 mobile-1">
@@ -33,9 +33,9 @@
                       {{#if this}}
                         {{#if_not_eq @key 'discountItem'}}
                           {{#if_not_eq @key '_sr_token'}}
-                            {{#if_not_eq @key '_collection_private'}}
-                              <span class="ajaxcart__product-meta">{{@key}}: {{this}}</span>
-                            {{/if_not_eq}}
+                              {{#unless_contains @key '_private'}}
+                                <span class="ajaxcart__product-meta">{{@key}}: {{this}}</span>
+                              {{/unless_contains}}
                           {{/if_not_eq}}
                         {{/if_not_eq}}
                       {{/if}}
@@ -55,7 +55,7 @@
                 {{#if properties.discountItem }}
                   <div class="display-table">
                     <div class="display-table-cell">
-                      <a class="ajaxcart__remove" data-line="{{line}}">Remove</a>
+                      <a class="ajaxcart__remove" data-line="{{line}}" data-id="{{id}}">Remove</a>
                     </div>
                   </div>
 
@@ -71,7 +71,7 @@
                           <span>+</span>
                         </button>
                       </div>
-                      <a class="ajaxcart__remove" data-line="{{line}}">Remove</a>
+                      <a class="ajaxcart__remove" data-line="{{line}}" data-id="{{id}}">Remove</a>
 
                       {{!-- Shoprunner Badge Indicator --}}
                       <div name="sr_cartProductDiv" class="sr-eligibility-badge"></div>
@@ -155,5 +155,4 @@
     </div>
   {% endraw %}
 </script>
-
 

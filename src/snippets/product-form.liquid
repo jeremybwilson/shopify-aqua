@@ -223,10 +223,20 @@
     </div>
     <p class="add-to-cart-msg"></p>
   {% endif %}
+
+  <div class="clear"></div>
+
+  {% comment %}{- Record collection -}{% endcomment %}
   <input
     readonly
     type="hidden"
     name="properties[_collection_private]"
     value="{{ collection.title }}">
-  <div class="clear"></div>
+
+  <input
+    readonly
+    type="hidden"
+    name="properties[_collection_handle_private]"
+    value="{{ collection.handle }}">
 {% endform %}
+
