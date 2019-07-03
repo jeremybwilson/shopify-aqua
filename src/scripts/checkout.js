@@ -97,7 +97,7 @@ bolCheckout.SailThruCheckout = (function() {
 ==============================================================================*/
 bolCheckout.init = function() {
 	// console.log( '::: DEBUG : [ bolCheckout.init() ] -- BOL Checkout Customization Initalized!' );
-	bolCheckout.SailThruCheckout();
+	//bolCheckout.SailThruCheckout();
 };
 
 
