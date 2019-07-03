@@ -157,7 +157,7 @@
     "youtube_url": "",
     "googleplus_url": "",
     "instagram_id": "aquatalia",
-    "newsletter_subscription_api_url": "https://api.sailthru.com",
+    "newsletter_subscription_api_url": "",
     "newsletter_email_service_provider_cid": "ad4b11c18c08f631a75f9702c24575ed",
     "newsletter_template_list_name": "",
     "popup": true,
@@ -494,9 +494,9 @@
           "1551216982423": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/1._Hero_Banner_1920X1014_7d57ddf7-576f-415c-8a1d-9505dd801eac.jpg",
-              "mobile_image": "shopify://shop_images/1._Mobile_Hero_Banner_768X1032_7931f1bb-3578-4fb4-b746-64cd7e926b9e.jpg",
-              "image_link": "shopify://collections/men-sneakers",
+              "image": "shopify://shop_images/Hero1.jpg",
+              "mobile_image": "shopify://shop_images/Hero1_f5f20b27-f546-47b7-a16b-fd354e9a0f49.jpg",
+              "image_link": "shopify://collections/women-booties",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
@@ -537,11 +537,11 @@
           "promo-left": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/2._Promo_Block_930X840_c5109c96-1a5e-41a1-8fc2-e073947fa71a.jpg",
-              "mobile_image": "shopify://shop_images/2._Mobile_Promo_Blocks_768X638_c13a110e-d474-4730-9c3d-66213570e5e9.jpg",
-              "link": "shopify://collections/women-sandals",
-              "heading_text": "UNCHARTED WATERS",
-              "body_text": "<p>The Asymmetrical Slide&nbsp;</p>",
+              "image": "shopify://shop_images/PromoBlock2_4039b949-19c7-412c-b9bf-591f4e9ee948.jpg",
+              "mobile_image": "shopify://shop_images/PromoBlock2.jpg",
+              "link": "shopify://products/pasha-34l2424-92424",
+              "heading_text": "SNAKE PRINT",
+              "body_text": "<p>The Must-Have</p>",
               "text_align": "left",
               "cta_type": "text",
               "cta_text": "SHOP NOW",
@@ -555,11 +555,11 @@
           "promo-right": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/3._Promo_Block_930X840_0b608826-2771-4775-9b3d-1b429b9caf7c.jpg",
-              "mobile_image": "shopify://shop_images/3._Mobile_Promo_Blocks_768X638_3c799127-02f4-4fe4-a6d0-4d1364e50aed.jpg",
-              "link": "shopify://products/nikita-34m0719-80719",
-              "heading_text": "ENDLESS OPTIONS",
-              "body_text": "<p>The Versatile Loafer&nbsp;</p>",
+              "image": "shopify://shop_images/PromoBlock1_96d288f1-05d1-4e36-99d8-afccd6fafb7f.jpg",
+              "mobile_image": "shopify://shop_images/PromoBlock1_e7245595-8975-496c-b70d-7b95a10ea05c.jpg",
+              "link": "shopify://collections/women-flats",
+              "heading_text": "PERFECTLY SCULPTED",
+              "body_text": "<p>The Modern Flat&nbsp;</p>",
               "text_align": "left",
               "cta_type": "text",
               "cta_text": "SHOP NOW",
@@ -585,9 +585,9 @@
           "1551217570857": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/4._Banner_2_1920X915_dc78e6e7-9a83-4910-8547-45134c4c1d6c.jpg",
-              "mobile_image": "shopify://shop_images/4._Mobile_Banner_2_768X1048_befeff08-811a-4575-ae23-28330b442d2e.jpg",
-              "image_link": "shopify://collections/women-sandals",
+              "image": "shopify://shop_images/Hero2_82952f17-5430-49b3-8d62-e57d7e4514cd.jpg",
+              "mobile_image": "shopify://shop_images/Hero2.jpg",
+              "image_link": "shopify://collections/women-sneakers",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
