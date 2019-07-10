@@ -1393,30 +1393,30 @@ theme.Newsletter = (function() {
         } else {
 
           // success state
-          Sailthru.integration("userSignUp",
-          {
-            "email" : ui.textbox.val(),
-            "lists" : {
-              "AQUA_Master_List" : 1 // list to add user to (must exist in Sailthru account)
-              // "Anonymous" : 0 // list to remove user from (must exist in Sailthru account)
-            },
-            "source" : "web",
-            "onSuccess" : function() {
-              var payload = { email: ui.textbox.val(), emailType: 'marketing', interaction: 'On Email' }
-              if (typeof window.__bva__ !== 'undefined' && typeof window.__bva__.helpers !== 'undefined') {
-                window.__bva__.helpers.fireEmailPixel(payload)
-              } else if (typeof dataLayer !== 'undefined') {
-                dataLayer.push(payload, { event: 'On Email' })
-              }
-              ui.formId.fadeOut( () => {
-                ui.successMsg.fadeIn();
-              });
-            },
-            "onError" : function(error) {
-              console.log(`We encountered an issue signing you up. Please try again`);
-              console.log(error);
-            }
-          });
+          // Sailthru.integration("userSignUp",
+          // {
+          //   "email" : ui.textbox.val(),
+          //   "lists" : {
+          //     "AQUA_Master_List" : 1 // list to add user to (must exist in Sailthru account)
+          //     // "Anonymous" : 0 // list to remove user from (must exist in Sailthru account)
+          //   },
+          //   "source" : "web",
+          //   "onSuccess" : function() {
+          //     var payload = { email: ui.textbox.val(), emailType: 'marketing', interaction: 'On Email' }
+          //     if (typeof window.__bva__ !== 'undefined' && typeof window.__bva__.helpers !== 'undefined') {
+          //       window.__bva__.helpers.fireEmailPixel(payload)
+          //     } else if (typeof dataLayer !== 'undefined') {
+          //       dataLayer.push(payload, { event: 'On Email' })
+          //     }
+          //     ui.formId.fadeOut( () => {
+          //       ui.successMsg.fadeIn();
+          //     });
+          //   },
+          //   "onError" : function(error) {
+          //     console.log(`We encountered an issue signing you up. Please try again`);
+          //     console.log(error);
+          //   }
+          // });
 
         }
       });
@@ -1457,30 +1457,30 @@ theme.RegistrationEmailSignUp = (function() {
         e.preventDefault();  // prevent form submission until Sailthru API returns success or error response
 
         // relying on Shopify account registration page field validation
-        Sailthru.integration("userSignUp",
-        {
-          "email" : ui.textbox.val(),  // pulls in the value of the email text input
-          "lists" : {
-            "AQUA_Master_List" : 1 // list to add user to (must exist in Sailthru account)
-            // "Anonymous" : 0 // list to remove user from (must exist in Sailthru account)
-          },
-          "vars" : {
-            "first_name" : ui.firstNameBox.val(),   // pulls in the value of the first_name input field
-            "last_name" : ui.lastNameBox.val()      // pulls in the value of the last_name input field
-          },
-          "source" : "new_user_registration",
-          "onSuccess" : function() {
-            console.log(`Successfully added new user to Sailthru list!`);
-            e.target.submit();
-
-          },
-          "onError" : function(error) {  // error state
-            console.log(`We encountered an issue signing you up. Please try again`);
-            console.log(error);
-            ui.formId.addClass('has-error');
-            ui.errorMsg.fadeIn(error);
-          }
-        });
+        // Sailthru.integration("userSignUp",
+        // {
+        //   "email" : ui.textbox.val(),  // pulls in the value of the email text input
+        //   "lists" : {
+        //     "AQUA_Master_List" : 1 // list to add user to (must exist in Sailthru account)
+        //     // "Anonymous" : 0 // list to remove user from (must exist in Sailthru account)
+        //   },
+        //   "vars" : {
+        //     "first_name" : ui.firstNameBox.val(),   // pulls in the value of the first_name input field
+        //     "last_name" : ui.lastNameBox.val()      // pulls in the value of the last_name input field
+        //   },
+        //   "source" : "new_user_registration",
+        //   "onSuccess" : function() {
+        //     console.log(`Successfully added new user to Sailthru list!`);
+        //     e.target.submit();
+        //
+        //   },
+        //   "onError" : function(error) {  // error state
+        //     console.log(`We encountered an issue signing you up. Please try again`);
+        //     console.log(error);
+        //     ui.formId.addClass('has-error');
+        //     ui.errorMsg.fadeIn(error);
+        //   }
+        // });
 
       });
 
@@ -2415,31 +2415,31 @@ $(document).ready(function() {
 
 
           // success state
-          Sailthru.integration("userSignUp",
-          {
-            "email" : ui.textbox.val(),  // pulls in the value of the email text input
-            "lists" : {
-              "AQUA_Master_List" : 1 // list to add user to (must exist in Sailthru account)
-              // "Anonymous" : 0 // list to remove user from (must exist in Sailthru account)
-            },
-            "source" : signup_method,
-            vars,
-            "onSuccess" : function() {
-              var payload = { email: ui.textbox.val(), emailType: 'marketing', interaction: 'On Email' }
-              if (typeof window.__bva__ !== 'undefined' && typeof window.__bva__.helpers !== 'undefined') {
-                window.__bva__.helpers.fireEmailPixel(payload)
-              } else if (typeof dataLayer !== 'undefined') {
-                dataLayer.push(payload, { event: 'On Email' })
-              }
-              ui.fadeOutGroup.fadeOut( () => {
-                ui.successMsg.fadeIn();
-              });
-             },
-            "onError" : function(error) {
-              console.log(`We encountered an issue signing you up. Please try again`);
-              console.log(error);
-             }
-          });
+          // Sailthru.integration("userSignUp",
+          // {
+          //   "email" : ui.textbox.val(),  // pulls in the value of the email text input
+          //   "lists" : {
+          //     "AQUA_Master_List" : 1 // list to add user to (must exist in Sailthru account)
+          //     // "Anonymous" : 0 // list to remove user from (must exist in Sailthru account)
+          //   },
+          //   "source" : signup_method,
+          //   vars,
+          //   "onSuccess" : function() {
+          //     var payload = { email: ui.textbox.val(), emailType: 'marketing', interaction: 'On Email' }
+          //     if (typeof window.__bva__ !== 'undefined' && typeof window.__bva__.helpers !== 'undefined') {
+          //       window.__bva__.helpers.fireEmailPixel(payload)
+          //     } else if (typeof dataLayer !== 'undefined') {
+          //       dataLayer.push(payload, { event: 'On Email' })
+          //     }
+          //     ui.fadeOutGroup.fadeOut( () => {
+          //       ui.successMsg.fadeIn();
+          //     });
+          //    },
+          //   "onError" : function(error) {
+          //     console.log(`We encountered an issue signing you up. Please try again`);
+          //     console.log(error);
+          //    }
+          // });
 
         }
       });
