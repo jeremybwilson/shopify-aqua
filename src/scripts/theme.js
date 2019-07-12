@@ -1438,9 +1438,9 @@ theme.RegistrationEmailSignUp = (function() {
     const ui = {
       formId:       $( '#create_customer' ),
       errorMsg:     $( '#register-error-response' ),  // passing the API error response to the DOM
-      textbox:      $( '#email_input' ),
-      firstNameBox: $( '#first_name_input' ),
-      lastNameBox:  $( '#last_name_input' ),
+      textbox:      $( '#email' ),
+      firstNameBox: $( '#first_name' ),
+      lastNameBox:  $( '#last_name' ),
       submit:       $( '#account-registration-submit' )
     };
 
@@ -1453,8 +1453,8 @@ theme.RegistrationEmailSignUp = (function() {
       });
 
       // SUBMIT : submit form event
-      ui.formId.submit(function(e) {
-        e.preventDefault();  // prevent form submission until Sailthru API returns success or error response
+      // ui.formId.submit(function(e) {
+        // e.preventDefault();  // prevent form submission until Sailthru API returns success or error response
 
         // relying on Shopify account registration page field validation
         // Sailthru.integration("userSignUp",
@@ -1482,7 +1482,7 @@ theme.RegistrationEmailSignUp = (function() {
         //   }
         // });
 
-      });
+      // });
 
     }
   }
