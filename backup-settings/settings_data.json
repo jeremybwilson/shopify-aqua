@@ -3,6 +3,7 @@
   "current": {
     "favicon": "shopify://shop_images/favicon_4f8cf2b0-05d5-4524-bda3-8b4ca13bac5f.png",
     "google_tag_manager_id": "GTM-5M2TJC4",
+    "enable_newsletter_subscribe": true,
     "data_layer_debugging": false,
     "yottaa_key": "0W-vucGrf1mn4w",
     "color_grey": "#9b9b9b",
@@ -464,6 +465,33 @@
       "home-hero_slideshow": {
         "type": "slideshow",
         "blocks": {
+          "1563164002463": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/here-today-gone-tomorrow-hp_ea67f2e6-5dea-4218-bf4c-d106efafe844.jpg",
+              "mobile_image": "shopify://shop_images/here-today-gone-tomorrow-hp-mobile-2_e1ae79db-90fb-49c8-b614-7d95031d0c6c.jpg",
+              "image_link": "https://www.aquatalia.com/collections/flash-sale-1",
+              "heading": "",
+              "subheading": "",
+              "caption_text_align": "left",
+              "cta_type": "button",
+              "cta_one_link": "/collections/flash-sale-1",
+              "cta_one_button_text": "",
+              "cta_one_line": "none",
+              "cta_two_link": "",
+              "cta_two_button_text": "",
+              "cta_two_line": "none",
+              "caption_color_scheme": "light",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#e41c39",
+              "caption_horizontal": "left",
+              "caption_horizontal_offset": 0,
+              "caption_vertical": 50,
+              "caption_vertical_mobile": 50,
+              "caption_background": "rgba(0,0,0,0)",
+              "caption_opacity": "0.1"
+            }
+          },
           "1551216982423": {
             "type": "image",
             "settings": {
@@ -493,6 +521,7 @@
           }
         },
         "block_order": [
+          "1563164002463",
           "1551216982423"
         ],
         "settings": {
