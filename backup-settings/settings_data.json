@@ -465,33 +465,6 @@
       "home-hero_slideshow": {
         "type": "slideshow",
         "blocks": {
-          "1563164002463": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/today-only-30-off-hp_a8c50e48-160d-407a-bd90-b33623ca8352.jpg",
-              "mobile_image": "shopify://shop_images/today-only-30-off-hp-mobile-2_ade8cea4-1427-4ee5-86d7-e14bfa365723.jpg",
-              "image_link": "shopify://collections/sale",
-              "heading": "",
-              "subheading": "",
-              "caption_text_align": "left",
-              "cta_type": "button",
-              "cta_one_link": "/collections/flash-sale-1",
-              "cta_one_button_text": "",
-              "cta_one_line": "none",
-              "cta_two_link": "",
-              "cta_two_button_text": "",
-              "cta_two_line": "none",
-              "caption_color_scheme": "light",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#e41c39",
-              "caption_horizontal": "left",
-              "caption_horizontal_offset": 0,
-              "caption_vertical": 50,
-              "caption_vertical_mobile": 50,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.1"
-            }
-          },
           "1551216982423": {
             "type": "image",
             "settings": {
@@ -521,7 +494,6 @@
           }
         },
         "block_order": [
-          "1563164002463",
           "1551216982423"
         ],
         "settings": {
