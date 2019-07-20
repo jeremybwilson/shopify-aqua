@@ -468,9 +468,9 @@
           "1551216982423": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/Hero1.jpg",
-              "mobile_image": "shopify://shop_images/Hero1_f5f20b27-f546-47b7-a16b-fd354e9a0f49.jpg",
-              "image_link": "shopify://collections/women-booties",
+              "image": "shopify://shop_images/Hero1_0a774ccd-ab07-472f-8bbf-11f3de6de143.jpg",
+              "mobile_image": "shopify://shop_images/Hero1_2bf8d646-5311-4b4a-887e-2717e0455d6c.jpg",
+              "image_link": "shopify://collections/women-flats",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
@@ -510,11 +510,11 @@
           "promo-left": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/PromoBlock2_4039b949-19c7-412c-b9bf-591f4e9ee948.jpg",
-              "mobile_image": "shopify://shop_images/PromoBlock2.jpg",
-              "link": "shopify://products/pasha-34l2424-92424",
-              "heading_text": "SNAKE PRINT",
-              "body_text": "<p>The Must-Have</p>",
+              "image": "shopify://shop_images/PromoBlock1_ab21a4aa-cd8d-4ef8-8c4e-059d783da31b.jpg",
+              "mobile_image": "shopify://shop_images/PromoBlock1_bc903636-4622-47b3-afb9-3b8356bfecc9.jpg",
+              "link": "shopify://products/mina-34l2740-92740",
+              "heading_text": "A CUT ABOVE",
+              "body_text": "<p>The&nbsp;Sculpted Bootie</p>",
               "text_align": "left",
               "cta_type": "text",
               "cta_text": "SHOP NOW",
@@ -558,8 +558,8 @@
           "1551217570857": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/Hero2_82952f17-5430-49b3-8d62-e57d7e4514cd.jpg",
-              "mobile_image": "shopify://shop_images/Hero2.jpg",
+              "image": "shopify://shop_images/Hero2_7dc72b11-e4d2-4026-93cf-ea37a694e465.jpg",
+              "mobile_image": "shopify://shop_images/Hero2_2394a362-fb09-46a2-a3a3-a92d60d64066.jpg",
               "image_link": "shopify://collections/women-sneakers",
               "heading": "",
               "subheading": "",
