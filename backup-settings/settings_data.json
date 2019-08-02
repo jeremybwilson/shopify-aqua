@@ -468,9 +468,9 @@
           "1551216982423": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/Hero1_0a774ccd-ab07-472f-8bbf-11f3de6de143.jpg",
-              "mobile_image": "shopify://shop_images/Hero1_2bf8d646-5311-4b4a-887e-2717e0455d6c.jpg",
-              "image_link": "shopify://collections/women-flats",
+              "image": "shopify://shop_images/Hero1_4df99dde-8db2-41dd-a1aa-6432ee87b7a2.jpg",
+              "mobile_image": "shopify://shop_images/Hero1_a113ed0e-b2ce-4e4e-a126-776a68aa9b3d.jpg",
+              "image_link": "shopify://collections/women-booties",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
@@ -491,9 +491,37 @@
               "caption_background": "transparent",
               "caption_opacity": "0.1"
             }
+          },
+          "1564721867326": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/double-up-bogo-30-off-desktop_21c55d5f-1429-43cc-8344-76eb1c418ce8.jpg",
+              "mobile_image": "shopify://shop_images/double-up-bogo-30-off-mobile_2b73c78b-13bb-431e-b7fd-14559665a1c2.jpg",
+              "image_link": "shopify://collections/women-new-arrivals",
+              "heading": "",
+              "subheading": "",
+              "caption_text_align": "left",
+              "cta_type": "button",
+              "cta_one_link": "",
+              "cta_one_button_text": "",
+              "cta_one_line": "none",
+              "cta_two_link": "",
+              "cta_two_button_text": "",
+              "cta_two_line": "none",
+              "caption_color_scheme": "light",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#e41c39",
+              "caption_horizontal": "left",
+              "caption_horizontal_offset": 0,
+              "caption_vertical": 50,
+              "caption_vertical_mobile": 50,
+              "caption_background": "rgba(0,0,0,0)",
+              "caption_opacity": "0.1"
+            }
           }
         },
         "block_order": [
+          "1564721867326",
           "1551216982423"
         ],
         "settings": {
@@ -510,11 +538,11 @@
           "promo-left": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/PromoBlock1_ab21a4aa-cd8d-4ef8-8c4e-059d783da31b.jpg",
-              "mobile_image": "shopify://shop_images/PromoBlock1_bc903636-4622-47b3-afb9-3b8356bfecc9.jpg",
-              "link": "shopify://products/mina-34l2740-92740",
-              "heading_text": "A CUT ABOVE",
-              "body_text": "<p>The&nbsp;Sculpted Bootie</p>",
+              "image": "shopify://shop_images/PromoBlock2_e9e17531-38e5-4cfd-90e0-ac33fc376090.jpg",
+              "mobile_image": "shopify://shop_images/PromoBlock2_0607ee99-7ab1-488d-93aa-168c18b31a42.jpg",
+              "link": "shopify://products/pamina-34l2761-92761",
+              "heading_text": "THE CLASSIC WEDGE",
+              "body_text": "<p>Essential hues</p>",
               "text_align": "left",
               "cta_type": "text",
               "cta_text": "SHOP NOW",
