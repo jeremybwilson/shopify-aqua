@@ -328,11 +328,11 @@
         "settings": {
           "full_width_header": false,
           "show_announcement_text": true,
-          "num_of_promo_banners": "1",
+          "num_of_promo_banners": "2",
           "announcement_text_one": "Sign Up & Receive $50 Off Purchases Of $150 Or More",
           "announcement_link_one": "/account",
-          "announcement_text_two": "Second banner text here",
-          "announcement_link_two": "http://google.com",
+          "announcement_text_two": "Buy one, get one 30% Off | Use promo code BOGO30 *exclusions apply",
+          "announcement_link_two": "shopify://pages/promotional-terms-conditions",
           "announcement_height": 40,
           "announcement_swap_rate": 5,
           "logo_size": 24,
@@ -465,33 +465,6 @@
       "home-hero_slideshow": {
         "type": "slideshow",
         "blocks": {
-          "1551216982423": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/Hero1_4df99dde-8db2-41dd-a1aa-6432ee87b7a2.jpg",
-              "mobile_image": "shopify://shop_images/Hero1_a113ed0e-b2ce-4e4e-a126-776a68aa9b3d.jpg",
-              "image_link": "shopify://collections/women-booties",
-              "heading": "",
-              "subheading": "",
-              "caption_text_align": "left",
-              "cta_type": "button",
-              "cta_one_link": "",
-              "cta_one_button_text": "",
-              "cta_one_line": "none",
-              "cta_two_link": "",
-              "cta_two_button_text": "",
-              "cta_two_line": "none",
-              "caption_color_scheme": "light",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#e41c39",
-              "caption_horizontal": "left",
-              "caption_horizontal_offset": 0,
-              "caption_vertical": 50,
-              "caption_vertical_mobile": 50,
-              "caption_background": "transparent",
-              "caption_opacity": "0.1"
-            }
-          },
           "1564721867326": {
             "type": "image",
             "settings": {
@@ -516,6 +489,33 @@
               "caption_vertical": 50,
               "caption_vertical_mobile": 50,
               "caption_background": "rgba(0,0,0,0)",
+              "caption_opacity": "0.1"
+            }
+          },
+          "1551216982423": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/Hero1_4df99dde-8db2-41dd-a1aa-6432ee87b7a2.jpg",
+              "mobile_image": "shopify://shop_images/Hero1_a113ed0e-b2ce-4e4e-a126-776a68aa9b3d.jpg",
+              "image_link": "shopify://collections/women-booties",
+              "heading": "",
+              "subheading": "",
+              "caption_text_align": "left",
+              "cta_type": "button",
+              "cta_one_link": "",
+              "cta_one_button_text": "",
+              "cta_one_line": "none",
+              "cta_two_link": "",
+              "cta_two_button_text": "",
+              "cta_two_line": "none",
+              "caption_color_scheme": "light",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#e41c39",
+              "caption_horizontal": "left",
+              "caption_horizontal_offset": 0,
+              "caption_vertical": 50,
+              "caption_vertical_mobile": 50,
+              "caption_background": "transparent",
               "caption_opacity": "0.1"
             }
           }
