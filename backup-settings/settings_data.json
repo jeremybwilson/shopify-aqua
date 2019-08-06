@@ -465,33 +465,6 @@
       "home-hero_slideshow": {
         "type": "slideshow",
         "blocks": {
-          "1564721867326": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/double-up-bogo-30-off-desktop_21c55d5f-1429-43cc-8344-76eb1c418ce8.jpg",
-              "mobile_image": "shopify://shop_images/double-up-bogo-30-off-mobile_2b73c78b-13bb-431e-b7fd-14559665a1c2.jpg",
-              "image_link": "shopify://collections/women-new-arrivals",
-              "heading": "",
-              "subheading": "",
-              "caption_text_align": "left",
-              "cta_type": "button",
-              "cta_one_link": "",
-              "cta_one_button_text": "",
-              "cta_one_line": "none",
-              "cta_two_link": "",
-              "cta_two_button_text": "",
-              "cta_two_line": "none",
-              "caption_color_scheme": "light",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#e41c39",
-              "caption_horizontal": "left",
-              "caption_horizontal_offset": 0,
-              "caption_vertical": 50,
-              "caption_vertical_mobile": 50,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.1"
-            }
-          },
           "1551216982423": {
             "type": "image",
             "settings": {
@@ -521,7 +494,6 @@
           }
         },
         "block_order": [
-          "1564721867326",
           "1551216982423"
         ],
         "settings": {
