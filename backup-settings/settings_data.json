@@ -328,7 +328,7 @@
         "settings": {
           "full_width_header": false,
           "show_announcement_text": true,
-          "num_of_promo_banners": "2",
+          "num_of_promo_banners": "1",
           "announcement_text_one": "Sign Up & Receive $50 Off Purchases Of $150 Or More",
           "announcement_link_one": "/account",
           "announcement_text_two": "Buy one, get one 30% Off | Use promo code BOGO30 *exclusions apply",
