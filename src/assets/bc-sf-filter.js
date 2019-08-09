@@ -211,7 +211,7 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
             itemPriceHtml += '<div class="prod-price">' + minPrice + '</div>';
         }
     }
-    itemHtml = itemHtml.replace(/{{itemPrice}}/g, itemPriceHtml);
+    itemHtml = itemHtml.replace('{{itemPrice}}', itemPriceHtml);
 
 
     // QUICK VIEW : Add quickview template and setup for fancybox usage
