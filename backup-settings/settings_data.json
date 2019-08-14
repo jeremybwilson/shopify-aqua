@@ -465,6 +465,33 @@
       "home-hero_slideshow": {
         "type": "slideshow",
         "blocks": {
+          "1565754612755": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/the-handbag-event-hp-2_6afc5168-1dfd-4470-9995-fb8a140f58df.jpg",
+              "mobile_image": "shopify://shop_images/the-handbag-event-hp-new_657e77db-e007-4f54-883d-639176405367.jpg",
+              "image_link": "shopify://collections/accessories-handbags",
+              "heading": "",
+              "subheading": "",
+              "caption_text_align": "left",
+              "cta_type": "button",
+              "cta_one_link": "",
+              "cta_one_button_text": "",
+              "cta_one_line": "none",
+              "cta_two_link": "",
+              "cta_two_button_text": "",
+              "cta_two_line": "none",
+              "caption_color_scheme": "light",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#e41c39",
+              "caption_horizontal": "left",
+              "caption_horizontal_offset": 0,
+              "caption_vertical": 50,
+              "caption_vertical_mobile": 50,
+              "caption_background": "rgba(0,0,0,0)",
+              "caption_opacity": "0.1"
+            }
+          },
           "1551216982423": {
             "type": "image",
             "settings": {
@@ -494,6 +521,7 @@
           }
         },
         "block_order": [
+          "1565754612755",
           "1551216982423"
         ],
         "settings": {
