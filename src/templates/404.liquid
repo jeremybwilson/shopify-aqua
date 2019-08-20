@@ -8,6 +8,12 @@
       <h3>{{ 'general.search.title' | t }}</h3>
       <input type="text" name="q" id="q" placeholder="{{ 'general.search.placeholder' | t }}" />
     </form>
-  </div>  
+  </div>
+
+	{% if settings.nosto_id != blank %}
+		{% include 'nosto-element' with 'notfound-nosto-1' %}
+		{% include 'nosto-element' with 'notfound-nosto-2' %}
+		{% include 'nosto-element' with 'notfound-nosto-3' %}
+	{% endif %}
 
 </div>

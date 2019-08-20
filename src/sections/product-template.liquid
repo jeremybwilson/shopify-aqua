@@ -303,6 +303,12 @@
 
   <div class="clear"></div>
 
+  {% comment %} NOSTO RECOMMENDATIONS {% endcomment %}
+    {% if settings.nosto_id != blank %}
+      {% include 'nosto-element' with 'productpage-nosto-1' %}
+      {% include 'nosto-element' with 'productpage-nosto-2' %}
+    {% endif %}
+
   {% comment %} :: REVIEWS :: {% endcomment %}
   <div class="row product-details--reviews">
     <dl class="accordion accordion--product-review js-accordion">

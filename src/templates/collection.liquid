@@ -1,1 +1,7 @@
-{% section 'collection-template' %}
+{% if settings.nosto_id != blank %}
+    {% include 'nosto-element' with 'categorypage-nosto-1' %}
+		{% section 'collection-template' %}
+	{% include 'nosto-element' with 'categorypage-nosto-2' %}
+{% else %}
+    {% section 'collection-template' %}
+{% endif %}
