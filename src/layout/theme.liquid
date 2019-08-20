@@ -129,7 +129,11 @@
   {% if settings.favicon != blank %}
     <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x' }}">
   {% endif %}
-
+  
+<!-- Nosto -->
+  {% if settings.nosto_id != blank %}
+    {% include 'nosto-script' %}
+  {% endif %}
 
   <!-- User login status check
 ================================================== -->
@@ -310,5 +314,11 @@
   {% include 'bc-sf-filter' %}
   <!-- Javascript snippet to resolve the accessibility issues by lighthouse-->
   {% include 'lighthouse-accessibility-resolver' %}
+
+  <!-- Nosto -->
+  {% if settings.nosto_id != blank %}
+    {% include 'nosto-tagging' %}
+  {% endif %}
+
 </body>
 </html>

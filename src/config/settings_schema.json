@@ -44,6 +44,15 @@
       },
       {
         "type": "header",
+        "content": "Nosto"
+      },
+      {
+        "type": "text",
+        "id": "nosto_id",
+        "label": "ID"
+      },
+      {
+        "type": "header",
         "content": "Yottaa Rapid CTRL"
       },
       {
