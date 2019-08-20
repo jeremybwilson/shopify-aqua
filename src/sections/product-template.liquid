@@ -325,16 +325,6 @@
   {% unless template == 'product.quick' %}
     {% comment %} BOTTOM CONTENT {% endcomment %}
 
-    {% if section.settings.related_products == 'bottom' %}
-      <div class="row related-products">
-        <div id="related" class="bottom-related">
-          <hr class="product-hr product-hr--large">
-          {% include 'related-products' %}
-        </div>
-      </div>
-      <div class="clear"></div>
-    {% endif %}
-
     {% comment %} INSTAGRAM YOTPO FEED {% endcomment %}
 
     {% comment %} :: CAMPAIGN VIDEO :: {% endcomment %}
@@ -344,10 +334,6 @@
     {% comment %}
     <div style="max-width:1350px; margin:auto;" id="recommendify-similar-products" shop="{{ shop.domain }}" product="{{ product.id }}"></div>
     {% endcomment %}
-
-
-    {% comment %} :: RECENTLY VIEWED :: {% endcomment %}
-    {% comment %} {% include 'recently-viewed' %} {% endcomment %}
 
 
   {% endunless %}
