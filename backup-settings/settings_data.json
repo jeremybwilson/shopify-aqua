@@ -5,6 +5,7 @@
     "google_tag_manager_id": "GTM-5M2TJC4",
     "enable_newsletter_subscribe": true,
     "data_layer_debugging": false,
+    "nosto_id": "6185320512",
     "yottaa_key": "0W-vucGrf1mn4w",
     "color_grey": "#9b9b9b",
     "announcement_text_color": "#ffffff",
@@ -491,15 +492,43 @@
               "caption_background": "transparent",
               "caption_opacity": "0.1"
             }
+          },
+          "1566359991481": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/the-wardrobe-update-hp_08814d31-23d5-4723-bbdb-b0958119b2f2.jpg",
+              "mobile_image": "shopify://shop_images/the-wardrobe-update-hp-mobile-v2_648399dd-718a-4e4e-afe1-5d510206f0ef.jpg",
+              "image_link": "",
+              "heading": "<br><br>",
+              "subheading": "",
+              "caption_text_align": "left",
+              "cta_type": "button",
+              "cta_one_link": "shopify://collections/men",
+              "cta_one_button_text": "SHOP MEN",
+              "cta_one_line": "left",
+              "cta_two_link": "shopify://collections/women-new-arrivals",
+              "cta_two_button_text": "SHOP WOMEN",
+              "cta_two_line": "left",
+              "caption_color_scheme": "light",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#e41c39",
+              "caption_horizontal": "center",
+              "caption_horizontal_offset": 0,
+              "caption_vertical": 69,
+              "caption_vertical_mobile": 80,
+              "caption_background": "transparent",
+              "caption_opacity": "0.1"
+            }
           }
         },
         "block_order": [
+          "1566359991481",
           "1551216982423"
         ],
         "settings": {
           "show": true,
           "full_width": true,
-          "show_nav_pagination": true,
+          "show_nav_pagination": false,
           "show_nav_pagination_count": false,
           "slider_speed": 3
         }
@@ -596,6 +625,7 @@
       },
       "home-featured_products_list": {
         "type": "featured-collection",
+        "disabled": true,
         "settings": {
           "heading": "Recommended For You",
           "homepage_collection": "recommended-for-you",
@@ -1168,12 +1198,19 @@
           "left_nav_enabled": true,
           "interior_page_left_nav": "side-menu"
         }
+      },
+      "1566332395152": {
+        "type": "nosto-element",
+        "settings": {
+          "nosto_id": "frontpage-nosto-1"
+        }
       }
     },
     "content_for_index": [
       "home-hero_slideshow",
       "home-twin_promos",
       "home-featured_collection_slideshow",
+      "1566332395152",
       "home-featured_products_list",
       "home-video_with_text_weatherproof",
       "home-instagram_feed",
