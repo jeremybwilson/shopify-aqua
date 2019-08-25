@@ -492,37 +492,9 @@
               "caption_background": "transparent",
               "caption_opacity": "0.1"
             }
-          },
-          "1566359991481": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/the-wardrobe-update-hp_08814d31-23d5-4723-bbdb-b0958119b2f2.jpg",
-              "mobile_image": "shopify://shop_images/the-wardrobe-update-hp-mobile-v2_648399dd-718a-4e4e-afe1-5d510206f0ef.jpg",
-              "image_link": "",
-              "heading": "<br><br>",
-              "subheading": "",
-              "caption_text_align": "left",
-              "cta_type": "button",
-              "cta_one_link": "shopify://collections/men",
-              "cta_one_button_text": "SHOP MEN",
-              "cta_one_line": "left",
-              "cta_two_link": "shopify://collections/women-new-arrivals",
-              "cta_two_button_text": "SHOP WOMEN",
-              "cta_two_line": "left",
-              "caption_color_scheme": "light",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#e41c39",
-              "caption_horizontal": "center",
-              "caption_horizontal_offset": 0,
-              "caption_vertical": 69,
-              "caption_vertical_mobile": 80,
-              "caption_background": "transparent",
-              "caption_opacity": "0.1"
-            }
           }
         },
         "block_order": [
-          "1566359991481",
           "1551216982423"
         ],
         "settings": {
