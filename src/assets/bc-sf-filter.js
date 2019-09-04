@@ -322,9 +322,6 @@ BCSfFilter.prototype.buildPagination = function(totalProduct) {
             merchant_group_id: '77397',
             merchant_id: '450247',
             page_id: "'" + item +"'",
-            on_render: function(config, data) {
-                alert('c');
-            },
             components: {
                 CategorySnippet: 'pr-CategorySnippet-'+item
             }

@@ -3710,8 +3710,10 @@ $(document).on('DOMSubtreeModified', "#product-loop", function() {
                     '<section class="pr-category-snippet__total pr-category-snippet__item">0</section>' +
                 '</section>' + 
               '</section>';
-  
+              
   if(window.total_display_product == ($('.pr-CategorySnippet-cls .p-w-r .pr-category-snippet').length) && window.display_product){
+    window.total_display_product = 0;
+    window.display_product = false;
     $('.product-info').each(function (index, value) {
       var review_html = $(this).find('.pr-category-snippet__total').html();
       if(review_html == "No Reviews"){
@@ -3720,11 +3722,10 @@ $(document).on('DOMSubtreeModified', "#product-loop", function() {
         review_html = review_html.replace(' Reviews','').replace(' Review','');
         $(this).find('.pr-category-snippet__total').html(review_html);
       }else{
+    
         $(this).find('.pr-category-snippet__total').html(html);
       }
     });
-    window.total_display_product = 0;
-    window.display_product = false;
   }
 }); 
 // End PDM-901
