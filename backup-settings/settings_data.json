@@ -1176,9 +1176,52 @@
         "settings": {
           "nosto_id": "frontpage-nosto-1"
         }
+      },
+      "1568086382260": {
+        "type": "slideshow",
+        "blocks": {
+          "1568086382260-0": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/favorite-flats-event-30-off-desktop_45451071-90e8-4d5f-960c-34fd2fa6c419.jpg",
+              "mobile_image": "shopify://shop_images/favorite-flats-event-30-off-mobile_69e794f0-ad33-48ed-894e-ed71c79492b7.jpg",
+              "image_link": "shopify://collections/flat-flash-sale",
+              "heading": "",
+              "subheading": "",
+              "caption_text_align": "left",
+              "cta_type": "button",
+              "cta_one_link": "shopify://collections/flat-flash-sale",
+              "cta_one_button_text": "",
+              "cta_one_line": "none",
+              "cta_two_link": "",
+              "cta_two_button_text": "",
+              "cta_two_line": "none",
+              "caption_color_scheme": "light",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#e41c39",
+              "caption_horizontal": "left",
+              "caption_horizontal_offset": 0,
+              "caption_vertical": 50,
+              "caption_vertical_mobile": 50,
+              "caption_background": "transparent",
+              "caption_opacity": "0.1"
+            }
+          }
+        },
+        "block_order": [
+          "1568086382260-0"
+        ],
+        "settings": {
+          "show": true,
+          "full_width": false,
+          "show_nav_pagination": true,
+          "show_nav_pagination_count": false,
+          "slider_speed": 5
+        }
       }
     },
     "content_for_index": [
+      "1568086382260",
       "home-hero_slideshow",
       "home-twin_promos",
       "home-featured_collection_slideshow",
