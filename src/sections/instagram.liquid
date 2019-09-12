@@ -1,13 +1,49 @@
-{% comment %} TEMPLATE {% endcomment %}
-<script id="instagram-template" type="text/template">
-  {% raw %}
-    <div class="instagram-item">
-      <a class="instagram-image-container" target="_blank" href="{{link}}" rel="ig" title="{{caption}}" style="background-image: url({{image}}); ">
-        <img class="instagram-image" src="{{image}}" alt="{{caption}}"/>
-      </a>
+{%- assign render_code = '' -%}
+{%- if section.settings.select_method == 'instafeed' -%}
+
+  {%- capture render_code -%}
+
+    {% comment %} TEMPLATE {% endcomment %}
+    <script id="instagram-template" type="text/template">
+      {% raw %}
+        <div class="instagram-item">
+          <a class="instagram-image-container" target="_blank" href="{{link}}" rel="ig" title="{{caption}}" style="background-image: url({{image}}); ">
+            <img class="instagram-image" src="{{image}}" alt="{{caption}}"/>
+          </a>
+        </div>
+      {% endraw %}
+    </script>
+
+    {% comment %} :: IG TOKEN DATA PARSING :: {% endcomment %}
+    {% assign token = section.settings.instagram_access_token %}
+    {% capture userid %}
+      {{- token | truncate: 9, "" -}}
+    {% endcapture %}
+
+
+    {% comment %} :: INSTAGRAM IMAGES :: {% endcomment %}
+    <div class="instagram-user-feed">
+      {% if section.settings.instagram_access_token != blank %}
+        <div id="instafeed-{{ section.id }}" data-access-token="{{ token }}"></div>
+      
+      {% else %}
+        {% include 'onboard-instagram' %}
+        <a class="ig-token-missing-notice" href="https://www.weareunderground.com/pages/instagram" target="_blank">(Click here to generate your Instagram token, then add in the theme customizer in this section's settings.)</a>
+      {% endif %}
     </div>
-  {% endraw %}
-</script>
+
+  {%- endcapture -%}
+
+{%- elsif section.settings.select_method == 'embed' %}
+
+  {% capture render_code %}
+
+    {{ section.settings.widget_code }}    
+
+  {%- endcapture -%}
+
+{%- endif -%}
+
 
 
 <div class="homepage-section instagram-feed no-fouc index-section" 
@@ -42,24 +78,7 @@
       </div>
     {% endif %}
 
-
-    {% comment %} :: IG TOKEN DATA PARSING :: {% endcomment %}
-    {% assign token = section.settings.instagram_access_token %}
-    {% capture userid %}
-      {{- token | truncate: 9, "" -}}
-    {% endcapture %}
-
-
-    {% comment %} :: INSTAGRAM IMAGES :: {% endcomment %}
-    <div class="instagram-user-feed">
-      {% if section.settings.instagram_access_token != blank %}
-        <div id="instafeed-{{ section.id }}" data-access-token="{{ token }}"></div>
-      
-      {% else %}
-        {% include 'onboard-instagram' %}
-        <a class="ig-token-missing-notice" href="https://www.weareunderground.com/pages/instagram" target="_blank">(Click here to generate your Instagram token, then add in the theme customizer in this section's settings.)</a>
-      {% endif %}
-    </div>
+    {{ render_code }}
 
 </div>
 
@@ -120,6 +139,43 @@
         }
       ]
     },  
+    {
+      "type": "header",
+      "content": "Instagram Method"
+    },
+    {
+      "type": "paragraph",
+      "content": "You have several options to display the Instagram Feed. One is through an external app that embeds widget code, the other via Instafeed."
+    },
+    {
+      "type": "select",
+      "id": "select_method",
+      "label": "Select Instagram Embed method",
+      "options":[
+        {
+          "value": "instafeed",
+          "label": "Instafeed"
+        },
+        {
+          "value": "embed",
+          "label": "Embedded Widget Code"
+        }
+      ],
+      "default": "instafeed"
+    },
+    {
+      "type": "header",
+      "content": "Embedded Widget Code"
+    },
+    {
+      "type": "html",
+      "label": "Widget Code (HTML)",
+      "id": "widget_code"
+    },
+    {
+      "type": "header",
+      "content": "Instafeed Settings"
+    },    
     {
       "type": "textarea",
       "id": "instagram_access_token",

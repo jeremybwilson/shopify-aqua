@@ -1229,6 +1229,35 @@
     ]
   },
   {
+    "name": "Instagram Feeds",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Instagram Feed Source"
+      },
+      {
+        "type": "select",
+        "id": "instagram_service",
+        "label": "Select Instagram Service",
+        "options":[
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "instafeed",
+            "label": "Instafeed"
+          },
+          {
+            "value": "ssw",
+            "label": "Social Shop Wave"
+          }
+        ],
+        "default": "none"
+      }
+    ]
+  },
+  {
     "name": "Newsletter",
     "settings": [
       {
