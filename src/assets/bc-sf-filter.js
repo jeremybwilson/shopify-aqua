@@ -10,6 +10,7 @@ var bcSfFilterSettings = {
         products: '#product-loop'
     }
 };
+window.displayed_product_ids = [];
 
 // FILTER TEMPLATES
 var bcSfFilterTemplate = {
@@ -34,6 +35,7 @@ var bcSfFilterTemplate = {
                                         '<h3 class="product-title">{{itemTitle}}</h3>' +
                                     '</a>' +
                                     '{{wishlistButton}}' +
+                                    '<div id="pr-CategorySnippet-{{itemProductId}}" class="pr-CategorySnippet-cls"></div>' + 
                                     '<div class="product-price-wrap bfx-price">{{itemPrice}}</div>' +
                                     '{{itemSwatch}}' +
                                 '</div>' +
@@ -303,12 +305,29 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
 
 
     // RENDER : Return out our built template!
+    displayed_product_ids.push(data.id);
+    window.total_display_product = window.total_display_product+1;
     return itemHtml;
 }
 
 // Build Pagination
 BCSfFilter.prototype.buildPagination = function(totalProduct) {
     // Get page info
+    window.display_product = true;
+    displayed_product_ids.forEach(function(item){
+        if($('#pr-CategorySnippet-'+item).length > 0){
+            POWERREVIEWS.display.render({
+            api_key: 'e4e06efc-e430-40a3-8203-97a9f625df88',
+            locale: 'en_US',
+            merchant_group_id: '77397',
+            merchant_id: '450247',
+            page_id: "'" + item +"'",
+            components: {
+                CategorySnippet: 'pr-CategorySnippet-'+item
+            }
+            });
+        }
+    });
     var currentPage = parseInt(this.queryParams.page);
     var totalPage = Math.ceil(totalProduct / this.queryParams.limit);
 

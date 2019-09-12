@@ -3687,3 +3687,45 @@ $(document).on('change','.swatch.color input',function(){
   }
 }); 
 // PDM 479 END
+
+// Review Rating in PLP 
+// Start PDM-901
+window.total_display_product = 0;
+window.display_product = false;
+$(document).on('DOMSubtreeModified', "#product-loop", function() {
+  var html = '<section class="pr-no-reviews">' +
+                '<section class="pr-snippet pr-category-snippet">' + 
+                    '<section class="pr-category-snippet__rating pr-category-snippet__item">' + 
+                        '<div class="pr-snippet-stars pr-snippet-stars-png ">' + 
+                            '<div aria-hidden="true" class="pr-rating-stars">' +
+                                '<div class="pr-star-v4 pr-star-v4-0-filled"></div>' +
+                                '<div class="pr-star-v4 pr-star-v4-0-filled"></div>' +
+                                '<div class="pr-star-v4 pr-star-v4-0-filled"></div>' +
+                                '<div class="pr-star-v4 pr-star-v4-0-filled"></div>' +
+                                '<div class="pr-star-v4 pr-star-v4-0-filled"></div>' +
+                            '</div>' +
+                            '<div aria-hidden="true" class="pr-snippet-rating-decimal">0.0</div>'+
+                        '</div>' + 
+                    '</section>' +
+                    '<section class="pr-category-snippet__total pr-category-snippet__item">0</section>' +
+                '</section>' + 
+              '</section>';
+              
+  if(window.total_display_product == ($('.pr-CategorySnippet-cls .p-w-r .pr-category-snippet').length) && window.display_product){
+    window.total_display_product = 0;
+    window.display_product = false;
+    $('.product-info').each(function (index, value) {
+      var review_html = $(this).find('.pr-category-snippet__total').html();
+      if(review_html == "No Reviews"){
+        $(this).find('.pr-category-snippet__total').html(0);
+      }else if(review_html){
+        review_html = review_html.replace(' Reviews','').replace(' Review','');
+        $(this).find('.pr-category-snippet__total').html(review_html);
+      }else{
+    
+        $(this).find('.pr-category-snippet__total').html(html);
+      }
+    });
+  }
+}); 
+// End PDM-901
