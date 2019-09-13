@@ -159,6 +159,7 @@
     "youtube_url": "",
     "googleplus_url": "",
     "instagram_id": "aquatalia",
+    "instagram_service": "ssw",
     "newsletter_subscription_api_url": "",
     "newsletter_email_service_provider_cid": "ad4b11c18c08f631a75f9702c24575ed",
     "newsletter_template_list_name": "",
@@ -635,6 +636,8 @@
           "cta_link": "http://www.instagram.com/aquatalia",
           "cta_text": "FOLLOW US",
           "cta_symbol_placement": "left",
+          "select_method": "embed",
+          "widget_code": "<div class=\"ssw-html-widget ssw-instagram-widget\" data-module=\"service\" data-name=\"instagramPhotos\" data-gallery_id=\"1\" data-type=\"grid\" data-columns_count_for_grid=\"4\" data-rows_count=\"1\" data-spaces=\"0\">\n\t<div class=\"ssw-page-loading\">\n\t\t<span class=\"ssw-spin ssw-loader\"></span>\n\t</div>\n</div>",
           "instagram_access_token": "324973178.5ea0515.ffffb3515672474fbe262ddb8aac60e0"
         }
       },
