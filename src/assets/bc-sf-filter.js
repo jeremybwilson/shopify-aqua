@@ -314,20 +314,22 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
 BCSfFilter.prototype.buildPagination = function(totalProduct) {
     // Get page info
     window.display_product = true;
-    displayed_product_ids.forEach(function(item){
-        if($('#pr-CategorySnippet-'+item).length > 0){
-            POWERREVIEWS.display.render({
-            api_key: 'e4e06efc-e430-40a3-8203-97a9f625df88',
-            locale: 'en_US',
-            merchant_group_id: '77397',
-            merchant_id: '450247',
-            page_id: "'" + item +"'",
-            components: {
-                CategorySnippet: 'pr-CategorySnippet-'+item
+    setTimeout(() => {
+        displayed_product_ids.forEach(function(item){
+            if($('#pr-CategorySnippet-'+item).length > 0){
+                POWERREVIEWS.display.render({
+                api_key: 'e4e06efc-e430-40a3-8203-97a9f625df88',
+                locale: 'en_US',
+                merchant_group_id: '77397',
+                merchant_id: '450247',
+                page_id: "'" + item +"'",
+                components: {
+                    CategorySnippet: 'pr-CategorySnippet-'+item
+                }
+                });
             }
-            });
-        }
-    });
+        });
+    }, 3000);
     var currentPage = parseInt(this.queryParams.page);
     var totalPage = Math.ceil(totalProduct / this.queryParams.limit);
 
