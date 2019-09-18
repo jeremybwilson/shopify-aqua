@@ -1182,19 +1182,18 @@
       },
       "1568086382260": {
         "type": "slideshow",
-        "disabled": true,
         "blocks": {
           "1568086382260-0": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/favorite-flats-event-30-off-desktop_45451071-90e8-4d5f-960c-34fd2fa6c419.jpg",
-              "mobile_image": "shopify://shop_images/favorite-flats-event-30-off-mobile_69e794f0-ad33-48ed-894e-ed71c79492b7.jpg",
-              "image_link": "shopify://collections/flat-flash-sale",
+              "image": "shopify://shop_images/Website_Homepage.jpg",
+              "mobile_image": "shopify://shop_images/Mobile_Homepage.jpg",
+              "image_link": "shopify://collections/accessories-handbags",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
               "cta_type": "button",
-              "cta_one_link": "shopify://collections/flat-flash-sale",
+              "cta_one_link": "shopify://collections/accessories-handbags",
               "cta_one_button_text": "",
               "cta_one_line": "none",
               "cta_two_link": "",
