@@ -105,3 +105,6 @@ bolCheckout.init = function() {
   READY : Wait for DOM ready and then fire initalizer
 ==============================================================================*/
 $(bolCheckout.init);
+$(document).ready(function(){
+  $("#checkout_remember_me").prop('checked',true);
+})

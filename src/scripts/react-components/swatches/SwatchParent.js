@@ -16,6 +16,7 @@
  *    }
  *********************************************/
 var SwatchList = require('./SwatchList');
+const ReactDOM = require('../../vendor/react-dom.min.js');
  
 
 // RENDER : Find all swatch elements and render a SwatchList in each element

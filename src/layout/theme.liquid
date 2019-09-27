@@ -68,8 +68,8 @@
   <!-- JS
 ================================================== -->
   {% comment %} NOTE : Remove the .min on react to get better error messaging {% endcomment %}
-  {{ 'react.min.js' | asset_url | script_tag }}
-  {{ 'react-dom.min.js' | asset_url | script_tag }}
+  {% comment %} {{ 'react.min.js' | asset_url | script_tag }}
+  {{ 'react-dom.min.js' | asset_url | script_tag }} {% endcomment %}
   {{ 'jquery-2.2.4.min.js' | asset_url | script_tag }}
   {{ "eventemitter3.min.js" | asset_url | script_tag }}
   {{ 'slick.min.js' | asset_url | script_tag }}
