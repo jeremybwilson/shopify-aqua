@@ -51,7 +51,7 @@
 
 
 window.theme = window.theme || {};
-
+window.React = require( './vendor/react.js' );
 /* For IE 11+ Nodelist forEach Function */
 if (window.NodeList && !NodeList.prototype.forEach) {
     NodeList.prototype.forEach = function (callback, thisArg) {

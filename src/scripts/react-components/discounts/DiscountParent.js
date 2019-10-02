@@ -15,6 +15,7 @@
  *
  *********************************************/
 const DiscountManager = require('./DiscountManager.js');
+const ReactDOM = require('../../vendor/react-dom.min.js');
 
 
 // PARENT : Initialize discounts manager + Render into Root el
