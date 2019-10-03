@@ -333,8 +333,8 @@
           "num_of_promo_banners": "1",
           "announcement_text_one": "Sign Up & Receive $50 Off Purchases Of $150 Or More",
           "announcement_link_one": "/account",
-          "announcement_text_two": "",
-          "announcement_link_two": "",
+          "announcement_text_two": "Free Shipping on All Domestic U.S. Purchases",
+          "announcement_link_two": "shopify://collections/women",
           "announcement_height": 40,
           "announcement_swap_rate": 5,
           "logo_size": 24,
@@ -1182,19 +1182,18 @@
       },
       "1568086382260": {
         "type": "slideshow",
-        "disabled": true,
         "blocks": {
           "1568086382260-0": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/the-fall-event-20-off-code-fallfirst-hp-v2.jpg",
-              "mobile_image": "shopify://shop_images/the-fall-event-20-off-code-fallfirst-hp-mobile.jpg",
-              "image_link": "shopify://collections/fall-sale-women",
+              "image": "shopify://shop_images/Website_Homepage_BREAST_CANCER_AWARENESS_EVENT.jpg",
+              "mobile_image": "shopify://shop_images/Mobile_Homepage_THE_BREAST_CANCER_AWARENESS_EVENT.jpg",
+              "image_link": "shopify://collections/breast-cancer-capsule",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
               "cta_type": "button",
-              "cta_one_link": "shopify://collections/fall-sale-women",
+              "cta_one_link": "https://www.nationalbreastcancer.org/",
               "cta_one_button_text": "Shop Women",
               "cta_one_line": "left",
               "cta_two_link": "shopify://collections/fall-sale-men",
@@ -1210,14 +1209,42 @@
               "caption_background": "transparent",
               "caption_opacity": "0.1"
             }
+          },
+          "1570073383463": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/the-handbag-event-30-off-hp.jpg",
+              "mobile_image": "shopify://shop_images/the-handbag-event-30-off-hp-mobile.jpg",
+              "image_link": "shopify://collections/accessories-handbags",
+              "heading": "",
+              "subheading": "",
+              "caption_text_align": "left",
+              "cta_type": "button",
+              "cta_one_link": "",
+              "cta_one_button_text": "",
+              "cta_one_line": "none",
+              "cta_two_link": "",
+              "cta_two_button_text": "",
+              "cta_two_line": "none",
+              "caption_color_scheme": "light",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#e41c39",
+              "caption_horizontal": "left",
+              "caption_horizontal_offset": 0,
+              "caption_vertical": 50,
+              "caption_vertical_mobile": 50,
+              "caption_background": "transparent",
+              "caption_opacity": "0.1"
+            }
           }
         },
         "block_order": [
+          "1570073383463",
           "1568086382260-0"
         ],
         "settings": {
           "show": true,
-          "full_width": false,
+          "full_width": true,
           "show_nav_pagination": true,
           "show_nav_pagination_count": false,
           "slider_speed": 5
