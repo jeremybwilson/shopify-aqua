@@ -330,7 +330,7 @@
         "settings": {
           "full_width_header": false,
           "show_announcement_text": true,
-          "num_of_promo_banners": "1",
+          "num_of_promo_banners": "2",
           "announcement_text_one": "Sign Up & Receive $50 Off Purchases Of $150 Or More",
           "announcement_link_one": "/account",
           "announcement_text_two": "Free Shipping on All Domestic U.S. Purchases",
@@ -1209,37 +1209,9 @@
               "caption_background": "transparent",
               "caption_opacity": "0.1"
             }
-          },
-          "1570073383463": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/the-handbag-event-30-off-hp.jpg",
-              "mobile_image": "shopify://shop_images/the-handbag-event-30-off-hp-mobile.jpg",
-              "image_link": "shopify://collections/accessories-handbags",
-              "heading": "",
-              "subheading": "",
-              "caption_text_align": "left",
-              "cta_type": "button",
-              "cta_one_link": "",
-              "cta_one_button_text": "",
-              "cta_one_line": "none",
-              "cta_two_link": "",
-              "cta_two_button_text": "",
-              "cta_two_line": "none",
-              "caption_color_scheme": "light",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#e41c39",
-              "caption_horizontal": "left",
-              "caption_horizontal_offset": 0,
-              "caption_vertical": 50,
-              "caption_vertical_mobile": 50,
-              "caption_background": "transparent",
-              "caption_opacity": "0.1"
-            }
           }
         },
         "block_order": [
-          "1570073383463",
           "1568086382260-0"
         ],
         "settings": {
