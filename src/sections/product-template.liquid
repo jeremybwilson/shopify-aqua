@@ -310,7 +310,13 @@
     {% endif %}
 
   {% comment %} :: REVIEWS :: {% endcomment %}
-  <div class="row product-details--reviews">
+  {%comment%} ::Okendo reviews:: {%endcomment%}
+  <div class="okendo-review-widget-container">
+      <div class="custom-container">
+        {% include 'okendo-reviews-widget' %}
+      </div>
+  </div>
+  {% comment %}<div class="row product-details--reviews">
     <dl class="accordion accordion--product-review js-accordion">
       <dt class="accordion__header js-accordion-toggle">
         <h3>Ratings &amp; Reviews</h3><span class="opener">{% include 'svg-icon-caret-down' %}</span>
@@ -320,7 +326,7 @@
         {% include 'pr-review-summary' %}
       </dd>
     </dl>
-  </div>
+  </div>{% endcomment %}
 
   {% unless template == 'product.quick' %}
     {% comment %} BOTTOM CONTENT {% endcomment %}

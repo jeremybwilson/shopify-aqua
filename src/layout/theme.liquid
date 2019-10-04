@@ -143,7 +143,10 @@
     // set global variable for Shopify sign-in status to pass to theme.js
     var shopifyUserSignInStatus = {% if customer %}true{% else %}false{% endif %};
   </script>
-
+<!-- Okendo reviews
+  ================================================ -->
+  {{ shop.metafields.okendo.ReviewsWidgetStyleTag }}
+  {{ shop.metafields.okendo.StyleCustomizations }}
   {{ content_for_header }}
 </head>
 
