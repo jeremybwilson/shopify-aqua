@@ -470,9 +470,9 @@
           "1551216982423": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/Hero1_c15d627d-b74e-4ab3-ad4d-1bb7ce7f9b0d.jpg",
-              "mobile_image": "shopify://shop_images/Hero1_6b5e922e-4d06-4fe5-bb78-da6c06187be2.jpg",
-              "image_link": "shopify://collections/women-sneakers",
+              "image": "shopify://shop_images/Hero1_7cd44199-fbad-4e23-bc71-088b5a6cd4b6.jpg",
+              "mobile_image": "shopify://shop_images/Hero1_22798d89-9500-449d-8ec9-c80432517fbe.jpg",
+              "image_link": "shopify://collections/women-booties",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
@@ -512,11 +512,11 @@
           "promo-left": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/PromoBlock1_7b0bd4a5-5343-4571-9a39-1eccd4607ca3.jpg",
-              "mobile_image": "shopify://shop_images/PromoBlock1_a5155fb4-72b1-48dd-9fe9-12f50b7f0059.jpg",
-              "link": "shopify://collections/women-booties",
-              "heading_text": "HIGH IMPACT",
-              "body_text": "<p>Textured statements</p>",
+              "image": "shopify://shop_images/PromoBlock1_bcfb39c5-0d00-441a-826a-de988000ec32.jpg",
+              "mobile_image": "shopify://shop_images/PromoBlock1_14c15ac0-8980-4214-b414-f1501f1c017a.jpg",
+              "link": "shopify://products/karen-34l2987",
+              "heading_text": "CROC",
+              "body_text": "<p>Touch of fall</p>",
               "text_align": "left",
               "cta_type": "text",
               "cta_text": "SHOP NOW",
@@ -530,11 +530,11 @@
           "promo-right": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/PromoBlock2_c7bef8b5-433f-4fbb-b6e7-fc61ad7ebde8.jpg",
-              "mobile_image": "shopify://shop_images/PromoBlock2_bf12da1d-eda8-4ee2-80c5-0d8b99f4287e.jpg",
-              "link": "shopify://collections/women-booties",
-              "heading_text": "ESSENTIAL SNAKE",
-              "body_text": "<p>Printed matters&nbsp;</p>",
+              "image": "shopify://shop_images/PromoBlock2_2186f328-573c-410e-b821-5c5080184035.jpg",
+              "mobile_image": "shopify://shop_images/PromoBlock2_acc823da-20ba-46ac-b5e4-cb3d6fa79fb0.jpg",
+              "link": "shopify://products/pasha-34l3049",
+              "heading_text": "SILVER",
+              "body_text": "<p>In the spotlight</p>",
               "text_align": "left",
               "cta_type": "text",
               "cta_text": "SHOP NOW",
