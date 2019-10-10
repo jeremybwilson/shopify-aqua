@@ -107,4 +107,6 @@ bolCheckout.init = function() {
 $(bolCheckout.init);
 $(document).ready(function(){
   $("#checkout_remember_me").prop('checked',true);
+  $('.order-summary-toggle--show.shown-if-js').hide();
+  $('#order-summary').css({'height':'100%','visibility':'visible','overflow': 'visible'});
 })
