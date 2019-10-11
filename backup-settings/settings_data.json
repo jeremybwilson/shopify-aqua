@@ -1183,6 +1183,33 @@
       "1568086382260": {
         "type": "slideshow",
         "blocks": {
+          "1570679723394": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/weekend-columbus75-desktop.gif",
+              "mobile_image": "shopify://shop_images/long-weekend-columbus75-mobile.gif",
+              "image_link": "shopify://collections/women-new-arrivals",
+              "heading": "",
+              "subheading": "",
+              "caption_text_align": "left",
+              "cta_type": "button",
+              "cta_one_link": "",
+              "cta_one_button_text": "",
+              "cta_one_line": "none",
+              "cta_two_link": "",
+              "cta_two_button_text": "",
+              "cta_two_line": "none",
+              "caption_color_scheme": "light",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#e41c39",
+              "caption_horizontal": "left",
+              "caption_horizontal_offset": 0,
+              "caption_vertical": 50,
+              "caption_vertical_mobile": 50,
+              "caption_background": "transparent",
+              "caption_opacity": "0.1"
+            }
+          },
           "1568086382260-0": {
             "type": "image",
             "settings": {
@@ -1206,33 +1233,6 @@
               "caption_horizontal_offset": 43,
               "caption_vertical": 76,
               "caption_vertical_mobile": 72,
-              "caption_background": "transparent",
-              "caption_opacity": "0.1"
-            }
-          },
-          "1570679723394": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/long-_weekend-use-code-columbus75-desktop_1.gif",
-              "mobile_image": "shopify://shop_images/long-_weekend-use-code-columbus75-desktop_2.gif",
-              "image_link": "shopify://collections/women-new-arrivals",
-              "heading": "",
-              "subheading": "",
-              "caption_text_align": "left",
-              "cta_type": "button",
-              "cta_one_link": "",
-              "cta_one_button_text": "",
-              "cta_one_line": "none",
-              "cta_two_link": "",
-              "cta_two_button_text": "",
-              "cta_two_line": "none",
-              "caption_color_scheme": "light",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#e41c39",
-              "caption_horizontal": "left",
-              "caption_horizontal_offset": 0,
-              "caption_vertical": 50,
-              "caption_vertical_mobile": 50,
               "caption_background": "transparent",
               "caption_opacity": "0.1"
             }
