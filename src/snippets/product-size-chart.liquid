@@ -17,6 +17,10 @@
         {% assign size_chart_type = 'gloves' %}
       {% when 'sale' %}
         {% assign size_chart_type = 'all' %}
+      {% when 'mens_coats' %}
+        {% assign size_chart_type = 'mens-coats' %}
+      {% when 'womens_coats' %}
+        {% assign size_chart_type = 'womens-coats' %}
       {% else %}
         {% assign size_chart_type = 'all' %}
     {% endcase %}
