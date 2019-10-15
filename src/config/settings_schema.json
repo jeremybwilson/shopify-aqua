@@ -1745,5 +1745,20 @@
         "info": "Can be found in the Loyalty Lion app in the 'Manage' Tab under 'Configuration > Settings'."
       }
     ]
+  },
+  {
+    "name": "Afterpay Integration",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Afterpay"
+      },
+      {
+        "type": "checkbox",
+        "id": "afterpay_enabled",
+        "label": "Enable Afterpay",
+        "default": true
+      }
+    ]
   }
 ]

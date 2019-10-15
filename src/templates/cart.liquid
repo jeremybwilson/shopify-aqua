@@ -161,3 +161,6 @@
 
 </div>
 
+{% if settings.afterpay_enabled %}
+    {% include 'script-afterpay', afterpay_template: 'cart' %}
+{% endif %} 

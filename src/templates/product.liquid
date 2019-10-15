@@ -1,1 +1,4 @@
   {% section 'product-template' %}
+  {% if settings.afterpay_enabled %}
+    {% include 'script-afterpay', afterpay_template: 'product' %}
+  {% endif %} 

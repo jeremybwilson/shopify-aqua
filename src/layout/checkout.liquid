@@ -72,6 +72,10 @@
 
     {{ tracking_code }}
 
+    {% if settings.afterpay_enabled %}
+      {% include 'script-afterpay', afterpay_template: 'checkout' %}
+    {% endif %}
+
     {% comment %} :: BOL - Checkout Customizations :: {% endcomment %}
     {{ 'checkout.js' | asset_url | script_tag }}
   </body>
