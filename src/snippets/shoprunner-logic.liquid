@@ -3,8 +3,11 @@
 {{ 'shoprunner.scss.css' | asset_url | stylesheet_tag }}
 {% include 'shoprunner-init-script' %}
 
-<div id="shy">&shy;</div>
-<div id="sr_form" style="display:none!important;"></div>
+{% comment %} No idea what this does but it's visibly on the site so hide it goes - BJ {% endcomment %}
+<div style="display: none;">
+    <div id="shy">&shy;</div>
+    <div id="sr_form" style="display:none!important;"></div>
+</div>
 
 <script>
     if (!Array.prototype.includes) {
