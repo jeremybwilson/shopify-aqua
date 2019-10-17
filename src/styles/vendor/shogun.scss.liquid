@@ -1,3 +1,154 @@
-#page .shogun-root {
+#shogun-landing {
+
+	#page {
+		width: 100%;
+	}
+
+	.shogun-root { 
+
+		//layout
+
+		.shg-box {
+			margin: 15px 0;
+		}
+
+		//elements
+
+		.shogun-heading-component {
+
+			h1 {
+				@include h1;
+				text-transform: uppercase;
+				padding: 20px 0;
+		        margin: 25px 0 25px 0;
+		        text-align: center;
+		        @include fontSize(30px);
+				border-bottom: none;
+				padding: 0;
+				margin: 0 !important;
+			}
+
+			h2 {
+				@include h2;
+				font-size: 1.6875rem;
+
+				&:after {
+			      content: "";
+			      display: block;
+			      background-color: $color--light-gray;
+			      margin-bottom: 12px;
+			      margin: 5px auto 12px;
+			      width: 65px;
+			      height: 1px;
+				}
+
+			}
+
+		}
+
+		.shg-rich-text {
+			p {
+
+			}
+		}
+
+		.shg-btn {
+			text-decoration: none !important;
+		}
+
+		// modules
+
+		.main-hero {
+			.shogun-image-container {
+				margin-top: 15px;
+			}
+		}
+
+		.twin-promo {
+
+			h2 {
+				margin-top: 15px;
+			}
+
+			.shg-btn-wrapper {
+				.shg-btn {
+					color: #000;
+					background-color: transparent;
+					border: 1px solid #000;
+
+					&:hover {
+						background-color: #fff !important;
+						color: #424242;
+						border: 1px solid #424242;
+					}
+				}
+			}
+
+			@include mq("phone") {
+				[class*="shg-c-"]:first-child {
+					margin-bottom: 60px;
+				}
+				[class*="shg-c-"]:last-child {
+					margin-bottom: 30px;
+				}
+			}
+
+		}
+
+		.trio-promo {
+			.shogun-image-container {
+				margin-bottom: 15px;
+			}
+		}
+
+		.img-txt {
+
+			[class*="shg-c-"] {
+				display: flex;
+			    justify-content: center;
+			    align-items: center;
+			}
+
+			.shogun-image-container {
+				width: 100%;
+				margin: 0 auto;
+			}
+
+			.text-container {
+			    min-height: auto !important;
+			    height: auto;
+			    width: 100%;
+			    padding: 50px;
+			    text-align: center;
+			    @include mq("phone") {
+			    	padding-top: 0;
+			    }
+			}
+
+		}
+
+		.nosto_element {
+			margin-bottom: 50px;
+
+			@include mq("phone") {
+
+				#nosto-block {
+					padding: 0;
+					margin: 0;
+				}
+
+				.title {
+					font-size: 1.6875rem;
+					text-align: center;
+				}
+
+				.product-info {
+					text-align: center;
+				}
+			}
+		}
+	}
 
 }
+
+
