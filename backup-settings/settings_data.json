@@ -1182,6 +1182,7 @@
       },
       "1568086382260": {
         "type": "slideshow",
+        "disabled": true,
         "blocks": {
           "1568086382260-0": {
             "type": "image",
@@ -1221,9 +1222,52 @@
           "show_nav_pagination_count": false,
           "slider_speed": 4
         }
+      },
+      "1571280275835": {
+        "type": "slideshow",
+        "blocks": {
+          "1571280275835-0": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/aqua-the-essentialist-event-desktop2.gif",
+              "mobile_image": "shopify://shop_images/aqua-the-essentialist-event-desktop.gif",
+              "image_link": "https://www.aquatalia.com/collections/essentialists-event",
+              "heading": "",
+              "subheading": "",
+              "caption_text_align": "left",
+              "cta_type": "button",
+              "cta_one_link": "",
+              "cta_one_button_text": "",
+              "cta_one_line": "none",
+              "cta_two_link": "",
+              "cta_two_button_text": "",
+              "cta_two_line": "none",
+              "caption_color_scheme": "light",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#e41c39",
+              "caption_horizontal": "left",
+              "caption_horizontal_offset": 0,
+              "caption_vertical": 50,
+              "caption_vertical_mobile": 50,
+              "caption_background": "rgba(0,0,0,0)",
+              "caption_opacity": "0.1"
+            }
+          }
+        },
+        "block_order": [
+          "1571280275835-0"
+        ],
+        "settings": {
+          "show": true,
+          "full_width": false,
+          "show_nav_pagination": true,
+          "show_nav_pagination_count": false,
+          "slider_speed": 5
+        }
       }
     },
     "content_for_index": [
+      "1571280275835",
       "1568086382260",
       "home-hero_slideshow",
       "home-twin_promos",
