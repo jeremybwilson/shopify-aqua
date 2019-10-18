@@ -1229,8 +1229,8 @@
           "1571280275835-0": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/aqua-the-essentialist-event-desktop2.gif",
-              "mobile_image": "shopify://shop_images/aqua-the-essentialist-event-desktop.gif",
+              "image": "shopify://shop_images/aqua-the-essentialist-event-extended-desktop.gif",
+              "mobile_image": "shopify://shop_images/aqua-the-essentialist-event-extended-mobile.gif",
               "image_link": "https://www.aquatalia.com/collections/essentialists-event",
               "heading": "",
               "subheading": "",
