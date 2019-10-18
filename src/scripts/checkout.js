@@ -106,7 +106,7 @@ bolCheckout.init = function() {
 ==============================================================================*/
 $(bolCheckout.init);
 $(document).ready(function(){
-  $("#checkout_remember_me").prop('checked',true);  // PDM-1033 - removed in PDM-1044, unclear why
+  $("#checkout_remember_me").prop('checked',true);
   $('.order-summary-toggle').hide();
   $('div.order-summary').removeClass('order-summary--is-collapsed');
 })
