@@ -1182,7 +1182,6 @@
       },
       "1568086382260": {
         "type": "slideshow",
-        "disabled": true,
         "blocks": {
           "1568086382260-0": {
             "type": "image",
@@ -1225,6 +1224,7 @@
       },
       "1571280275835": {
         "type": "slideshow",
+        "disabled": true,
         "blocks": {
           "1571280275835-0": {
             "type": "image",
@@ -1267,8 +1267,8 @@
       }
     },
     "content_for_index": [
-      "1571280275835",
       "1568086382260",
+      "1571280275835",
       "home-hero_slideshow",
       "home-twin_promos",
       "home-featured_collection_slideshow",
