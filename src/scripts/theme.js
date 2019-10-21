@@ -3692,6 +3692,8 @@ $(document).on('change','.swatch.color input',function(){
 
 // Review Rating in PLP 
 // Start PDM-901
+/* 
+// Power Review Changes Start
 window.total_display_product = 0;
 window.display_product = false;
 $(document).on('DOMSubtreeModified', "#product-loop", function() {
@@ -3731,3 +3733,5 @@ $(document).on('DOMSubtreeModified', "#product-loop", function() {
   }
 }); 
 // End PDM-901
+// Power Review Changes End
+*/
