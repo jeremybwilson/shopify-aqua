@@ -306,13 +306,15 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
 
     // RENDER : Return out our built template!
     displayed_product_ids.push(data.id);
-    window.total_display_product = window.total_display_product+1;
+    // window.total_display_product = window.total_display_product+1;
     return itemHtml;
 }
 
 // Build Pagination
 BCSfFilter.prototype.buildPagination = function(totalProduct) {
     // Get page info
+    /*
+    //Power Review Changes Start
     window.display_product = true;
     setTimeout(() => {
         displayed_product_ids.forEach(function(item){
@@ -330,6 +332,8 @@ BCSfFilter.prototype.buildPagination = function(totalProduct) {
             }
         });
     }, 3000);
+    //Power Review Changes End
+    */
     var currentPage = parseInt(this.queryParams.page);
     var totalPage = Math.ceil(totalProduct / this.queryParams.limit);
 
