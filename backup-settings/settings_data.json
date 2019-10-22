@@ -1182,6 +1182,7 @@
       },
       "1568086382260": {
         "type": "slideshow",
+        "disabled": true,
         "blocks": {
           "1568086382260-0": {
             "type": "image",
@@ -1224,14 +1225,13 @@
       },
       "1571280275835": {
         "type": "slideshow",
-        "disabled": true,
         "blocks": {
           "1571280275835-0": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/aqua-the-essentialist-event-extended-desktop.gif",
-              "mobile_image": "shopify://shop_images/aqua-the-essentialist-event-extended-mobile.gif",
-              "image_link": "https://www.aquatalia.com/collections/essentialists-event",
+              "image": "shopify://shop_images/aqua-ff-25-off-desktop.jpg",
+              "mobile_image": "shopify://shop_images/aqua-ff-25-off-mobile.jpg",
+              "image_link": "shopify://collections/women",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
@@ -1259,7 +1259,7 @@
         ],
         "settings": {
           "show": true,
-          "full_width": false,
+          "full_width": true,
           "show_nav_pagination": true,
           "show_nav_pagination_count": false,
           "slider_speed": 5
@@ -1267,8 +1267,8 @@
       }
     },
     "content_for_index": [
-      "1568086382260",
       "1571280275835",
+      "1568086382260",
       "home-hero_slideshow",
       "home-twin_promos",
       "home-featured_collection_slideshow",
