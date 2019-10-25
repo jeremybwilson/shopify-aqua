@@ -1,0 +1,108 @@
+{% comment %} Afterpay Implementation Script {% endcomment %}
+<script type="text/javascript" src="https://static-us.afterpay.com/javascript/present-afterpay.js"></script>
+
+{% case afterpay_template %}
+    {% when 'product' %}
+
+        {% comment %} PRODUCT {% endcomment %}
+
+        <script>
+            var apConfig = {
+                priceSelector: '#product-price',
+                locale: 'en_US',
+                currency: 'USD',
+                afterpayLogoColor: 'color',
+                showUpperLimit: false,
+                amount:  {{ product.price | json }},	
+                minMaxThreshold: {
+                    min: 3500,
+                    max: 100000,
+                },
+            };
+            
+            var apItem = {{ product | json }};
+            
+            if (apItem.type === "Gift Card") {apConfig.priceSelector = ''};
+            $(document).ready(function(){
+                var t = new presentAfterpay(apConfig).init();
+            });
+        </script>
+
+    {% when 'cart' %}
+
+        {% comment %} CART {% endcomment %}
+
+        <script>
+            var apConfig = {
+                priceSelector: '#cartform > #basket-right > h4',
+                locale: 'en_US',
+                currency: 'USD',
+                showUpperLimit: false,
+                afterpayLogoColor: 'color',
+                amount: {{ cart.total_price | json }},
+                minMaxThreshold: {
+                    min: 3500,
+                    max: 100000,
+                },
+            };
+            
+            var apCart = {{ cart | json }};
+            
+            if (apCart.items.some(item => item.product_type.includes("Gift Card"))) {apConfig.priceSelector = ''};
+            
+            $(document).ready(function(){
+                var t = new presentAfterpay(apConfig).init();
+            });
+        </script>
+
+
+    {% when 'checkout' %}
+
+        {% comment %} CHECKOUT {% endcomment %}
+
+        <script>
+            var apConfig = {
+                priceSelector: '#order-summary > div > div.order-summary__section.order-summary__section--total-lines',
+                locale: 'en_US',
+                currency: 'USD', 
+                amount: {{ checkout.total_price }},
+                showUpperLimit: false,
+                afterpayLogoColor: 'color',
+                minMaxThreshold: {
+                    min: 3500,
+                    max: 100000,
+                },
+            };
+            
+            $(document).ready(function(){
+                var t = new presentAfterpay(apConfig).init();
+            });
+        </script>
+
+        <style>
+            p.afterpay-paragraph {
+                font-size: 13px;
+                text-align: right;
+                /*margin-bottom: 0px; 
+                margin-right: 0px;
+                margin-left: 0px; */
+            }
+            .afterpay-link {
+                border: none;
+            }
+            img.afterpay-logo {
+                width: 80px !important;
+                height: auto !important;
+            }
+            @media only screen and (max-width : 480px) {
+                .afterpay-paragraph {
+                    font-size: 10px;
+                }
+                .afterpay-logo{
+                    height: auto !important;
+                    width: auto !important;
+                }
+            }        
+        </style>
+
+{% endcase %} 
