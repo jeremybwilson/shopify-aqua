@@ -213,6 +213,7 @@
     "loyalty_lion_enabled": true,
     "loyalty_lion_token": "2eefd33ba2b59632b59771fdb7314fd5",
     "loyalty_lion_secret": "4655c46066feedbd9bd03f35a0ffc59c",
+    "afterpay_enabled": true,
     "checkout_header_image": "",
     "checkout_logo_image": "shopify://shop_images/checkout-logo.png",
     "checkout_logo_position": "center",
@@ -1182,7 +1183,6 @@
       },
       "1568086382260": {
         "type": "slideshow",
-        "disabled": true,
         "blocks": {
           "1568086382260-0": {
             "type": "image",
@@ -1225,6 +1225,7 @@
       },
       "1571280275835": {
         "type": "slideshow",
+        "disabled": true,
         "blocks": {
           "1571280275835-0": {
             "type": "image",
