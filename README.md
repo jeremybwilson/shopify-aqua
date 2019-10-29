@@ -1,5 +1,5 @@
 # SHOPIFY-AQUA
-This is the primary theme repository for the Aquatalia e-commerce storefront.
+This is the primary theme repository for the Aquatalia e-commerce storefront. 
 <br>
 
 
