@@ -353,7 +353,7 @@
           "main_nav": "main-menu",
           "nav_center": true,
           "nav_height": 60,
-          "megamenu_full_width": true,
+          "megamenu_full_width": false,
           "linklist_breakpoint": 10
         }
       },
@@ -513,11 +513,11 @@
           "promo-left": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/PromoBlock1_bcfb39c5-0d00-441a-826a-de988000ec32.jpg",
-              "mobile_image": "shopify://shop_images/PromoBlock1_14c15ac0-8980-4214-b414-f1501f1c017a.jpg",
-              "link": "shopify://products/karen-34l2987",
-              "heading_text": "CROC",
-              "body_text": "<p>Touch of fall</p>",
+              "image": "shopify://shop_images/PromoBlock1_aac7c203-23da-4943-a8ba-9f6d679ddaf0.jpg",
+              "mobile_image": "shopify://shop_images/PromoBlock1_caf34586-6b71-4505-9ba8-bd93ab0a8d00.jpg",
+              "link": "shopify://products/sutton-34hb0100",
+              "heading_text": "THE COMMUTER",
+              "body_text": "<p>Luxury handbags</p>",
               "text_align": "left",
               "cta_type": "text",
               "cta_text": "SHOP NOW",
@@ -531,11 +531,11 @@
           "promo-right": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/PromoBlock2_2186f328-573c-410e-b821-5c5080184035.jpg",
-              "mobile_image": "shopify://shop_images/PromoBlock2_acc823da-20ba-46ac-b5e4-cb3d6fa79fb0.jpg",
-              "link": "shopify://products/pasha-34l3049",
-              "heading_text": "SILVER",
-              "body_text": "<p>In the spotlight</p>",
+              "image": "shopify://shop_images/PromoBlock2_99c1f261-841f-4499-bf8a-91ed1af88b81.jpg",
+              "mobile_image": "shopify://shop_images/PromoBlock2_6162d1cf-e371-453a-96df-5755b78bd4b0.jpg",
+              "link": "shopify://products/pete-34m0798",
+              "heading_text": "THE TRAILBLAZER",
+              "body_text": "<p>Sophisticated sneaks&nbsp;</p>",
               "text_align": "left",
               "cta_type": "text",
               "cta_text": "SHOP NOW",
@@ -561,9 +561,9 @@
           "1551217570857": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/Hero2_70fe8edb-718a-4c73-96ba-3eb9b3c29691.jpg",
-              "mobile_image": "shopify://shop_images/Hero2_ae6b74b8-b624-4db9-b670-0bde0017d173.jpg",
-              "image_link": "shopify://collections/men",
+              "image": "shopify://shop_images/Hero2_5f1443c7-2fa9-4de0-8146-b52877791d33.jpg",
+              "mobile_image": "shopify://shop_images/Hero2_23e427b3-9fab-464f-8ae9-a49ee0ecce19.jpg",
+              "image_link": "shopify://collections/women-flats",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
@@ -1184,36 +1184,36 @@
       "1568086382260": {
         "type": "slideshow",
         "blocks": {
-          "1568086382260-0": {
+          "1572408168763": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/Website_Homepage_BREAST_CANCER_AWARENESS_EVENT.jpg",
-              "mobile_image": "shopify://shop_images/Mobile_Homepage_THE_BREAST_CANCER_AWARENESS_EVENT.jpg",
-              "image_link": "shopify://collections/breast-cancer-capsule",
+              "image": "shopify://shop_images/aqua-mens-event-30-off-desktop.gif",
+              "mobile_image": "shopify://shop_images/aqua-mens-event-30-off-mobile.gif",
+              "image_link": "https://www.aquatalia.com/collections/men",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
               "cta_type": "button",
-              "cta_one_link": "https://www.nationalbreastcancer.org/",
-              "cta_one_button_text": "Shop Women",
-              "cta_one_line": "left",
-              "cta_two_link": "shopify://collections/fall-sale-men",
-              "cta_two_button_text": "Shop Men",
-              "cta_two_line": "left",
+              "cta_one_link": "",
+              "cta_one_button_text": "",
+              "cta_one_line": "none",
+              "cta_two_link": "",
+              "cta_two_button_text": "",
+              "cta_two_line": "none",
               "caption_color_scheme": "light",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#e41c39",
-              "caption_horizontal": "center",
-              "caption_horizontal_offset": 43,
-              "caption_vertical": 76,
-              "caption_vertical_mobile": 72,
-              "caption_background": "transparent",
+              "caption_horizontal": "left",
+              "caption_horizontal_offset": 0,
+              "caption_vertical": 50,
+              "caption_vertical_mobile": 50,
+              "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
             }
           }
         },
         "block_order": [
-          "1568086382260-0"
+          "1572408168763"
         ],
         "settings": {
           "show": true,
