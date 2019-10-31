@@ -1187,9 +1187,9 @@
           "1572408168763": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/aqua-mens-event-30-off-desktop.gif",
-              "mobile_image": "shopify://shop_images/aqua-mens-event-30-off-mobile.gif",
-              "image_link": "https://www.aquatalia.com/collections/men",
+              "image": "shopify://shop_images/the-fall-sale-desktop.gif",
+              "mobile_image": "shopify://shop_images/the-fall-sale-mobile.gif",
+              "image_link": "shopify://collections/women",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
