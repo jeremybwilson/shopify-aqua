@@ -62,7 +62,7 @@
     $(function(){
         _shoprunner_script_loaded_callbacks.push(function(){
             _setup_shoprunner_properties();
-            _srOrderSubmit();
+            // _srOrderSubmit();  // PDM-905  removing due to twice firing issue at checkout
         })
 
     });
@@ -118,7 +118,7 @@
             var new_props = {};
             if (changing_item && changing_item.properties) new_props = jQuery.extend(true, {}, changing_item.properties);
             new_props._sr_token = "null"
-            
+
             // Remove it
             if ( changing_item && changing_item.key ) {
                 $.ajax({
@@ -139,7 +139,7 @@
                     },
                 });
             }
-            
+
         }
         else if (existing_sr_token != cookie_sr_token){
             var changing_item = li_with_existing_sr_token;
