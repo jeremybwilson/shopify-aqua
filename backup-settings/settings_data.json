@@ -332,7 +332,7 @@
           "full_width_header": false,
           "show_announcement_text": true,
           "num_of_promo_banners": "2",
-          "announcement_text_one": "Sign Up & Receive $50 Off Purchases Of $150 Or More",
+          "announcement_text_one": "Veterans Day Sale | 30% off sitewide with code: VETERANSDAY",
           "announcement_link_one": "/account",
           "announcement_text_two": "Free 2-Day Shipping on All Domestic U.S. Purchases",
           "announcement_link_two": "shopify://collections/women",
@@ -1266,6 +1266,10 @@
           "show_nav_pagination_count": false,
           "slider_speed": 5
         }
+      },
+      "customer-login-register": {
+        "type": "customer-login-register",
+        "settings": {}
       }
     },
     "content_for_index": [
