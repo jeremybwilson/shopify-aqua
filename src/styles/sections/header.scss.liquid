@@ -1014,6 +1014,19 @@ body.js-drawer-open {
                 }
             }
 
+            // Clean spacing for 8 items
+            &[data-link-count*='8'] {
+                padding: 0 250px 0 180px; 
+
+                @include mq( 'desk-and-up' ) {
+                    padding: 0 277px 0 205px;
+                }
+
+                @include mq( 'wide-and-up' ) {
+                    padding: 0 415px 0 230px;
+                }
+            }
+
             .nav-primary-link {
                 @include inline-flex;
                 @include justify-content( center ); // Space links to better match mock
