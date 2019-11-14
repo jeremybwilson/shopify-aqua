@@ -5,67 +5,12 @@
     <span class="banner-text">LOYALTY</span>
   </div>
   <div class="max-width">
-    <div class="way-to-earn-point-part">
-        <h2>ways to earn points</h2>
-        <div class="earn-mony-part-main">
-          <div class="earn-part-info">
-              <div class="icon-earn">
-                <img src="{{ 'shop.png' | asset_url }}">
-              </div>
-              <h3>Shop</h3>
-              <p>Spend $1, Earn 5 points</p>
-          </div>
-          <div class="earn-part-info">
-              <div class="icon-earn">
-                <img src="{{ 'msg.png' | asset_url }}">
-              </div>
-              <h3>Share</h3>
-              <p>Invite your friends and earn 200<br>points when they make a purchase.</p>
-          </div>
-          <div class="earn-part-info">
-              <div class="icon-earn">
-                <img src="{{ 'sign-up.png' | asset_url }}">
-              </div>
-              <h3>Sign Up</h3>
-              <p>Sign up for our newsletter<br>and get 200 points.</p>
-          </div>
-          <div class="earn-part-info thard-part">
-              <div class="icon-earn">
-                <img src="{{ 'birthday.png' | asset_url }}">
-              </div>
-              <h3>Birthday</h3>
-              <p>Automatically receive 500 points on your birthday, deposited straight into your rewards account.</p>
-          </div>
-          <div class="earn-part-info thard-part">
-              <div class="icon-earn">
-                <img src="{{ 'follow.png' | asset_url }}">
-              </div>
-              <h3>Follow Us</h3>
-              <p>Like us on Facebook or follow us on Instagram to earn 150 points; Stay in the know on all things Aquatalia!</p>
-          </div>
-        </div>
-    </div>
+    <div class="way-to-earn-point-part">    	
+			{% section 'reward-earn-points' %}
+    </div>  		
   </div>
   <div class="REDEMPTIONS">
-    <div class="max-width">
-        <h3>REDEMPTIONS</h3>
-        <div class="dolor-coin">
-          <div class="dolor">
-              <h3>$10</h3>
-              <p>500 Points</p>
-          </div>
-          <div class="dolor">
-              <h3>$20</h3>
-              <p>1000 Points</p>
-          </div>
-          <div class="dolor">
-              <h3>$35</h3>
-              <p>1750 Points</p>
-          </div>
-        </div>
-        {% comment %} <a href="{{ shop.url }}/account/login" class="button-join">Join Now</a>
-        <a href="{{ shop.url }}/account/login" class="link-only">Already Have An Account?</a> {% endcomment %}
-    </div>
+    {% section 'redomptions' %}
   </div>
   <script>
     $("body").addClass('index');

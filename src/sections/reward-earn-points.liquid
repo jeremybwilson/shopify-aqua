@@ -1,0 +1,64 @@
+{% comment %} Rewards :: Block loop {% endcomment %}
+<h2 class="title text-center">{{section.settings.title | escape }}</h2>
+<div class="earn-mony-part-main">
+{% for block in section.blocks %}
+    <div class="earn-part-info rewards-{{forloop.index}}">
+        <div class="icon-earn">
+            {% if block.settings.icon != blank %}
+            <img src="{{block.settings.icon}}" alt="{{block.settings.title}}"/>
+            {% endif %}
+            {% if block.settings.icon2 != blank %}
+            <img src="{{block.settings.icon2}}" alt="{{block.settings.title}}"/>
+            {% endif %}
+        </div>
+        {% if block.settings.title != blank %}
+        <h3>
+            {{ block.settings.title }}
+        </h3>
+        {% endif %}
+        {% if block.settings.description != blank %}
+            <p>{{ block.settings.description }}</p>
+        {% endif %}
+    </div>    
+{% endfor %}
+</div>
+{% schema %}
+  {
+    "name": "Reward page",
+    "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading"
+        }
+    ], 
+    "blocks": [ 
+        {
+            "type": "html",
+            "name": "Earn points",
+            "settings":[
+                {
+                    "type": "url",
+                    "id": "icon",
+                    "label": "SVG Icon (SVG upload in files)"
+                },
+                {
+                    "type": "url",
+                    "id": "icon2",
+                    "label": "SVG Icon (SVG upload in files)"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "title"
+                },
+                {
+                    "type": "html",
+                    "id": "description",
+                    "label": "Description"
+                }
+            ]
+        }
+    ]
+  }
+{% endschema %}
