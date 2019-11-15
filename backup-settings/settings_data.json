@@ -1183,14 +1183,13 @@
       },
       "1568086382260": {
         "type": "slideshow",
-        "disabled": true,
         "blocks": {
           "1572408168763": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/the-fall-sale-desktop.gif",
-              "mobile_image": "shopify://shop_images/the-fall-sale-mobile.gif",
-              "image_link": "shopify://collections/women",
+              "image": "shopify://shop_images/the-animal-print-event-30-percent-off-hp.gif",
+              "mobile_image": "shopify://shop_images/the-animal-print-event-30-percent-off-hp-mobile.gif",
+              "image_link": "shopify://collections/printed-collection",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
