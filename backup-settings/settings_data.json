@@ -1183,6 +1183,7 @@
       },
       "1568086382260": {
         "type": "slideshow",
+        "disabled": true,
         "blocks": {
           "1572408168763": {
             "type": "image",
