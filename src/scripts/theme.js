@@ -1132,11 +1132,12 @@ theme.Header = (function() {
       mobileHeaders: $('#accordion').find('.accordion-header'),
       mobileSitesPicker: $( '#nav-sites-picker-mobile' ),
       mobileSubHeaders: $('#accordion').find('.accordion-sub-header'),
-      promoWrap: $( '#double-promo-wrapper' ),
+      promoWrap: $( '#top-bar-mobile' ),
       searchIcon: $( '.nav-search' ),
       searchBar: $( '#nav-search-bar-wrapper' ),
       searchClose: $( '.nav-search-bar-close' ),
-      swapRate: $container.attr( 'data-swap-rate' )
+      swapRate: $container.attr( 'data-swap-rate' ),
+      nextatt: 'next'
     }
 
     this.initStickyNav()
@@ -1221,14 +1222,30 @@ theme.Header = (function() {
     if ( ui.promoWrap && ui.arrows && ui.swapRate ) {
 
       // METHOD : SWAP : Swap promo functionality
-      const swapPromos = () => {
-        ui.promoWrap.toggleClass( 'show-promo-two' );
+      const swapPromos = (promo_side) => {  
+        if(promo_side === 'next'){
+          if(ui.promoWrap.find(".promo-banner-mobile.active").next().filter('.promo-banner-mobile').length == 0){
+            ui.promoWrap.find(".promo-banner-mobile").removeClass('active');
+            ui.promoWrap.find(".promo-banner-mobile:first").addClass('active');
+          }else{
+            ui.promoWrap.find(".promo-banner-mobile.active").next().filter('.promo-banner-mobile').addClass('active');
+            ui.promoWrap.find(".promo-banner-mobile.active:first").removeClass('active');
+          }
+        }else if(promo_side === 'prev'){        
+          if(ui.promoWrap.find(".promo-banner-mobile.active").prev().filter('.promo-banner-mobile').length == 0){
+            ui.promoWrap.find(".promo-banner-mobile").removeClass('active');
+            ui.promoWrap.find(".promo-banner-mobile:last").addClass('active');
+          }else{
+            ui.promoWrap.find(".promo-banner-mobile.active").prev().filter('.promo-banner-mobile').addClass('active');
+            ui.promoWrap.find(".promo-banner-mobile.active:last").removeClass('active');
+          }
+        }
       }
 
       // METHOD : TOGGLE : Swap promos every 5 seconds
       var start = () => {
         this.autoToggle = setInterval( function() {
-          swapPromos();
+          swapPromos(ui.nextatt);
         }, ui.swapRate * 1000 );
       };
 
@@ -1244,8 +1261,8 @@ theme.Header = (function() {
 
 
       // EVENT : CLICK : User clicks either arrow, banner toggles and pauses swapping for ~30 secs
-      ui.arrows.on( 'click', () => {
-        swapPromos();
+      $(document).on('click','.promo-arrow',function(){
+        swapPromos($(this).attr("data-button"));
 
         // DISABLE : Pause auto-toggle, user is focusing on banner
         if ( this.autoToggle ) {
@@ -1260,6 +1277,16 @@ theme.Header = (function() {
       // START : Begin auto-toggle until user interaction
       start();
     }
+    const mobileslide = () => {
+      if($(".promo-slide").length){
+        this.mobileAutoToggle = setInterval( function() {
+          $(".promo-slide").toggleClass( 'show-promo-slide' );
+        }, ui.swapRate * 1000 );
+      }
+
+    }
+    mobileslide();
+
   }
 
   Header.prototype = _.assignIn({}, Header.prototype, {

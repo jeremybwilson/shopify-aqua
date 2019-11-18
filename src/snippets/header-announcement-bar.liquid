@@ -1,56 +1,94 @@
-<div id="top-bar-bg" {% if section.settings.num_of_promo_banners == "2" %} class="double-promo"{% endif %}>
+{% assign promo_banner_count = section.settings.num_of_promo_banners | plus: 0 %}
+<div id="top-bar-bg" {% if section.settings.num_of_promo_banners == "2" or section.settings.num_of_promo_banners == "3" %} class="double-promo"{% endif %}>
   <div id="bg-1"></div>
   <div id="bg-2"></div>
 </div>
-
-<div id="top-bar" {% if section.settings.full_width_header %} class="gridlock-fluid"{% endif %}>
+<div id="top-bar" {% if section.settings.full_width_header %} class="gridlock-fluid" {% endif %}>
   {% if section.settings.full_width_header %}<div class="row">{% endif %}
-  <div class="row">
+  <div class="row" id="top-bar-desktop">
 
-    {% comment %} ..:: ONE PROMO BANNER ::.. {% endcomment %}
-    {%- if section.settings.num_of_promo_banners == "1" -%}
-      <div id="single-promo-wrapper" class="desktop-12 tablet-6 mobile-3">
-        
+    {%- if promo_banner_count >= 1 -%}
+      <div class="promo-banner-desktop">
         {%- if section.settings.announcement_link_one -%}
           <a href="{{ section.settings.announcement_link_one }}">{{ section.settings.announcement_text_one }}</a>
         {%- else -%}
           {{ section.settings.announcement_text_one }}
         {%- endif -%}
-
+      </div>
+    {%- endif -%}
+    
+    {%- if promo_banner_count == 2 -%}
+      <div class="promo-banner-desktop">
+        {%- if section.settings.announcement_link_two -%}
+          <a href="{{ section.settings.announcement_link_two }}">{{ section.settings.announcement_text_two }}</a>
+        {%- else -%}
+          {{ section.settings.announcement_text_two }}
+        {%- endif -%}
       </div>
     {%- endif -%}
 
-
-    {% comment %} ..:: TWO PROMO BANNER ::.. {% endcomment %}
-    {%- if section.settings.num_of_promo_banners == "2" -%}
-      <div id="double-promo-wrapper">
-
-        {% comment %} MOBILE : LEFT ARROW {% endcomment %}
-        <div id="promo-arrow-left">
-          {% include 'svg-icon-caret-left' %}
-        </div>
-
-        <div class="promo-banner one">
-          {%- if section.settings.announcement_link_one -%}
-            <a href="{{ section.settings.announcement_link_one }}">{{ section.settings.announcement_text_one }}</a>
-          {%- else -%}
-            {{ section.settings.announcement_text_one }}
-          {%- endif -%}
-        </div>
-
-        <div class="promo-banner two">
+    {%- if promo_banner_count == 3 -%}
+      <div class="promo-banner-desktop promo-slide">
+        <div class="promo-slide-single first">
           {%- if section.settings.announcement_link_two -%}
             <a href="{{ section.settings.announcement_link_two }}">{{ section.settings.announcement_text_two }}</a>
           {%- else -%}
             {{ section.settings.announcement_text_two }}
           {%- endif -%}
         </div>
-
-        {% comment %} MOBILE : RIGHT ARROW {% endcomment %}
-        <div id="promo-arrow-right">
-          {% include 'svg-icon-caret-right' %}
+        <div class="promo-slide-single last">
+          {%- if section.settings.announcement_link_three -%}
+            <a href="{{ section.settings.announcement_link_three }}">{{ section.settings.announcement_text_three }}</a>
+          {%- else -%}
+            {{ section.settings.announcement_text_three }}
+          {%- endif -%}
         </div>
+      </div>
+    {%- endif -%}
 
+  </div>
+  <div class="row" id="top-bar-mobile">
+    {%- if promo_banner_count > 1  -%}
+      {% comment %} MOBILE : LEFT ARROW {% endcomment %}
+      <div id="promo-arrow-left" class="promo-arrow" data-button="prev">
+        {% include 'svg-icon-caret-left' %}
+      </div>
+    {%- endif -%}
+
+    {%- if promo_banner_count >= 1  -%}
+      <div class="promo-banner-mobile active">
+        {%- if section.settings.announcement_link_one -%}
+          <a href="{{ section.settings.announcement_link_one }}">{{ section.settings.announcement_text_one }}</a>
+        {%- else -%}
+          {{ section.settings.announcement_text_one }}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+    
+    {%- if promo_banner_count >= 2 -%}
+      <div class="promo-banner-mobile">
+        {%- if section.settings.announcement_link_two -%}
+          <a href="{{ section.settings.announcement_link_two }}">{{ section.settings.announcement_text_two }}</a>
+        {%- else -%}
+          {{ section.settings.announcement_text_two }}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if promo_banner_count >= 3 -%}
+      <div class="promo-banner-mobile">
+        {%- if section.settings.announcement_link_three -%}
+          <a href="{{ section.settings.announcement_link_three }}">{{ section.settings.announcement_text_three }}</a>
+        {%- else -%}
+          {{ section.settings.announcement_text_three }}
+        {%- endif -%}
+      </div>    
+    {%- endif -%}
+
+    {%- if promo_banner_count > 1  -%}
+      {% comment %} MOBILE : RIGHT ARROW {% endcomment %}
+      <div id="promo-arrow-right" class="promo-arrow" data-button="next">
+        {% include 'svg-icon-caret-right' %}
       </div>
     {%- endif -%}
 
