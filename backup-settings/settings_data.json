@@ -1270,6 +1270,100 @@
       "customer-login-register": {
         "type": "customer-login-register",
         "settings": {}
+      },
+      "reward-earn-points": {
+        "type": "reward-earn-points",
+        "blocks": {
+          "1574056560498": {
+            "type": "html",
+            "settings": {
+              "icon": "https://cdn.shopify.com/s/files/1/0070/5105/1108/files/Shop_icon.svg",
+              "icon2": "",
+              "title": "Shop",
+              "description": "Spend $1, Earn 5 points"
+            }
+          },
+          "1574056646986": {
+            "type": "html",
+            "settings": {
+              "icon": "https://cdn.shopify.com/s/files/1/0070/5105/1108/files/share_icon.svg",
+              "icon2": "",
+              "title": "Share",
+              "description": "Invite your friends and earn 200<br>points when they make a purchase."
+            }
+          },
+          "1574056682781": {
+            "type": "html",
+            "settings": {
+              "icon": "https://cdn.shopify.com/s/files/1/0070/5105/1108/files/sign_up_icon.svg",
+              "icon2": "",
+              "title": "Sign Up",
+              "description": "Sign up for our newsletter<br>\nand get 200 points."
+            }
+          },
+          "1574056731277": {
+            "type": "html",
+            "settings": {
+              "icon": "https://cdn.shopify.com/s/files/1/0070/5105/1108/files/birthday_icon.svg",
+              "icon2": "",
+              "title": "Birthday",
+              "description": "Automatically receive 500 points on your birthday, deposited straight into your rewards account."
+            }
+          },
+          "1574056760472": {
+            "type": "html",
+            "settings": {
+              "icon": "https://cdn.shopify.com/s/files/1/0070/5105/1108/files/Follow_Us_icon.svg",
+              "icon2": "",
+              "title": "Follow Us",
+              "description": "Like us on Facebook or follow us on Instagram to earn 150 points; Stay in the know on all things Aquatalia!"
+            }
+          }
+        },
+        "block_order": [
+          "1574056560498",
+          "1574056646986",
+          "1574056682781",
+          "1574056731277",
+          "1574056760472"
+        ],
+        "settings": {
+          "title": "WAYS TO EARN POINTS"
+        }
+      },
+      "redemptions": {
+        "type": "redemptions",
+        "blocks": {
+          "1574056833876": {
+            "type": "html",
+            "settings": {
+              "title": "$10",
+              "description": "500 Points"
+            }
+          },
+          "1574056847196": {
+            "type": "html",
+            "settings": {
+              "title": "$20",
+              "description": "1000 Points"
+            }
+          },
+          "1574056858267": {
+            "type": "html",
+            "settings": {
+              "title": "$35",
+              "description": "1750 Points"
+            }
+          }
+        },
+        "block_order": [
+          "1574056833876",
+          "1574056847196",
+          "1574056858267"
+        ],
+        "settings": {
+          "title": "REDEMPTIONS"
+        }
       }
     },
     "content_for_index": [
