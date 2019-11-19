@@ -331,10 +331,12 @@
         "settings": {
           "full_width_header": false,
           "show_announcement_text": true,
-          "num_of_promo_banners": "2",
+          "num_of_promo_banners": "3",
           "announcement_text_one": "$50 Off Your First Purchase Of $150 or More",
           "announcement_link_one": "/account",
-          "announcement_text_two": "Free 2-Day Shipping on All Domestic U.S. Purchases",
+          "announcement_text_two": "Free Shipping on All Domestic U.S. Purchases",
+          "announcement_text_three": "Sign Up & Receive $50 Off Purchase of $150 or More",
+          "announcement_link_three": "",
           "announcement_link_two": "shopify://collections/women",
           "announcement_height": 40,
           "announcement_swap_rate": 5,
@@ -1226,14 +1228,13 @@
       },
       "1571280275835": {
         "type": "slideshow",
-        "disabled": true,
         "blocks": {
           "1571280275835-0": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/aqua-sale-extended-desktop.jpg",
-              "mobile_image": "shopify://shop_images/aqua-sal-extended-mobile.jpg",
-              "image_link": "shopify://collections/women",
+              "image": "shopify://shop_images/aqua-todays-reveal-70-off-v2-dektop.gif",
+              "mobile_image": "shopify://shop_images/aqua-todays-reveal-70-off-v2-mobile.gif",
+              "image_link": "https://www.aquatalia.com/products/jordan-34l3217?variant=29805279412296",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
@@ -1274,81 +1275,91 @@
       "reward-earn-points": {
         "type": "reward-earn-points",
         "blocks": {
-          "1574056560498": {
+          "1574108053470": {
             "type": "html",
             "settings": {
-              "icon": "https://cdn.shopify.com/s/files/1/0070/5105/1108/files/Shop_icon.svg",
+              "icon": "https://cdn.shopify.com/s/files/1/0061/8532/0512/files/aqua-shop-60.png?280505",
               "icon2": "",
-              "title": "Shop",
-              "description": "Spend $1, Earn 5 points"
+              "title": "SHOP",
+              "description": "Earn 5 points per dollar spent when signed in to your Aquatalia account. 500 points gets you $10 off your order."
             }
           },
-          "1574056646986": {
+          "1574108350293": {
             "type": "html",
             "settings": {
-              "icon": "https://cdn.shopify.com/s/files/1/0070/5105/1108/files/share_icon.svg",
+              "icon": "https://cdn.shopify.com/s/files/1/0061/8532/0512/files/aqua-friend-icon-50.png?280506",
               "icon2": "",
-              "title": "Share",
-              "description": "Invite your friends and earn 200<br>points when they make a purchase."
+              "title": "SHARE",
+              "description": "Invite your friends and earn 200 points when they make a purchase."
             }
           },
-          "1574056682781": {
+          "1574108596708": {
             "type": "html",
             "settings": {
-              "icon": "https://cdn.shopify.com/s/files/1/0070/5105/1108/files/sign_up_icon.svg",
+              "icon": "https://cdn.shopify.com/s/files/1/0061/8532/0512/files/aqua-man-icon-50.png?280507",
               "icon2": "",
-              "title": "Sign Up",
-              "description": "Sign up for our newsletter<br>\nand get 200 points."
+              "title": "SIGN UP",
+              "description": "Earn your first 200 points and get access to exclusive sales by creating an Aquatalia account."
             }
           },
-          "1574056731277": {
+          "1574109025015": {
             "type": "html",
             "settings": {
-              "icon": "https://cdn.shopify.com/s/files/1/0070/5105/1108/files/birthday_icon.svg",
+              "icon": "https://cdn.shopify.com/s/files/1/0061/8532/0512/files/aqua-gift-icon-50.png?280514",
               "icon2": "",
-              "title": "Birthday",
-              "description": "Automatically receive 500 points on your birthday, deposited straight into your rewards account."
+              "title": "BIRTHDAY",
+              "description": "Automatically receive 500 points on your birthday."
             }
           },
-          "1574056760472": {
+          "1574109268295": {
             "type": "html",
             "settings": {
-              "icon": "https://cdn.shopify.com/s/files/1/0070/5105/1108/files/Follow_Us_icon.svg",
+              "icon": "https://cdn.shopify.com/s/files/1/0061/8532/0512/files/insta.png?280515",
               "icon2": "",
-              "title": "Follow Us",
-              "description": "Like us on Facebook or follow us on Instagram to earn 150 points; Stay in the know on all things Aquatalia!"
+              "title": "SOCIAL",
+              "description": "Follow us on Instagram or like us on Facebook to earn 150 points; Stay in the know on all things Aquatalia!"
+            }
+          },
+          "1574109743075": {
+            "type": "html",
+            "settings": {
+              "icon": "https://cdn.shopify.com/s/files/1/0061/8532/0512/files/star.png?280520",
+              "icon2": "",
+              "title": "REVIEW",
+              "description": "Receive 220 points by writing a product review and letting us know what you think."
             }
           }
         },
         "block_order": [
-          "1574056560498",
-          "1574056646986",
-          "1574056682781",
-          "1574056731277",
-          "1574056760472"
+          "1574108053470",
+          "1574108350293",
+          "1574108596708",
+          "1574109025015",
+          "1574109268295",
+          "1574109743075"
         ],
         "settings": {
-          "title": "WAYS TO EARN POINTS"
+          "title": ""
         }
       },
       "redemptions": {
         "type": "redemptions",
         "blocks": {
-          "1574056833876": {
+          "1574137089631": {
             "type": "html",
             "settings": {
               "title": "$10",
               "description": "500 Points"
             }
           },
-          "1574056847196": {
+          "1574137185558": {
             "type": "html",
             "settings": {
               "title": "$20",
               "description": "1000 Points"
             }
           },
-          "1574056858267": {
+          "1574137198079": {
             "type": "html",
             "settings": {
               "title": "$35",
@@ -1357,12 +1368,12 @@
           }
         },
         "block_order": [
-          "1574056833876",
-          "1574056847196",
-          "1574056858267"
+          "1574137089631",
+          "1574137185558",
+          "1574137198079"
         ],
         "settings": {
-          "title": "REDEMPTIONS"
+          "title": "Redemptions"
         }
       }
     },
