@@ -60,6 +60,20 @@
     }
 
     .bold { font-weight: $font-weight--bold; }
+    #top-bar-desktop {
+        display:flex;
+    }
+    #top-bar-mobile{
+        display:none;
+    }
+    @include mq( 'phone' ) {
+        #top-bar-desktop {
+            display:none;
+        }
+        #top-bar-mobile{
+            display:flex;
+        }
+    }
 }
 
 
@@ -85,7 +99,7 @@
 
 
 // PROMOS : TWO : Two promos displayed side by side with animation on mobile sizes
-#double-promo-wrapper {
+#double-promo-wrapper,#top-bar-mobile {
     @include inline-flex;
     @include flex-flow( row wrap );
     @include justify-content( space-evenly ); //Horizontally
@@ -106,7 +120,12 @@
         font-size: {{ settings.announcement_text_size }}px;
         line-height: {{ settings.announcement_text_size }}px;
     }
-
+    .promo-banner-mobile{
+        display:none;
+        &.active{
+            display:block;
+        }
+    }
     .promo-banner {
         opacity: 0;
         width: 100%;
@@ -201,4 +220,24 @@
     10% { opacity: 1; }
     45% { opacity: 1; }
     50% { opacity: 0; }
+}
+.promo-banner-desktop{
+    width: 50%;
+    float: left;
+}
+.promo-slide{
+    .first{
+        display: block;
+    }
+    .last{
+        display: none;
+    }
+    &.show-promo-slide{
+        .first{
+            display: none;
+        }
+        .last{
+            display: block;
+        }   
+    }
 }
