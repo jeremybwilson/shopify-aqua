@@ -335,8 +335,8 @@
           "announcement_text_one": "$50 Off Your First Purchase Of $150 or More",
           "announcement_link_one": "/account",
           "announcement_text_two": "Free Shipping on All Domestic U.S. Purchases",
-          "announcement_text_three": "Sign Up & Receive $50 Off Purchase of $150 or More",
-          "announcement_link_three": "",
+          "announcement_text_three": "INSTALLMENTS BY Afterpay HAVE ARRIVED.",
+          "announcement_link_three": "/collections/women-new-arrivals",
           "announcement_link_two": "shopify://collections/women",
           "announcement_height": 40,
           "announcement_swap_rate": 5,
@@ -1232,9 +1232,9 @@
           "1571280275835-0": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/aqua-todays-reveal-70-off-v2-dektop.gif",
-              "mobile_image": "shopify://shop_images/aqua-todays-reveal-70-off-v2-mobile.gif",
-              "image_link": "https://www.aquatalia.com/products/jordan-34l3217?variant=29805279412296",
+              "image": "shopify://shop_images/todays-reveal-the-divina-black-navy.gif",
+              "mobile_image": "shopify://shop_images/todays-reveal-the-divina-black-navy-mobile.gif",
+              "image_link": "/products/divina-34l2910?variant=29802705911880",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
