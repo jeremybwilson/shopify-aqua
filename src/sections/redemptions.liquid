@@ -1,7 +1,5 @@
 {% comment %} Rewards :: Block loop {% endcomment %}
-{% if section.settings.title != blank %}
-<div class="REDEMPTIONS">
-    <div class="max-width">        
+<div class="max-width">        
         <h3>{{section.settings.title | escape }}</h3>        
             <div class="dolor-coin">
             {% for block in section.blocks %}
@@ -25,9 +23,8 @@
             <a href="/account" class="account-btn text-center">Already have an account?</a>
             </div>
         {% endcomment %}    
-    </div>
 </div>
-{% endif %}
+
 {% schema %}
   {
     "name": "Redemptions",
