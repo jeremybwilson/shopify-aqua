@@ -5,17 +5,28 @@
         float: none !important;
     }
     .way-to-earn-point-part h2 {
-        font-weight: 500;
-        font-size: 30px;
+        font-weight: $font-weight--medium;
+        @include fontSize( 30px );
         text-transform: uppercase;
         letter-spacing: 9px;
         text-align: center;
         margin: 92px 0 65px;
     }
     .earn-money-part-main {
-        display: flex;
+        @include flexbox;
         flex-wrap: wrap;
         justify-content: center;
+        position:relative;
+        
+        &:after{
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: $color--white;
+        }
     }
     .earn-part-info {
         text-align: center;
@@ -24,31 +35,32 @@
         border-right: 1px solid #e5e5e5;
         border-bottom: 1px solid #e5e5e5;
         flex: 0 0 33.333%;
-        &:last-child{
-           border:0px !important;
+         &:last-child{
+           border-right:0px !important;
         }
+
         p {
             display: inline-block;
-            font-size: 1rem;
+            @include fontSize( 16px );
             line-height: 1.8em;
             letter-spacing: 1.23px;
-            font-weight: 500;
+            font-weight: $font-weight--medium;
             margin-bottom: 0;
             width:100%;
         }
         h3 {
-            font-size: 1.625rem;
+            @include fontSize( 26px );
             line-height: 1em;
             letter-spacing: 0px;
             text-align: center;
-            font-weight: 500;
+            font-weight: $font-weight--medium;
             margin-bottom: 15px;
             margin-top:15px;
         }
     }
-    .earn-part-info:nth-last-child(2) {
+    {% comment %} .earn-part-info:nth-last-child(2) {
         border-bottom: 0px !important;
-    }
+    } {% endcomment %}
     /*.earn-part-info:nth-last-child(3) {
         border-bottom: 0px !important;
     }*/
@@ -56,9 +68,10 @@
     .earn-part-info:nth-child(3n) {
         border-right: 0px;
     }
+    
     .icon-earn {
         min-height: 33px;
-        display: flex;
+        @include flexbox;
         align-items: flex-end;
         justify-content: center;
     }
@@ -68,8 +81,8 @@
         text-align: center;
         padding: 140px 0;
         h3 {
-            font-weight: 500;
-            font-size: 28px;
+            font-weight: $font-weight--medium;
+            @include fontSize( 28px );
             text-transform: uppercase;
             letter-spacing: 10px;
             text-align: center;
@@ -81,22 +94,22 @@
         text-align: center;
     }
     .dolor-coin {
-        display: flex;
+        @include flexbox;
         flex-wrap: wrap;
         max-width: 64%;
         margin: 0px auto 50px auto;
             justify-content: center;
         p {
             display: inline-block;
-            font-size: 1rem;
+            @include fontSize( 16px );
             line-height: 1.6em;
             letter-spacing: 1.23px;
-            font-weight: 500;
+            font-weight: $font-weight--medium;
             margin-bottom: 0;
         }
         h3 {
             letter-spacing: 0.5px;
-            font-size: 35px;
+            @include fontSize( 35px );
             margin-bottom: 10px;
         }
     }
@@ -105,19 +118,19 @@
         margin-top: 27px;
         display: inline-block;
         letter-spacing: 1px;
-        font-weight: 500;
-        font-size: 15px;
+        font-weight: $font-weight--medium;
+        @include fontSize( 15px );
     }
     .button-join {
         line-height: 44px;
         outline: none;
         height: 48px;
-        background: #000;
-        color: #fff;
+        background: $color--primary-1;
+        color: $color--white;
         text-align: center;
-        font-size: 16px;
+        @include fontSize( 16px );
         font-family: "Futura-BT",sans-serif;
-        font-weight: 700;
+        font-weight: $font-weight--bold;
         border: 0;
         border-radius: 0;
         transition: all .25s ease-in-out;
@@ -135,7 +148,7 @@
         max-width: 230px;
     }
     .button-join:hover {
-        color: #fff;
+        color: $color--white;
     }
     .thard-part {
         border-bottom: 0px;
@@ -161,14 +174,14 @@
         top: 50%;
         text-align: center;
         width: 100%;
-        color: #fff;
-        font-size: 28px;
+        color: $color--white;
+        @include fontSize( 28px );
         letter-spacing: 6px;
-        font-weight: 500;
+        font-weight: $font-weight--medium;
     }
     @include mq( 'tablet' ){
         .earn-part-info p{
-            font-size:14px;
+            @include fontSize( 14px );
         }
         .top-banner{
             height: 315px;
@@ -180,7 +193,7 @@
             border-bottom:0px;
             padding: 5px 15px 25px;
             p{
-                font-size:16px;
+                @include fontSize( 16px );
             }
             h3{
                 font-size: 1.4rem;
@@ -190,7 +203,7 @@
             height: 315px;
         }
         .way-to-earn-point-part h2{
-            font-size: 24px;
+            @include fontSize( 24px );
             max-width: 80%;
             line-height: 33px;
             margin: 35px auto 20px auto;
@@ -202,10 +215,10 @@
             h3{
                 letter-spacing: 2px;
                 margin: 0px 0 30px 0;
-                font-size: 23px;
+                @include fontSize( 23px );
             }
             .dolor-coin h3{
-                font-size: 30px;
+                @include fontSize( 30px );
                 margin-bottom: 5px;
             }
         }
