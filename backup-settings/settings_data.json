@@ -473,8 +473,8 @@
           "1551216982423": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/Hero1_3e75bc13-69b6-4956-a227-4d28dcde2484.jpg",
-              "mobile_image": "shopify://shop_images/Hero2_23e427b3-9fab-464f-8ae9-a49ee0ecce19.jpg",
+              "image": "shopify://shop_images/Hero1_eefb4372-b902-4ade-988f-25bbed19f8dd.jpg",
+              "mobile_image": "shopify://shop_images/Hero1_9b0a7347-4022-49f2-b12d-42262c1fa681.jpg",
               "image_link": "shopify://collections/women-pumps",
               "heading": "",
               "subheading": "",
@@ -515,11 +515,11 @@
           "promo-left": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/PromoBlock1_aac7c203-23da-4943-a8ba-9f6d679ddaf0.jpg",
-              "mobile_image": "shopify://shop_images/PromoBlock1_caf34586-6b71-4505-9ba8-bd93ab0a8d00.jpg",
-              "link": "shopify://products/sutton-34hb0100",
-              "heading_text": "THE COMMUTER",
-              "body_text": "<p>Luxury handbags</p>",
+              "image": "shopify://shop_images/PromoBlock1_ed34b6df-e63e-40da-8d08-5eccf4353581.jpg",
+              "mobile_image": "shopify://shop_images/PromoBlock1_633e6602-af20-4096-a942-6dbd02f85afd.jpg",
+              "link": "shopify://collections/women-booties",
+              "heading_text": "CAMO REDEFINED",
+              "body_text": "<p>Elevated takes</p>",
               "text_align": "left",
               "cta_type": "text",
               "cta_text": "SHOP NOW",
@@ -533,11 +533,11 @@
           "promo-right": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/PromoBlock2_99c1f261-841f-4499-bf8a-91ed1af88b81.jpg",
-              "mobile_image": "shopify://shop_images/PromoBlock2_6162d1cf-e371-453a-96df-5755b78bd4b0.jpg",
-              "link": "shopify://products/pete-34m0798",
-              "heading_text": "THE TRAILBLAZER",
-              "body_text": "<p>Sophisticated sneaks&nbsp;</p>",
+              "image": "shopify://shop_images/PromoBlock2_92923be2-c446-419c-9a88-a46f820ebedb.jpg",
+              "mobile_image": "shopify://shop_images/PromoBlock2_765f6cb7-bb79-4457-ae1b-7052e1661165.jpg",
+              "link": "shopify://collections/accessories",
+              "heading_text": "DETAILS MATTER",
+              "body_text": "<p>Modern accents</p>",
               "text_align": "left",
               "cta_type": "text",
               "cta_text": "SHOP NOW",
@@ -563,8 +563,8 @@
           "1551217570857": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/Hero2_480f7cd3-3635-43d9-af6e-21b4c57b4379.jpg",
-              "mobile_image": "shopify://shop_images/Hero2_93bd0929-adb2-4a8a-a9fa-a2720b1fc65b.jpg",
+              "image": "shopify://shop_images/Hero2_1dc3c61c-e7da-45f4-9774-a8632441e8fc.jpg",
+              "mobile_image": "shopify://shop_images/Hero2_4b1fa7d7-2092-41ac-9ef9-3f4a556bc884.jpg",
               "image_link": "shopify://collections/women-booties",
               "heading": "",
               "subheading": "",
@@ -1232,9 +1232,9 @@
           "1571280275835-0": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/aqua-70-off-luce-desktop.gif",
-              "mobile_image": "shopify://shop_images/aqua-70-off-luce-mobile.gif",
-              "image_link": "https://www.aquatalia.com/products/luce-34l3216?variant=29805240123464",
+              "image": "shopify://shop_images/todays-reveal-70-off-the-giana-hp-v2_89d7c6aa-bbd3-4b6a-a11d-3ca1b6040902.gif",
+              "mobile_image": "shopify://shop_images/todays-reveal-70-off-the-giana-mobile-v2_75790465-9f93-480a-8565-01e1e2fe7fb7.gif",
+              "image_link": "/collections/giana-1",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
