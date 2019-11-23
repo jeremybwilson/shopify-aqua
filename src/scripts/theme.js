@@ -3714,7 +3714,17 @@ $(document).on('change','.swatch.color input',function(){
     $('.add.AddtoCart').attr('disabled',true);
     
   }
-}); 
+});
+
+// hotfix mobile chrome grid system
+$(document).ready(function() {
+  if (!$('body.gridlock').length) {
+    console.log('fixing mobile view...');
+    $('body').addClass('bfx-price-container bfx-remove-element-container gridlock shifter');
+  }
+});
+
+
 // PDM 479 END
 
 // Review Rating in PLP 
