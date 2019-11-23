@@ -318,6 +318,16 @@
             "settings": {
               "menu_item": "Weatherproof"
             }
+          },
+          "1574421557128": {
+            "type": "mega_menu",
+            "settings": {
+              "menu_item": "Outerwear",
+              "nav_image": "",
+              "nav_image_link": "",
+              "nav_image_title": "",
+              "nav_image_sub_title": ""
+            }
           }
         },
         "block_order": [
@@ -326,7 +336,8 @@
           "nav-item-3",
           "nav-item-4",
           "nav-item-5",
-          "nav-item-6"
+          "nav-item-6",
+          "1574421557128"
         ],
         "settings": {
           "full_width_header": false,
@@ -1232,9 +1243,9 @@
           "1571280275835-0": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/todays-reveal-70-off-the-giana-hp-v2_89d7c6aa-bbd3-4b6a-a11d-3ca1b6040902.gif",
-              "mobile_image": "shopify://shop_images/todays-reveal-70-off-the-giana-mobile-v2_75790465-9f93-480a-8565-01e1e2fe7fb7.gif",
-              "image_link": "/collections/giana-1",
+              "image": "shopify://shop_images/todays-reveal-the-carlin-70-off_87a6b9ca-e7ba-426f-8aac-5c9bf831fc1b.gif",
+              "mobile_image": "shopify://shop_images/todays-reveal-the-carlin-70-off-mobile_66cd0dfe-1833-41af-9f30-f9214b8034d5.gif",
+              "image_link": "/products/carlin-34l3187?variant=29805182713928",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
