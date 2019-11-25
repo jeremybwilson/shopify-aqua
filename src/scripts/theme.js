@@ -3772,3 +3772,16 @@ $(document).on('DOMSubtreeModified', "#product-loop", function() {
 // End PDM-901
 // Power Review Changes End
 */
+
+// PDM-1383 - Borderfree
+// Adds a check to see if site is US / non-US
+
+$(document).ready(function() {
+  if ($.cookie('bfx.country').length > 0) {
+    if ($.cookie('bfx.country') != 'US') {
+      $('body').addClass('bfx-non-us');
+    } else {
+      $('body').addClass('bfx-us');
+    }
+  }  
+});
