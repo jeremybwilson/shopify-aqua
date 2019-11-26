@@ -78,7 +78,7 @@
                 {% assign property_size = item.properties | size %}
                 {% if property_size > 0 %}
                   {% for p in item.properties %}
-                    {% unless p.first == 'discountItem' or p.first contains 'sr_token' or p.first contains '_private' or p.last == blank %}
+                    {% unless p.first == 'discountItem' or p.first contains 'sr_token' or p.first contains '_private' or p.last == blank or p.first contains 'persistent_note' %}
                       {{ p.first }}:
 
                       {% comment %}
@@ -91,6 +91,9 @@
                       {% endif %}
                       <br>
                     {% endunless %}
+                    {% if p.first contains 'persistent_note' %}
+                      <p>{{ p.last }}</p>
+                    {% endif %}
                   {% endfor %}
                 {% endif %}
               </td>

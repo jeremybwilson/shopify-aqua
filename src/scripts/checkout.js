@@ -109,4 +109,11 @@ $(document).ready(function(){
   $("#checkout_remember_me").prop('checked',true);
   $('.order-summary-toggle').hide();
   $('div.order-summary').removeClass('order-summary--is-collapsed');
+  
+  $( ".product__description__property" ).each(function( index ) {
+    var html_property = $.trim($(this).html());
+    if(html_property.indexOf('persistent_note:') > -1){
+      $(this).html(html_property.replace('persistent_note:',''));
+    }
+  });
 })
