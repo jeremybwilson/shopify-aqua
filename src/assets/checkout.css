@@ -1,0 +1,145 @@
+.tooltip-image {
+    width: 18px;
+    margin-left: 5px;
+  }
+  span.tooltip-message {       
+    bottom: 28px;
+    right: -165%;
+    position: absolute;
+    width: 268px;
+    font-size: 16px;
+    z-index: 9999;
+    border: 1px solid rgb(204, 204, 204);
+    padding: 10px;
+    background: rgb(255, 255, 255);
+    font-family: Lato, sans-serif;
+  }
+
+  .section__title {
+    position: relative;
+    max-width: max-content !important;
+  }
+
+  p.layout-flex__item {
+    margin-left: auto;
+  }
+
+
+  @media (max-width:465px) {
+    span.tooltip-message {right:-125%;}
+  }
+
+  @media (max-width:390px) {
+       span.tooltip-message {right:-80%;}
+  }
+
+.breadcrumb li.breadcrumb__item:after {
+    border-left: 19px solid #b8b8b8;
+    border-top: 15px solid rgba(0,0,0,0);
+    border-bottom: 15px solid rgba(0,0,0,0);
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    right: -18px;
+    z-index: 10;
+}
+.breadcrumb li.breadcrumb__item:before {
+    border-left: 21px solid #ffffff;
+    border-top: 17px solid rgba(0,0,0,0);
+    border-bottom: 17px solid rgba(0,0,0,0);
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: -2px;
+    right: -21px;
+    z-index: 5
+}
+
+.breadcrumb__item--current:after {
+    border-left-color: #000000 !important;
+}
+
+.breadcrumb li.breadcrumb__item {
+    padding: 6px 15px;
+    width: 19.6%;
+    background-repeat: no-repeat;
+    background-color:#b8b8b8;
+    position: relative;
+}
+
+.breadcrumb .breadcrumb__link, .breadcrumb .breadcrumb__text {
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    font-size: 15px;
+}
+
+.breadcrumb li.breadcrumb__item.breadcrumb__item--current {
+    background-color: #000000;
+}
+
+.main .breadcrumb .icon-svg--color-adaptive-light{
+    display:none;
+}
+
+@media (min-width:1000px) and (max-width:1200px) {
+    .breadcrumb li.breadcrumb__item{width: 18.5%;}
+}
+
+.secure-checkout-message {
+    margin-top: 10px;
+    text-align: right;
+}
+
+/*Why choose us*/
+.why-choose-part {
+  margin-top: 45px;
+  display: none;
+}
+.why-choose-part .main-heading {
+  position: relative;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.why-choose-part .main-heading:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(161,161,161,0.34);
+  top: 50%;
+  left: 0;
+}
+
+.why-choose-part .main-heading h4 {
+  font-size: 18px;
+  text-align: center;
+  width: auto;
+  display: inline-block;
+  margin: 0px auto 0px auto;
+  background-color: #e6e6e6;
+  padding: 2px 8px;
+  position: relative;
+  z-index: 9;
+  color: #333;
+}
+
+.why-choose-part .loop-part {
+  display: flex;
+  align-items: center;
+  margin-bottom:15px;
+}
+
+.why-choose-part h3 {
+  color: #323232;
+  margin-bottom: 2px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.why-choose-part .images-part {
+  flex: 0 0 25%;
+  margin-right: 20px;
+}
