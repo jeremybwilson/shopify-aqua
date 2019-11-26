@@ -74,28 +74,28 @@
                     <span class="hide bfx-sku">{{ item.sku }}</span>
                     <span class="bfx-product-customData-label hide">variant_id</span>
                     <span class="bfx-product-customData-value hide">{{ item.variant_id }}</span>
-                  </div>
-                {% assign property_size = item.properties | size %}
-                {% if property_size > 0 %}
-                  {% for p in item.properties %}
-                    {% unless p.first == 'discountItem' or p.first contains 'sr_token' or p.first contains '_private' or p.last == blank or p.first contains 'persistent_note' %}
-                      {{ p.first }}:
+                  {% assign property_size = item.properties | size %}
+                  {% if property_size > 0 %}
+                    {% for p in item.properties %}
+                      {% unless p.first == 'discountItem' or p.first contains 'sr_token' or p.first contains '_private' or p.last == blank or p.first contains 'persistent_note' %}
+                        {{ p.first }}:
 
-                      {% comment %}
-                        Check if there was an uploaded file associated
-                      {% endcomment %}
-                      {% if p.last contains '/uploads/' %}
-                        <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
-                      {% else %}
-                        {{ p.last }}
+                        {% comment %}
+                          Check if there was an uploaded file associated
+                        {% endcomment %}
+                        {% if p.last contains '/uploads/' %}
+                          <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                        {% else %}
+                          {{ p.last }}
+                        {% endif %}
+                        <br>
+                      {% endunless %}
+                      {% if p.first contains 'persistent_note' %}
+                        <p class="">{{ p.last }}</p>
                       {% endif %}
-                      <br>
-                    {% endunless %}
-                    {% if p.first contains 'persistent_note' %}
-                      <p>{{ p.last }}</p>
-                    {% endif %}
-                  {% endfor %}
-                {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                  </div>
               </td>
 
               <td class="cart-remove">
