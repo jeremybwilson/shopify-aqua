@@ -34,7 +34,11 @@
                         {{#if_not_eq @key 'discountItem'}}
                           {{#if_not_eq @key '_sr_token'}}
                               {{#unless_contains @key '_private'}}
-                                <span class="ajaxcart__product-meta">{{@key}}: {{this}}</span>
+                                {{#if_contains @key 'persistent_note'}}
+                                  <span class="ajaxcart__product-meta">{{this}}</span>
+                                {{ else }}
+                                  <span class="ajaxcart__product-meta">{{@key}}: {{this}}</span>
+                                {{/if_contains}}
                               {{/unless_contains}}
                           {{/if_not_eq}}
                         {{/if_not_eq}}

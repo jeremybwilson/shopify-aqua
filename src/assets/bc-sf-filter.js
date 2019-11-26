@@ -34,11 +34,11 @@ var bcSfFilterTemplate = {
                                         '{{itemVendor}}' +
                                         '<h3 class="product-title">{{itemTitle}}</h3>' +
                                     '</a>' +
-                                    '{{itemPersistentNote}}'+
                                     '{{wishlistButton}}' +
                                     '<div id="pr-CategorySnippet-{{itemProductId}}" class="pr-CategorySnippet-cls"></div>' + 
                                     '<div class="product-price-wrap bfx-price">{{itemPrice}}</div>' +
                                     '{{itemSwatch}}' +
+                                    '{{itemPersistentNote}}'+
                                 '</div>' +
                             '</div>',
 
