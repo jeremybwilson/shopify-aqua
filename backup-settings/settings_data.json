@@ -163,7 +163,7 @@
     "newsletter_subscription_api_url": "",
     "newsletter_email_service_provider_cid": "ad4b11c18c08f631a75f9702c24575ed",
     "newsletter_template_list_name": "",
-    "popup": true,
+    "popup": false,
     "email_image": "",
     "email_popup_title": "FRONT ROW &amp; CENTER",
     "email_popup_text": "Be the first to know about new styles & ultra-exclusive offers plus <strong>ENJOY $50 OFF*</strong> your first purchase.",
@@ -1243,9 +1243,9 @@
           "1571280275835-0": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/sundays-reveal-the-ibis_259ba63d-0cd3-4fb4-bb91-8afb9eb2c121.gif",
-              "mobile_image": "shopify://shop_images/sundays-reveal-the-ibis-mobile_e5fee48f-bb0a-41f0-919e-47e58ecfad8f.gif",
-              "image_link": "/products/ibis-34l3215?variant=29805225771080",
+              "image": "shopify://shop_images/todays-reveal-70-off-the-luciana_3aab0b80-89ee-4988-ac91-12987a029efa.gif",
+              "mobile_image": "shopify://shop_images/todays-reveal-70-off-the-luciana-mobile_f4a096aa-ddfc-48df-a521-bdca6e2ea7c4.gif",
+              "image_link": "/products/luciana-34l3170?variant=29804977619016",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
