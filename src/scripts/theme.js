@@ -3720,7 +3720,12 @@ $(document).on('change','.swatch.color input',function(){
 $(document).ready(function() {
   if (!$('body.gridlock').length) {
     console.log('fixing mobile view...');
-    $('body').addClass('bfx-price-container bfx-remove-element-container gridlock shifter');
+    if (window.originBodyClass) {
+      $('body').addClass(window.originBodyClass);
+    } else {
+      $('body').addClass('bfx-price-container bfx-remove-element-container gridlock shifter');
+    }
+
   }
 });
 

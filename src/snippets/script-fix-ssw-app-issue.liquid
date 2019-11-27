@@ -1,0 +1,9 @@
+<script>
+	/*
+	* The ssw-app is removing the body tag's class and adding its'own class sometimes.
+	* It breaks the whole site layout.
+	* So we need to keep the body tag's original class.
+	*
+	* */
+	window.originBodyClass = "bfx-price-container bfx-remove-element-container template-{{ template.name }} gridlock shifter {% if template contains 'product' %}product{% elsif template contains 'collection' %}collection{% else %}{{ template }}{% endif %}";
+</script>

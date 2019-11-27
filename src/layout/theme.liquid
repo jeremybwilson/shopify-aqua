@@ -153,6 +153,8 @@
 
 <body class="bfx-price-container bfx-remove-element-container template-{{ template.name }} gridlock shifter {% if template contains 'product' %}product{% elsif template contains 'collection' %}collection{% else %}{{ template }}{% endif %}">
 
+  {% include 'script-fix-ssw-app-issue' %}
+
   {% if settings.instagram_service == 'ssw' %}
     {% comment %} SocialShopWave (Instagram App) {% endcomment %}
     {% capture the_snippet_content %}{% include 'socialshopwave-helper' %}{% endcapture %}
