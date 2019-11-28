@@ -8,6 +8,7 @@
     <meta name="referrer" content="origin">
 
     <title>{{ page_title }}</title>
+    <link type="text/css" href="{{ 'checkout.css' | asset_url }}" rel="stylesheet">
 
     {% comment %} :: LIBRARY SCRIPTS :: {% endcomment %}
     {{ 'jquery-2.2.4.min.js' | asset_url | script_tag }}
@@ -20,7 +21,29 @@
     <!-- Sailthru
   ================================================== -->
     {% comment %} {% include 'sailthru-script' %} {% endcomment %}
-    
+
+  {% comment %} Tooltip {% endcomment %}
+  <script type="text/javascript">
+      $(document).ready(function(){
+       if (Shopify.Checkout.step == 'contact_information'){ 
+          $("#main-header").html($("#main-header").html() + '<img class="tooltip-image" src="{{ 'question.png' || file_url }}">');       
+          $("#main-header").html($("#main-header").html() + "{{ settings.guest_checkout_tooltip_message }}");
+          $(".tooltip-message").hide();
+            $(".tooltip-image").hover(function() {
+               $("#main-header").css('position','relative');
+               $(this).css('cursor','pointer');
+               $(".tooltip-message").show();
+              }, function() {
+               $(this).css('cursor','auto');
+               $(".tooltip-message").hide();
+            });
+            $('.step').append("{{ settings.secure_checkout_message }}");
+        }else{
+         $(".tooltip-image, .tooltip-message").hide();
+       }
+      }); 
+   </script>
+
   <!-- LoyaltyLion -->
   {% include 'checkout-loyaltylion' %}  
 
@@ -81,5 +104,36 @@
 
     {% comment %} :: BOL - Checkout Customizations :: {% endcomment %}
     {{ 'checkout.js' | asset_url | script_tag }}
-  </body>
+
+    {% comment %} Why Choose Us - Checkout {% endcomment %}
+    <script type="text/javascript">
+      $(document).ready(function(){
+        var cehckout_satisfaction = '<div class="why-choose-part">' +
+                                      '<div class="main-heading">' +
+                                          '<h4>Why Choose Us?</h4>' +
+                                      '</div>' +
+                                      '<div class="loop-part">' +
+                                          '<div class="images-part"><img src="{{ 'why-chooce-us-icon-1.png' | file_url }}"></div>' +
+                                          '<div class="info">' +
+                                            '<h3 class="heading">Satisfaction Guarantee</h3>' +
+                                            '<p>We are sure you will love your bat! if you do not, send us an email why and we will gladly try and sort out a solution for you to make sure you are happy.</p>'+
+                                          '</div>' +
+                                      '</div>' +
+                                      '<div class="loop-part">' +
+                                          '<div class="images-part"><img src="{{ 'why-chooce-us-icon-2.png' | file_url }}"></div>' +
+                                          '<div class="info">' +
+                                            '<h3 class="heading">Easy Track Your Order Status</h3>' +
+                                            '<p>Simply click on the link in your confirmation email to instantly view the status of your order.</p>' +
+                                          '</div>' +
+                                      '</div>' +
+                                    '</div>';  
+       $('.order-summary__section--total-lines').append(cehckout_satisfaction);
+      });
+    </script>
+  {% comment %} Start Freshdesk {% endcomment %}
+  <script type="text/javascript" src="https://assets.freshdesk.com/widget/freshwidget.js"></script>
+  <script type="text/javascript">FreshWidget.init("", {"queryString": "&widgetType=popup&formTitle=Aquatalia+Support&submitTitle=Submit&submitThanks=Thank+you%2C+we+will+contact+you+within+the+next+24-48+hours.&captcha=yes&searchArea=no", "utf8": "✓", "widgetType": "popup", "buttonType": "text", "buttonText": "Help?", "buttonColor": "white", "buttonBg": "#000000", "alignment": "3", "offset": "90%", "submitThanks": "Thank you, we will contact you within the next 24-48 hours.", "formHeight": "600px", "captcha": "yes", "url":"aqua.brandedonline.com"} );
+  </script>
+  {% comment %} end Freshdesk {% endcomment %}
+  </body>  
 </html>
