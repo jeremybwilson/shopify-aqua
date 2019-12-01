@@ -1245,8 +1245,8 @@
           "1571280275835-0": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/aqua-the-black-friday-desktop1_795c589a-e4d3-4bfd-b175-364d11c83f2f.gif",
-              "mobile_image": "shopify://shop_images/aqua-the-black-friday-mobile.gif",
+              "image": "shopify://shop_images/cyber-monday-desktop-image_3648dcd4-91ba-4b2c-859f-f90880a6b6be.jpg",
+              "mobile_image": "shopify://shop_images/aqua-cm-40-off-mobile.gif",
               "image_link": "https://www.aquatalia.com/collections/women",
               "heading": "",
               "subheading": "",
@@ -1255,7 +1255,7 @@
               "cta_one_link": "https://www.aquatalia.com/collections/women",
               "cta_one_button_text": "Shop Women",
               "cta_one_line": "none",
-              "cta_two_link": "shopify://collections/men",
+              "cta_two_link": "https://www.aquatalia.com/collections/men",
               "cta_two_button_text": "shop Men",
               "cta_two_line": "none",
               "caption_color_scheme": "light",
