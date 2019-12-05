@@ -42,20 +42,6 @@
             </li>
           {% endif %}
 
-
-          {% comment %} ..:: BORDER FREE - Nav Button ::.. {% endcomment %}
-          {% if settings.borderfree_enabled %}
-            <li id="nav-item-borderfree" class="nav-item nav-borderfree"></li>
-          {% endif %}
-
-          {% comment %} ..:: ACCOUNT ::.. {% endcomment %}
-          {% if shop.customer_accounts_enabled %}
-            <li class="nav-item nav-account {% if section.settings.account_icon == 'text' %}nav-account-text-mode{% endif %}">
-              {% include 'nav-account-item' %}
-            </li>
-          {% endif %}
-
-
           {% comment %} ..:: SEARCH ::.. {% endcomment %}
           {% if section.settings.show_search %}
             {% assign search_id_num = 0 %}
@@ -63,7 +49,18 @@
               {% include 'svg-icon-search' with search_id_num %}
             </li>
           {% endif %}
+          
+          {% comment %} ..:: BORDER FREE - Nav Button ::.. {% endcomment %}
+          {% if settings.borderfree_enabled %}
+            <li id="nav-item-borderfree" class="nav-item nav-borderfree"></li>
+          {% endif %}          
 
+          {% comment %} ..:: ACCOUNT ::.. {% endcomment %}
+          {% if shop.customer_accounts_enabled %}
+            <li class="nav-item nav-account {% if section.settings.account_icon == 'text' %}nav-account-text-mode{% endif %}">
+              {% include 'nav-account-item' %}
+            </li>
+          {% endif %}
 
           {% comment %} ..:: CURRENCY PICKER (DISABLED) ::.. {% endcomment %}
           {% if settings.show_multiple_currencies %}
