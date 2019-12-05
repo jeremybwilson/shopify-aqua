@@ -344,9 +344,9 @@
         "settings": {
           "full_width_header": false,
           "show_announcement_text": true,
-          "num_of_promo_banners": "3",
-          "announcement_text_one": "40% OFF with Code CYBERSTYLE",
-          "announcement_link_one": "shopify://collections/women",
+          "num_of_promo_banners": "2",
+          "announcement_text_one": "$50 Off Your First Purchase Of $150 or More",
+          "announcement_link_one": "/account",
           "announcement_text_two": "Free Next Day Shipping on all Domestic U.S. Purchases",
           "announcement_text_three": "INSTALLMENTS BY <img class=\"afterpay-logo\" alt=\"Afterpay\" src=\"https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png\" srcset=\"https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png 1x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@2x.png 2x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@3x.png 3x\"> HAVE ARRIVED.",
           "announcement_link_three": "/collections/women-new-arrivals",
@@ -1198,14 +1198,13 @@
       },
       "1568086382260": {
         "type": "slideshow",
-        "disabled": true,
         "blocks": {
           "1572408168763": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/the-animal-print-event-30-percent-off-hp.gif",
-              "mobile_image": "shopify://shop_images/the-animal-print-event-30-percent-off-hp-mobile.gif",
-              "image_link": "shopify://collections/printed-collection",
+              "image": "shopify://shop_images/style-overnight-free-next-day-shipping-hp.gif",
+              "mobile_image": "shopify://shop_images/style-overnight-free-next-day-shipping-hp-mobile.gif",
+              "image_link": "shopify://collections/women-cold-weather",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
@@ -1241,6 +1240,7 @@
       },
       "1571280275835": {
         "type": "slideshow",
+        "disabled": true,
         "blocks": {
           "1571280275835-0": {
             "type": "image",
