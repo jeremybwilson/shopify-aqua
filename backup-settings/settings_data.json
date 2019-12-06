@@ -346,7 +346,7 @@
           "show_announcement_text": true,
           "num_of_promo_banners": "2",
           "announcement_text_one": "$50 Off Your First Purchase Of $150 or More",
-          "announcement_link_one": "/account",
+          "announcement_link_one": "shopify://pages/promotion-disclaimer",
           "announcement_text_two": "Free Next Day Shipping on all Domestic U.S. Purchases",
           "announcement_text_three": "INSTALLMENTS BY <img class=\"afterpay-logo\" alt=\"Afterpay\" src=\"https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png\" srcset=\"https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png 1x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@2x.png 2x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@3x.png 3x\"> HAVE ARRIVED.",
           "announcement_link_three": "/collections/women-new-arrivals",
