@@ -54,12 +54,13 @@
       {% endfor %}
 
       _shoprunner_com.confirmedProducts= "";
-      {% if checkout.shipping_method.handle contains 'ShopRunner' %}
+      {% comment %} {% if checkout.shipping_method.handle contains 'ShopRunner' %}
         _shoprunner_com.isMOVSatisfied = true;
       
       {% else %}
         _shoprunner_com.isMOVSatisfied = false;
-      {% endif %}
+      {% endif %} {% endcomment %}
+      _shoprunner_com.isMOVSatisfied = true;
 
 
       // console.log("Shoprunner cart subtotal: " + _shoprunner_com.cart.srSubTotal);
