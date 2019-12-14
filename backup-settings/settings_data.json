@@ -529,7 +529,7 @@
             "type": "text_block",
             "settings": {
               "image": "shopify://shop_images/Promo_Block_1.jpg",
-              "mobile_image": "shopify://shop_images/Promo_Block_1_b4424eb3-3295-4b41-9636-758de3cb0da7.jpg",
+              "mobile_image": "shopify://shop_images/Promo_Block_1.jpg",
               "link": "shopify://collections/women-cold-weather",
               "heading_text": "WINTER OBSESSION",
               "body_text": "<p>Seasonal Style</p>",
@@ -547,7 +547,7 @@
             "type": "text_block",
             "settings": {
               "image": "shopify://shop_images/Promo_Block_1_4cf38318-5977-4c05-9d34-41206a3403d7.jpg",
-              "mobile_image": "shopify://shop_images/Promo_Block_1_6d1f0286-0c9e-4fc2-8b04-6962ccb7d9e9.jpg",
+              "mobile_image": "shopify://shop_images/Promo_Block_1_4cf38318-5977-4c05-9d34-41206a3403d7.jpg",
               "link": "shopify://collections/womens-outerwear",
               "heading_text": "STORM CHASER",
               "body_text": "<p>Let it Snow</p>",
@@ -577,7 +577,7 @@
             "type": "image",
             "settings": {
               "image": "shopify://shop_images/Banner_2.jpg",
-              "mobile_image": "shopify://shop_images/Banner_2_7474d051-e2f5-4f8f-9010-b4a615e1866b.jpg",
+              "mobile_image": "shopify://shop_images/Banner_2.jpg",
               "image_link": "shopify://collections/mens-outerwear",
               "heading": "",
               "subheading": "",
@@ -1199,33 +1199,6 @@
       "1568086382260": {
         "type": "slideshow",
         "blocks": {
-          "1575703013890": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/aqua-pasha-sale-desktop.jpg",
-              "mobile_image": "shopify://shop_images/aqua-pasha-sale-mobile.jpg",
-              "image_link": "https://www.aquatalia.com/collections/pasha",
-              "heading": "",
-              "subheading": "",
-              "caption_text_align": "left",
-              "cta_type": "button",
-              "cta_one_link": "",
-              "cta_one_button_text": "",
-              "cta_one_line": "none",
-              "cta_two_link": "",
-              "cta_two_button_text": "",
-              "cta_two_line": "none",
-              "caption_color_scheme": "light",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#e41c39",
-              "caption_horizontal": "left",
-              "caption_horizontal_offset": 0,
-              "caption_vertical": 50,
-              "caption_vertical_mobile": 50,
-              "caption_background": "transparent",
-              "caption_opacity": "0.1"
-            }
-          },
           "1572408168763": {
             "type": "image",
             "settings": {
@@ -1255,7 +1228,6 @@
           }
         },
         "block_order": [
-          "1575703013890",
           "1572408168763"
         ],
         "settings": {
