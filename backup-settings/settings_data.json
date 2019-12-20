@@ -682,7 +682,7 @@
           "1551222350622": {
             "type": "image_block",
             "settings": {
-              "image": "shopify://shop_images/dd_aquasp02_2019_lesley_053_v3_cmyk_gracol.jpg",
+              "image": "shopify://shop_images/about-us.jpg",
               "link": "shopify://collections/women-sandals"
             }
           },
@@ -994,7 +994,7 @@
               "image_desktop": "shopify://shop_images/aqua-ulyssaa-shoe-care-guide_dbc6f22f-efb8-4cb1-9c98-0aa21e0617e8.jpg",
               "image_mobile": "shopify://shop_images/aqua-ulyssaa-shoe-care-guide_0d3623c0-f9bb-47d0-b71a-9dfc1cbb1a04.jpg",
               "module_html_h2": "How to Care for Weatherproof Shoes",
-              "module_html_p": "Aquatalia’s weatherproofing technology protects your shoes in wet weather conditions, keeping your feet dry and comfortable.<br><br> \n\nWeatherproof shoes require the same care as all leather and suede footwear. Please refer to the above care instructions to keep your shoes in good condition. Any stain that sits on your shoes for an extended period of time can become permanent. We recommend using a soft, lightly moistened cloth to remove stains immediately. Always store your weatherproof shoes in a cool, dry environment and away from direct heat and/or sunlight.",
+              "module_html_p": "Aquatalia’s weatherproofing technology protects your shoes in wet weather conditions.<br><br> \n\nWeatherproof shoes require the same care as all leather and suede footwear. Please refer to the above care instructions to keep your shoes in good condition. Any stain that sits on your shoes for an extended period of time can become permanent. We recommend using a soft, lightly moistened cloth to remove stains immediately. Always store your weatherproof shoes in a cool, dry environment and away from direct heat and/or sunlight.",
               "button_text": "Shop Women's Shoes",
               "button_link": "shopify://collections/women-new-arrivals",
               "button_symbol_placement": "left",
@@ -1199,6 +1199,33 @@
       "1568086382260": {
         "type": "slideshow",
         "blocks": {
+          "1576741596377": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/cold-weather-event-50-off-outerwear-winter-accessories.jpg",
+              "mobile_image": "shopify://shop_images/cold-weather-event-50-off-outerwear-winter-accessories-mobile.jpg",
+              "image_link": "shopify://collections/cold-weather-sale",
+              "heading": "",
+              "subheading": "",
+              "caption_text_align": "left",
+              "cta_type": "button",
+              "cta_one_link": "",
+              "cta_one_button_text": "",
+              "cta_one_line": "none",
+              "cta_two_link": "",
+              "cta_two_button_text": "",
+              "cta_two_line": "none",
+              "caption_color_scheme": "light",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#e41c39",
+              "caption_horizontal": "left",
+              "caption_horizontal_offset": 0,
+              "caption_vertical": 50,
+              "caption_vertical_mobile": 50,
+              "caption_background": "transparent",
+              "caption_opacity": "0.1"
+            }
+          },
           "1572408168763": {
             "type": "image",
             "settings": {
@@ -1228,6 +1255,7 @@
           }
         },
         "block_order": [
+          "1576741596377",
           "1572408168763"
         ],
         "settings": {
