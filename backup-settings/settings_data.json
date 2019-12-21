@@ -347,7 +347,7 @@
           "num_of_promo_banners": "2",
           "announcement_text_one": "$50 Off Your First Purchase Of $150 or More",
           "announcement_link_one": "shopify://pages/promotion-disclaimer",
-          "announcement_text_two": "Free Next Day Shipping on all Domestic U.S. Purchases",
+          "announcement_text_two": "Free Shipping On All Domestic U.S. Purchases",
           "announcement_text_three": "INSTALLMENTS BY <img class=\"afterpay-logo\" alt=\"Afterpay\" src=\"https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png\" srcset=\"https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png 1x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@2x.png 2x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@3x.png 3x\"> HAVE ARRIVED.",
           "announcement_link_three": "/collections/women-new-arrivals",
           "announcement_link_two": "shopify://collections/women",
@@ -1199,33 +1199,6 @@
       "1568086382260": {
         "type": "slideshow",
         "blocks": {
-          "1576741596377": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/cold-weather-event-50-off-outerwear-winter-accessories.jpg",
-              "mobile_image": "shopify://shop_images/cold-weather-event-50-off-outerwear-winter-accessories-mobile.jpg",
-              "image_link": "shopify://collections/cold-weather-sale",
-              "heading": "",
-              "subheading": "",
-              "caption_text_align": "left",
-              "cta_type": "button",
-              "cta_one_link": "",
-              "cta_one_button_text": "",
-              "cta_one_line": "none",
-              "cta_two_link": "",
-              "cta_two_button_text": "",
-              "cta_two_line": "none",
-              "caption_color_scheme": "light",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#e41c39",
-              "caption_horizontal": "left",
-              "caption_horizontal_offset": 0,
-              "caption_vertical": 50,
-              "caption_vertical_mobile": 50,
-              "caption_background": "transparent",
-              "caption_opacity": "0.1"
-            }
-          },
           "1572408168763": {
             "type": "image",
             "settings": {
@@ -1255,7 +1228,6 @@
           }
         },
         "block_order": [
-          "1576741596377",
           "1572408168763"
         ],
         "settings": {
