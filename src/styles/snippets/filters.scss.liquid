@@ -90,7 +90,7 @@ $filterBarBorder: {{ settings.filter_bar_border_width }}px solid {{ settings.fil
                 content: ' ';
                 background: transparent;
                 cursor: pointer;
-                pointer-events: none; // so it doesn't become an unclickable area
+                {% comment %} pointer-events: none; // so it doesn't become an unclickable area {% endcomment %}
                 z-index: 25; // sit on top of select arrow thats native
             }
         }
