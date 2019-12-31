@@ -486,9 +486,9 @@
           "1551216982423": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/Hero_Banner.jpg",
-              "mobile_image": "shopify://shop_images/AQ_I_Mobile_HP_Holiday_1.jpg",
-              "image_link": "shopify://collections/outerwear",
+              "image": "shopify://shop_images/Hero_Banner_273a42fa-4c64-4b76-950e-5a9efd399a31.jpg",
+              "mobile_image": "shopify://shop_images/Banner_1.jpg",
+              "image_link": "shopify://collections/evening",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
@@ -964,7 +964,7 @@
               "image_desktop": "shopify://shop_images/aqua-betsy-shoe-care_2_007cba5b-2e61-40be-b74c-ec380cf54c9d.jpg",
               "image_mobile": "shopify://shop_images/aqua-betsy-shoe-care_2_7cc10a51-8029-4660-b221-500b102c340f.jpg",
               "module_html_h2": "How to Care for Leather Shoes",
-              "module_html_p": "Properly caring for Italian leather is key in extending the life of your shoes and boots and keeping them looking newer longer.<br><br>\n\nTo remove liquid stains such as coffee, soda, and wine, gently wipe your shoes with a soft cloth that’s been moistened with water. For harder stains, gently wipe your shoe with a soft cloth that has been moistened with a water and neutral soap solution or use a mixture of water and 5% ammonia.<br><br>\n\nIf the outer surface of your footwear gets wet, we recommend that you air dry your leather footwear in a cool, dry environment and away from direct heat. To restore your leather shoes or boots back to their original shine, polish them with a quality wax and buff off using a soft cloth or brush.",
+              "module_html_p": "Properly caring for Italian leather is key in extending the life of your shoes and boots and keeping them looking newer longer.<br><br>\n\nTo remove liquid stains such as coffee, soda, and wine, gently wipe your shoes with a soft cloth that’s been moistened with water. For harder stains, gently wipe your shoe with a soft cloth that has been moistened with a water and neutral soap solution.<br><br>\n\nIf the outer surface of your footwear gets wet, we recommend that you air dry your leather footwear in a cool, dry environment and away from direct heat. To restore your leather shoes or boots back to their original shine, buff off using a soft cloth or brush.",
               "button_text": "Shop Women’s Shoes",
               "button_link": "shopify://collections/women",
               "button_symbol_placement": "left",
@@ -1202,8 +1202,8 @@
           "1572408168763": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/new-beginnings-hp.jpg",
-              "mobile_image": "shopify://shop_images/new-beginnings-hp-mobile.jpg",
+              "image": "shopify://shop_images/new-biginnings-hp-desktop.jpg",
+              "mobile_image": "shopify://shop_images/new-biginnings-hp-mobile.jpg",
               "image_link": "https://www.aquatalia.com/collections/women-new-arrivals",
               "heading": "",
               "subheading": "",
