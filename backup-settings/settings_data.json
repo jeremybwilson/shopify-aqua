@@ -486,9 +486,9 @@
           "1551216982423": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/Hero_Banner_273a42fa-4c64-4b76-950e-5a9efd399a31.jpg",
-              "mobile_image": "shopify://shop_images/Banner_1.jpg",
-              "image_link": "shopify://collections/evening",
+              "image": "shopify://shop_images/AQ-SS1-2020_HERObanner1-1920x1040px.jpg",
+              "mobile_image": "shopify://shop_images/AQ-SS1-2020_HERObanner1-MOBILE-768x1032px.jpg",
+              "image_link": "shopify://collections/women-booties",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
@@ -528,11 +528,11 @@
           "promo-left": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/Promo_Block_1.jpg",
-              "mobile_image": "shopify://shop_images/Promo_Block_1.jpg",
-              "link": "shopify://collections/women-cold-weather",
-              "heading_text": "WINTER OBSESSION",
-              "body_text": "<p>Seasonal Style</p>",
+              "image": "shopify://shop_images/AQ-SS1-2020_PROMOblock1-930x840px.jpg",
+              "mobile_image": "",
+              "link": "shopify://products/fuoco-34l3251",
+              "heading_text": "TONAL SHIFT",
+              "body_text": "<p>Preseason Palette</p>",
               "text_align": "left",
               "cta_type": "text",
               "cta_text": "SHOP NOW",
@@ -546,11 +546,11 @@
           "promo-right": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/Promo_Block_1_4cf38318-5977-4c05-9d34-41206a3403d7.jpg",
-              "mobile_image": "shopify://shop_images/Promo_Block_1_4cf38318-5977-4c05-9d34-41206a3403d7.jpg",
-              "link": "shopify://collections/womens-outerwear",
-              "heading_text": "STORM CHASER",
-              "body_text": "<p>Let it Snow</p>",
+              "image": "shopify://shop_images/AQ-SS1-2020_PROMOblock2-930x840px_61d0a056-1ffd-4307-b704-96823877a1af.jpg",
+              "mobile_image": "",
+              "link": "shopify://products/florita-34l2925-b",
+              "heading_text": "PRINTED MATTERS",
+              "body_text": "<p>Exotic Skins</p>",
               "text_align": "left",
               "cta_type": "text",
               "cta_text": "SHOP NOW",
@@ -576,9 +576,9 @@
           "1551217570857": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/Banner_2.jpg",
-              "mobile_image": "shopify://shop_images/Banner_2.jpg",
-              "image_link": "shopify://collections/mens-outerwear",
+              "image": "shopify://shop_images/AQ-SS1-2020_banner2-1920x915px_1dd83836-4d90-4888-a65c-f30bce974b4e.jpg",
+              "mobile_image": "shopify://shop_images/AQ-SS1-2020_banner2-MOBILE-768x1048px.jpg",
+              "image_link": "shopify://collections/women-flats",
               "heading": "",
               "subheading": "",
               "caption_text_align": "left",
